@@ -15,7 +15,8 @@ extern "C" {
 
     void GOMP_parallel_end (void);
 		
-		
+		// long_long values[NUM_EVENTS];
+		// unsigned int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
 		
 #ifdef __cplusplus
 }
