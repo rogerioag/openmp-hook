@@ -1,0 +1,29 @@
+# Ver o nome da função gerada pelo gcc. foo -> _Z3foov
+
+objdump -t libhookomp.so
+
+objdump -t libhookomp.so | c++filt
+
+-------------------------------------------------------------------
+nm --demangle=gnu hookomp.o
+
+$ nm -C --demangle=gnu hookomp.o 
+                 U _GLOBAL_OFFSET_TABLE_
+                 U puts
+0000000000000000 T _Z3foov
+
+-------------------------------------------------------------------
+nm -C hookomp.o
+
+$ nm -C hookomp.o 
+                 U _GLOBAL_OFFSET_TABLE_
+                 U puts
+0000000000000000 T foo()
+-------------------------------------------------------------------
+
+Demangling function names
+
+echo "int foo() {} " | g++ -x c++ -S - -o- | grep "^_.*:$" | sed -e 's/:$//'
+_Z3foov
+
+

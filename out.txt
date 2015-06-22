@@ -1,0 +1,31 @@
+main().
+init_array().
+before parallel region 1.
+[hookomp] GOMP_parallel_start.
+[GOMP_1.0] GOMP_parallel_start@@GOMP_1.0.
+Thread: 1 of 2.
+Thread: 1 of 2.
+Thread: 1 of 2.
+Thread: 1 of 2.
+Thread: 1 of 2.
+Thread: 1 of 2.
+Thread: 1 of 2.
+Thread: 1 of 2.
+[hookomp] GOMP_parallel_end.
+[GOMP_1.0] GOMP_parallel_end@@GOMP_1.0.
+before parallel region 2.
+[hookomp] GOMP_parallel_start.
+[GOMP_1.0] GOMP_parallel_start@@GOMP_1.0.
+Thread: 1 of 2.
+Thread: 1 of 2.
+Thread: 1 of 2.
+Thread: 1 of 2.
+Thread: 0 of 2.
+Thread: 0 of 2.
+Thread: 0 of 2.
+Thread: 0 of 2.
+[hookomp] GOMP_parallel_end.
+[GOMP_1.0] GOMP_parallel_end@@GOMP_1.0.
+check_result().
+Verificando o resultado.
+Resultado Final: (16.000000, 1.000000)
