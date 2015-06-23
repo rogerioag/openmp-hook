@@ -8,7 +8,7 @@
 
 #define NUM_EVENTS 2
 long_long values[NUM_EVENTS];
-int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
+long long int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
 
 #ifdef __cplusplus
 extern "C" {
@@ -46,12 +46,12 @@ void GOMP_parallel_end (void){
 	printf("[hookomp] GOMP_parallel_end.\n");
 
 	/* Stop counters and store results in values */
-	int retval = PAPI_stop_counters(values,NUM_EVENTS);
+	int retval = PAPI_stop_counters(values, NUM_EVENTS);
 
 	if(retval != PAPI_OK )
-           printf("Erro on PAPI execution.");
+		printf("Error on PAPI execution.\n");
 
-	printf("Total insts: %lld Total Cycles: %lld\n", (long long int) Events[0], (long long int) Events[1]);	 
+	printf("Total insts: %lld Total Cycles: %lld\n", (long long int) values[0], (long long int) values[1]);	 
 
 	typedef void (*func_t)(void);
 

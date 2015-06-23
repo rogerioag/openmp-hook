@@ -26,6 +26,6 @@ main: main-test.c
 	
 
 clean:
-	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling
+	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp
 
 

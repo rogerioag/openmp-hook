@@ -27,3 +27,4 @@ echo "int foo() {} " | g++ -x c++ -S - -o- | grep "^_.*:$" | sed -e 's/:$//'
 _Z3foov
 
 
+g++-4.7 -L /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook vectoradd-omp-parallel-for-peeling.c -o vectoradd-omp-parallel-for-peeling -lhookomp -fopenm
