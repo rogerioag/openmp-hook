@@ -23,9 +23,12 @@ main: main-test.c
 	${CXX} -L${PWD} -Wall -o main-test main-test.c -ldl -lhookomp 
 	${CC} vectoradd-omp.c -o vectoradd-omp -fopenmp
 	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling.c -o vectoradd-omp-parallel-for-peeling -lhookomp -fopenmp
+	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling-for-to-1-thread.c -o vectoradd-omp-parallel-for-peeling-for-to-1-thread -lhookomp -fopenmp
+	
+	
 	
 
 clean:
-	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp
+	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp
 
 

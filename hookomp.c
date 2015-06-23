@@ -25,7 +25,7 @@ extern "C" {
 
 /* Test function. */
 void foo(void) {
-	puts("Hello, I'm a shared library");
+	puts("Hello, I'm a shared library.\n");
 }
 
 /* Function to intercept GOMP_parallel_start */
@@ -47,23 +47,23 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	
 	if (retval != PAPI_OK) {
 		if (retval == PAPI_ESBSTR)
-			printf("PAPI_thread_init: %d", retval);
+			printf("PAPI_thread_init: %d\n", retval);
 	}
 	
 	/* Create an EventSet */
   if (PAPI_create_eventset(&EventSet) != PAPI_OK)
-    printf("PAPI_create_eventset error.");
+    printf("PAPI_create_eventset error.\n");
 
 	/* Add Total Instructions Executed to our EventSet */
   if (PAPI_add_event(EventSet, PAPI_TOT_INS) != PAPI_OK)
-		printf("PAPI_add_event error PAPI_TOT_INS");
+		printf("PAPI_add_event error PAPI_TOT_INS.\n");
 	
 	if (PAPI_add_event(EventSet, PAPI_TOT_CYC) != PAPI_OK)
-		printf("PAPI_add_event error PAPI_TOT_CYC");
+		printf("PAPI_add_event error PAPI_TOT_CYC.\n");
 
   /* Start counting */
   if (PAPI_start(EventSet) != PAPI_OK)
-		printf("PAPI_start counting error.");
+		printf("PAPI_start counting error.\n");
 
 	/* Start the counters */
 	// PAPI_start_counters((int*)Events, NUM_EVENTS);
