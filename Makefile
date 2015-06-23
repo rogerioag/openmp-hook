@@ -1,5 +1,6 @@
 CC=gcc-4.7
 CXX=g++-4.7
+LIB_HOOKOMP_PATH=$(PWD)
 
 all: libhookomp main
 
@@ -21,9 +22,10 @@ libhookomp: hookomp.o
 main: main-test.c
 	${CXX} -L${PWD} -Wall -o main-test main-test.c -ldl -lhookomp 
 	${CC} vectoradd-omp.c -o vectoradd-omp -fopenmp
+	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling.c -o vectoradd-omp-parallel-for-peeling -lhookomp -fopenmp
 	
 
 clean:
-	rm -rf *.o main-test *.so
+	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling
 
 
