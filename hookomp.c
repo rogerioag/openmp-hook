@@ -51,11 +51,11 @@ void GOMP_parallel_end (void){
 	if(retval != PAPI_OK )
 		printf("Error on PAPI execution.\n");
 
-	printf("Total insts: %lld Total Cycles: %lld\n", (long long int) values[0], (long long int) values[1]);	 
-
+	printf("Total insts: %lld Total Cycles: %lld\n", (long long int) values[0], (long long int) values[1]);	
+	
 	typedef void (*func_t)(void);
 
 	func_t lib_GOMP_parallel_end = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_end");
 	printf("[GOMP_1.0] GOMP_parallel_end@@GOMP_1.0.\n");
-	return lib_GOMP_parallel_end();	 
+	return lib_GOMP_parallel_end();
 }
