@@ -10,6 +10,8 @@
 long long values[NUM_EVENTS];
 long long int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
 
+int EventSet = PAPI_NULL;
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -29,14 +31,42 @@ void foo(void) {
 /* Function to intercept GOMP_parallel_start */
 void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	printf("[hookomp] GOMP_parallel_start.\n");
+	
+	EventSet = PAPI_NULL;
 
 	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
-
 	func_t lib_GOMP_parallel_start = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_start");
 	printf("[GOMP_1.0] GOMP_parallel_start@@GOMP_1.0.\n");
+	
+	// int omp_get_thread_num(void);
+	
+	typedef int (*func_omp_get_thread_num_t)(void);
+	func_omp_get_thread_num_t lib_GOMP_get_thread_num = (func_omp_get_thread_num_t) dlsym(RTLD_NEXT, "omp_get_thread_num");
+	
+	int retval = PAPI_thread_init((unsigned long (*)(void)) (lib_GOMP_get_thread_num));
+	
+	if (retval != PAPI_OK) {
+		if (retval == PAPI_ESBSTR)
+			printf("PAPI_thread_init: %d", retval);
+	}
+	
+	/* Create an EventSet */
+  if (PAPI_create_eventset(&EventSet) != PAPI_OK)
+    printf("PAPI_create_eventset error.");
+
+	/* Add Total Instructions Executed to our EventSet */
+  if (PAPI_add_event(EventSet, PAPI_TOT_INS) != PAPI_OK)
+		printf("PAPI_add_event error PAPI_TOT_INS");
+	
+	if (PAPI_add_event(EventSet, PAPI_TOT_CYC) != PAPI_OK)
+		printf("PAPI_add_event error PAPI_TOT_CYC");
+
+  /* Start counting */
+  if (PAPI_start(EventSet) != PAPI_OK)
+		printf("PAPI_start counting error.");
 
 	/* Start the counters */
-	PAPI_start_counters((int*)Events, NUM_EVENTS);
+	// PAPI_start_counters((int*)Events, NUM_EVENTS);
 
 	return lib_GOMP_parallel_start(fn, data, num_threads); 
 }
@@ -44,6 +74,8 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 /* Function to intercept GOMP_parallel_end */
 void GOMP_parallel_end (void){
 	printf("[hookomp] GOMP_parallel_end.\n");
+	
+	long long elapsed_us, elapsed_cyc;
 
 	/* Stop counters and store results in values */
 	int retval = PAPI_stop_counters(values, NUM_EVENTS);
@@ -67,6 +99,25 @@ void GOMP_parallel_end (void){
 	}
 
 	printf("Total insts: %lld Total Cycles: %lld\n", (long long int) values[0], (long long int) values[1]);	
+	
+	elapsed_us = PAPI_get_real_usec();
+	elapsed_cyc = PAPI_get_real_cyc();
+	
+	printf( "Master real usec   : \t%lld\n", elapsed_us );
+	printf( "Master real cycles : \t%lld\n", elapsed_cyc );
+	
+	/* Read the counters */
+   if (PAPI_read(EventSet, values) != PAPI_OK)
+     printf("PAPI_read error reading counters.\n");
+
+	 printf("After reading counters: Total insts: %lld Total Cycles: %lld\n", (long long int) values[0], (long long int) values[1]);
+
+   /* Start the counters */
+   if (PAPI_stop(EventSet, values) != PAPI_OK)
+     printf("PAPI_read error stopping counters.\n");
+	 
+	 printf("After stopping counters: Total insts: %lld Total Cycles: %lld\n", (long long int) values[0], (long long int) values[1]);
+	
 	
 	typedef void (*func_t)(void);
 
