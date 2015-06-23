@@ -7,7 +7,7 @@
 #include <papi.h>
 
 #define NUM_EVENTS 2
-long_long values[NUM_EVENTS];
+long long values[NUM_EVENTS];
 long long int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
 
 #ifdef __cplusplus
