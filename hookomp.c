@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <papi.h>
+#include <pthread.h>
 
 #define NUM_EVENTS 2
 long long values[NUM_EVENTS];
@@ -44,10 +45,18 @@ void initialization_of_papi_libray_mode(){
   if (retval != PAPI_VER_CURRENT)
 		printf("PAPI_library_init error: %d\n", retval);
 	
-	typedef int (*func_omp_get_thread_num_t)(void);
-	func_omp_get_thread_num_t lib_GOMP_get_thread_num = (func_omp_get_thread_num_t) dlsym(RTLD_NEXT, "omp_get_thread_num");
+	// typedef int (*func_omp_get_thread_num_t)(void);
+	// func_omp_get_thread_num_t lib_GOMP_get_thread_num = (func_omp_get_thread_num_t) dlsym(RTLD_NEXT, "omp_get_thread_num");
  
-	retval = PAPI_thread_init((unsigned long (*)(void)) (lib_GOMP_get_thread_num));
+	// retval = PAPI_thread_init((unsigned long (*)(void)) (lib_GOMP_get_thread_num));
+	/* The OpenMP call omp_get_thread_num() violates this rule, as the underlying LWPs may 
+	 * have been killed off by the run-time system or by a call to omp_set_num_threads() . 
+	 * In that case, it may still possible to use omp_get_thread_num() in conjunction with 
+	 * PAPI_unregister_thread() when the OpenMP thread has finished. However it is much 
+	 * better to use the underlying thread subsystem's call, which is pthread_self() 
+	 * on Linux platforms. */
+	
+	retval = PAPI_thread_init((unsigned long (*)(void)) (pthread_self()));
 	
 	if (retval != PAPI_OK) {
 		if (retval == PAPI_ESBSTR)

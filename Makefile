@@ -10,7 +10,7 @@ hookomp.o: hookomp.c
 
 # Step 2: Creating a shared library from an object file
 libhookomp: hookomp.o
-	${CXX} -shared -o libhookomp.so hookomp.o -ldl -lpapi
+	${CXX} -shared -o libhookomp.so hookomp.o -ldl -lpapi -pthread
 
 # Step 3: Linking with a shared library
 # As you can see, that was actually pretty easy. We have a shared library. 
