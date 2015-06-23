@@ -48,8 +48,23 @@ void GOMP_parallel_end (void){
 	/* Stop counters and store results in values */
 	int retval = PAPI_stop_counters(values, NUM_EVENTS);
 
-	if(retval != PAPI_OK )
+	if(retval != PAPI_OK ){
 		printf("Error on PAPI execution.\n");
+		
+		switch (retval){
+				case PAPI_EINVAL :
+					printf("One or more of the arguments is invalid.\n");
+					break;
+				case PAPI_ENOTRUN : 
+					printf("The EventSet is not started yet.\n");
+					break;
+				case PAPI_ENOEVST : 
+					printf("The EventSet has not been added yet.\n");
+					break;
+			default:
+				printf("Unknown Error.\n");
+		}
+	}
 
 	printf("Total insts: %lld Total Cycles: %lld\n", (long long int) values[0], (long long int) values[1]);	
 	
