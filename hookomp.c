@@ -19,6 +19,9 @@ extern "C" {
 	// GOMP_loop_runtime_start@@GOMP_1.0
 	void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads);
 	void GOMP_parallel_end (void);
+	
+	bool GOMP_single_start (void);
+	
 #ifdef __cplusplus
 }
 #endif
@@ -32,8 +35,6 @@ void foo(void) {
 void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	printf("[hookomp] GOMP_parallel_start.\n");
 	
-	EventSet = PAPI_NULL;
-
 	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
 	func_t lib_GOMP_parallel_start = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_start");
 	printf("[GOMP_1.0] GOMP_parallel_start@@GOMP_1.0.\n");
@@ -43,12 +44,26 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	typedef int (*func_omp_get_thread_num_t)(void);
 	func_omp_get_thread_num_t lib_GOMP_get_thread_num = (func_omp_get_thread_num_t) dlsym(RTLD_NEXT, "omp_get_thread_num");
 	
-	int retval = PAPI_thread_init((unsigned long (*)(void)) (lib_GOMP_get_thread_num));
+	EventSet = PAPI_NULL;
+	
+	int retval;
+  unsigned long int tid;
+ 
+  retval = PAPI_library_init(PAPI_VER_CURRENT);
+  if (retval != PAPI_VER_CURRENT)
+		printf("PAPI_library_init error: %d\n", retval);
+ 
+	retval = PAPI_thread_init((unsigned long (*)(void)) (lib_GOMP_get_thread_num));
 	
 	if (retval != PAPI_OK) {
 		if (retval == PAPI_ESBSTR)
-			printf("PAPI_thread_init: %d\n", retval);
+			printf("PAPI_thread_init error: %d\n", retval);
 	}
+	
+	if ((tid = PAPI_thread_id()) == (unsigned long int)-1)
+    printf("PAPI_thread_id error.\n");
+ 
+  printf("Thread id is: %lu\n",tid);	
 	
 	/* Create an EventSet */
   if (PAPI_create_eventset(&EventSet) != PAPI_OK)
@@ -70,7 +85,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 
 	return lib_GOMP_parallel_start(fn, data, num_threads); 
 }
-
+/* ------------------------------------------------------------- */
 /* Function to intercept GOMP_parallel_end */
 void GOMP_parallel_end (void){
 	printf("[hookomp] GOMP_parallel_end.\n");
@@ -125,3 +140,16 @@ void GOMP_parallel_end (void){
 	printf("[GOMP_1.0] GOMP_parallel_end@@GOMP_1.0.\n");
 	return lib_GOMP_parallel_end();
 }
+/*----------------------------------------------------------------*/
+bool GOMP_single_start (void){
+	printf("[hookomp] GOMP_single_start.\n");
+	
+	typedef bool (*func_t)(void);
+
+	func_t lib_GOMP_single_start = (func_t) dlsym(RTLD_NEXT, "GOMP_single_start");
+	printf("[GOMP_1.0] GOMP_single_start@@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_single_start();
+	return result;
+}
+
