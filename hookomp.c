@@ -22,6 +22,8 @@ extern "C" {
 	
 	bool GOMP_single_start (void);
 	
+	void initialization_of_papi_libray_mode();
+	
 #ifdef __cplusplus
 }
 #endif
@@ -29,6 +31,33 @@ extern "C" {
 /* Test function. */
 void foo(void) {
 	puts("Hello, I'm a shared library.\n");
+}
+
+
+void initialization_of_papi_libray_mode(){
+	printf("[hookomp] initialization_of_papi_libray_mode.\n");	
+	
+	int retval;
+	unsigned long int tid;
+   
+  retval = PAPI_library_init(PAPI_VER_CURRENT);
+  if (retval != PAPI_VER_CURRENT)
+		printf("PAPI_library_init error: %d\n", retval);
+	
+	typedef int (*func_omp_get_thread_num_t)(void);
+	func_omp_get_thread_num_t lib_GOMP_get_thread_num = (func_omp_get_thread_num_t) dlsym(RTLD_NEXT, "omp_get_thread_num");
+ 
+	retval = PAPI_thread_init((unsigned long (*)(void)) (lib_GOMP_get_thread_num));
+	
+	if (retval != PAPI_OK) {
+		if (retval == PAPI_ESBSTR)
+			printf("PAPI_thread_init error: %d\n", retval);
+	}
+	
+	if ((tid = PAPI_thread_id()) == (unsigned long int)-1)
+    printf("PAPI_thread_id error.\n");
+ 
+  printf("Thread id in initialization_of_papi_libray_mode: %lu\n",tid);	
 }
 
 /* Function to intercept GOMP_parallel_start */
@@ -41,24 +70,24 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	
 	// int omp_get_thread_num(void);
 	
-	typedef int (*func_omp_get_thread_num_t)(void);
-	func_omp_get_thread_num_t lib_GOMP_get_thread_num = (func_omp_get_thread_num_t) dlsym(RTLD_NEXT, "omp_get_thread_num");
+// 	typedef int (*func_omp_get_thread_num_t)(void);
+// 	func_omp_get_thread_num_t lib_GOMP_get_thread_num = (func_omp_get_thread_num_t) dlsym(RTLD_NEXT, "omp_get_thread_num");
 	
-	EventSet = PAPI_NULL;
+	// EventSet = PAPI_NULL;
 	
-	int retval;
+	// int retval;
   unsigned long int tid;
  
-  retval = PAPI_library_init(PAPI_VER_CURRENT);
-  if (retval != PAPI_VER_CURRENT)
-		printf("PAPI_library_init error: %d\n", retval);
- 
-	retval = PAPI_thread_init((unsigned long (*)(void)) (lib_GOMP_get_thread_num));
-	
-	if (retval != PAPI_OK) {
-		if (retval == PAPI_ESBSTR)
-			printf("PAPI_thread_init error: %d\n", retval);
-	}
+//   retval = PAPI_library_init(PAPI_VER_CURRENT);
+//   if (retval != PAPI_VER_CURRENT)
+// 		printf("PAPI_library_init error: %d\n", retval);
+//  
+// 	retval = PAPI_thread_init((unsigned long (*)(void)) (lib_GOMP_get_thread_num));
+// 	
+// 	if (retval != PAPI_OK) {
+// 		if (retval == PAPI_ESBSTR)
+// 			printf("PAPI_thread_init error: %d\n", retval);
+// 	}
 	
 	if ((tid = PAPI_thread_id()) == (unsigned long int)-1)
     printf("PAPI_thread_id error.\n");

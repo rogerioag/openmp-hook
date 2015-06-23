@@ -17,6 +17,8 @@ extern "C" {
 		
 		bool GOMP_single_start (void);
 		
+		void initialization_of_papi_libray_mode();
+		
 		// long_long values[NUM_EVENTS];
 		// unsigned int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
 		
