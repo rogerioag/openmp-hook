@@ -1,4 +1,4 @@
-	.file	"vectoradd-omp-parallel-for-peeling.c"
+	.file	"vectoradd-omp-parallel-for-single.c"
 	.globl	h_a
 	.bss
 	.align 32
@@ -182,8 +182,6 @@ _Z12check_resultv:
 	.string	"main().\n"
 .LC10:
 	.string	"before parallel region 1.\n"
-.LC11:
-	.string	"before parallel region 2.\n"
 	.text
 	.globl	main
 	.type	main, @function
@@ -222,19 +220,6 @@ main:
 	call	GOMP_parallel_end
 	movl	-16(%rbp), %eax
 	movl	%eax, -4(%rbp)
-	movq	stdout(%rip), %rax
-	movq	%rax, %rcx
-	movl	$26, %edx
-	movl	$1, %esi
-	movl	$.LC11, %edi
-	call	fwrite
-	movl	$0, %edx
-	movl	$0, %esi
-	movl	$main._omp_fn.1, %edi
-	call	GOMP_parallel_start
-	movl	$0, %edi
-	call	main._omp_fn.1
-	call	GOMP_parallel_end
 	call	_Z12check_resultv
 	movl	$0, %eax
 	leave
@@ -244,7 +229,7 @@ main:
 .LFE5:
 	.size	main, .-main
 	.section	.rodata
-.LC12:
+.LC11:
 	.string	"Thread: %d of %d.\n"
 	.text
 	.type	main._omp_fn.0, @function
@@ -264,27 +249,24 @@ main._omp_fn.0:
 	movq	%rdi, -24(%rbp)
 	call	GOMP_single_start
 	cmpb	$1, %al
-	je	.L13
-.L14:
-	call	GOMP_barrier
-	jmp	.L16
+	jne	.L12
 .L13:
 	movq	-24(%rbp), %rax
 	movl	$0, (%rax)
 .L15:
 	movq	-24(%rbp), %rax
 	movl	(%rax), %eax
-	cmpl	$7, %eax
+	cmpl	$15, %eax
 	setle	%al
 	testb	%al, %al
-	je	.L14
+	je	.L12
 	call	omp_get_num_threads
 	movl	%eax, %ebx
 	call	omp_get_thread_num
 	movl	%eax, %edx
 	movq	stdout(%rip), %rax
 	movl	%ebx, %ecx
-	movl	$.LC12, %esi
+	movl	$.LC11, %esi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	fprintf
@@ -307,7 +289,7 @@ main._omp_fn.0:
 	movq	-24(%rbp), %rax
 	movl	%edx, (%rax)
 	jmp	.L15
-.L16:
+.L12:
 	addq	$24, %rsp
 	popq	%rbx
 	popq	%rbp
@@ -326,97 +308,6 @@ main._omp_fn.0:
 .LLSDACSE6:
 	.text
 	.size	main._omp_fn.0, .-main._omp_fn.0
-	.type	main._omp_fn.1, @function
-main._omp_fn.1:
-.LFB7:
-	.cfi_startproc
-	.cfi_personality 0x3,__gxx_personality_v0
-	.cfi_lsda 0x3,.LLSDA7
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	pushq	%r12
-	pushq	%rbx
-	subq	$32, %rsp
-	.cfi_offset 12, -24
-	.cfi_offset 3, -32
-	movq	%rdi, -40(%rbp)
-	call	omp_get_num_threads
-	movl	%eax, %ebx
-	call	omp_get_thread_num
-	movl	%eax, %esi
-	movl	$8, %eax
-	movl	%eax, %edx
-	sarl	$31, %edx
-	idivl	%ebx
-	movl	%eax, %ecx
-	movl	$8, %eax
-	movl	%eax, %edx
-	sarl	$31, %edx
-	idivl	%ebx
-	movl	%edx, %eax
-	cmpl	%eax, %esi
-	jl	.L18
-.L21:
-	movl	%ecx, %edx
-	imull	%esi, %edx
-	addl	%edx, %eax
-	leal	(%rax,%rcx), %edx
-	cmpl	%edx, %eax
-	jge	.L17
-	addl	$8, %eax
-	movl	%eax, -20(%rbp)
-	leal	8(%rdx), %r12d
-.L20:
-	call	omp_get_num_threads
-	movl	%eax, %ebx
-	call	omp_get_thread_num
-	movl	%eax, %edx
-	movq	stdout(%rip), %rax
-	movl	%ebx, %ecx
-	movl	$.LC12, %esi
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	fprintf
-	movl	-20(%rbp), %eax
-	cltq
-	movss	h_a(,%rax,4), %xmm1
-	movl	-20(%rbp), %eax
-	cltq
-	movss	h_b(,%rax,4), %xmm0
-	addss	%xmm1, %xmm0
-	movl	-20(%rbp), %eax
-	cltq
-	movss	%xmm0, h_c(,%rax,4)
-	addl	$1, -20(%rbp)
-	cmpl	%r12d, -20(%rbp)
-	jl	.L20
-	jmp	.L17
-.L18:
-	movl	$0, %eax
-	addl	$1, %ecx
-	jmp	.L21
-.L17:
-	addq	$32, %rsp
-	popq	%rbx
-	popq	%r12
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE7:
-	.section	.gcc_except_table
-.LLSDA7:
-	.byte	0xff
-	.byte	0xff
-	.byte	0x1
-	.uleb128 .LLSDACSE7-.LLSDACSB7
-.LLSDACSB7:
-.LLSDACSE7:
-	.text
-	.size	main._omp_fn.1, .-main._omp_fn.1
 	.section	.rodata
 	.align 4
 .LC1:
@@ -429,4 +320,3 @@ main._omp_fn.1:
 	.long	1098907648
 	.ident	"GCC: (Debian 4.7.4-3) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits
-
