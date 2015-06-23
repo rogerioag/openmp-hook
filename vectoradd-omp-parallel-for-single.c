@@ -58,6 +58,8 @@ int main() {
   /* Inicialização  dos vetores. */
   init_array();
 	
+	initialization_of_papi_libray_mode();
+	
 	fprintf(stdout, "before parallel region 1.\n");
 #pragma omp parallel
 {
