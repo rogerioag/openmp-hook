@@ -73,7 +73,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 // 	typedef int (*func_omp_get_thread_num_t)(void);
 // 	func_omp_get_thread_num_t lib_GOMP_get_thread_num = (func_omp_get_thread_num_t) dlsym(RTLD_NEXT, "omp_get_thread_num");
 	
-	EventSet = PAPI_NULL;
+	// EventSet = PAPI_NULL;
 	
 	// int retval;
   unsigned long int tid;
