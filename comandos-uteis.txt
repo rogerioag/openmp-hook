@@ -28,3 +28,8 @@ _Z3foov
 
 
 g++-4.7 -L /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook vectoradd-omp-parallel-for-peeling.c -o vectoradd-omp-parallel-for-peeling -lhookomp -fopenm
+
+
+Teste papi:
+
+gcc -I/dados/rogerio/USP/doutorado/papi/papi-5.4.1/src/testlib/ -c teste-threads.c -L/dados/rogerio/USP/doutorado/papi/papi-5.4.1/src/testlib/ -lpapi
