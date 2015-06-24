@@ -62,8 +62,8 @@ int main() {
 	long long elapsed_us, elapsed_cyc;
 	
 	long_long values[NUM_EVENTS];
-	int EventsSet[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
-	
+	int Events[NUM_EVENTS] = { PAPI_TOT_INS, PAPI_TOT_CYC };
+		
 	/* Inicialização  dos vetores. */
 	init_array();
 	
@@ -130,7 +130,7 @@ int main() {
 	
 			// retval_private = PAPI_start(EventsSet);
 			
-			retval_private = PAPI_start_counters(&EventsSet, NUM_EVENTS);
+			retval_private = PAPI_start_counters(Events, NUM_EVENTS);
 						
 			if ( retval_private != PAPI_OK ){
 				printf("PAPI_start error: %d.\n", retval_private);
@@ -165,12 +165,12 @@ int main() {
 			}
 			
 			// retval_private = PAPI_stop(EventsSet, values);
-			retval_private = PAPI_stop_counters(values,NUM_EVENTS);
+			retval_private = PAPI_stop_counters(values, NUM_EVENTS);
 			if ( retval_private != PAPI_OK )
 				printf("PAPI_stop error: %d.\n", retval_private);
 	
 			printf("Total insts: %lld Total Cycles: %lld\n", values[0], values[1]);
-			PAPI_unregister_thread(  );
+			PAPI_unregister_thread();
 			printf( "Thread %#x finished\n", omp_get_thread_num());
 		}
 	}
