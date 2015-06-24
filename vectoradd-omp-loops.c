@@ -68,8 +68,19 @@ int main() {
 	init_array();
 	
 	retval = PAPI_library_init( PAPI_VER_CURRENT );
-	if ( retval != PAPI_VER_CURRENT )
+	if ( retval != PAPI_VER_CURRENT ){
 		printf("PAPI_library_init: %d.\n", retval);
+	}
+	
+	if (retval != PAPI_VER_CURRENT && retval > 0) {
+		fprintf(stderr,"PAPI library version mismatch!\n");
+		exit(1);
+	}
+	
+	retval = PAPI_is_initialized();
+	if (retval != PAPI_LOW_LEVEL_INITED){
+		printf("PAPI_is_initialized: %d.\n", retval);
+	}
 	
 	hw_info = PAPI_get_hardware_info();
 	if (hw_info == NULL)
