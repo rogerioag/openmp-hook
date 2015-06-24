@@ -62,7 +62,7 @@ int main() {
 	long long elapsed_us, elapsed_cyc;
 	
 	long_long values[NUM_EVENTS];
-	unsigned int EventsSet[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
+	int EventsSet[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
 	
 	/* Inicialização  dos vetores. */
 	init_array();
