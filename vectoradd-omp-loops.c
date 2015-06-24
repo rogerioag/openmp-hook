@@ -114,12 +114,11 @@ int main() {
 	
 	
 	fprintf(stdout, "before parallel region 1.\n");
-	#pragma omp parallel shared(values, Events)
+	#pragma omp parallel
 	{
 		#pragma omp single
 		/* Cálculo. */
 		{
-			
 			int retval_private = PAPI_thread_init((unsigned long (*)(void)) (omp_get_thread_num));
 	
 			if ( retval_private != PAPI_OK ) {
@@ -128,6 +127,8 @@ int main() {
 				else
 				printf("PAPI_thread_init fail: %d.\n", retval_private);
 			}
+			
+			printf("Events: %lld = %lld, %lld = %lld.\n", PAPI_TOT_INS, Events[0], PAPI_TOT_CYC, Events[1]);
 	
 			retval_private = PAPI_start_counters(Events, NUM_EVENTS);
 						
