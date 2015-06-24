@@ -133,7 +133,7 @@ int main() {
 			retval_private = PAPI_start_counters(Events, 2);
 						
 			if ( retval_private != PAPI_OK ){
-				printf("PAPI_start error: %d.\n", retval_private);
+				printf("PAPI_start_counters error: %d.\n", retval_private);
 				
 				switch (retval_private) {
 					case PAPI_EINVAL :
@@ -166,8 +166,24 @@ int main() {
 			
 			// retval_private = PAPI_stop(EventsSet, values);
 			retval_private = PAPI_stop_counters(values, NUM_EVENTS);
-			if ( retval_private != PAPI_OK )
-				printf("PAPI_stop error: %d.\n", retval_private);
+			if ( retval_private != PAPI_OK ){
+				printf("PAPI_stop_counters error: %d.\n", retval_private);
+				
+				switch (retval_private){
+					case PAPI_EINVAL : 
+						printf("One or more of the arguments is invalid.\n");
+						break;
+					case PAPI_ENOTRUN : 
+						printf("The EventSet is not started yet.\n");
+						break;
+					case PAPI_ENOEVST:
+						printf("The EventSet has not been added yet.\n");
+						break;
+					default:
+						printf("Unknown error.\n");
+				}
+			}
+			
 	
 			printf("Total insts: %lld Total Cycles: %lld\n", values[0], values[1]);
 			PAPI_unregister_thread();
