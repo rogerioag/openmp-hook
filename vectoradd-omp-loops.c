@@ -70,6 +70,25 @@ int main() {
 	retval = PAPI_library_init( PAPI_VER_CURRENT );
 	if ( retval != PAPI_VER_CURRENT ){
 		printf("PAPI_library_init: %d.\n", retval);
+		
+		switch (retval) {
+			case PAPI_EINVAL: 
+				printf("papi.h is different from the version used to compile the PAPI library.\n"); 
+				break;
+
+			case PAPI_ENOMEM:
+				printf("Insufficient memory to complete the operation.\n");
+				break;
+			case PAPI_ESBSTR:
+				printf("This substrate does not support the underlying hardware.\n");
+				break;
+			case PAPI_ESYS:
+				printf("A system or C library call failed inside PAPI, see the errno variable.\n");
+				break;
+			default:
+					printf("Unknown error.");
+		}
+		
 	}
 	
 	if (retval != PAPI_VER_CURRENT && retval > 0) {
