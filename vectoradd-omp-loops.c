@@ -5,7 +5,6 @@
 #include <omp.h>
 #else
 #define omp_get_thread_num() 0
-#define omp_get_thread_num 0
 #define omp_get_num_threads() 1
 #define omp_get_num_procs() (system("cat /proc/cpuinfo | grep 'processor' | wc -l"))
 #endif
