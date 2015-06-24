@@ -80,37 +80,43 @@ int main() {
 	elapsed_cyc = PAPI_get_real_cyc();
 	
 	
-	retval = PAPI_thread_init((unsigned long (*)(void)) (omp_get_thread_num));
 	
-	if ( retval != PAPI_OK ) {
-		if ( retval == PAPI_ECMP )
-			printf("PAPI_thread_init OK: %d.\n", retval);
-		else
-			printf("PAPI_thread_init fail: %d.\n", retval);
-	}
-	
-	retval = PAPI_start(EventsSet);
-	if ( retval != PAPI_OK )
-		printf("PAPI_start error: %d.\n", retval);
 	
 	fprintf(stdout, "before parallel region 1.\n");
 	#pragma omp parallel
 	{
 		#pragma omp single
 		/* Cálculo. */
-		for (i = 0; i < N; i++) {
-			fprintf(stdout, "Thread: %d of %d.\n", omp_get_thread_num(), omp_get_num_threads()); 
-			h_c[i] = h_a[i] + h_b[i];
+		{
+			retval = PAPI_thread_init((unsigned long (*)(void)) (omp_get_thread_num));
+	
+			if ( retval != PAPI_OK ) {
+				if ( retval == PAPI_ECMP )
+					printf("PAPI_thread_init OK: %d.\n", retval);
+				else
+				printf("PAPI_thread_init fail: %d.\n", retval);
+			}
+	
+			retval = PAPI_start(EventsSet);
+			if ( retval != PAPI_OK )
+				printf("PAPI_start error: %d.\n", retval);
+			
+			for (i = 0; i < N; i++) {
+				fprintf(stdout, "Thread: %d of %d.\n", omp_get_thread_num(), omp_get_num_threads()); 
+				h_c[i] = h_a[i] + h_b[i];
+			}
+			
+			// int retval = PAPI_stop_counters(values,NUM_EVENTS);
+	
+			retval = PAPI_stop(EventsSet, values);
+			if ( retval != PAPI_OK )
+				printf("PAPI_stop error: %d.\n", retval);
+	
+			printf("Total insts: %lld Total Cycles: %lld\n", values[0], values[1]);
 		}
 	}
 	
-	// int retval = PAPI_stop_counters(values,NUM_EVENTS);
 	
-	retval = PAPI_stop(EventsSet, values);
-	if ( retval != PAPI_OK )
-		printf("PAPI_stop error: %d.\n", retval);
-	
-	printf("Total insts: %lld Total Cycles: %lld\n", values[0], values[1]);
 	
 	
 /*	fprintf(stdout, "before parallel region 2.\n");
