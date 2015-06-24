@@ -88,18 +88,18 @@ int main() {
 		#pragma omp single
 		/* Cálculo. */
 		{
-			retval = PAPI_thread_init((unsigned long (*)(void)) (omp_get_thread_num));
+			int retval_private = PAPI_thread_init((unsigned long (*)(void)) (omp_get_thread_num));
 	
-			if ( retval != PAPI_OK ) {
-				if ( retval == PAPI_ECMP )
-					printf("PAPI_thread_init OK: %d.\n", retval);
+			if ( retval_private != PAPI_OK ) {
+				if ( retval_private == PAPI_ECMP )
+					printf("PAPI_thread_init OK: %d.\n", retval_private);
 				else
-				printf("PAPI_thread_init fail: %d.\n", retval);
+				printf("PAPI_thread_init fail: %d.\n", retval_private);
 			}
 	
-			retval = PAPI_start(EventsSet);
-			if ( retval != PAPI_OK )
-				printf("PAPI_start error: %d.\n", retval);
+			retval_private = PAPI_start(EventsSet);
+			if ( retval_private != PAPI_OK )
+				printf("PAPI_start error: %d.\n", retval_private);
 			
 			for (i = 0; i < N; i++) {
 				fprintf(stdout, "Thread: %d of %d.\n", omp_get_thread_num(), omp_get_num_threads()); 
@@ -108,9 +108,9 @@ int main() {
 			
 			// int retval = PAPI_stop_counters(values,NUM_EVENTS);
 	
-			retval = PAPI_stop(EventsSet, values);
-			if ( retval != PAPI_OK )
-				printf("PAPI_stop error: %d.\n", retval);
+			retval_private = PAPI_stop(EventsSet, values);
+			if ( retval_private != PAPI_OK )
+				printf("PAPI_stop error: %d.\n", retval_private);
 	
 			printf("Total insts: %lld Total Cycles: %lld\n", values[0], values[1]);
 		}
