@@ -27,7 +27,7 @@ main: main-test.c
 	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling.c -o vectoradd-omp-parallel-for-peeling -lhookomp -fopenmp
 	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling-for-to-1-thread.c -o vectoradd-omp-parallel-for-peeling-for-to-1-thread -lhookomp -fopenmp
 	
-	gcc vectoradd-omp-loops.c -o vectoradd-omp-loops -lpapi -fopenmp
+	gcc-4.7 vectoradd-omp-loops.c -o vectoradd-omp-loops -lpapi -fopenmp
 	
 	
 	

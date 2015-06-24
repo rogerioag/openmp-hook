@@ -67,9 +67,11 @@ int main() {
 	/* Inicialização  dos vetores. */
 	init_array();
 	
+	printf("PAPI_VERSION: %d, PAPI_VER_CURRENT: %d.\n", PAPI_VERSION, PAPI_VER_CURRENT);
+	
 	retval = PAPI_library_init( PAPI_VER_CURRENT );
 	if ( retval != PAPI_VER_CURRENT ){
-		printf("PAPI_VERSION: %d, PAPI_VER_CURRENT: %d", PAPI_VERSION, PAPI_VER_CURRENT);
+		printf("PAPI_VERSION: %d, PAPI_VER_CURRENT: %d.\n", PAPI_VERSION, PAPI_VER_CURRENT);
 		printf("PAPI_library_init: %d.\n", retval);
 		
 		switch (retval) {
