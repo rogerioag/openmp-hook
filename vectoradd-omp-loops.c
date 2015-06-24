@@ -132,8 +132,32 @@ int main() {
 			
 			retval_private = PAPI_start_counters((int*)EventsSet, NUM_EVENTS);
 			
-			if ( retval_private != PAPI_OK )
+			if ( retval_private != PAPI_OK ){
 				printf("PAPI_start error: %d.\n", retval_private);
+				
+				switch (retval_private) {
+					case PAPI_EINVAL :
+						printf("One or more of the arguments is invalid.\n");
+						break;
+					case PAPI_EISRUN :
+						printf("Counters have already been started, you must call PAPI_stop_counters() before you call this function again.\n");
+						break;
+					case PAPI_ESYS :
+						printf("A system or C library call failed inside PAPI, see the errno variable.\n");
+						break;
+					case PAPI_ENOMEM :
+						printf("Insufficient memory to complete the operation.\n");
+						break;
+					case PAPI_ECNFLCT :
+						printf("The underlying counter hardware cannot count this event and other events in the EventSet simultaneously.\n");
+						break;
+					case PAPI_ENOEVNT :
+						printf("The PAPI preset is not available on the underlying hardware.\n");
+						break;
+					default:
+						printf("Unknown error.\n");
+				}				
+			}
 			
 			for (i = 0; i < N; i++) {
 				fprintf(stdout, "Thread: %d of %d.\n", omp_get_thread_num(), omp_get_num_threads()); 
