@@ -11,6 +11,7 @@
 #endif
 
 #include <papi.h>
+#include <pthread.h>
 
 #define NUM_EVENTS 2
 
@@ -123,7 +124,8 @@ int main() {
 		#pragma omp single
 		/* Cálculo. */
 		{
-			int retval_private = PAPI_thread_init((unsigned long (*)(void)) (omp_get_thread_num()));
+			// int retval_private = PAPI_thread_init((unsigned long (*)(void)) (omp_get_thread_num));
+			int retval_private = PAPI_thread_init(pthread_self);			
 	
 			if ( retval_private != PAPI_OK ) {
 				if ( retval_private == PAPI_ECMP )
