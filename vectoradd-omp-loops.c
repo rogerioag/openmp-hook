@@ -61,9 +61,6 @@ int main() {
 	int i, retval;
 	long long elapsed_us, elapsed_cyc;
 	
-	long_long values[NUM_EVENTS];
-	int Events[NUM_EVENTS] = { PAPI_TOT_INS, PAPI_TOT_CYC };
-		
 	/* Inicialização  dos vetores. */
 	init_array();
 	
@@ -119,6 +116,8 @@ int main() {
 		#pragma omp single
 		/* Cálculo. */
 		{
+			long_long values[NUM_EVENTS];
+			int Events[NUM_EVENTS] = { PAPI_TOT_INS, PAPI_TOT_CYC };
 			int retval_private = PAPI_thread_init((unsigned long (*)(void)) (omp_get_thread_num));
 	
 			if ( retval_private != PAPI_OK ) {
@@ -128,9 +127,7 @@ int main() {
 				printf("PAPI_thread_init fail: %d.\n", retval_private);
 			}
 	
-			// retval_private = PAPI_start(EventsSet);
-			
-			retval_private = PAPI_start_counters(Events, 2);
+			retval_private = PAPI_start_counters(Events, NUM_EVENTS);
 						
 			if ( retval_private != PAPI_OK ){
 				printf("PAPI_start_counters error: %d.\n", retval_private);
