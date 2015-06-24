@@ -11,7 +11,7 @@
 
 #include <papi.h>
 
-#define NUM_EVENTS 1
+#define NUM_EVENTS 2
 
 // Size of vectors.
 #ifndef N
@@ -62,8 +62,8 @@ int main() {
 	long long elapsed_us, elapsed_cyc;
 	
 	long_long values[NUM_EVENTS];
-	// int Events[NUM_EVENTS] = { PAPI_TOT_INS, PAPI_TOT_CYC };
-	int Events[NUM_EVENTS] = { PAPI_TOT_INS };
+	int Events[NUM_EVENTS] = { PAPI_TOT_INS, PAPI_TOT_CYC };
+	
 	
 	/* Inicialização  dos vetores. */
 	init_array();
@@ -133,7 +133,7 @@ int main() {
 			
 			printf("%d Events: %lld = %lld, %lld = %lld.\n", NUM_EVENTS, PAPI_TOT_INS, Events[0], PAPI_TOT_CYC, Events[1]);
 	
-			retval_private = PAPI_start_counters(Events, NUM_EVENTS);
+			retval_private = PAPI_start_counters((int*)Events, NUM_EVENTS);
 						
 			if ( retval_private != PAPI_OK ){
 				printf("PAPI_start_counters error: %d.\n", retval_private);
