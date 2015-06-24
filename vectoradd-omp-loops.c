@@ -123,7 +123,7 @@ int main() {
 		#pragma omp single
 		/* Cálculo. */
 		{
-			int retval_private = PAPI_thread_init((unsigned long (*)(void)) (omp_get_thread_num));
+			int retval_private = PAPI_thread_init((unsigned long (*)(void)) (omp_get_thread_num()));
 	
 			if ( retval_private != PAPI_OK ) {
 				if ( retval_private == PAPI_ECMP )
