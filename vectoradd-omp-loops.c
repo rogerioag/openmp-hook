@@ -130,7 +130,7 @@ int main() {
 				printf("PAPI_thread_init fail: %d.\n", retval_private);
 			}
 			
-			printf("Events: %lld = %lld, %lld = %lld.\n", PAPI_TOT_INS, Events[0], PAPI_TOT_CYC, Events[1]);
+			printf("%d Events: %lld = %lld, %lld = %lld.\n", NUM_EVENTS, PAPI_TOT_INS, Events[0], PAPI_TOT_CYC, Events[1]);
 	
 			retval_private = PAPI_start_counters(Events, NUM_EVENTS);
 						
