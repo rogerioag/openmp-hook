@@ -130,7 +130,7 @@ int main() {
 	
 			// retval_private = PAPI_start(EventsSet);
 			
-			retval_private = PAPI_start_counters(Events, NUM_EVENTS);
+			retval_private = PAPI_start_counters(Events, 2);
 						
 			if ( retval_private != PAPI_OK ){
 				printf("PAPI_start error: %d.\n", retval_private);
