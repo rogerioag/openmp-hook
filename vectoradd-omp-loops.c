@@ -62,7 +62,7 @@ int main() {
 	long long elapsed_us, elapsed_cyc;
 	
 	long_long values[NUM_EVENTS];
-	unsigned int EventsSet[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
+	int EventsSet[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
 	
 	/* Inicialização  dos vetores. */
 	init_array();
@@ -130,8 +130,8 @@ int main() {
 	
 			// retval_private = PAPI_start(EventsSet);
 			
-			retval_private = PAPI_start_counters((int*)EventsSet, NUM_EVENTS);
-			
+			retval_private = PAPI_start_counters(&EventsSet, NUM_EVENTS);
+						
 			if ( retval_private != PAPI_OK ){
 				printf("PAPI_start error: %d.\n", retval_private);
 				
