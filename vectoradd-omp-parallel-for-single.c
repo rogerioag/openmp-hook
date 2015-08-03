@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "hookomp.h"
+// #include "hookomp.h"
 
 #ifdef _OPENMP
 #include <omp.h>
