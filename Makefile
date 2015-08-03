@@ -29,6 +29,7 @@ main: main-test.c
 	
 	gcc-4.7 vectoradd-omp-loops.c -o vectoradd-omp-loops -lpapi -fopenmp -lpthread
 	
+	cp libhookomp.so ../function-pointers/	
 	
 	
 
