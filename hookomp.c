@@ -144,7 +144,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	
 	printf("[GOMP_1.0] lib_GOMP_parallel_start[%p]\n", (void* )lib_GOMP_parallel_start);
 
-	return lib_GOMP_parallel_start(fn, data, num_threads); 
+	lib_GOMP_parallel_start(fn, data, num_threads); 
 }
 /* ------------------------------------------------------------- */
 /* Function to intercept GOMP_parallel_end */
@@ -199,7 +199,8 @@ void GOMP_parallel_end (void){
 
 	func_t lib_GOMP_parallel_end = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_end");
 	printf("[GOMP_1.0] GOMP_parallel_end@@GOMP_1.0.\n");
-	return lib_GOMP_parallel_end();
+	
+        lib_GOMP_parallel_end();
 }
 /*----------------------------------------------------------------*/
 bool GOMP_single_start (void){
