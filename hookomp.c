@@ -73,11 +73,13 @@ void initialization_of_papi_libray_mode(){
 void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	printf("[hookomp] GOMP_parallel_start.\n");
 	
-	typedef void (*op_func) (void *);
+	// typedef void (*op_func) (void *);
 
-	op_func teste = (*op_func) fn;
+	// op_func teste = (*op_func) fn;
 
-	teste(20);
+	// teste[0](20);
+	fn[0](&data);
+
 	
 	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
 	func_t lib_GOMP_parallel_start = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_start");
