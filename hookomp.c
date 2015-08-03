@@ -17,7 +17,7 @@ int EventSet = PAPI_NULL;
 typedef void (*op_func) (void *);
 
 /* Tabela de funções para chamada parametrizada. */
-op_func *TablePointerFunctions;
+extern op_func *TablePointerFunctions;
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,7 +31,7 @@ extern "C" {
 	
 	void initialization_of_papi_libray_mode();
 
-	void setupHookOMP(op_func *tPF);
+	// void setupHookOMP(op_func *tPF);
 	
 #ifdef __cplusplus
 }
@@ -78,19 +78,17 @@ void initialization_of_papi_libray_mode(){
 }
 
 /* Initialization of TablePointerFunctions. */
-void setupHookOMP(op_func *tPF){
+/*void setupHookOMP(op_func *tPF){
   TablePointerFunctions = tPF;
-}
+}*/
 
 /* Function to intercept GOMP_parallel_start */
 void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	printf("[hookomp] GOMP_parallel_start.\n");
 
-#ifdef hookomp_h__
   	printf("[hookomp]   Call by TablePointerFunctions.\n");
 	TablePointerFunctions[0](data);
 	TablePointerFunctions[1](data);
-#endif /* hookomp_h__ */	
 	
 	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
 	func_t lib_GOMP_parallel_start = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_start");
