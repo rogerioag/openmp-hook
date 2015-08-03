@@ -17,7 +17,7 @@ int EventSet = PAPI_NULL;
 typedef void (*op_func) (void *);
 
 /* Tabela de funções para chamada parametrizada. */
-extern op_func *TablePointerFunctions;
+// extern op_func *TablePointerFunctions;
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,6 +32,9 @@ extern "C" {
 	void initialization_of_papi_libray_mode();
 
 	// void setupHookOMP(op_func *tPF);
+	/* Tabela de funções para chamada parametrizada. */
+	op_func *TablePointerFunctions;
+
 	
 #ifdef __cplusplus
 }
