@@ -1,6 +1,8 @@
 // #define _GNU_SOURCE
 // #include <libgomp_g.h>
 
+#define _HOOK_OMP
+
 #include <dlfcn.h>
 #include <stdio.h>
 #include <stdint.h>
