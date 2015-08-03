@@ -61,11 +61,11 @@ int main() {
 	fprintf(stdout, "before parallel region 1.\n");
 #pragma omp parallel
 {
-	#pragma omp single
+  #pragma omp single
   /* Cálculo. */
   for (i = 0; i < N/2; i++) {
-		fprintf(stdout, "Thread: %d of %d.\n", omp_get_thread_num(), omp_get_num_threads()); 
-    h_c[i] = h_a[i] + h_b[i];
+	fprintf(stdout, "Thread: %d of %d.\n", omp_get_thread_num(), omp_get_num_threads()); 
+	h_c[i] = h_a[i] + h_b[i];
   }
 }
 
