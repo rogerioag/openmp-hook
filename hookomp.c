@@ -75,7 +75,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	
 	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
 	func_t lib_GOMP_parallel_start = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_start");
-	printf("[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[%d]\n", fn);
+	printf("[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[%d]\n", *fn);
 	
 	// int omp_get_thread_num(void);
 	
