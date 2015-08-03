@@ -13,8 +13,11 @@ long long int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
 
 int EventSet = PAPI_NULL;
 
-/* Test */
+/* Tipo para o ponteiro de função. */
 typedef void (*op_func) (void *);
+
+/* Tabela de funções para chamada parametrizada. */
+op_func *TablePointerFunctions;
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,6 +30,8 @@ extern "C" {
 	bool GOMP_single_start (void);
 	
 	void initialization_of_papi_libray_mode();
+
+	void setupHookOMP(op_func *tPF);
 	
 #ifdef __cplusplus
 }
@@ -72,14 +77,14 @@ void initialization_of_papi_libray_mode(){
   printf("Thread id in initialization_of_papi_libray_mode: %lu\n",tid);	
 }
 
+/* Initialization of TablePointerFunctions. */
+void setupHookOMP(op_func *tPF){
+  TablePointerFunctions = tPF;
+}
+
 /* Function to intercept GOMP_parallel_start */
 void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	printf("[hookomp] GOMP_parallel_start.\n");
-	
-	op_func teste = fn;
-
-	teste[0](&data);
-
 	
 	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
 	func_t lib_GOMP_parallel_start = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_start");
