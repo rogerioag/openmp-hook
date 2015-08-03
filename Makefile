@@ -25,7 +25,7 @@ main: main-test.c
 	
 	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-single.c -o vectoradd-omp-parallel-for-single -lhookomp -fopenmp
         g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-1-region.c -o vectoradd-omp-parallel-single-for-1-region -lhookomp -fopenmp
-	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-2-regions.c -o vectoradd-omp-parallel-single-for-2-regions.c -lhookomp -fopenmp
+	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-2-regions.c -o vectoradd-omp-parallel-single-for-2-regions -lhookomp -fopenmp
 	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling-for-to-1-thread.c -o vectoradd-omp-parallel-for-peeling-for-to-1-thread -lhookomp -fopenmp
 	
 	gcc-4.7 vectoradd-omp-loops.c -o vectoradd-omp-loops -lpapi -fopenmp -lpthread
