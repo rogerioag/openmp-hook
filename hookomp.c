@@ -78,7 +78,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	
 	op_func teste = (op_func) fn;
 
-	teste[0](&data);
+	teste[0](data);
 
 	
 	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
