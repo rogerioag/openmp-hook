@@ -13,6 +13,9 @@ long long int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
 
 int EventSet = PAPI_NULL;
 
+/* Test */
+typedef void (*op_func) (void *);
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -73,12 +76,9 @@ void initialization_of_papi_libray_mode(){
 void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	printf("[hookomp] GOMP_parallel_start.\n");
 	
-	// typedef void (*op_func) (void *);
+	op_func teste = (op_func) fn;
 
-	// op_func teste = (*op_func) fn;
-
-	// teste[0](20);
-	fn[0](&data);
+	teste[0](&data);
 
 	
 	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
