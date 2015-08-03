@@ -76,7 +76,7 @@ void initialization_of_papi_libray_mode(){
 void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	printf("[hookomp] GOMP_parallel_start.\n");
 	
-	op_func teste = &fn;
+	op_func teste = fn;
 
 	teste[0](&data);
 
