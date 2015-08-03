@@ -104,7 +104,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	// EventSet = PAPI_NULL;
 	
 	// int retval;
-  unsigned long int tid;
+  	unsigned long int tid;
  
 //   retval = PAPI_library_init(PAPI_VER_CURRENT);
 //   if (retval != PAPI_VER_CURRENT)
@@ -118,27 +118,30 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 // 	}
 	
 	if ((tid = PAPI_thread_id()) == (unsigned long int)-1)
-    printf("PAPI_thread_id error.\n");
+    		printf("PAPI_thread_id error.\n");
  
-  printf("Thread id is: %lu\n",tid);	
+  	printf("Thread id is: %lu\n",tid);	
 	
 	/* Create an EventSet */
-  if (PAPI_create_eventset(&EventSet) != PAPI_OK)
-    printf("PAPI_create_eventset error.\n");
+  	if (PAPI_create_eventset(&EventSet) != PAPI_OK)
+    		printf("PAPI_create_eventset error.\n");
 
 	/* Add Total Instructions Executed to our EventSet */
-  if (PAPI_add_event(EventSet, PAPI_TOT_INS) != PAPI_OK)
+  	if (PAPI_add_event(EventSet, PAPI_TOT_INS) != PAPI_OK)
 		printf("PAPI_add_event error PAPI_TOT_INS.\n");
 	
 	if (PAPI_add_event(EventSet, PAPI_TOT_CYC) != PAPI_OK)
 		printf("PAPI_add_event error PAPI_TOT_CYC.\n");
 
-  /* Start counting */
-  if (PAPI_start(EventSet) != PAPI_OK)
+  	/* Start counting */
+  	if (PAPI_start(EventSet) != PAPI_OK)
 		printf("PAPI_start counting error.\n");
 
 	/* Start the counters */
 	// PAPI_start_counters((int*)Events, NUM_EVENTS);
+
+	
+	printf("[GOMP_1.0] lib_GOMP_parallel_start[%p]\n", (void* )lib_GOMP_parallel_start);
 
 	return lib_GOMP_parallel_start(fn, data, num_threads); 
 }
