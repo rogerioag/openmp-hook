@@ -33,7 +33,7 @@ extern "C" {
 
 	// void setupHookOMP(op_func *tPF);
 	/* Tabela de funções para chamada parametrizada. */
-	// op_func *TablePointerFunctions;
+	op_func *TablePointerFunctions;
 
 	
 #ifdef __cplusplus
