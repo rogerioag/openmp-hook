@@ -88,6 +88,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 
 	printf("[hookomp]   Call by TablePointerFunctions.\n");
 	TablePointerFunctions[0](data);
+	TablePointerFunctions[1](data);
 	
 	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
 	func_t lib_GOMP_parallel_start = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_start");
