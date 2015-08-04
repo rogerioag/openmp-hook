@@ -227,4 +227,3 @@ void GOMP_barrier (void){
 	
 	lib_GOMP_barrier();
 }
-

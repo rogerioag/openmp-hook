@@ -31,9 +31,7 @@ main: main-test.c
 	
 	cp libhookomp.so ../function-pointers/	
 	
-	
-
 clean:
-	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops
+	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-1-region vectoradd-omp-parallel-single-for-2-regions
 
 
