@@ -225,7 +225,6 @@ void GOMP_barrier (void){
 	func_t lib_GOMP_barrier = (func_t) dlsym(RTLD_NEXT, "GOMP_barrier");
 	printf("[GOMP_1.0] GOMP_barrier@GOMP_1.0.\n");
 	
-	bool result = lib_GOMP_barrier();
-	return result;
+	lib_GOMP_barrier();
 }
 
