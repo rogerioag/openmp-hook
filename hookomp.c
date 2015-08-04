@@ -198,7 +198,7 @@ void GOMP_parallel_end (void){
 	typedef void (*func_t)(void);
 
 	func_t lib_GOMP_parallel_end = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_end");
-	printf("[GOMP_1.0] GOMP_parallel_end@@GOMP_1.0.\n");
+	printf("[GOMP_1.0] GOMP_parallel_end@GOMP_1.0.\n");
 	
         lib_GOMP_parallel_end();
 }
