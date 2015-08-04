@@ -2,13 +2,13 @@ main().
 init_array().
 before parallel region 1.
 [hookomp] GOMP_parallel_start.
-[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[0x400c34]
+[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[0x400c24]
 Thread id is: 18446744073709551602
 PAPI_create_eventset error.
 PAPI_add_event error PAPI_TOT_INS.
 PAPI_add_event error PAPI_TOT_CYC.
 PAPI_start counting error.
-[GOMP_1.0] lib_GOMP_parallel_start[0x7f991178c6e0]
+[GOMP_1.0] lib_GOMP_parallel_start[0x7f1f2bf4f6e0]
 [hookomp] GOMP_single_start.
 [hookomp] GOMP_single_start.
 [hookomp] GOMP_single_start.
@@ -24,80 +24,128 @@ PAPI_start counting error.
 [hookomp] GOMP_single_start.
 [hookomp] GOMP_single_start.
 [hookomp] GOMP_single_start.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
 [hookomp] GOMP_single_start.
-Thread: 9 of 24.
-[hookomp] GOMP_single_start.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
 [hookomp] GOMP_single_start.
 [hookomp] GOMP_single_start.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
 [hookomp] GOMP_single_start.
 [hookomp] GOMP_single_start.
 [hookomp] GOMP_single_start.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-Thread: 9 of 24.
-Thread: 9 of 24.
-Thread: 9 of 24.
 [hookomp] GOMP_single_start.
-Thread: 9 of 24.
-Thread: 9 of 24.
-Thread: 9 of 24.
-Thread: 9 of 24.
 [hookomp] GOMP_single_start.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
+Thread: 15 of 24.
+Thread: 15 of 24.
+Thread: 15 of 24.
+Thread: 15 of 24.
+Thread: 15 of 24.
+Thread: 15 of 24.
+Thread: 15 of 24.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+Thread: 15 of 24.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[hookomp] GOMP_single_start.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
 [hookomp] GOMP_parallel_end.
 Error on PAPI execution.
 The EventSet is not started yet.
 Total insts: 0 Total Cycles: 0
-Master real usec   : 	1438616523290121
-Master real cycles : 	69194178973772884
+Master real usec   : 	1438702606440057
+Master real cycles : 	69417987550187460
 PAPI_read error reading counters.
 After reading counters: Total insts: 0 Total Cycles: 0
 PAPI_read error stopping counters.
 After stopping counters: Total insts: 0 Total Cycles: 0
-[GOMP_1.0] GOMP_parallel_end@@GOMP_1.0.
+[GOMP_1.0] GOMP_parallel_end@GOMP_1.0.
 before parallel region 2.
 [hookomp] GOMP_parallel_start.
-[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[0x400ce9]
+[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[0x400cd9]
 Thread id is: 18446744073709551602
-[GOMP_1.0] lib_GOMP_parallel_start[0x7f991178c6e0]
+[GOMP_1.0] lib_GOMP_parallel_start[0x7f1f2bf4f6e0]
 Thread: 0 of 24.
-Thread: 3 of 24.
-[hookomp] GOMP_parallel_end.
 Thread: 4 of 24.
+Thread: 7 of 24.
+[hookomp] GOMP_parallel_end.
 Thread: 2 of 24.
-Thread: 1 of 24.
 Error on PAPI execution.
-Thread: 6 of 24.
 The EventSet is not started yet.
 Total insts: 0 Total Cycles: 0
-Master real usec   : 	1438616523290488
-Thread: 7 of 24.
+Master real usec   : 	1438702606440340
+Master real cycles : 	69417987550922324
+Thread: 6 of 24.
+After reading counters: Total insts: 8953 Total Cycles: 37876
 Thread: 5 of 24.
-Master real cycles : 	69194178974725380
-After reading counters: Total insts: 8809 Total Cycles: 51051
-After stopping counters: Total insts: 10280 Total Cycles: 53935
-[GOMP_1.0] GOMP_parallel_end@@GOMP_1.0.
+After stopping counters: Total insts: 10424 Total Cycles: 40378
+[GOMP_1.0] GOMP_parallel_end@GOMP_1.0.
+Thread: 1 of 24.
+Thread: 3 of 24.
 check_result().
 Verificando o resultado.
 Resultado Final: (16.000000, 1.000000)

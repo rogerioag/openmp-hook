@@ -2,13 +2,13 @@ main().
 init_array().
 before parallel region.
 [hookomp] GOMP_parallel_start.
-[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[0x400bf3]
+[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[0x400be3]
 Thread id is: 18446744073709551602
 PAPI_create_eventset error.
 PAPI_add_event error PAPI_TOT_INS.
 PAPI_add_event error PAPI_TOT_CYC.
 PAPI_start counting error.
-[GOMP_1.0] lib_GOMP_parallel_start[0x7f19a2da86e0]
+[GOMP_1.0] lib_GOMP_parallel_start[0x7fe50c9f86e0]
 [hookomp] GOMP_single_start.
 [hookomp] GOMP_single_start.
 [hookomp] GOMP_single_start.
@@ -24,66 +24,114 @@ PAPI_start counting error.
 [hookomp] GOMP_single_start.
 [hookomp] GOMP_single_start.
 [hookomp] GOMP_single_start.
-[hookomp] GOMP_single_start.
-[hookomp] GOMP_single_start.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-Thread: 9 of 24.
-Thread: 9 of 24.
-[hookomp] GOMP_single_start.
-[hookomp] GOMP_single_start.
-[hookomp] GOMP_single_start.
-[hookomp] GOMP_single_start.
-[hookomp] GOMP_single_start.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
 [hookomp] GOMP_single_start.
 Thread: 9 of 24.
+[hookomp] GOMP_single_start.
+[hookomp] GOMP_single_start.
+[hookomp] GOMP_single_start.
+[hookomp] GOMP_single_start.
+[hookomp] GOMP_single_start.
 Thread: 9 of 24.
-Thread: 9 of 24.
+[hookomp] GOMP_single_start.
 Thread: 9 of 24.
 Thread: 9 of 24.
 Thread: 9 of 24.
 [hookomp] GOMP_single_start.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
-[GOMP_1.0] GOMP_single_start@@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[hookomp] GOMP_single_start.
+Thread: 9 of 24.
+Thread: 9 of 24.
+Thread: 9 of 24.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp] GOMP_barrier.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
+[GOMP_1.0] GOMP_barrier@GOMP_1.0.
 Thread: 7 of 24.
-Thread: 5 of 24.
-Thread: 6 of 24.
-Thread: 3 of 24.
-Thread: 4 of 24.
-Thread: 2 of 24.
 Thread: 1 of 24.
+Thread: 4 of 24.
+Thread: 5 of 24.
 Thread: 0 of 24.
+Thread: 3 of 24.
 [hookomp] GOMP_parallel_end.
+Thread: 6 of 24.
+Thread: 2 of 24.
 Error on PAPI execution.
 The EventSet is not started yet.
 Total insts: 0 Total Cycles: 0
-Master real usec   : 	1438616500162468
-Master real cycles : 	69194118843918847
+Master real usec   : 	1438702590681729
+Master real cycles : 	69417946579936045
 PAPI_read error reading counters.
 After reading counters: Total insts: 0 Total Cycles: 0
 PAPI_read error stopping counters.
 After stopping counters: Total insts: 0 Total Cycles: 0
-[GOMP_1.0] GOMP_parallel_end@@GOMP_1.0.
+[GOMP_1.0] GOMP_parallel_end@GOMP_1.0.
 check_result().
 Verificando o resultado.
 Resultado Final: (16.000000, 1.000000)
