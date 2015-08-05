@@ -14,13 +14,72 @@ extern "C" {
     void GOMP_parallel_end (void);
 		
 	bool GOMP_single_start (void);
+	
 	void GOMP_barrier (void);
+
+	bool GOMP_loop_runtime_start (long start, long end, long incr,
+			 long *istart, long *iend);
+
+	bool GOMP_loop_runtime_next (long *istart, long *iend);
+
+	bool GOMP_loop_ordered_runtime_next (long *istart, long *iend);
+
+	bool GOMP_loop_ordered_runtime_start (long start, long end, long incr,
+				 long *istart, long *iend);
+
+	bool GOMP_loop_static_start (long start, long end, long incr, long chunk_size,
+			long *istart, long *iend);
+
+	bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size,
+			 long *istart, long *iend);
+
+	bool GOMP_loop_guided_start (long start, long end, long incr, long chunk_size,
+			long *istart, long *iend);
+
+	bool GOMP_loop_ordered_static_start (long start, long end, long incr,
+				long chunk_size, long *istart, long *iend);
+
+	bool GOMP_loop_ordered_dynamic_start (long start, long end, long incr,
+				 long chunk_size, long *istart, long *iend);
+
+	bool GOMP_loop_ordered_guided_start (long start, long end, long incr,
+				long chunk_size, long *istart, long *iend);
+
+	bool GOMP_loop_static_next (long *istart, long *iend);
+
+	bool GOMP_loop_dynamic_next (long *istart, long *iend);
+
+	bool GOMP_loop_guided_next (long *istart, long *iend);
+
+	bool GOMP_loop_ordered_static_next (long *istart, long *iend);
+
+	bool GOMP_loop_ordered_dynamic_next (long *istart, long *iend);
+
+	bool GOMP_loop_ordered_guided_next (long *istart, long *iend);
+
+	void GOMP_parallel_loop_static_start (void (*fn) (void *), void *data,
+				 unsigned num_threads, long start, long end,
+				 long incr, long chunk_size);
+
+	void GOMP_parallel_loop_dynamic_start (void (*fn) (void *), void *data,
+				  unsigned num_threads, long start, long end,
+				  long incr, long chunk_size);
+
+	void GOMP_parallel_loop_guided_start (void (*fn) (void *), void *data,
+				 unsigned num_threads, long start, long end,
+				 long incr, long chunk_size);
+
+	void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
+				  unsigned num_threads, long start, long end,
+				  long incr);
+
+	void GOMP_loop_end (void);
+
+	void GOMP_loop_end_nowait (void);
 		
+	/* PAPI */
 	void initialization_of_papi_libray_mode();
 	
-	// long_long values[NUM_EVENTS];
-	// unsigned int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
-		
 #ifdef __cplusplus
 }
 #endif
