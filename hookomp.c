@@ -15,11 +15,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	// TablePointerFunctions[0](data);
 	// TablePointerFunctions[1](data);
 	
-	// typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
-	// func_t lib_GOMP_parallel_start = NULL;
-
 	GET_RUNTIME_FUNCTION("GOMP_parallel_start", lib_GOMP_parallel_start);
-	
 
 	printf("[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[%p]\n", (void* )fn);
 	
@@ -35,9 +31,11 @@ void GOMP_parallel_end (void){
 	
 	// Get Counters.
 	
-	typedef void (*func_t)(void);
+	// typedef void (*func_t)(void);
 
-	func_t lib_GOMP_parallel_end = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_end");
+	// func_t lib_GOMP_parallel_end = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_end");
+	GET_RUNTIME_FUNCTION("GOMP_parallel_end", lib_GOMP_parallel_end);
+
 	printf("[GOMP_1.0] GOMP_parallel_end@GOMP_1.0.\n");
 	
     lib_GOMP_parallel_end();

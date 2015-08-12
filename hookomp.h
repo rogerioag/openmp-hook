@@ -26,8 +26,9 @@
 /* Tipo para o ponteiro de função. */
 typedef void (*op_func) (void *);
 
-/*Ponteiros para as funções. */
+/* Ponteiros para as funções que serão recuperadas pela macro get runtime function.*/
 void (*lib_GOMP_parallel_start)(void (*fn)(void *), void *data, unsigned num_threads);
+void (*lib_GOMP_parallel_end)(void);
 
 #ifdef __cplusplus 
 extern "C" {
