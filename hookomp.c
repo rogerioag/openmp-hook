@@ -2,7 +2,7 @@
 
 #define VERBOSE 1
 #ifdef VERBOSE
-#define FUNCTION_NAME fprintf(stderr, "[hookomp] Calling [%s]\n", __FUNCTION__)
+#define FUNCTION_NAME fprintf(stderr, "[%s] Calling [%s]\n", __FILE__, __FUNCTION__)
 #else
 #define FUNCTION_NAME (void) 0
 #endif
