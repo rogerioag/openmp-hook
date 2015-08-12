@@ -1,6 +1,6 @@
 #include "hookomp.h"
 
-#define VERBOSE 1
+// #define VERBOSE 1
 #ifdef VERBOSE
 #define HOOKOMP_FUNC_NAME fprintf(stderr, "[%s] Calling [%s]\n", __FILE__, __FUNCTION__)
 #else
