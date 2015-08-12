@@ -1,25 +1,24 @@
 #include "hookomp.h"
 
-#define  TREAT_ERROR()				\
-  do {						\
-    char * error;				\
-    if ((error = dlerror()) != NULL)  {		\
-      fputs(error, stderr);			\
-      abort();					\
-    }						\
+#define  TREAT_ERROR()					\
+  do {									\
+    char * error;						\
+    if ((error = dlerror()) != NULL)  {	\
+      fputs(error, stderr);				\
+    }									\
   }while(0)
 
 /* intercept function func and store its previous value into var */
-#define INTERCEPT(func, var)					\
-  do {								\
-    if(var) break;						\
-    void *__handle = RTLD_NEXT;					\
+#define INTERCEPT(func, var)								\
+  do {														\
+    if(var) break;											\
+    void *__handle = RTLD_NEXT;								\
     var = (typeof(var)) (uintptr_t) dlsym(__handle, func);	\
-    TREAT_ERROR();						\
+    TREAT_ERROR();											\
   } while(0)
 
 /*Ponteiros para as funções. */
-void (*libGOMP_parallel_start)(void (*fn)(void *), void *data, unsigned num_threads);
+// void (*libGOMP_parallel_start)(void (*fn)(void *), void *data, unsigned num_threads);
 
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
@@ -43,7 +42,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	// TablePointerFunctions[1](data);
 	
 	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
-	func_t lib_GOMP_parallel_start;
+	func_t lib_GOMP_parallel_start = NULL;
 	// = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_start");
 	INTERCEPT("GOMP_parallel_start", lib_GOMP_parallel_start);
 	
