@@ -2,11 +2,11 @@ CC=gcc-4.8
 CXX=g++-4.8
 LIB_HOOKOMP_PATH=$(PWD)
 
-all: libhookomp main
+all: clean info libhookomp main
 
 # Step 1: Compiling with Position Independent Code
 hookomp.o: hookomp.c
-	${CXX} $(OPTION) -c -Wall -Werror -fpic hookomp.c
+	${CXX} $(OPTIONS) -c -Wall -Werror -fpic hookomp.c
 
 # Step 2: Creating a shared library from an object file
 libhookomp: hookomp.o
@@ -33,3 +33,6 @@ main: main-test.c
 	
 clean:
 	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-1-region vectoradd-omp-parallel-single-for-2-regions
+
+info:
+	@echo "Use make OPTIONS=-DVERBOSE to compile with messages."

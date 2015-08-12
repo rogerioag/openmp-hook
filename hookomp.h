@@ -7,6 +7,15 @@
 #include <pthread.h>
 #include <papi.h>
 
+// #define VERBOSE 1
+// Use make OPTIONS=-DVERBOSE
+#ifdef VERBOSE
+#define HOOKOMP_FUNC_NAME fprintf(stderr, "[%s] Calling [%s]\n", __FILE__, __FUNCTION__)
+#else
+#define HOOKOMP_FUNC_NAME (void) 0
+#endif
+
+
 #define  PRINT_ERROR()					\
   do {									\
     char * error;						\
