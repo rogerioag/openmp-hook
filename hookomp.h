@@ -15,7 +15,7 @@
     }									\
   }while(0)
 
-#define GET_RUNTIME_FUNCTION(func_name, hook_func_pointer)									\
+#define GET_RUNTIME_FUNCTION(hook_func_pointer, func_name)									\
   do {																						\
     if (hook_func_pointer) break;															\
     void *__handle = RTLD_NEXT;																\
@@ -29,6 +29,37 @@ typedef void (*op_func) (void *);
 /* Ponteiros para as funções que serão recuperadas pela macro get runtime function.*/
 void (*lib_GOMP_parallel_start)(void (*fn)(void *), void *data, unsigned num_threads);
 void (*lib_GOMP_parallel_end)(void);
+bool (*lib_GOMP_single_start)(void);
+bool (*lib_GOMP_barrier)(void);
+
+void (*lib_GOMP_parallel_loop_static_start)(void (*)(void *), void *, unsigned, long, long, long, long);
+void (*lib_GOMP_parallel_loop_dynamic_start)(void (*)(void *), void *, unsigned, long, long, long, long);
+void (*lib_GOMP_parallel_loop_guided_start)(void (*)(void *), void *, unsigned, long, long, long, long);
+
+bool (*lib_GOMP_loop_runtime_next)(long *istart, long *iend);
+bool (*lib_GOMP_loop_ordered_runtime_next)(long *istart, long *iend);
+
+bool (*lib_GOMP_loop_ordered_runtime_start)(long start, long end, long incr, long *istart, long *iend);
+bool (*lib_GOMP_loop_static_start)(long start, long end, long incr, long chunk_size, long *istart, long *iend);
+bool (*lib_GOMP_loop_runtime_start)(long start, long end, long incr, long *istart, long *iend);
+
+bool (*lib_GOMP_loop_dynamic_start)(long start, long end, long incr, long chunk_size, long *istart, long *iend);
+bool (*lib_GOMP_loop_guided_start)(long start, long end, long incr, long chunk_size, long *istart, long *iend);
+bool (*lib_GOMP_loop_ordered_static_start)(long start, long end, long incr, long chunk_size, long *istart, long *iend);
+bool (*lib_GOMP_loop_ordered_dynamic_start)(long start, long end, long incr, long chunk_size, long *istart, long *iend);
+bool (*lib_GOMP_loop_ordered_guided_start)(long start, long end, long incr, long chunk_size, long *istart, long *iend);
+
+bool (*lib_GOMP_loop_static_next)(long *istart, long *iend);
+bool (*lib_GOMP_loop_dynamic_next)(long *istart, long *iend);
+bool (*lib_GOMP_loop_guided_next)(long *istart, long *iend);
+bool (*lib_GOMP_loop_ordered_static_next)(long *istart, long *iend);
+bool (*lib_GOMP_loop_ordered_dynamic_next)(long *istart, long *iend);
+bool (*lib_GOMP_loop_ordered_guided_next)(long *istart, long *iend);
+
+void (*lib_GOMP_parallel_loop_runtime_start)(void (*) (void *), void *, unsigned, long, long, long);
+void (*lib_GOMP_loop_end)(void);
+void (*lib_GOMP_loop_end_nowait)(void);
+
 
 #ifdef __cplusplus 
 extern "C" {
