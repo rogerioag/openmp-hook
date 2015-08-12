@@ -1,5 +1,12 @@
 #include "hookomp.h"
 
+#define VERBOSE 1
+#ifdef VERBOSE
+#define FUNCTION_NAME fprintf(stderr, "[hookomp] Calling [%s]\n", __FUNCTION__)
+#else
+#define FUNCTION_NAME (void) 0
+#endif
+
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
 void foo(void) {
@@ -9,7 +16,9 @@ void foo(void) {
 /* ------------------------------------------------------------- */
 /* Function to intercept GOMP_parallel_start                     */
 void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
-	printf("[hookomp] GOMP_parallel_start.\n");
+	// printf("[hookomp] GOMP_parallel_start.\n");
+	FUNCTION_NAME;
+
 
   	// printf("[hookomp]   Call by TablePointerFunctions.\n");
 	// TablePointerFunctions[0](data);
@@ -28,7 +37,8 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 /* ------------------------------------------------------------- */
 /* Function to intercept GOMP_parallel_end                       */
 void GOMP_parallel_end (void){
-	printf("[hookomp] GOMP_parallel_end.\n");
+	// printf("[hookomp] GOMP_parallel_end.\n");
+	FUNCTION_NAME;
 	
 	// Get Counters.
 	
