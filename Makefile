@@ -6,7 +6,7 @@ all: libhookomp main
 
 # Step 1: Compiling with Position Independent Code
 hookomp.o: hookomp.c
-	${CXX} -c -Wall -Werror -fpic hookomp.c
+	${CXX} $(OPTION) -c -Wall -Werror -fpic hookomp.c
 
 # Step 2: Creating a shared library from an object file
 libhookomp: hookomp.o
