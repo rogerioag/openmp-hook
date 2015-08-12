@@ -17,7 +17,6 @@
 
 #define GET_RUNTIME_FUNCTION(func_name, hook_func_pointer)									\
   do {																						\
-    // Verify if was initialized.
     if (hook_func_pointer) break;															\
     void *__handle = RTLD_NEXT;																\
     hook_func_pointer = (typeof(hook_func_pointer)) (uintptr_t) dlsym(__handle, func_name);	\
