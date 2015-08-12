@@ -36,7 +36,7 @@ void GOMP_parallel_end (void){
 	// func_t lib_GOMP_parallel_end = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_end");
 	GET_RUNTIME_FUNCTION("GOMP_parallel_end", lib_GOMP_parallel_end);
 
-	printf("[GOMP_1.0] GOMP_parallel_end@GOMP_1.0.\n");
+	printf("[GOMP_1.0] GOMP_parallel_end@GOMP_1.0 [%p]\n", (void* )lib_GOMP_parallel_end);
 	
     lib_GOMP_parallel_end();
 }
