@@ -1,10 +1,8 @@
 #include "hookomp.h"
 
-#ifdef __cplusplus
+/*#ifdef __cplusplus
 extern "C" {
 #endif
-	/* Tabela de funções para chamada parametrizada. */
-	// op_func *TablePointerFunctions;
 
 	void foo(void);
 	// GOMP_loop_runtime_start@@GOMP_1.0
@@ -80,7 +78,7 @@ extern "C" {
 	
 #ifdef __cplusplus
 }
-#endif
+#endif*/
 
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
