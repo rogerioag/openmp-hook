@@ -7,8 +7,28 @@
 #include <pthread.h>
 #include <papi.h>
 
+#define  PRINT_ERROR()					\
+  do {									\
+    char * error;						\
+    if ((error = dlerror()) != NULL)  {	\
+      fputs(error, stderr);				\
+    }									\
+  }while(0)
+
+#define GET_RUNTIME_FUNCTION(func_name, hook_func_pointer)									\
+  do {																						\
+    // Verify if was initialized.
+    if (hook_func_pointer) break;															\
+    void *__handle = RTLD_NEXT;																\
+    hook_func_pointer = (typeof(hook_func_pointer)) (uintptr_t) dlsym(__handle, func_name);	\
+    PRINT_ERROR();																			\
+  } while(0)
+
 /* Tipo para o ponteiro de função. */
 typedef void (*op_func) (void *);
+
+/*Ponteiros para as funções. */
+void (*lib_GOMP_parallel_start)(void (*fn)(void *), void *data, unsigned num_threads);
 
 #ifdef __cplusplus 
 extern "C" {

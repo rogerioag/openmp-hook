@@ -1,34 +1,9 @@
 #include "hookomp.h"
 
-#define  PRINT_ERROR()					\
-  do {									\
-    char * error;						\
-    if ((error = dlerror()) != NULL)  {	\
-      fputs(error, stderr);				\
-    }									\
-  }while(0)
-
-#define GET_RUNTIME_FUNCTION(func_name, hook_func_pointer)									\
-  do {																						\
-    if (hook_func_pointer) break;															\
-    void *__handle = RTLD_NEXT;																\
-    hook_func_pointer = (typeof(hook_func_pointer)) (uintptr_t) dlsym(__handle, func_name);	\
-    PRINT_ERROR();																			\
-  } while(0)
-
-/*Ponteiros para as funções. */
-// void (*libGOMP_parallel_start)(void (*fn)(void *), void *data, unsigned num_threads);
-
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
 void foo(void) {
 	puts("Hello, I'm a shared library.\n");
-}
-
-/* ------------------------------------------------------------- */
-/* Function to initialization of HOOKOMP Library.                   */
-void initialization_of_hookomp_library(){
-	printf("[hookomp] initialization_of_hookomp_library.\n");		
 }
 
 /* ------------------------------------------------------------- */
@@ -40,8 +15,9 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	// TablePointerFunctions[0](data);
 	// TablePointerFunctions[1](data);
 	
-	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
-	func_t lib_GOMP_parallel_start = NULL;
+	// typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
+	// func_t lib_GOMP_parallel_start = NULL;
+
 	GET_RUNTIME_FUNCTION("GOMP_parallel_start", lib_GOMP_parallel_start);
 	
 
