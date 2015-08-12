@@ -1,5 +1,5 @@
-CC=gcc-4.7
-CXX=g++-4.7
+CC=gcc-4.8
+CXX=g++-4.8
 LIB_HOOKOMP_PATH=$(PWD)
 
 all: libhookomp main
@@ -21,17 +21,15 @@ libhookomp: hookomp.o
 
 main: main-test.c
 	${CXX} -L${PWD} -Wall -o main-test main-test.c -ldl -lhookomp 
-	${CC} vectoradd-omp.c -o vectoradd-omp -fopenmp
-	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-single.c -o vectoradd-omp-parallel-for-single -lhookomp -fopenmp
-	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-1-region.c -o vectoradd-omp-parallel-single-for-1-region -lhookomp -fopenmp
-	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-2-regions.c -o vectoradd-omp-parallel-single-for-2-regions -lhookomp -fopenmp
-	g++-4.7 -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling-for-to-1-thread.c -o vectoradd-omp-parallel-for-peeling-for-to-1-thread -lhookomp -fopenmp
+	${CXX} vectoradd-omp.c -o vectoradd-omp -fopenmp
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-single.c -o vectoradd-omp-parallel-for-single -lhookomp -fopenmp
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-1-region.c -o vectoradd-omp-parallel-single-for-1-region -lhookomp -fopenmp
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-2-regions.c -o vectoradd-omp-parallel-single-for-2-regions -lhookomp -fopenmp
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling-for-to-1-thread.c -o vectoradd-omp-parallel-for-peeling-for-to-1-thread -lhookomp -fopenmp
 	
-	gcc-4.7 vectoradd-omp-loops.c -o vectoradd-omp-loops -lpapi -fopenmp -lpthread
+	${CXX} vectoradd-omp-loops.c -o vectoradd-omp-loops -lpapi -fopenmp -lpthread
 	
 	cp libhookomp.so ../function-pointers/	
 	
 clean:
 	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-1-region vectoradd-omp-parallel-single-for-2-regions
-
-

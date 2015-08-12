@@ -3,19 +3,25 @@
  
 #include <papi.h>
 
+/* Tipo para o ponteiro de função. */
+typedef void (*op_func) (void *);
+
 #ifdef __cplusplus 
 extern "C" {
 #endif
+
+	/* Tabela de funções para chamada parametrizada. */
+	op_func *TablePointerFunctions;
+
 	void foo(void);
 	// GOMP_loop_runtime_start@@GOMP_1.0
-		
 	void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads);
-
-    void GOMP_parallel_end (void);
-		
-	bool GOMP_single_start (void);
+	void GOMP_parallel_end (void);
 	
+	bool GOMP_single_start (void);
 	void GOMP_barrier (void);
+	
+	
 
 	bool GOMP_loop_runtime_start (long start, long end, long incr,
 			 long *istart, long *iend);
@@ -76,9 +82,6 @@ extern "C" {
 	void GOMP_loop_end (void);
 
 	void GOMP_loop_end_nowait (void);
-		
-	/* PAPI */
-	void initialization_of_papi_libray_mode();
 	
 #ifdef __cplusplus
 }
