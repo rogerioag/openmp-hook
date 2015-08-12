@@ -1,6 +1,6 @@
 #include "hookomp.h"
 
-#define  TREAT_ERROR()					\
+#define  PRINT_ERROR()					\
   do {									\
     char * error;						\
     if ((error = dlerror()) != NULL)  {	\
@@ -8,13 +8,12 @@
     }									\
   }while(0)
 
-/* intercept function func and store its previous value into var */
-#define INTERCEPT(func, var)								\
-  do {														\
-    if(var) break;											\
-    void *__handle = RTLD_NEXT;								\
-    var = (typeof(var)) (uintptr_t) dlsym(__handle, func);	\
-    TREAT_ERROR();											\
+#define GET_RUNTIME_FUNCTION(func_name, hook_func_pointer)									\
+  do {																						\
+    if (hook_func_pointer) break;															\
+    void *__handle = RTLD_NEXT;																\
+    hook_func_pointer = (typeof(hook_func_pointer)) (uintptr_t) dlsym(__handle, func_name);	\
+    PRINT_ERROR();																			\
   } while(0)
 
 /*Ponteiros para as funções. */
@@ -43,8 +42,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	
 	typedef void (*func_t)(void (*fn)(void *), void *, unsigned);
 	func_t lib_GOMP_parallel_start = NULL;
-	// = (func_t) dlsym(RTLD_NEXT, "GOMP_parallel_start");
-	INTERCEPT("GOMP_parallel_start", lib_GOMP_parallel_start);
+	GET_RUNTIME_FUNCTION("GOMP_parallel_start", lib_GOMP_parallel_start);
 	
 
 	printf("[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[%p]\n", (void* )fn);
