@@ -1,11 +1,3 @@
-// #define _GNU_SOURCE
-// #include <libgomp_g.h>
-
-#include <dlfcn.h>
-#include <stdio.h>
-#include <stdint.h>
-#include <papi.h>
-#include <pthread.h>
 #include "hookomp.h"
 
 #ifdef __cplusplus

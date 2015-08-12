@@ -1,6 +1,10 @@
 #ifndef hookomp_h__
 #define hookomp_h__
  
+#include <dlfcn.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <pthread.h>
 #include <papi.h>
 
 /* Tipo para o ponteiro de função. */
