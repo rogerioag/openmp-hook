@@ -4,8 +4,8 @@
 #include <dlfcn.h>
 #include <stdio.h>
 #include <stdint.h>
-#include <pthread.h>
-#include <papi.h>
+// #include <pthread.h>
+#include "roofline.h"
 
 // #define VERBOSE 1
 // Use make OPTIONS=-DVERBOSE

@@ -2,7 +2,16 @@ CC=gcc-4.8
 CXX=g++-4.8
 LIB_HOOKOMP_PATH=$(PWD)
 
-all: clean info libhookomp main
+all: clean info libroofline libhookomp main
+
+# Step 1: Compiling with Position Independent Code
+roofline.o: roofline.c
+	${CXX} $(OPTIONS) -c -Wall -Werror -fpic roofline.c
+
+# Step 2: Creating a shared library from an object file
+libroofline: roofline.o
+	${CXX} -shared -o libroofline.so roofline.o -ldl -lpapi -pthread
+
 
 # Step 1: Compiling with Position Independent Code
 hookomp.o: hookomp.c
@@ -10,7 +19,7 @@ hookomp.o: hookomp.c
 
 # Step 2: Creating a shared library from an object file
 libhookomp: hookomp.o
-	${CXX} -shared -o libhookomp.so hookomp.o -ldl -lpapi -pthread
+	${CXX} -shared -o libhookomp.so hookomp.o -ldl
 
 # Step 3: Linking with a shared library
 # As you can see, that was actually pretty easy. We have a shared library. 
@@ -29,7 +38,8 @@ main: main-test.c
 	
 	${CXX} vectoradd-omp-loops.c -o vectoradd-omp-loops -lpapi -fopenmp -lpthread
 	
-	cp libhookomp.so ../function-pointers/	
+	cp libhookomp.so ../function-pointers/
+	cp libroofline.so ../function-pointers/	
 	
 clean:
 	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-1-region vectoradd-omp-parallel-single-for-2-regions
