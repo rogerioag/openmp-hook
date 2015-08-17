@@ -3,7 +3,9 @@
  
 #include <dlfcn.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
+#include <sys/time.h>
 #include <pthread.h>
 #include <papi.h>
 
@@ -19,16 +21,22 @@
 #define RM_papi_handle_error(n) \
   fprintf(stderr, "%s: PAPI error %d: %s\n",__FUNCTION__, n,PAPI_strerror(n))
 
-static pthread_key_t papi_thread_info_key;
-
 
 
 #define NUM_EVENTS 2
 
-long long values[NUM_EVENTS];
-long long int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
+struct _papi_thread_record {
+  int *events;
+  long_long *values;
+  int EventSet = PAPI_NULL;
+  struct timeval initial_time;
+  struct timeval final_time;
 
-int EventSet = PAPI_NULL;
+  long_long start_cycles, end_cycles;
+  long_long start_usec, end_usec;
+};
+
+struct _papi_thread_record *ptr_measure = NULL;
 
 #ifdef __cplusplus 
 extern "C" {

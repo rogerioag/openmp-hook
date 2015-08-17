@@ -4,7 +4,6 @@
 #include <dlfcn.h>
 #include <stdio.h>
 #include <stdint.h>
-// #include <pthread.h>
 #include "roofline.h"
 
 // #define VERBOSE 1
@@ -84,8 +83,6 @@ extern "C" {
 	
 	bool GOMP_single_start (void);
 	void GOMP_barrier (void);
-	
-	
 
 	bool GOMP_loop_runtime_start (long start, long end, long incr,
 			 long *istart, long *iend);

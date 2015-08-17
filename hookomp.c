@@ -58,21 +58,38 @@ bool GOMP_single_start (void){
    // Start the counters on PAPI if is the thread that should execute.
    if (result){
    		// PAPI Start the counters.
-   		printf("[hookomp] GOMP_single_start: calling PAPI START THE COUNTERS.\n");
-   }
+   		if(RM_start_counters()){
+   			fprintf(stderr, "[hookomp] GOMP_single_start: calling PAPI START THE COUNTERS.\n");
+   		}
+   		else 
+   			fprintf(stderr, "Error calling RM_start_counters from GOMP_single_start.");
+   	}	
 
    return result;
 }
 
 /*----------------------------------------------------------------*/
-void GOMP_barrier (void){
+void GOMP_barrier (void) {
 	HOOKOMP_FUNC_NAME;
 	
 	GET_RUNTIME_FUNCTION(lib_GOMP_barrier, "GOMP_barrier");
 
+	bool result = RM_stop_counters();
+
+	if(!result){
+		fprintf(stderr, "Error GOMP_barrier: RM_stop_counters.");
+	}
+
 	printf("[GOMP_1.0] GOMP_barrier@GOMP_1.0.\n");
 	
 	lib_GOMP_barrier();
+
+	// Verificar o que a GOMP_barrier faz para ver onde a chamada aos contadores tem que ser feita.
+
+	// A decisão de migrar é aqui.
+	double oi = RM_get_operational_intensity();
+	fprintf(stderr, "Operational intensity: %g", oi);	
+
 }
 
 /*----------------------------------------------------------------*/
