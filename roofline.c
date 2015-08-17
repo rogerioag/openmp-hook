@@ -189,16 +189,14 @@ bool RM_start_counters (void){
 bool RM_stop_counters(void){
 	RM_FUNC_NAME;
 	
-	int retval = PAPI_OK;
+	int retval_stop, retval_read = PAPI_OK;
 
 	/* Stop counters and store results in values */
 	// int retval = PAPI_stop_counters(ptr_measure->values, NUM_EVENTS);
-	if ((retval = PAPI_stop(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
+	if ((retval_stop = PAPI_stop(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
 		fprintf(stderr, "Error on PAPI execution.\n");
-		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-		return false;
-		
-		/*switch (retval){
+		RM_papi_handle_error(__FUNCTION__, retval_stop, __LINE__);
+		switch (retval_stop){
 				case PAPI_EINVAL :
 					fprintf(stderr, "One or more of the arguments is invalid.\n");
 					break;
@@ -210,40 +208,43 @@ bool RM_stop_counters(void){
 					break;
 			default:
 				fprintf(stderr, "Unknown Error.\n");
-		}*/
+		}
 	}
 
 	/* Read the counters */
-	if ((retval = PAPI_read(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
+	if ((retval_read = PAPI_read(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
         fprintf(stderr, "PAPI_read error reading counters.\n");
-        RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-        return false;
+        RM_papi_handle_error(__FUNCTION__, retval_read, __LINE__);
+    }
+
+    if((retval_stop == PAPI_OK) && (retval_read == PAPI_OK) ){
+    	/* Gets the ending time in clock cycles */
+		ptr_measure->end_cycles = PAPI_get_real_cyc();
+
+		/* Gets the ending time in microseconds */
+		ptr_measure->end_usec = PAPI_get_real_usec();
+		
+		fprintf(stderr, "Wall clock cycles   : \t%lld\n", ptr_measure->end_cycles - ptr_measure->start_cycles );
+		fprintf(stderr, "Wall clock time in microseconds: \t%lld\n", ptr_measure->end_usec - ptr_measure->start_usec );
+		
+		/* Read the counters */
+	    //if (PAPI_read(ptr_measure->EventSet, ptr_measure->values) != PAPI_OK)
+	    //	fprintf(stderr, "PAPI_read error reading counters.\n");
+
+		//fprintf(stderr, "After reading counters:\n");
+		//RM_print_counters_values();
+
+	    /* Stop the counters */
+	    //if (PAPI_stop(ptr_measure->EventSet, ptr_measure->values) != PAPI_OK)
+	    //	fprintf(stderr, "PAPI_read error stopping counters.\n");
+		 
+		fprintf(stderr, "After stopping counters:\n");
+	    RM_print_counters_values();	
     }    	
 
-	/* Gets the ending time in clock cycles */
-	ptr_measure->end_cycles = PAPI_get_real_cyc();
-
-	/* Gets the ending time in microseconds */
-	ptr_measure->end_usec = PAPI_get_real_usec();
 	
-	fprintf(stderr, "Wall clock cycles   : \t%lld\n", ptr_measure->end_cycles - ptr_measure->start_cycles );
-	fprintf(stderr, "Wall clock time in microseconds: \t%lld\n", ptr_measure->end_usec - ptr_measure->start_usec );
-	
-	/* Read the counters */
-    //if (PAPI_read(ptr_measure->EventSet, ptr_measure->values) != PAPI_OK)
-    //	fprintf(stderr, "PAPI_read error reading counters.\n");
 
-	//fprintf(stderr, "After reading counters:\n");
-	//RM_print_counters_values();
-
-    /* Stop the counters */
-    //if (PAPI_stop(ptr_measure->EventSet, ptr_measure->values) != PAPI_OK)
-    //	fprintf(stderr, "PAPI_read error stopping counters.\n");
-	 
-	fprintf(stderr, "After stopping counters:\n");
-    RM_print_counters_values();
-
-	return (retval == PAPI_OK);
+	return (retval_stop && retval_read);
 }
 
 /* ------------------------------------------------------------ */
