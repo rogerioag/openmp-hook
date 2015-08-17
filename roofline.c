@@ -242,9 +242,7 @@ bool RM_stop_counters(void){
 	    RM_print_counters_values();	
     }    	
 
-	
-
-	return (retval_stop && retval_read);
+	return ((retval_stop == PAPI_OK) && (retval_read == PAPI_OK));
 }
 
 /* ------------------------------------------------------------ */
