@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include <sys/time.h>
 #include <pthread.h>
+// #include <semaphore.h>
 #include <papi.h>
 
 #define VERBOSE 1
@@ -18,9 +19,12 @@
 #endif
 
 
-#define RM_papi_handle_error(n) \
+/*#define RM_papi_handle_error(n) \
   fprintf(stderr, "%s: PAPI error %d: %s\n",__FUNCTION__, n,PAPI_strerror(n))
+ */
 
+#define RM_papi_handle_error(function_name, n_error, n_line) \
+  fprintf(stderr, "[RM_papi_handle_error] %s -> %s [line %d]: PAPI error %d: %s\n", __FILE__, function_name, n_line, n_error, PAPI_strerror(n_error));
 
 
 #define NUM_EVENTS 2
@@ -38,6 +42,8 @@ struct _papi_thread_record {
 
 struct _papi_thread_record *ptr_measure = NULL;
 
+// sem_t mutex;
+
 #ifdef __cplusplus 
 extern "C" {
 #endif
@@ -45,6 +51,8 @@ extern "C" {
 	bool RM_library_init(void);
 
 	bool RM_initialization_of_papi_libray_mode(void);
+
+	// void RM_papi_handle_error(int n);
 
 	bool RM_start_counters(void);
 
