@@ -193,10 +193,10 @@ bool RM_stop_counters(void){
 
 	/* Stop counters and store results in values */
 	// int retval = PAPI_stop_counters(ptr_measure->values, NUM_EVENTS);
-	//if ((retval = PAPI_stop(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
-	//	fprintf(stderr, "Error on PAPI execution.\n");
-	//	RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	//	return false;
+	if ((retval = PAPI_stop(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
+		fprintf(stderr, "Error on PAPI execution.\n");
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+		return false;
 		
 		/*switch (retval){
 				case PAPI_EINVAL :
@@ -211,7 +211,7 @@ bool RM_stop_counters(void){
 			default:
 				fprintf(stderr, "Unknown Error.\n");
 		}*/
-	//}
+	}
 
 	/* Read the counters */
 	if ((retval = PAPI_read(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
