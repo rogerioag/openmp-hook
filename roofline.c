@@ -196,6 +196,7 @@ bool RM_stop_counters(void){
 	if ((retval_stop = PAPI_stop(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
 		fprintf(stderr, "Error on PAPI execution.\n");
 		RM_papi_handle_error(__FUNCTION__, retval_stop, __LINE__);
+		exit(1);
 		switch (retval_stop){
 				case PAPI_EINVAL :
 					fprintf(stderr, "One or more of the arguments is invalid.\n");
