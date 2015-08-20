@@ -1,6 +1,6 @@
 #include "hookomp.h"
 
-static int executing_a_single_region = -1;
+static long int executing_a_single_region = -1;
 
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
@@ -22,7 +22,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 
 	fprintf(stderr, "[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[%p]\n", (void* )fn);
 	
-	fprintf(stderr, "[GOMP_1.0] lib_GOMP_parallel_start[%p]\n", (void* )lib_GOMP_parallel_start);
+	// fprintf(stderr, "[GOMP_1.0] lib_GOMP_parallel_start[%p]\n", (void* )lib_GOMP_parallel_start);
 
 	lib_GOMP_parallel_start(fn, data, num_threads);
 
@@ -53,28 +53,31 @@ bool GOMP_single_start (void){
 	
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_single_start, "GOMP_single_start");
-	fprintf(stderr, "[GOMP_1.0] GOMP_single_start@GOMP_1.0.\n");
 	
 	/* This routine is called when first encountering a SINGLE construct that
    doesn't have a COPYPRIVATE clause.  Returns true if this is the thread
    that should execute the clause.
    bool GOMP_single_start (void){...} */
 
+   fprintf(stderr, "[hookomp]: Testing single start[%lu].\n", (unsigned long int) pthread_self());
+
+   fprintf(stderr, "[GOMP_1.0] GOMP_single_start@GOMP_1.0.\n");
    bool result = lib_GOMP_single_start();
 
    // Start the counters on PAPI if is the thread that should execute.
    if (result){
    		// Registry the thread id that entered in single region to match with OMP_barrier().
-   		executing_a_single_region = omp_get_thread_num();
+   		// executing_a_single_region = omp_get_thread_num();
+   		executing_a_single_region = pthread_self();
 
-   		fprintf(stderr, "[hookomp]: Thread %d executing the single region.\n", executing_a_single_region);
+   		fprintf(stderr, "[hookomp]: Thread [%lu] executing the single region.\n", (unsigned long int) executing_a_single_region);
 
    		// PAPI Start the counters.
    		if(RM_start_counters()){
-   			fprintf(stderr, "[hookomp] GOMP_single_start: calling PAPI START THE COUNTERS.\n");
+   			fprintf(stderr, "[hookomp] GOMP_single_start: PAPI Counters Started.\n");
    		}
    		else 
-   			fprintf(stderr, "Error calling RM_start_counters from GOMP_single_start.");
+   			fprintf(stderr, "Error calling RM_start_counters from GOMP_single_start.\n");
    	}	
 
    return result;
@@ -86,29 +89,32 @@ void GOMP_barrier (void) {
 	
 	GET_RUNTIME_FUNCTION(lib_GOMP_barrier, "GOMP_barrier");
 
+	fprintf(stderr, "[hookomp]: Thread [%lu] is executing barrier, single region was executed by [%lu].\n", (unsigned long int) pthread_self(), (unsigned long int) executing_a_single_region);
+
 	/* Matching the thread executing barrier with thread that entered in single region. */
-	if(executing_a_single_region == omp_get_thread_num()){
-		fprintf(stderr, "[hookomp]: Thread %d exiting of single region.\n", executing_a_single_region);
+	// if(executing_a_single_region == omp_get_thread_num()){
+	if(executing_a_single_region == (long int) pthread_self()){
+		fprintf(stderr, "[hookomp]: Thread [%lu] is exiting of single region.\n", (long int) executing_a_single_region);
 
-		bool result = RM_stop_counters();
-
-		if(!result){
-			fprintf(stderr, "Error GOMP_barrier: RM_stop_counters.");
+		if(!RM_stop_counters()){
+			fprintf(stderr, "Error GOMP_barrier: RM_stop_counters.\n");
 		}
 		else{
 			// Verificar o que a GOMP_barrier faz para ver onde a chamada aos 
 			// contadores tem que ser feita.
-
-			// A decisão de migrar é aqui.
+    
+    		// A decisão de migrar é aqui.
 			double oi = RM_get_operational_intensity();
-			fprintf(stderr, "Operational intensity: %g.\n", oi);
+			fprintf(stderr, "Operational intensity: %10.2f\n", oi);
+
+			int better_device = RM_get_better_device_to_execution();
+			fprintf(stderr, "Execution is better on device [%d].\n", better_device);
 		}
 		
 		executing_a_single_region = -1;
 	}
 
 	fprintf(stderr, "[GOMP_1.0] GOMP_barrier@GOMP_1.0.\n");
-	
 	lib_GOMP_barrier();
 }
 

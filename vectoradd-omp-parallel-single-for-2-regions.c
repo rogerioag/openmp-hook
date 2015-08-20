@@ -14,7 +14,7 @@
 // Size of vectors.
 #ifndef N
 // #define N 1048576
-#define N 16
+#define N 4096
 #endif
 // Entrada e saída.
 float h_a[N];

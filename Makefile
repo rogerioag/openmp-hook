@@ -10,7 +10,7 @@ roofline.o: roofline.c
 
 # Step 2: Creating a shared library from an object file
 libroofline: roofline.o
-	${CXX} -shared -o libroofline.so roofline.o -ldl -lpapi -pthread
+	${CXX} -shared -o libroofline.so roofline.o -ldl -lpapi -pthread -fopenmp
 
 
 # Step 1: Compiling with Position Independent Code
@@ -36,6 +36,9 @@ main: main-test.c
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-1-region.c -o vectoradd-omp-parallel-single-for-1-region -lhookomp -fopenmp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-2-regions.c -o vectoradd-omp-parallel-single-for-2-regions -lhookomp -fopenmp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling-for-to-1-thread.c -o vectoradd-omp-parallel-for-peeling-for-to-1-thread -lhookomp -fopenmp
+
+	
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-1-region-migration.c -o vectoradd-omp-parallel-single-for-1-region-migration -lhookomp -fopenmp -lgomp
 	
 	${CXX} vectoradd-omp-loops.c -o vectoradd-omp-loops -lpapi -fopenmp -lpthread
 	

@@ -14,7 +14,7 @@
 // Size of vectors.
 #ifndef N
 // #define N 1048576
-#define N 16
+#define N 4096
 #endif
 // Entrada e saída.
 float h_a[N];
@@ -61,7 +61,7 @@ int main() {
 	// initialization_of_papi_libray_mode();
 	
   fprintf(stdout, "before parallel region.\n");
-  #pragma omp parallel
+  #pragma omp parallel num_threads(2)
   {
     #pragma omp single
     /* Cálculo. */

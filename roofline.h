@@ -7,8 +7,9 @@
 #include <stdint.h>
 #include <sys/time.h>
 #include <pthread.h>
-// #include <semaphore.h>
+#include <semaphore.h>
 #include <papi.h>
+#include <omp.h>
 
 #define VERBOSE 1
 // Use make OPTIONS=-DVERBOSE
@@ -42,7 +43,7 @@ struct _papi_thread_record {
 
 struct _papi_thread_record *ptr_measure = NULL;
 
-// sem_t mutex;
+sem_t mutex;
 
 #ifdef __cplusplus 
 extern "C" {
@@ -59,6 +60,8 @@ extern "C" {
 	bool RM_stop_counters(void);
 
 	double RM_get_operational_intensity(void);
+
+	int RM_get_better_device_to_execution(void);
 	
 #ifdef __cplusplus
 }
