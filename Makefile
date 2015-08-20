@@ -33,11 +33,20 @@ main: main-test.c
 	${CXX} -L${PWD} -Wall -o main-test main-test.c -ldl -lhookomp 
 	${CXX} vectoradd-omp.c -o vectoradd-omp -fopenmp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-single.c -o vectoradd-omp-parallel-for-single -lhookomp -fopenmp
-	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-1-region.c -o vectoradd-omp-parallel-single-for-1-region -lhookomp -fopenmp
-	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-2-regions.c -o vectoradd-omp-parallel-single-for-2-regions -lhookomp -fopenmp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling-for-to-1-thread.c -o vectoradd-omp-parallel-for-peeling-for-to-1-thread -lhookomp -fopenmp
 
-	
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-schedule-default-1-region.c -o vectoradd-omp-parallel-single-for-schedule-default-1-region -lhookomp -fopenmp -lgomp
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-schedule-default-2-regions.c -o vectoradd-omp-parallel-single-for-schedule-default-2-regions -lhookomp -fopenmp -lgomp
+
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-schedule-runtime-1-region.c -o vectoradd-omp-parallel-single-for-schedule-runtime-1-region -lhookomp -fopenmp -lgomp
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-schedule-runtime-2-regions.c -o vectoradd-omp-parallel-single-for-schedule-runtime-2-regions -lhookomp -fopenmp -lgomp
+
+	${CXX} -L ${LIB_HOOKOMP_PATH} -S vectoradd-omp-parallel-single-for-schedule-default-1-region.c -o vectoradd-omp-parallel-single-for-schedule-default-1-region.s -fopenmp -lgomp
+	${CXX} -L ${LIB_HOOKOMP_PATH} -S vectoradd-omp-parallel-single-for-schedule-default-2-regions.c -o vectoradd-omp-parallel-single-for-schedule-default-2-regions.s -fopenmp -lgomp
+
+	${CXX} -L ${LIB_HOOKOMP_PATH} -S vectoradd-omp-parallel-single-for-schedule-runtime-1-region.c -o vectoradd-omp-parallel-single-for-schedule-runtime-1-region.s -fopenmp -lgomp
+	${CXX} -L ${LIB_HOOKOMP_PATH} -S vectoradd-omp-parallel-single-for-schedule-runtime-2-regions.c -o vectoradd-omp-parallel-single-for-schedule-runtime-2-regions.s -fopenmp -lgomp
+
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-1-region-migration.c -o vectoradd-omp-parallel-single-for-1-region-migration -lhookomp -fopenmp -lgomp
 	
 	${CXX} vectoradd-omp-loops.c -o vectoradd-omp-loops -lpapi -fopenmp -lpthread
@@ -46,7 +55,7 @@ main: main-test.c
 	cp libroofline.so ../function-pointers/	
 	
 clean:
-	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-1-region vectoradd-omp-parallel-single-for-2-regions
+	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-schedule-default-1-region vectoradd-omp-parallel-single-for-schedule-default-2-regions vectoradd-omp-parallel-single-for-schedule-runtime-1-region vectoradd-omp-parallel-single-for-schedule-runtime-2-regions 
 
 info:
 	@echo "Use make OPTIONS=-DVERBOSE to compile with messages."

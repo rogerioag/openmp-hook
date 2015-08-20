@@ -61,7 +61,7 @@ int main() {
 	// initialization_of_papi_libray_mode();
 	
   fprintf(stdout, "before parallel region.\n");
-  #pragma omp parallel num_threads(2)
+  #pragma omp parallel
   {
     #pragma omp single
     /* Cálculo. */
