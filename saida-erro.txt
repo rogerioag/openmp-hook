@@ -1,0 +1,28 @@
+[hookomp.c] Calling [GOMP_parallel_start]
+[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[0x400bd7]
+[GOMP_1.0] lib_GOMP_parallel_start[0x7f5c69e2f6e0]
+[roofline.c] Calling [RM_library_init]
+[hookomp.c] Calling [GOMP_single_start]
+[Before] RM_library_init: papi_library_initialized: 0
+[roofline.c] Calling [RM_initialization_of_papi_libray_mode]
+[hookomp.c] Calling [GOMP_single_start]
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp.c] Calling [GOMP_single_start]
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp.c] Calling [GOMP_single_start]
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp.c] Calling [GOMP_barrier]
+[hookomp.c] Calling [GOMP_single_start]
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp.c] Calling [GOMP_single_start]
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp.c] Calling [GOMP_single_start]
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp.c] Calling [GOMP_barrier]
+[hookomp]: Thread 0 exiting of single region.
+[roofline.c] Calling [RM_stop_counters]
+Error on PAPI execution.
+[RM_papi_handle_error] roofline.c -> RM_stop_counters [line 198]: PAPI error -11: (null)
+[hookomp.c] Calling [GOMP_single_start]
+[GOMP_1.0] GOMP_single_start@GOMP_1.0.
+[hookomp.c] Calling [GOMP_single_start]
