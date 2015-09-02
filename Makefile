@@ -47,12 +47,15 @@ main: main-test.c
 	${CXX} -L ${LIB_HOOKOMP_PATH} -S vectoradd-omp-parallel-single-for-schedule-runtime-1-region.c -o vectoradd-omp-parallel-single-for-schedule-runtime-1-region.s -fopenmp -lgomp
 	${CXX} -L ${LIB_HOOKOMP_PATH} -S vectoradd-omp-parallel-single-for-schedule-runtime-2-regions.c -o vectoradd-omp-parallel-single-for-schedule-runtime-2-regions.s -fopenmp -lgomp
 
-	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-1-region-migration.c -o vectoradd-omp-parallel-single-for-1-region-migration -lhookomp -fopenmp -lgomp
+	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-1-region-migration.c -o vectoradd-omp-parallel-single-for-1-region-migration -lhookomp -fopenmp -lgomp
 	
 	${CXX} vectoradd-omp-loops.c -o vectoradd-omp-loops -lpapi -fopenmp -lpthread
 	
 	cp libhookomp.so ../function-pointers/
-	cp libroofline.so ../function-pointers/	
+	cp libroofline.so ../function-pointers/
+
+	cp libhookomp.so ../polly-openmp/
+	cp libroofline.so ../polly-openmp/
 	
 clean:
 	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-schedule-default-1-region vectoradd-omp-parallel-single-for-schedule-default-2-regions vectoradd-omp-parallel-single-for-schedule-runtime-1-region vectoradd-omp-parallel-single-for-schedule-runtime-2-regions 
