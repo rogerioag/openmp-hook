@@ -411,7 +411,7 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 
 	sem_init(&mutex_func_next, 0, 1);
 
-	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);	
+	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr + 15);	
 }
 
 /*----------------------------------------------------------------*/
