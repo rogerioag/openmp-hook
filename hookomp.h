@@ -4,6 +4,7 @@
 #include <dlfcn.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <semaphore.h>
 #include "roofline.h"
 
 #ifdef _OPENMP
@@ -38,6 +39,9 @@
     hook_func_pointer = (typeof(hook_func_pointer)) (uintptr_t) dlsym(__handle, func_name);	\
     PRINT_ERROR();																			\
   } while(0)
+
+sem_t mutex_func_next;
+
 
 /* Tipo para o ponteiro de função. */
 typedef void (*op_func) (void);

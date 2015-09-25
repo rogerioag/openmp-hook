@@ -2,6 +2,8 @@
 
 static long int executing_a_single_region = -1;
 
+static long int thread_executing_function_next = -1;
+
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
 void foo(void) {
@@ -43,6 +45,8 @@ void GOMP_parallel_end (void){
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_end, "GOMP_parallel_end");
 
 	fprintf(stderr, "[GOMP_1.0] GOMP_parallel_end@GOMP_1.0 [%p]\n", (void* )lib_GOMP_parallel_end);
+
+	sem_destroy(&mutex_func_next); 	/* destroy semaphore */
 	
     lib_GOMP_parallel_end();
 }
@@ -126,13 +130,19 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_runtime_next, "GOMP_loop_runtime_next");
 	fprintf(stderr, "[GOMP_1.0] GOMP_loop_runtime_next@GOMP_1.0.\n");
 
-	unsigned long int thread_executing_function_next = pthread_self();
+	sem_wait(&mutex_func_next);       /* down semaphore */
 
-	fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
-	
-	bool result = lib_GOMP_loop_runtime_next(istart, iend);
+	thread_executing_function_next = pthread_self();
 
-	fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
+  	sem_post(&mutex_func_next);       /* up semaphore */
+
+	bool result = false;
+
+	if(thread_executing_function_next == (long int) pthread_self()){
+		fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
+		result = lib_GOMP_loop_runtime_next(istart, iend);
+		fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
+	}	
 	
 	return result;
 }
@@ -393,6 +403,8 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	fprintf(stderr, "[GOMP_1.0] GOMP_parallel_loop_runtime_start@GOMP_1.0.[%p]\n", (void* )fn);
 	
 	fprintf(stderr, "[GOMP_1.0] lib_GOMP_parallel_loop_runtime_start[%p]\n", (void* )lib_GOMP_parallel_loop_runtime_start);
+
+	sem_init(&mutex_func_next, 0, 1);
 
 	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);	
 }
