@@ -132,7 +132,9 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 
 	sem_wait(&mutex_func_next);       /* down semaphore */
 
-	thread_executing_function_next = pthread_self();
+	if(thread_executing_function_next == -1){
+		thread_executing_function_next = pthread_self();	
+	}
 
   	sem_post(&mutex_func_next);       /* up semaphore */
 
@@ -429,6 +431,10 @@ void GOMP_loop_end_nowait (void){
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_end_nowait, "GOMP_loop_end_nowait");
 
 	fprintf(stderr, "[GOMP_1.0] lib_GOMP_loop_end_nowait[%p]\n", (void* )GOMP_loop_end_nowait);
+
+	if(thread_executing_function_next == (long int) pthread_self()){
+		thread_executing_function_next = -1;
+	}
 
 	lib_GOMP_loop_end_nowait();
 }
