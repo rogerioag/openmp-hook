@@ -6,7 +6,6 @@
 #include <stdint.h>
 #include "roofline.h"
 
-
 #ifdef _OPENMP
 #include <omp.h>
 #else

@@ -50,7 +50,12 @@ main: main-test.c
 	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-1-region-migration.c -o vectoradd-omp-parallel-single-for-1-region-migration -lhookomp -fopenmp -lgomp
 	
 	${CXX} vectoradd-omp-loops.c -o vectoradd-omp-loops -lpapi -fopenmp -lpthread
-	
+
+	# Teste de usar o código do PoLLy sem modificações.
+	# Usar a função de next para testar os contadores de performance.
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-runtime.c -o vectoradd-omp-for-runtime -lhookomp -fopenmp -lgomp
+
+
 	cp libhookomp.so ../function-pointers/
 	cp libroofline.so ../function-pointers/
 
