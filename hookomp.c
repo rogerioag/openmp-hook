@@ -130,6 +130,8 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_runtime_next, "GOMP_loop_runtime_next");
 	fprintf(stderr, "[GOMP_1.0] GOMP_loop_runtime_next@GOMP_1.0.\n");
 
+	fprintf(stderr, "[hookomp]: Thread [%lu] is executing %s.\n", (long int) pthread_self(), __FUNCTION__);
+
 	sem_wait(&mutex_func_next);       /* down semaphore */
 
 	if(thread_executing_function_next == -1){
