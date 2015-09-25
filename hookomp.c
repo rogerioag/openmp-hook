@@ -128,11 +128,11 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 
 	unsigned long int thread_executing_function_next = pthread_self();
 
-	fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] istart: %d iend: %d.\n", (unsigned long int) thread_executing_function_next, istart, iend);
+	fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", (unsigned long int) thread_executing_function_next, istart, iend);
 	
 	bool result = lib_GOMP_loop_runtime_next(istart, iend);
 
-	fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] istart: %d iend: %d.\n", (unsigned long int) thread_executing_function_next, istart, iend);
+	fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", (unsigned long int) thread_executing_function_next, istart, iend);
 	
 	return result;
 }
