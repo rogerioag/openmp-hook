@@ -125,8 +125,14 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_runtime_next, "GOMP_loop_runtime_next");
 	fprintf(stderr, "[GOMP_1.0] GOMP_loop_runtime_next@GOMP_1.0.\n");
+
+	unsigned long int thread_executing_function_next = pthread_self();
+
+	fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] istart: %d iend: %d.\n", (unsigned long int) thread_executing_function_next, istart, iend);
 	
 	bool result = lib_GOMP_loop_runtime_next(istart, iend);
+
+	fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] istart: %d iend: %d.\n", (unsigned long int) thread_executing_function_next, istart, iend);
 	
 	return result;
 }
