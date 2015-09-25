@@ -130,13 +130,13 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_runtime_next, "GOMP_loop_runtime_next");
 	fprintf(stderr, "[GOMP_1.0] GOMP_loop_runtime_next@GOMP_1.0.\n");
 
-	fprintf(stderr, "[hookomp]: Thread [%lu] is executing %s.\n", (long int) pthread_self(), __FUNCTION__);
+	fprintf(stderr, "[hookomp]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
 	sem_wait(&mutex_func_next);       /* down semaphore */
 
 	if(thread_executing_function_next == -1){
 		thread_executing_function_next = pthread_self();
-		fprintf(stderr, "[hookomp]: Thread [%lu] is entring in controled execution.\n", (long int) thread_executing_function_next);
+		fprintf(stderr, "[hookomp]: Thread [%lu] is entering in controled execution.\n", (long int) thread_executing_function_next);
 	}
 
   	sem_post(&mutex_func_next);       /* up semaphore */
@@ -434,6 +434,8 @@ void GOMP_loop_end_nowait (void){
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_end_nowait, "GOMP_loop_end_nowait");
 
 	fprintf(stderr, "[GOMP_1.0] lib_GOMP_loop_end_nowait[%p]\n", (void* )GOMP_loop_end_nowait);
+
+	fprintf(stderr, "[hookomp]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
 	if(thread_executing_function_next == (long int) pthread_self()){
 		fprintf(stderr, "[hookomp]: Thread [%lu] is finishing the execution.\n", (long int) thread_executing_function_next);
