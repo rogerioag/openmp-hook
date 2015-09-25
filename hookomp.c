@@ -134,7 +134,7 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 
 	if(thread_executing_function_next == -1){
 		thread_executing_function_next = pthread_self();
-		fprintf(stderr, "[hookomp]: Thread [%lu] is in execution.\n", (long int) thread_executing_function_next);
+		fprintf(stderr, "[hookomp]: Thread [%lu] is entring in controled execution.\n", (long int) thread_executing_function_next);
 	}
 
   	sem_post(&mutex_func_next);       /* up semaphore */
@@ -434,7 +434,7 @@ void GOMP_loop_end_nowait (void){
 	fprintf(stderr, "[GOMP_1.0] lib_GOMP_loop_end_nowait[%p]\n", (void* )GOMP_loop_end_nowait);
 
 	if(thread_executing_function_next == (long int) pthread_self()){
-		fprintf(stderr, "[hookomp]: Thread [%lu] is in execution.\n", (long int) thread_executing_function_next);
+		fprintf(stderr, "[hookomp]: Thread [%lu] is finishing the execution.\n", (long int) thread_executing_function_next);
 		thread_executing_function_next = -1;
 	}
 
