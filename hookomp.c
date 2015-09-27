@@ -472,6 +472,9 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	loop_iterations_end = end;
 	executed_loop_iterations = 0;
 	number_of_threads_in_team = num_threads;
+
+	/* Initialization of thread and measures section. */
+	thread_executing_function_next = -1;
 	is_executed_measures_section = true;
 
 	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);	
@@ -509,13 +512,11 @@ void GOMP_loop_end_nowait (void){
 		
 		/* Release all blocked team threads. */
 		release_all_team_threads();
-		/*fprintf(stderr, "[hookomp]: release_all_team_threads num_threads: %ld.\n", number_of_threads_in_team);
-		for (int i = 0; i < number_of_threads_in_team; ++i) {
-			sem_post(&sem_blocks_other_team_threads);
-		}*/
 
 		executed_loop_iterations = 0;
 		// thread_executing_function_next = -1;
+
+		/* Mark that is no more in section of measurements. */
 		is_executed_measures_section = false;
 	}
 
