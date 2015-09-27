@@ -40,7 +40,10 @@
     PRINT_ERROR();																			\
   } while(0)
 
-sem_t mutex_func_next;
+/* Semaphore to registry the thread which can execute the function to get next block of iterations. */
+sem_t mutex_registry_thread_in_func_next;
+/* Semaphore to block other team threads.*/
+sem_t sem_blocks_other_team_threads;
 
 
 /* Tipo para o ponteiro de função. */

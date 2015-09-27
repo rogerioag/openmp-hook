@@ -2,12 +2,29 @@
 
 static long int executing_a_single_region = -1;
 
+/* Registry the thread which can execute the next function. */
 static long int thread_executing_function_next = -1;
+
+/* Interval control for calculate the portion of code to execute. 10% */
+static long int loop_iterations_start = 0;
+static long int loop_iterations_end = 0;
+/* To acumulate the iterations executed by thread to calculate the percentual of executed code. */
+static long int executed_loop_iterations = 0;
 
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
 void foo(void) {
 	puts("Hello, I'm a shared library.\n");
+}
+
+/* ------------------------------------------------------------- */
+/* Function to execute up num_threads -1 of team.*/
+void release_all_team_threads(void){
+	int i;
+	int num_threads = omp_get_num_threads();
+	for (int i = 0; i < num_threads - 1; ++i) {
+		sem_post(&sem_blocks_other_team_threads);
+	}
 }
 
 /* ------------------------------------------------------------- */
@@ -46,7 +63,9 @@ void GOMP_parallel_end (void){
 
 	fprintf(stderr, "[GOMP_1.0] GOMP_parallel_end@GOMP_1.0 [%p]\n", (void* )lib_GOMP_parallel_end);
 
-	sem_destroy(&mutex_func_next); 	/* destroy semaphore */
+	sem_destroy(&mutex_registry_thread_in_func_next); 	/* destroy semaphore */
+
+	sem_destroy(&sem_blocks_other_team_threads);
 	
     lib_GOMP_parallel_end();
 }
@@ -132,21 +151,31 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 
 	fprintf(stderr, "[hookomp]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
-	sem_wait(&mutex_func_next);       /* down semaphore */
+	/* Registry the thread which will be execute alone. down semaphore. */
+	sem_wait(&mutex_registry_thread_in_func_next);
 
 	if(thread_executing_function_next == -1){
 		thread_executing_function_next = pthread_self();
 		fprintf(stderr, "[hookomp]: Thread [%lu] is entering in controled execution.\n", (long int) thread_executing_function_next);
 	}
-
-  	sem_post(&mutex_func_next);       /* up semaphore */
+	/* up semaphore. */
+  	sem_post(&mutex_registry_thread_in_func_next);
 
 	bool result = false;
 
+	/* Verify if the thread is the thread executing. */
 	if(thread_executing_function_next == (long int) pthread_self()){
-		fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
-		result = lib_GOMP_loop_runtime_next(istart, iend);
-		fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
+		if((executed_loop_iterations / (loop_iterations_end - loop_iterations_start)) < 0.1){
+			fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
+			result = lib_GOMP_loop_runtime_next(istart, iend);
+			fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
+			/* Update the number of iterations executed by this thread. */
+			executed_loop_iterations += executed_loop_iterations + (*iend - *istart);
+		}
+	}
+	else{
+		/* Other team threads will be blocked. */
+		sem_wait(&sem_blocks_other_team_threads);
 	}	
 	
 	return result;
@@ -409,9 +438,21 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	
 	fprintf(stderr, "[GOMP_1.0] lib_GOMP_parallel_loop_runtime_start[%p]\n", (void* )lib_GOMP_parallel_loop_runtime_start);
 
-	sem_init(&mutex_func_next, 0, 1);
+	/* Initialization of semaphores of control. */
+	sem_init(&mutex_registry_thread_in_func_next, 0, 1);
 
-	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr + 15);	
+	/* Initialization of block to other team threads. 1 thread will be executing. 
+	   The initialization with 0 is proposital to block other threads.
+	*/
+	sem_init(&sem_blocks_other_team_threads, 0, 0);
+
+	/* Initialization of control iterations variables. */
+	loop_iterations_start = start;
+	loop_iterations_end = end;
+	executed_loop_iterations = 0;
+	// number_of_threads_in_team = num_threads;
+
+	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);	
 }
 
 /*----------------------------------------------------------------*/
@@ -440,6 +481,11 @@ void GOMP_loop_end_nowait (void){
 	if(thread_executing_function_next == (long int) pthread_self()){
 		fprintf(stderr, "[hookomp]: Thread [%lu] is finishing the execution.\n", (long int) thread_executing_function_next);
 		thread_executing_function_next = -1;
+
+		// Get counters and decide about the migration.
+		
+		/* Release all blocked team threads. */
+		release_all_team_threads();		
 	}
 
 	lib_GOMP_loop_end_nowait();
