@@ -14,6 +14,8 @@ static long int executed_loop_iterations = 0;
 /* 10% of code. */
 static long int percentual_of_code = 10;
 
+static long int number_of_threads_in_team = 0;
+
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
 void foo(void) {
@@ -24,10 +26,9 @@ void foo(void) {
 /* Function to execute up num_threads -1 of team.*/
 void release_all_team_threads(void){
 	HOOKOMP_FUNC_NAME;
-	int num_threads = omp_get_num_threads();
-
-	fprintf(stderr, "[hookomp]: release_all_team_threads num_threads: %d.\n", num_threads);
-	for (int i = 0; i < num_threads; ++i) {
+	fprintf(stderr, "[hookomp]: release_all_team_threads num_threads: %d.\n", number_of_threads_in_team);
+	
+	for (int i = 0; i < number_of_threads_in_team; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
 	}
 }
@@ -463,7 +464,7 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	loop_iterations_start = start;
 	loop_iterations_end = end;
 	executed_loop_iterations = 0;
-	// number_of_threads_in_team = num_threads;
+	number_of_threads_in_team = num_threads;
 
 	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);	
 }
