@@ -494,7 +494,7 @@ void GOMP_loop_end_nowait (void){
 		thread_executing_function_next = -1;
 
 		// Get counters and decide about the migration.
-		fprintf(stderr, "[hookomp]: Thread [%lu] is getting the performance counters to decide.\n", (long int) thread_executing_function_next);
+		fprintf(stderr, "[hookomp]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
 		
 		/* Release all blocked team threads. */
 		release_all_team_threads();		
