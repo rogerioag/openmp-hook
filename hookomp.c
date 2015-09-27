@@ -16,6 +16,8 @@ static long int percentual_of_code = 10;
 
 static long int number_of_threads_in_team = 0;
 
+static bool not_executed_unique_section = false;
+
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
 void foo(void) {
@@ -160,8 +162,9 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	/* Registry the thread which will be execute alone. down semaphore. */
 	sem_wait(&mutex_registry_thread_in_func_next);
 
-	if(thread_executing_function_next == -1){
+	if((thread_executing_function_next == -1) && (!not_executed_unique_section)){
 		thread_executing_function_next = pthread_self();
+		not_executed_unique_section = true;
 		fprintf(stderr, "[hookomp]: Thread [%lu] is entering in controled execution.\n", (long int) thread_executing_function_next);
 	}
 	/* up semaphore. */
@@ -467,6 +470,7 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	loop_iterations_end = end;
 	executed_loop_iterations = 0;
 	number_of_threads_in_team = num_threads;
+	not_executed_unique_section = false;
 
 	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);	
 }
