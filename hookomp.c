@@ -12,7 +12,7 @@ static long int loop_iterations_end = 0;
 static long int executed_loop_iterations = 0;
 
 /* 10% of code. */
-static long int percent_of_code = 10;
+static long int percentual_of_code = 10;
 
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
