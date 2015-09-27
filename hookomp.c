@@ -26,10 +26,9 @@ void foo(void) {
 /* Function to execute up num_threads -1 of team.*/
 void release_all_team_threads(void){
 	HOOKOMP_FUNC_NAME;
-	int num_threads = omp_get_num_threads();
 
-	fprintf(stderr, "[hookomp]: release_all_team_threads num_threads: %d.\n", num_threads);
-	for (int i = 0; i < num_threads; ++i) {
+	fprintf(stderr, "[hookomp]: release_all_team_threads num_threads: %d.\n", number_of_threads_in_team);
+	for (int i = 0; i < number_of_threads_in_team; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
 	}
 }
