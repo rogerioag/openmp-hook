@@ -168,10 +168,11 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
   	sem_post(&mutex_registry_thread_in_func_next);
 
 	bool result = false;
+	int total_of_iterations = 0;
 
 	/* Verify if the thread is the thread executing. */
 	if(thread_executing_function_next == (long int) pthread_self()){
-		int total_of_iterations = (loop_iterations_end - loop_iterations_start);
+		total_of_iterations = (loop_iterations_end - loop_iterations_start);
 
 		if(executed_loop_iterations < (total_of_iterations / percentual_of_code)){
 			fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
@@ -507,6 +508,7 @@ void GOMP_loop_end_nowait (void){
 			sem_post(&sem_blocks_other_team_threads);
 		}
 
+		executed_loop_iterations = 0;
 		thread_executing_function_next = -1;
 	}
 
