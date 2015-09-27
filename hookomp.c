@@ -169,7 +169,9 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 			result = lib_GOMP_loop_runtime_next(istart, iend);
 			fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
 			/* Update the number of iterations executed by this thread. */
+			fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] executed iterations: %ld.\n", executed_loop_iterations);
 			executed_loop_iterations += executed_loop_iterations + (*iend - *istart);
+			fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] executed iterations: %ld.\n", executed_loop_iterations);
 		}
 	}
 	else{
