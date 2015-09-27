@@ -20,7 +20,6 @@ void foo(void) {
 /* ------------------------------------------------------------- */
 /* Function to execute up num_threads -1 of team.*/
 void release_all_team_threads(void){
-	int i;
 	int num_threads = omp_get_num_threads();
 	for (int i = 0; i < num_threads - 1; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
