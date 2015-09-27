@@ -495,13 +495,19 @@ void GOMP_loop_end_nowait (void){
 
 	if(thread_executing_function_next == (long int) pthread_self()){
 		fprintf(stderr, "[hookomp]: Thread [%lu] is finishing the execution.\n", (long int) thread_executing_function_next);
-		thread_executing_function_next = -1;
+		
 
 		// Get counters and decide about the migration.
 		fprintf(stderr, "[hookomp]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
 		
 		/* Release all blocked team threads. */
-		release_all_team_threads();		
+		// release_all_team_threads();
+		fprintf(stderr, "[hookomp]: release_all_team_threads num_threads: %ld.\n", number_of_threads_in_team);
+		for (int i = 0; i < number_of_threads_in_team; ++i) {
+			sem_post(&sem_blocks_other_team_threads);
+		}
+
+		thread_executing_function_next = -1;
 	}
 
 	lib_GOMP_loop_end_nowait();
