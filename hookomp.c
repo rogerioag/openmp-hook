@@ -20,6 +20,7 @@ void foo(void) {
 /* ------------------------------------------------------------- */
 /* Function to execute up num_threads -1 of team.*/
 void release_all_team_threads(void){
+	HOOKOMP_FUNC_NAME;
 	int num_threads = omp_get_num_threads();
 	for (int i = 0; i < num_threads - 1; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
@@ -172,6 +173,9 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 			fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] executed iterations: %ld.\n", thread_executing_function_next, executed_loop_iterations);
 			executed_loop_iterations += (*iend - *istart);
 			fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] executed iterations: %ld.\n", thread_executing_function_next, executed_loop_iterations);
+		}
+		else{
+			fprintf(stderr, "[hookomp]: GOMP_loop_runtime_next -- Tid[%lu] executed %ld iterations of %ld.\n", thread_executing_function_next, executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
 		}
 	}
 	else{
@@ -484,6 +488,7 @@ void GOMP_loop_end_nowait (void){
 		thread_executing_function_next = -1;
 
 		// Get counters and decide about the migration.
+		fprintf(stderr, "[hookomp]: Thread [%lu] is getting the performance counters to decide.\n", (long int) thread_executing_function_next);
 		
 		/* Release all blocked team threads. */
 		release_all_team_threads();		
