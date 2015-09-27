@@ -180,6 +180,7 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	}
 	else{
 		/* Other team threads will be blocked. */
+		fprintf(stderr, "[hookomp]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
 		sem_wait(&sem_blocks_other_team_threads);
 	}	
 	
