@@ -11,6 +11,9 @@ static long int loop_iterations_end = 0;
 /* To acumulate the iterations executed by thread to calculate the percentual of executed code. */
 static long int executed_loop_iterations = 0;
 
+/* 10% of code. */
+static long int percent_of_code = 10;
+
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
 void foo(void) {
@@ -165,7 +168,9 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 
 	/* Verify if the thread is the thread executing. */
 	if(thread_executing_function_next == (long int) pthread_self()){
-		if((executed_loop_iterations / (loop_iterations_end - loop_iterations_start)) < 0.1){
+		int total_of_iterations = (loop_iterations_end - loop_iterations_start);
+
+		if(executed_loop_iterations < (total_of_iterations / percentual_of_code)){
 			fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
 			result = lib_GOMP_loop_runtime_next(istart, iend);
 			fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
