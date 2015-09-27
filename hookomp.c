@@ -508,11 +508,11 @@ void GOMP_loop_end_nowait (void){
 		fprintf(stderr, "[hookomp]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
 		
 		/* Release all blocked team threads. */
-		// release_all_team_threads();
-		fprintf(stderr, "[hookomp]: release_all_team_threads num_threads: %ld.\n", number_of_threads_in_team);
+		release_all_team_threads();
+		/*fprintf(stderr, "[hookomp]: release_all_team_threads num_threads: %ld.\n", number_of_threads_in_team);
 		for (int i = 0; i < number_of_threads_in_team; ++i) {
 			sem_post(&sem_blocks_other_team_threads);
-		}
+		}*/
 
 		executed_loop_iterations = 0;
 		// thread_executing_function_next = -1;
