@@ -170,7 +170,7 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	fprintf(stderr, "[hookomp]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
 	struct gomp_thread *thr = gomp_thread ();
-  	fprintf(stderr, "[hookomp]: Scheduling: %d  %s.\n", thr->ts.work_share->sched);
+  	fprintf(stderr, "[hookomp]: Scheduling: %d.\n", thr->ts.work_share->sched);
 
 	/* Registry the thread which will be execute alone. down semaphore. */
 	sem_wait(&mutex_registry_thread_in_func_next);
