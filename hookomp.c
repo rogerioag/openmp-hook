@@ -165,6 +165,14 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	if(thread_executing_function_next == -1){
 		thread_executing_function_next = pthread_self();
 		fprintf(stderr, "[hookomp]: Thread [%lu] is entering in controled execution.\n", (long int) thread_executing_function_next);
+
+		// PAPI Start the counters.
+   		if(RM_start_counters()){
+   			fprintf(stderr, "[hookomp] GOMP_single_start: PAPI Counters Started.\n");
+   		}
+   		else 
+   			fprintf(stderr, "Error calling RM_start_counters from GOMP_single_start.\n");
+   		}
 	}
 	/* up semaphore. */
   	sem_post(&mutex_registry_thread_in_func_next);
@@ -505,16 +513,36 @@ void GOMP_loop_end_nowait (void){
 
 	if(thread_executing_function_next == (long int) pthread_self()){
 		fprintf(stderr, "[hookomp]: Thread [%lu] is finishing the execution.\n", (long int) thread_executing_function_next);
-		
 
 		// Get counters and decide about the migration.
 		fprintf(stderr, "[hookomp]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
-		
+
+		if(!RM_stop_counters()){
+			fprintf(stderr, "Error GOMP_barrier: RM_stop_counters.\n");
+		}
+		else{
+    
+    		// A decisão de migrar é aqui.
+			double oi = RM_get_operational_intensity();
+			fprintf(stderr, "Operational intensity: %10.2f\n", oi);
+
+			int better_device = RM_get_better_device_to_execution();
+			fprintf(stderr, "Execution is better on device [%d].\n", better_device);
+
+			bool decide_migration = true;
+
+			if(decide_migration){
+				/* Launch apropriated function. */
+				fprintf(stderr, "Launching apropriated function on device: %d.\n", better_device);
+
+				/* Set work share to final. No more iterations to execute. */
+			}
+		}
+
 		/* Release all blocked team threads. */
 		release_all_team_threads();
 
 		executed_loop_iterations = 0;
-		// thread_executing_function_next = -1;
 
 		/* Mark that is no more in section of measurements. */
 		is_executed_measures_section = false;
