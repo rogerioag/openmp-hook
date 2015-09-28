@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <semaphore.h>
-#include "libgomp.h"
 #include "roofline.h"
 
 #ifdef _OPENMP
