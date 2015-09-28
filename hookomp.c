@@ -18,6 +18,8 @@ static long int number_of_threads_in_team = 0;
 
 static bool is_executed_measures_section = false;
 
+static bool started_measuring = false;
+
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
 void foo(void) {
@@ -165,14 +167,6 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	if(thread_executing_function_next == -1){
 		thread_executing_function_next = pthread_self();
 		fprintf(stderr, "[hookomp]: Thread [%lu] is entering in controled execution.\n", (long int) thread_executing_function_next);
-
-		// PAPI Start the counters.
-   		if(RM_start_counters()){
-   			fprintf(stderr, "[hookomp] GOMP_single_start: PAPI Counters Started.\n");
-   		}
-   		else {
-   			fprintf(stderr, "Error calling RM_start_counters from GOMP_single_start.\n");
-   		}
 	}
 	/* up semaphore. */
   	sem_post(&mutex_registry_thread_in_func_next);
@@ -192,6 +186,17 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 			fprintf(stderr, "[hookomp]: Antes-> GOMP_loop_runtime_next -- Tid[%lu] executed iterations: %ld.\n", thread_executing_function_next, executed_loop_iterations);
 			executed_loop_iterations += (*iend - *istart);
 			fprintf(stderr, "[hookomp]: Depois-> GOMP_loop_runtime_next -- Tid[%lu] executed iterations: %ld.\n", thread_executing_function_next, executed_loop_iterations);
+
+			/* PAPI Start the counters. */
+			if(!started_measuring){
+				if(RM_start_counters()){
+   					fprintf(stderr, "[hookomp] GOMP_single_start: PAPI Counters Started.\n");
+   				}
+   				else {
+   					fprintf(stderr, "Error calling RM_start_counters from GOMP_single_start.\n");
+   				}
+   				started_measuring = true;
+   			}
 		}
 		else{
 			fprintf(stderr, "[hookomp]: GOMP_loop_runtime_next -- Tid[%lu] executed %ld iterations of %ld.\n", thread_executing_function_next, executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
@@ -484,6 +489,7 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	/* Initialization of thread and measures section. */
 	thread_executing_function_next = -1;
 	is_executed_measures_section = true;
+	started_measuring = false;
 
 	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);	
 }
