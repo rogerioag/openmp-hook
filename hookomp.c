@@ -21,6 +21,8 @@ static bool is_executed_measures_section = false;
 static bool started_measuring = false;
 
 struct gomp_thread;
+struct gomp_team;
+struct gomp_work_share;
 
 extern struct gomp_thread* gomp_thread();
 extern struct gomp_team;
