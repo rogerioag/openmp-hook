@@ -491,7 +491,12 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	is_executed_measures_section = true;
 	started_measuring = false;
 
-	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);	
+	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);
+	
+	/* Initialize RM library. */
+  	if(!RM_library_init()){
+  		fprintf(stderr, "GOMP_parallel_start: error RM_library_init.\n");
+  	}
 }
 
 /*----------------------------------------------------------------*/
