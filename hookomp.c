@@ -170,7 +170,7 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
    		if(RM_start_counters()){
    			fprintf(stderr, "[hookomp] GOMP_single_start: PAPI Counters Started.\n");
    		}
-   		else 
+   		else {
    			fprintf(stderr, "Error calling RM_start_counters from GOMP_single_start.\n");
    		}
 	}
