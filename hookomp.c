@@ -20,6 +20,8 @@ static bool is_executed_measures_section = false;
 
 static bool started_measuring = false;
 
+extern struct gomp_work_share;
+
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
 void foo(void) {

@@ -158,8 +158,6 @@ extern "C" {
 	void GOMP_loop_end (void);
 
 	void GOMP_loop_end_nowait (void);
-
-	struct gomp_work_share;
 	
 #ifdef __cplusplus
 }
