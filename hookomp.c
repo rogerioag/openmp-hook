@@ -540,7 +540,7 @@ void GOMP_loop_end_nowait (void){
 			int better_device = RM_get_better_device_to_execution();
 			fprintf(stderr, "Execution is better on device [%d].\n", better_device);
 
-			bool decide_migration = true;
+			bool decide_migration = false;
 
 			if(decide_migration){
 				/* Launch apropriated function. */
