@@ -161,6 +161,9 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 
 	fprintf(stderr, "[hookomp]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
+	struct gomp_thread *thr = gomp_thread ();
+  	fprintf(stderr, "[hookomp]: Scheduling: %d  %s.\n", thr->ts.work_share->sched);
+
 	/* Registry the thread which will be execute alone. down semaphore. */
 	sem_wait(&mutex_registry_thread_in_func_next);
 
@@ -540,7 +543,7 @@ void GOMP_loop_end_nowait (void){
 			int better_device = RM_get_better_device_to_execution();
 			fprintf(stderr, "Execution is better on device [%d].\n", better_device);
 
-			bool decide_migration = false;
+			bool decide_migration = true;
 
 			if(decide_migration){
 				/* Launch apropriated function. */
