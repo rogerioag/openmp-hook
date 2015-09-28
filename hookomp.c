@@ -24,10 +24,12 @@ static bool started_measuring = false;
 // struct gomp_team;
 // struct gomp_work_share;
 
-extern struct gomp_team* gomp_team;
-extern struct gomp_work_share* gomp_work_share;
+extern struct gomp_team gomp_team;
+extern struct gomp_work_share gomp_work_share;
 
 extern struct gomp_thread* gomp_thread();
+
+extern struct foo fo;
 
 
 /* ------------------------------------------------------------- */
