@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <semaphore.h>
-#include <libgomp.h>
 #include "roofline.h"
 
 #ifdef _OPENMP
@@ -159,6 +158,8 @@ extern "C" {
 	void GOMP_loop_end (void);
 
 	void GOMP_loop_end_nowait (void);
+
+	struct gomp_work_share;
 	
 #ifdef __cplusplus
 }
