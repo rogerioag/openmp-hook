@@ -63,11 +63,11 @@ struct gomp_work_share
       long chunk_size;
 
       /* This is the iteration end point.  If this is a SECTIONS construct,
-	 this is the number of contained sections.  */
+   this is the number of contained sections.  */
       long end;
 
       /* This is the iteration step.  If this is a SECTIONS construct, this
-	 is always 1.  */
+   is always 1.  */
       long incr;
     };
 
@@ -78,6 +78,72 @@ struct gomp_work_share
       unsigned long long incr_ull;
     };
   };
+
+  /* This is a circular queue that details which threads will be allowed
+     into the ordered region and in which order.  When a thread allocates
+     iterations on which it is going to work, it also registers itself at
+     the end of the array.  When a thread reaches the ordered region, it
+     checks to see if it is the one at the head of the queue.  If not, it
+     blocks on its RELEASE semaphore.  */
+  unsigned *ordered_team_ids;
+
+  /* This is the number of threads that have registered themselves in
+     the circular queue ordered_team_ids.  */
+  unsigned ordered_num_used;
+
+  /* This is the team_id of the currently acknowledged owner of the ordered
+     section, or -1u if the ordered section has not been acknowledged by
+     any thread.  This is distinguished from the thread that is *allowed*
+     to take the section next.  */
+  unsigned ordered_owner;
+
+  /* This is the index into the circular queue ordered_team_ids of the
+     current thread that's allowed into the ordered reason.  */
+  unsigned ordered_cur;
+
+  /* This is a chain of allocated gomp_work_share blocks, valid only
+     in the first gomp_work_share struct in the block.  */
+  struct gomp_work_share *next_alloc;
+
+  /* The above fields are written once during workshare initialization,
+     or related to ordered worksharing.  Make sure the following fields
+     are in a different cache line.  */
+
+  /* This lock protects the update of the following members.  */
+  gomp_mutex_t lock __attribute__((aligned (64)));
+
+  /* This is the count of the number of threads that have exited the work
+     share construct.  If the construct was marked nowait, they have moved on
+     to other work; otherwise they're blocked on a barrier.  The last member
+     of the team to exit the work share construct must deallocate it.  */
+  unsigned threads_completed;
+
+  union {
+    /* This is the next iteration value to be allocated.  In the case of
+       GFS_STATIC loops, this the iteration start point and never changes.  */
+    long next;
+
+    /* The same, but with unsigned long long type.  */
+    unsigned long long next_ull;
+
+    /* This is the returned data structure for SINGLE COPYPRIVATE.  */
+    void *copyprivate;
+  };
+
+  union {
+    /* Link to gomp_work_share struct for next work sharing construct
+       encountered after this one.  */
+    gomp_ptrlock_t next_ws;
+
+    /* gomp_work_share structs are chained in the free work share cache
+       through this.  */
+    struct gomp_work_share *next_free;
+  };
+
+  /* If only few threads are in the team, ordered_team_ids can point
+     to this array which fills the padding at the end of this struct.  */
+  unsigned inline_ordered_team_ids[0];
+};
 
 /* This structure contains all of the thread-local data associated with 
    a thread team.  This is the data that must be saved when a thread
