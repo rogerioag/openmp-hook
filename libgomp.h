@@ -153,6 +153,8 @@ struct gomp_dependers_vec
 /* This structure contains all data that is private to libgomp and is
    allocated per thread.  */
 
+extern struct gomp_sem_t;
+
 struct gomp_thread
 {
   /* This is the function that the thread should run upon launch.  */
