@@ -53,11 +53,11 @@ int main() {
 
   init_array();
 
-    #pragma omp parallel for schedule(runtime)
+    #pragma omp parallel for schedule(runtime) num_threads(4)
     for (i = 0; i < N; i++) {
       h_c[i] = h_a[i] + h_b[i];
     }
-  print_array();
+  // print_array();
   check_result();
 
   return 0;
