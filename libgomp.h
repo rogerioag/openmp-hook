@@ -289,7 +289,7 @@ enum gomp_cancel_kind
   GOMP_CANCEL_TASKGROUP = 8
 };
 
-#if defined HAVE_TLS || defined USE_EMUTLS
+/*#if defined HAVE_TLS || defined USE_EMUTLS
 extern __thread struct gomp_thread gomp_tls_data;
 static inline struct gomp_thread *gomp_thread (void)
 {
@@ -301,7 +301,8 @@ static inline struct gomp_thread *gomp_thread (void)
 {
   return pthread_getspecific (gomp_tls_key);
 }
-#endif
+#endif*/
+extern struct gomp_thread* gomp_thread();
 
 
 #endif /* LIBGOMP_DEFS_H */
