@@ -155,6 +155,16 @@ struct gomp_dependers_vec
 
 typedef int gomp_sem_t;
 
+typedef struct
+{
+  /* Make sure total/generation is in a mostly read cacheline, while
+     awaited in a separate cacheline.  */
+  unsigned total __attribute__((aligned (64)));
+  unsigned generation;
+  unsigned awaited __attribute__((aligned (64)));
+  unsigned awaited_final;
+} gomp_barrier_t;
+
 struct gomp_thread
 {
   /* This is the function that the thread should run upon launch.  */
