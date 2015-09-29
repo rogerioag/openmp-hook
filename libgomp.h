@@ -150,62 +150,6 @@ struct gomp_dependers_vec
   struct gomp_task *elem[];
 };
 
-/* This structure describes a "team" of threads.  These are the threads
-   that are spawned by a PARALLEL constructs, as well as the work sharing
-   constructs that the team encounters.  */
-
-struct gomp_team
-{
-  /* This is the number of threads in the current team.  */
-  unsigned nthreads;
-
-  /* This is number of gomp_work_share structs that have been allocated
-     as a block last time.  */
-  unsigned work_share_chunk;
-
-  /* This is the saved team state that applied to a master thread before
-     the current thread was created.  */
-  struct gomp_team_state prev_ts;
-
-  /* List of work shares on which gomp_fini_work_share hasn't been
-     called yet.  If the team hasn't been cancelled, this should be
-     equal to each thr->ts.work_share, but otherwise it can be a possibly
-     long list of workshares.  */
-  struct gomp_work_share *work_shares_to_free;
-
-  /* List of gomp_work_share structs chained through next_free fields.
-     This is populated and taken off only by the first thread in the
-     team encountering a new work sharing construct, in a critical
-     section.  */
-  struct gomp_work_share *work_share_list_alloc;
-
-  /* List of gomp_work_share structs freed by free_work_share.  New
-     entries are atomically added to the start of the list, and
-     alloc_work_share can safely only move all but the first entry
-     to work_share_list alloc, as free_work_share can happen concurrently
-     with alloc_work_share.  */
-  struct gomp_work_share *work_share_list_free;
-
-    struct gomp_task *task_queue;
-  /* Number of all GOMP_TASK_{WAITING,TIED} tasks in the team.  */
-  unsigned int task_count;
-  /* Number of GOMP_TASK_WAITING tasks currently waiting to be scheduled.  */
-  unsigned int task_queued_count;
-  /* Number of GOMP_TASK_{WAITING,TIED} tasks currently running
-     directly in gomp_barrier_handle_tasks; tasks spawned
-     from e.g. GOMP_taskwait or GOMP_taskgroup_end don't count, even when
-     that is called from a task run from gomp_barrier_handle_tasks.
-     task_running_count should be always <= team->nthreads,
-     and if current task isn't in_tied_task, then it will be
-     even < team->nthreads.  */
-  unsigned int task_running_count;
-  int work_share_cancelled;
-  int team_cancelled;
-
-  /* This array contains structures for implicit tasks.  */
-  struct gomp_task implicit_task[];
-};
-
 /* This structure contains all data that is private to libgomp and is
    allocated per thread.  */
 
