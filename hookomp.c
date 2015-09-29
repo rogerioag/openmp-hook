@@ -571,7 +571,7 @@ void GOMP_loop_end_nowait (void){
 				/* Launch apropriated function. */
 				fprintf(stderr, "Launching apropriated function on device: %d.\n", better_device);
 
-				TablePointerFunctions[1]();
+				TablePointerFunctions[better_device]();
 
 				/* Set work share to final. No more iterations to execute. */
 			}

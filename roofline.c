@@ -324,5 +324,5 @@ double RM_get_operational_intensity(void){
 int RM_get_better_device_to_execution(void){
 	RM_FUNC_NAME;
 	
-	return 0;
+	return 1;
 }
