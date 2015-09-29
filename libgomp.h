@@ -33,8 +33,8 @@
    that are part of the external ABI, and the lower case prefix "gomp"
    is used group items that are completely private to the library.  */
 
-#ifndef LIBGOMP_H 
-#define LIBGOMP_H 1
+#ifndef LIBGOMP_DEFS_H 
+#define LIBGOMP_DEFS_H 1
 
 /* This structure contains the data to control one work-sharing construct,
    either a LOOP (FOR/DO) or a SECTIONS.  */
@@ -218,4 +218,4 @@ enum gomp_cancel_kind
   GOMP_CANCEL_TASKGROUP = 8
 };
 
-#endif /* LIBGOMP_H */
+#endif /* LIBGOMP_DEFS_H */
