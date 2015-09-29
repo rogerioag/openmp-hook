@@ -36,14 +36,14 @@
 #ifndef LIBGOMP_H 
 #define LIBGOMP_H 1
 
-#include "config.h"
-#include "gstdint.h"
-#include "libgomp-plugin.h"
+// #include "config.h"
+// #include "gstdint.h"
+// #include "libgomp-plugin.h"
 
-#include <pthread.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <stdarg.h>
+// #include <pthread.h>
+// #include <stdbool.h>
+// #include <stdlib.h>
+// #include <stdarg.h>
 
 #ifdef HAVE_ATTRIBUTE_VISIBILITY
 # pragma GCC visibility push(hidden)
@@ -60,10 +60,10 @@ enum memmodel
   MEMMODEL_SEQ_CST = 5
 };
 
-#include "sem.h"
-#include "mutex.h"
-#include "bar.h"
-#include "ptrlock.h"
+// #include "sem.h"
+// #include "mutex.h"
+// #include "bar.h"
+// #include "ptrlock.h"
 
 
 /* This structure contains the data to control one work-sharing construct,
