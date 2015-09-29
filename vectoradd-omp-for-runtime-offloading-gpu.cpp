@@ -153,9 +153,7 @@ typedef void (*op_func) (void);
 op_func getTargetFunc[2] = { func_CPU, func_GPU };
 
 /* Initialization of TablePointerFunctions to libhook. */
-extern op_func *TablePointerFunctions;
-
-TablePointerFunctions = getTargetFunc;
+extern op_func *TablePointerFunctions = getTargetFunc;
 
 int main() {
   int i;
