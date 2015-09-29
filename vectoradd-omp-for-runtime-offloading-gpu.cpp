@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <iostream>
+#include <fstream>
+#include <cassert>
+
 #ifdef _OPENMP
 #include <omp.h>
 #else
