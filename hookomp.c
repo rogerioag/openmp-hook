@@ -565,7 +565,7 @@ void GOMP_loop_end_nowait (void){
 			int better_device = RM_get_better_device_to_execution();
 			fprintf(stderr, "Execution is better on device [%d].\n", better_device);
 
-			decided_by_offloading = true;
+			decided_by_offloading = false;
 
 			if(decided_by_offloading){
 				/* Launch apropriated function. */
