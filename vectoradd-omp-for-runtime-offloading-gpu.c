@@ -143,7 +143,7 @@ void func_GPU(void){
 }
 
 /* Tipo para o ponteiro de função. */
-typedef void (*op_func) (void *);
+typedef void (*op_func) (void);
 
 /* Tabela de funções para chamada parametrizada. */
 op_func getTargetFunc[2] = { func_CPU, func_GPU };
