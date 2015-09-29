@@ -48,6 +48,8 @@ enum gomp_schedule_type
   GFS_AUTO
 };
 
+typedef int gomp_mutex_t;
+
 struct gomp_work_share
 {
   /* This member records the SCHEDULE clause to be used for this construct.
