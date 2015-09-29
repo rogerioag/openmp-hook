@@ -186,8 +186,7 @@ struct gomp_team
      with alloc_work_share.  */
   struct gomp_work_share *work_share_list_free;
 
-  gomp_mutex_t task_lock;
-  struct gomp_task *task_queue;
+    struct gomp_task *task_queue;
   /* Number of all GOMP_TASK_{WAITING,TIED} tasks in the team.  */
   unsigned int task_count;
   /* Number of GOMP_TASK_WAITING tasks currently waiting to be scheduled.  */
