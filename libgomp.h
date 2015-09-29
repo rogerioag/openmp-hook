@@ -186,22 +186,6 @@ struct gomp_team
      with alloc_work_share.  */
   struct gomp_work_share *work_share_list_free;
 
-#ifdef HAVE_SYNC_BUILTINS
-  /* Number of simple single regions encountered by threads in this
-     team.  */
-  unsigned long single_count;
-#else
-  /* Mutex protecting addition of workshares to work_share_list_free.  */
-  gomp_mutex_t work_share_list_free_lock;
-#endif
-
-  /* This barrier is used for most synchronization of the team.  */
-  gomp_barrier_t barrier;
-
-  /* Initial work shares, to avoid allocating any gomp_work_share
-     structs in the common case.  */
-  struct gomp_work_share work_shares[8];
-
   gomp_mutex_t task_lock;
   struct gomp_task *task_queue;
   /* Number of all GOMP_TASK_{WAITING,TIED} tasks in the team.  */
