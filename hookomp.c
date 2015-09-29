@@ -174,7 +174,9 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	fprintf(stderr, "[hookomp]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
 	struct gomp_thread *thr = gomp_thread ();
+
 	struct gomp_team *team = thr->ts.team;
+
 	struct gomp_work_share *ws = thr->ts.work_share;
 
   	fprintf(stderr, "[hookomp]: Scheduling: %d.\n", ws->sched);
