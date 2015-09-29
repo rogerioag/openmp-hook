@@ -79,39 +79,6 @@ struct gomp_work_share
     };
   };
 
-  /* This is the count of the number of threads that have exited the work
-     share construct.  If the construct was marked nowait, they have moved on
-     to other work; otherwise they're blocked on a barrier.  The last member
-     of the team to exit the work share construct must deallocate it.  */
-  // unsigned threads_completed;
-
-  union {
-    /* This is the next iteration value to be allocated.  In the case of
-       GFS_STATIC loops, this the iteration start point and never changes.  */
-    long next;
-
-    /* The same, but with unsigned long long type.  */
-    unsigned long long next_ull;
-
-    /* This is the returned data structure for SINGLE COPYPRIVATE.  */
-    void *copyprivate;
-  };
-
-  union {
-    /* Link to gomp_work_share struct for next work sharing construct
-       encountered after this one.  */
-    gomp_ptrlock_t next_ws;
-
-    /* gomp_work_share structs are chained in the free work share cache
-       through this.  */
-    struct gomp_work_share *next_free;
-  };
-
-  /* If only few threads are in the team, ordered_team_ids can point
-     to this array which fills the padding at the end of this struct.  */
-  unsigned inline_ordered_team_ids[0];
-};
-
 /* This structure contains all of the thread-local data associated with 
    a thread team.  This is the data that must be saved when a thread
    encounters a nested PARALLEL construct.  */
@@ -160,31 +127,6 @@ struct gomp_team_state
   unsigned long static_trip;
 };
 
-struct target_mem_desc;
-
-/* These are the OpenMP 4.0 Internal Control Variables described in
-   section 2.3.1.  Those described as having one copy per task are
-   stored within the structure; those described as having one copy
-   for the whole program are (naturally) global variables.  */
-   
-struct gomp_task_icv
-{
-  unsigned long nthreads_var;
-  enum gomp_schedule_type run_sched_var;
-  int run_sched_modifier;
-  int default_device_var;
-  unsigned int thread_limit_var;
-  bool dyn_var;
-  bool nest_var;
-  char bind_var;
-  /* Internal ICV.  */
-  struct target_mem_desc *target_data;
-};
-
-extern struct gomp_task_icv gomp_global_icv;
-#ifndef HAVE_SYNC_BUILTINS
-extern gomp_mutex_t gomp_managed_threads_lock;
-#endif
 
 struct gomp_task;
 struct gomp_taskgroup;
