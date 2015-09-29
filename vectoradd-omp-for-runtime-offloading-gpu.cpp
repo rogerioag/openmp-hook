@@ -118,10 +118,10 @@ void func_GPU(void){
   checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
   checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
 
-  unsigned blockSizeX = N;
+  unsigned blockSizeX = 1024;
   unsigned blockSizeY = 1;
   unsigned blockSizeZ = 1;
-  unsigned gridSizeX  = 1;
+  unsigned gridSizeX  = 4;
   unsigned gridSizeY  = 1;
   unsigned gridSizeZ  = 1;
 
@@ -165,7 +165,7 @@ int main() {
     h_c[i] = h_a[i] + h_b[i];
   }
 
-  getTargetFunc[1]();
+  // TablePointerFunctions[1]();
 
   // print_array();
   check_result();

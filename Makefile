@@ -55,6 +55,9 @@ main: main-test.c
 	# Usar a função de next para testar os contadores de performance.
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-runtime.c -o vectoradd-omp-for-runtime -lhookomp -fopenmp -lgomp
 
+	# Teste offloading function.
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-runtime-offloading-gpu.cpp -o vectoradd-omp-for-runtime-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp
+
 
 	cp libhookomp.so ../function-pointers/
 	cp libroofline.so ../function-pointers/
