@@ -150,56 +150,6 @@ struct gomp_dependers_vec
   struct gomp_task *elem[];
 };
 
-/* Used when in GOMP_taskwait or in gomp_task_maybe_wait_for_dependencies.  */
-
-struct gomp_taskwait
-{
-  bool in_taskwait;
-  bool in_depend_wait;
-  size_t n_depend;
-  struct gomp_task *last_parent_depends_on;
-  gomp_sem_t taskwait_sem;
-};
-
-/* This structure describes a "task" to be run by a thread.  */
-
-struct gomp_task
-{
-  struct gomp_task *parent;
-  struct gomp_task *children;
-  struct gomp_task *next_child;
-  struct gomp_task *prev_child;
-  struct gomp_task *next_queue;
-  struct gomp_task *prev_queue;
-  struct gomp_task *next_taskgroup;
-  struct gomp_task *prev_taskgroup;
-  struct gomp_taskgroup *taskgroup;
-  struct gomp_dependers_vec *dependers;
-  struct htab *depend_hash;
-  struct gomp_taskwait *taskwait;
-  size_t depend_count;
-  size_t num_dependees;
-  struct gomp_task_icv icv;
-  void (*fn) (void *);
-  void *fn_data;
-  enum gomp_task_kind kind;
-  bool in_tied_task;
-  bool final_task;
-  bool copy_ctors_done;
-  bool parent_depends_on;
-  struct gomp_task_depend_entry depend[];
-};
-
-struct gomp_taskgroup
-{
-  struct gomp_taskgroup *prev;
-  struct gomp_task *children;
-  bool in_taskgroup_wait;
-  bool cancelled;
-  gomp_sem_t taskgroup_sem;
-  size_t num_children;
-};
-
 /* This structure describes a "team" of threads.  These are the threads
    that are spawned by a PARALLEL constructs, as well as the work sharing
    constructs that the team encounters.  */
