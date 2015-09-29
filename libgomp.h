@@ -36,6 +36,8 @@
 #ifndef LIBGOMP_DEFS_H 
 #define LIBGOMP_DEFS_H 1
 
+#include <pthread.h>
+
 /* This structure contains the data to control one work-sharing construct,
    either a LOOP (FOR/DO) or a SECTIONS.  */
 
