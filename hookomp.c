@@ -22,10 +22,10 @@ static bool started_measuring = false;
 
 static bool decided_by_offloading = false;
 
-extern struct gomp_team gomp_team;
-extern struct gomp_work_share gomp_work_share;
+// extern struct gomp_team gomp_team;
+// extern struct gomp_work_share gomp_work_share;
 
-extern struct gomp_thread* gomp_thread();
+// extern struct gomp_thread* gomp_thread();
 
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
@@ -168,13 +168,13 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 
 	fprintf(stderr, "[hookomp]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
-	struct gomp_thread *thr = gomp_thread ();
+	// struct gomp_thread *thr = gomp_thread ();
 
 	// struct gomp_team *team = thr->ts.team;
 
-	struct gomp_work_share *ws = thr->ts.work_share;
+	// struct gomp_work_share *ws = thr->ts.work_share;
 
-  	fprintf(stderr, "[hookomp]: Scheduling: %d.\n", ws->sched);
+  	// fprintf(stderr, "[hookomp]: Scheduling: %d.\n", ws->sched);
 
 	/* Registry the thread which will be execute alone. down semaphore. */
 	sem_wait(&mutex_registry_thread_in_func_next);
