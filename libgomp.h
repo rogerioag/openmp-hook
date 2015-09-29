@@ -167,15 +167,6 @@ struct gomp_team
      the current thread was created.  */
   struct gomp_team_state prev_ts;
 
-  /* This semaphore should be used by the master thread instead of its
-     "native" semaphore in the thread structure.  Required for nested
-     parallels, as the master is a member of two teams.  */
-  gomp_sem_t master_release;
-
-  /* This points to an array with pointers to the release semaphore
-     of the threads in the team.  */
-  gomp_sem_t **ordered_release;
-
   /* List of work shares on which gomp_fini_work_share hasn't been
      called yet.  If the team hasn't been cancelled, this should be
      equal to each thr->ts.work_share, but otherwise it can be a possibly
