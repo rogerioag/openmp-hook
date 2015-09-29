@@ -20,6 +20,8 @@ static bool is_executed_measures_section = false;
 
 static bool started_measuring = false;
 
+static bool decided_by_offloading = false;
+
 extern struct gomp_team gomp_team;
 extern struct gomp_work_share gomp_work_share;
 
@@ -225,16 +227,12 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 		
 		// result = lib_GOMP_loop_runtime_next(istart, iend);
 		/* if decided by offloading, no more work to do, so return false. */
-		if(!offloading){
+		if(!decided_by_offloading){
 			result = lib_GOMP_loop_runtime_next(istart, iend);	
 		}
 		else{
 			result = false;
 		}
-
-		
-
-
 	}	
 	
 	return result;
@@ -516,6 +514,8 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	is_executed_measures_section = true;
 	started_measuring = false;
 
+	decided_by_offloading = false;
+
 	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);
 	
 	/* Initialize RM library. */
@@ -565,9 +565,9 @@ void GOMP_loop_end_nowait (void){
 			int better_device = RM_get_better_device_to_execution();
 			fprintf(stderr, "Execution is better on device [%d].\n", better_device);
 
-			bool decide_migration = true;
+			decided_by_offloading = true;
 
-			if(decide_migration){
+			if(decided_by_offloading){
 				/* Launch apropriated function. */
 				fprintf(stderr, "Launching apropriated function on device: %d.\n", better_device);
 
