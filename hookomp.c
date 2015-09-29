@@ -222,7 +222,19 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 			fprintf(stderr, "[hookomp]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
 			sem_wait(&sem_blocks_other_team_threads);	
 		}
-		result = lib_GOMP_loop_runtime_next(istart, iend);
+		
+		// result = lib_GOMP_loop_runtime_next(istart, iend);
+		/* if decided by offloading, no more work to do, so return false. */
+		if(!offloading){
+			result = lib_GOMP_loop_runtime_next(istart, iend);	
+		}
+		else{
+			result = false;
+		}
+
+		
+
+
 	}	
 	
 	return result;
