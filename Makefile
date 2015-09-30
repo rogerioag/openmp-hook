@@ -69,4 +69,4 @@ clean:
 	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-schedule-default-1-region vectoradd-omp-parallel-single-for-schedule-default-2-regions vectoradd-omp-parallel-single-for-schedule-runtime-1-region vectoradd-omp-parallel-single-for-schedule-runtime-2-regions 
 
 info:
-	@echo "Use make OPTIONS=-DVERBOSE to compile with messages."
+	@echo "Use make OPTIONS=\"-DVERBOSE -DDEBUG\" to compile with messages."

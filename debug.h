@@ -2,8 +2,8 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-#define DEBUG 1
-#define VERBOSE 1
+// #define DEBUG 1
+// #define VERBOSE 1
 
 #if defined(DEBUG) && DEBUG > 0
  #define TRACE(fmt, args...)	do{ fprintf(stderr, "DEBUG: [%s]:%d:%s(): " fmt, \
