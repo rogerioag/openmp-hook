@@ -11,7 +11,7 @@
 #include <papi.h>
 #include <omp.h>
 
-#define VERBOSE 1
+// #define VERBOSE 1
 // Use make OPTIONS=-DVERBOSE
 #ifdef VERBOSE
 #define RM_FUNC_NAME fprintf(stderr, "[%s] Calling [%s]\n", __FILE__, __FUNCTION__)
