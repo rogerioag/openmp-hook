@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <semaphore.h>
-// #include "libgomp.h"
+#include "debug.h"
 #include "roofline.h"
 
 #ifdef _OPENMP
@@ -14,16 +14,6 @@
 #define omp_get_thread_num() 0
 #define omp_get_num_threads() 1
 #endif
-
-
-// #define VERBOSE 1
-// Use make OPTIONS=-DVERBOSE
-#ifdef VERBOSE
-#define HOOKOMP_FUNC_NAME fprintf(stderr, "[%s] Calling [%s]\n", __FILE__, __FUNCTION__)
-#else
-#define HOOKOMP_FUNC_NAME (void) 0
-#endif
-
 
 #define  PRINT_ERROR()					\
   do {									\

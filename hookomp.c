@@ -38,7 +38,7 @@ void foo(void) {
 void release_all_team_threads(void){
 	HOOKOMP_FUNC_NAME;
 
-	fprintf(stderr, "[hookomp]: release_all_team_threads num_threads: %ld.\n", number_of_threads_in_team);
+	TRACE("[hookomp]: release_all_team_threads num_threads: %ld.\n", number_of_threads_in_team);
 	for (int i = 0; i < number_of_threads_in_team; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
 	}
@@ -56,7 +56,7 @@ void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_start, "GOMP_parallel_start");
 
-	fprintf(stderr, "[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[%p]\n", (void* )fn);
+	TRACE("[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[%p]\n", (void* )fn);
 	
 	// fprintf(stderr, "[GOMP_1.0] lib_GOMP_parallel_start[%p]\n", (void* )lib_GOMP_parallel_start);
 
@@ -233,8 +233,7 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 		else{
 			result = false;
 		}
-	}	
-	
+	}
 	return result;
 }
 
