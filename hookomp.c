@@ -144,11 +144,11 @@ void GOMP_barrier (void) {
 			// contadores tem que ser feita.
     
     		// A decisão de migrar é aqui.
-			double oi = RM_get_operational_intensity();
-			TRACE("Operational intensity: %10.2f\n", oi);
+			// double oi = RM_get_operational_intensity();
+			// TRACE("Operational intensity: %10.2f\n", oi);
 
-			int better_device = RM_get_better_device_to_execution();
-			TRACE("Execution is better on device [%d].\n", better_device);
+			// int better_device = RM_get_better_device_to_execution();
+			// TRACE("Execution is better on device [%d].\n", better_device);
 		}
 		
 		executing_a_single_region = -1;
