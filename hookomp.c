@@ -564,9 +564,7 @@ void GOMP_loop_end_nowait (void){
 			int better_device = RM_get_better_device_to_execution();
 			TRACE("Execution is better on device [%d].\n", better_device);
 
-			decided_by_offloading = true;
-
-			if(decided_by_offloading){
+			if((decided_by_offloading = RM_decision_about_offloading()) != 0){
 				/* Launch apropriated function. */
 				TRACE("Launching apropriated function on device: %d.\n", better_device);
 

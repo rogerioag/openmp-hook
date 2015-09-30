@@ -326,3 +326,12 @@ int RM_get_better_device_to_execution(void){
 	
 	return 1;
 }
+
+/* ------------------------------------------------------------ */
+/* Better Device to execution.									*/
+bool RM_decision_about_offloading(void){
+	PRINT_FUNC_NAME;
+	
+	return false;
+}
+/* ------------------------------------------------------------ */

@@ -55,6 +55,8 @@ extern "C" {
 	double RM_get_operational_intensity(void);
 
 	int RM_get_better_device_to_execution(void);
+
+	bool RM_decision_about_offloading(void);
 	
 #ifdef __cplusplus
 }
