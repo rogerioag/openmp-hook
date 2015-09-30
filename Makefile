@@ -6,7 +6,7 @@ all: clean info libroofline libhookomp main
 
 # Step 1: Compiling with Position Independent Code
 roofline.o: roofline.c
-	${CXX} $(OPTIONS) -c -Wall -Werror -fpic roofline.c
+	${CXX} $(OPTIONS) -c -Werror -fpic roofline.c
 
 # Step 2: Creating a shared library from an object file
 libroofline: roofline.o
@@ -15,7 +15,7 @@ libroofline: roofline.o
 
 # Step 1: Compiling with Position Independent Code
 hookomp.o: hookomp.c
-	${CXX} $(OPTIONS) -c -Wall -Werror -fpic hookomp.c
+	${CXX} $(OPTIONS) -c -Werror -fpic hookomp.c
 
 # Step 2: Creating a shared library from an object file
 libhookomp: hookomp.o
