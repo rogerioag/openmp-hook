@@ -6,7 +6,7 @@
 #define VERBOSE 1
 
 #if defined(DEBUG) && DEBUG > 0
- #define TRACE(fmt, args...)	do{ fprintf(stderr, "DEBUG: %s:%d:%s(): " fmt, \
+ #define TRACE(fmt, args...)	do{ fprintf(stderr, "DEBUG: [%s]:%d:%s(): " fmt, \
     __FILE__, __LINE__, __func__, ##args); } while(0)
 #else
  #define TRACE(fmt, args...) do{ } while (0)
