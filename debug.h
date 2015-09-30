@@ -6,12 +6,11 @@
 #define VERBOSE 1
 
 #if defined(DEBUG) && DEBUG > 0
- #define TRACE(fmt, args...)	fprintf(stderr, "DEBUG: %s:%d:%s(): " fmt, \
-    __FILE__, __LINE__, __func__, ##args)
+ #define TRACE(fmt, args...)	do{ fprintf(stderr, "DEBUG: %s:%d:%s(): " fmt, \
+    __FILE__, __LINE__, __func__, ##args); } while(0)
 #else
- #define TRACE(fmt, args...) /* Don't do anything in release builds */
+ #define TRACE(fmt, args...) do{ } while (0)
 #endif
-
 
 // #define VERBOSE 1
 // Use make OPTIONS=-DVERBOSE
