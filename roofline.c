@@ -12,7 +12,7 @@ void info(void) {
 /* ------------------------------------------------------------ */
 /* Init library.												*/
 bool RM_library_init(void){
-	RM_FUNC_NAME;
+	PRINT_FUNC_NAME;
 	bool result = true;
 
 	// sem_init(&mutex, 0, 1);      /* initialize mutex to 1 - binary semaphore */
@@ -35,7 +35,7 @@ bool RM_library_init(void){
 /* ------------------------------------------------------------- */
 /* Function to initialization of PAPI Library.                   */
 bool RM_initialization_of_papi_libray_mode(){
-	RM_FUNC_NAME;
+	PRINT_FUNC_NAME;
 	
 	int retval;
 	pthread_key_create(&papi_thread_info_key, NULL );
@@ -106,7 +106,7 @@ bool RM_initialization_of_papi_libray_mode(){
 /* ------------------------------------------------------------ */
 /* Error handle to papi.								*/
 /*void RM_papi_handle_error(char* function_name, int n_error, int n_line){
-	RM_FUNC_NAME;
+	PRINT_FUNC_NAME;
 
 	fprintf(stderr, "%s [%d]: PAPI error %d: %s\n", function_name, n_line, n_error, PAPI_strerror(n_error));
 }*/
@@ -114,7 +114,7 @@ bool RM_initialization_of_papi_libray_mode(){
 /* ------------------------------------------------------------ */
 /* Print the counters and values.								*/
 void RM_print_counters_values(void) {
-	RM_FUNC_NAME;
+	PRINT_FUNC_NAME;
 	int i;
 	char event_str[PAPI_MAX_STR_LEN];
 
@@ -127,7 +127,7 @@ void RM_print_counters_values(void) {
 /* ------------------------------------------------------------ */
 /* Start counters.												*/
 bool RM_start_counters (void){
-	RM_FUNC_NAME;
+	PRINT_FUNC_NAME;
 	
 	int i, retval, result;
   	unsigned long int tid;
@@ -247,7 +247,7 @@ bool RM_start_counters (void){
 /* ------------------------------------------------------------ */
 /* Stop counters.												*/
 bool RM_stop_counters(void){
-	RM_FUNC_NAME;
+	PRINT_FUNC_NAME;
 	
 	int retval_stop, retval_read = PAPI_OK;
 
@@ -310,7 +310,7 @@ bool RM_stop_counters(void){
 /* ------------------------------------------------------------ */
 /* Calculate the Operational Intensity.							*/
 double RM_get_operational_intensity(void){
-	RM_FUNC_NAME;
+	PRINT_FUNC_NAME;
 
 	double oi = 0.0;
 
@@ -322,7 +322,7 @@ double RM_get_operational_intensity(void){
 /* ------------------------------------------------------------ */
 /* Better Device to execution.									*/
 int RM_get_better_device_to_execution(void){
-	RM_FUNC_NAME;
+	PRINT_FUNC_NAME;
 	
 	return 1;
 }

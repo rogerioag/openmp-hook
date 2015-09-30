@@ -11,14 +11,7 @@
 #include <papi.h>
 #include <omp.h>
 
-// #define VERBOSE 1
-// Use make OPTIONS=-DVERBOSE
-#ifdef VERBOSE
-#define RM_FUNC_NAME fprintf(stderr, "[%s] Calling [%s]\n", __FILE__, __FUNCTION__)
-#else
-#define RM_FUNC_NAME (void) 0
-#endif
-
+#include "debug.h"
 
 /*#define RM_papi_handle_error(n) \
   fprintf(stderr, "%s: PAPI error %d: %s\n",__FUNCTION__, n,PAPI_strerror(n))

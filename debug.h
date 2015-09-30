@@ -15,9 +15,9 @@
 // #define VERBOSE 1
 // Use make OPTIONS=-DVERBOSE
 #if defined(VERBOSE) && VERBOSE > 0
-#define HOOKOMP_FUNC_NAME fprintf(stderr, "[%s] Calling [%s]\n", __FILE__, __FUNCTION__)
+#define PRINT_FUNC_NAME fprintf(stderr, "[%s] Calling [%s]\n", __FILE__, __FUNCTION__)
 #else
-#define HOOKOMP_FUNC_NAME (void) 0
+#define PRINT_FUNC_NAME (void) 0
 #endif
 
 #endif /* DEBUG_H */
