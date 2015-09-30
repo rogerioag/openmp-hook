@@ -40,65 +40,65 @@ bool RM_initialization_of_papi_libray_mode(){
 	int retval;
 	pthread_key_create(&papi_thread_info_key, NULL );
 
-	fprintf(stderr, "[After]: pthread_key_create.\n");
+	TRACE("[After]: pthread_key_create.\n");
 
-	fprintf(stderr, "[Before]: PAPI_library_init.\n");
+	TRACE("[Before]: PAPI_library_init.\n");
 	retval = PAPI_library_init(PAPI_VER_CURRENT);
 	if (retval != PAPI_VER_CURRENT && retval > 0){
-		fprintf(stderr, "PAPI_library_init error: %d\n", retval);
-		fprintf(stderr, "PAPI library version mismatch!\n");
+		TRACE("PAPI_library_init error: %d\n", retval);
+		TRACE("PAPI library version mismatch!\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
 
 	retval = PAPI_is_initialized();
 	switch (retval){
 		case PAPI_NOT_INITED :
-			fprintf(stderr, "Library has not been initialized.\n");
+			TRACE("Library has not been initialized.\n");
 			break;
 		case PAPI_LOW_LEVEL_INITED : 
-			fprintf(stderr, "Low level has called library init.\n");
+			TRACE("Low level has called library init.\n");
 			break;
 		case PAPI_HIGH_LEVEL_INITED	: 
-			fprintf(stderr, "High level has called library init.\n");
+			TRACE("High level has called library init.\n");
 			break;
 		case PAPI_THREAD_LEVEL_INITED :
-			fprintf(stderr, "Threads have been inited.\n");
+			TRACE("Threads have been inited.\n");
 			break;
 		default:
-			fprintf(stderr, "Unknown Error.\n");
+			TRACE("Unknown Error.\n");
 	}
 
 	while ((retval = PAPI_is_initialized()) != PAPI_LOW_LEVEL_INITED){
-		fprintf(stderr, "Waiting PAPI initialization.\n");
+		TRACE("Waiting PAPI initialization.\n");
 	}
 
-	fprintf(stderr, "[After]: PAPI_library_init.\n");
+	TRACE("[After]: PAPI_library_init.\n");
 	
 	//if ((retval = PAPI_thread_init((unsigned long (*)(void)) (pthread_self()))) != PAPI_OK){
 	// if ((retval = PAPI_thread_init(&id)) != PAPI_OK){
 	// if((retval = PAPI_thread_init((unsigned long (*)(void))(pthread_self())) ) != PAPI_OK){
 
 
-	fprintf(stderr, "[Before]: PAPI_thread_init.\n");
+	TRACE("[Before]: PAPI_thread_init.\n");
 
 	// if((retval = PAPI_thread_init((unsigned long (*)(void))(omp_get_thread_num))) != PAPI_OK){
 	if((retval = PAPI_thread_init((unsigned long (*)(void))(pthread_self))) != PAPI_OK){
 
         RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
         if (retval == PAPI_ESBSTR)
-			fprintf(stderr, "PAPI_thread_init error: %d\n", retval);
+			TRACE("PAPI_thread_init error: %d\n", retval);
 	}
 
 	unsigned long int tid = PAPI_thread_id();
 
-	fprintf(stderr, "[After]: PAPI_thread_init: %lu\n", tid);
+	TRACE("[After]: PAPI_thread_init: %lu\n", tid);
 
 	// __papi_init_counter_ids();
     // __papi_select_counters();
 
 	papi_library_initialized = 1;
 
-	fprintf(stderr, "RM_initialization_of_papi_libray_mode: %d\n", papi_library_initialized);
+	TRACE("RM_initialization_of_papi_libray_mode: %d\n", papi_library_initialized);
 
 	return (retval == PAPI_OK);
 }
@@ -108,7 +108,7 @@ bool RM_initialization_of_papi_libray_mode(){
 /*void RM_papi_handle_error(char* function_name, int n_error, int n_line){
 	PRINT_FUNC_NAME;
 
-	fprintf(stderr, "%s [%d]: PAPI error %d: %s\n", function_name, n_line, n_error, PAPI_strerror(n_error));
+	TRACE("%s [%d]: PAPI error %d: %s\n", function_name, n_line, n_error, PAPI_strerror(n_error));
 }*/
 
 /* ------------------------------------------------------------ */
@@ -120,7 +120,7 @@ void RM_print_counters_values(void) {
 
 	for (i = 0; i < NUM_EVENTS; i++) {
 		PAPI_event_code_to_name(ptr_measure->events[i], event_str);
-		fprintf(stderr, "Event: %x- %s : %lld\n", ptr_measure->events[i], event_str, ptr_measure->values[i]);
+		TRACE("Event: %x- %s : %lld\n", ptr_measure->events[i], event_str, ptr_measure->values[i]);
 	}
 }
 
@@ -144,61 +144,61 @@ bool RM_start_counters (void){
 	// sem_wait(&mutex);       /* down semaphore */
 
 	if(!papi_library_initialized){
-  		fprintf(stderr, "[Before] RM_start_counters: papi_library_initialized: %d\n",papi_library_initialized);
+  		TRACE("[Before] RM_start_counters: papi_library_initialized: %d\n",papi_library_initialized);
   		result = RM_initialization_of_papi_libray_mode();
-  		fprintf(stderr, "[After] RM_start_counters: %d, papi_library_initialized: %d\n", result, papi_library_initialized);
+  		TRACE("[After] RM_start_counters: %d, papi_library_initialized: %d\n", result, papi_library_initialized);
   	}
 
   	// sem_post(&mutex);       /* up semaphore */
 
   	// sem_destroy(&mutex); 	/* destroy semaphore */
 
-  	fprintf(stderr, "[%s] [Before] PAPI_register_thread.\n", __FUNCTION__);
+  	TRACE("[%s] [Before] PAPI_register_thread.\n", __FUNCTION__);
 
   	if((retval = PAPI_register_thread()) != PAPI_OK){
         RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
         switch (retval){
         	case PAPI_ENOMEM :
-        		fprintf(stderr, "Space could not be allocated to store the new thread information.\n");
+        		TRACE("Space could not be allocated to store the new thread information.\n");
         		break;
 			case PAPI_ESYS :
-				fprintf(stderr, "A system or C library call failed inside PAPI, see the errno variable.\n");
+				TRACE("A system or C library call failed inside PAPI, see the errno variable.\n");
 				break;
 			case PAPI_ECMP :
-				fprintf(stderr, "Hardware counters for this thread could not be initialized.\n");
+				TRACE("Hardware counters for this thread could not be initialized.\n");
 				break;
 			default :
-				fprintf(stderr, "PAPI_register_thread: Unknown error.\n");
+				TRACE("PAPI_register_thread: Unknown error.\n");
         }
 	}
 
-	fprintf(stderr, "[%s] [After] PAPI_register_thread.\n", __FUNCTION__);
+	TRACE("[%s] [After] PAPI_register_thread.\n", __FUNCTION__);
 
 	//while ((retval = PAPI_is_initialized()) != PAPI_LOW_LEVEL_INITED){
-	//	fprintf(stderr, "Waiting PAPI initialization.\n");
+	//	TRACE("Waiting PAPI initialization.\n");
 	//	// RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	//	exit(1);
 	//}
 
 	if ((tid = PAPI_thread_id()) == (unsigned long int)-1){
-		fprintf(stderr, "[RM_start_counters] PAPI_thread_id error.\n");
+		TRACE("[RM_start_counters] PAPI_thread_id error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
 	else 
-		fprintf(stderr, "[RM_start_counters] Thread id is: %lu\n", tid);
+		TRACE("[RM_start_counters] Thread id is: %lu\n", tid);
 
 	/* Create an EventSet */
   	if ((retval = PAPI_create_eventset(&ptr_measure->EventSet)) != PAPI_OK){
-    	fprintf(stderr, "[RM_start_counters] PAPI_create_eventset error.\n");
+    	TRACE("[RM_start_counters] PAPI_create_eventset error.\n");
     	RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
   	}
 
 	/* Add Total Instructions Executed to our EventSet */
   	//if (PAPI_add_event(EventSet, PAPI_TOT_INS) != PAPI_OK)
-	//	fprintf(stderr, "PAPI_add_event error PAPI_TOT_INS.\n");
+	//	TRACE("PAPI_add_event error PAPI_TOT_INS.\n");
 	
 	//if (PAPI_add_event(EventSet, PAPI_TOT_CYC) != PAPI_OK)
-	//	fprintf(stderr, "PAPI_add_event error PAPI_TOT_CYC.\n");
+	//	TRACE("PAPI_add_event error PAPI_TOT_CYC.\n");
 
 	/* Add events to EventSet */
   	char event_str[PAPI_MAX_STR_LEN];
@@ -206,7 +206,7 @@ bool RM_start_counters (void){
 	for (i = 0; i < NUM_EVENTS; i++) {
 		retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i]);
 		PAPI_event_code_to_name(ptr_measure->events[i], event_str);
-		fprintf(stderr, "[RM_start_counters] PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
+		TRACE("[RM_start_counters] PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
 	    if(retval != PAPI_OK) {
 	      RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	    }
@@ -214,11 +214,11 @@ bool RM_start_counters (void){
 
 	/* Start counting */
   	if ((retval = PAPI_start(ptr_measure->EventSet)) != PAPI_OK) {
-		fprintf(stderr, "[RM_start_counters] PAPI_start() Starting counting error.\n");
+		TRACE("[RM_start_counters] PAPI_start() Starting counting error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 
 		if (retval == PAPI_ECNFLCT) {
-	      fprintf(stderr, "[RM_start_counters] PAPI error %d (%s): It is likely that you selected too many counters to monitor.\n",
+	      TRACE("[RM_start_counters] PAPI error %d (%s): It is likely that you selected too many counters to monitor.\n",
 		      retval, PAPI_strerror(retval));
 	    }
   	}
@@ -226,7 +226,7 @@ bool RM_start_counters (void){
   	/* First measure. */
   	if ((retval = PAPI_stop(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK) {
   		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	    fprintf(stderr, "[RM_start_counters] PAPI_stop() counting first measure error.\n");
+	    TRACE("[RM_start_counters] PAPI_stop() counting first measure error.\n");
 	}
 
 	/* Gets the starting time in clock cycles */
@@ -238,7 +238,7 @@ bool RM_start_counters (void){
 	/* Final measure. */
 	if ((retval = PAPI_start(ptr_measure->EventSet)) != PAPI_OK) {
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-		fprintf(stderr, "[RM_start_counters] PAPI_start() counting in final measure error.\n");
+		TRACE("[RM_start_counters] PAPI_start() counting in final measure error.\n");
 	}
 
 	return (retval == PAPI_OK);
@@ -255,27 +255,27 @@ bool RM_stop_counters(void){
 	// int retval = PAPI_stop_counters(ptr_measure->values, NUM_EVENTS);
 	if ((retval_stop = PAPI_stop(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
 	//if ((retval_stop = PAPI_stop_counters(ptr_measure->values, NUM_EVENTS)) != PAPI_OK){
-		fprintf(stderr, "Error on PAPI execution.\n");
+		TRACE("Error on PAPI execution.\n");
 		RM_papi_handle_error(__FUNCTION__, retval_stop, __LINE__);
 		// exit(1);
 		switch (retval_stop){
 				case PAPI_EINVAL :
-					fprintf(stderr, "One or more of the arguments is invalid.\n");
+					TRACE("One or more of the arguments is invalid.\n");
 					break;
 				case PAPI_ENOTRUN : 
-					fprintf(stderr, "The EventSet is not started yet.\n");
+					TRACE("The EventSet is not started yet.\n");
 					break;
 				case PAPI_ENOEVST : 
-					fprintf(stderr, "The EventSet has not been added yet.\n");
+					TRACE("The EventSet has not been added yet.\n");
 					break;
 			default:
-				fprintf(stderr, "Unknown Error.\n");
+				TRACE("Unknown Error.\n");
 		}
 	}
 
 	/* Read the counters */
 	if ((retval_read = PAPI_read(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
-        fprintf(stderr, "PAPI_read error reading counters.\n");
+        TRACE("PAPI_read error reading counters.\n");
         RM_papi_handle_error(__FUNCTION__, retval_read, __LINE__);
     }
 
@@ -286,21 +286,21 @@ bool RM_stop_counters(void){
 		/* Gets the ending time in microseconds */
 		ptr_measure->end_usec = PAPI_get_real_usec();
 		
-		fprintf(stderr, "Wall clock cycles: \t\t\t%lld\n", ptr_measure->end_cycles - ptr_measure->start_cycles );
-		fprintf(stderr, "Wall clock time in microseconds: \t%lld\n", ptr_measure->end_usec - ptr_measure->start_usec );
+		TRACE("Wall clock cycles: \t\t\t%lld\n", ptr_measure->end_cycles - ptr_measure->start_cycles );
+		TRACE("Wall clock time in microseconds: \t%lld\n", ptr_measure->end_usec - ptr_measure->start_usec );
 		
 		/* Read the counters */
 	    //if (PAPI_read(ptr_measure->EventSet, ptr_measure->values) != PAPI_OK)
-	    //	fprintf(stderr, "PAPI_read error reading counters.\n");
+	    //	TRACE("PAPI_read error reading counters.\n");
 
-		//fprintf(stderr, "After reading counters:\n");
+		//TRACE("After reading counters:\n");
 		//RM_print_counters_values();
 
 	    /* Stop the counters */
 	    //if (PAPI_stop(ptr_measure->EventSet, ptr_measure->values) != PAPI_OK)
-	    //	fprintf(stderr, "PAPI_read error stopping counters.\n");
+	    //	TRACE("PAPI_read error stopping counters.\n");
 		 
-		fprintf(stderr, "After stopping counters:\n");
+		TRACE("After stopping counters:\n");
 	    RM_print_counters_values();	
     }    	
 
