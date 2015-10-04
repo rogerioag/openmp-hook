@@ -34,7 +34,7 @@ void foo(void) {
 }
 
 /* ------------------------------------------------------------- */
-/* Function to execute up num_threads -1 of team.*/
+/* Function to execute up semaphore num_threads -1 to wake up the threads of team.*/
 void release_all_team_threads(void){
 	PRINT_FUNC_NAME;
 
@@ -45,85 +45,8 @@ void release_all_team_threads(void){
 }
 
 /* ------------------------------------------------------------- */
-/* Function to intercept GOMP_parallel_start                     */
-void GOMP_parallel_start (void (*fn)(void *), void *data, unsigned num_threads){
-	PRINT_FUNC_NAME;
-
-  	// TRACE("[hookomp]   Call by TablePointerFunctions.\n");
-	// TablePointerFunctions[0](data);
-	// TablePointerFunctions[1](data);
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_start, "GOMP_parallel_start");
-
-	TRACE("[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[%p]\n", (void* )fn);
-	
-	// TRACE("[GOMP_1.0] lib_GOMP_parallel_start[%p]\n", (void* )lib_GOMP_parallel_start);
-
-	lib_GOMP_parallel_start(fn, data, num_threads);
-
-  	/* Initialize RM library. */
-  	if(!RM_library_init()){
-  		TRACE("GOMP_parallel_start: error RM_library_init.\n");
-  	}
-}
-
+/* barrier.c                                                     */
 /* ------------------------------------------------------------- */
-/* Function to intercept GOMP_parallel_end                       */
-void GOMP_parallel_end (void){
-	PRINT_FUNC_NAME;
-	
-	// Get Counters.
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_end, "GOMP_parallel_end");
-
-	TRACE("[GOMP_1.0] GOMP_parallel_end@GOMP_1.0 [%p]\n", (void* )lib_GOMP_parallel_end);
-
-	sem_destroy(&mutex_registry_thread_in_func_next); 	/* destroy semaphore */
-
-	sem_destroy(&sem_blocks_other_team_threads);
-	
-    lib_GOMP_parallel_end();
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_single_start (void){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_single_start, "GOMP_single_start");
-	
-	/* This routine is called when first encountering a SINGLE construct that
-   doesn't have a COPYPRIVATE clause.  Returns true if this is the thread
-   that should execute the clause.
-   bool GOMP_single_start (void){...} */
-
-   TRACE("[hookomp]: Testing single start[%lu].\n", (unsigned long int) pthread_self());
-
-   TRACE("[GOMP_1.0] GOMP_single_start@GOMP_1.0.\n");
-   bool result = lib_GOMP_single_start();
-
-   // Start the counters on PAPI if is the thread that should execute.
-   if (result){
-   		// Registry the thread id that entered in single region to match with OMP_barrier().
-   		// executing_a_single_region = omp_get_thread_num();
-   		executing_a_single_region = pthread_self();
-
-   		TRACE("[hookomp]: Thread [%lu] executing the single region.\n", (unsigned long int) executing_a_single_region);
-
-   		// PAPI Start the counters.
-   		if(RM_start_counters()){
-   			TRACE("[hookomp] GOMP_single_start: PAPI Counters Started.\n");
-   		}
-   		else 
-   			TRACE("Error calling RM_start_counters from GOMP_single_start.\n");
-   	}	
-
-   return result;
-}
-
-/*----------------------------------------------------------------*/
 void GOMP_barrier (void) {
 	PRINT_FUNC_NAME;
 	
@@ -158,7 +81,241 @@ void GOMP_barrier (void) {
 	lib_GOMP_barrier();
 }
 
-/*----------------------------------------------------------------*/
+/* ------------------------------------------------------------- */
+bool GOMP_barrier_cancel (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_barrier_cancel, "GOMP_barrier_cancel");
+	TRACE("[GOMP_1.0] GOMP_barrier_cancel@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_barrier_cancel();
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+/* critical.c 													 */
+/* ------------------------------------------------------------- */
+void GOMP_critical_start (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_critical_start, "GOMP_critical_start");
+	TRACE("[GOMP_1.0] GOMP_critical_start@GOMP_1.0.\n");
+	
+	lib_GOMP_critical_start();
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_critical_end (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_critical_end, "GOMP_critical_end");
+	TRACE("[GOMP_1.0] GOMP_critical_end@GOMP_1.0.\n");
+	
+	lib_GOMP_critical_end();
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_critical_name_start (void **pptr){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_critical_name_start, "GOMP_critical_name_start");
+	TRACE("[GOMP_1.0] GOMP_critical_name_start@GOMP_1.0.\n");
+	
+	lib_GOMP_critical_name_start(pptr);
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_critical_name_end (void **pptr){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_critical_name_end, "GOMP_critical_name_end");
+	TRACE("[GOMP_1.0] GOMP_critical_name_end@GOMP_1.0.\n");
+	
+	lib_GOMP_critical_name_end(pptr);
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_atomic_start (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_atomic_start, "GOMP_atomic_start");
+	TRACE("[GOMP_1.0] GOMP_atomic_start@GOMP_1.0.\n");
+	
+	lib_GOMP_atomic_start();
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_atomic_end (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_atomic_end, "GOMP_atomic_end");
+	TRACE("[GOMP_1.0] GOMP_atomic_end@GOMP_1.0.\n");
+	
+	lib_GOMP_atomic_end();
+}
+
+/* ------------------------------------------------------------- */
+/* loop.c                                                        */
+/* ------------------------------------------------------------- */
+
+bool GOMP_loop_static_start (long start, long end, long incr, long chunk_size,
+			long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_static_start, "GOMP_loop_static_start");
+	TRACE("[GOMP_1.0] GOMP_loop_static_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_static_start(start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size,
+			 long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_dynamic_start, "GOMP_loop_dynamic_start");
+	TRACE("[GOMP_1.0] GOMP_loop_dynamic_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_dynamic_start(start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_guided_start (long start, long end, long incr, long chunk_size,
+			long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_guided_start, "GOMP_loop_guided_start");
+	TRACE("[GOMP_1.0] GOMP_loop_guided_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_guided_start(start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+/* ------------------------------------------------------------- */
+bool GOMP_loop_runtime_start (long start, long end, long incr,
+			 long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_runtime_start, "GOMP_loop_runtime_start");
+	TRACE("[GOMP_1.0] GOMP_loop_runtime_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_runtime_start(start, end, incr, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ordered_static_start (long start, long end, long incr,
+				long chunk_size, long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ordered_static_start, "GOMP_loop_ordered_static_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ordered_static_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ordered_static_start(start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ordered_dynamic_start (long start, long end, long incr,
+				 long chunk_size, long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ordered_dynamic_start, "GOMP_loop_ordered_dynamic_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ordered_dynamic_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ordered_dynamic_start(start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ordered_guided_start (long start, long end, long incr,
+				long chunk_size, long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ordered_guided_start, "GOMP_loop_ordered_guided_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ordered_guided_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ordered_guided_start(start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ordered_runtime_start (long start, long end, long incr,
+				 long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ordered_runtime_start, "GOMP_loop_ordered_runtime_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ordered_runtime_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ordered_runtime_start(start, end, incr, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_static_next (long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_static_next, "GOMP_loop_static_next");
+	TRACE("[GOMP_1.0] GOMP_loop_static_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_static_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_dynamic_next (long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_dynamic_next, "GOMP_loop_dynamic_next");
+	TRACE("[GOMP_1.0] GOMP_loop_dynamic_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_dynamic_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_guided_next (long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_guided_next, "GOMP_loop_guided_next");
+	TRACE("[GOMP_1.0] GOMP_loop_guided_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_guided_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
 bool GOMP_loop_runtime_next (long *istart, long *iend){
 	PRINT_FUNC_NAME;
 	
@@ -237,164 +394,7 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	return result;
 }
 
-/*----------------------------------------------------------------*/
-bool GOMP_loop_ordered_runtime_next (long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ordered_runtime_next, "GOMP_loop_ordered_runtime_next");
-	TRACE("[GOMP_1.0] GOMP_loop_ordered_runtime_next@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_ordered_runtime_next(istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_loop_ordered_runtime_start (long start, long end, long incr, long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ordered_runtime_start, "GOMP_loop_ordered_runtime_start");
-	TRACE("[GOMP_1.0] GOMP_loop_ordered_runtime_start@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_ordered_runtime_start(start, end, incr, istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_loop_static_start (long start, long end, long incr, long chunk_size, long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_static_start, "GOMP_loop_static_start");
-	TRACE("[GOMP_1.0] GOMP_loop_static_start@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_static_start(start, end, incr, chunk_size, istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_loop_runtime_start (long start, long end, long incr,
-			 long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_runtime_start, "GOMP_loop_runtime_start");
-	TRACE("[GOMP_1.0] GOMP_loop_runtime_start@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_runtime_start(start, end, incr, istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size, long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_dynamic_start, "GOMP_loop_dynamic_start");
-	TRACE("[GOMP_1.0] GOMP_loop_dynamic_start@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_dynamic_start(start, end, incr, chunk_size, istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_loop_guided_start (long start, long end, long incr, long chunk_size, long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_guided_start, "GOMP_loop_guided_start");
-	TRACE("[GOMP_1.0] GOMP_loop_guided_start@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_guided_start(start, end, incr, chunk_size, istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_loop_ordered_static_start (long start, long end, long incr, long chunk_size, long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ordered_static_start, "GOMP_loop_ordered_static_start");
-	TRACE("[GOMP_1.0] GOMP_loop_ordered_static_start@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_ordered_static_start(start, end, incr, chunk_size, istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_loop_ordered_dynamic_start (long start, long end, long incr, long chunk_size, long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ordered_dynamic_start, "GOMP_loop_ordered_dynamic_start");
-	TRACE("[GOMP_1.0] GOMP_loop_ordered_dynamic_start@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_ordered_dynamic_start(start, end, incr, chunk_size, istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_loop_ordered_guided_start (long start, long end, long incr, long chunk_size, long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ordered_guided_start, "GOMP_loop_ordered_guided_start");
-	TRACE("[GOMP_1.0] GOMP_loop_ordered_guided_start@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_ordered_guided_start(start, end, incr, chunk_size, istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_loop_static_next (long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_static_next, "GOMP_loop_static_next");
-	TRACE("[GOMP_1.0] GOMP_loop_static_next@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_static_next(istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_loop_dynamic_next (long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_dynamic_next, "GOMP_loop_dynamic_next");
-	TRACE("[GOMP_1.0] GOMP_loop_dynamic_next@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_dynamic_next(istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
-bool GOMP_loop_guided_next (long *istart, long *iend){
-	PRINT_FUNC_NAME;
-	
-	// Retrieve the OpenMP runtime function.
-	GET_RUNTIME_FUNCTION(lib_GOMP_loop_guided_next, "GOMP_loop_guided_next");
-	TRACE("[GOMP_1.0] GOMP_loop_guided_next@GOMP_1.0.\n");
-	
-	bool result = lib_GOMP_loop_guided_next(istart, iend);
-	
-	return result;
-}
-
-/*----------------------------------------------------------------*/
+/* ------------------------------------------------------------- */
 bool GOMP_loop_ordered_static_next (long *istart, long *iend){
 	PRINT_FUNC_NAME;
 	
@@ -407,7 +407,7 @@ bool GOMP_loop_ordered_static_next (long *istart, long *iend){
 	return result;
 }
 
-/*----------------------------------------------------------------*/
+/* ------------------------------------------------------------- */
 bool GOMP_loop_ordered_dynamic_next (long *istart, long *iend){
 	PRINT_FUNC_NAME;
 	
@@ -420,7 +420,7 @@ bool GOMP_loop_ordered_dynamic_next (long *istart, long *iend){
 	return result;
 }
 
-/*----------------------------------------------------------------*/
+/* ------------------------------------------------------------- */
 bool GOMP_loop_ordered_guided_next (long *istart, long *iend){
 	PRINT_FUNC_NAME;
 	
@@ -433,7 +433,20 @@ bool GOMP_loop_ordered_guided_next (long *istart, long *iend){
 	return result;
 }
 
-/*----------------------------------------------------------------*/
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ordered_runtime_next (long *istart, long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ordered_runtime_next, "GOMP_loop_ordered_runtime_next");
+	TRACE("[GOMP_1.0] GOMP_loop_ordered_runtime_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ordered_runtime_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
 void GOMP_parallel_loop_static_start (void (*fn) (void *), void *data,
 				 unsigned num_threads, long start, long end,
 				 long incr, long chunk_size){
@@ -449,7 +462,7 @@ void GOMP_parallel_loop_static_start (void (*fn) (void *), void *data,
 	lib_GOMP_parallel_loop_static_start(fn, data, num_threads, start, end, incr, chunk_size);
 }
 
-/*----------------------------------------------------------------*/
+/* ------------------------------------------------------------- */
 void GOMP_parallel_loop_dynamic_start (void (*fn) (void *), void *data,
 				  unsigned num_threads, long start, long end,
 				  long incr, long chunk_size){
@@ -465,7 +478,7 @@ void GOMP_parallel_loop_dynamic_start (void (*fn) (void *), void *data,
 	lib_GOMP_parallel_loop_dynamic_start(fn, data, num_threads, start, end, incr, chunk_size);
 }
 
-/*----------------------------------------------------------------*/
+/* ------------------------------------------------------------- */
 void GOMP_parallel_loop_guided_start (void (*fn) (void *), void *data,
 				 unsigned num_threads, long start, long end,
 				 long incr, long chunk_size){
@@ -481,7 +494,7 @@ void GOMP_parallel_loop_guided_start (void (*fn) (void *), void *data,
 	lib_GOMP_parallel_loop_guided_start(fn, data, num_threads, start, end, incr, chunk_size);
 }
 
-/*----------------------------------------------------------------*/
+/* ------------------------------------------------------------- */
 void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 				  unsigned num_threads, long start, long end,
 				  long incr){
@@ -523,7 +536,63 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
   	}
 }
 
-/*----------------------------------------------------------------*/
+/* ------------------------------------------------------------- */
+void GOMP_parallel_loop_static (void (*fn) (void *), void *data,
+			   unsigned num_threads, long start, long end,
+			   long incr, long chunk_size, unsigned flags){
+	PRINT_FUNC_NAME;
+
+  	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_static, "GOMP_parallel_loop_static");
+
+	TRACE("[GOMP_1.0] lib_GOMP_parallel_loop_static[%p]\n", (void* )lib_GOMP_parallel_loop_static);
+
+	lib_GOMP_parallel_loop_static(fn, data, num_threads, start, end, incr, chunk_size, flags);
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_parallel_loop_dynamic (void (*fn) (void *), void *data,
+			    unsigned num_threads, long start, long end,
+			    long incr, long chunk_size, unsigned flags){
+	PRINT_FUNC_NAME;
+
+  	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_dynamic, "GOMP_parallel_loop_dynamic");
+
+	TRACE("[GOMP_1.0] lib_GOMP_parallel_loop_dynamic[%p]\n", (void* )lib_GOMP_parallel_loop_dynamic);
+
+	lib_GOMP_parallel_loop_dynamic(fn, data, num_threads, start, end, incr, chunk_size, flags);
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_parallel_loop_guided (void (*fn) (void *), void *data,
+			  unsigned num_threads, long start, long end,
+			  long incr, long chunk_size, unsigned flags){
+	PRINT_FUNC_NAME;
+
+  	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_guided, "GOMP_parallel_loop_guided");
+
+	TRACE("[GOMP_1.0] lib_GOMP_parallel_loop_guided[%p]\n", (void* )lib_GOMP_parallel_loop_guided);
+
+	lib_GOMP_parallel_loop_guided(fn, data, num_threads, start, end, incr, chunk_size, flags);
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_parallel_loop_runtime (void (*fn) (void *), void *data,
+			    unsigned num_threads, long start, long end,
+			    long incr, unsigned flags){
+	PRINT_FUNC_NAME;
+
+  	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_runtime, "GOMP_parallel_loop_runtime");
+
+	TRACE("[GOMP_1.0] lib_GOMP_parallel_loop_runtime[%p]\n", (void* )lib_GOMP_parallel_loop_runtime);
+
+	lib_GOMP_parallel_loop_runtime(fn, data, num_threads, start, end, incr, flags);
+}
+
+/* ------------------------------------------------------------- */
 void GOMP_loop_end (void){
 	PRINT_FUNC_NAME;
 
@@ -534,8 +603,7 @@ void GOMP_loop_end (void){
 
 	lib_GOMP_loop_end();
 }
-
-/*----------------------------------------------------------------*/
+/* ------------------------------------------------------------- */
 void GOMP_loop_end_nowait (void){
 	PRINT_FUNC_NAME;
 
@@ -586,4 +654,739 @@ void GOMP_loop_end_nowait (void){
 	lib_GOMP_loop_end_nowait();
 }
 
-/*----------------------------------------------------------------*/
+/* ------------------------------------------------------------- */
+bool GOMP_loop_end_cancel (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_end_cancel, "GOMP_loop_end_cancel");
+	TRACE("[GOMP_1.0] GOMP_loop_end_cancel@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_end_cancel();
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+/* loop_ull.c                                                    */
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_static_start (bool up, unsigned long long start, unsigned long long end,
+			    unsigned long long incr, unsigned long long chunk_size,
+			    unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_static_start, "GOMP_loop_ull_static_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_static_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_static_start(up, start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_dynamic_start (bool up, unsigned long long start, unsigned long long end,
+			     unsigned long long incr, unsigned long long chunk_size,
+			     unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_dynamic_start, "GOMP_loop_ull_dynamic_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_dynamic_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_dynamic_start(up, start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_guided_start (bool up, unsigned long long start, unsigned long long end,
+			    unsigned long long incr, unsigned long long chunk_size,
+			    unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_guided_start, "GOMP_loop_ull_guided_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_guided_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_guided_start(up, start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_runtime_start (bool up, unsigned long long start, unsigned long long end,
+			     unsigned long long incr, unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_runtime_start, "GOMP_loop_ull_runtime_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_runtime_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_runtime_start(up, start, end, incr, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_ordered_static_start (bool up, unsigned long long start, unsigned long long end,
+				    unsigned long long incr, unsigned long long chunk_size,
+				    unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_ordered_static_start, "GOMP_loop_ull_ordered_static_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_ordered_static_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_ordered_static_start(up, start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_ordered_dynamic_start (bool up, unsigned long long start, unsigned long long end,
+				     unsigned long long incr, unsigned long long chunk_size,
+				     unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_ordered_dynamic_start, "GOMP_loop_ull_ordered_dynamic_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_ordered_dynamic_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_ordered_dynamic_start(up, start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_ordered_guided_start (bool up, unsigned long long start, unsigned long long end,
+				    unsigned long long incr, unsigned long long chunk_size,
+				    unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_ordered_guided_start, "GOMP_loop_ull_ordered_guided_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_ordered_guided_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_ordered_guided_start(up, start, end, incr, chunk_size, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_ordered_runtime_start (bool up, unsigned long long start, unsigned long long end,
+				     unsigned long long incr, unsigned long long *istart,
+				     unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_ordered_runtime_start, "GOMP_loop_ull_ordered_runtime_start");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_ordered_runtime_start@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_ordered_runtime_start(up, start, end, incr, istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_static_next (unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_static_next, "GOMP_loop_ull_static_next");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_static_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_static_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_dynamic_next (unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_dynamic_next, "GOMP_loop_ull_dynamic_next");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_dynamic_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_dynamic_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_guided_next (unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_guided_next, "GOMP_loop_ull_guided_next");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_guided_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_guided_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_runtime_next (unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_runtime_next, "GOMP_loop_ull_runtime_next");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_runtime_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_runtime_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_ordered_static_next (unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_ordered_static_next, "GOMP_loop_ull_ordered_static_next");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_ordered_static_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_ordered_static_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_ordered_dynamic_next (unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_ordered_dynamic_next, "GOMP_loop_ull_ordered_dynamic_next");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_ordered_dynamic_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_ordered_dynamic_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_ordered_guided_next (unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_ordered_guided_next, "GOMP_loop_ull_ordered_guided_next");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_ordered_guided_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_ordered_guided_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_loop_ull_ordered_runtime_next (unsigned long long *istart, unsigned long long *iend){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_ull_ordered_runtime_next, "GOMP_loop_ull_ordered_runtime_next");
+	TRACE("[GOMP_1.0] GOMP_loop_ull_ordered_runtime_next@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_loop_ull_ordered_runtime_next(istart, iend);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+/* ordered.c                                                     */
+/* ------------------------------------------------------------- */
+void GOMP_ordered_start (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_ordered_start, "GOMP_ordered_start");
+	TRACE("[GOMP_1.0] GOMP_ordered_start@GOMP_1.0.\n");
+	
+	lib_GOMP_ordered_start();
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_ordered_end (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_ordered_end, "GOMP_ordered_end");
+	TRACE("[GOMP_1.0] GOMP_ordered_end@GOMP_1.0.\n");
+	
+	lib_GOMP_ordered_end();
+}
+
+/* ------------------------------------------------------------- */
+/* parallel.c                                                    */
+/* ------------------------------------------------------------- */
+/* Function to intercept GOMP_parallel_start                     */
+void GOMP_parallel_start (void (*fn) (void *), void *data, unsigned num_threads){
+	PRINT_FUNC_NAME;
+
+  	// TRACE("[hookomp]   Call by TablePointerFunctions.\n");
+	// TablePointerFunctions[0](data);
+	// TablePointerFunctions[1](data);
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_start, "GOMP_parallel_start");
+
+	TRACE("[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[%p]\n", (void* )fn);
+	
+	// TRACE("[GOMP_1.0] lib_GOMP_parallel_start[%p]\n", (void* )lib_GOMP_parallel_start);
+
+	lib_GOMP_parallel_start(fn, data, num_threads);
+
+  	/* Initialize RM library. */
+  	if(!RM_library_init()){
+  		TRACE("GOMP_parallel_start: error RM_library_init.\n");
+  	}
+}
+
+/* ------------------------------------------------------------- */
+/* Function to intercept GOMP_parallel_end                       */
+void GOMP_parallel_end (void){
+	PRINT_FUNC_NAME;
+	
+	// Get Counters.
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_end, "GOMP_parallel_end");
+
+	TRACE("[GOMP_1.0] GOMP_parallel_end@GOMP_1.0 [%p]\n", (void* )lib_GOMP_parallel_end);
+
+	sem_destroy(&mutex_registry_thread_in_func_next); 	/* destroy semaphore */
+
+	sem_destroy(&sem_blocks_other_team_threads);
+	
+    lib_GOMP_parallel_end();
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_parallel (void (*fn) (void *), void *data, unsigned num_threads, unsigned int flags){
+	PRINT_FUNC_NAME;
+
+  	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel, "GOMP_parallel");
+
+	TRACE("[GOMP_1.0] GOMP_parallel@GOMP_1.0.[%p]\n", (void* )fn);
+	
+	TRACE("[GOMP_1.0] lib_GOMP_parallel[%p]\n", (void* )lib_GOMP_parallel);
+
+	lib_GOMP_parallel(fn, data, num_threads, flags);
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_cancel (int which, bool do_cancel){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_cancel, "GOMP_cancel");
+	TRACE("[GOMP_1.0] GOMP_cancel@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_cancel(which, do_cancel);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+bool GOMP_cancellation_point (int which){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_cancellation_point, "GOMP_cancellation_point");
+	TRACE("[GOMP_1.0] GOMP_cancellation_point@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_cancellation_point(which);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+/* task.c */
+/* ------------------------------------------------------------- */
+void GOMP_task (void (*fn) (void *), void *data, void (*cpyfn) (void *, void *),
+	   long arg_size, long arg_align, bool if_clause, unsigned flags,
+	   void **depend){
+	PRINT_FUNC_NAME;
+
+  	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_task, "GOMP_task");
+
+	TRACE("[GOMP_1.0] GOMP_task@GOMP_1.0.[%p]\n", (void* )fn);
+	
+	TRACE("[GOMP_1.0] lib_GOMP_task[%p]\n", (void* )lib_GOMP_task);
+
+	lib_GOMP_task(fn, data, cpyfn, arg_size, arg_align, if_clause, flags, depend);
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_taskwait (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_taskwait, "GOMP_taskwait");
+	TRACE("[GOMP_1.0] GOMP_taskwait@GOMP_1.0.\n");
+	
+	lib_GOMP_taskwait();
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_taskyield (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_taskyield, "GOMP_taskyield");
+	TRACE("[GOMP_1.0] GOMP_taskyield@GOMP_1.0.\n");
+	
+	lib_GOMP_taskyield();
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_taskgroup_start (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_taskgroup_start, "GOMP_taskgroup_start");
+	TRACE("[GOMP_1.0] GOMP_taskgroup_start@GOMP_1.0.\n");
+	
+	lib_GOMP_taskgroup_start();
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_taskgroup_end (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_taskgroup_end, "GOMP_taskgroup_end");
+	TRACE("[GOMP_1.0] GOMP_taskgroup_end@GOMP_1.0.\n");
+	
+	lib_GOMP_taskgroup_end();
+}
+
+/* ------------------------------------------------------------- */
+/* sections.c */
+/* ------------------------------------------------------------- */
+unsigned GOMP_sections_start (unsigned count){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_sections_start, "GOMP_sections_start");
+	TRACE("[GOMP_1.0] GOMP_sections_start@GOMP_1.0.\n");
+	
+	unsigned result = lib_GOMP_sections_start(count);
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+unsigned GOMP_sections_next (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_sections_next, "GOMP_sections_next");
+	TRACE("[GOMP_1.0] GOMP_sections_next@GOMP_1.0.\n");
+	
+	unsigned result = lib_GOMP_sections_next();
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_parallel_sections_start (void (*fn) (void *), void *data,
+			      unsigned num_threads, unsigned count){
+	PRINT_FUNC_NAME;
+
+  	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_sections_start, "GOMP_parallel_sections_start");
+
+	TRACE("[GOMP_1.0] GOMP_parallel_sections_start@GOMP_1.0.[%p]\n", (void* )fn);
+	
+	TRACE("[GOMP_1.0] lib_GOMP_parallel_sections_start[%p]\n", (void* )lib_GOMP_parallel_sections_start);
+
+	lib_GOMP_parallel_sections_start(fn, data, num_threads, count);
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_parallel_sections (void (*fn) (void *), void *data,
+			unsigned num_threads, unsigned count, unsigned flags){
+	PRINT_FUNC_NAME;
+
+  	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_sections, "GOMP_parallel_sections");
+
+	TRACE("[GOMP_1.0] GOMP_parallel_sections@GOMP_1.0.[%p]\n", (void* )fn);
+	
+	TRACE("[GOMP_1.0] lib_GGOMP_parallel_sections[%p]\n", (void* )lib_GOMP_parallel_sections);
+
+	lib_GOMP_parallel_sections(fn, data, num_threads, count, flags);
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_sections_end (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_sections_end, "GOMP_sections_end");
+	TRACE("[GOMP_1.0] GOMP_sections_end@GOMP_1.0.\n");
+	
+	lib_GOMP_sections_end();
+}
+	
+/* ------------------------------------------------------------- */
+void GOMP_sections_end_nowait (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_sections_end_nowait, "GOMP_sections_end_nowait");
+	TRACE("[GOMP_1.0] GOMP_sections_end_nowait@GOMP_1.0.\n");
+	
+	lib_GOMP_sections_end_nowait();
+}
+	
+/* ------------------------------------------------------------- */
+bool GOMP_sections_end_cancel (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_sections_end_cancel, "GOMP_sections_end_cancel");
+	TRACE("[GOMP_1.0] GOMP_sections_end_cancel@GOMP_1.0.\n");
+	
+	bool result = lib_GOMP_sections_end_cancel();
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+/* single.c */
+/* ------------------------------------------------------------- */
+bool GOMP_single_start (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_single_start, "GOMP_single_start");
+	
+	/* This routine is called when first encountering a SINGLE construct that
+   doesn't have a COPYPRIVATE clause.  Returns true if this is the thread
+   that should execute the clause.
+   bool GOMP_single_start (void){...} */
+
+   TRACE("[hookomp]: Testing single start[%lu].\n", (unsigned long int) pthread_self());
+
+   TRACE("[GOMP_1.0] GOMP_single_start@GOMP_1.0.\n");
+   bool result = lib_GOMP_single_start();
+
+   // Start the counters on PAPI if is the thread that should execute.
+   if (result){
+   		// Registry the thread id that entered in single region to match with OMP_barrier().
+   		// executing_a_single_region = omp_get_thread_num();
+   		executing_a_single_region = pthread_self();
+
+   		TRACE("[hookomp]: Thread [%lu] executing the single region.\n", (unsigned long int) executing_a_single_region);
+
+   		// PAPI Start the counters.
+   		if(RM_start_counters()){
+   			TRACE("[hookomp] GOMP_single_start: PAPI Counters Started.\n");
+   		}
+   		else 
+   			TRACE("Error calling RM_start_counters from GOMP_single_start.\n");
+   	}	
+
+   return result;
+}
+
+/* ------------------------------------------------------------- */
+void *GOMP_single_copy_start (void){
+	PRINT_FUNC_NAME;
+
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_single_copy_start, "GOMP_single_copy_start");
+	TRACE("[GOMP_1.0] GOMP_single_copy_start@GOMP_1.0.\n");
+	
+	void *result;
+
+	result = lib_GOMP_single_copy_start();
+
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_single_copy_end (void *data){
+
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_single_copy_end, "GOMP_single_copy_end");
+	TRACE("[GOMP_1.0] GOMP_single_copy_end@GOMP_1.0.\n");
+	
+	lib_GOMP_single_copy_end(data);
+}
+
+/* ------------------------------------------------------------- */
+/* target.c */
+/* ------------------------------------------------------------- */
+
+void GOMP_target (int device, void (*fn) (void *), const void *unused,
+	     size_t mapnum, void **hostaddrs, size_t *sizes,
+	     unsigned char *kinds){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_target, "GOMP_target");
+	TRACE("[GOMP_1.0] GOMP_target@GOMP_1.0.\n");
+	
+	lib_GOMP_target(device, fn, unused, mapnum, hostaddrs, sizes, kinds);
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_target_data (int device, const void *unused, size_t mapnum,
+		  void **hostaddrs, size_t *sizes, unsigned char *kinds){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_target_data, "GOMP_target_data");
+	TRACE("[GOMP_1.0] GOMP_target_data@GOMP_1.0.\n");
+	
+	lib_GOMP_target_data(device, unused, mapnum, hostaddrs, sizes, kinds);
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_target_end_data (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_target_end_data, "GOMP_target_end_data");
+	TRACE("[GOMP_1.0] GOMP_target_end_data@GOMP_1.0.\n");
+	
+	lib_GOMP_target_end_data();
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_target_update (int device, const void *unused, size_t mapnum,
+		    void **hostaddrs, size_t *sizes, unsigned char *kinds){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_target_update, "GOMP_target_update");
+	TRACE("[GOMP_1.0] GOMP_target_update@GOMP_1.0.\n");
+	
+	lib_GOMP_target_update(device, unused, mapnum, hostaddrs, sizes, kinds);
+}
+
+/* ------------------------------------------------------------- */
+void GOMP_teams (unsigned int num_teams, unsigned int thread_limit){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOMP_teams, "GOMP_teams");
+	TRACE("[GOMP_1.0] GOMP_teams@GOMP_1.0.\n");
+	
+	lib_GOMP_teams(num_teams, thread_limit);
+}
+
+/* ------------------------------------------------------------- */
+/* oacc-parallel.c */
+/* ------------------------------------------------------------- */
+
+void GOACC_data_start (int device, size_t mapnum,
+		  void **hostaddrs, size_t *sizes, unsigned short *kinds){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOACC_data_start, "GOACC_data_start");
+	TRACE("[GOMP_1.0] GOACC_data_start@GOMP_1.0.\n");
+	
+	lib_GOACC_data_start(device, mapnum, hostaddrs, sizes, kinds);
+}
+
+/* ------------------------------------------------------------- */
+void GOACC_data_end (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOACC_data_end, "GOACC_data_end");
+	TRACE("[GOMP_1.0] GOACC_data_end@GOMP_1.0.\n");
+	
+	lib_GOACC_data_end();
+}
+
+/* ------------------------------------------------------------- */
+void GOACC_enter_exit_data (int device, size_t mapnum,
+		       void **hostaddrs, size_t *sizes, unsigned short *kinds,
+		       int async, int num_waits, ...){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOACC_enter_exit_data, "GOACC_enter_exit_data");
+	TRACE("[GOMP_1.0] GOACC_enter_exit_data@GOMP_1.0.\n");
+	
+	lib_GOACC_enter_exit_data(device, mapnum, hostaddrs, sizes, kinds, async, num_waits, ...);
+}
+
+/* ------------------------------------------------------------- */
+void GOACC_parallel (int device, void (*fn) (void *),
+		size_t mapnum, void **hostaddrs, size_t *sizes,
+		unsigned short *kinds,
+		int num_gangs, int num_workers, int vector_length,
+		int async, int num_waits, ...){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOACC_parallel, "GOACC_parallel");
+	TRACE("[GOMP_1.0] GOACC_parallel@GOMP_1.0.\n");
+	
+	lib_GOACC_parallel(device, fn, mapnum, hostaddrs, sizes, kinds, num_gangs, num_workers, vector_length, async, num_waits, ...);
+}
+
+/* ------------------------------------------------------------- */
+void GOACC_update (int device, size_t mapnum,
+	      void **hostaddrs, size_t *sizes, unsigned short *kinds,
+	      int async, int num_waits, ...){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOACC_update, "GOACC_update");
+	TRACE("[GOMP_1.0] GOACC_update@GOMP_1.0.\n");
+	
+	lib_GOACC_update(device, mapnum, hostaddrs, sizes, kinds, async, num_waits, ...);
+}
+
+/* ------------------------------------------------------------- */
+void GOACC_wait (int async, int num_waits, ...){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOACC_wait, "GOACC_wait");
+	TRACE("[GOMP_1.0] GOACC_wait@GOMP_1.0.\n");
+	
+	lib_GOACC_wait(async, num_waits, ...);
+}
+	
+/* ------------------------------------------------------------- */
+int GOACC_get_num_threads (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOACC_get_num_threads, "GOACC_get_num_threads");
+	TRACE("[GOMP_1.0] GOACC_get_num_threads@GOMP_1.0.\n");
+	
+	int result = lib_GOACC_get_num_threads();
+	
+	return result;
+}
+	
+/* ------------------------------------------------------------- */
+int GOACC_get_thread_num (void){
+	PRINT_FUNC_NAME;
+	
+	// Retrieve the OpenMP runtime function.
+	GET_RUNTIME_FUNCTION(lib_GOACC_get_thread_num, "GOACC_get_thread_num");
+	TRACE("[GOMP_1.0] GOACC_get_thread_num@GOMP_1.0.\n");
+	
+	int result = lib_GOACC_get_thread_num();
+	
+	return result;
+}
+
+/* ------------------------------------------------------------- */
