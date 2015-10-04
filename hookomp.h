@@ -2,6 +2,7 @@
 #define hookomp_h__
  
 #include <dlfcn.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <semaphore.h>
