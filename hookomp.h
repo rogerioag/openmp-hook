@@ -254,7 +254,7 @@ typedef void (*op_func) (void);
 
 	/* oacc-parallel.c */
 
-	void (*lib_GOACC_data_start) (int device, size_t mapnum,
+	/*void (*lib_GOACC_data_start) (int device, size_t mapnum,
 		  void **hostaddrs, size_t *sizes, unsigned short *kinds);
 
 	void (*lib_GOACC_data_end) (void);
@@ -277,7 +277,7 @@ typedef void (*op_func) (void);
 	
 	int (*lib_GOACC_get_num_threads) (void);
 	
-	int (*lib_GOACC_get_thread_num) (void);
+	int (*lib_GOACC_get_thread_num) (void);*/
 
 #ifdef __cplusplus 
 extern "C" {
@@ -503,7 +503,7 @@ extern "C" {
 
 	/* oacc-parallel.c */
 
-	void GOACC_data_start (int device, size_t mapnum,
+	/*void GOACC_data_start (int device, size_t mapnum,
 		  void **hostaddrs, size_t *sizes, unsigned short *kinds);
 
 	void GOACC_data_end (void);
@@ -526,7 +526,7 @@ extern "C" {
 	
 	int GOACC_get_num_threads (void);
 	
-	int GOACC_get_thread_num (void);
+	int GOACC_get_thread_num (void);*/
 	
 #ifdef __cplusplus
 }

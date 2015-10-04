@@ -1286,7 +1286,7 @@ void GOMP_teams (unsigned int num_teams, unsigned int thread_limit){
 /* ------------------------------------------------------------- */
 /* oacc-parallel.c */
 /* ------------------------------------------------------------- */
-
+/*
 void GOACC_data_start (int device, size_t mapnum,
 		  void **hostaddrs, size_t *sizes, unsigned short *kinds){
 	PRINT_FUNC_NAME;
@@ -1297,8 +1297,9 @@ void GOACC_data_start (int device, size_t mapnum,
 	
 	lib_GOACC_data_start(device, mapnum, hostaddrs, sizes, kinds);
 }
-
+*/
 /* ------------------------------------------------------------- */
+/*
 void GOACC_data_end (void){
 	PRINT_FUNC_NAME;
 	
@@ -1308,8 +1309,9 @@ void GOACC_data_end (void){
 	
 	lib_GOACC_data_end();
 }
-
+*/
 /* ------------------------------------------------------------- */
+/*
 void GOACC_enter_exit_data (int device, size_t mapnum,
 		       void **hostaddrs, size_t *sizes, unsigned short *kinds,
 		       int async, int num_waits, ...){
@@ -1321,8 +1323,9 @@ void GOACC_enter_exit_data (int device, size_t mapnum,
 	
 	lib_GOACC_enter_exit_data(device, mapnum, hostaddrs, sizes, kinds, async, num_waits, ...);
 }
-
+*/
 /* ------------------------------------------------------------- */
+/*
 void GOACC_parallel (int device, void (*fn) (void *),
 		size_t mapnum, void **hostaddrs, size_t *sizes,
 		unsigned short *kinds,
@@ -1336,8 +1339,9 @@ void GOACC_parallel (int device, void (*fn) (void *),
 	
 	lib_GOACC_parallel(device, fn, mapnum, hostaddrs, sizes, kinds, num_gangs, num_workers, vector_length, async, num_waits, ...);
 }
-
+*/
 /* ------------------------------------------------------------- */
+/*
 void GOACC_update (int device, size_t mapnum,
 	      void **hostaddrs, size_t *sizes, unsigned short *kinds,
 	      int async, int num_waits, ...){
@@ -1349,8 +1353,9 @@ void GOACC_update (int device, size_t mapnum,
 	
 	lib_GOACC_update(device, mapnum, hostaddrs, sizes, kinds, async, num_waits, ...);
 }
-
+*/
 /* ------------------------------------------------------------- */
+/*
 void GOACC_wait (int async, int num_waits, ...){
 	PRINT_FUNC_NAME;
 	
@@ -1360,8 +1365,9 @@ void GOACC_wait (int async, int num_waits, ...){
 	
 	lib_GOACC_wait(async, num_waits, ...);
 }
-	
+*/	
 /* ------------------------------------------------------------- */
+/*
 int GOACC_get_num_threads (void){
 	PRINT_FUNC_NAME;
 	
@@ -1373,8 +1379,9 @@ int GOACC_get_num_threads (void){
 	
 	return result;
 }
-	
+*/	
 /* ------------------------------------------------------------- */
+/*
 int GOACC_get_thread_num (void){
 	PRINT_FUNC_NAME;
 	
@@ -1386,5 +1393,5 @@ int GOACC_get_thread_num (void){
 	
 	return result;
 }
-
+*/
 /* ------------------------------------------------------------- */
