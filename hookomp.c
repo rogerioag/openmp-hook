@@ -758,8 +758,6 @@ bool GOMP_loop_ull_ordered_dynamic_start (bool up, unsigned long long start, uns
 	return result;
 }
 
-}
-
 /* ------------------------------------------------------------- */
 bool GOMP_loop_ull_ordered_guided_start (bool up, unsigned long long start, unsigned long long end,
 				    unsigned long long incr, unsigned long long chunk_size,
