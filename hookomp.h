@@ -49,12 +49,12 @@ typedef void (*op_func) (void);
 
 	/* critical.c */
 
-	void (*GOMP_critical_start) (void);
-	void (*GOMP_critical_end) (void);
-	void (*GOMP_critical_name_start) (void **pptr);
-	void (*GOMP_critical_name_end) (void **pptr);
-	void (*GOMP_atomic_start) (void);
-	void (*GOMP_atomic_end) (void);
+	void (*lib_GOMP_critical_start) (void);
+	void (*lib_GOMP_critical_end) (void);
+	void (*lib_GOMP_critical_name_start) (void **pptr);
+	void (*lib_GOMP_critical_name_end) (void **pptr);
+	void (*lib_GOMP_atomic_start) (void);
+	void (*lib_GOMP_atomic_end) (void);
 
 	/* loop.c */
 
