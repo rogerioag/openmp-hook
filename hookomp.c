@@ -292,7 +292,6 @@ bool HOOKOMP_generic_next (long *istart, long *iend, bool (*fn_next_chunk) (long
 	/* up semaphore. */
   	sem_post(&mutex_registry_thread_in_func_next);
 
-	bool result = false;
 	int total_of_iterations = 0;
 
 	/* Verify if the thread is the thread executing. */
