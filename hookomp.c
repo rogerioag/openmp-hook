@@ -298,8 +298,11 @@ bool GOMP_loop_guided_start (long start, long end, long incr, long chunk_size,
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_guided_start, "GOMP_loop_guided_start");
 	TRACE("[GOMP_1.0] GOMP_loop_guided_start@GOMP_1.0.\n");
-	
+
 	bool result = lib_GOMP_loop_guided_start(start, end, incr, chunk_size, istart, iend);
+
+	// Initializations.
+	HOOKOMP_initialization(start, end, omp_get_num_threads());
 	
 	return result;
 }
@@ -611,6 +614,7 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	
 	TRACE("[GOMP_1.0] lib_GOMP_parallel_loop_runtime_start[%p]\n", (void* )lib_GOMP_parallel_loop_runtime_start);
 
+	// Initializations.
 	HOOKOMP_initialization(start, end, num_threads);
 	
 	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);
