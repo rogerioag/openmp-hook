@@ -45,6 +45,37 @@ void release_all_team_threads(void){
 }
 
 /* ------------------------------------------------------------- */
+void HOOKOMP_initialization(void){
+	PRINT_FUNC_NAME;
+
+	/* Initialization of semaphores of control. */
+	sem_init(&mutex_registry_thread_in_func_next, 0, 1);
+
+	/* Initialization of block to other team threads. 1 thread will be executing. 
+	   The initialization with 0 is proposital to block other threads.
+	*/
+	sem_init(&sem_blocks_other_team_threads, 0, 0);
+
+	/* Initialization of control iterations variables. */
+	loop_iterations_start = start;
+	loop_iterations_end = end;
+	executed_loop_iterations = 0;
+	number_of_threads_in_team = num_threads;
+
+	/* Initialization of thread and measures section. */
+	thread_executing_function_next = -1;
+	is_executed_measures_section = true;
+	started_measuring = false;
+
+	decided_by_offloading = false;
+
+	/* Initialize RM library. */
+  	if(!RM_library_init()){
+  		TRACE("Error calling RM_library_init in %s.\n", __FUNCTION__);
+  	}
+}
+
+/* ------------------------------------------------------------- */
 /* Generic function to get next chunk. */
 bool HOOKOMP_generic_next (long *istart, long *iend, bool (*fn_next_chunk) (long *, long *)){
 	PRINT_FUNC_NAME;
@@ -580,31 +611,7 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	
 	TRACE("[GOMP_1.0] lib_GOMP_parallel_loop_runtime_start[%p]\n", (void* )lib_GOMP_parallel_loop_runtime_start);
 
-	/* Initialization of semaphores of control. */
-	sem_init(&mutex_registry_thread_in_func_next, 0, 1);
-
-	/* Initialization of block to other team threads. 1 thread will be executing. 
-	   The initialization with 0 is proposital to block other threads.
-	*/
-	sem_init(&sem_blocks_other_team_threads, 0, 0);
-
-	/* Initialization of control iterations variables. */
-	loop_iterations_start = start;
-	loop_iterations_end = end;
-	executed_loop_iterations = 0;
-	number_of_threads_in_team = num_threads;
-
-	/* Initialization of thread and measures section. */
-	thread_executing_function_next = -1;
-	is_executed_measures_section = true;
-	started_measuring = false;
-
-	decided_by_offloading = false;
-
-	/* Initialize RM library. */
-  	if(!RM_library_init()){
-  		TRACE("GOMP_parallel_start: error RM_library_init.\n");
-  	}
+	HOOKOMP_initialization();
 	
 	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);
 }
