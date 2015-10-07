@@ -183,6 +183,13 @@ void HOOKOMP_loop_end_nowait(void){
 }
 
 /* ------------------------------------------------------------- */
+void HOOKOMP_end(){
+
+	sem_destroy(&mutex_registry_thread_in_func_next); 	/* destroy semaphore */
+
+	sem_destroy(&sem_blocks_other_team_threads);
+}
+/* ------------------------------------------------------------- */
 /* barrier.c                                                     */
 /* ------------------------------------------------------------- */
 void GOMP_barrier (void) {
@@ -1012,23 +1019,14 @@ void GOMP_ordered_end (void){
 void GOMP_parallel_start (void (*fn) (void *), void *data, unsigned num_threads){
 	PRINT_FUNC_NAME;
 
-  	// TRACE("[hookomp]   Call by TablePointerFunctions.\n");
-	// TablePointerFunctions[0](data);
-	// TablePointerFunctions[1](data);
-	
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_start, "GOMP_parallel_start");
 
 	TRACE("[GOMP_1.0] GOMP_parallel_start@GOMP_1.0.[%p]\n", (void* )fn);
 	
-	// TRACE("[GOMP_1.0] lib_GOMP_parallel_start[%p]\n", (void* )lib_GOMP_parallel_start);
+	TRACE("[GOMP_1.0] lib_GOMP_parallel_start[%p]\n", (void* ) lib_GOMP_parallel_start);
 
 	lib_GOMP_parallel_start(fn, data, num_threads);
-
-  	/* Initialize RM library. */
-  	if(!RM_library_init()){
-  		TRACE("GOMP_parallel_start: error RM_library_init.\n");
-  	}
 }
 
 /* ------------------------------------------------------------- */
@@ -1036,16 +1034,12 @@ void GOMP_parallel_start (void (*fn) (void *), void *data, unsigned num_threads)
 void GOMP_parallel_end (void){
 	PRINT_FUNC_NAME;
 	
-	// Get Counters.
-	
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_end, "GOMP_parallel_end");
 
-	TRACE("[GOMP_1.0] GOMP_parallel_end@GOMP_1.0 [%p]\n", (void* )lib_GOMP_parallel_end);
+	TRACE("[GOMP_1.0] GOMP_parallel_end@GOMP_1.0 [%p]\n", (void* ) lib_GOMP_parallel_end);
 
-	sem_destroy(&mutex_registry_thread_in_func_next); 	/* destroy semaphore */
-
-	sem_destroy(&sem_blocks_other_team_threads);
+	HOOKOMP_end();
 	
     lib_GOMP_parallel_end();
 }
@@ -1264,21 +1258,21 @@ bool GOMP_single_start (void){
    TRACE("[GOMP_1.0] GOMP_single_start@GOMP_1.0.\n");
    bool result = lib_GOMP_single_start();
 
-   // Start the counters on PAPI if is the thread that should execute.
-   if (result){
-   		// Registry the thread id that entered in single region to match with OMP_barrier().
-   		// executing_a_single_region = omp_get_thread_num();
-   		executing_a_single_region = pthread_self();
+   // // Start the counters on PAPI if is the thread that should execute.
+   // if (result){
+   // 		// Registry the thread id that entered in single region to match with OMP_barrier().
+   // 		// executing_a_single_region = omp_get_thread_num();
+   // 		executing_a_single_region = pthread_self();
 
-   		TRACE("[hookomp]: Thread [%lu] executing the single region.\n", (unsigned long int) executing_a_single_region);
+   // 		TRACE("[hookomp]: Thread [%lu] executing the single region.\n", (unsigned long int) executing_a_single_region);
 
-   		// PAPI Start the counters.
-   		if(RM_start_counters()){
-   			TRACE("[hookomp] GOMP_single_start: PAPI Counters Started.\n");
-   		}
-   		else 
-   			TRACE("Error calling RM_start_counters from GOMP_single_start.\n");
-   	}	
+   // 		// PAPI Start the counters.
+   // 		if(RM_start_counters()){
+   // 			TRACE("[hookomp] GOMP_single_start: PAPI Counters Started.\n");
+   // 		}
+   // 		else 
+   // 			TRACE("Error calling RM_start_counters from GOMP_single_start.\n");
+   // 	}	
 
    return result;
 }
