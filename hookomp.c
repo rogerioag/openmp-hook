@@ -45,7 +45,7 @@ void release_all_team_threads(void){
 }
 
 /* ------------------------------------------------------------- */
-void HOOKOMP_initialization(void){
+void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 	PRINT_FUNC_NAME;
 
 	/* Initialization of semaphores of control. */
@@ -611,7 +611,7 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	
 	TRACE("[GOMP_1.0] lib_GOMP_parallel_loop_runtime_start[%p]\n", (void* )lib_GOMP_parallel_loop_runtime_start);
 
-	HOOKOMP_initialization();
+	HOOKOMP_initialization(start, end);
 	
 	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);
 }
