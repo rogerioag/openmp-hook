@@ -143,6 +143,46 @@ bool HOOKOMP_generic_next (long *istart, long *iend, bool (*fn_next_chunk) (long
 }
 
 /* ------------------------------------------------------------- */
+void HOOKOMP_loop_end_nowait(void){
+	if(thread_executing_function_next == (long int) pthread_self()){
+		TRACE("[hookomp]: Thread [%lu] is finishing the execution.\n", (long int) thread_executing_function_next);
+
+		// Get counters and decide about the migration.
+		TRACE("[hookomp]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
+
+		if(!RM_stop_counters()){
+			TRACE("Error GOMP_barrier: RM_stop_counters.\n");
+		}
+		else{
+    
+    		// A decisão de migrar é aqui.
+			double oi = RM_get_operational_intensity();
+			TRACE("Operational intensity: %10.2f\n", oi);
+
+			int better_device = RM_get_better_device_to_execution();
+			TRACE("Execution is better on device [%d].\n", better_device);
+
+			if((decided_by_offloading = RM_decision_about_offloading()) != 0){
+				/* Launch apropriated function. */
+				TRACE("Launching apropriated function on device: %d.\n", better_device);
+
+				TablePointerFunctions[better_device]();
+
+				/* Set work share to final. No more iterations to execute. */
+			}
+		}
+
+		/* Release all blocked team threads. */
+		release_all_team_threads();
+
+		executed_loop_iterations = 0;
+
+		/* Mark that is no more in section of measurements. */
+		is_executed_measures_section = false;
+	}
+}
+
+/* ------------------------------------------------------------- */
 /* barrier.c                                                     */
 /* ------------------------------------------------------------- */
 void GOMP_barrier (void) {
@@ -698,42 +738,7 @@ void GOMP_loop_end_nowait (void){
 
 	TRACE("[hookomp]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
-	if(thread_executing_function_next == (long int) pthread_self()){
-		TRACE("[hookomp]: Thread [%lu] is finishing the execution.\n", (long int) thread_executing_function_next);
-
-		// Get counters and decide about the migration.
-		TRACE("[hookomp]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
-
-		if(!RM_stop_counters()){
-			TRACE("Error GOMP_barrier: RM_stop_counters.\n");
-		}
-		else{
-    
-    		// A decisão de migrar é aqui.
-			double oi = RM_get_operational_intensity();
-			TRACE("Operational intensity: %10.2f\n", oi);
-
-			int better_device = RM_get_better_device_to_execution();
-			TRACE("Execution is better on device [%d].\n", better_device);
-
-			if((decided_by_offloading = RM_decision_about_offloading()) != 0){
-				/* Launch apropriated function. */
-				TRACE("Launching apropriated function on device: %d.\n", better_device);
-
-				TablePointerFunctions[better_device]();
-
-				/* Set work share to final. No more iterations to execute. */
-			}
-		}
-
-		/* Release all blocked team threads. */
-		release_all_team_threads();
-
-		executed_loop_iterations = 0;
-
-		/* Mark that is no more in section of measurements. */
-		is_executed_measures_section = false;
-	}
+	HOOKOMP_loop_end_nowait();
 
 	lib_GOMP_loop_end_nowait();
 }
