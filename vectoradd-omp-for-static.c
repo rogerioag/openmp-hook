@@ -11,6 +11,7 @@
 
 // Size of vectors.
 #ifndef N
+// #define N 1048576
 #define N 4096
 #endif
 
@@ -52,7 +53,7 @@ int main() {
 
   init_array();
 
-  #pragma omp parallel for schedule(runtime) num_threads(4)
+  #pragma omp parallel for schedule(static) num_threads(4)
   for (i = 0; i < N; i++) {
     h_c[i] = h_a[i] + h_b[i];
   }

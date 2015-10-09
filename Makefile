@@ -54,6 +54,9 @@ main: main-test.c
 	# Teste de usar o código do PoLLy sem modificações.
 	# Usar a função de next para testar os contadores de performance.
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-runtime.c -o vectoradd-omp-for-runtime -lhookomp -fopenmp -lgomp
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-static.c -o vectoradd-omp-for-static -lhookomp -fopenmp -lgomp
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-dynamic.c -o vectoradd-omp-for-dynamic -lhookomp -fopenmp -lgomp
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-guided.c -o vectoradd-omp-for-guided -lhookomp -fopenmp -lgomp
 
 	# Teste offloading function.
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-runtime-offloading-gpu.cpp -o vectoradd-omp-for-runtime-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp
@@ -69,7 +72,7 @@ main: main-test.c
 	cp libroofline.so ../polly-openmp/vectoradd/
 	
 clean:
-	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-schedule-default-1-region vectoradd-omp-parallel-single-for-schedule-default-2-regions vectoradd-omp-parallel-single-for-schedule-runtime-1-region vectoradd-omp-parallel-single-for-schedule-runtime-2-regions vectoradd-omp-for-runtime vectoradd-omp*.exe
+	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-schedule-default-1-region vectoradd-omp-parallel-single-for-schedule-default-2-regions vectoradd-omp-parallel-single-for-schedule-runtime-1-region vectoradd-omp-parallel-single-for-schedule-runtime-2-regions vectoradd-omp-for-runtime vectoradd-omp-for-guided vectoradd-omp-for-static vectoradd-omp-for-dynamic vectoradd-omp*.exe
 
 info:
 	@echo "Use make OPTIONS=\"-DVERBOSE -DDEBUG\" to compile with messages."

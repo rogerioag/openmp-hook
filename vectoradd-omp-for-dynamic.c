@@ -13,12 +13,13 @@
 #ifndef N
 #define N 4096
 #endif
-
+// Entrada e saida.
 float h_a[N];
 float h_b[N];
 float h_c[N];
 
 void init_array() {
+  fprintf(stdout, "Inicializando os arrays.\n");
   int i;
   // Initialize vectors on host.
     for (i = 0; i < N; i++) {
@@ -47,16 +48,30 @@ void check_result(){
   fprintf(stdout, "Thread [%02d]: Resultado Final: (%f, %f)\n", omp_get_thread_num(), sum, (float)(sum / (float)N));
 }
 
-int main() {
-  int i;
+void addvector(){
+ int i;
+ int chunk_size = N / 4;
 
-  init_array();
-
-  #pragma omp parallel for schedule(runtime) num_threads(4)
+  #pragma omp parallel for num_threads (4) schedule (dynamic, 2)
   for (i = 0; i < N; i++) {
     h_c[i] = h_a[i] + h_b[i];
   }
-  // print_array();
+}
+
+int main() {
+  int i;
+  init_array();
+
+  /* int chunk_size = N / omp_get_num_procs();
+
+  #pragma omp parallel for num_threads (4) schedule (dynamic, chunk_size)
+  for (i = 0; i < N; i++) {
+    h_c[i] = h_a[i] + h_b[i];
+  }
+  */
+  addvector();
+
+  print_array();
   check_result();
 
   return 0;
