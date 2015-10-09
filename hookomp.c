@@ -629,6 +629,9 @@ void GOMP_parallel_loop_dynamic_start (void (*fn) (void *), void *data,
 	
 	TRACE("[GOMP_1.0] lib_GOMP_parallel_loop_dynamic_start[%p]\n", (void* )lib_GOMP_parallel_loop_dynamic_start);
 
+	// Initializations.
+	HOOKOMP_initialization(start, end, num_threads);
+
 	lib_GOMP_parallel_loop_dynamic_start(fn, data, num_threads, start, end, incr, chunk_size);
 }
 
@@ -644,6 +647,9 @@ void GOMP_parallel_loop_guided_start (void (*fn) (void *), void *data,
 	TRACE("[GOMP_1.0] GOMP_parallel_loop_guided_start@GOMP_1.0.[%p]\n", (void* )fn);
 	
 	TRACE("[GOMP_1.0] lib_GOMP_parallel_loop_guided_start[%p]\n", (void* )lib_GOMP_parallel_loop_guided_start);
+
+	// Initializations.
+	HOOKOMP_initialization(start, end, num_threads);
 
 	lib_GOMP_parallel_loop_guided_start(fn, data, num_threads, start, end, incr, chunk_size);
 }
