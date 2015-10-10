@@ -331,6 +331,9 @@ bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size,
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_dynamic_start, "GOMP_loop_dynamic_start");
 	TRACE("[GOMP_1.0] GOMP_loop_dynamic_start@GOMP_1.0.\n");
+
+	// Initializations.
+	HOOKOMP_initialization(start, end, omp_get_num_threads());
 	
 	bool result = lib_GOMP_loop_dynamic_start(start, end, incr, chunk_size, istart, iend);
 	
@@ -346,10 +349,10 @@ bool GOMP_loop_guided_start (long start, long end, long incr, long chunk_size,
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_guided_start, "GOMP_loop_guided_start");
 	TRACE("[GOMP_1.0] GOMP_loop_guided_start@GOMP_1.0.\n");
 
-	bool result = lib_GOMP_loop_guided_start(start, end, incr, chunk_size, istart, iend);
-
 	// Initializations.
 	HOOKOMP_initialization(start, end, omp_get_num_threads());
+	
+	bool result = lib_GOMP_loop_guided_start(start, end, incr, chunk_size, istart, iend);
 	
 	return result;
 }
@@ -361,6 +364,9 @@ bool GOMP_loop_runtime_start (long start, long end, long incr,
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_runtime_start, "GOMP_loop_runtime_start");
 	TRACE("[GOMP_1.0] GOMP_loop_runtime_start@GOMP_1.0.\n");
+	
+	// Initializations.
+	HOOKOMP_initialization(start, end, omp_get_num_threads());
 	
 	bool result = lib_GOMP_loop_runtime_start(start, end, incr, istart, iend);
 	
