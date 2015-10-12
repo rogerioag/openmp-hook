@@ -22,6 +22,8 @@ static bool started_measuring = false;
 
 static bool decided_by_offloading = false;
 
+static bool is_hookomp_initialized = false;
+
 // extern struct gomp_team gomp_team;
 // extern struct gomp_work_share gomp_work_share;
 
@@ -50,7 +52,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 
 	sem_wait(&mutex_hookomp_init);
 
-	if(!hookomp_initialized){
+	if(!is_hookomp_initialized){
 		/* Initialization of semaphores of control. */
 		sem_init(&mutex_registry_thread_in_func_next, 0, 1);
 
@@ -77,8 +79,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
   			TRACE("Error calling RM_library_init in %s.\n", __FUNCTION__);
   		}
 
-  		hookomp_initialized = true;
-		
+  		is_hookomp_initialized = true;
 	}
 	/* up semaphore. */
   	sem_post(&mutex_hookomp_init);
