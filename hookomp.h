@@ -37,6 +37,8 @@ sem_t mutex_registry_thread_in_func_next;
 /* Semaphore to block other team threads.*/
 sem_t sem_blocks_other_team_threads;
 
+/* Control access to HOOKOMP_initialization. */
+sem_t mutex_hookomp_init;
 
 /* Tipo para o ponteiro de função. */
 typedef void (*op_func) (void);
