@@ -48,31 +48,45 @@ void release_all_team_threads(void){
 void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 	PRINT_FUNC_NAME;
 
-	/* Initialization of semaphores of control. */
-	sem_init(&mutex_registry_thread_in_func_next, 0, 1);
+	sem_wait(&mutex_hookomp_init);
 
-	/* Initialization of block to other team threads. 1 thread will be executing. 
-	   The initialization with 0 is proposital to block other threads.
-	*/
-	sem_init(&sem_blocks_other_team_threads, 0, 0);
+	if(!hookomp_initialized){
+		/* Initialization of semaphores of control. */
+		sem_init(&mutex_registry_thread_in_func_next, 0, 1);
 
-	/* Initialization of control iterations variables. */
-	loop_iterations_start = start;
-	loop_iterations_end = end;
-	executed_loop_iterations = 0;
-	number_of_threads_in_team = num_threads;
+		/* Initialization of block to other team threads. 1 thread will be executing. 
+	   	The initialization with 0 is proposital to block other threads.
+		*/
+		sem_init(&sem_blocks_other_team_threads, 0, 0);
 
-	/* Initialization of thread and measures section. */
-	thread_executing_function_next = -1;
-	is_executed_measures_section = true;
-	started_measuring = false;
+		/* Initialization of control iterations variables. */
+		loop_iterations_start = start;
+		loop_iterations_end = end;
+		executed_loop_iterations = 0;
+		number_of_threads_in_team = num_threads;
 
-	decided_by_offloading = false;
+		/* Initialization of thread and measures section. */
+		thread_executing_function_next = -1;
+		is_executed_measures_section = true;
+		started_measuring = false;
 
-	/* Initialize RM library. */
-  	if(!RM_library_init()){
-  		TRACE("Error calling RM_library_init in %s.\n", __FUNCTION__);
-  	}
+		decided_by_offloading = false;
+
+		/* Initialize RM library. */
+  		if(!RM_library_init()){
+  			TRACE("Error calling RM_library_init in %s.\n", __FUNCTION__);
+  		}
+
+  		hookomp_initialized = true;
+		
+	}
+	/* up semaphore. */
+  	sem_post(&mutex_hookomp_init);
+
+
+
+
+	
 }
 
 /* ------------------------------------------------------------- */
@@ -208,6 +222,8 @@ void HOOKOMP_end(){
 	sem_destroy(&mutex_registry_thread_in_func_next); 	/* destroy semaphore */
 
 	sem_destroy(&sem_blocks_other_team_threads);
+
+	sem_destroy(&mutex_hookomp_init);
 }
 /* ------------------------------------------------------------- */
 /* barrier.c                                                     */
@@ -1139,6 +1155,8 @@ void GOMP_parallel_start (void (*fn) (void *), void *data, unsigned num_threads)
 	TRACE("[GOMP_1.0] lib_GOMP_parallel_start[%p]\n", (void* ) lib_GOMP_parallel_start);
 
 	lib_GOMP_parallel_start(fn, data, num_threads);
+
+	sem_init(&mutex_hookomp_init, 0, 1);
 }
 
 /* ------------------------------------------------------------- */
