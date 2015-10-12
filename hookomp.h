@@ -41,6 +41,19 @@ sem_t sem_blocks_other_team_threads;
 /* Tipo para o ponteiro de função. */
 typedef void (*op_func) (void);
 
+/* Ponteiro para a função proxy que irá chamar ou *_next ou *_start. */
+typedef void (*chunk_next_fn)(long*, long*, void*);
+
+/* Struct for extra parameters. */
+typedef struct Params_ {
+    long _0, _1, _2, _3;
+    bool next_or_start_next;
+    union {
+    	bool (*func_start_next)(long start, long end, long incr, long chunk_size, long *istart, long *iend);
+    	bool (*func_next) (long *istart, long *iend);
+  };
+} Params;
+
 /* Ponteiros para as funções que serão recuperadas pela macro get runtime function.*/
 
 	/* barrier.c */

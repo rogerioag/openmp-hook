@@ -76,8 +76,26 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 }
 
 /* ------------------------------------------------------------- */
+/* Proxy function to *_next */
+void HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
+	// GOMP_loop_dynamic_next (istart, iend);
+	Params *params = (Params*) extra;
+	params->func_next(istart, iend);  
+}
+
+/* ------------------------------------------------------------- */
+/* Proxy function to *_start */
+void HOOKOMP_proxy_function_start_next (long* istart, long* iend, void* extra) {
+  Params *params = (Params*) extra;
+  // GOMP_loop_dynamic_start(params->_0, params->_1, params->_2, params->_3, istart, iend);
+
+  params->func_start_next(params->_0, params->_1, params->_2, params->_3, istart, iend);
+}
+
+/* ------------------------------------------------------------- */
 /* Generic function to get next chunk. */
-bool HOOKOMP_generic_next (long *istart, long *iend, bool (*fn_next_chunk) (long *, long *)){
+// bool HOOKOMP_generic_next (long *istart, long *iend, bool (*fn_next_chunk) (long *, long *)){
+bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void* extra) {	
 	PRINT_FUNC_NAME;
 	bool result = false;
 	TRACE("[hookomp]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
@@ -100,7 +118,8 @@ bool HOOKOMP_generic_next (long *istart, long *iend, bool (*fn_next_chunk) (long
 
 		if(executed_loop_iterations < (total_of_iterations / percentual_of_code)){
 			TRACE("[hookomp]: [Before]-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
-			result = fn_next_chunk(istart, iend);
+			// result = fn_next_chunk(istart, iend);
+			result = fn_proxy(istart, iend, extra);
 			TRACE("[hookomp]: [After]-> GOMP_loop_runtime_next -- Tid[%lu] istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
 			/* Update the number of iterations executed by this thread. */
 			TRACE("[hookomp]: [Before]-> GOMP_loop_runtime_next -- Tid[%lu] executed iterations: %ld.\n", thread_executing_function_next, executed_loop_iterations);
@@ -133,7 +152,8 @@ bool HOOKOMP_generic_next (long *istart, long *iend, bool (*fn_next_chunk) (long
 		// result = lib_GOMP_loop_runtime_next(istart, iend);
 		/* if decided by offloading, no more work to do, so return false. */
 		if(!decided_by_offloading){
-			result = fn_next_chunk(istart, iend);	
+			// result = fn_next_chunk(istart, iend);	
+			result = fn_proxy(istart, iend, extra);
 		}
 		else{
 			result = false;
@@ -335,7 +355,22 @@ bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size,
 	// Initializations.
 	HOOKOMP_initialization(start, end, omp_get_num_threads());
 	
-	bool result = lib_GOMP_loop_dynamic_start(start, end, incr, chunk_size, istart, iend);
+	// bool result = lib_GOMP_loop_dynamic_start(start, end, incr, chunk_size, istart, iend);
+	Params p;
+	chunk_next_fn func;
+
+	p._0 = start;
+	p._1 = end;
+	p._2 = incr;
+	p._3 = chunk_size;
+
+	p.func_start_next = lib_GOMP_loop_dynamic_start;
+	// p.func_next = lib_GOMP_loop_dynamic_next;
+	p.next_or_start_next = 1; // 0: next e 1: start.
+
+	func = &HOOKOMP_proxy_function_start_next;
+
+	bool result = HOOKOMP_generic_next(istart, iend, func, &p);
 	
 	return result;
 }
@@ -452,7 +487,23 @@ bool GOMP_loop_dynamic_next (long *istart, long *iend){
 	TRACE("[GOMP_1.0] GOMP_loop_dynamic_next@GOMP_1.0.\n");
 	
 	// bool result = lib_GOMP_loop_dynamic_next(istart, iend);
-	bool result = HOOKOMP_generic_next(istart, iend, lib_GOMP_loop_dynamic_next);
+	// HOOKOMP_generic_next(&istart, &iend, func, &p);
+
+	Params p;
+	chunk_next_fn func;
+
+	p._0 = 0;
+	p._1 = 0;
+	p._2 = 0;
+	p._3 = 0;
+
+	// p.func_start_next = lib_GOMP_loop_dynamic_start;
+	p.func_next = lib_GOMP_loop_dynamic_next;
+	p.next_or_start_next = 0; // 0: next e 1: start.
+
+	func = &HOOKOMP_proxy_function_next;
+
+	bool result = HOOKOMP_generic_next(istart, iend, func, &p);	
 	
 	return result;
 }
@@ -481,7 +532,23 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 
 	TRACE("[hookomp]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
-	bool result = HOOKOMP_generic_next(istart, iend, lib_GOMP_loop_runtime_next);
+	//bool result = HOOKOMP_generic_next(istart, iend, lib_GOMP_loop_runtime_next);
+
+	Params p;
+	chunk_next_fn func;
+
+	p._0 = 0;
+	p._1 = 0;
+	p._2 = 0;
+	p._3 = 0;
+
+	// p.func_start_next = lib_GOMP_loop_runtime_start;
+	p.func_next = lib_GOMP_loop_runtime_next;
+	p.next_or_start_next = 0; // 0: next e 1: start.
+
+	func = &HOOKOMP_proxy_function_next;
+
+	bool result = HOOKOMP_generic_next(istart, iend, func, &p);
 
 	return result;
 
@@ -639,6 +706,8 @@ void GOMP_parallel_loop_dynamic_start (void (*fn) (void *), void *data,
 	HOOKOMP_initialization(start, end, num_threads);
 
 	lib_GOMP_parallel_loop_dynamic_start(fn, data, num_threads, start, end, incr, chunk_size);
+
+	// bool result = HOOKOMP_generic_next(istart, iend, lib_GOMP_loop_static_next);
 }
 
 /* ------------------------------------------------------------- */
