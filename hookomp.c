@@ -77,7 +77,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 
 /* ------------------------------------------------------------- */
 /* Proxy function to *_next */
-void HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
+bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
 	// GOMP_loop_dynamic_next (istart, iend);
 	Params *params = (Params*) extra;
 	params->func_next(istart, iend);  
@@ -85,7 +85,7 @@ void HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
 
 /* ------------------------------------------------------------- */
 /* Proxy function to *_start */
-void HOOKOMP_proxy_function_start_next (long* istart, long* iend, void* extra) {
+bool HOOKOMP_proxy_function_start_next (long* istart, long* iend, void* extra) {
   Params *params = (Params*) extra;
   // GOMP_loop_dynamic_start(params->_0, params->_1, params->_2, params->_3, istart, iend);
 

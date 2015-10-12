@@ -42,7 +42,7 @@ sem_t sem_blocks_other_team_threads;
 typedef void (*op_func) (void);
 
 /* Ponteiro para a função proxy que irá chamar ou *_next ou *_start. */
-typedef void (*chunk_next_fn)(long*, long*, void*);
+typedef bool (*chunk_next_fn)(long*, long*, void*);
 
 /* Struct for extra parameters. */
 typedef struct Params_ {
