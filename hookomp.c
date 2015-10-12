@@ -517,8 +517,24 @@ bool GOMP_loop_guided_next (long *istart, long *iend){
 	TRACE("[GOMP_1.0] GOMP_loop_guided_next@GOMP_1.0.\n");
 	
 	// bool result = lib_GOMP_loop_guided_next(istart, iend);
-	bool result = HOOKOMP_generic_next(istart, iend, lib_GOMP_loop_guided_next);
-	
+	// bool result = HOOKOMP_generic_next(istart, iend, lib_GOMP_loop_guided_next);
+
+	Params p;
+	chunk_next_fn func;
+
+	p._0 = 0;
+	p._1 = 0;
+	p._2 = 0;
+	p._3 = 0;
+
+	// p.func_start_next = lib_GOMP_loop_runtime_start;
+	p.func_next = lib_GOMP_loop_guided_next;
+	p.next_or_start_next = 0; // 0: next e 1: start.
+
+	func = &HOOKOMP_proxy_function_next;
+
+	bool result = HOOKOMP_generic_next(istart, iend, func, &p);
+
 	return result;
 }
 
