@@ -790,6 +790,8 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	
 	TRACE("[GOMP_1.0] lib_GOMP_parallel_loop_runtime_start[%p]\n", (void* )lib_GOMP_parallel_loop_runtime_start);
 
+	sem_init(&mutex_hookomp_init, 0, 1);
+
 	// Initializations.
 	HOOKOMP_initialization(start, end, num_threads);
 	
