@@ -46,10 +46,15 @@ typedef void (*op_func) (void);
 /* Ponteiro para a função proxy que irá chamar ou *_next ou *_start. */
 typedef bool (*chunk_next_fn)(long*, long*, void*);
 
+enum FUN_TYPES {
+    FUN_START_NEXT,
+    FUN_NEXT
+};
+
 /* Struct for extra parameters. */
 typedef struct Params_ {
     long _0, _1, _2, _3;
-    bool next_or_start_next;
+    unsigned int func_type;
     union {
     	bool (*func_start_next)(long start, long end, long incr, long chunk_size, long *istart, long *iend);
     	bool (*func_next) (long *istart, long *iend);
