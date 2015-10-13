@@ -94,7 +94,7 @@ bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
 	TRACE("[HOOKOMP]: calling the GOMP_loop_*_start in %s.\n", __FUNCTION__);
 	bool result = params->func_next(istart, iend); 
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
-	retur result;
+	return result;
 }
 
 /* ------------------------------------------------------------- */
