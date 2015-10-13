@@ -138,7 +138,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 			/* PAPI Start the counters. */
 			if(!started_measuring){
 				if(RM_start_counters()){
-   					TRACE("[HOOKOMP] GOMP_single_start: PAPI Counters Started.\n");
+   					TRACE("[HOOKOMP]: PAPI Counters Started.\n");
    				}
    				else {
    					TRACE("Error calling RM_start_counters from GOMP_single_start.\n");
