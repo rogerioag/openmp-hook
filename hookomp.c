@@ -168,7 +168,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 			result = false;
 		}
 	}
-	TRACE("[HOOKOMP]: Leaving the %s", __FUNCTION__);
+	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 	return result;
 }
 
