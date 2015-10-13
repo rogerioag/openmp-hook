@@ -85,26 +85,49 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
   	sem_post(&mutex_hookomp_init);
 }
 
-/* ------------------------------------------------------------- */
-/* Proxy function to *_next */
-bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
-	PRINT_FUNC_NAME;
-	// GOMP_loop_dynamic_next (istart, iend);
-	Params *params = (Params*) extra;
-	TRACE("[HOOKOMP]: calling the GOMP_loop_*_start in %s.\n", __FUNCTION__);
-	bool result = params->func_next(istart, iend); 
-	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
-	return result;
-}
 
 /* ------------------------------------------------------------- */
 /* Proxy function to *_start */
 bool HOOKOMP_proxy_function_start_next (long* istart, long* iend, void* extra) {
 	PRINT_FUNC_NAME;
 	Params *params = (Params*) extra;
+	
+	TRACE("[HOOKOMP]: function type -> %d.\n", params->func_type);
 	// GOMP_loop_dynamic_start(params->_0, params->_1, params->_2, params->_3, istart, iend);
 	TRACE("[HOOKOMP]: calling the GOMP_loop_*_start in %s.\n", __FUNCTION__);
 	bool result = params->func_start_next(params->_0, params->_1, params->_2, params->_3, istart, iend);
+	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
+	return result;
+}
+
+/* ------------------------------------------------------------- */
+/* Proxy function to runtime_start. Is specific function. 
+bool (*func_start_next_runtime) (long start, long end, long incr, long *istart, long *iend); */
+bool HOOKOMP_proxy_function_start_next_runtime (long* istart, long* iend, void* extra) {
+	PRINT_FUNC_NAME;
+	Params *params = (Params*) extra;
+	
+	TRACE("[HOOKOMP]: function type -> %d.\n", params->func_type);
+
+	TRACE("[HOOKOMP]: calling the lib_GOMP_loop_runtime_start in %s.\n", __FUNCTION__);
+	bool result = params->func_start_next_runtime (params->_0, params->_1, params->_2, istart, iend);
+	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
+	return result;
+}
+
+
+/* ------------------------------------------------------------- */
+/* Proxy function to *_next */
+bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
+	PRINT_FUNC_NAME;
+	// GOMP_loop_dynamic_next (istart, iend);
+	Params *params = (Params*) extra;
+
+	TRACE("[HOOKOMP]: function type -> %d.\n", params->func_type);
+
+	TRACE("[HOOKOMP]: calling the GOMP_loop_*_next in %s.\n", __FUNCTION__);
+	bool result = params->func_next(istart, iend);
+
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 	return result;
 }
@@ -431,10 +454,10 @@ bool GOMP_loop_runtime_start (long start, long end, long incr,
 	p._2 = incr;
 	p._3 = 0;
 
-	p.func_start_next_runtime= lib_GOMP_loop_runtime_start;
+	p.func_start_next_runtime = lib_GOMP_loop_runtime_start;
 	p.func_type = FUN_START_NEXT_RUNTIME;
 
-	func_proxy = &HOOKOMP_proxy_function_start_next;
+	func_proxy = &HOOKOMP_proxy_function_start_next_runtime;
 
 	bool result = HOOKOMP_generic_next(istart, iend, func_proxy, &p);
 	

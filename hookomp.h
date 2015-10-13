@@ -60,7 +60,7 @@ typedef struct Params_ {
     	bool (*func_start_next) (long start, long end, long incr, long chunk_size, long *istart, long *iend);
     	bool (*func_start_next_runtime) (long start, long end, long incr, long *istart, long *iend);
     	bool (*func_next) (long *istart, long *iend);    	
-  };
+  	};
 } Params;
 
 /* Ponteiros para as funções que serão recuperadas pela macro get runtime function.*/
