@@ -212,18 +212,23 @@ void HOOKOMP_loop_end_nowait(void){
 		/* Mark that is no more in section of measurements. */
 		is_executed_measures_section = false;
 	}
+	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 }
 
 /* ------------------------------------------------------------- */
 /* Function to parallel_end. */
-void HOOKOMP_end(){
+void HOOKOMP_end(void){
 	PRINT_FUNC_NAME;
 
+	TRACE("[HOOKOMP] [Before] Destroying the semaphores. \n");
 	sem_destroy(&mutex_registry_thread_in_func_next); 	/* destroy semaphore */
 
 	sem_destroy(&sem_blocks_other_team_threads);
 
 	sem_destroy(&mutex_hookomp_init);
+	TRACE("[HOOKOMP] [After] Destroying the semaphores.\n");
+
+	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 }
 /* ------------------------------------------------------------- */
 /* barrier.c                                                     */
