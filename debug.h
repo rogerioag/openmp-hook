@@ -6,8 +6,8 @@
 #define VERBOSE 1
 
 #if defined(DEBUG) && DEBUG > 0
- #define PRINT_MSG(type, fmt, args...)	do{ fprintf(stderr, "%s: [%10s:%07d] Thread [%lu] in %s(): " type, fmt, \
-    __FILE__, __LINE__, (long int) pthread_self(), __func__, ##args); } while(0)
+ #define PRINT_MSG(type, fmt, args...)	do{ fprintf(stderr, "%s: [%10s:%07d] Thread [%lu] in %s(): " fmt, \
+    type, __FILE__, __LINE__, (long int) pthread_self(), __func__, ##args); } while(0)
 
  #define PRT_DEBUG (fmt, args...) PRINT_MSG("DEBUG",fmt, args...)
  #define TRACE (fmt, args...) PRINT_MSG("TRACE",fmt, args...)
