@@ -413,8 +413,8 @@ bool GOMP_loop_runtime_start (long start, long end, long incr,
 	p._2 = incr;
 	p._3 = 0;
 
-	p.func_start_next = lib_GOMP_loop_runtime_start;
-	p.func_type = FUN_START_NEXT;
+	p.func_start_next_runtime= lib_GOMP_loop_runtime_start;
+	p.func_type = FUN_START_NEXT_RUNTIME;
 
 	func_proxy = &HOOKOMP_proxy_function_start_next;
 

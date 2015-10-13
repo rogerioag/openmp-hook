@@ -48,6 +48,7 @@ typedef bool (*chunk_next_fn)(long*, long*, void*);
 
 enum FUN_TYPES {
     FUN_START_NEXT,
+    FUN_START_NEXT_RUNTIME, // Thank you for more one parameters. :-(
     FUN_NEXT
 };
 
@@ -56,8 +57,9 @@ typedef struct Params_ {
     long _0, _1, _2, _3;
     unsigned int func_type;
     union {
-    	bool (*func_start_next)(long start, long end, long incr, long chunk_size, long *istart, long *iend);
-    	bool (*func_next) (long *istart, long *iend);
+    	bool (*func_start_next) (long start, long end, long incr, long chunk_size, long *istart, long *iend);
+    	bool (*func_start_next_runtime) (long start, long end, long incr, long *istart, long *iend);
+    	bool (*func_next) (long *istart, long *iend);    	
   };
 } Params;
 
