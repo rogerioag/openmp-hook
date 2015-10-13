@@ -92,8 +92,9 @@ bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
 	// GOMP_loop_dynamic_next (istart, iend);
 	Params *params = (Params*) extra;
 	TRACE("[HOOKOMP]: calling the GOMP_loop_*_start in %s.\n", __FUNCTION__);
-	params->func_next(istart, iend); 
+	bool result = params->func_next(istart, iend); 
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
+	retur result;
 }
 
 /* ------------------------------------------------------------- */
@@ -103,9 +104,9 @@ bool HOOKOMP_proxy_function_start_next (long* istart, long* iend, void* extra) {
 	Params *params = (Params*) extra;
 	// GOMP_loop_dynamic_start(params->_0, params->_1, params->_2, params->_3, istart, iend);
 	TRACE("[HOOKOMP]: calling the GOMP_loop_*_start in %s.\n", __FUNCTION__);
-	params->func_start_next(params->_0, params->_1, params->_2, params->_3, istart, iend);
-
+	bool result = params->func_start_next(params->_0, params->_1, params->_2, params->_3, istart, iend);
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
+	return result;
 }
 
 /* ------------------------------------------------------------- */
