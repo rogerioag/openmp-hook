@@ -126,14 +126,14 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		total_of_iterations = (loop_iterations_end - loop_iterations_start);
 
 		if(executed_loop_iterations < (total_of_iterations / percentual_of_code)){
-			TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
+			TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 			// result = fn_next_chunk(istart, iend);
 			result = fn_proxy(istart, iend, extra);
-			TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", thread_executing_function_next, *istart, *iend);
+			TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 			/* Update the number of iterations executed by this thread. */
-			TRACE("[HOOKOMP]: [Before]-> Update of executed iterations: %ld.\n", thread_executing_function_next, executed_loop_iterations);
+			TRACE("[HOOKOMP]: [Before]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
 			executed_loop_iterations += (*iend - *istart);
-			TRACE("[HOOKOMP]: [After]-> Update of executed iterations: %ld.\n", thread_executing_function_next, executed_loop_iterations);
+			TRACE("[HOOKOMP]: [After]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
 
 			/* PAPI Start the counters. */
 			if(!started_measuring){
