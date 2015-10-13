@@ -147,7 +147,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
    			}
 		}
 		else{
-			TRACE("[HOOKOMP]: GOMP_loop_runtime_next -- Tid[%lu] executed %ld iterations of %ld.\n", thread_executing_function_next, executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
+			TRACE("[HOOKOMP]: Executed %ld iterations of %ld.\n", executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
 		}
 	}
 	else{
@@ -168,6 +168,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 			result = false;
 		}
 	}
+	TRACE("[HOOKOMP]: Leaving the %s", __FUNCTION__);
 	return result;
 }
 
