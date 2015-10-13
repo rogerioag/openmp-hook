@@ -159,10 +159,12 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 			sem_wait(&sem_blocks_other_team_threads);	
 		}
 		
+		TRACE("Verifing if was decided by offloading.\n");
 		// result = lib_GOMP_loop_runtime_next(istart, iend);
 		/* if decided by offloading, no more work to do, so return false. */
 		if(!decided_by_offloading){
 			// result = fn_next_chunk(istart, iend);	
+			TRACE("Calling the start/next function.\n");
 			result = fn_proxy(istart, iend, extra);
 		}
 		else{
