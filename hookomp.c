@@ -411,7 +411,7 @@ bool GOMP_loop_runtime_start (long start, long end, long incr,
 	p._0 = start;
 	p._1 = end;
 	p._2 = incr;
-	p._3 = chunk_size;
+	p._3 = 0;
 
 	p.func_start_next = lib_GOMP_loop_runtime_start;
 	p.func_type = FUN_START_NEXT;
@@ -498,7 +498,7 @@ bool GOMP_loop_static_next (long *istart, long *iend){
 	p._3 = 0;
 
 	p.func_next = lib_GOMP_loop_static_next;
-	p.next_or_start_next = FUN_NEXT;
+	p.func_type = FUN_NEXT;
 
 	func_proxy = &HOOKOMP_proxy_function_next;
 
@@ -526,7 +526,7 @@ bool GOMP_loop_dynamic_next (long *istart, long *iend){
 	p._3 = 0;
 
 	p.func_next = lib_GOMP_loop_dynamic_next;
-	p.next_or_start_next = FUN_NEXT;
+	p.func_type = FUN_NEXT;
 
 	func_proxy = &HOOKOMP_proxy_function_next;
 
@@ -555,7 +555,7 @@ bool GOMP_loop_guided_next (long *istart, long *iend){
 	p._3 = 0;
 
 	p.func_next = lib_GOMP_loop_guided_next;
-	p.next_or_start_next = FUN_NEXT;
+	p.func_type = FUN_NEXT;
 
 	func_proxy = &HOOKOMP_proxy_function_next;
 
@@ -585,7 +585,7 @@ bool GOMP_loop_runtime_next (long *istart, long *iend){
 	p._3 = 0;
 
 	p.func_next = lib_GOMP_loop_runtime_next;
-	p.next_or_start_next = FUN_NEXT;
+	p.func_type = FUN_NEXT;
 
 	func_proxy = &HOOKOMP_proxy_function_next;
 
