@@ -6,8 +6,8 @@
 #define VERBOSE 1
 
 #if defined(DEBUG) && DEBUG > 0
- #define TRACE(fmt, args...)	do{ fprintf(stderr, "DEBUG: [%10s:%07d] in %s(): " fmt, \
-    __FILE__, __LINE__, __func__, ##args); } while(0)
+ #define TRACE(fmt, args...)	do{ fprintf(stderr, "DEBUG: [%10s:%07d] Thread [%lu] in %s(): " fmt, \
+    __FILE__, __LINE__, (long int) pthread_self(), __func__, ##args); } while(0)
 #else
  #define TRACE(fmt, args...) do{ } while (0)
 #endif
@@ -21,4 +21,3 @@
 #endif
 
 #endif /* DEBUG_H */
- 
