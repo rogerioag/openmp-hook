@@ -88,6 +88,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 /* ------------------------------------------------------------- */
 /* Proxy function to *_next */
 bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
+	PRINT_FUNC_NAME;
 	// GOMP_loop_dynamic_next (istart, iend);
 	Params *params = (Params*) extra;
 	params->func_next(istart, iend);  
@@ -96,10 +97,10 @@ bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
 /* ------------------------------------------------------------- */
 /* Proxy function to *_start */
 bool HOOKOMP_proxy_function_start_next (long* istart, long* iend, void* extra) {
-  Params *params = (Params*) extra;
-  // GOMP_loop_dynamic_start(params->_0, params->_1, params->_2, params->_3, istart, iend);
-
-  params->func_start_next(params->_0, params->_1, params->_2, params->_3, istart, iend);
+	PRINT_FUNC_NAME;
+	Params *params = (Params*) extra;
+	// GOMP_loop_dynamic_start(params->_0, params->_1, params->_2, params->_3, istart, iend);
+	params->func_start_next(params->_0, params->_1, params->_2, params->_3, istart, iend);
 }
 
 /* ------------------------------------------------------------- */
@@ -174,6 +175,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 /* ------------------------------------------------------------- */
 void HOOKOMP_loop_end_nowait(void){
+	PRINT_FUNC_NAME;
+
 	if(thread_executing_function_next == (long int) pthread_self()){
 		TRACE("[HOOKOMP]: Thread [%lu] is finishing the execution.\n", (long int) thread_executing_function_next);
 
@@ -214,6 +217,7 @@ void HOOKOMP_loop_end_nowait(void){
 /* ------------------------------------------------------------- */
 /* Function to parallel_end. */
 void HOOKOMP_end(){
+	PRINT_FUNC_NAME;
 
 	sem_destroy(&mutex_registry_thread_in_func_next); 	/* destroy semaphore */
 
