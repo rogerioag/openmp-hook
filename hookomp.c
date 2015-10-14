@@ -188,6 +188,10 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		if (is_executed_measures_section){
 			/* Other team threads will be blocked. */
 			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
+			int number_of_blocked_threads = 0;
+			int result_sem = sem_getvalue(&sem_blocks_other_team_threads, &number_of_blocked_threads);
+			TRACE("[HOOKOMP]: Waking up the %d blocked threads -> %d result: %d \n", number_of_threads_in_team, number_of_blocked_threads, result);
+
 			sem_wait(&sem_blocks_other_team_threads);	
 		}
 		
