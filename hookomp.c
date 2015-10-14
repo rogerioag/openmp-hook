@@ -185,7 +185,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		if (is_executed_measures_section){
 			/* Other team threads will be blocked. */
 			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
-			sem_wait(&sem_blocks_other_team_threads);	
+			// sem_wait(&sem_blocks_other_team_threads);	
 		}
 		
 		TRACE("Verifing if was decided by offloading.\n");
