@@ -44,8 +44,8 @@ void release_all_team_threads(void){
 	TRACE("[HOOKOMP]: Waking up the %d blocked threads.\n", number_of_blocked_threads);
 	for (int i = 0; i < number_of_blocked_threads; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
-		number_of_blocked_threads--;
 	}
+	number_of_blocked_threads = 0;
 }
 
 /* ------------------------------------------------------------- */
