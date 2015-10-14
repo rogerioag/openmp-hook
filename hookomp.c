@@ -15,6 +15,7 @@ static long int executed_loop_iterations = 0;
 static long int percentual_of_code = 10;
 
 static long int number_of_threads_in_team = 0;
+static long int number_of_blocked_threads = 0;
 
 static bool is_executed_measures_section = false;
 
@@ -40,14 +41,10 @@ void foo(void) {
 void release_all_team_threads(void){
 	PRINT_FUNC_NAME;
 
-	int number_of_blocked_threads = 0;
-    int retval = sem_getvalue(&sem_blocks_other_team_threads, &number_of_blocked_threads);
-    printf("sema count is %d (return value: %d)\n", number_of_blocked_threads, retval);
-
-    
-	TRACE("[HOOKOMP]: Waking up the %d blocked threads -> %d result: %d \n", number_of_threads_in_team, number_of_blocked_threads, retval);
-	for (int i = 0; i < number_of_threads_in_team; ++i) {
+	TRACE("[HOOKOMP]: Waking up the %d blocked threads.\n", number_of_blocked_threads);
+	for (int i = 0; i < number_of_blocked_threads; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
+		number_of_blocked_threads--;
 	}
 }
 
@@ -71,6 +68,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		loop_iterations_end = end;
 		executed_loop_iterations = 0;
 		number_of_threads_in_team = num_threads;
+		number_of_blocked_threads = 0;
 
 		/* Initialization of thread and measures section. */
 		thread_executing_function_next = -1;
@@ -190,6 +188,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		if (is_executed_measures_section){
 			/* Other team threads will be blocked. */
 			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
+			number_of_blocked_threads++;
 			sem_wait(&sem_blocks_other_team_threads);	
 		}
 		
@@ -259,7 +258,7 @@ void HOOKOMP_end(void){
 	TRACE("[HOOKOMP] [Before] Destroying the semaphores. \n");
 	sem_destroy(&mutex_registry_thread_in_func_next); 	/* destroy semaphore */
 
-	// sem_destroy(&sem_blocks_other_team_threads);
+	sem_destroy(&sem_blocks_other_team_threads);
 
 	sem_destroy(&mutex_hookomp_init);
 	TRACE("[HOOKOMP] [After] Destroying the semaphores.\n");
