@@ -45,7 +45,7 @@ void release_all_team_threads(void){
     printf("sema count is %d (return value: %d)\n", number_of_blocked_threads, retval);
 
     
-	TRACE("[HOOKOMP]: Waking up the %d blocked threads -> %d result: %d \n", number_of_threads_in_team, number_of_blocked_threads, result);
+	TRACE("[HOOKOMP]: Waking up the %d blocked threads -> %d result: %d \n", number_of_threads_in_team, number_of_blocked_threads, retval);
 	for (int i = 0; i < number_of_threads_in_team; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
 	}
