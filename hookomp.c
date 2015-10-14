@@ -41,7 +41,7 @@ void release_all_team_threads(void){
 	PRINT_FUNC_NAME;
 
 	TRACE("[HOOKOMP]: release_all_team_threads num_threads: %ld.\n", number_of_threads_in_team);
-	for (int i = 0; i < number_of_threads_in_team; ++i) {
+	for (int i = 0; i < number_of_threads_in_team + 3; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
 	}
 }
@@ -185,7 +185,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		if (is_executed_measures_section){
 			/* Other team threads will be blocked. */
 			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
-			// sem_wait(&sem_blocks_other_team_threads);	
+			sem_wait(&sem_blocks_other_team_threads);	
 		}
 		
 		TRACE("Verifing if was decided by offloading.\n");
@@ -1140,7 +1140,7 @@ void GOMP_parallel_end (void){
 
 	TRACE("[LIBGOMP] GOMP_parallel_end@GOMP_X.X [%p]\n", (void* ) lib_GOMP_parallel_end);
 
-	// HOOKOMP_end();
+	HOOKOMP_end();
 	
     lib_GOMP_parallel_end();
 }
