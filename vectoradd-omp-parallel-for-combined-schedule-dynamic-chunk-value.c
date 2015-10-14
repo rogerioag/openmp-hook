@@ -48,30 +48,18 @@ void check_result(){
   fprintf(stdout, "Thread [%02d]: Resultado Final: (%f, %f)\n", omp_get_thread_num(), sum, (float)(sum / (float)N));
 }
 
-void addvector(){
- int i;
- int chunk_size = N / 4;
-
-  #pragma omp parallel for num_threads (4) schedule (dynamic, 2)
-  for (i = 0; i < N; i++) {
-    h_c[i] = h_a[i] + h_b[i];
-  }
-}
-
 int main() {
   int i;
   init_array();
 
-  /* int chunk_size = N / omp_get_num_procs();
+  // int chunk_size = N / omp_get_num_procs();
 
-  #pragma omp parallel for num_threads (4) schedule (dynamic, chunk_size)
+  #pragma omp parallel for num_threads (4) schedule (dynamic, 32)
   for (i = 0; i < N; i++) {
     h_c[i] = h_a[i] + h_b[i];
   }
-  */
-  addvector();
 
-  print_array();
+  // print_array();
   check_result();
 
   return 0;

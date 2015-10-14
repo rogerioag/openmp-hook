@@ -53,9 +53,12 @@ main: main-test.c
 
 	# Teste de usar o código do PoLLy sem modificações.
 	# Usar a função de next para testar os contadores de performance.
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable.c -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable.exe -lhookomp -fopenmp -lgomp
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value.c -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value.exe -lhookomp -fopenmp -lgomp
+	
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-runtime.c -o vectoradd-omp-for-runtime -lhookomp -fopenmp -lgomp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-static.c -o vectoradd-omp-for-static -lhookomp -fopenmp -lgomp
-	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-dynamic.c -o vectoradd-omp-for-dynamic -lhookomp -fopenmp -lgomp
+	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-dynamic.c -o vectoradd-omp-for-dynamic -lhookomp -fopenmp -lgomp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-guided.c -o vectoradd-omp-for-guided -lhookomp -fopenmp -lgomp
 
 	# Teste offloading function.
