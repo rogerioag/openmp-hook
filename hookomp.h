@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <semaphore.h>
+#include <pthread.h>
 #include "debug.h"
 #include "roofline.h"
 
