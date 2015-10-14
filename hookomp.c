@@ -40,8 +40,8 @@ void foo(void) {
 void release_all_team_threads(void){
 	PRINT_FUNC_NAME;
 
-	TRACE("[HOOKOMP]: release_all_team_threads num_threads: %ld.\n", number_of_threads_in_team);
-	for (int i = 0; i < number_of_threads_in_team + 3; ++i) {
+	TRACE("[HOOKOMP]: Waking up the %ld blocked threads.\n", number_of_threads_in_team);
+	for (int i = 0; i < number_of_threads_in_team; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
 	}
 }
@@ -380,6 +380,8 @@ bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size,
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_dynamic_start, "GOMP_loop_dynamic_start");
 	TRACE("[LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.\n");
+
+	TRACE("Starting with %d threads.", omp_get_num_threads());
 
 	// Initializations.
 	HOOKOMP_initialization(start, end, omp_get_num_threads());
