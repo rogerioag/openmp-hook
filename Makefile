@@ -55,11 +55,14 @@ main: main-test.c
 	# Usar a função de next para testar os contadores de performance.
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable.c -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable.exe -lhookomp -fopenmp -lgomp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value.c -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value.exe -lhookomp -fopenmp -lgomp
+
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable.c -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable.exe -lhookomp -fopenmp -lgomp
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value.c -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value.exe -lhookomp -fopenmp -lgomp
 	
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-runtime.c -o vectoradd-omp-for-runtime -lhookomp -fopenmp -lgomp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-static.c -o vectoradd-omp-for-static -lhookomp -fopenmp -lgomp
 	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-dynamic.c -o vectoradd-omp-for-dynamic -lhookomp -fopenmp -lgomp
-	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-guided.c -o vectoradd-omp-for-guided -lhookomp -fopenmp -lgomp
+	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-guided.c -o vectoradd-omp-for-guided -lhookomp -fopenmp -lgomp
 
 	# Teste offloading function.
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-runtime-offloading-gpu.cpp -o vectoradd-omp-for-runtime-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp
