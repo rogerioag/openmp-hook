@@ -381,7 +381,7 @@ bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size,
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_dynamic_start, "GOMP_loop_dynamic_start");
 	TRACE("[LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.\n");
 
-	TRACE("Starting with %d threads.", omp_get_num_threads());
+	TRACE("Starting with %d threads.\n", omp_get_num_threads());
 
 	// Initializations.
 	HOOKOMP_initialization(start, end, omp_get_num_threads());
@@ -401,6 +401,8 @@ bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size,
 	func_proxy = &HOOKOMP_proxy_function_start_next;
 
 	bool result = HOOKOMP_generic_next(istart, iend, func_proxy, &p);
+
+	TRACE("Leaving %s with %d threads.\n", __FUNCTION__, omp_get_num_threads());
 	
 	return result;
 }
