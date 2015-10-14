@@ -43,7 +43,7 @@ void release_all_team_threads(void){
 	int number_of_blocked_threads = 0;
     int result = sem_getvalue(&sem_blocks_other_team_threads, &number_of_blocked_threads);
     
-	TRACE("[HOOKOMP]: Waking up the %d blocked threads -> %d result: %d \n", number_of_threads_in_team, number_of_blocked_threadsm, result);
+	TRACE("[HOOKOMP]: Waking up the %d blocked threads -> %d result: %d \n", number_of_threads_in_team, number_of_blocked_threads, result);
 	for (int i = 0; i < number_of_threads_in_team; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
 	}
