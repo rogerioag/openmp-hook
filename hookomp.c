@@ -40,7 +40,7 @@ void foo(void) {
 void release_all_team_threads(void){
 	PRINT_FUNC_NAME;
 
-	TRACE("[HOOKOMP]: Waking up the %ld blocked threads.\n", number_of_threads_in_team);
+	TRACE("[HOOKOMP]: Waking up the %ld blocked threads -> %ld.\n", number_of_threads_in_team, omp_get_num_threads());
 	for (int i = 0; i < number_of_threads_in_team; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
 	}
