@@ -259,7 +259,7 @@ void HOOKOMP_end(void){
 	TRACE("[HOOKOMP] [Before] Destroying the semaphores. \n");
 	sem_destroy(&mutex_registry_thread_in_func_next); 	/* destroy semaphore */
 
-	sem_destroy(&sem_blocks_other_team_threads);
+	// sem_destroy(&sem_blocks_other_team_threads);
 
 	sem_destroy(&mutex_hookomp_init);
 	TRACE("[HOOKOMP] [After] Destroying the semaphores.\n");
