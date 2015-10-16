@@ -52,9 +52,9 @@ int main() {
   int i;
   init_array();
 
-  // int chunk_size = N / omp_get_num_procs();
+  int number_of_threads = 2;
 
-  #pragma omp parallel for num_threads (4) schedule (auto, 32)
+  #pragma omp parallel for num_threads (number_of_threads) schedule (auto)
   for (i = 0; i < N; i++) {
     h_c[i] = h_a[i] + h_b[i];
   }
