@@ -160,7 +160,9 @@ int main() {
 
   init_array();
 
-  #pragma omp parallel num_threads(4) for schedule(runtime)
+  int number_of_threads = 4;
+
+  #pragma omp parallel for num_threads (number_of_threads) schedule (runtime)
   for (i = 0; i < N; i++) {
     h_c[i] = h_a[i] + h_b[i];
   }
