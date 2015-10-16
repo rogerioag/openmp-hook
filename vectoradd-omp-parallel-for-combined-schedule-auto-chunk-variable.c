@@ -55,7 +55,7 @@ int main() {
   int number_of_threads = 2;
   int chunk_size = N / number_of_threads;
 
-  #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, chunk_size)
+  #pragma omp parallel for num_threads (number_of_threads) schedule (auto, chunk_size)
   for (i = 0; i < N; i++) {
     h_c[i] = h_a[i] + h_b[i];
   }

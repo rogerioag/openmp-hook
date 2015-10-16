@@ -54,7 +54,7 @@ int main() {
 
   // int chunk_size = N / omp_get_num_procs();
 
-  #pragma omp parallel for num_threads (4) schedule (dynamic, 32)
+  #pragma omp parallel for num_threads (4) schedule (auto, 32)
   for (i = 0; i < N; i++) {
     h_c[i] = h_a[i] + h_b[i];
   }
