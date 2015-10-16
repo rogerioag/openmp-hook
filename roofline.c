@@ -332,7 +332,7 @@ int RM_get_better_device_to_execution(void){
 bool RM_decision_about_offloading(int *better_device_index){
 	PRINT_FUNC_NAME;
 
-	bool offload_decision = false;
+	bool offload_decision = true;
 
 	double oi = RM_get_operational_intensity();
 	TRACE("Operational intensity: %10.2f\n", oi);
