@@ -140,7 +140,7 @@ bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
 void HOOKOMP_call_offloaging_function(int index){
 	PRINT_FUNC_NAME;
 
-	if(TablePointerFunctions[index] != NULL){
+	if((TablePointerFunctions != NULL) && (TablePointerFunctions[index] != NULL)){
 		TablePointerFunctions[index]();
 	}
 	else{
