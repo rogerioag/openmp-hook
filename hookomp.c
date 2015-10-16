@@ -3,11 +3,12 @@
 static long int executing_a_single_region = -1;
 
 /* Registry the thread which can execute the next function. */
-static long int thread_executing_function_next = -1;
+static long int registred_thread_executing_function_next = -1;
 
 /* Interval control for calculate the portion of code to execute. 10% */
 static long int loop_iterations_start = 0;
 static long int loop_iterations_end = 0;
+static long int total_of_iterations = 0;
 /* To acumulate the iterations executed by thread to calculate the percentual of executed code. */
 static long int executed_loop_iterations = 0;
 
@@ -68,12 +69,14 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		/* Initialization of control iterations variables. */
 		loop_iterations_start = start;
 		loop_iterations_end = end;
+		total_of_iterations = (loop_iterations_end - loop_iterations_start);
+
 		executed_loop_iterations = 0;
 		number_of_threads_in_team = num_threads;
 		number_of_blocked_threads = 0;
 
 		/* Initialization of thread and measures section. */
-		thread_executing_function_next = -1;
+		registred_thread_executing_function_next = -1;
 		is_executed_measures_section = true;
 		started_measuring = false;
 
@@ -91,6 +94,19 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
   	sem_post(&mutex_hookomp_init);
 }
 
+/* ------------------------------------------------------------- */
+/* Registry the first thread that entry in function next. */
+void HOOKOMP_registry_the_first_thread(void){
+	PRINT_FUNC_NAME;
+	sem_wait(&mutex_registry_thread_in_func_next);
+
+	if(registred_thread_executing_function_next == -1){
+		registred_thread_executing_function_next = pthread_self();
+		TRACE("[HOOKOMP]: Thread [%lu] is entering in controled execution.\n", (long int) registred_thread_executing_function_next);
+	}
+	/* up semaphore. */
+  	sem_post(&mutex_registry_thread_in_func_next);
+}
 
 /* ------------------------------------------------------------- */
 /* Proxy function to *_start */
@@ -162,21 +178,14 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
 	/* Registry the thread which will be execute alone. down semaphore. */
-	sem_wait(&mutex_registry_thread_in_func_next);
-
-	if(thread_executing_function_next == -1){
-		thread_executing_function_next = pthread_self();
-		TRACE("[HOOKOMP]: Thread [%lu] is entering in controled execution.\n", (long int) thread_executing_function_next);
+	if(registred_thread_executing_function_next == -1){
+		HOOKOMP_registry_the_first_thread();
 	}
-	/* up semaphore. */
-  	sem_post(&mutex_registry_thread_in_func_next);
-
-	int total_of_iterations = 0;
 
 	/* Verify if the thread is the thread executing. */
-	if(thread_executing_function_next == (long int) pthread_self()){
-		total_of_iterations = (loop_iterations_end - loop_iterations_start);
+	if(registred_thread_executing_function_next == (long int) pthread_self()){
 
+		/* Execute only percentual of code. */
 		if(executed_loop_iterations < (total_of_iterations / percentual_of_code)){
 			TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 			// result = fn_next_chunk(istart, iend);
@@ -233,8 +242,8 @@ void HOOKOMP_loop_end_nowait(void){
 
 	long better_device = 0;
 
-	if(thread_executing_function_next == (long int) pthread_self()){
-		TRACE("[HOOKOMP]: Thread [%lu] is finishing the execution.\n", (long int) thread_executing_function_next);
+	if(registred_thread_executing_function_next == (long int) pthread_self()){
+		TRACE("[HOOKOMP]: Thread [%lu] is finishing the execution.\n", (long int) registred_thread_executing_function_next);
 
 		// Get counters and decide about the migration.
 		TRACE("[HOOKOMP]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
