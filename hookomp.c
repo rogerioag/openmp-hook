@@ -236,7 +236,9 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 			/* Continue execution. */
 			if(!(decided_by_offloading && made_the_offloading)){
+				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 				result = fn_proxy(istart, iend, extra);
+				TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 			}
 
 			started_measuring = false;
@@ -259,13 +261,15 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 			sem_wait(&sem_blocks_other_team_threads);	
 		}
 		
-		TRACE("Verifing if was decided by offloading.\n");
+		TRACE("Verifying if was decided by offloading.\n");
 		// result = lib_GOMP_loop_runtime_next(istart, iend);
 		/* if decided by offloading, no more work to do, so return false. */
 		if(!made_the_offloading){
 			// result = fn_next_chunk(istart, iend);	
 			TRACE("Calling the start/next function.\n");
+			TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 			result = fn_proxy(istart, iend, extra);
+			TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 		}
 		else{
 			result = false;
