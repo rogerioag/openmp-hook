@@ -56,7 +56,7 @@ extern "C" {
 
 	int RM_get_better_device_to_execution(void);
 
-	bool RM_decision_about_offloading(int *);
+	bool RM_decision_about_offloading(long *);
 	
 #ifdef __cplusplus
 }

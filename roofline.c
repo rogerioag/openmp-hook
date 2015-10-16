@@ -329,7 +329,7 @@ int RM_get_better_device_to_execution(void){
 
 /* ------------------------------------------------------------ */
 /* Better Device to execution.									*/
-bool RM_decision_about_offloading(int *better_device_index){
+bool RM_decision_about_offloading(long *better_device_index){
 	PRINT_FUNC_NAME;
 
 	bool offload_decision = true;

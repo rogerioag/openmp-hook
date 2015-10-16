@@ -231,7 +231,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
 
-	int better_device = 0;
+	long better_device = 0;
 
 	if(thread_executing_function_next == (long int) pthread_self()){
 		TRACE("[HOOKOMP]: Thread [%lu] is finishing the execution.\n", (long int) thread_executing_function_next);
