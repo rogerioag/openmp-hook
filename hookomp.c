@@ -140,8 +140,8 @@ bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
 void HOOKOMP_call_offloaging_function(int index){
 	PRINT_FUNC_NAME;
 
-	if(TablePointerFunctions[better_device] != NULL){
-		TablePointerFunctions[better_device]();
+	if(TablePointerFunctions[index] != NULL){
+		TablePointerFunctions[index]();
 	}
 	else{
 		TRACE("Offloading function not defined in TablePointerFunctions.\n");
