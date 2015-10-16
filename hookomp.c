@@ -1148,7 +1148,9 @@ void GOMP_parallel_end (void){
 
 	TRACE("[LIBGOMP] GOMP_parallel_end@GOMP_X.X [%p]\n", (void* ) lib_GOMP_parallel_end);
 
-	HOOKOMP_end();
+	if(is_hookomp_initialized){
+		HOOKOMP_end();	
+	}
 	
     lib_GOMP_parallel_end();
 }
