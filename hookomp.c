@@ -209,6 +209,38 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		}
 		else{
 			TRACE("[HOOKOMP]: Executed %ld iterations of %ld.\n", executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
+
+			long better_device = 0;
+
+			// Get counters and decide about the migration.
+			TRACE("[HOOKOMP]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
+
+			if(!RM_stop_counters()){
+				TRACE("Error GOMP_barrier: RM_stop_counters.\n");
+			}
+			else{
+    			// A decisão de migrar é aqui.
+				if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
+					/* Launch apropriated function. */
+					TRACE("RM decided by device [%d].\n", better_device);
+
+					TRACE("Trying to launch apropriated function on device: %d.\n", better_device);
+
+					made_the_offloading = HOOKOMP_call_offloaging_function(better_device);
+
+					if (!made_the_offloading){
+						TRACE("The function offloading was not done.\n");
+					}
+				}
+			}
+
+			/* Release all blocked team threads. */
+			release_all_team_threads();
+
+			executed_loop_iterations = 0;
+
+			/* Mark that is no more in section of measurements. */
+			is_executed_measures_section = false;
 		}
 	}
 	else{
@@ -239,6 +271,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 /* ------------------------------------------------------------- */
 void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
+
 
 	long better_device = 0;
 
@@ -881,7 +914,7 @@ void GOMP_loop_end_nowait (void){
 
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
-	HOOKOMP_loop_end_nowait();
+	// HOOKOMP_loop_end_nowait();
 
 	lib_GOMP_loop_end_nowait();
 }
