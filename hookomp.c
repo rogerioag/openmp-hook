@@ -239,6 +239,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				result = fn_proxy(istart, iend, extra);
 			}
 
+			started_measuring = false;
+
 			/* Release all blocked team threads. */
 			release_all_team_threads();
 
