@@ -137,15 +137,18 @@ bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
 
 /* ------------------------------------------------------------- */
 /* Call the appropriated function. */
-void HOOKOMP_call_offloaging_function(int index){
+bool HOOKOMP_call_offloaging_function(int index){
 	PRINT_FUNC_NAME;
+	bool retval = false;
 
 	if((TablePointerFunctions != NULL) && (TablePointerFunctions[index] != NULL)){
 		TablePointerFunctions[index]();
+		retval = true;
 	}
 	else{
 		TRACE("Offloading function not defined in TablePointerFunctions.\n");
 	}
+	return retval;
 }
 
 /* ------------------------------------------------------------- */
@@ -244,7 +247,7 @@ void HOOKOMP_loop_end_nowait(void){
 
 				TRACE("Launching apropriated function on device: %d.\n", better_device);
 
-				HOOKOMP_call_offloaging_function(better_device);
+				decided_by_offloading = HOOKOMP_call_offloaging_function(better_device);
 				/* Set work share to final. No more iterations to execute. */
 			}
 		}
