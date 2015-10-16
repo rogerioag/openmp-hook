@@ -214,7 +214,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		TRACE("Verifing if was decided by offloading.\n");
 		// result = lib_GOMP_loop_runtime_next(istart, iend);
 		/* if decided by offloading, no more work to do, so return false. */
-		if(!decided_by_offloading && !made_the_offloading){
+		if(!made_the_offloading){
 			// result = fn_next_chunk(istart, iend);	
 			TRACE("Calling the start/next function.\n");
 			result = fn_proxy(istart, iend, extra);
@@ -255,7 +255,6 @@ void HOOKOMP_loop_end_nowait(void){
 				if (!made_the_offloading){
 					TRACE("The function offloading was not done.\n");
 				}
-
 				/* Set work share to final. No more iterations to execute. */
 			}
 		}
