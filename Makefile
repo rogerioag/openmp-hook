@@ -68,8 +68,11 @@ main: main-test.c
 
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-auto.c -o vectoradd-omp-parallel-for-combined-schedule-auto.exe -lhookomp -fopenmp -lgomp
 
-	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-runtime-chunk-variable.c -o vectoradd-omp-parallel-for-combined-schedule-runtime-chunk-variable.exe -lhookomp -fopenmp -lgomp
-	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-runtime-chunk-value.c -o vectoradd-omp-parallel-for-combined-schedule-runtime-chunk-value.exe -lhookomp -fopenmp -lgomp
+	# schedule(runtime): error: schedule ‘runtime’ does not take a ‘chunk_size’ parameter.
+	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-runtime-chunk-variable.c -o vectoradd-omp-parallel-for-combined-schedule-runtime-chunk-variable.exe -lhookomp -fopenmp -lgomp
+	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-runtime-chunk-value.c -o vectoradd-omp-parallel-for-combined-schedule-runtime-chunk-value.exe -lhookomp -fopenmp -lgomp
+
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-runtime.c -o vectoradd-omp-parallel-for-combined-schedule-runtime.exe -lhookomp -fopenmp -lgomp
 	
 	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-runtime.c -o vectoradd-omp-for-runtime -lhookomp -fopenmp -lgomp
 	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-static.c -o vectoradd-omp-for-static -lhookomp -fopenmp -lgomp
