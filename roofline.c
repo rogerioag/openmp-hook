@@ -329,9 +329,17 @@ int RM_get_better_device_to_execution(void){
 
 /* ------------------------------------------------------------ */
 /* Better Device to execution.									*/
-bool RM_decision_about_offloading(void){
+bool RM_decision_about_offloading(int *better_device_index){
 	PRINT_FUNC_NAME;
+
+	bool offload_decision = false;
+
+	double oi = RM_get_operational_intensity();
+	TRACE("Operational intensity: %10.2f\n", oi);
+
+	*better_device_index = RM_get_better_device_to_execution();
+	TRACE("Execution is better on device [%d].\n", better_device_index);
 	
-	return false;
+	return offload_decision;
 }
 /* ------------------------------------------------------------ */

@@ -136,6 +136,19 @@ bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
 }
 
 /* ------------------------------------------------------------- */
+/* Call the appropriated function. */
+void HOOKOMP_call_offloaging_function(int index){
+	PRINT_FUNC_NAME;
+
+	if(TablePointerFunctions[better_device] != NULL){
+		TablePointerFunctions[better_device]();
+	}
+	else{
+		TRACE("Offloading function not defined in TablePointerFunctions.\n");
+	}
+}
+
+/* ------------------------------------------------------------- */
 /* Generic function to get next chunk. */
 bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void* extra) {	
 	PRINT_FUNC_NAME;
@@ -212,6 +225,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
 
+	int better_device = 0;
+
 	if(thread_executing_function_next == (long int) pthread_self()){
 		TRACE("[HOOKOMP]: Thread [%lu] is finishing the execution.\n", (long int) thread_executing_function_next);
 
@@ -223,18 +238,13 @@ void HOOKOMP_loop_end_nowait(void){
 		}
 		else{
     		// A decisão de migrar é aqui.
-			double oi = RM_get_operational_intensity();
-			TRACE("Operational intensity: %10.2f\n", oi);
-
-			int better_device = RM_get_better_device_to_execution();
-			TRACE("Execution is better on device [%d].\n", better_device);
-
-			if((decided_by_offloading = RM_decision_about_offloading()) != 0){
+			if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
 				/* Launch apropriated function. */
+				TRACE("RM decided by device [%d].\n", better_device);
+
 				TRACE("Launching apropriated function on device: %d.\n", better_device);
 
-				TablePointerFunctions[better_device]();
-
+				HOOKOMP_call_offloaging_function(better_device);
 				/* Set work share to final. No more iterations to execute. */
 			}
 		}
