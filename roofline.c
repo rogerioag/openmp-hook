@@ -3,6 +3,8 @@
 static pthread_key_t papi_thread_info_key;
 static int papi_library_initialized = 0;
 
+static bool papi_eventset_was_created = false;
+
 /* ------------------------------------------------------------ */
 /* Info and Test function.										*/
 void info(void) {
@@ -28,6 +30,8 @@ bool RM_library_init(void){
 	// ptr_measure->initial_time = 0;
 	// ptr_measure->final_time = 0;
 	ptr_measure->EventSet = PAPI_NULL;
+
+	papi_eventset_was_created = false;
 
 	return result;
 }
@@ -125,6 +129,42 @@ void RM_print_counters_values(void) {
 }
 
 /* ------------------------------------------------------------ */
+/* Create event set. 											*/
+void RM_create_event_set(){
+	PRINT_FUNC_NAME;
+	int i, retval;
+
+	TRACE("Creating PAPI event set.\n");
+
+	/* Create an EventSet */
+  	if ((retval = PAPI_create_eventset(&ptr_measure->EventSet)) != PAPI_OK){
+    	TRACE("[RM_start_counters] PAPI_create_eventset error.\n");
+    	RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+  	}
+
+	/* Add Total Instructions Executed to our EventSet */
+  	//if (PAPI_add_event(EventSet, PAPI_TOT_INS) != PAPI_OK)
+	//	TRACE("PAPI_add_event error PAPI_TOT_INS.\n");
+	
+	//if (PAPI_add_event(EventSet, PAPI_TOT_CYC) != PAPI_OK)
+	//	TRACE("PAPI_add_event error PAPI_TOT_CYC.\n");
+
+	/* Add events to EventSet */
+  	char event_str[PAPI_MAX_STR_LEN];
+
+	for (i = 0; i < NUM_EVENTS; i++) {
+		retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i]);
+		PAPI_event_code_to_name(ptr_measure->events[i], event_str);
+		TRACE("[RM_start_counters] PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
+	    if(retval != PAPI_OK) {
+	      RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	    }
+	}
+
+	papi_eventset_was_created = true;
+}
+
+/* ------------------------------------------------------------ */
 /* Start counters.												*/
 bool RM_start_counters (void){
 	PRINT_FUNC_NAME;
@@ -187,29 +227,8 @@ bool RM_start_counters (void){
 	else 
 		TRACE("[RM_start_counters] Thread id is: %lu\n", tid);
 
-	/* Create an EventSet */
-  	if ((retval = PAPI_create_eventset(&ptr_measure->EventSet)) != PAPI_OK){
-    	TRACE("[RM_start_counters] PAPI_create_eventset error.\n");
-    	RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-  	}
-
-	/* Add Total Instructions Executed to our EventSet */
-  	//if (PAPI_add_event(EventSet, PAPI_TOT_INS) != PAPI_OK)
-	//	TRACE("PAPI_add_event error PAPI_TOT_INS.\n");
-	
-	//if (PAPI_add_event(EventSet, PAPI_TOT_CYC) != PAPI_OK)
-	//	TRACE("PAPI_add_event error PAPI_TOT_CYC.\n");
-
-	/* Add events to EventSet */
-  	char event_str[PAPI_MAX_STR_LEN];
-
-	for (i = 0; i < NUM_EVENTS; i++) {
-		retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i]);
-		PAPI_event_code_to_name(ptr_measure->events[i], event_str);
-		TRACE("[RM_start_counters] PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
-	    if(retval != PAPI_OK) {
-	      RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	    }
+	if(!papi_eventset_was_created){
+		RM_create_event_set();
 	}
 
 	/* Start counting */
