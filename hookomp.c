@@ -234,6 +234,11 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				}
 			}
 
+			/* Continue execution. */
+			if(!(decided_by_offloading && made_the_offloading)){
+				result = fn_proxy(istart, iend, extra);
+			}
+
 			/* Release all blocked team threads. */
 			release_all_team_threads();
 
