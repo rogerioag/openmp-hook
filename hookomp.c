@@ -23,6 +23,8 @@ static bool started_measuring = false;
 
 static bool decided_by_offloading = false;
 
+static bool made_the_offloading = false;
+
 static bool is_hookomp_initialized = false;
 
 // extern struct gomp_team gomp_team;
@@ -76,6 +78,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		started_measuring = false;
 
 		decided_by_offloading = false;
+		made_the_offloading = false;
 
 		/* Initialize RM library. */
   		if(!RM_library_init()){
@@ -211,7 +214,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		TRACE("Verifing if was decided by offloading.\n");
 		// result = lib_GOMP_loop_runtime_next(istart, iend);
 		/* if decided by offloading, no more work to do, so return false. */
-		if(!decided_by_offloading){
+		if(!decided_by_offloading && !made_the_offloading){
 			// result = fn_next_chunk(istart, iend);	
 			TRACE("Calling the start/next function.\n");
 			result = fn_proxy(istart, iend, extra);
@@ -245,9 +248,14 @@ void HOOKOMP_loop_end_nowait(void){
 				/* Launch apropriated function. */
 				TRACE("RM decided by device [%d].\n", better_device);
 
-				TRACE("Launching apropriated function on device: %d.\n", better_device);
+				TRACE("Trying to launch apropriated function on device: %d.\n", better_device);
 
-				decided_by_offloading = HOOKOMP_call_offloaging_function(better_device);
+				made_the_offloading = HOOKOMP_call_offloaging_function(better_device);
+
+				if (!made_the_offloading){
+					TRACE("The function offloading was not done.\n");
+				}
+
 				/* Set work share to final. No more iterations to execute. */
 			}
 		}
