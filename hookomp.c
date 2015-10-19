@@ -216,7 +216,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				}
 			}
 			else{ /* Decision about the offloading. */
-				TRACE("[HOOKOMP]: Executed %ld iterations of %ld.\n", executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
+				TRACE("[HOOKOMP]: They were executed %ld iterations of %ld.\n", executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
+				TRACE("[HOOKOMP]: Trying to make decision about offloading.\n");
 
 				long better_device = 0;
 
@@ -244,7 +245,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 				/* Continue execution. */
 				if(!(decided_by_offloading && made_the_offloading)){
-					TRACE("[HOOKOMP]: Calling next function after offloading decision about. Continue...\n");
+					TRACE("[HOOKOMP]: [Continue] Calling next function after offloading decision about.\n");
 					TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 					result = fn_proxy(istart, iend, extra);
 					TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
@@ -253,7 +254,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				started_measuring = false;
 
 				/* Release all blocked team threads. */
-				TRACE("[HOOKOMP]: Number of Blocked Threds> %ld.\n", number_of_blocked_threads);
+				TRACE("[HOOKOMP]: Number of Blocked Threds: %ld.\n", number_of_blocked_threads);
 				if(number_of_blocked_threads > 0){
 					release_all_team_threads();	
 				}
@@ -275,7 +276,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		
 			/* if decided by offloading, no more work to do, so return false. */
 			if(!made_the_offloading){
-				TRACE("[HOOKOMP]: Calling next function out of measures section after wake up.\n");
+				TRACE("[HOOKOMP]: [Wake up] Calling next function out of measures section after wake up.\n");
 				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 				result = fn_proxy(istart, iend, extra);
 				TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
