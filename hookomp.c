@@ -244,6 +244,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 				/* Continue execution. */
 				if(!(decided_by_offloading && made_the_offloading)){
+					TRACE("[HOOKOMP]: Calling next function after offloading decision about. Continue...\n");
 					TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 					result = fn_proxy(istart, iend, extra);
 					TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
@@ -252,14 +253,16 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				started_measuring = false;
 
 				/* Release all blocked team threads. */
-				release_all_team_threads();
-
+				TRACE("[HOOKOMP]: Number of Blocked Threds> %ld.\n", number_of_blocked_threads);
+				if(number_of_blocked_threads > 0){
+					release_all_team_threads();	
+				}
+				
 				executed_loop_iterations = 0;
 
 				/* Mark that is no more in section of measurements. */
 				is_executing_measures_section = false;
 			}
-
 		}
 		else{ /* Block other threads. */
 			/* If it is executing in a section to measurements, the threads will be blocked. */		
