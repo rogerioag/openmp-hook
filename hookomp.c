@@ -184,7 +184,9 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 	/* Is not getting neasuresm execute directly. */
 	if(!is_executing_measures_section){
+		TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 		result = fn_proxy(istart, iend, extra);
+		TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 	}
 	else{
 
@@ -193,7 +195,6 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 			/* Execute only percentual of code. */
 			if(executed_loop_iterations < (total_of_iterations / percentual_of_code)){
 				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-				// result = fn_next_chunk(istart, iend);
 				result = fn_proxy(istart, iend, extra);
 				TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 				/* Update the number of iterations executed by this thread. */
