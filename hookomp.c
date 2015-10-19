@@ -18,7 +18,7 @@ static long int percentual_of_code = 10;
 static long int number_of_threads_in_team = 0;
 static long int number_of_blocked_threads = 0;
 
-static bool is_executed_measures_section = false;
+static bool is_executing_measures_section = true;
 
 static bool started_measuring = false;
 
@@ -62,7 +62,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		sem_init(&mutex_registry_thread_in_func_next, 0, 1);
 
 		/* Initialization of block to other team threads. 1 thread will be executing. 
-	   	The initialization with 0 is proposital to block other threads.
+		The initialization with 0 is proposital to block other threads.
 		*/
 		sem_init(&sem_blocks_other_team_threads, 0, 0);
 
@@ -77,21 +77,21 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 
 		/* Initialization of thread and measures section. */
 		registred_thread_executing_function_next = -1;
-		is_executed_measures_section = true;
+		is_executing_measures_section = true;
 		started_measuring = false;
 
 		decided_by_offloading = false;
 		made_the_offloading = false;
 
 		/* Initialize RM library. */
-  		if(!RM_library_init()){
-  			TRACE("Error calling RM_library_init in %s.\n", __FUNCTION__);
-  		}
+		if(!RM_library_init()){
+			TRACE("Error calling RM_library_init in %s.\n", __FUNCTION__);
+		}
 
-  		is_hookomp_initialized = true;
+		is_hookomp_initialized = true;
 	}
 	/* up semaphore. */
-  	sem_post(&mutex_hookomp_init);
+	sem_post(&mutex_hookomp_init);
 }
 
 /* ------------------------------------------------------------- */
@@ -105,7 +105,7 @@ void HOOKOMP_registry_the_first_thread(void){
 		TRACE("[HOOKOMP]: Thread [%lu] is entering in controled execution.\n", (long int) registred_thread_executing_function_next);
 	}
 	/* up semaphore. */
-  	sem_post(&mutex_registry_thread_in_func_next);
+	sem_post(&mutex_registry_thread_in_func_next);
 }
 
 /* ------------------------------------------------------------- */
@@ -182,99 +182,104 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		HOOKOMP_registry_the_first_thread();
 	}
 
-	/* Verify if the thread is the thread executing. */
-	if(registred_thread_executing_function_next == (long int) pthread_self()){
-
-		/* Execute only percentual of code. */
-		if(executed_loop_iterations < (total_of_iterations / percentual_of_code)){
-			TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-			// result = fn_next_chunk(istart, iend);
-			result = fn_proxy(istart, iend, extra);
-			TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-			/* Update the number of iterations executed by this thread. */
-			TRACE("[HOOKOMP]: [Before]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
-			executed_loop_iterations += (*iend - *istart);
-			TRACE("[HOOKOMP]: [After]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
-
-			/* PAPI Start the counters. */
-			if(!started_measuring){
-				if(RM_start_counters()){
-   					TRACE("[HOOKOMP]: PAPI Counters Started.\n");
-   				}
-   				else {
-   					TRACE("Error calling RM_start_counters from GOMP_single_start.\n");
-   				}
-   				started_measuring = true;
-   			}
-		}
-		else{
-			TRACE("[HOOKOMP]: Executed %ld iterations of %ld.\n", executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
-
-			long better_device = 0;
-
-			// Get counters and decide about the migration.
-			TRACE("[HOOKOMP]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
-
-			if(!RM_stop_counters()){
-				TRACE("Error GOMP_barrier: RM_stop_counters.\n");
-			}
-			else{
-    			// A decisão de migrar é aqui.
-				if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
-					/* Launch apropriated function. */
-					TRACE("RM decided by device [%d].\n", better_device);
-
-					TRACE("Trying to launch apropriated function on device: %d.\n", better_device);
-
-					made_the_offloading = HOOKOMP_call_offloaging_function(better_device);
-
-					if (!made_the_offloading){
-						TRACE("The function offloading was not done.\n");
-					}
-				}
-			}
-
-			/* Continue execution. */
-			if(!(decided_by_offloading && made_the_offloading)){
-				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-				result = fn_proxy(istart, iend, extra);
-				TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-			}
-
-			started_measuring = false;
-
-			/* Release all blocked team threads. */
-			release_all_team_threads();
-
-			executed_loop_iterations = 0;
-
-			/* Mark that is no more in section of measurements. */
-			is_executed_measures_section = false;
-		}
+	/* Is not getting neasuresm execute directly. */
+	if(!is_executing_measures_section){
+		result = fn_proxy(istart, iend, extra);
 	}
 	else{
-		/* If it is executing in a section to measurements, the threads will be blocked. */		
-		if (is_executed_measures_section){
+
+		/* Verify if the thread is the thread registred to execute and get measures. */
+		if(registred_thread_executing_function_next == (long int) pthread_self()){
+			/* Execute only percentual of code. */
+			if(executed_loop_iterations < (total_of_iterations / percentual_of_code)){
+				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+				// result = fn_next_chunk(istart, iend);
+				result = fn_proxy(istart, iend, extra);
+				TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+				/* Update the number of iterations executed by this thread. */
+				TRACE("[HOOKOMP]: [Before]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
+				executed_loop_iterations += (*iend - *istart);
+				TRACE("[HOOKOMP]: [After]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
+
+				/* PAPI Start the counters. */
+				if(!started_measuring){
+					if(RM_start_counters()){
+						TRACE("[HOOKOMP]: PAPI Counters Started.\n");
+					}
+					else {
+						TRACE("Error calling RM_start_counters from GOMP_single_start.\n");
+					}
+					started_measuring = true;
+				}
+			}
+			else{ /* Decision about the offloading. */
+				TRACE("[HOOKOMP]: Executed %ld iterations of %ld.\n", executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
+
+				long better_device = 0;
+
+				// Get counters and decide about the migration.
+				TRACE("[HOOKOMP]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
+
+				if(!RM_stop_counters()){
+					TRACE("Error GOMP_barrier: RM_stop_counters.\n");
+				}
+				else{
+					// A decisão de migrar é aqui.
+					if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
+						/* Launch apropriated function. */
+						TRACE("RM decided by device [%d].\n", better_device);
+
+						TRACE("Trying to launch apropriated function on device: %d.\n", better_device);
+
+						made_the_offloading = HOOKOMP_call_offloaging_function(better_device);
+
+						if (!made_the_offloading){
+							TRACE("The function offloading was not done.\n");
+						}
+					}
+				}
+
+				/* Continue execution. */
+				if(!(decided_by_offloading && made_the_offloading)){
+					TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+					result = fn_proxy(istart, iend, extra);
+					TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+				}
+
+				started_measuring = false;
+
+				/* Release all blocked team threads. */
+				release_all_team_threads();
+
+				executed_loop_iterations = 0;
+
+				/* Mark that is no more in section of measurements. */
+				is_executing_measures_section = false;
+			}
+
+		}
+		else{ /* Block other threads. */
+			/* If it is executing in a section to measurements, the threads will be blocked. */		
 			/* Other team threads will be blocked. */
 			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
 			number_of_blocked_threads++;
 			sem_wait(&sem_blocks_other_team_threads);	
-		}
 		
-		TRACE("Verifying if was decided by offloading.\n");
-		// result = lib_GOMP_loop_runtime_next(istart, iend);
-		/* if decided by offloading, no more work to do, so return false. */
-		if(!made_the_offloading){
-			// result = fn_next_chunk(istart, iend);	
-			TRACE("Calling the start/next function.\n");
-			TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-			result = fn_proxy(istart, iend, extra);
-			TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-		}
-		else{
-			result = false;
+			TRACE("Verifying if was decided by offloading.\n");
+		
+			/* if decided by offloading, no more work to do, so return false. */
+			if(!made_the_offloading){
+				TRACE("Calling the start/next function.\n");
+				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+				result = fn_proxy(istart, iend, extra);
+				TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+			}
+			else{ /* Indicates have no more work to do. */
+				result = false;
+			}
 		}
 	}
+
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 	return result;
 }
@@ -296,7 +301,7 @@ void HOOKOMP_loop_end_nowait(void){
 			TRACE("Error GOMP_barrier: RM_stop_counters.\n");
 		}
 		else{
-    		// A decisão de migrar é aqui.
+			// A decisão de migrar é aqui.
 			if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
 				/* Launch apropriated function. */
 				TRACE("RM decided by device [%d].\n", better_device);
@@ -318,7 +323,7 @@ void HOOKOMP_loop_end_nowait(void){
 		executed_loop_iterations = 0;
 
 		/* Mark that is no more in section of measurements. */
-		is_executed_measures_section = false;
+		is_executing_measures_section = false;
 	}
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 }
@@ -774,7 +779,7 @@ void GOMP_parallel_loop_static_start (void (*fn) (void *), void *data,
 				 long incr, long chunk_size){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_static_start, "GOMP_parallel_loop_static_start");
 
 	TRACE("[LIBGOMP] GOMP_parallel_loop_static_start@GOMP_X.X.[%p]\n", (void* )fn);
@@ -790,7 +795,7 @@ void GOMP_parallel_loop_dynamic_start (void (*fn) (void *), void *data,
 				  long incr, long chunk_size){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_dynamic_start, "GOMP_parallel_loop_dynamic_start");
 
 	TRACE("[LIBGOMP] GOMP_parallel_loop_dynamic_start@GOMP_X.X.[%p]\n", (void* )fn);
@@ -811,7 +816,7 @@ void GOMP_parallel_loop_guided_start (void (*fn) (void *), void *data,
 				 long incr, long chunk_size){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_guided_start, "GOMP_parallel_loop_guided_start");
 
 	TRACE("[LIBGOMP] GOMP_parallel_loop_guided_start@GOMP_X.X.[%p]\n", (void* )fn);
@@ -832,7 +837,7 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 				  long incr){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_runtime_start, "GOMP_parallel_loop_runtime_start");
 
 	TRACE("[LIBGOMP] GOMP_parallel_loop_runtime_start@GOMP_X.X.[%p]\n", (void* )fn);
@@ -853,7 +858,7 @@ void GOMP_parallel_loop_static (void (*fn) (void *), void *data,
 			   long incr, long chunk_size, unsigned flags){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_static, "GOMP_parallel_loop_static");
 
 	TRACE("[LIBGOMP] lib_GOMP_parallel_loop_static[%p]\n", (void* )lib_GOMP_parallel_loop_static);
@@ -863,11 +868,11 @@ void GOMP_parallel_loop_static (void (*fn) (void *), void *data,
 
 /* ------------------------------------------------------------- */
 void GOMP_parallel_loop_dynamic (void (*fn) (void *), void *data,
-			    unsigned num_threads, long start, long end,
-			    long incr, long chunk_size, unsigned flags){
+				unsigned num_threads, long start, long end,
+				long incr, long chunk_size, unsigned flags){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_dynamic, "GOMP_parallel_loop_dynamic");
 
 	TRACE("[LIBGOMP] lib_GOMP_parallel_loop_dynamic[%p]\n", (void* )lib_GOMP_parallel_loop_dynamic);
@@ -881,7 +886,7 @@ void GOMP_parallel_loop_guided (void (*fn) (void *), void *data,
 			  long incr, long chunk_size, unsigned flags){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_guided, "GOMP_parallel_loop_guided");
 
 	TRACE("[LIBGOMP] lib_GOMP_parallel_loop_guided[%p]\n", (void* )lib_GOMP_parallel_loop_guided);
@@ -891,11 +896,11 @@ void GOMP_parallel_loop_guided (void (*fn) (void *), void *data,
 
 /* ------------------------------------------------------------- */
 void GOMP_parallel_loop_runtime (void (*fn) (void *), void *data,
-			    unsigned num_threads, long start, long end,
-			    long incr, unsigned flags){
+				unsigned num_threads, long start, long end,
+				long incr, unsigned flags){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_runtime, "GOMP_parallel_loop_runtime");
 
 	TRACE("[LIBGOMP] lib_GOMP_parallel_loop_runtime[%p]\n", (void* )lib_GOMP_parallel_loop_runtime);
@@ -907,7 +912,7 @@ void GOMP_parallel_loop_runtime (void (*fn) (void *), void *data,
 void GOMP_loop_end (void){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_end, "GOMP_loop_end");
 
 	TRACE("[LIBGOMP] lib_GOMP_loop_end[%p]\n", (void* )lib_GOMP_loop_end);
@@ -918,7 +923,7 @@ void GOMP_loop_end (void){
 void GOMP_loop_end_nowait (void){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_loop_end_nowait, "GOMP_loop_end_nowait");
 
 	TRACE("[LIBGOMP] lib_GOMP_loop_end_nowait[%p]\n", (void* )GOMP_loop_end_nowait);
@@ -947,8 +952,8 @@ bool GOMP_loop_end_cancel (void){
 /* loop_ull.c                                                    */
 /* ------------------------------------------------------------- */
 bool GOMP_loop_ull_static_start (bool up, unsigned long long start, unsigned long long end,
-			    unsigned long long incr, unsigned long long chunk_size,
-			    unsigned long long *istart, unsigned long long *iend){
+				unsigned long long incr, unsigned long long chunk_size,
+				unsigned long long *istart, unsigned long long *iend){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
@@ -962,8 +967,8 @@ bool GOMP_loop_ull_static_start (bool up, unsigned long long start, unsigned lon
 
 /* ------------------------------------------------------------- */
 bool GOMP_loop_ull_dynamic_start (bool up, unsigned long long start, unsigned long long end,
-			     unsigned long long incr, unsigned long long chunk_size,
-			     unsigned long long *istart, unsigned long long *iend){
+				 unsigned long long incr, unsigned long long chunk_size,
+				 unsigned long long *istart, unsigned long long *iend){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
@@ -977,8 +982,8 @@ bool GOMP_loop_ull_dynamic_start (bool up, unsigned long long start, unsigned lo
 
 /* ------------------------------------------------------------- */
 bool GOMP_loop_ull_guided_start (bool up, unsigned long long start, unsigned long long end,
-			    unsigned long long incr, unsigned long long chunk_size,
-			    unsigned long long *istart, unsigned long long *iend){
+				unsigned long long incr, unsigned long long chunk_size,
+				unsigned long long *istart, unsigned long long *iend){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
@@ -992,7 +997,7 @@ bool GOMP_loop_ull_guided_start (bool up, unsigned long long start, unsigned lon
 
 /* ------------------------------------------------------------- */
 bool GOMP_loop_ull_runtime_start (bool up, unsigned long long start, unsigned long long end,
-			     unsigned long long incr, unsigned long long *istart, unsigned long long *iend){
+				 unsigned long long incr, unsigned long long *istart, unsigned long long *iend){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
@@ -1006,8 +1011,8 @@ bool GOMP_loop_ull_runtime_start (bool up, unsigned long long start, unsigned lo
 
 /* ------------------------------------------------------------- */
 bool GOMP_loop_ull_ordered_static_start (bool up, unsigned long long start, unsigned long long end,
-				    unsigned long long incr, unsigned long long chunk_size,
-				    unsigned long long *istart, unsigned long long *iend){
+					unsigned long long incr, unsigned long long chunk_size,
+					unsigned long long *istart, unsigned long long *iend){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
@@ -1021,8 +1026,8 @@ bool GOMP_loop_ull_ordered_static_start (bool up, unsigned long long start, unsi
 
 /* ------------------------------------------------------------- */
 bool GOMP_loop_ull_ordered_dynamic_start (bool up, unsigned long long start, unsigned long long end,
-				     unsigned long long incr, unsigned long long chunk_size,
-				     unsigned long long *istart, unsigned long long *iend){
+					 unsigned long long incr, unsigned long long chunk_size,
+					 unsigned long long *istart, unsigned long long *iend){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
@@ -1036,8 +1041,8 @@ bool GOMP_loop_ull_ordered_dynamic_start (bool up, unsigned long long start, uns
 
 /* ------------------------------------------------------------- */
 bool GOMP_loop_ull_ordered_guided_start (bool up, unsigned long long start, unsigned long long end,
-				    unsigned long long incr, unsigned long long chunk_size,
-				    unsigned long long *istart, unsigned long long *iend){
+					unsigned long long incr, unsigned long long chunk_size,
+					unsigned long long *istart, unsigned long long *iend){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
@@ -1051,8 +1056,8 @@ bool GOMP_loop_ull_ordered_guided_start (bool up, unsigned long long start, unsi
 
 /* ------------------------------------------------------------- */
 bool GOMP_loop_ull_ordered_runtime_start (bool up, unsigned long long start, unsigned long long end,
-				     unsigned long long incr, unsigned long long *istart,
-				     unsigned long long *iend){
+					 unsigned long long incr, unsigned long long *istart,
+					 unsigned long long *iend){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
@@ -1225,14 +1230,14 @@ void GOMP_parallel_end (void){
 		HOOKOMP_end();	
 	}
 	
-    lib_GOMP_parallel_end();
+	lib_GOMP_parallel_end();
 }
 
 /* ------------------------------------------------------------- */
 void GOMP_parallel (void (*fn) (void *), void *data, unsigned num_threads, unsigned int flags){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel, "GOMP_parallel");
 
 	TRACE("[LIBGOMP] GOMP_parallel@GOMP_X.X.[%p]\n", (void* )fn);
@@ -1276,7 +1281,7 @@ void GOMP_task (void (*fn) (void *), void *data, void (*cpyfn) (void *, void *),
 	   void **depend){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_task, "GOMP_task");
 
 	TRACE("[LIBGOMP] GOMP_task@GOMP_X.X.[%p]\n", (void* )fn);
@@ -1360,10 +1365,10 @@ unsigned GOMP_sections_next (void){
 
 /* ------------------------------------------------------------- */
 void GOMP_parallel_sections_start (void (*fn) (void *), void *data,
-			      unsigned num_threads, unsigned count){
+				  unsigned num_threads, unsigned count){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_sections_start, "GOMP_parallel_sections_start");
 
 	TRACE("[LIBGOMP] GOMP_parallel_sections_start@GOMP_X.X.[%p]\n", (void* )fn);
@@ -1378,7 +1383,7 @@ void GOMP_parallel_sections (void (*fn) (void *), void *data,
 			unsigned num_threads, unsigned count, unsigned flags){
 	PRINT_FUNC_NAME;
 
-  	// Retrieve the OpenMP runtime function.
+	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_sections, "GOMP_parallel_sections");
 
 	TRACE("[LIBGOMP] GOMP_parallel_sections@GOMP_X.X.[%p]\n", (void* )fn);
@@ -1477,8 +1482,8 @@ void GOMP_single_copy_end (void *data){
 /* ------------------------------------------------------------- */
 
 void GOMP_target (int device, void (*fn) (void *), const void *unused,
-	     size_t mapnum, void **hostaddrs, size_t *sizes,
-	     unsigned char *kinds){
+		 size_t mapnum, void **hostaddrs, size_t *sizes,
+		 unsigned char *kinds){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
@@ -1513,7 +1518,7 @@ void GOMP_target_end_data (void){
 
 /* ------------------------------------------------------------- */
 void GOMP_target_update (int device, const void *unused, size_t mapnum,
-		    void **hostaddrs, size_t *sizes, unsigned char *kinds){
+			void **hostaddrs, size_t *sizes, unsigned char *kinds){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
@@ -1564,8 +1569,8 @@ void GOACC_data_end (void){
 /* ------------------------------------------------------------- */
 /*
 void GOACC_enter_exit_data (int device, size_t mapnum,
-		       void **hostaddrs, size_t *sizes, unsigned short *kinds,
-		       int async, int num_waits, ...){
+			   void **hostaddrs, size_t *sizes, unsigned short *kinds,
+			   int async, int num_waits, ...){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
@@ -1594,8 +1599,8 @@ void GOACC_parallel (int device, void (*fn) (void *),
 /* ------------------------------------------------------------- */
 /*
 void GOACC_update (int device, size_t mapnum,
-	      void **hostaddrs, size_t *sizes, unsigned short *kinds,
-	      int async, int num_waits, ...){
+		  void **hostaddrs, size_t *sizes, unsigned short *kinds,
+		  int async, int num_waits, ...){
 	PRINT_FUNC_NAME;
 	
 	// Retrieve the OpenMP runtime function.
