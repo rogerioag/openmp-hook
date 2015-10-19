@@ -52,7 +52,7 @@ int main() {
   int i;
   init_array();
 
-  int number_of_threads = 2;
+  int number_of_threads = 4;
 
   #pragma omp parallel for num_threads (number_of_threads) schedule (runtime)
   for (i = 0; i < N; i++) {
