@@ -184,6 +184,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 	/* Is not getting neasuresm execute directly. */
 	if(!is_executing_measures_section){
+		TRACE("[HOOKOMP]: Calling next function out of measures section.\n");
 		TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 		result = fn_proxy(istart, iend, extra);
 		TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
@@ -194,6 +195,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		if(registred_thread_executing_function_next == (long int) pthread_self()){
 			/* Execute only percentual of code. */
 			if(executed_loop_iterations < (total_of_iterations / percentual_of_code)){
+				TRACE("[HOOKOMP]: Calling next function inside of measures section.\n");
 				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 				result = fn_proxy(istart, iend, extra);
 				TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
@@ -270,7 +272,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		
 			/* if decided by offloading, no more work to do, so return false. */
 			if(!made_the_offloading){
-				TRACE("Calling the start/next function.\n");
+				TRACE("[HOOKOMP]: Calling next function out of measures section after wake up.\n");
 				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 				result = fn_proxy(istart, iend, extra);
 				TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
