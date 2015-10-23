@@ -263,7 +263,7 @@ bool RM_create_event_set(){
 	for (i = 0; i < NUM_EVENTS; i++) {
 		PAPI_event_code_to_name(ptr_measure->events[i], event_str);
 		TRACE("[RM] Trying to add event: %x - %s.\n", ptr_measure->events[i], event_str);
-		if(RM_check_event_is_available(ptr_measure->events[i])){
+		if(RM_check_event_is_available(ptr_measure->events[i], true)){
 			retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i]);
 			PAPI_event_code_to_name(ptr_measure->events[i], event_str);
 			TRACE("[RM_start_counters] PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
