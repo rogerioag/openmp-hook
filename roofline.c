@@ -171,6 +171,7 @@ void RM_print_event_info(unsigned int event){
 bool RM_check_event_is_available(unsigned int event, bool print_it){
 	PRINT_FUNC_NAME;
 	int retval;
+	char event_str[PAPI_MAX_STR_LEN];
 	
 	/* Check to see if the event exists */
 	if((retval = PAPI_query_event (event)) == PAPI_OK){
@@ -208,7 +209,7 @@ void RM_check_papi_status(){
 	int retval;
 
 	int status = 0;
-	if((retval = PAPI_state(&ptr_measure->EventSet, &status)) != PAPI_OK){
+	if((retval = PAPI_state(ptr_measure->EventSet, &status)) != PAPI_OK){
 		switch (retval){
 			case PAPI_STOPPED :
 				TRACE("EventSet is stopped.\n");
