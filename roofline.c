@@ -163,9 +163,7 @@ void RM_print_event_info(unsigned int event){
 		if (info.count > 0){
 			TRACE("[RM] This event is available on this hardware.\n");
 		}
-		if (info.flags & PAPI_DERIVED){
-			RACE("[RM] This event is a derived event on this hardware.\n");
-		}
+		// More infos.
 	}
 }
 /* ------------------------------------------------------------ */
