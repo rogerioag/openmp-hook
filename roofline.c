@@ -154,7 +154,7 @@ bool RM_initialization_of_papi_libray_mode(){
 void RM_print_event_info(unsigned int event){
 	PRINT_FUNC_NAME;
 
-	PAPI_preset_info_t info;
+	PAPI_event_info_t info;
 	/* Get details about event. */
 	if (PAPI_get_event_info(event, &info) != PAPI_OK) {
 		TRACE("[RM] No info about the event.\n");
