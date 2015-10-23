@@ -52,6 +52,7 @@ bool RM_library_init(void){
 bool RM_register_papi_thread(){
 	PRINT_FUNC_NAME;
 	bool result = true;
+	int retval;
 
 	TRACE("[%s] [Before] PAPI_register_thread.\n", __FUNCTION__);
 
