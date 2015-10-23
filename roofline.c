@@ -232,12 +232,12 @@ void RM_check_papi_status(){
 		    case PAPI_MULTIPLEXING :
 				TRACE("EventSet has multiplexing enabled.\n");
 		    	break;
-		    case PAPI_ACCUMULATING :
-				TRACE("reserved for future use.\n");
-		    	break;
-		    case PAPI_HWPROFILING :
-				TRACE("reserved for future use.\n");
-		    	break;
+		//    case PAPI_ACCUMULATING :
+		//		TRACE("reserved for future use.\n");
+		//    	break;
+		//    case PAPI_HWPROFILING :
+		//		TRACE("reserved for future use.\n");
+		//    	break;
 		    defaul: TRACE("Undefined retval.\n");
 		} 
 	}    
