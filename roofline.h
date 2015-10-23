@@ -53,7 +53,7 @@ extern "C" {
 
 	// void RM_papi_handle_error(int n);
 
-	bool RM_check_event_is_available(unsigned int event, bool print_it)
+	bool RM_check_event_is_available(unsigned int event, bool print_it);
 
 	bool RM_start_counters(void);
 
