@@ -53,8 +53,19 @@ bool RM_register_papi_thread(){
 	PRINT_FUNC_NAME;
 	bool result = true;
 	int retval;
-
+	unsigned long int tid = 0;
 	TRACE("[%s] [Before] PAPI_register_thread.\n", __FUNCTION__);
+
+	TRACE("[Before]: PAPI_thread_init.\n");
+
+	if((retval = PAPI_thread_init((unsigned long (*)(void))(pthread_self))) != PAPI_OK){
+        RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+        if (retval == PAPI_ESBSTR)
+			TRACE("PAPI_thread_init error: %d\n", retval);
+	}
+
+	tid = PAPI_thread_id();
+	TRACE("[After]: PAPI_thread_init: %lu\n", tid);
 
   	if((retval = PAPI_register_thread()) != PAPI_OK){
         RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
@@ -131,19 +142,6 @@ bool RM_initialization_of_papi_libray_mode(){
 
 	TRACE("[After]: PAPI_library_init.\n");
 	
-	TRACE("[Before]: PAPI_thread_init.\n");
-
-	if((retval = PAPI_thread_init((unsigned long (*)(void))(pthread_self))) != PAPI_OK){
-
-        RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-        if (retval == PAPI_ESBSTR)
-			TRACE("PAPI_thread_init error: %d\n", retval);
-	}
-
-	unsigned long int tid = PAPI_thread_id();
-
-	TRACE("[After]: PAPI_thread_init: %lu\n", tid);
-
 	papi_library_initialized = true;
 
 	TRACE("RM_initialization_of_papi_libray_mode: %d\n", papi_library_initialized);
