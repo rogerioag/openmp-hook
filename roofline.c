@@ -32,8 +32,8 @@ bool RM_library_init(void){
 		ptr_measure->events[i] = FPO_event_codes[i];
 	}
 
-	ptr_measure->initial_time = 0;
-	ptr_measure->final_time = 0;
+	ptr_measure->initial_time = (struct timeval){0};
+	ptr_measure->final_time = (struct timeval){0};
 	ptr_measure->EventSet = PAPI_NULL;
 
 	papi_eventset_was_created = false;
