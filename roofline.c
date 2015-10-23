@@ -1,9 +1,13 @@
 #include "roofline.h"
 
 static pthread_key_t papi_thread_info_key;
-static int papi_library_initialized = 0;
+static bool papi_library_initialized = false;
 
 static bool papi_eventset_was_created = false;
+
+static bool thread_was_registred_in_papi = false;
+
+static bool started_measuring = false;
 
 /* ------------------------------------------------------------ */
 /* Info and Test function.										*/
@@ -16,24 +20,72 @@ void info(void) {
 bool RM_library_init(void){
 	PRINT_FUNC_NAME;
 	bool result = true;
+	int i;
 
-	// sem_init(&mutex, 0, 1);      /* initialize mutex to 1 - binary semaphore */
-                                 /* second param = 0 - semaphore is local */
-
+	/*Create the structures to get measures. */
 	ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
 	ptr_measure->values = (long_long *) malloc(sizeof(long_long) * NUM_EVENTS);
 	ptr_measure->events = (int *) malloc(sizeof(int) * NUM_EVENTS);
 
-	ptr_measure->events[0] = PAPI_TOT_INS;
-	ptr_measure->events[1] = PAPI_TOT_CYC;
+	TRACE("Setting the defined code events to RM registry.\n");
+	for (i = 0; i < NUM_EVENTS; i++) {
+		ptr_measure->events[i] = FPO_event_codes[i];
+	}
 
-	// ptr_measure->initial_time = 0;
-	// ptr_measure->final_time = 0;
+	ptr_measure->initial_time = 0;
+	ptr_measure->final_time = 0;
 	ptr_measure->EventSet = PAPI_NULL;
 
 	papi_eventset_was_created = false;
+	thread_was_registred_in_papi = false;
+
+	if(!papi_library_initialized){
+  		TRACE("[Before] RM_start_counters: papi_library_initialized: %d\n",papi_library_initialized);
+  		result = RM_initialization_of_papi_libray_mode();
+  		TRACE("[After] RM_start_counters: %d, papi_library_initialized: %d\n", result, papi_library_initialized);
+  	}
 
 	return result;
+}
+/* ------------------------------------------------------------ */
+/* Register the thread in PAPI.												*/
+bool RM_register_papi_thread(){
+	PRINT_FUNC_NAME;
+	bool result = true;
+
+	TRACE("[%s] [Before] PAPI_register_thread.\n", __FUNCTION__);
+
+  	if((retval = PAPI_register_thread()) != PAPI_OK){
+        RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+        switch (retval){
+        	case PAPI_ENOMEM :
+        		TRACE("Space could not be allocated to store the new thread information.\n");
+        		break;
+			case PAPI_ESYS :
+				TRACE("A system or C library call failed inside PAPI, see the errno variable.\n");
+				break;
+			case PAPI_ECMP :
+				TRACE("Hardware counters for this thread could not be initialized.\n");
+				break;
+			default :
+				TRACE("PAPI_register_thread: Unknown error.\n");
+        }
+	}
+	else{
+		thread_was_registred_in_papi = true;
+	}
+
+	TRACE("[%s] [After] PAPI_register_thread.\n", __FUNCTION__);
+
+	if ((tid = PAPI_thread_id()) == (unsigned long int)-1){
+		TRACE("[RM_start_counters] PAPI_thread_id error.\n");
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	}
+	else {
+		TRACE("[RM_start_counters] Thread id is: %lu\n", tid);
+	}
+
+	return (retval == PAPI_OK);
 }
 
 /* ------------------------------------------------------------- */
@@ -78,14 +130,8 @@ bool RM_initialization_of_papi_libray_mode(){
 
 	TRACE("[After]: PAPI_library_init.\n");
 	
-	//if ((retval = PAPI_thread_init((unsigned long (*)(void)) (pthread_self()))) != PAPI_OK){
-	// if ((retval = PAPI_thread_init(&id)) != PAPI_OK){
-	// if((retval = PAPI_thread_init((unsigned long (*)(void))(pthread_self())) ) != PAPI_OK){
-
-
 	TRACE("[Before]: PAPI_thread_init.\n");
 
-	// if((retval = PAPI_thread_init((unsigned long (*)(void))(omp_get_thread_num))) != PAPI_OK){
 	if((retval = PAPI_thread_init((unsigned long (*)(void))(pthread_self))) != PAPI_OK){
 
         RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
@@ -97,10 +143,7 @@ bool RM_initialization_of_papi_libray_mode(){
 
 	TRACE("[After]: PAPI_thread_init: %lu\n", tid);
 
-	// __papi_init_counter_ids();
-    // __papi_select_counters();
-
-	papi_library_initialized = 1;
+	papi_library_initialized = true;
 
 	TRACE("RM_initialization_of_papi_libray_mode: %d\n", papi_library_initialized);
 
@@ -108,12 +151,45 @@ bool RM_initialization_of_papi_libray_mode(){
 }
 
 /* ------------------------------------------------------------ */
-/* Error handle to papi.								*/
-/*void RM_papi_handle_error(char* function_name, int n_error, int n_line){
+/* Print event info.											*/
+void RM_print_event_info(unsigned int event){
 	PRINT_FUNC_NAME;
 
-	TRACE("%s [%d]: PAPI error %d: %s\n", function_name, n_line, n_error, PAPI_strerror(n_error));
-}*/
+	PAPI_preset_info_t info;
+	/* Get details about event. */
+	if (PAPI_get_event_info(event, &info) != PAPI_OK) {
+		TRACE("[RM] No info about the event.\n");
+	}
+	else{
+		if (info.count > 0){
+			TRACE("[RM] This event is available on this hardware.\n");
+		}
+		if (info.flags & PAPI_DERIVED){
+			RACE("[RM] This event is a derived event on this hardware.\n");
+		}
+	}
+}
+/* ------------------------------------------------------------ */
+/* Check if available event.									*/
+bool RM_check_event_is_available(unsigned int event, bool print_it){
+	PRINT_FUNC_NAME;
+	int retval;
+	
+	/* Check to see if the event exists */
+	if((retval = PAPI_query_event (event)) == PAPI_OK){
+		PAPI_event_code_to_name(event, event_str);
+		TRACE("[RM] Event: %x - %s is available.\n", event, event_str);
+
+		if(print_it){
+			RM_print_event_info(event);
+		}
+	}
+	else{
+		TRACE("[RM] Event %x is not available.\n");
+	}	
+
+	return (retval == PAPI_OK);
+}
 
 /* ------------------------------------------------------------ */
 /* Print the counters and values.								*/
@@ -129,8 +205,49 @@ void RM_print_counters_values(void) {
 }
 
 /* ------------------------------------------------------------ */
+/* PAPI Status.													*/
+void RM_check_papi_status(){
+	PRINT_FUNC_NAME;
+	int retval;
+
+	int status = 0;
+	if((retval = PAPI_state(&ptr_measure->EventSet, &status)) != PAPI_OK){
+		switch (retval){
+			case PAPI_STOPPED :
+				TRACE("EventSet is stopped.\n");
+				break;
+			case PAPI_RUNNING :
+				TRACE("EventSet is running.\n");
+				break;
+			case PAPI_PAUSED :
+				TRACE("EventSet temporarily disabled by the library.\n"); 
+				break;
+			case PAPI_NOT_INIT :
+				TRACE("EventSet defined, but not initialized.\n");
+				break;
+    		case PAPI_OVERFLOWING :
+				TRACE("EventSet has overflowing enabled.\n");
+    			break;
+		    case PAPI_PROFILING :
+				TRACE("EventSet has profiling enabled.\n");
+		    	break;
+		    case PAPI_MULTIPLEXING :
+				TRACE("EventSet has multiplexing enabled.\n");
+		    	break;
+		    case PAPI_ACCUMULATING :
+				TRACE("reserved for future use.\n");
+		    	break;
+		    case PAPI_HWPROFILING :
+				TRACE("reserved for future use.\n");
+		    	break;
+		    defaul: TRACE("Undefined retval.\n");
+		} 
+	}    
+}
+
+/* ------------------------------------------------------------ */
 /* Create event set. 											*/
-void RM_create_event_set(){
+bool RM_create_event_set(){
 	PRINT_FUNC_NAME;
 	int i, retval;
 
@@ -142,26 +259,30 @@ void RM_create_event_set(){
     	RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
   	}
 
-	/* Add Total Instructions Executed to our EventSet */
-  	//if (PAPI_add_event(EventSet, PAPI_TOT_INS) != PAPI_OK)
-	//	TRACE("PAPI_add_event error PAPI_TOT_INS.\n");
-	
-	//if (PAPI_add_event(EventSet, PAPI_TOT_CYC) != PAPI_OK)
-	//	TRACE("PAPI_add_event error PAPI_TOT_CYC.\n");
-
 	/* Add events to EventSet */
   	char event_str[PAPI_MAX_STR_LEN];
 
 	for (i = 0; i < NUM_EVENTS; i++) {
-		retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i]);
 		PAPI_event_code_to_name(ptr_measure->events[i], event_str);
-		TRACE("[RM_start_counters] PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
-	    if(retval != PAPI_OK) {
-	      RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+		TRACE("[RM] Trying to add event: %x - %s.\n", ptr_measure->events[i], event_str);
+		if(RM_check_event_is_available(ptr_measure->events[i])){
+			retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i]);
+			PAPI_event_code_to_name(ptr_measure->events[i], event_str);
+			TRACE("[RM_start_counters] PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
+	    	if(retval != PAPI_OK) {
+	      		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	    	}
+	    }
+	    else{
+	    	TRACE("[RM] Event: %x - %s is not available in this hardware.\n", ptr_measure->events[i], event_str);
 	    }
 	}
 
-	papi_eventset_was_created = true;
+	papi_eventset_was_created = (retval == PAPI_OK);
+
+	RM_check_papi_status();
+
+	return papi_eventset_was_created;
 }
 
 /* ------------------------------------------------------------ */
@@ -181,65 +302,46 @@ bool RM_start_counters (void){
 	 * on Linux platforms. */
 
 	/* Initialize RM library. */
-	// sem_wait(&mutex);       /* down semaphore */
-
 	if(!papi_library_initialized){
   		TRACE("[Before] RM_start_counters: papi_library_initialized: %d\n",papi_library_initialized);
   		result = RM_initialization_of_papi_libray_mode();
   		TRACE("[After] RM_start_counters: %d, papi_library_initialized: %d\n", result, papi_library_initialized);
   	}
 
-  	// sem_post(&mutex);       /* up semaphore */
+  	/* Thread was registered. */
+  	if(!thread_was_registred_in_papi){
+  		TRACE("Trying to registry the thread in papi.\n");
+  		result = RM_register_papi_thread();
+  	}
 
-  	// sem_destroy(&mutex); 	/* destroy semaphore */
-
-  	TRACE("[%s] [Before] PAPI_register_thread.\n", __FUNCTION__);
-
-  	if((retval = PAPI_register_thread()) != PAPI_OK){
-        RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-        switch (retval){
-        	case PAPI_ENOMEM :
-        		TRACE("Space could not be allocated to store the new thread information.\n");
-        		break;
-			case PAPI_ESYS :
-				TRACE("A system or C library call failed inside PAPI, see the errno variable.\n");
-				break;
-			case PAPI_ECMP :
-				TRACE("Hardware counters for this thread could not be initialized.\n");
-				break;
-			default :
-				TRACE("PAPI_register_thread: Unknown error.\n");
-        }
-	}
-
-	TRACE("[%s] [After] PAPI_register_thread.\n", __FUNCTION__);
-
-	//while ((retval = PAPI_is_initialized()) != PAPI_LOW_LEVEL_INITED){
-	//	TRACE("Waiting PAPI initialization.\n");
-	//	// RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	//	exit(1);
-	//}
-
-	if ((tid = PAPI_thread_id()) == (unsigned long int)-1){
-		TRACE("[RM_start_counters] PAPI_thread_id error.\n");
-		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	}
-	else 
-		TRACE("[RM_start_counters] Thread id is: %lu\n", tid);
-
+  	/* Event set was created. */
 	if(!papi_eventset_was_created){
-		RM_create_event_set();
+		TRACE("Trying to create event set.\n");
+		result = RM_create_event_set();
 	}
+
+	/* Restart the counters. */
+	if ((retval = PAPI_reset(ptr_measure->EventSet)) != PAPI_OK) {
+		TRACE("PAPI_reset() counters error.\n");
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+
+		// PAPI_ESYS A system or C library call failed inside PAPI, see the errno variable.
+		// PAPI_ENOEVST The EventSet specified does not exist. 
+		// if (retval == PAPI_ECNFLCT) {
+	    //  TRACE("[RM_start_counters] PAPI error %d (%s): It is likely that you selected too many counters to monitor.\n",
+		//      retval, PAPI_strerror(retval));
+	    // }
+  	}
 
 	/* Start counting */
   	if ((retval = PAPI_start(ptr_measure->EventSet)) != PAPI_OK) {
-		TRACE("[RM_start_counters] PAPI_start() Starting counting error.\n");
+		TRACE("PAPI_start() Starting counting error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 
-		if (retval == PAPI_ECNFLCT) {
+		/*if (retval == PAPI_ECNFLCT) {
 	      TRACE("[RM_start_counters] PAPI error %d (%s): It is likely that you selected too many counters to monitor.\n",
 		      retval, PAPI_strerror(retval));
-	    }
+	    }*/
   	}
 
   	/* First measure. */
@@ -260,7 +362,9 @@ bool RM_start_counters (void){
 		TRACE("[RM_start_counters] PAPI_start() counting in final measure error.\n");
 	}
 
-	return (retval == PAPI_OK);
+	started_measuring = (retval == PAPI_OK);
+
+	return started_measuring;
 }
 
 /* ------------------------------------------------------------ */
@@ -271,22 +375,19 @@ bool RM_stop_counters(void){
 	int retval_stop, retval_read = PAPI_OK;
 
 	/* Stop counters and store results in values */
-	// int retval = PAPI_stop_counters(ptr_measure->values, NUM_EVENTS);
 	if ((retval_stop = PAPI_stop(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
-	//if ((retval_stop = PAPI_stop_counters(ptr_measure->values, NUM_EVENTS)) != PAPI_OK){
 		TRACE("Error on PAPI execution.\n");
 		RM_papi_handle_error(__FUNCTION__, retval_stop, __LINE__);
-		// exit(1);
 		switch (retval_stop){
-				case PAPI_EINVAL :
-					TRACE("One or more of the arguments is invalid.\n");
-					break;
-				case PAPI_ENOTRUN : 
-					TRACE("The EventSet is not started yet.\n");
-					break;
-				case PAPI_ENOEVST : 
-					TRACE("The EventSet has not been added yet.\n");
-					break;
+			case PAPI_EINVAL :
+				TRACE("One or more of the arguments is invalid.\n");
+				break;
+			case PAPI_ENOTRUN : 
+				TRACE("The EventSet is not started yet.\n");
+				break;
+			case PAPI_ENOEVST : 
+				TRACE("The EventSet has not been added yet.\n");
+				break;
 			default:
 				TRACE("Unknown Error.\n");
 		}
@@ -307,23 +408,57 @@ bool RM_stop_counters(void){
 		
 		TRACE("Wall clock cycles: \t\t\t%lld\n", ptr_measure->end_cycles - ptr_measure->start_cycles );
 		TRACE("Wall clock time in microseconds: \t%lld\n", ptr_measure->end_usec - ptr_measure->start_usec );
-		
-		/* Read the counters */
-	    //if (PAPI_read(ptr_measure->EventSet, ptr_measure->values) != PAPI_OK)
-	    //	TRACE("PAPI_read error reading counters.\n");
-
-		//TRACE("After reading counters:\n");
-		//RM_print_counters_values();
-
-	    /* Stop the counters */
-	    //if (PAPI_stop(ptr_measure->EventSet, ptr_measure->values) != PAPI_OK)
-	    //	TRACE("PAPI_read error stopping counters.\n");
 		 
 		TRACE("After stopping counters:\n");
 	    RM_print_counters_values();	
     }    	
 
 	return ((retval_stop == PAPI_OK) && (retval_read == PAPI_OK));
+}
+
+/* ------------------------------------------------------------ */
+/* Stop and accumulate.											*/
+bool RM_stop_and_accumulate(void){
+	PRINT_FUNC_NAME;
+	bool retval = false;
+
+	if ((retval = PAPI_accum_counters(ptr_measure->values, NUM_EVENTS)) != PAPI_OK){
+		TRACE("PAPI_accum_counters(...) error.\n");
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	}
+
+	return (retval == PAPI_OK);
+}
+
+/* ------------------------------------------------------------ */
+/* Record measures in intervals between start and stop.			*/
+bool RM_registry_measures (void){
+	PRINT_FUNC_NAME;
+	bool retval = false;
+
+	/* Stop and accumulate for >= second chunks. */
+	if(started_measuring){
+		if(RM_stop_and_accumulate()){
+			TRACE("[HOOKOMP]: Stop and Accumulate.\n");
+			retval = true;
+		}
+		else{
+			TRACE("Error calling RM_stop_and_accumulate.\n");
+			retval = false;
+		}
+	}
+
+	/* Start for the next chunk. */
+	if(RM_start_counters()){
+		TRACE("[HOOKOMP]: PAPI Counters Started.\n");
+		retval = true;
+	}
+	else {
+		TRACE("Error calling RM_start_counters.\n");
+		retval = false;
+	}
+
+	return retval;
 }
 
 /* ------------------------------------------------------------ */

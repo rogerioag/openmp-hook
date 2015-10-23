@@ -20,7 +20,7 @@ static long int number_of_blocked_threads = 0;
 
 static bool is_executing_measures_section = true;
 
-static bool started_measuring = false;
+// static bool started_measuring = false;
 
 static bool decided_by_offloading = false;
 
@@ -78,7 +78,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		/* Initialization of thread and measures section. */
 		registred_thread_executing_function_next = -1;
 		is_executing_measures_section = true;
-		started_measuring = false;
+		// started_measuring = false;
 
 		decided_by_offloading = false;
 		made_the_offloading = false;
@@ -190,7 +190,6 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 	}
 	else{
-
 		/* Verify if the thread is the thread registred to execute and get measures. */
 		if(registred_thread_executing_function_next == (long int) pthread_self()){
 			/* Execute only percentual of code. */
@@ -204,16 +203,10 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				executed_loop_iterations += (*iend - *istart);
 				TRACE("[HOOKOMP]: [After]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
 
-				/* PAPI Start the counters. */
-				if(!started_measuring){
-					if(RM_start_counters()){
-						TRACE("[HOOKOMP]: PAPI Counters Started.\n");
-					}
-					else {
-						TRACE("Error calling RM_start_counters from GOMP_single_start.\n");
-					}
-					started_measuring = true;
-				}
+				/* Starting the registry on RM library. Is necessary partial measures each chunk. 
+				Switching to do not get measures considering control code. */
+				RM_registry_measures();
+
 			}
 			else{ /* Decision about the offloading. */
 				TRACE("[HOOKOMP]: They were executed %ld iterations of %ld.\n", executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
@@ -251,7 +244,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 				}
 
-				started_measuring = false;
+				// started_measuring = false;
 
 				/* Release all blocked team threads. */
 				TRACE("[HOOKOMP]: Number of Blocked Threds: %ld.\n", number_of_blocked_threads);
