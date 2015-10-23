@@ -370,8 +370,7 @@ bool RM_start_counters (void){
 /* ------------------------------------------------------------ */
 /* Stop counters.												*/
 bool RM_stop_counters(void){
-	PRINT_FUNC_NAME;
-	
+	PRINT_FUNC_NAME;	
 	int retval_stop, retval_read = PAPI_OK;
 
 	/* Stop counters and store results in values */
