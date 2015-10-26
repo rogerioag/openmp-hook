@@ -282,6 +282,7 @@ bool RM_create_event_set(void){
 
 	/* Add events to EventSet */
   	char event_str[PAPI_MAX_STR_LEN];
+  	char event_str_test[PAPI_MAX_STR_LEN];
   	char error_str[PAPI_MAX_STR_LEN];
 
 	for (i = 0; i < NUM_EVENTS; i++) {
@@ -293,8 +294,8 @@ bool RM_create_event_set(void){
 				TRACE("Error in PAPI_add_event().\n");
 				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 
-
-				retval = PAPI_event_name_to_code("PAPI_DP_OPS", &native);
+				event_str_test = "PAPI_DP_OPS";
+				retval = PAPI_event_name_to_code(event_str_test, &native);
 				TRACE("Event with problem: %x.\n", native);
 
 				// PAPI_perror(retval, error_str, PAPI_MAX_STR_LEN);
