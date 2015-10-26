@@ -156,6 +156,12 @@ bool RM_initialization_of_papi_libray_mode(){
 
 	TRACE("[After]: PAPI_library_init. Value of papi_library_initialized: %d\n", papi_library_initialized);
 
+	/* Enable and initialize multiplex support */
+  	if ((retval = PAPI_multiplex_init()) != PAPI_OK){
+		TRACE("Error in initialization of multiplex mode.\n");
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	}
+
 	return (retval == PAPI_OK);
 }
 
