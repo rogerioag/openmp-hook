@@ -297,7 +297,7 @@ bool RM_create_event_set(void){
 
 	/* Convert the ''EventSet'' to a multiplexed event set */
 	TRACE("Convert the EventSet to a multiplexed event set.\n");
-	if ((retval = PAPI_set_multiplex(ptr_measure->EventSet))) != PAPI_OK){
+	if ((retval = PAPI_set_multiplex(ptr_measure->EventSet)) != PAPI_OK){
   		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
   	}
 
