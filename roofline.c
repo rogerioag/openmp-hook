@@ -276,7 +276,7 @@ bool RM_create_event_set(void){
 
 	/* Add events to EventSet */
   	char event_str[PAPI_MAX_STR_LEN];
-  	char *error_str;
+  	char error_str[PAPI_MAX_STR_LEN];
 
 	for (i = 0; i < NUM_EVENTS; i++) {
 		PAPI_event_code_to_name(ptr_measure->events[i], event_str);
