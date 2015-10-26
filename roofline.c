@@ -293,8 +293,8 @@ bool RM_create_event_set(void){
 				retval = PAPI_event_name_to_code("PAPI_DP_OPS", &native);
 				TRACE("Event with problem: %x.\n", native);
 
-				PAPI_perror(retval, error_str, PAPI_MAX_STR_LEN);
-  				TRACE("PAPI_error %d: %s.\n", retval, error_str);
+				// PAPI_perror(retval, error_str, PAPI_MAX_STR_LEN);
+  				// TRACE("PAPI_error %d: %s.\n", retval, error_str);
 
 			}
 			else{
