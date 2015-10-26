@@ -280,6 +280,31 @@ bool RM_create_event_set(void){
 
   	papi_eventset_was_created = (retval == PAPI_OK);
 
+  	/* Assign it to the CPU component */
+	TRACE("Assign it to the CPU component.\n");
+	if ((PAPI_assign_eventset_component(ptr_measure->EventSet, 0)) != PAPI_OK){
+  		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+  	}
+
+	/* Convert the ''EventSet'' to a multiplexed event set */
+	TRACE("Convert the EventSet to a multiplexed event set.\n");
+	if ((retval = PAPI_set_multiplex(ptr_measure->EventSet)) != PAPI_OK){
+		if ( retval == PAPI_ENOSUPP) {
+			TRACE("Multiplex not supported.\n");
+		}
+  		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+  	}
+
+  	retval = PAPI_get_multiplex(ptr_measure->EventSet);
+	if (retval > 0)
+		TRACE("This event set is ready for multiplexing.\n");
+	if (retval == 0) 
+		TRACE("This event set is not enabled for multiplexing.\n");
+	if (retval < 0) 
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	
+	papi_in_multiplexing_mode = (retval == 0);
+
 	/* Add events to EventSet */
   	char event_str[PAPI_MAX_STR_LEN];
   	char event_str_test[PAPI_MAX_STR_LEN];
@@ -303,22 +328,6 @@ bool RM_create_event_set(void){
 	    	TRACE("Event: %x - %s is not available in this hardware.\n", ptr_measure->events[i], event_str);
 	    }
 	}
-
-	/* Convert the ''EventSet'' to a multiplexed event set */
-	TRACE("Convert the EventSet to a multiplexed event set.\n");
-	if ((retval = PAPI_set_multiplex(ptr_measure->EventSet)) != PAPI_OK){
-  		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-  	}
-
-  	retval = PAPI_get_multiplex(ptr_measure->EventSet);
-	if (retval > 0)
-		TRACE("This event set is ready for multiplexing.\n");
-	if (retval == 0) 
-		TRACE("This event set is not enabled for multiplexing.\n");
-	if (retval < 0) 
-		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	
-	papi_in_multiplexing_mode = (retval == 0);
 
 	RM_check_papi_status();
 
