@@ -280,18 +280,26 @@ bool RM_create_event_set(void){
 	for (i = 0; i < NUM_EVENTS; i++) {
 		PAPI_event_code_to_name(ptr_measure->events[i], event_str);
 		TRACE("Trying to add event: %x - %s.\n", ptr_measure->events[i], event_str);
+		
 		if(RM_check_event_is_available(ptr_measure->events[i], true)){
-			retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i]);
-			PAPI_event_code_to_name(ptr_measure->events[i], event_str);
-			TRACE("PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
-	    	if(retval != PAPI_OK) {
-	      		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	    	}
+			if ((retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i])) != PAPI_OK){
+				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+			}
+			else{
+				PAPI_event_code_to_name(ptr_measure->events[i], event_str);
+				TRACE("PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
+			}			
 	    }
 	    else{
 	    	TRACE("Event: %x - %s is not available in this hardware.\n", ptr_measure->events[i], event_str);
 	    }
 	}
+
+	/* Convert the ''EventSet'' to a multiplexed event set */
+	TRACE("Convert the EventSet to a multiplexed event set.\n");
+	if ((retval = PAPI_set_multiplex(ptr_measure->EventSet))) != PAPI_OK){
+  		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+  	}
 
 	papi_eventset_was_created = (retval == PAPI_OK);
 
