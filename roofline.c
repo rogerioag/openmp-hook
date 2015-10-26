@@ -283,11 +283,12 @@ bool RM_create_event_set(void){
 		
 		if(RM_check_event_is_available(ptr_measure->events[i], true)){
 			if ((retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i])) != PAPI_OK){
+				TRACE("Error in PAPI_add_event().\n");
 				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 			}
 			else{
 				PAPI_event_code_to_name(ptr_measure->events[i], event_str);
-				TRACE("PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
+				TRACE("Event %x - %s was added.\n", ptr_measure->events[i], event_str);
 			}			
 	    }
 	    else{
