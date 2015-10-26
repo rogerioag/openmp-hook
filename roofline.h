@@ -20,7 +20,6 @@
 #define RM_papi_handle_error(function_name, n_error, n_line) \
   fprintf(stderr, "[RM_papi_handle_error] %s -> %s [line %d]: PAPI error %d: %s\n", __FILE__, function_name, n_line, n_error, PAPI_strerror(n_error));
 
-
 #define NUM_EVENTS 6
 
 /* Events need to Float Point Operations. */

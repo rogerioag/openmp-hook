@@ -276,6 +276,7 @@ bool RM_create_event_set(void){
 
 	/* Add events to EventSet */
   	char event_str[PAPI_MAX_STR_LEN];
+  	char error_str[PAPI_MAX_STR_LEN];
 
 	for (i = 0; i < NUM_EVENTS; i++) {
 		PAPI_event_code_to_name(ptr_measure->events[i], event_str);
@@ -285,6 +286,10 @@ bool RM_create_event_set(void){
 			if ((retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i])) != PAPI_OK){
 				TRACE("Error in PAPI_add_event().\n");
 				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+
+				PAPI_perror(retval, error_str, PAPI_MAX_STR_LEN);
+				fprintf(stderr,"PAPI_error %d: %s\n",retval,error_str);
+
 			}
 			else{
 				PAPI_event_code_to_name(ptr_measure->events[i], event_str);
