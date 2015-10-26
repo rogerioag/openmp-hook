@@ -266,6 +266,8 @@ bool RM_create_event_set(void){
 	PRINT_FUNC_NAME;
 	int i, retval;
 
+	int native = 0x0;
+
 	TRACE("Trying to create PAPI event set.\n");
 
 	/* Create an EventSet */
@@ -285,6 +287,10 @@ bool RM_create_event_set(void){
 		if(RM_check_event_is_available(ptr_measure->events[i], true)){
 			if ((retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i])) != PAPI_OK){
 				TRACE("Error in PAPI_add_event().\n");
+
+				retval = PAPI_event_name_to_code("PAPI_DP_OPS", &native);
+				TRACE("Event with problem: %x.\n", native);
+
 				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 
 				PAPI_perror(retval, error_str, PAPI_MAX_STR_LEN);
