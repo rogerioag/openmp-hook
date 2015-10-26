@@ -48,6 +48,8 @@ extern "C" {
 	/* PAPI */
 	bool RM_library_init(void);
 
+	bool RM_library_shutdown(void);
+
 	bool RM_initialization_of_papi_libray_mode(void);
 
 	// void RM_papi_handle_error(int n);

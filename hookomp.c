@@ -341,6 +341,11 @@ void HOOKOMP_end(void){
 	sem_destroy(&mutex_hookomp_init);
 	TRACE("[HOOKOMP] [After] Destroying the semaphores.\n");
 
+	/* Shutdown RM library. */
+	if(!RM_library_shutdown()){
+		TRACE("Error calling RM_library_shutdown() in %s.\n", __FUNCTION__);
+	}
+
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 }
 /* ------------------------------------------------------------- */
@@ -918,6 +923,8 @@ void GOMP_loop_end (void){
 	TRACE("[LIBGOMP] lib_GOMP_loop_end[%p]\n", (void* )lib_GOMP_loop_end);
 
 	lib_GOMP_loop_end();
+
+
 }
 /* ------------------------------------------------------------- */
 void GOMP_loop_end_nowait (void){
