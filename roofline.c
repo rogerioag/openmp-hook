@@ -303,7 +303,7 @@ bool RM_create_event_set(void){
 	if (retval < 0) 
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	
-	papi_in_multiplexing_mode = (retval == 0);
+	papi_in_multiplexing_mode = (retval > 0);
 
 	/* Add events to EventSet */
   	char event_str[PAPI_MAX_STR_LEN];
