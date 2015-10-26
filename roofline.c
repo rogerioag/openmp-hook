@@ -556,11 +556,17 @@ bool RM_library_shutdown(void){
 		TRACE("PAPI_unregister_thread error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
+	else{
+		TRACE("PAPI_unregister_thread OK.\n");
+	}
 
 	TRACE("Trying to clean up the event set.\n");
 	if ((retval = PAPI_cleanup_eventset(ptr_measure->EventSet)) != PAPI_OK){
 		TRACE("PAPI_cleanup_eventset error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	}
+	else{
+		TRACE("PAPI_cleanup_eventset OK.\n");
 	}
 
 	TRACE("Trying to destroy event set.\n");
