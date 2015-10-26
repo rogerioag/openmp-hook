@@ -319,9 +319,9 @@ bool RM_create_event_set(void){
 
   	retval = PAPI_get_multiplex(ptr_measure->EventSet);
 	if (retval > 0)
-		TRACE("This event set is ready for multiplexing.\n")
+		TRACE("This event set is ready for multiplexing.\n");
 	if (retval == 0) 
-		TRACE("This event set is not enabled for multiplexing.\n")
+		TRACE("This event set is not enabled for multiplexing.\n");
 	if (retval < 0) 
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	
