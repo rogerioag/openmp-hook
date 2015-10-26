@@ -68,6 +68,10 @@ extern "C" {
 	int RM_get_better_device_to_execution(void);
 
 	bool RM_decision_about_offloading(long *);
+
+	bool RM_register_papi_thread(void);
+
+	bool RM_create_event_set(void);
 	
 #ifdef __cplusplus
 }

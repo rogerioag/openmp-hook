@@ -62,7 +62,7 @@ bool RM_library_init(void){
 }
 /* ------------------------------------------------------------ */
 /* Register the thread in PAPI.												*/
-bool RM_register_papi_thread(){
+bool RM_register_papi_thread(void){
 	PRINT_FUNC_NAME;
 	bool result = true;
 	int retval;
@@ -256,7 +256,7 @@ void RM_check_papi_status(){
 
 /* ------------------------------------------------------------ */
 /* Create event set. 											*/
-bool RM_create_event_set(){
+bool RM_create_event_set(void){
 	PRINT_FUNC_NAME;
 	int i, retval;
 
