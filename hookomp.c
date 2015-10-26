@@ -297,7 +297,7 @@ void HOOKOMP_loop_end_nowait(void){
 		// Get counters and decide about the migration.
 		TRACE("[HOOKOMP]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
 
-		if(!RM_stop_counters()){
+		if(!RM_stop_measures()){
 			TRACE("Error GOMP_barrier: RM_stop_counters.\n");
 		}
 		else{
