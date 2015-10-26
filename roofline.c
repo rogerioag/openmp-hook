@@ -561,13 +561,13 @@ bool RM_library_shutdown(void){
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
 
-	if ((retval = PAPI_destroy_eventset(ptr_measure->EventSet)) != PAPI_OK){
+	if ((retval = PAPI_destroy_eventset(&ptr_measure->EventSet)) != PAPI_OK){
 		TRACE("PAPI_destroy_eventset error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
 
 	free(ptr_measure->events);
-	free(ptr_measure->values)
+	free(ptr_measure->values);
 	free(ptr_measure);
 
 	PAPI_shutdown();
