@@ -23,7 +23,7 @@
 #define NUM_EVENTS 6
 
 /* Events need to Float Point Operations. */
-int FPO_event_codes[NUM_EVENTS] = {PAPI_FP_INS, PAPI_FP_OPS, PAPI_SP_OPS, PAPI_DP_OPS, PAPI_VEC_SP, PAPI_VEC_DP};
+int FPO_event_codes[NUM_EVENTS] = {PAPI_DP_OPS, PAPI_FP_INS, PAPI_FP_OPS, PAPI_SP_OPS, PAPI_VEC_SP, PAPI_VEC_DP};
 
 
 /* Struct to registry performance counters and time. */

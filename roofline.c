@@ -293,14 +293,6 @@ bool RM_create_event_set(void){
 			if ((retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i])) != PAPI_OK){
 				TRACE("Error in PAPI_add_event().\n");
 				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-
-				event_str_test = "PAPI_DP_OPS";
-				retval = PAPI_event_name_to_code(event_str_test, &native);
-				TRACE("Event with problem: %x.\n", native);
-
-				// PAPI_perror(retval, error_str, PAPI_MAX_STR_LEN);
-  				// TRACE("PAPI_error %d: %s.\n", retval, error_str);
-
 			}
 			else{
 				PAPI_event_code_to_name(ptr_measure->events[i], event_str);
