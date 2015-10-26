@@ -4,6 +4,7 @@ static pthread_key_t papi_thread_info_key;
 static bool papi_library_initialized = false;
 
 static bool papi_eventset_was_created = false;
+static bool papi_in_multiplexing_mode = false;
 
 static bool thread_was_registred_in_papi = false;
 
@@ -37,6 +38,7 @@ bool RM_library_init(void){
 	ptr_measure->EventSet = PAPI_NULL;
 
 	papi_eventset_was_created = false;
+	papi_in_multiplexing_mode = false;
 	thread_was_registred_in_papi = false;
 
 	TRACE("PAPI Library is initialized: %d\n", papi_library_initialized);
@@ -276,6 +278,8 @@ bool RM_create_event_set(void){
     	RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
   	}
 
+  	papi_eventset_was_created = (retval == PAPI_OK);
+
 	/* Add events to EventSet */
   	char event_str[PAPI_MAX_STR_LEN];
   	char error_str[PAPI_MAX_STR_LEN];
@@ -313,11 +317,19 @@ bool RM_create_event_set(void){
   		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
   	}
 
-	papi_eventset_was_created = (retval == PAPI_OK);
+  	retval = PAPI_get_multiplex(ptr_measure->EventSet);
+	if (retval > 0)
+		TRACE("This event set is ready for multiplexing.\n")
+	if (retval == 0) 
+		TRACE("This event set is not enabled for multiplexing.\n")
+	if (retval < 0) 
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	
+	papi_in_multiplexing_mode = (retval == 0);
 
 	RM_check_papi_status();
 
-	return papi_eventset_was_created;
+	return papi_eventset_was_created && papi_in_multiplexing_mode;
 }
 
 /* ------------------------------------------------------------ */
