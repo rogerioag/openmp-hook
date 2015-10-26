@@ -107,7 +107,7 @@ bool RM_register_papi_thread(void){
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
 	else {
-		TRACE("[RM_start_counters] Thread id is: %lu\n", tid);
+		TRACE("Thread id is: %lu\n", tid);
 	}
 
 	return (retval == PAPI_OK);
@@ -131,8 +131,11 @@ bool RM_initialization_of_papi_libray_mode(){
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
 
-	retval = PAPI_is_initialized();
-	switch (retval){
+	while ((retval = PAPI_is_initialized()) != PAPI_LOW_LEVEL_INITED){
+		TRACE("Waiting PAPI initialization.\n");
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	}
+	/*switch (retval){
 		case PAPI_NOT_INITED :
 			TRACE("Library has not been initialized.\n");
 			break;
@@ -147,13 +150,9 @@ bool RM_initialization_of_papi_libray_mode(){
 			break;
 		default:
 			TRACE("Unknown Error.\n");
-	}
+	}*/
 
-	while ((retval = PAPI_is_initialized()) != PAPI_LOW_LEVEL_INITED){
-		TRACE("Waiting PAPI initialization.\n");
-	}
-
-	papi_library_initialized = true;
+	papi_library_initialized = (retval == PAPI_LOW_LEVEL_INITED);
 
 	TRACE("[After]: PAPI_library_init. Value of papi_library_initialized: %d\n", papi_library_initialized);
 
@@ -168,11 +167,11 @@ void RM_print_event_info(unsigned int event){
 	PAPI_event_info_t info;
 	/* Get details about event. */
 	if (PAPI_get_event_info(event, &info) != PAPI_OK) {
-		TRACE("[RM] No info about the event.\n");
+		TRACE("No info about the event.\n");
 	}
 	else{
 		if (info.count > 0){
-			TRACE("[RM] This event is available on this hardware.\n");
+			TRACE("This event is available on this hardware.\n");
 		}
 		// More infos.
 	}
@@ -187,14 +186,14 @@ bool RM_check_event_is_available(unsigned int event, bool print_it){
 	/* Check to see if the event exists */
 	if((retval = PAPI_query_event (event)) == PAPI_OK){
 		PAPI_event_code_to_name(event, event_str);
-		TRACE("[RM] Event: %x - %s is available.\n", event, event_str);
+		TRACE("Event: %x - %s is available.\n", event, event_str);
 
 		if(print_it){
 			RM_print_event_info(event);
 		}
 	}
 	else{
-		TRACE("[RM] Event %x is not available.\n");
+		TRACE("Event %x is not available.\n");
 	}	
 
 	return (retval == PAPI_OK);
@@ -260,11 +259,11 @@ bool RM_create_event_set(void){
 	PRINT_FUNC_NAME;
 	int i, retval;
 
-	TRACE("Creating PAPI event set.\n");
+	TRACE("Trying to create PAPI event set.\n");
 
 	/* Create an EventSet */
   	if ((retval = PAPI_create_eventset(&ptr_measure->EventSet)) != PAPI_OK){
-    	TRACE("[RM_start_counters] PAPI_create_eventset error.\n");
+    	TRACE("PAPI_create_eventset error.\n");
     	RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
   	}
 
@@ -273,17 +272,17 @@ bool RM_create_event_set(void){
 
 	for (i = 0; i < NUM_EVENTS; i++) {
 		PAPI_event_code_to_name(ptr_measure->events[i], event_str);
-		TRACE("[RM] Trying to add event: %x - %s.\n", ptr_measure->events[i], event_str);
+		TRACE("Trying to add event: %x - %s.\n", ptr_measure->events[i], event_str);
 		if(RM_check_event_is_available(ptr_measure->events[i], true)){
 			retval = PAPI_add_event(ptr_measure->EventSet, ptr_measure->events[i]);
 			PAPI_event_code_to_name(ptr_measure->events[i], event_str);
-			TRACE("[RM_start_counters] PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
+			TRACE("PAPI_add_event: %x - %s.\n", ptr_measure->events[i], event_str);
 	    	if(retval != PAPI_OK) {
 	      		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	    	}
 	    }
 	    else{
-	    	TRACE("[RM] Event: %x - %s is not available in this hardware.\n", ptr_measure->events[i], event_str);
+	    	TRACE("Event: %x - %s is not available in this hardware.\n", ptr_measure->events[i], event_str);
 	    }
 	}
 
