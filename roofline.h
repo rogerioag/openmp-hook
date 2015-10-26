@@ -57,9 +57,9 @@ extern "C" {
 
 	bool RM_start_counters(void);
 
-	bool RM_stop_counters(void);
-
 	bool RM_registry_measures (void);
+
+	bool RM_stop_measures(void);	
 
 	void RM_print_event_info(unsigned int event);
 

@@ -217,8 +217,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				// Get counters and decide about the migration.
 				TRACE("[HOOKOMP]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
 
-				if(!RM_stop_counters()){
-					TRACE("Error GOMP_barrier: RM_stop_counters.\n");
+				if(!RM_stop_measures()){
+					TRACE("[HOOKOMP]: Error calling RM_stop_measures.\n");
 				}
 				else{
 					// A decisão de migrar é aqui.

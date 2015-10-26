@@ -39,11 +39,24 @@ bool RM_library_init(void){
 	papi_eventset_was_created = false;
 	thread_was_registred_in_papi = false;
 
+	TRACE("PAPI Library is initialized: %d\n", papi_library_initialized);
 	if(!papi_library_initialized){
-  		TRACE("[Before] RM_start_counters: papi_library_initialized: %d\n",papi_library_initialized);
+  		TRACE("[Before] Value of papi_library_initialized: %d\n",papi_library_initialized);
   		result = RM_initialization_of_papi_libray_mode();
-  		TRACE("[After] RM_start_counters: %d, papi_library_initialized: %d\n", result, papi_library_initialized);
+  		TRACE("[After] Value of result: %d, papi_library_initialized: %d\n", result, papi_library_initialized);
   	}
+
+  	/* Thread was registered. */
+  	if(!thread_was_registred_in_papi){
+  		TRACE("Trying to registry the thread in papi.\n");
+  		result = RM_register_papi_thread();
+  	}
+
+  	/* Event set was created. */
+	if(!papi_eventset_was_created){
+		TRACE("Trying to create event set.\n");
+		result = RM_create_event_set();
+	}
 
 	return result;
 }
@@ -140,11 +153,9 @@ bool RM_initialization_of_papi_libray_mode(){
 		TRACE("Waiting PAPI initialization.\n");
 	}
 
-	TRACE("[After]: PAPI_library_init.\n");
-	
 	papi_library_initialized = true;
 
-	TRACE("RM_initialization_of_papi_libray_mode: %d\n", papi_library_initialized);
+	TRACE("[After]: PAPI_library_init. Value of papi_library_initialized: %d\n", papi_library_initialized);
 
 	return (retval == PAPI_OK);
 }
@@ -367,13 +378,13 @@ bool RM_start_counters (void){
 
 /* ------------------------------------------------------------ */
 /* Stop counters.												*/
-bool RM_stop_counters(void){
+bool RM_stop_measures(void){
 	PRINT_FUNC_NAME;	
 	int retval_stop, retval_read = PAPI_OK;
 
 	/* Stop counters and store results in values */
 	if ((retval_stop = PAPI_stop(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK){
-		TRACE("Error on PAPI execution.\n");
+		TRACE("Error calling PAPI_stop.\n");
 		RM_papi_handle_error(__FUNCTION__, retval_stop, __LINE__);
 		switch (retval_stop){
 			case PAPI_EINVAL :
