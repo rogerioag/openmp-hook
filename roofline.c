@@ -573,11 +573,11 @@ bool RM_library_shutdown(void){
 		TRACE("PAPI_cleanup_eventset OK.\n");
 	}*/
 
-	TRACE("Trying to destroy event set.\n");
+	/*TRACE("Trying to destroy event set.\n");
 	if ((retval = PAPI_destroy_eventset(&ptr_measure->EventSet)) != PAPI_OK){
 		TRACE("PAPI_destroy_eventset error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	}
+	}*/
 
 	TRACE("Trying to free allocated structures.\n");
 	free(ptr_measure->events);
