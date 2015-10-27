@@ -574,7 +574,7 @@ bool RM_library_shutdown(void){
 	}*/
 
 	TRACE("Trying to destroy event set.\n");
-	if ((retval = PAPI_destroy_eventset(ptr_measure->EventSet)) != PAPI_OK){
+	if ((retval = PAPI_destroy_eventset(&ptr_measure->EventSet)) != PAPI_OK){
 		TRACE("PAPI_destroy_eventset error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
