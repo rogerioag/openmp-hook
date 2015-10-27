@@ -105,7 +105,7 @@ bool RM_register_papi_thread(void){
 	TRACE("[%s] [After] PAPI_register_thread.\n", __FUNCTION__);
 
 	if ((tid = PAPI_thread_id()) == (unsigned long int)-1){
-		TRACE("[RM_start_counters] PAPI_thread_id error.\n");
+		TRACE("PAPI_thread_id error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
 	else {
@@ -372,6 +372,7 @@ bool RM_start_counters (void){
 	}
 
 	/* Restart the counters. */
+	TRACE("Resetting the counters.\n");
 	if ((retval = PAPI_reset(ptr_measure->EventSet)) != PAPI_OK) {
 		TRACE("PAPI_reset() counters error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
@@ -385,6 +386,7 @@ bool RM_start_counters (void){
   	}
 
 	/* Start counting */
+	TRACE("Start counting.\n");
   	if ((retval = PAPI_start(ptr_measure->EventSet)) != PAPI_OK) {
 		TRACE("PAPI_start() Starting counting error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
@@ -396,6 +398,7 @@ bool RM_start_counters (void){
   	}
 
   	/* First measure. */
+  	TRACE("Stop counting to first measures.\n");
   	if ((retval = PAPI_stop(ptr_measure->EventSet, ptr_measure->values)) != PAPI_OK) {
   		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	    TRACE("[RM_start_counters] PAPI_stop() counting first measure error.\n");
@@ -408,6 +411,7 @@ bool RM_start_counters (void){
 	ptr_measure->start_usec = PAPI_get_real_usec();
 
 	/* Final measure. */
+	TRACE("Start counting for measures.\n");
 	if ((retval = PAPI_start(ptr_measure->EventSet)) != PAPI_OK) {
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 		TRACE("[RM_start_counters] PAPI_start() counting in final measure error.\n");
@@ -560,17 +564,17 @@ bool RM_library_shutdown(void){
 		TRACE("PAPI_unregister_thread OK.\n");
 	}
 
-	TRACE("Trying to clean up the event set.\n");
+	/*TRACE("Trying to clean up the event set.\n");
 	if ((retval = PAPI_cleanup_eventset(ptr_measure->EventSet)) != PAPI_OK){
 		TRACE("PAPI_cleanup_eventset error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
 	else{
 		TRACE("PAPI_cleanup_eventset OK.\n");
-	}
+	}*/
 
 	TRACE("Trying to destroy event set.\n");
-	if ((retval = PAPI_destroy_eventset(&ptr_measure->EventSet)) != PAPI_OK){
+	if ((retval = PAPI_destroy_eventset(ptr_measure->EventSet)) != PAPI_OK){
 		TRACE("PAPI_destroy_eventset error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
