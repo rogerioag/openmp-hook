@@ -474,7 +474,7 @@ bool RM_stop_measures(void){
 /* Stop and accumulate.											*/
 bool RM_stop_and_accumulate(void){
 	PRINT_FUNC_NAME;
-	bool retval = false;
+	int retval = 0;
 
 	if ((retval = PAPI_accum_counters(ptr_measure->values, NUM_EVENTS)) != PAPI_OK){
 		TRACE("PAPI_accum_counters(...) error.\n");
@@ -491,9 +491,10 @@ bool RM_registry_measures (void){
 	bool retval = false;
 
 	/* Stop and accumulate for >= second chunks. */
+	TRACE("[HOOKOMP]: Verifying if started the measuring.\n");
 	if(started_measuring){
 		if(RM_stop_and_accumulate()){
-			TRACE("[HOOKOMP]: Stop and Accumulate.\n");
+			TRACE("[RM]: Stop and Accumulate.\n");
 			retval = true;
 		}
 		else{
@@ -504,7 +505,7 @@ bool RM_registry_measures (void){
 
 	/* Start for the next chunk. */
 	if(RM_start_counters()){
-		TRACE("[HOOKOMP]: PAPI Counters Started.\n");
+		TRACE("[RM]: PAPI Counters Started.\n");
 		retval = true;
 	}
 	else {
