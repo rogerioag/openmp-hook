@@ -29,7 +29,7 @@ bool RM_library_init(void){
 	ptr_measure->events = (int *) malloc(sizeof(int) * NUM_EVENTS);
 
 	TRACE("Setting the defined code events to RM registry.\n");	
-	memcpy(ptr_measure->events, FPOps_event_codes, NUM_FPO_EVENTS * sizeof(int));
+	memcpy(ptr_measure->events, FPO_event_codes, NUM_FPO_EVENTS * sizeof(int));
 	memcpy(ptr_measure->events + NUM_FPO_EVENTS, MEM_event_codes, NUM_MEM_EVENTS * sizeof(int));
 	memcpy(ptr_measure->events + NUM_FPO_EVENTS + NUM_MEM_EVENTS, TIME_event_codes, NUM_TIME_EVENTS * sizeof(int));
 	
