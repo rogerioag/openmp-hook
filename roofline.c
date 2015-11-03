@@ -166,7 +166,7 @@ bool RM_initialization_of_papi_libray_mode(){
 	}
 
 	TRACE("Setting debugging.\n");
-	if (PAPI_set_debug(PAPI_VERB_ECONT) != PAPI_OK ){
+	if (PAPI_set_debug(PAPI_VERB_ESTOP) != PAPI_OK ){
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
     }
 
