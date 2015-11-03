@@ -42,13 +42,13 @@ int TIME_event_codes[NUM_TIME_EVENTS] = {UNHALTED_CORE_CYCLES, UNHALTED_REFERENC
 /* Struct to registry performance counters and time. */
 struct _papi_thread_record {
   int *events;
-  long_long *values;
+  long long *values;
   int EventSet = PAPI_NULL;
   struct timeval initial_time;
   struct timeval final_time;
 
-  long_long start_cycles, end_cycles;
-  long_long start_usec, end_usec;
+  long long start_cycles, end_cycles;
+  long long start_usec, end_usec;
 };
 
 struct _papi_thread_record *ptr_measure = NULL;
