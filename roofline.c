@@ -485,7 +485,18 @@ bool RM_stop_and_accumulate(void){
 
 	TRACE("Before PAPI accum counters: %d\n", NUM_EVENTS);
 
-	if ((retval = PAPI_accum_counters(ptr_measure->values, NUM_EVENTS)) != PAPI_OK){
+	int num_hwcntrs = 0;
+        
+  	TRACE("Retrieving the number of PAPI events.\n");
+  	if ((num_hwcntrs = PAPI_num_counters()) != PAPI_OK){
+  		TRACE("PAPI_num_counters() error.\n");
+		RM_papi_handle_error(__FUNCTION__, num_hwcntrs, __LINE__);
+  	}
+
+  	TRACE("Before PAPI accum counters: %d\n", num_hwcntrs);
+
+	TRACE("Trying accumulate counters.\n");
+	if ((retval = PAPI_accum_counters(ptr_measure->values, num_hwcntrs)) != PAPI_OK){
 		TRACE("PAPI_accum_counters(...) error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 
