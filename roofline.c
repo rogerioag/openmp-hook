@@ -17,7 +17,7 @@ void info(void) {
 }
 
 /* ------------------------------------------------------------ */
-/* Init library.												*/
+/* Init library. 												*/
 bool RM_library_init(void){
 	PRINT_FUNC_NAME;
 	bool result = true;
@@ -28,11 +28,11 @@ bool RM_library_init(void){
 	ptr_measure->values = (long_long *) malloc(sizeof(long_long) * NUM_EVENTS);
 	ptr_measure->events = (int *) malloc(sizeof(int) * NUM_EVENTS);
 
-	TRACE("Setting the defined code events to RM registry.\n");
-	for (i = 0; i < NUM_EVENTS; i++) {
-		ptr_measure->events[i] = FPO_event_codes[i];
-	}
-
+	TRACE("Setting the defined code events to RM registry.\n");	
+	memcpy(ptr_measure->events, FPOps_event_codes, NUM_FPO_EVENTS * sizeof(int));
+	memcpy(ptr_measure->events + NUM_FPO_EVENTS, MEM_event_codes, NUM_MEM_EVENTS * sizeof(int));
+	memcpy(ptr_measure->events + NUM_FPO_EVENTS + NUM_MEM_EVENTS, TIME_event_codes, NUM_TIME_EVENTS * sizeof(int));
+	
 	ptr_measure->initial_time = (struct timeval){0};
 	ptr_measure->final_time = (struct timeval){0};
 	ptr_measure->EventSet = PAPI_NULL;

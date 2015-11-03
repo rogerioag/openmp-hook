@@ -20,11 +20,21 @@
 #define RM_papi_handle_error(function_name, n_error, n_line) \
   fprintf(stderr, "[RM_papi_handle_error] %s -> %s [line %d]: PAPI error %d: %s\n", __FILE__, function_name, n_line, n_error, PAPI_strerror(n_error));
 
-#define NUM_EVENTS 6
+#define NUM_FPO_EVENTS 1
+#define NUM_MEM_EVENTS 2
+#define NUM_TIME_EVENTS 2
+
+#define NUM_EVENTS (NUM_FPO_EVENTS + NUM_MEM_EVENTS + NUM_TIME_EVENTS)
+
 
 /* Events need to Float Point Operations. */
-int FPO_event_codes[NUM_EVENTS] = {PAPI_FP_INS, PAPI_FP_OPS, PAPI_SP_OPS, PAPI_DP_OPS, PAPI_VEC_SP, PAPI_VEC_DP};
-
+// int FPO_event_codes[NUM_FPO_EVENTS] = {PAPI_FP_INS, PAPI_FP_OPS, PAPI_SP_OPS, PAPI_DP_OPS, PAPI_VEC_SP, PAPI_VEC_DP};
+int FPO_event_codes[NUM_FPO_EVENTS] = {PAPI_DP_OPS};
+/* Events for Memory. */
+int MEM_event_codes[NUM_MEM_EVENTS] = {PAPI_L3_TCR, PAPI_L3_TCW};
+/* Time Events. */
+int TIME_event_codes[NUM_TIME_EVENTS] = {UNHALTED_CORE_CYCLES, UNHALTED_REFERENCE_CYCLES};
+// Events more PAPI_get_real_cyc() that work with time stamp counter (tsc), getting the value of rdtsc.
 
 /* Struct to registry performance counters and time. */
 struct _papi_thread_record {
