@@ -14,9 +14,11 @@
 #define N 4096
 #endif
 // Entrada e saida.
-float h_a[N];
-float h_b[N];
-float h_c[N];
+DATA_TYPE double
+
+DATA_TYPE h_a[N];
+DATA_TYPE h_b[N];
+DATA_TYPE h_c[N];
 
 void init_array() {
   fprintf(stdout, "Inicializando os arrays.\n");
@@ -39,13 +41,13 @@ void print_array() {
 void check_result(){
   // Soma dos elementos do array C e divide por N, o valor deve ser igual a 1.
   int i;
-  float sum = 0;
+  DATA_TYPE sum = 0;
   fprintf(stdout, "Thread [%02d]: Verificando o resultado.\n", omp_get_thread_num());  
   
   for (i = 0; i < N; i++) {
     sum += h_c[i];
   }
-  fprintf(stdout, "Thread [%02d]: Resultado Final: (%f, %f)\n", omp_get_thread_num(), sum, (float)(sum / (float)N));
+  fprintf(stdout, "Thread [%02d]: Resultado Final: (%f, %f)\n", omp_get_thread_num(), sum, (DATA_TYPE)(sum / (DATA_TYPE)N));
 }
 
 int main() {
