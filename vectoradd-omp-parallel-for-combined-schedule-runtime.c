@@ -14,7 +14,7 @@
 #define N 4096
 #endif
 // Entrada e saida.
-DATA_TYPE double
+#define DATA_TYPE double
 
 DATA_TYPE h_a[N];
 DATA_TYPE h_b[N];
