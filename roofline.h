@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <sys/time.h>
+#include <string.h>
 #include <pthread.h>
 #include <semaphore.h>
 #include <papi.h>
