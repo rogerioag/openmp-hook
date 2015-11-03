@@ -205,8 +205,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 				/* Starting the registry on RM library. Is necessary partial measures each chunk. 
 				Switching to do not get measures considering control code. */
-				RM_registry_measures();
-
+				RM_registry_measures();	
 			}
 			else{ /* Decision about the offloading. */
 				TRACE("[HOOKOMP]: They were executed %ld iterations of %ld.\n", executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
