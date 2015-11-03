@@ -25,8 +25,10 @@ bool RM_library_init(void){
 
 	/*Create the structures to get measures. */
 	ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
-	ptr_measure->values = (long_long *) malloc(sizeof(long_long) * NUM_EVENTS);
+	ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENTS);
 	ptr_measure->events = (int *) malloc(sizeof(int) * NUM_EVENTS);
+
+	TRACE("Size of values: %d %d.\n", sizeof(long long), sizeof(ptr_measure->values));
 
 	TRACE("Setting the defined code events to RM registry.\n");	
 	memcpy(ptr_measure->events, FPO_event_codes, NUM_FPO_EVENTS * sizeof(int));
