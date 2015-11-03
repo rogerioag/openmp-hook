@@ -481,6 +481,8 @@ bool RM_stop_and_accumulate(void){
 	PRINT_FUNC_NAME;
 	int retval = 0;
 
+	TRACE("Before PAPI accum counters: %d\n", NUM_EVENTS);
+
 	if ((retval = PAPI_accum_counters(ptr_measure->values, NUM_EVENTS)) != PAPI_OK){
 		TRACE("PAPI_accum_counters(...) error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
