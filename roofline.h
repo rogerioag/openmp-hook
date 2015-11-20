@@ -14,46 +14,69 @@
 
 #include "debug.h"
 
-/*#define RM_papi_handle_error(n) \
-  fprintf(stderr, "%s: PAPI error %d: %s\n",__FUNCTION__, n,PAPI_strerror(n))
- */
-
 #define RM_papi_handle_error(function_name, n_error, n_line) \
   fprintf(stderr, "[RM_papi_handle_error] %s -> %s [line %d]: PAPI error %d: %s\n", __FILE__, function_name, n_line, n_error, PAPI_strerror(n_error));
 
-#define NUM_FPO_EVENTS 1
-#define NUM_MEM_EVENTS 2
-#define NUM_TIME_EVENTS 2
-
-#define NUM_EVENTS (NUM_FPO_EVENTS + NUM_MEM_EVENTS + NUM_TIME_EVENTS)
-
-/* Events need to Float Point Operations. */
-// int FPO_event_codes[NUM_FPO_EVENTS] = {PAPI_FP_INS, PAPI_FP_OPS, PAPI_SP_OPS, PAPI_DP_OPS, PAPI_VEC_SP, PAPI_VEC_DP};
-int FPO_event_codes[NUM_FPO_EVENTS] = {PAPI_DP_OPS};
-/* Events for Memory. */
-int MEM_event_codes[NUM_MEM_EVENTS] = {PAPI_L3_TCR, PAPI_L3_TCW};
-/* Time Events. */
-#define UNHALTED_CORE_CYCLES 0x40000000
-#define UNHALTED_REFERENCE_CYCLES 0x40000001
-int TIME_event_codes[NUM_TIME_EVENTS] = {UNHALTED_CORE_CYCLES, UNHALTED_REFERENCE_CYCLES};
+#define NUM_EVENT_SETS 4
+#define NUM_MAX_EVENTS 5
 
 // Events more PAPI_get_real_cyc() that work with time stamp counter (tsc), getting the value of rdtsc.
 
-/* Struct to registry performance counters and time. */
-struct _papi_thread_record {
-  int *events;
-  long long *values;
-  int EventSet = PAPI_NULL;
-  struct timeval initial_time;
-  struct timeval final_time;
-
-  long long start_cycles, end_cycles;
-  long long start_usec, end_usec;
+/* Names of Events. */
+static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = { 
+/* L3_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L3_TCR", "PAPI_L3_TCW", NULL },
+/* L2_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L2_TCR", "PAPI_L2_TCW", NULL },
+/* L1_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L1_TCR", "PAPI_L1_TCW", NULL },
+/* FPO_event_names */{ "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_DP_OPS", 		 NULL, NULL }
 };
 
+/* Struct to registry performance counters and time. */
+struct _papi_thread_record {
+  /* Shared EventSet. Each set of events is copied to this to get measures. */
+  int EventSet = PAPI_NULL;
+
+  struct timeval initial_time;
+  struct timeval final_time;
+  long long start_cycles, end_cycles;
+  long long start_usec, end_usec;
+
+  /* Values. */
+  long long *values;
+  /*long long values[NUM_EVENT_SETS][NUM_MAX_EVENTS] = {  
+   	{0, 0, 0, 0, 0},
+   	{0, 0, 0, 0, 0},
+   	{0, 0, 0, 0, 0},
+   	{0, 0, 0, 0, 0}
+  };*/
+  
+  /* Current EventSet in measuring. */
+  static int current_eventset = 0;
+
+  static int quant_intervals[NUM_EVENT_SETS] = {  
+  /* FPO_event_names */0,
+  /* L1_event_names */ 0,
+  /* L2_event_names */ 0,
+  /* L3_event_names */ 0
+  };
+};
+
+/* Registry for thread. */
 struct _papi_thread_record *ptr_measure = NULL;
 
-sem_t mutex;
+/* For read values that are discarded*/
+long long discarded_values = 0;
+
+static pthread_key_t papi_thread_info_key;
+
+static bool papi_library_initialized = false;
+
+static bool papi_eventset_was_created = false;
+// static bool papi_in_multiplexing_mode = false;
+
+static bool thread_was_registred_in_papi = false;
+
+/* Control of measuring. */
+static bool started_measuring = false;
 
 #ifdef __cplusplus 
 extern "C" {
