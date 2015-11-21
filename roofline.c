@@ -345,7 +345,7 @@ bool RM_create_event_set(void){
 
 	RM_check_papi_status();
 
-	TRACE("Leaving the RM_create_event_set: papi_eventset_was_created %d && papi_in_multiplexing_mode %d.\n", papi_eventset_was_created, papi_in_multiplexing_mode);
+	TRACE("Leaving the RM_create_event_set: papi_eventset_was_created %d.\n", papi_eventset_was_created);
 
 	return papi_eventset_was_created;
 }
