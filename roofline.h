@@ -66,7 +66,7 @@ struct _papi_thread_record *ptr_measure = NULL;
 /* For read values that are discarded*/
 long long discarded_values = 0;
 
-static pthread_key_tj papi_thread_info_key;
+static pthread_key_t papi_thread_info_key;
 
 static bool papi_library_initialized = false;
 
