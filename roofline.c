@@ -17,9 +17,9 @@ bool RM_library_init(void){
 	ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
 	// ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS * NUM_MAX_EVENTS);
 
-	memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
+	// memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
 
-	memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
+	// memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
 
   	/*ptr_measure->quant_intervals[NUM_EVENT_SETS] = { 0, 0, 0, 0 };*/
 
