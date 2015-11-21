@@ -229,8 +229,8 @@ void RM_print_counters_values(void) {
 		}
 		printf("\n");*/
 		if(i == 0)
-			printf("%s;%s;%s;%s;%s;%s;%s;\n", "measures", "chunk_size", event_names[i][0], event_names[i][1], event_names[i][2], event_names[i][3], event_names[i][4]);
-		printf("%lld;%lld;%lld;%lld;%lld;%lld;%lld;\n", ptr_measure->quant_intervals[i], chunk_size, ptr_measure->values[i][0], ptr_measure->values[i][1], ptr_measure->values[i][2], ptr_measure->values[i][3], ptr_measure->values[i][4]);
+			printf("%s;%s;%s;%s;%s;%s;%s;\n", "measures", event_names[i][0], event_names[i][1], event_names[i][2], event_names[i][3], event_names[i][4]);
+		printf("%lld;%lld;%lld;%lld;%lld;%lld;%lld;\n", ptr_measure->quant_intervals[i], ptr_measure->values[i][0], ptr_measure->values[i][1], ptr_measure->values[i][2], ptr_measure->values[i][3], ptr_measure->values[i][4]);
 	}
 }
 
