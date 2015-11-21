@@ -17,7 +17,22 @@ bool RM_library_init(void){
 	ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
 	// ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS * NUM_MAX_EVENTS);
 
-	memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
+	// memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
+
+	ptr_measure-> values[NUM_EVENT_SETS][NUM_MAX_EVENTS] = 
+		{0, 0, 0, 0, 0},
+   		{0, 0, 0, 0, 0},
+   		{0, 0, 0, 0, 0},
+   		{0, 0, 0, 0, 0}
+  	};
+  
+  	ptr_measure->quant_intervals[NUM_EVENT_SETS] = {  
+  		/* FPO_event_names */0,
+  		/* L1_event_names */ 0,
+  		/* L2_event_names */ 0,
+  		/* L3_event_names */ 0
+  	};
+
 
 	// TRACE("Size of values: %d %d %lld %lld %lld %lld %lld.\n", sizeof(long long), sizeof(ptr_measure->values), ptr_measure->values[0], ptr_measure->values[1], ptr_measure->values[2], ptr_measure->values[3], ptr_measure->values[4]);
 	RM_print_counters_values();

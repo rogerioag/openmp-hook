@@ -42,22 +42,13 @@ struct _papi_thread_record {
 
   /* Values. */
   // long long *values;
-  long long values[NUM_EVENT_SETS][NUM_MAX_EVENTS] = {  
-   	{0, 0, 0, 0, 0},
-   	{0, 0, 0, 0, 0},
-   	{0, 0, 0, 0, 0},
-   	{0, 0, 0, 0, 0}
-  };
+  long long values[NUM_EVENT_SETS][NUM_MAX_EVENTS];
   
   /* Current EventSet in measuring. */
   static int current_eventset = 0;
 
-  static int quant_intervals[NUM_EVENT_SETS] = {  
-  /* FPO_event_names */0,
-  /* L1_event_names */ 0,
-  /* L2_event_names */ 0,
-  /* L3_event_names */ 0
-  };
+  /* Quantity of measured intervals to EventSet. */
+  static int quant_intervals[NUM_EVENT_SETS];
 };
 
 /* Registry for thread. */
