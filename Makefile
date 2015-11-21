@@ -15,7 +15,7 @@ libroofline: roofline.o
 
 # Step 1: Compiling with Position Independent Code
 hookomp.o: hookomp.c
-	${CXX} $(OPTIONS) -c -Werror -fpic hookomp.c
+	${CXX} $(OPTIONS) -c -Wno-write-strings -fpic hookomp.c
 
 # Step 2: Creating a shared library from an object file
 libhookomp: hookomp.o
