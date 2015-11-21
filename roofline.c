@@ -524,7 +524,7 @@ double RM_get_operational_intensity(void){
 
 	double oi = 0.0;
 
-	oi = ptr_measure->values[0] / 1000;
+	oi = ptr_measure->values[3][0] / 1000;
 
 	return oi;
 }
