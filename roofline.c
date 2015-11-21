@@ -21,9 +21,9 @@ bool RM_library_init(void){
 
 	memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
 
-  
   	/*ptr_measure->quant_intervals[NUM_EVENT_SETS] = { 0, 0, 0, 0 };*/
 
+  	ptr_measure->current_eventset = 0;
 
 	// TRACE("Size of values: %d %d %lld %lld %lld %lld %lld.\n", sizeof(long long), sizeof(ptr_measure->values), ptr_measure->values[0], ptr_measure->values[1], ptr_measure->values[2], ptr_measure->values[3], ptr_measure->values[4]);
 	RM_print_counters_values();
