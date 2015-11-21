@@ -227,16 +227,16 @@ void RM_print_counters_values(void) {
 		TRACE("Event: %x- %s : %lld\n", ptr_measure->events[i], event_str, ptr_measure->values[i]);
 	}*/
 
-	printf("Final Values:\n");
+	TRACE("Final Values:\n");
 	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
-		/*printf("# Measures: %d.\n", quant_intervals[i]);
+		/*TRACE("# Measures: %d.\n", quant_intervals[i]);
 		for ( j = 0; event_names[i][j] != NULL; j++ ) {
-			printf("%s: %lld\n", event_names[i][j], values[i][j]);
+			TRACE("%s: %lld\n", event_names[i][j], values[i][j]);
 		}
-		printf("\n");*/
+		TRACE("\n");*/
 		if(i == 0)
-			printf("%s;%s;%s;%s;%s;%s;%s;\n", "measures", event_names[i][0], event_names[i][1], event_names[i][2], event_names[i][3], event_names[i][4]);
-		printf("%lld;%lld;%lld;%lld;%lld;%lld;%lld;\n", ptr_measure->quant_intervals[i], ptr_measure->values[i][0], ptr_measure->values[i][1], ptr_measure->values[i][2], ptr_measure->values[i][3], ptr_measure->values[i][4]);
+			TRACE("%s;%s;%s;%s;%s;%s;%s;\n", "measures", event_names[i][0], event_names[i][1], event_names[i][2], event_names[i][3], event_names[i][4]);
+		TRACE("%lld;%lld;%lld;%lld;%lld;%lld;%lld;\n", ptr_measure->quant_intervals[i], ptr_measure->values[i][0], ptr_measure->values[i][1], ptr_measure->values[i][2], ptr_measure->values[i][3], ptr_measure->values[i][4]);
 	}
 }
 
@@ -383,11 +383,11 @@ bool RM_start_counters (void){
 		result = RM_create_event_set();
 	}
 
-	printf("EventSet: %d\n", ptr_measure->current_eventset);
+	TRACE("EventSet: %d\n", ptr_measure->current_eventset);
 	for ( j = 0; event_names[ptr_measure->current_eventset][j] != NULL; j++ ) {
-		printf("Adding[%s].\n", event_names[ptr_measure->current_eventset][j] );
+		TRACE("Adding[%s].\n", event_names[ptr_measure->current_eventset][j] );
   		if ((retval = PAPI_add_named_event( ptr_measure->EventSet, event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){+
-			printf("PAPI_add_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
+			TRACE("PAPI_add_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
 		}
 	}
 
@@ -462,17 +462,17 @@ bool RM_stop_and_accumulate(void){
 	TRACE("Wall clock time in microseconds: \t%lld\n", ptr_measure->end_usec - ptr_measure->start_usec );
 		 
 	/* Stop de measures. */
-	printf("Stopping the counters.\n");
+	TRACE("Stopping the counters.\n");
 	if ((retval = PAPI_stop(ptr_measure->EventSet, &discarded_values)) != PAPI_OK){
 		TRACE("PAPI_stop error: %d %s\n", retval, PAPI_strerror(retval));
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
 
-	printf("Removing events of EventSet: %d\n", ptr_measure->current_eventset);
+	TRACE("Removing events of EventSet: %d\n", ptr_measure->current_eventset);
 	for ( j = 0; event_names[ptr_measure->current_eventset][j] != NULL; j++ ) {
-		printf("Removing[%s].\n", event_names[ptr_measure->current_eventset][j] );
+		TRACE("Removing[%s].\n", event_names[ptr_measure->current_eventset][j] );
   		if ((retval = PAPI_remove_named_event(ptr_measure->EventSet, event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){
-			printf("PAPI_remove_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
+			TRACE("PAPI_remove_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
 		}
 	}
 
