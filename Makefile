@@ -6,7 +6,7 @@ all: clean info libroofline libhookomp main
 
 # Step 1: Compiling with Position Independent Code
 roofline.o: roofline.c
-	${CXX} $(OPTIONS) -c -Werror -fpic roofline.c
+	${CXX} $(OPTIONS) -c -Wno-write-strings -fpic roofline.c
 
 # Step 2: Creating a shared library from an object file
 libroofline: roofline.o
