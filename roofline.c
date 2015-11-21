@@ -124,7 +124,7 @@ bool RM_initialization_of_papi_libray_mode(){
 	int retval;
 	pthread_key_create(&papi_thread_info_key, NULL );
 
-	TRACE("pthread_key_create: %lld.\n", papi_thread_info_key);
+	// TRACE("pthread_key_create: %lld.\n", papi_thread_info_key);
 
 	TRACE("[Before]: Calling PAPI_library_init().\n");
 	if ((retval = PAPI_library_init(PAPI_VER_CURRENT)) != PAPI_VER_CURRENT){
