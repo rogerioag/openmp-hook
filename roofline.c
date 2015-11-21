@@ -576,7 +576,6 @@ bool RM_library_shutdown(void){
 	}*/
 
 	TRACE("Trying to free allocated structures.\n");
-	free(ptr_measure->events);
 	free(ptr_measure->values);
 	free(ptr_measure);
 
