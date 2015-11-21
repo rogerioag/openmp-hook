@@ -89,7 +89,7 @@ extern "C" {
 
 	bool RM_registry_measures (void);
 
-	bool RM_stop_measures(void);	
+	bool RM_stop_and_accumulate(void)	
 
 	void RM_print_event_info(unsigned int event);
 
