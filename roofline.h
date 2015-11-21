@@ -11,6 +11,8 @@
 #include <semaphore.h>
 #include <papi.h>
 #include <omp.h>
+#include <unistd.h>
+#include <stdbool.h>
 
 #include "debug.h"
 
