@@ -41,13 +41,13 @@ struct _papi_thread_record {
   long long start_usec, end_usec;
 
   /* Values. */
-  long long *values;
-  /*long long values[NUM_EVENT_SETS][NUM_MAX_EVENTS] = {  
+  // long long *values;
+  long long values[NUM_EVENT_SETS][NUM_MAX_EVENTS] = {  
    	{0, 0, 0, 0, 0},
    	{0, 0, 0, 0, 0},
    	{0, 0, 0, 0, 0},
    	{0, 0, 0, 0, 0}
-  };*/
+  };
   
   /* Current EventSet in measuring. */
   static int current_eventset = 0;
