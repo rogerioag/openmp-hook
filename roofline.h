@@ -109,6 +109,8 @@ extern "C" {
 	bool RM_register_papi_thread(void);
 
 	bool RM_create_event_set(void);
+
+	void RM_print_counters_values(void);
 	
 #ifdef __cplusplus
 }
