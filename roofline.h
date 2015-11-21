@@ -47,10 +47,10 @@ struct _papi_thread_record {
   long long values[NUM_EVENT_SETS][NUM_MAX_EVENTS];
   
   /* Current EventSet in measuring. */
-  static int current_eventset;
+  int current_eventset;
 
   /* Quantity of measured intervals to EventSet. */
-  static int quant_intervals[NUM_EVENT_SETS];
+  int quant_intervals[NUM_EVENT_SETS];
 };
 
 /* Registry for thread. */
