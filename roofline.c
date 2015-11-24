@@ -257,20 +257,20 @@ void RM_print_counters_values(void) {
 		if(i == 0){
 			// TRACE("%s;%s;%s;%s;%s;%s;%s;\n", "measures", event_names[i][0], event_names[i][1], event_names[i][2], event_names[i][3], event_names[i][4]);
 			TRACE("%s;%s;%s;%s;%s;%s;%s;\n", "measures", 
-				(event_names[i][0] != NULL ? event_names[i][0] : "") , 
-				(event_names[i][1] != NULL ? event_names[i][1] : ""), 
-				(event_names[i][2] != NULL ? event_names[i][2] : ""), 
-				(event_names[i][3] != NULL ? event_names[i][3] : ""), 
-				(event_names[i][4] != NULL ? event_names[i][4] : ""));
+				((event_names[i][0] != NULL) ? event_names[i][0] : "") , 
+				((event_names[i][1] != NULL) ? event_names[i][1] : ""), 
+				((event_names[i][2] != NULL) ? event_names[i][2] : ""), 
+				((event_names[i][3] != NULL) ? event_names[i][3] : ""), 
+				((event_names[i][4] != NULL) ? event_names[i][4] : ""));
 		}
 		// TRACE("%lld;%lld;%lld;%lld;%lld;%lld;%lld;\n", ptr_measure->quant_intervals[i], ptr_measure->values[i * NUM_MAX_EVENTS + 0], ptr_measure->values[i * NUM_MAX_EVENTS + 1], ptr_measure->values[i * NUM_MAX_EVENTS + 2], ptr_measure->values[i * NUM_MAX_EVENTS + 3], ptr_measure->values[i * NUM_MAX_EVENTS + 4]);
 		TRACE("%lld;%lld;%lld;%lld;%lld;%lld;%lld;\n", 
 			ptr_measure->quant_intervals[i], 
-			(event_names[i][0] != NULL ? ptr_measure->values[i * NUM_MAX_EVENTS + 0] : ""), 
-			(event_names[i][1] != NULL ? ptr_measure->values[i * NUM_MAX_EVENTS + 1] : ""),
-			(event_names[i][2] != NULL ? ptr_measure->values[i * NUM_MAX_EVENTS + 2] : ""),
-			(event_names[i][3] != NULL ? ptr_measure->values[i * NUM_MAX_EVENTS + 3] : ""),
-			(event_names[i][4] != NULL ? ptr_measure->values[i * NUM_MAX_EVENTS + 4] : ""));
+			((event_names[i][0] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 0] : ""), 
+			((event_names[i][1] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 1] : ""),
+			((event_names[i][2] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 2] : ""),
+			((event_names[i][3] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 3] : ""),
+			((event_names[i][4] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 4] : ""));
 	}
 }
 
