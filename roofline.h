@@ -24,6 +24,12 @@
 
 // Events more PAPI_get_real_cyc() that work with time stamp counter (tsc), getting the value of rdtsc.
 
+/* Indexes to define the position of values. */
+#define IDX_LLC 0
+#define IDX_L2 1
+#define IDX_L1 2
+#define IDX_FPO 3
+
 /* Names of Events. */
 static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = { 
 /* L3_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L3_TCR", "PAPI_L3_TCW", NULL },
@@ -51,6 +57,11 @@ struct _papi_thread_record {
 
   /* Quantity of measured intervals to EventSet. */
   int quant_intervals[NUM_EVENT_SETS];
+
+  /* Aditional parameters. */
+  long long total_of_iterations;
+  long long executed_loop_iterations;
+  long long chunk_size;
 };
 
 /* Registry for thread. */
@@ -104,6 +115,8 @@ extern "C" {
 	bool RM_create_event_set(void);
 
 	void RM_print_counters_values(void);
+
+	void RM_set_aditional_parameters(long long, long long, long long);
 	
 #ifdef __cplusplus
 }

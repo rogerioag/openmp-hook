@@ -220,6 +220,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					TRACE("[HOOKOMP]: Error calling RM_stop_measures.\n");
 				}
 				else{
+					// N: total of iterations, Number of executed iterations (percentual), last chunk_size.
+					RM_set_aditional_parameters(total_of_iterations, executed_loop_iterations, (*iend - *istart));
 					// A decisão de migrar é aqui.
 					if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
 						/* Launch apropriated function. */
@@ -286,7 +288,6 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 /* ------------------------------------------------------------- */
 void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
-
 
 	long better_device = 0;
 

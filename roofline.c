@@ -37,6 +37,11 @@ bool RM_library_init(void){
 	ptr_measure->final_time = (struct timeval){0};
 	ptr_measure->EventSet = PAPI_NULL;
 
+	/* Aditional parameters. */
+	total_of_iterations = 0;
+  	executed_loop_iterations = 0;
+ 	chunk_size = 0;
+
 	papi_eventset_was_created = false;
 	// papi_in_multiplexing_mode = false;
 	thread_was_registred_in_papi = false;
@@ -516,17 +521,107 @@ bool RM_registry_measures (void){
 
 	return retval;
 }
+/* ------------------------------------------------------------ */
+/* Aditional parameters definition.							
+ * N: total of iterations, 
+ * executed_iterations: Number of executed iterations (percentual)
+ * chunk_size: last chunk_size.
+ */
+ void RM_set_aditional_parameters(long long total_of_iterations, long long executed_loop_iterations, long long chunk_size) {
+ 	PRINT_FUNC_NAME;
+
+ 	ptr_measure->total_of_iterations = total_of_iterations;
+  	ptr_measure->executed_loop_iterations = executed_loop_iterations;
+  	ptr_measure->chunk_size = chunk_size;
+
+  	TRACE("Total of iterations: %ldd, executed_iterations: %lld, chunk_size: %lld.\n", ptr_measure->total_of_iterations, ptr_measure->executed_loop_iterations, ptr_measure->chunk_size);
+ }
 
 /* ------------------------------------------------------------ */
 /* Calculate the Operational Intensity.							*/
+/* Indices to storage structures.
+ * IDX_LLC 0
+ * IDX_L2  1
+ * IDX_L1  2
+ * IDX_FPO 3
+ *
+ * long long values[NUM_EVENT_SETS][NUM_MAX_EVENTS] 
+ * {0, 0, 0, 0, 0}
+ * {0, 0, 0, 0, 0}
+ * {0, 0, 0, 0, 0}
+ * {0, 0, 0, 0, 0}
+ *
+ * quant_intervals[NUM_EVENT_SETS]
+ * FPO_event_names 0,
+ * L1_event_names  0,
+ * L2_event_names  0,
+ * L3_event_names  0
+ */
+
+// #define TOTAL_OF_CHUNKS (ptr_measure->total_of_iterations / ptr_measure->chunk_size)
+long long total_of_chunks() {
+	return (ptr_measure->total_of_iterations / ptr_measure->chunk_size);
+}
+
+// #define MEASURED_CHUNKS (ptr_measure->quant_intervals[0] + ptr_measure->quant_intervals[1] + ptr_measure->quant_intervals[2] + ptr_measure->quant_intervals[3])
+long long measured_chunks(){
+	return (ptr_measure->quant_intervals[0] + 
+			ptr_measure->quant_intervals[1] + 
+			ptr_measure->quant_intervals[2] + 
+			ptr_measure->quant_intervals[3]);
+}
+
+double measured(int i, int j){
+	return (ptr_measure->values[i][j] / ptr_measure->quant_intervals[i]);
+}
+
+double measured_percentual(int i, int j){
+	return (measured(i,j) * measured_chunks());
+}
+
+double estimated(int i, int j){
+	return (measured(i,j) * total_of_chunks());
+}
+
+long long work(){
+	return estimated(IDX_FPO, 2);
+}
+
+long long Qr(int i){
+	return estimated(i, 2);
+}
+
+long long Qw(int i){
+	return estimated(i, 3);
+}
+
+long long Q(int i){
+	return (Qr(i) + Qw(i));
+}
+
+long long Q(){
+	return (Q(IDX_LLC) + Q(IDX_L2) + Q(IDX_L1));
+}
+
 double RM_get_operational_intensity(void){
 	PRINT_FUNC_NAME;
 
-	double oi = 0.0;
+	// Operational intensity.
+	double I = 0.0;
+	// Work.
+	long long W = 0;
+	// Memory traffic.
+	long long Q = 0;
 
-	oi = ptr_measure->values[3][0] / 1000;
+	// W.
+	W = work();
 
-	return oi;
+	// Q = Q_LLC + Q_L2 + Q_L1.
+	Q = Q();
+
+	I = W / Q;
+
+	return I;
 }
 
 /* ------------------------------------------------------------ */
