@@ -628,14 +628,14 @@ double work(){
 
 double Qr(int i){
 	PRINT_FUNC_NAME;
-	double qr = estimated(i, 2);
+	double qr = estimated(i, 2) * CACHE_LINE_SIZE;
 	TRACE("Qr: %f.\n", qr);
 	return qr;
 }
 
 double Qw(int i){
 	PRINT_FUNC_NAME;
-	double qw = estimated(i, 3);
+	double qw = estimated(i, 3) * CACHE_LINE_SIZE;
 	TRACE("Qw: %f.\n", qw);
 	return qw;
 }
