@@ -34,7 +34,7 @@ bool RM_library_init(void){
 
   	TRACE("values initialization.\n");
   	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
-  		TRACE("# intervals: %ld", ptr_measure->quant_intervals[i]);
+  		TRACE("# intervals [%d]: %ld", i, ptr_measure->quant_intervals[i]);
 		for ( j = 0; event_names[i][j] != NULL; j++ ) {
 			ptr_measure->values[i][j] = 0;
 			TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i][j]);
