@@ -601,55 +601,57 @@ double measured(int i, int j){
 	TRACE("# intervals: %ld.\n", ptr_measure->quant_intervals[i]);
 
 	double measure = (double) (((double) ptr_measure->values[i * NUM_MAX_EVENTS + j]) / ((double) ptr_measure->quant_intervals[i]));
-	TRACE("measured: %ld.\n", measured);
+	TRACE("measured: %f.\n", measured);
 	return measure;
 }
 
 double measured_percentual(int i, int j){
 	PRINT_FUNC_NAME;
 	double measure = (measured(i,j) * measured_chunks());
-	TRACE("measured percentual: %ld.\n", measure);
+	TRACE("measured percentual: %f.\n", measure);
 	return measure;
 }
 
 double estimated(int i, int j){
 	PRINT_FUNC_NAME;
 	double estimative = (measured(i,j) * total_of_chunks());
-	TRACE("estimative: %g.\n", estimative);
+	TRACE("estimative: %f.\n", estimative);
 	return estimative;
 }
 
 double work(){
 	PRINT_FUNC_NAME;
 	double w = estimated(IDX_FPO, 2);
-	TRACE("work: %g.\n", w);
+	TRACE("work: %f.\n", w);
 	return w;
 }
 
 double Qr(int i){
 	PRINT_FUNC_NAME;
 	double qr = estimated(i, 2);
-	TRACE("Qr: %g.\n", qr);
+	TRACE("Qr: %f.\n", qr);
 	return qr;
 }
 
 double Qw(int i){
 	PRINT_FUNC_NAME;
 	double qw = estimated(i, 3);
-	TRACE("Qw: %g.\n", qw);
+	TRACE("Qw: %f.\n", qw);
 	return qw;
 }
 
 double Q_level(int i){
 	PRINT_FUNC_NAME;
 	double qlevel = (Qr(i) + Qw(i));
-	TRACE("Q_level: %g.\n", qlevel);
+	TRACE("Q_level: %f.\n", qlevel);
 	return qlevel;
 }
 
 double Q_total(){
 	PRINT_FUNC_NAME;
-	return (Q_level(IDX_LLC) + Q_level(IDX_L2) + Q_level(IDX_L1));
+	double qtotal = (Q_level(IDX_LLC) + Q_level(IDX_L2) + Q_level(IDX_L1));
+	TRACE("Q_total: %f.\n", qtotal);
+	return qtotal;
 }
 
 double RM_get_operational_intensity(void){
@@ -658,19 +660,21 @@ double RM_get_operational_intensity(void){
 	// Operational intensity.
 	double I = 0.0;
 	// Work.
-	long long W = 0;
+	double W = 0.0;
 	// Memory traffic.
-	long long Q = 0;
+	double Q = 0.0;
 
 	// W.
 	W = work();
-	TRACE("W: %ld\n", W);
+	TRACE("W: %f\n", W);
 
 	// Q = Q_LLC + Q_L2 + Q_L1.
 	Q = Q_total();
-	TRACE("Q: %ld\n", Q);
+	TRACE("Q: %f\n", Q);
 
 	I =  (double) W / Q;
+
+	TRACE("I: %f\n", I);	
 
 	return I;
 }
