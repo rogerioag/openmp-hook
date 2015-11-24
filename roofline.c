@@ -11,7 +11,7 @@ void info(void) {
 bool RM_library_init(void){
 	PRINT_FUNC_NAME;
 	bool result = true;
-	int i;
+	int i, j;
 
 	/*Create the structures to get measures. */
 	ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
