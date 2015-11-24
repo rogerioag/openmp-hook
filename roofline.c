@@ -31,7 +31,7 @@ bool RM_library_init(void){
   	ptr_measure->quant_intervals[3] = 0;
 
   	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
-		for ( j = 0; ptr_measure->event_names[i][j] != NULL; j++ ) {
+		for ( j = 0; event_names[i][j] != NULL; j++ ) {
 			ptr_measure->values[i][j] = 0;
 		}
 	}
