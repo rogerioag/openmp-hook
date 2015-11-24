@@ -560,46 +560,74 @@ bool RM_registry_measures (void){
 
 // #define TOTAL_OF_CHUNKS (ptr_measure->total_of_iterations / ptr_measure->chunk_size)
 long long total_of_chunks() {
-	return (ptr_measure->total_of_iterations / ptr_measure->chunk_size);
+	PRINT_FUNC_NAME;
+	long long total_chunks = (ptr_measure->total_of_iterations / ptr_measure->chunk_size);
+	TRACE("total of chunks: %ld.\n", total_chunks);
+	return total_chunks;
 }
 
 // #define MEASURED_CHUNKS (ptr_measure->quant_intervals[0] + ptr_measure->quant_intervals[1] + ptr_measure->quant_intervals[2] + ptr_measure->quant_intervals[3])
 long long measured_chunks(){
-	return (ptr_measure->quant_intervals[0] + 
+	PRINT_FUNC_NAME;
+	long long measured_chunks = (ptr_measure->quant_intervals[0] + 
 			ptr_measure->quant_intervals[1] + 
 			ptr_measure->quant_intervals[2] + 
 			ptr_measure->quant_intervals[3]);
+	TRACE("measured chunks: %ld.\n", measured_chunks);
+	return measured_chunks;
 }
 
 double measured(int i, int j){
-	return (ptr_measure->values[i][j] / ptr_measure->quant_intervals[i]);
+	PRINT_FUNC_NAME;
+	double measure = (double) (ptr_measure->values[i][j] / ptr_measure->quant_intervals[i]);
+	TRACE("measured chunks: %ld.\n", measured);
+	return measure;
 }
 
 double measured_percentual(int i, int j){
-	return (measured(i,j) * measured_chunks());
+	PRINT_FUNC_NAME;
+	double measure = (measured(i,j) * measured_chunks());
+	TRACE("measured percentual: %ld.\n", measure);
+	return measure;
 }
 
 double estimated(int i, int j){
-	return (measured(i,j) * total_of_chunks());
+	PRINT_FUNC_NAME;
+	double estimative = (measured(i,j) * total_of_chunks());
+	TRACE("estimative: %g.\n", estimative);
+	return estimative;
 }
 
-long long work(){
-	return estimated(IDX_FPO, 2);
+double work(){
+	PRINT_FUNC_NAME;
+	double w = estimated(IDX_FPO, 2);
+	TRACE("work: %g.\n", w);
+	return w;
 }
 
-long long Qr(int i){
-	return estimated(i, 2);
+double Qr(int i){
+	PRINT_FUNC_NAME;
+	double qr = estimated(i, 2);
+	TRACE("Qr: %g.\n", qr);
+	return qr;
 }
 
-long long Qw(int i){
-	return estimated(i, 3);
+double Qw(int i){
+	PRINT_FUNC_NAME;
+	double qw = estimated(i, 3);
+	TRACE("Qw: %g.\n", qw);
+	return qw;
 }
 
-long long Q_level(int i){
-	return (Qr(i) + Qw(i));
+double Q_level(int i){
+	PRINT_FUNC_NAME;
+	double qlevel = (Qr(i) + Qw(i));
+	TRACE("Q_level: %g.\n", qlevel);
+	return qlevel;
 }
 
-long long Q_total(){
+double Q_total(){
+	PRINT_FUNC_NAME;
 	return (Q_level(IDX_LLC) + Q_level(IDX_L2) + Q_level(IDX_L1));
 }
 
