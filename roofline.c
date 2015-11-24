@@ -38,9 +38,9 @@ bool RM_library_init(void){
 	ptr_measure->EventSet = PAPI_NULL;
 
 	/* Aditional parameters. */
-	total_of_iterations = 0;
-  	executed_loop_iterations = 0;
- 	chunk_size = 0;
+	ptr_measure->total_of_iterations = 0;
+  	ptr_measure->executed_loop_iterations = 0;
+ 	ptr_measure->chunk_size = 0;
 
 	papi_eventset_was_created = false;
 	// papi_in_multiplexing_mode = false;
