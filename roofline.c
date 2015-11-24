@@ -607,6 +607,7 @@ double measured(int i, int j){
 
 double measured_percentual(int i, int j){
 	PRINT_FUNC_NAME;
+	
 	double measure = (measured(i,j) * measured_chunks());
 	TRACE("measured percentual: %ld.\n", measure);
 	return measure;
