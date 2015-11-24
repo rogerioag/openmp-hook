@@ -15,22 +15,19 @@ bool RM_library_init(void){
 
 	/*Create the structures to get measures. */
 	ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
-	// ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS * NUM_MAX_EVENTS);
+	ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS * NUM_MAX_EVENTS);
 
-	// memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
+	ptr_measure->quant_intervals = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS);
+
+	memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
+
+	memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
 
 	// memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
 
   	/*ptr_measure->quant_intervals[NUM_EVENT_SETS] = { 0, 0, 0, 0 };*/
 
   	ptr_measure->current_eventset = 0;
-
-  	TRACE("quant_intervals initialization.\n");
-
-  	ptr_measure->quant_intervals[0] = 0;
-  	ptr_measure->quant_intervals[1] = 0;
-  	ptr_measure->quant_intervals[2] = 0;
-  	ptr_measure->quant_intervals[3] = 0;
 
   	TRACE("values initialization.\n");
   	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {

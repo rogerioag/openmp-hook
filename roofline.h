@@ -49,14 +49,15 @@ struct _papi_thread_record {
   long long start_usec, end_usec;
 
   /* Values. */
-  // long long *values;
-  static long long values[NUM_EVENT_SETS][NUM_MAX_EVENTS];
+  long long *values;
+  // long long values[NUM_EVENT_SETS][NUM_MAX_EVENTS];
   
   /* Current EventSet in measuring. */
   int current_eventset;
 
   /* Quantity of measured intervals to EventSet. */
-  int quant_intervals[NUM_EVENT_SETS];
+  // int quant_intervals[NUM_EVENT_SETS];
+  long long *quant_intervals;
 
   /* Aditional parameters. */
   long long total_of_iterations;
