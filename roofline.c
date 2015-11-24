@@ -488,8 +488,6 @@ bool RM_stop_and_accumulate(void){
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
 
-	RM_print_counters_values();
-
 	TRACE("Removing events of EventSet: %d\n", ptr_measure->current_eventset);
 	for ( j = 0; event_names[ptr_measure->current_eventset][j] != NULL; j++ ) {
 		TRACE("Removing[%s].\n", event_names[ptr_measure->current_eventset][j] );
@@ -499,6 +497,8 @@ bool RM_stop_and_accumulate(void){
 	}
 
 	ptr_measure->quant_intervals[ptr_measure->current_eventset] = ptr_measure->quant_intervals[ptr_measure->current_eventset] + 1;
+
+	RM_print_counters_values();
 
 	ptr_measure->current_eventset = ((ptr_measure->current_eventset + 1) % NUM_EVENT_SETS);
 
