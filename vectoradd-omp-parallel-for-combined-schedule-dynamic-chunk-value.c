@@ -11,7 +11,7 @@
 
 // Size of vectors.
 #ifndef N
-#define N 1024
+#define N 4096
 #endif
 // Entrada e saida.
 float h_a[N];
@@ -54,7 +54,7 @@ int main() {
 
   // int chunk_size = N / omp_get_num_procs();
 
-  #pragma omp parallel for num_threads (4) schedule (dynamic, 1)
+  #pragma omp parallel for num_threads (4) schedule (dynamic, 32)
   for (i = 0; i < N; i++) {
     h_c[i] = h_a[i] + h_b[i];
   }
