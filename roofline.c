@@ -615,9 +615,11 @@ double RM_get_operational_intensity(void){
 
 	// W.
 	W = work();
+	TRACE("W: %ld\n", W);
 
 	// Q = Q_LLC + Q_L2 + Q_L1.
 	Q = Q_total();
+	TRACE("Q: %ld\n", Q);
 
 	I =  (double) W / Q;
 
