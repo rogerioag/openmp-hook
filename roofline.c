@@ -25,14 +25,18 @@ bool RM_library_init(void){
 
   	ptr_measure->current_eventset = 0;
 
+  	TRACE("quant_intervals initialization.\n");
+
   	ptr_measure->quant_intervals[0] = 0;
   	ptr_measure->quant_intervals[1] = 0;
   	ptr_measure->quant_intervals[2] = 0;
   	ptr_measure->quant_intervals[3] = 0;
 
+  	TRACE("values initialization.\n");
   	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
 		for ( j = 0; event_names[i][j] != NULL; j++ ) {
 			ptr_measure->values[i][j] = 0;
+			TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i][j]);
 		}
 	}
 
