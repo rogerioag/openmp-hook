@@ -595,12 +595,12 @@ long long Qw(int i){
 	return estimated(i, 3);
 }
 
-long long Q(int i){
+long long Q_level(int i){
 	return (Qr(i) + Qw(i));
 }
 
-long long Q(){
-	return (Q(IDX_LLC) + Q(IDX_L2) + Q(IDX_L1));
+long long Q_total(){
+	return (Q_level(IDX_LLC) + Q_level(IDX_L2) + Q_level(IDX_L1));
 }
 
 double RM_get_operational_intensity(void){
@@ -617,7 +617,7 @@ double RM_get_operational_intensity(void){
 	W = work();
 
 	// Q = Q_LLC + Q_L2 + Q_L1.
-	Q = Q();
+	Q = Q_total();
 
 	I = W / Q;
 
