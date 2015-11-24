@@ -240,30 +240,16 @@ bool RM_check_event_is_available(unsigned int event, bool print_it){
 void RM_print_counters_values(void) {
 	PRINT_FUNC_NAME;
 	int i;
-	char event_str[PAPI_MAX_STR_LEN];
-
-	/*for (i = 0; i < NUM_EVENTS; i++) {
-		PAPI_event_code_to_name(ptr_measure->events[i], event_str);
-		TRACE("Event: %x- %s : %lld\n", ptr_measure->events[i], event_str, ptr_measure->values[i]);
-	}*/
 
 	TRACE("Final Values:\n");
 	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
-		/*TRACE("# Measures: %d.\n", quant_intervals[i]);
-		for ( j = 0; event_names[i][j] != NULL; j++ ) {
-			TRACE("%s: %lld\n", event_names[i][j], values[i][j]);
-		}
-		TRACE("\n");*/
-		if(i == 0){
-			// TRACE("%s;%s;%s;%s;%s;%s;%s;\n", "measures", event_names[i][0], event_names[i][1], event_names[i][2], event_names[i][3], event_names[i][4]);
-			TRACE("%s;%s;%s;%s;%s;%s;\n", "measures", 
+		TRACE("%s;%s;%s;%s;%s;%s;\n", "measures", 
 				((event_names[i][0] != NULL) ? event_names[i][0] : "") , 
 				((event_names[i][1] != NULL) ? event_names[i][1] : ""), 
 				((event_names[i][2] != NULL) ? event_names[i][2] : ""), 
 				((event_names[i][3] != NULL) ? event_names[i][3] : ""), 
 				((event_names[i][4] != NULL) ? event_names[i][4] : ""));
-		}
-		// TRACE("%lld;%lld;%lld;%lld;%lld;%lld;%lld;\n", ptr_measure->quant_intervals[i], ptr_measure->values[i * NUM_MAX_EVENTS + 0], ptr_measure->values[i * NUM_MAX_EVENTS + 1], ptr_measure->values[i * NUM_MAX_EVENTS + 2], ptr_measure->values[i * NUM_MAX_EVENTS + 3], ptr_measure->values[i * NUM_MAX_EVENTS + 4]);
+		
 		TRACE("%lld;%lld;%lld;%lld;%lld;%lld;\n", 
 			ptr_measure->quant_intervals[i], 
 			((event_names[i][0] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 0] : NULL), 
