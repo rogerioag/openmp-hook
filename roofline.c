@@ -25,6 +25,17 @@ bool RM_library_init(void){
 
   	ptr_measure->current_eventset = 0;
 
+  	ptr_measure->quant_intervals[0] = 0;
+  	ptr_measure->quant_intervals[1] = 0;
+  	ptr_measure->quant_intervals[2] = 0;
+  	ptr_measure->quant_intervals[3] = 0;
+
+  	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
+		for ( j = 0; ptr_measure->event_names[i][j] != NULL; j++ ) {
+			ptr_measure->values[i][j] = 0;
+		}
+	}
+
 	// TRACE("Size of values: %d %d %lld %lld %lld %lld %lld.\n", sizeof(long long), sizeof(ptr_measure->values), ptr_measure->values[0], ptr_measure->values[1], ptr_measure->values[2], ptr_measure->values[3], ptr_measure->values[4]);
 	// RM_print_counters_values();
 
