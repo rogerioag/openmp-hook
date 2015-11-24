@@ -619,7 +619,7 @@ double RM_get_operational_intensity(void){
 	// Q = Q_LLC + Q_L2 + Q_L1.
 	Q = Q_total();
 
-	I = W / Q;
+	I =  (double) W / Q;
 
 	return I;
 }
