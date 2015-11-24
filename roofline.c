@@ -441,7 +441,7 @@ bool RM_stop_and_accumulate(void){
 	int j;
 
   	TRACE("Trying accumulate counters.\n");
-	if ((retval = PAPI_accum(ptr_measure->EventSet, &ptr_measure->values[ptr_measure->current_eventset][0])) != PAPI_OK){
+	if ((retval = PAPI_accum(ptr_measure->EventSet, p&tr_measure->values[ptr_measure->current_eventset][0])) != PAPI_OK){
 		TRACE("PAPI_accum error: %d %s\n", retval, PAPI_strerror(retval));
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 
@@ -472,6 +472,8 @@ bool RM_stop_and_accumulate(void){
 		TRACE("PAPI_stop error: %d %s\n", retval, PAPI_strerror(retval));
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
+
+	RM_print_counters_values();
 
 	TRACE("Removing events of EventSet: %d\n", ptr_measure->current_eventset);
 	for ( j = 0; event_names[ptr_measure->current_eventset][j] != NULL; j++ ) {
