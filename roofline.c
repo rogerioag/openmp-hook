@@ -33,8 +33,8 @@ bool RM_library_init(void){
   	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
   		TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
 		for ( j = 0; event_names[i][j] != NULL; j++ ) {
-			ptr_measure->values[i][j] = 0;
-			TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i][j]);
+			ptr_measure->values[i * NUM_MAX_EVENTS + j] = 0;
+			TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i * NUM_MAX_EVENTS + j]);
 		}
 	}
 
