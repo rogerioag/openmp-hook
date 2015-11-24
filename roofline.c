@@ -601,7 +601,7 @@ double measured(int i, int j){
 	TRACE("# intervals: %ld.\n", ptr_measure->quant_intervals[i]);
 
 	double measure = (double) (ptr_measure->values[i * NUM_MAX_EVENTS + j] / ptr_measure->quant_intervals[i]);
-	TRACE("measured chunks: %ld.\n", measured);
+	TRACE("measured: %ld.\n", measured);
 	return measure;
 }
 
