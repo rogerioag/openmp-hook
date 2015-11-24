@@ -597,10 +597,10 @@ long long measured_chunks(){
 double measured(int i, int j){
 	PRINT_FUNC_NAME;
 
-	TRACE("value: %ld.\n", ptr_measure->values[i][j]);
+	TRACE("value: %ld.\n", ptr_measure->values[i * NUM_MAX_EVENTS + j]);
 	TRACE("# intervals: %ld.\n", ptr_measure->quant_intervals[i]);
 
-	double measure = (double) (ptr_measure->values[i][j] / ptr_measure->quant_intervals[i]);
+	double measure = (double) (ptr_measure->values[i * NUM_MAX_EVENTS + j] / ptr_measure->quant_intervals[i]);
 	TRACE("measured chunks: %ld.\n", measured);
 	return measure;
 }
