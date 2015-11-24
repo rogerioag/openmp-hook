@@ -36,6 +36,8 @@ bool RM_library_init(void){
 		}
 	}
 
+	RM_print_counters_values();
+
 	// TRACE("Size of values: %d %d %lld %lld %lld %lld %lld.\n", sizeof(long long), sizeof(ptr_measure->values), ptr_measure->values[0], ptr_measure->values[1], ptr_measure->values[2], ptr_measure->values[3], ptr_measure->values[4]);
 	// RM_print_counters_values();
 
