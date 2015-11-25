@@ -107,7 +107,7 @@ extern "C" {
 
 	void RM_print_event_info(unsigned int event);
 
-	double RM_get_operational_intensity(void);
+	double RM_get_operational_intensity(double);
 
 	int RM_get_better_device_to_execution(void);
 

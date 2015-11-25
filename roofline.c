@@ -551,7 +551,7 @@ bool RM_registry_measures (void){
   	ptr_measure->executed_loop_iterations = executed_loop_iterations;
   	ptr_measure->chunk_size = chunk_size;
 
-  	TRACE("Total of iterations: %ldd, executed_iterations: %lld, chunk_size: %lld.\n", ptr_measure->total_of_iterations, ptr_measure->executed_loop_iterations, ptr_measure->chunk_size);
+  	TRACE("Total of iterations: %ld, executed_iterations: %lld, chunk_size: %lld.\n", ptr_measure->total_of_iterations, ptr_measure->executed_loop_iterations, ptr_measure->chunk_size);
  }
 
 /* ------------------------------------------------------------ */
@@ -601,7 +601,7 @@ double measured(int i, int j){
 	TRACE("# intervals: %ld.\n", ptr_measure->quant_intervals[i]);
 
 	double measure = (double) (((double) ptr_measure->values[i * NUM_MAX_EVENTS + j]) / ((double) ptr_measure->quant_intervals[i]));
-	TRACE("measured: %f.\n", measured);
+	TRACE("measured: %f.\n", measure);
 	return measure;
 }
 
@@ -654,6 +654,8 @@ double Q_total(){
 	return qtotal;
 }
 
+/* ------------------------------------------------------------ */
+/* Operational Intensity.										*/
 double RM_get_operational_intensity(void){
 	PRINT_FUNC_NAME;
 
@@ -681,8 +683,11 @@ double RM_get_operational_intensity(void){
 
 /* ------------------------------------------------------------ */
 /* Better Device to execution.									*/
-int RM_get_better_device_to_execution(void){
+int RM_get_better_device_to_execution(double oi){
 	PRINT_FUNC_NAME;
+	TRACE("Operational intensity: %10.6f\n", oi);
+
+
 	
 	return 1;
 }
@@ -695,9 +700,9 @@ bool RM_decision_about_offloading(long *better_device_index){
 	bool offload_decision = true;
 
 	double oi = RM_get_operational_intensity();
-	TRACE("Operational intensity: %10.2f\n", oi);
+	TRACE("Operational intensity: %10.6f\n", oi);
 
-	*better_device_index = RM_get_better_device_to_execution();
+	*better_device_index = RM_get_better_device_to_execution(oi);
 	TRACE("Execution is better on device [%d].\n", better_device_index);
 	
 	return offload_decision;
