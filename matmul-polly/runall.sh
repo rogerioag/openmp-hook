@@ -10,6 +10,8 @@ export PATH_TO_POLLY_LIB="${PATH_TO_LLVM_BUILD}/lib"
 
 alias opt="${PATH_TO_LLVM_BUILD}/bin/opt -load ${PATH_TO_POLLY_LIB}/LLVMPolly.so"
 
+alias llc="${PATH_TO_LLVM_BUILD}/bin/llc"
+
 echo "--> 3. Prepare the LLVM-IR for Polly"
 opt -S -polly-canonicalize matmul.s > matmul.preopt.ll
 
