@@ -23,9 +23,7 @@ declare i32 @llvm.nvvm.read.ptx.sreg.nctaid.y() readnone nounwind
 declare i32 @llvm.nvvm.read.ptx.sreg.nctaid.z() readnone nounwind
 
 
-define ptx_kernel void @vectoradd_kernel(float addrspace(1)* %d_a, 
-										 float addrspace(1)* %d_b, 
-										 float addrspace(1)* %d_c) {
+define ptx_kernel void @vectoradd_kernel(float* %d_a, float* %d_b, float* %d_c) uwtable {
 entry:
 	;int indice =  blockIdx.y  * gridDim.x  * blockDim.z * blockDim.y * blockDim.x
 	;	     + blockIdx.x  * blockDim.z * blockDim.y * blockDim.x
@@ -82,16 +80,16 @@ entry:
 	br label %bb_1
 
 bb_1:                                         ; preds = %entry	
-	%scevgep = getelementptr float addrspace(1)* %d_c, i64 %indice
+	%scevgep = getelementptr float* %d_c, i64 %indice
 	%scevgep1 = bitcast float* %scevgep to <1 x float>*
-	%scevgep2 = getelementptr float addrspace(1)* %d_b, i64 %indice
+	%scevgep2 = getelementptr float* %d_b, i64 %indice
 	%scevgep23 = bitcast float* %scevgep2 to <1 x float>*
-	%scevgep4 = getelementptr float addrspace(1)* %d_a, i64 %indice
+	%scevgep4 = getelementptr float* %d_a, i64 %indice
 	%scevgep45 = bitcast float* %scevgep4 to <1 x float>*
 	%wide.load = load <1 x float>* %scevgep45, align 4
 	%wide.load4 = load <1 x float>* %scevgep23, align 4
 	%ab = fadd <1 x float> %wide.load, %wide.load4
-	store <1 x float> %ab , float addrspace(1)* %scevgep1 , align 4
+	store <1 x float> %ab , <1 x float>* %scevgep1 , align 4
 	
 	br label %return
 
@@ -100,6 +98,6 @@ return:                                           ; preds = %bb_1
 }
 
 !nvvm.annotations = !{!0}
-!0 = metadata !{void (float addrspace(1)*,
-                      float addrspace(1)*,
-                      float addrspace(1)*)* @vectoradd_kernel, metadata !"vectoradd_kernel", i32 1}
+!0 = metadata !{void (float*,
+                      float*,
+                      float*)* @vectoradd_kernel, metadata !"vectoradd_kernel", i32 1}
