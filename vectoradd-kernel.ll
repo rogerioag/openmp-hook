@@ -88,8 +88,8 @@ bb_1:                                         ; preds = %entry
 	%scevgep23 = bitcast float addrspace(1)* %scevgep2 to float addrspace(1)*
 	%scevgep4 = getelementptr float, float addrspace(1)* %d_a, i64 %indice
 	%scevgep45 = bitcast float addrspace(1)* %scevgep4 to float addrspace(1)*
-	%wide.load = load float addrspace(1)* %scevgep45, align 4
-	%wide.load4 = load float addrspace(1)* %scevgep23, align 4
+	%wide.load = load float, float addrspace(1)* %scevgep45, align 4
+	%wide.load4 = load float, float addrspace(1)* %scevgep23, align 4
 	%ab = fadd float %wide.load, %wide.load4
 	store float %ab , float addrspace(1)* %scevgep1 , align 4
 	
