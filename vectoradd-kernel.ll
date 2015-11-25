@@ -84,7 +84,7 @@ entry:
 bb_1:                                         ; preds = %entry	
 	%scevgep = getelementptr float, float addrspace(1)* %d_c, i64 %indice
 	%scevgep1 = bitcast float addrspace(1)* %scevgep to float addrspace(1)*
-	%scevgep2 = getelementptr float, float addrspace(1)*, %d_b, i64 %indice
+	%scevgep2 = getelementptr float, float addrspace(1)* %d_b, i64 %indice
 	%scevgep23 = bitcast float addrspace(1)* %scevgep2 to float addrspace(1)*
 	%scevgep4 = getelementptr float, float addrspace(1)* %d_a, i64 %indice
 	%scevgep45 = bitcast float addrspace(1)* %scevgep4 to float addrspace(1)*
