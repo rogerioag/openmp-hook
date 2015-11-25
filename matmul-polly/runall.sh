@@ -1,11 +1,14 @@
 #!/bin/sh -a
 
+export PATH_TO_LLVM_BUILD="//home/goncalv/prototipo-370-gpu/llvm_build"
+
 echo "--> 1. Create LLVM-IR from C"
-clang -S -emit-llvm matmul.c -o matmul.s
+${PATH_TO_LLVM_BUILD}/bin/clang -S -emit-llvm matmul.c -o matmul.s
 
 echo "--> 2. Load Polly automatically when calling the 'opt' tool"
-export PATH_TO_POLLY_LIB="~/polly/build/lib/"
-alias opt="opt -load ${PATH_TO_POLLY_LIB}/LLVMPolly.so"
+export PATH_TO_POLLY_LIB="${PATH_TO_LLVM_BUILD}/lib"
+
+alias opt="${PATH_TO_LLVM_BUILD}/bin/opt -load ${PATH_TO_POLLY_LIB}/LLVMPolly.so"
 
 echo "--> 3. Prepare the LLVM-IR for Polly"
 opt -S -polly-canonicalize matmul.s > matmul.preopt.ll
