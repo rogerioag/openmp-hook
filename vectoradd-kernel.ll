@@ -23,7 +23,9 @@ declare i32 @llvm.nvvm.read.ptx.sreg.nctaid.y() readnone nounwind
 declare i32 @llvm.nvvm.read.ptx.sreg.nctaid.z() readnone nounwind
 
 
-define ptx_kernel void @vectoradd_kernel(float* %d_a, float* %d_b, float* %d_c) uwtable {
+define ptx_kernel void @vectoradd_kernel(float addrspace(1)* %d_a, 
+	                                     float addrspace(1)* %d_b, 
+	                                     float addrspace(1)* %d_c) uwtable {
 entry:
 	;int indice =  blockIdx.y  * gridDim.x  * blockDim.z * blockDim.y * blockDim.x
 	;	     + blockIdx.x  * blockDim.z * blockDim.y * blockDim.x
@@ -80,16 +82,16 @@ entry:
 	br label %bb_1
 
 bb_1:                                         ; preds = %entry	
-	%scevgep = getelementptr float* %d_c, i64 %indice
-	%scevgep1 = bitcast float* %scevgep to <1 x float>*
-	%scevgep2 = getelementptr float* %d_b, i64 %indice
-	%scevgep23 = bitcast float* %scevgep2 to <1 x float>*
-	%scevgep4 = getelementptr float* %d_a, i64 %indice
-	%scevgep45 = bitcast float* %scevgep4 to <1 x float>*
-	%wide.load = load <1 x float>* %scevgep45, align 4
-	%wide.load4 = load <1 x float>* %scevgep23, align 4
-	%ab = fadd <1 x float> %wide.load, %wide.load4
-	store <1 x float> %ab , <1 x float>* %scevgep1 , align 4
+	%scevgep = getelementptr float addrspace(1)* %d_c, i64 %indice
+	%scevgep1 = bitcast float* %scevgep to float addrspace(1)*
+	%scevgep2 = getelementptr float addrspace(1)* %d_b, i64 %indice
+	%scevgep23 = bitcast float* %scevgep2 to float addrspace(1)*
+	%scevgep4 = getelementptr float addrspace(1)* %d_a, i64 %indice
+	%scevgep45 = bitcast float* %scevgep4 to float addrspace(1)*
+	%wide.load = load float addrspace(1)* %scevgep45, align 4
+	%wide.load4 = load float addrspace(1)* %scevgep23, align 4
+	%ab = fadd float addrspace(1)* %wide.load, %wide.load4
+	store float %ab , float addrspace(1)* %scevgep1 , align 4
 	
 	br label %return
 
