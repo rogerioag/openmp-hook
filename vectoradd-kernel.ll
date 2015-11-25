@@ -23,7 +23,7 @@ declare i32 @llvm.nvvm.read.ptx.sreg.nctaid.y() readnone nounwind
 declare i32 @llvm.nvvm.read.ptx.sreg.nctaid.z() readnone nounwind
 
 
-define ptx_kernel void @vectoradd_kernel(float addrspace(1)* %d_a, 
+define void @vectoradd_kernel(float addrspace(1)* %d_a, 
 	                                     float addrspace(1)* %d_b, 
 	                                     float addrspace(1)* %d_c) uwtable {
 entry:
