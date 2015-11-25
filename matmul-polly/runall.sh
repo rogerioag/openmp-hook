@@ -1,6 +1,6 @@
 #!/bin/sh -a
 
-export PATH_TO_LLVM_BUILD="//home/goncalv/prototipo-370-gpu/llvm_build"
+export PATH_TO_LLVM_BUILD="/home/goncalv/prototipo-370-gpu/llvm_build"
 
 echo "--> 1. Create LLVM-IR from C"
 ${PATH_TO_LLVM_BUILD}/bin/clang -S -emit-llvm matmul.c -o matmul.s
