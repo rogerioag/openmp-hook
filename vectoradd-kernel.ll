@@ -91,7 +91,7 @@ bb_1:                                         ; preds = %entry
 	%wide.load = load <1 x float>* %scevgep45, align 4
 	%wide.load4 = load <1 x float>* %scevgep23, align 4
 	%ab = fadd <1 x float> %wide.load, %wide.load4
-	store <1 x float> %ab , <1 x float>* %scevgep1 , align 4
+	store <1 x float> %ab , float addrspace(1)* %scevgep1 , align 4
 	
 	br label %return
 
@@ -100,6 +100,6 @@ return:                                           ; preds = %bb_1
 }
 
 !nvvm.annotations = !{!0}
-!0 = metadata !{void (float*,
-                      float*,
-                      float*)* @vectoradd_kernel, metadata !"vectoradd_kernel", i32 1}
+!0 = metadata !{void (float addrspace(1)*,
+                      float addrspace(1)*,
+                      float addrspace(1)*)* @vectoradd_kernel, metadata !"vectoradd_kernel", i32 1}
