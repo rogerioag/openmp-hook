@@ -34,24 +34,24 @@ entry:
 	;	     + threadIdx.x;
 	
 	; threadIdx.
-	%t_idx = tail call i32 @llvm.nvvm.read.ptx.sreg.tid.x()
-	%t_idy = tail call i32 @llvm.nvvm.read.ptx.sreg.tid.y()
-	%t_idz = tail call i32 @llvm.nvvm.read.ptx.sreg.tid.z()
+	%t_idx = tail call i32 @llvm.nvvm.read.ptx.sreg.tid.x() readnone nounwind
+	%t_idy = tail call i32 @llvm.nvvm.read.ptx.sreg.tid.y() readnone nounwind
+	%t_idz = tail call i32 @llvm.nvvm.read.ptx.sreg.tid.z() readnone nounwind
 	
 	; blockIdx;
-	%b_idx = tail call i32 @llvm.nvvm.read.ptx.sreg.ctaid.x()
-	%b_idy = tail call i32 @llvm.nvvm.read.ptx.sreg.ctaid.y()
-	%b_idz = tail call i32 @llvm.nvvm.read.ptx.sreg.ctaid.z()
+	%b_idx = tail call i32 @llvm.nvvm.read.ptx.sreg.ctaid.x() readnone nounwind
+	%b_idy = tail call i32 @llvm.nvvm.read.ptx.sreg.ctaid.y() readnone nounwind
+	%b_idz = tail call i32 @llvm.nvvm.read.ptx.sreg.ctaid.z() readnone nounwind
 	
 	; blockDim.
-	%b_dimx = tail call i32 @llvm.nvvm.read.ptx.sreg.ntid.x()
-	%b_dimy = tail call i32 @llvm.nvvm.read.ptx.sreg.ntid.y()
-	%b_dimz = tail call i32 @llvm.nvvm.read.ptx.sreg.ntid.z()
+	%b_dimx = tail call i32 @llvm.nvvm.read.ptx.sreg.ntid.x() readnone nounwind
+	%b_dimy = tail call i32 @llvm.nvvm.read.ptx.sreg.ntid.y() readnone nounwind
+	%b_dimz = tail call i32 @llvm.nvvm.read.ptx.sreg.ntid.z() readnone nounwind
 	
 	; gridDim.
-	%g_dimx = tail call i32 @llvm.nvvm.read.ptx.sreg.nctaid.x()
-	%g_dimy = tail call i32 @llvm.nvvm.read.ptx.sreg.nctaid.y()
-	%g_dimz = tail call i32 @llvm.nvvm.read.ptx.sreg.nctaid.z()
+	%g_dimx = tail call i32 @llvm.nvvm.read.ptx.sreg.nctaid.x() readnone nounwind
+	%g_dimy = tail call i32 @llvm.nvvm.read.ptx.sreg.nctaid.y() readnone nounwind
+	%g_dimz = tail call i32 @llvm.nvvm.read.ptx.sreg.nctaid.z() readnone nounwind
 	
 	;int indice =  blockIdx.y  * gridDim.x  * blockDim.z * blockDim.y * blockDim.x
 	;	     + blockIdx.x  * blockDim.z * blockDim.y * blockDim.x
