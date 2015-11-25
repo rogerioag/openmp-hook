@@ -82,6 +82,8 @@ main: main-test.c
 	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-guided.c -o vectoradd-omp-for-guided -lhookomp -fopenmp -lgomp
 
 	# Test of offloading function schedule runtime.
+	/home/goncalv/prototipo-370-gpu/llvm_build/bin/llc -march=nvptx64 vectoradd-kernel.ll -o vectoradd-kernel.ptx
+	
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp
 	
 	# Offloading test without hook. The program will be executed normaly.
