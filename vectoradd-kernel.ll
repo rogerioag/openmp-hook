@@ -98,8 +98,3 @@ bb_1:                                         ; preds = %entry
 return:                                           ; preds = %bb_1
 	ret void
 }
-
-!nvvm.annotations = !{!0}
-!0 = metadata !{void (float addrspace(1)*,
-                      float addrspace(1)*,
-                      float addrspace(1)*)* @vectoradd_kernel, metadata !"vectoradd_kernel", i32 1}
