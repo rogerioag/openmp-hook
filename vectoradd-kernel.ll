@@ -80,7 +80,7 @@ entry:
 	br label %bb_1
 
 bb_1:                                         ; preds = %entry	
-	%scevgep = getelementptr float* %d_c , i64 %indice
+	%scevgep = getelementptr float* %d_c, i64 %indice
 	%scevgep1 = bitcast float* %scevgep to <1 x float>*
 	%scevgep2 = getelementptr float* %d_b, i64 %indice
 	%scevgep23 = bitcast float* %scevgep2 to <1 x float>*
