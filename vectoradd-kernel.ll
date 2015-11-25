@@ -25,7 +25,7 @@ declare i32 @llvm.nvvm.read.ptx.sreg.nctaid.z() readnone nounwind
 
 define void @vectoradd_kernel(float addrspace(1)* %d_a, 
 	                                     float addrspace(1)* %d_b, 
-	                                     float addrspace(1)* %d_c) uwtable {
+	                                     float addrspace(1)* %d_c) {
 entry:
 	;int indice =  blockIdx.y  * gridDim.x  * blockDim.z * blockDim.y * blockDim.x
 	;	     + blockIdx.x  * blockDim.z * blockDim.y * blockDim.x
