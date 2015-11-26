@@ -1,9 +1,9 @@
 
-CC=gcc-4.7
-CXX=g++-4.7
+CC=gcc-4.8
+CXX=g++-4.8
 
 # LLVM_BUILD=/dados/rogerio/USP/doutorado/prototipo-370-gpu/llvm_build
-LLVM_BUILD=/home/goncalv/prototipo-362-gpu/llvm_build
+LLVM_BUILD=/home/goncalv/prototipo-370-gpu/llvm_build
 
 # LIB_HOOKOMP_PATH=/dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/
 LIB_HOOKOMP_PATH=/home/goncalv/prova-de-conceito/testes-prova-conceito/openmp-hook
@@ -12,8 +12,8 @@ all: main create-png
 
 main: matmul.c
 	${LLVM_BUILD}/bin/clang -O3 -S -emit-llvm matmul.c -o matmul.ll
-	${LLVM_BUILD}/bin/opt -load ${LLVM_BUILD}/lib/LLVMPolly.so -polly-parallel -polly-parallel-force -polly-codegen-isl -S matmul.ll
-	${LLVM_BUILD}/bin/opt -load ${LLVM_BUILD}/lib/LLVMPolly.so -polly-parallel -polly-parallel-force -polly-codegen-isl -S matmul.ll -o matmul.openmp.ll
+	${LLVM_BUILD}/bin/opt -load ${LLVM_BUILD}/lib/LLVMPolly.so -polly-parallel -polly-parallel-force -polly-codegen -S matmul.ll
+	${LLVM_BUILD}/bin/opt -load ${LLVM_BUILD}/lib/LLVMPolly.so -polly-parallel -polly-parallel-force -polly-codegen -S matmul.ll -o matmul.openmp.ll
 
 	# /dados/rogerio/USP/doutorado/prototipo-370-gpu/llvm_build/bin/opt -load /dados/rogerio/USP/doutorado/prototipo-370-gpu/llvm_build/lib/LLVMPolly.so -polly-ast -polly-parallel -polly-parallel-force -S matmul.ll -o matmul.openmp.ll
 

@@ -1,47 +1,36 @@
 digraph "Scop Graph for 'init_array' function" {
 	label="Scop Graph for 'init_array' function";
 
-	Node0x107fce0 [shape=record,label="{%0:\l  %polly.par.userContext = alloca \{\}\l  br label %polly.split_new_and_old\l}"];
-	Node0x107fce0 -> Node0x107fca0;
-	Node0x107fca0 [shape=record,label="{polly.split_new_and_old:                          \l  br i1 or (i1 icmp ule (float* getelementptr (float* getelementptr inbounds\l... ([1536 x [1536 x float]]* @B, i32 0, i32 0, i32 0), i64 2359296), float*\l... getelementptr inbounds ([1536 x [1536 x float]]* @A, i32 0, i32 0, i32 0)),\l... i1 icmp ule (float* getelementptr (float* getelementptr inbounds ([1536 x\l... [1536 x float]]* @A, i32 0, i32 0, i32 0), i64 2359296), float* getelementptr\l... inbounds ([1536 x [1536 x float]]* @B, i32 0, i32 0, i32 0))), label\l... %polly.start, label %vector.ph\l}"];
-	Node0x107fca0 -> Node0x107fbc0;
-	Node0x107fca0 -> Node0x107fc20;
-	Node0x107fbc0 [shape=record,label="{polly.start:                                      \l  %20 = bitcast \{\}* %polly.par.userContext to i8*\l  call void @llvm.lifetime.start(i64 0, i8* %20)\l  %polly.par.userContext1 = bitcast \{\}* %polly.par.userContext to i8*\l  call void @GOMP_parallel_loop_runtime_start(void (i8*)*\l... @init_array.polly.subfn, i8* %polly.par.userContext1, i32 0, i64 0, i64 1536,\l... i64 1)\l  call void @init_array.polly.subfn(i8* %polly.par.userContext1)\l  call void @GOMP_parallel_end()\l  %21 = bitcast \{\}* %polly.par.userContext to i8*\l  call void @llvm.lifetime.end(i64 8, i8* %21)\l  br label %polly.merge_new_and_old\l}"];
-	Node0x107fbc0 -> Node0x107fc80;
-	Node0x107fc80 [shape=record,label="{polly.merge_new_and_old:                          \l  ret void\l}"];
-	Node0x107fc20 [shape=record,label="{vector.ph:                                        \l  %indvars.iv3 = phi i64 [ 0, %polly.split_new_and_old ], [ %indvars.iv.next4,\l... %middle.block ]\l  br label %vector.body\l}"];
-	Node0x107fc20 -> Node0x107bbc0;
-	Node0x107bbc0 [shape=record,label="{vector.body:                                      \l  %index = phi i64 [ 0, %vector.ph ], [ %index.next, %vector.body ]\l  %induction67 = or i64 %index, 1\l  %1 = mul nsw i64 %index, %indvars.iv3\l  %2 = mul nsw i64 %induction67, %indvars.iv3\l  %3 = trunc i64 %1 to i32\l  %4 = trunc i64 %2 to i32\l  %5 = srem i32 %3, 1024\l  %6 = srem i32 %4, 1024\l  %7 = or i32 %5, 1\l  %8 = add nsw i32 %6, 1\l  %9 = sitofp i32 %7 to double\l  %10 = sitofp i32 %8 to double\l  %11 = fmul double %9, 5.000000e-01\l  %12 = fmul double %10, 5.000000e-01\l  %13 = fptrunc double %11 to float\l  %14 = fptrunc double %12 to float\l  %15 = getelementptr inbounds [1536 x [1536 x float]]* @A, i64 0, i64\l... %indvars.iv3, i64 %index\l  %16 = getelementptr inbounds [1536 x [1536 x float]]* @A, i64 0, i64\l... %indvars.iv3, i64 %induction67\l  store float %13, float* %15, align 8, !tbaa !1\l  store float %14, float* %16, align 4, !tbaa !1\l  %17 = getelementptr inbounds [1536 x [1536 x float]]* @B, i64 0, i64\l... %indvars.iv3, i64 %index\l  %18 = getelementptr inbounds [1536 x [1536 x float]]* @B, i64 0, i64\l... %indvars.iv3, i64 %induction67\l  store float %13, float* %17, align 8, !tbaa !1\l  store float %14, float* %18, align 4, !tbaa !1\l  %index.next = add i64 %index, 2\l  %19 = icmp eq i64 %index.next, 1536\l  br i1 %19, label %middle.block, label %vector.body, !llvm.loop !5\l}"];
-	Node0x107bbc0 -> Node0x107fdd0;
-	Node0x107bbc0 -> Node0x107bbc0[constraint=false];
-	Node0x107fdd0 [shape=record,label="{middle.block:                                     \l  %indvars.iv.next4 = add nuw nsw i64 %indvars.iv3, 1\l  %exitcond5 = icmp eq i64 %indvars.iv.next4, 1536\l  br i1 %exitcond5, label %polly.merge_new_and_old, label %vector.ph\l}"];
-	Node0x107fdd0 -> Node0x107fc80;
-	Node0x107fdd0 -> Node0x107fc20[constraint=false];
+	Node0x16244f0 [shape=record,label="{%0:\l  br label %.preheader\l}"];
+	Node0x16244f0 -> Node0x1624490;
+	Node0x1624490 [shape=record,label="{.preheader:                                       \l  %indvars.iv3 = phi i64 [ 0, %0 ], [ %indvars.iv.next4, %20 ]\l  br label %1\l}"];
+	Node0x1624490 -> Node0x1624b10;
+	Node0x1624b10 [shape=record,label="{%1:\l\l  %indvars.iv = phi i64 [ 0, %.preheader ], [ %indvars.iv.next.1, %1 ]\l  %2 = mul nuw nsw i64 %indvars.iv, %indvars.iv3\l  %3 = trunc i64 %2 to i32\l  %4 = srem i32 %3, 1024\l  %5 = or i32 %4, 1\l  %6 = sitofp i32 %5 to double\l  %7 = fmul double %6, 5.000000e-01\l  %8 = fptrunc double %7 to float\l  %9 = getelementptr inbounds [1536 x [1536 x float]], [1536 x [1536 x\l... float]]* @A, i64 0, i64 %indvars.iv3, i64 %indvars.iv\l  store float %8, float* %9, align 8, !tbaa !1\l  %10 = getelementptr inbounds [1536 x [1536 x float]], [1536 x [1536 x\l... float]]* @B, i64 0, i64 %indvars.iv3, i64 %indvars.iv\l  store float %8, float* %10, align 8, !tbaa !1\l  %indvars.iv.next = or i64 %indvars.iv, 1\l  %11 = mul nuw nsw i64 %indvars.iv.next, %indvars.iv3\l  %12 = trunc i64 %11 to i32\l  %13 = srem i32 %12, 1024\l  %14 = add nsw i32 %13, 1\l  %15 = sitofp i32 %14 to double\l  %16 = fmul double %15, 5.000000e-01\l  %17 = fptrunc double %16 to float\l  %18 = getelementptr inbounds [1536 x [1536 x float]], [1536 x [1536 x\l... float]]* @A, i64 0, i64 %indvars.iv3, i64 %indvars.iv.next\l  store float %17, float* %18, align 4, !tbaa !1\l  %19 = getelementptr inbounds [1536 x [1536 x float]], [1536 x [1536 x\l... float]]* @B, i64 0, i64 %indvars.iv3, i64 %indvars.iv.next\l  store float %17, float* %19, align 4, !tbaa !1\l  %indvars.iv.next.1 = add nsw i64 %indvars.iv, 2\l  %exitcond.1 = icmp eq i64 %indvars.iv.next.1, 1536\l  br i1 %exitcond.1, label %20, label %1\l}"];
+	Node0x1624b10 -> Node0x162eb10;
+	Node0x1624b10 -> Node0x1624b10[constraint=false];
+	Node0x162eb10 [shape=record,label="{%20:\l\l  %indvars.iv.next4 = add nuw nsw i64 %indvars.iv3, 1\l  %exitcond5 = icmp eq i64 %indvars.iv.next4, 1536\l  br i1 %exitcond5, label %21, label %.preheader\l}"];
+	Node0x162eb10 -> Node0x162e980;
+	Node0x162eb10 -> Node0x1624490[constraint=false];
+	Node0x162e980 [shape=record,label="{%21:\l\l  ret void\l}"];
 	colorscheme = "paired12"
-        subgraph cluster_0x107b4e0 {
+        subgraph cluster_0x16242e0 {
           label = "";
           style = solid;
           color = 1
-          subgraph cluster_0x107c0f0 {
-            label = "Call instruction:   call void @llvm.lifetime.start(i64 0, i8* %20)";
+          subgraph cluster_0x1624db0 {
+            label = "Region can not profitably be optimized!";
             style = solid;
             color = 6
-            subgraph cluster_0x107c070 {
-              label = "";
-              style = filled;
-              color = 3              subgraph cluster_0x107bbe0 {
-                label = "";
-                style = solid;
-                color = 7
-                Node0x107bbc0;
-              }
-              Node0x107fc20;
-              Node0x107fdd0;
+            subgraph cluster_0x1624510 {
+              label = "Region can not profitably be optimized!";
+              style = solid;
+              color = 5
+              Node0x1624b10;
             }
-            Node0x107fca0;
-            Node0x107fbc0;
+            Node0x1624490;
+            Node0x162eb10;
           }
-          Node0x107fce0;
-          Node0x107fc80;
+          Node0x16244f0;
+          Node0x162e980;
         }
 }
