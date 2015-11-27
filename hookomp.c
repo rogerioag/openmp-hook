@@ -1,38 +1,5 @@
 #include "hookomp.h"
 
-static long int executing_a_single_region = -1;
-
-/* Registry the thread which can execute the next function. */
-static long int registred_thread_executing_function_next = -1;
-
-/* Interval control for calculate the portion of code to execute. 10% */
-static long int loop_iterations_start = 0;
-static long int loop_iterations_end = 0;
-static long int total_of_iterations = 0;
-/* To acumulate the iterations executed by thread to calculate the percentual of executed code. */
-static long int executed_loop_iterations = 0;
-
-/* 10% of code. */
-static long int percentual_of_code = 10;
-
-static long int number_of_threads_in_team = 0;
-static long int number_of_blocked_threads = 0;
-
-static bool is_executing_measures_section = true;
-
-// static bool started_measuring = false;
-
-static bool decided_by_offloading = false;
-
-static bool made_the_offloading = false;
-
-static bool is_hookomp_initialized = false;
-
-// extern struct gomp_team gomp_team;
-// extern struct gomp_work_share gomp_work_share;
-
-// extern struct gomp_thread* gomp_thread();
-
 /* ------------------------------------------------------------- */
 /* Test function.                                                */
 void foo(void) {
@@ -70,16 +37,20 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		loop_iterations_start = start;
 		loop_iterations_end = end;
 		total_of_iterations = (loop_iterations_end - loop_iterations_start);
+		percentual_of_code = PERC_OF_CODE_TO_EXECUTE;
 
+		/* Initialization of control iterations. */
 		executed_loop_iterations = 0;
+
+		/* Control of threads in parallel region. */
 		number_of_threads_in_team = num_threads;
 		number_of_blocked_threads = 0;
 
 		/* Initialization of thread and measures section. */
 		registred_thread_executing_function_next = -1;
 		is_executing_measures_section = true;
-		// started_measuring = false;
-
+		
+		/* Control of decision about offloding. */		
 		decided_by_offloading = false;
 		made_the_offloading = false;
 
@@ -290,44 +261,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 /* ------------------------------------------------------------- */
 void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
-
-	long better_device = 0;
-
-	if(registred_thread_executing_function_next == (long int) pthread_self()){
-		TRACE("[HOOKOMP]: Thread [%lu] is finishing the execution.\n", (long int) registred_thread_executing_function_next);
-
-		// Get counters and decide about the migration.
-		TRACE("[HOOKOMP]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
-
-		if(!RM_stop_and_accumulate()){
-			TRACE("[HOOKOMP]: Error calling RM_stop_measures.\n");
-		}
-		else{
-			// A decisão de migrar é aqui.
-			if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
-				/* Launch apropriated function. */
-				TRACE("RM decided by device [%d].\n", better_device);
-
-				TRACE("Trying to launch apropriated function on device: %d.\n", better_device);
-
-				made_the_offloading = HOOKOMP_call_offloaging_function(better_device);
-
-				if (!made_the_offloading){
-					TRACE("The function offloading was not done.\n");
-				}
-				/* Set work share to final. No more iterations to execute. */
-			}
-		}
-
-		/* Release all blocked team threads. */
-		release_all_team_threads();
-
-		executed_loop_iterations = 0;
-
-		/* Mark that is no more in section of measurements. */
-		is_executing_measures_section = false;
-	}
-	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
+	/* Code was moved to generic next function. */
 }
 
 /* ------------------------------------------------------------- */
@@ -360,8 +294,6 @@ void GOMP_barrier (void) {
 	PRINT_FUNC_NAME;
 	
 	GET_RUNTIME_FUNCTION(lib_GOMP_barrier, "GOMP_barrier");
-
-	TRACE("[HOOKOMP]: Thread [%lu] is executing barrier, single region was executed by [%lu].\n", (unsigned long int) pthread_self(), (unsigned long int) executing_a_single_region);
 
 	TRACE("[LIBGOMP] GOMP_barrier@GOMP_X.X.\n");
 	lib_GOMP_barrier();
@@ -1453,8 +1385,6 @@ bool GOMP_single_start (void){
    doesn't have a COPYPRIVATE clause.  Returns true if this is the thread
    that should execute the clause.
    bool GOMP_single_start (void){...} */
-
-   TRACE("[HOOKOMP]: Testing single start[%lu].\n", (unsigned long int) pthread_self());
 
    TRACE("[LIBGOMP] GOMP_single_start@GOMP_X.X.\n");
    bool result = lib_GOMP_single_start();
