@@ -712,45 +712,53 @@ bool RM_decision_about_offloading(long *better_device_index){
 bool RM_library_shutdown(void){
 	PRINT_FUNC_NAME;
 	int retval = 0;
-	
-	TRACE("Trying to unregister thread calling PAPI_unregister_thread().\n");
-	if ((retval = PAPI_unregister_thread()) != PAPI_OK){
-		TRACE("PAPI_unregister_thread error.\n");
-		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	}
-	else{
-		TRACE("PAPI_unregister_thread OK.\n");
-		thread_was_registred_in_papi = false;
+
+--
+  	/* Event set was created. */
+  	TRACE("Trying to destroy event set.\n");
+	if(papi_eventset_was_created){
+		/*TRACE("Trying to clean up the event set.\n");
+		if ((retval = PAPI_cleanup_eventset(ptr_measure->EventSet)) != PAPI_OK){
+			TRACE("PAPI_cleanup_eventset error.\n");
+			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+		}
+		else{
+			TRACE("PAPI_cleanup_eventset OK.\n");
+		}*/
+		if ((retval = PAPI_destroy_eventset(&ptr_measure->EventSet)) != PAPI_OK){
+			TRACE("PAPI_destroy_eventset error.\n");
+			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+		}
+		else{
+			TRACE("PAPI_destroy_eventset OK.\n");
+			papi_eventset_was_created = false;
+		}
 	}
 
-	/*TRACE("Trying to clean up the event set.\n");
-	if ((retval = PAPI_cleanup_eventset(ptr_measure->EventSet)) != PAPI_OK){
-		TRACE("PAPI_cleanup_eventset error.\n");
-		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	}
-	else{
-		TRACE("PAPI_cleanup_eventset OK.\n");
-	}*/
+	/* Thread was registered. */
+  	TRACE("Trying to unregister thread calling PAPI_unregister_thread().\n");
+  	if(thread_was_registred_in_papi){
+  		if ((retval = PAPI_unregister_thread()) != PAPI_OK){
+  			TRACE("PAPI_unregister_thread error.\n");
+  			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+		}
+		else{
+			TRACE("PAPI_unregister_thread OK.\n");
+			thread_was_registred_in_papi = false;
+		}
+  	}
 
-	TRACE("Trying to destroy event set.\n");
-	if ((retval = PAPI_destroy_eventset(&ptr_measure->EventSet)) != PAPI_OK){
-		TRACE("PAPI_destroy_eventset error.\n");
-		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	}
-	else{
-		TRACE("PAPI_destroy_eventset OK.\n");
-		papi_eventset_was_created = false;
-	}
+  	TRACE("Calling the PAPI shutdown: %d\n", papi_library_initialized);
+	if(papi_library_initialized){
+  		/* PAPI shutdown. */
+		PAPI_shutdown();
+		papi_library_initialized = false;
+  	}
 
 	TRACE("Trying to free allocated structures.\n");
-	// free(ptr_measure->values);
+	free(ptr_measure->values);
+	free(ptr_measure->quant_intervals);
 	free(ptr_measure);
-
-	/* PAPI shutdown. */
-	TRACE("Calling the PAPI shutdown.\n");
-	PAPI_shutdown();
-
-	papi_library_initialized = false;
 		
 	return (retval == PAPI_OK);
 }
