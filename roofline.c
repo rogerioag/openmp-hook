@@ -23,10 +23,6 @@ bool RM_library_init(void){
 
 	memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
 
-	// memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
-
-  	/*ptr_measure->quant_intervals[NUM_EVENT_SETS] = { 0, 0, 0, 0 };*/
-
   	ptr_measure->current_eventset = 0;
 
   	TRACE("values initialization.\n");
@@ -40,14 +36,6 @@ bool RM_library_init(void){
 
 	RM_print_counters_values();
 
-	// TRACE("Size of values: %d %d %lld %lld %lld %lld %lld.\n", sizeof(long long), sizeof(ptr_measure->values), ptr_measure->values[0], ptr_measure->values[1], ptr_measure->values[2], ptr_measure->values[3], ptr_measure->values[4]);
-	// RM_print_counters_values();
-
-	// TRACE("Setting the defined code events to RM registry.\n");	
-	// memcpy(ptr_measure->events, FPO_event_codes, NUM_FPO_EVENTS * sizeof(int));
-	// memcpy(ptr_measure->events + NUM_FPO_EVENTS, MEM_event_codes, NUM_MEM_EVENTS * sizeof(int));
-	// memcpy(ptr_measure->events + NUM_FPO_EVENTS + NUM_MEM_EVENTS, TIME_event_codes, NUM_TIME_EVENTS * sizeof(int));
-	
 	ptr_measure->initial_time = (struct timeval){0};
 	ptr_measure->final_time = (struct timeval){0};
 	ptr_measure->EventSet = PAPI_NULL;
@@ -58,7 +46,6 @@ bool RM_library_init(void){
  	ptr_measure->chunk_size = 0;
 
 	papi_eventset_was_created = false;
-	// papi_in_multiplexing_mode = false;
 	thread_was_registred_in_papi = false;
 
 	TRACE("PAPI Library is initialized: %d\n", papi_library_initialized);
@@ -750,7 +737,9 @@ bool RM_library_shutdown(void){
 	// free(ptr_measure->values);
 	free(ptr_measure);
 
-	PAPI_shutdown();
+	if ((retval = PAPI_shutdown()) != PAPI_OK){
+		TRACE("PAPI_shutdown error.\n");
+	}
 
 	return (retval == PAPI_OK);
 }
