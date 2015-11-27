@@ -737,9 +737,9 @@ bool RM_library_shutdown(void){
 	// free(ptr_measure->values);
 	free(ptr_measure);
 
-	if ((retval = PAPI_shutdown()) != PAPI_OK){
-		TRACE("PAPI_shutdown error.\n");
-	}
-
+	/* PAPI shutdown. */
+	TRACE("Calling the PAPI shutdown.\n");
+	PAPI_shutdown()
+		
 	return (retval == PAPI_OK);
 }
