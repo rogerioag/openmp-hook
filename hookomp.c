@@ -346,6 +346,9 @@ void HOOKOMP_end(void){
 		TRACE("Error calling RM_library_shutdown() in %s.\n", __FUNCTION__);
 	}
 
+	/* Unregister the thread that get measures. */
+	registred_thread_executing_function_next = -1;
+
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 }
 /* ------------------------------------------------------------- */
