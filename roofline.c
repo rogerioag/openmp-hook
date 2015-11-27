@@ -164,6 +164,7 @@ bool RM_initialization_of_papi_libray_mode(){
 			TRACE("Unknown Error.\n");
 	}*/
 
+	/* Set the control initialization of PAPI library. */
 	papi_library_initialized = (retval == PAPI_LOW_LEVEL_INITED);
 
 	TRACE("[After]: PAPI_library_init. Value of papi_library_initialized: %d\n", papi_library_initialized);
