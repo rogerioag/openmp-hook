@@ -81,6 +81,10 @@ main: main-test.c
 	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-dynamic.c -o vectoradd-omp-for-dynamic -lhookomp -fopenmp -lgomp
 	# ${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-for-guided.c -o vectoradd-omp-for-guided -lhookomp -fopenmp -lgomp
 
+	# Tests for multiple parallel regions.
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-multiple-omp-parallel-for-combined-schedule-runtime.c -o vectoradd-multiple-omp-parallel-for-combined-schedule-runtime.exe -lhookomp -fopenmp -lgomp
+
+
 	# Test of offloading function schedule runtime.
 	/home/goncalv/prototipo-370-gpu/llvm_build/bin/llc -march=nvptx64 vectoradd-kernel.ll -o vectoradd-kernel.ptx
 	

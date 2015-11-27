@@ -23,11 +23,12 @@ DATA_TYPE h_c[N];
 void init_array() {
   fprintf(stdout, "Inicializando os arrays.\n");
   int i;
-  // Initialize vectors on host.
-    for (i = 0; i < N; i++) {
-      h_a[i] = 0.5;
-      h_b[i] = 0.5;
-    }
+  int number_of_threads = 4;
+  #pragma omp parallel for num_threads (number_of_threads) schedule (runtime)
+  for (i = 0; i < N; i++) {
+    h_a[i] = 0.5;
+    h_b[i] = 0.5;
+  }
 }
 
 void print_array() {
