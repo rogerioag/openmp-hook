@@ -29,8 +29,9 @@ libhookomp: hookomp.o
 # libraries start with ‘lib’ and end with .so or .a (.so is for shared object or shared 
 # libraries, and .a is for archive, or statically linked libraries).
 
-main: main-test.c
-	${CXX} -L${PWD} -Wall -o main-test main-test.c -ldl -lhookomp 
+# main: main-test.c
+main:
+	# ${CXX} -L${PWD} -Wall -o main-test main-test.c -ldl -lhookomp 
 	${CXX} vectoradd-omp.c -o vectoradd-omp -fopenmp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-single.c -o vectoradd-omp-parallel-for-single -lhookomp -fopenmp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling-for-to-1-thread.c -o vectoradd-omp-parallel-for-peeling-for-to-1-thread -lhookomp -fopenmp
