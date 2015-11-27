@@ -47,9 +47,10 @@ typedef void (*op_func) (void);
 /* Ponteiro para a função proxy que irá chamar ou *_next ou *_start. */
 typedef bool (*chunk_next_fn)(long*, long*, void*);
 
+/* Have too diferents kinds of functions. */
 enum FUN_TYPES {
     FUN_START_NEXT,
-    FUN_START_NEXT_RUNTIME, // Thank you for more one parameters. :-(
+    FUN_START_NEXT_RUNTIME, // Thank you for more one parameter. :-(
     FUN_NEXT
 };
 
