@@ -46,7 +46,7 @@ bool RM_library_init(void){
  	ptr_measure->chunk_size = 0;
 
 	papi_eventset_was_created = false;
-	thread_was_registred_in_papi = false;
+	// thread_was_registred_in_papi = false;
 
 	TRACE("PAPI Library is initialized: %d\n", papi_library_initialized);
 	if(!papi_library_initialized){
@@ -716,6 +716,7 @@ bool RM_library_shutdown(void){
 	}
 	else{
 		TRACE("PAPI_unregister_thread OK.\n");
+		thread_was_registred_in_papi = false;
 	}
 
 	/*TRACE("Trying to clean up the event set.\n");
