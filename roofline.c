@@ -713,7 +713,6 @@ bool RM_library_shutdown(void){
 	PRINT_FUNC_NAME;
 	int retval = 0;
 
---
   	/* Event set was created. */
   	TRACE("Trying to destroy event set.\n");
 	if(papi_eventset_was_created){
