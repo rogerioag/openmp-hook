@@ -191,6 +191,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	}
 	else{
 		/* Verify if the thread is the thread registred to execute and get measures. */
+		TRACE("[HOOKOMP]: Testing the number of executed iterations: %ld.\n", executed_loop_iterations);
 		if(registred_thread_executing_function_next == (long int) pthread_self()){
 			/* Execute only percentual of code. */
 			TRACE("[HOOKOMP]: Testing the number of executed iterations: %ld.\n", executed_loop_iterations);
@@ -347,8 +348,8 @@ void HOOKOMP_end(void){
 		TRACE("Error calling RM_library_shutdown() in %s.\n", __FUNCTION__);
 	}
 
-	/* Unregister the thread that get measures. */
-	registred_thread_executing_function_next = -1;
+	/* Set flag to control initialization of hook. */
+	is_hookomp_initialized = false;
 
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 }
