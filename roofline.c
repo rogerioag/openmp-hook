@@ -748,6 +748,8 @@ bool RM_library_shutdown(void){
 	/* PAPI shutdown. */
 	TRACE("Calling the PAPI shutdown.\n");
 	PAPI_shutdown();
+
+	papi_library_initialized = false;
 		
 	return (retval == PAPI_OK);
 }
