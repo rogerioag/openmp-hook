@@ -17,6 +17,9 @@
 #define omp_get_num_threads() 1
 #endif
 
+/* Percentual of code to execute and get performance counters to decision about offloading. */
+#define PERC_OF_CODE_TO_EXECUTE 10
+
 #define  PRINT_ERROR()					\
   do {									\
     char * error;						\
@@ -302,6 +305,37 @@ typedef struct Params_ {
 	int (*lib_GOACC_get_num_threads) (void);
 	
 	int (*lib_GOACC_get_thread_num) (void);*/
+
+/* Registry the thread which can execute the next function. */
+static long int registred_thread_executing_function_next = -1;
+
+/* Interval control for calculate the portion of code to execute. 10% */
+static long int loop_iterations_start = 0;
+static long int loop_iterations_end = 0;
+static long int total_of_iterations = 0;
+/* To acumulate the iterations executed by thread to calculate the percentual of executed code. */
+static long int executed_loop_iterations = 0;
+
+/* 10% of code. */
+static long int percentual_of_code = PERC_OF_CODE_TO_EXECUTE;
+
+static long int number_of_threads_in_team = 0;
+static long int number_of_blocked_threads = 0;
+
+static bool is_executing_measures_section = true;
+
+// static bool started_measuring = false;
+
+static bool decided_by_offloading = false;
+
+static bool made_the_offloading = false;
+
+static bool is_hookomp_initialized = false;
+
+// extern struct gomp_team gomp_team;
+// extern struct gomp_work_share gomp_work_share;
+
+// extern struct gomp_thread* gomp_thread();
 
 #ifdef __cplusplus 
 extern "C" {
