@@ -758,6 +758,8 @@ bool RM_library_shutdown(void){
 	free(ptr_measure->values);
 	free(ptr_measure->quant_intervals);
 	free(ptr_measure);
+
+	started_measuring = false;
 		
 	return (retval == PAPI_OK);
 }
