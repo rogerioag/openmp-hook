@@ -45,10 +45,10 @@ bool RM_library_init(void){
   	ptr_measure->executed_loop_iterations = 0;
  	ptr_measure->chunk_size = 0;
 
-	papi_eventset_was_created = false;
+	// papi_eventset_was_created = false;
 	// thread_was_registred_in_papi = false;
 
-	TRACE("PAPI Library is initialized: %d\n", papi_library_initialized);
+	TRACE("PAPI Library was initialized: %d\n", papi_library_initialized);
 	if(!papi_library_initialized){
   		TRACE("[Before] Value of papi_library_initialized: %d\n",papi_library_initialized);
   		result = RM_initialization_of_papi_libray_mode();
@@ -56,12 +56,14 @@ bool RM_library_init(void){
   	}
 
   	/* Thread was registered. */
+  	TRACE("Verifying if the thread was registered in PAPI: %d.\n", thread_was_registred_in_papi);
   	if(!thread_was_registred_in_papi){
   		TRACE("Trying to registry the thread in papi.\n");
   		result = RM_register_papi_thread();
   	}
 
   	/* Event set was created. */
+  	TRACE("Verifying if eventset was created: %d.\n", papi_eventset_was_created);
 	if(!papi_eventset_was_created){
 		TRACE("Trying to create event set.\n");
 		result = RM_create_event_set();
@@ -304,6 +306,7 @@ bool RM_create_event_set(void){
     	RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
   	}
 
+  	/* Set eventset was created. */
   	papi_eventset_was_created = (retval == PAPI_OK);
 
   	/* Assign it to the CPU component */
@@ -728,11 +731,15 @@ bool RM_library_shutdown(void){
 		TRACE("PAPI_cleanup_eventset OK.\n");
 	}*/
 
-	/*TRACE("Trying to destroy event set.\n");
+	TRACE("Trying to destroy event set.\n");
 	if ((retval = PAPI_destroy_eventset(&ptr_measure->EventSet)) != PAPI_OK){
 		TRACE("PAPI_destroy_eventset error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	}*/
+	}
+	else{
+		TRACE("PAPI_destroy_eventset OK.\n");
+		papi_eventset_was_created = false;
+	}
 
 	TRACE("Trying to free allocated structures.\n");
 	// free(ptr_measure->values);
