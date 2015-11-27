@@ -1,768 +1,769 @@
-TRACE-FUNC-NAME: [ hookomp.c:0000804] Thread [140169191765952] is calling [GOMP_parallel_loop_dynamic_start()]
-[TRACE]: [ hookomp.c:0000809] Thread [140169191765952] in GOMP_parallel_loop_dynamic_start(): [LIBGOMP] GOMP_parallel_loop_dynamic_start@GOMP_X.X.[0x400af2]
-[TRACE]: [ hookomp.c:0000811] Thread [140169191765952] in GOMP_parallel_loop_dynamic_start(): [LIBGOMP] lib_GOMP_parallel_loop_dynamic_start[0x7f7bae8033a0]
-TRACE-FUNC-NAME: [ hookomp.c:0000056] Thread [140169191765952] is calling [HOOKOMP_initialization()]
-TRACE-FUNC-NAME: [roofline.c:0000012] Thread [140169191765952] is calling [RM_library_init()]
-[TRACE]: [roofline.c:0000032] Thread [140169191765952] in RM_library_init(): values initialization.
-[TRACE]: [roofline.c:0000034] Thread [140169191765952] in RM_library_init(): # intervals [0]: 0
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[0][0]: 0.
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[0][1]: 0.
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[0][2]: 0.
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[0][3]: 0.
-[TRACE]: [roofline.c:0000034] Thread [140169191765952] in RM_library_init(): # intervals [1]: 0
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[1][0]: 0.
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[1][1]: 0.
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[1][2]: 0.
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[1][3]: 0.
-[TRACE]: [roofline.c:0000034] Thread [140169191765952] in RM_library_init(): # intervals [2]: 0
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[2][0]: 0.
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[2][1]: 0.
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[2][2]: 0.
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[2][3]: 0.
-[TRACE]: [roofline.c:0000034] Thread [140169191765952] in RM_library_init(): # intervals [3]: 0
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[3][0]: 0.
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[3][1]: 0.
-[TRACE]: [roofline.c:0000037] Thread [140169191765952] in RM_library_init(): ptr_measure->values[3][2]: 0.
-TRACE-FUNC-NAME: [roofline.c:0000241] Thread [140169191765952] is calling [RM_print_counters_values()]
-[TRACE]: [roofline.c:0000244] Thread [140169191765952] in RM_print_counters_values(): Final Values:
-[TRACE]: [roofline.c:0000251] Thread [140169191765952] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L3_TCR;PAPI_L3_TCW;;
-[TRACE]: [roofline.c:0000259] Thread [140169191765952] in RM_print_counters_values(): 0;0;0;0;0;0;
-[TRACE]: [roofline.c:0000251] Thread [140169191765952] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L2_TCR;PAPI_L2_TCW;;
-[TRACE]: [roofline.c:0000259] Thread [140169191765952] in RM_print_counters_values(): 0;0;0;0;0;0;
-[TRACE]: [roofline.c:0000251] Thread [140169191765952] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L1_TCR;PAPI_L1_TCW;;
-[TRACE]: [roofline.c:0000259] Thread [140169191765952] in RM_print_counters_values(): 0;0;0;0;0;0;
-[TRACE]: [roofline.c:0000251] Thread [140169191765952] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_DP_OPS;;;
-[TRACE]: [roofline.c:0000259] Thread [140169191765952] in RM_print_counters_values(): 0;0;0;0;0;0;
-[TRACE]: [roofline.c:0000064] Thread [140169191765952] in RM_library_init(): PAPI Library is initialized: 0
-[TRACE]: [roofline.c:0000066] Thread [140169191765952] in RM_library_init(): [Before] Value of papi_library_initialized: 0
-TRACE-FUNC-NAME: [roofline.c:0000142] Thread [140169191765952] is calling [RM_initialization_of_papi_libray_mode()]
-[TRACE]: [roofline.c:0000149] Thread [140169191765952] in RM_initialization_of_papi_libray_mode(): [Before]: Calling PAPI_library_init().
-[TRACE]: [roofline.c:0000180] Thread [140169191765952] in RM_initialization_of_papi_libray_mode(): [After]: PAPI_library_init. Value of papi_library_initialized: 1
-[TRACE]: [roofline.c:0000189] Thread [140169191765952] in RM_initialization_of_papi_libray_mode(): Setting debugging.
-[TRACE]: [roofline.c:0000068] Thread [140169191765952] in RM_library_init(): [After] Value of result: 1, papi_library_initialized: 1
-[TRACE]: [roofline.c:0000073] Thread [140169191765952] in RM_library_init(): Trying to registry the thread in papi.
-TRACE-FUNC-NAME: [roofline.c:0000088] Thread [140169191765952] is calling [RM_register_papi_thread()]
-[TRACE]: [roofline.c:0000092] Thread [140169191765952] in RM_register_papi_thread(): [RM_register_papi_thread] [Before] PAPI_register_thread.
-[TRACE]: [roofline.c:0000094] Thread [140169191765952] in RM_register_papi_thread(): [Before]: PAPI_thread_init.
-[TRACE]: [roofline.c:0000103] Thread [140169191765952] in RM_register_papi_thread(): [After]: PAPI_thread_init: 140169191765952
-[TRACE]: [roofline.c:0000126] Thread [140169191765952] in RM_register_papi_thread(): [RM_register_papi_thread] [After] PAPI_register_thread.
-[TRACE]: [roofline.c:0000133] Thread [140169191765952] in RM_register_papi_thread(): Thread id is: 140169191765952
-[TRACE]: [roofline.c:0000079] Thread [140169191765952] in RM_library_init(): Trying to create event set.
-TRACE-FUNC-NAME: [roofline.c:0000307] Thread [140169191765952] is calling [RM_create_event_set()]
-[TRACE]: [roofline.c:0000312] Thread [140169191765952] in RM_create_event_set(): Trying to create PAPI event set.
-[TRACE]: [roofline.c:0000323] Thread [140169191765952] in RM_create_event_set(): Assign it to the CPU component.
-TRACE-FUNC-NAME: [roofline.c:0000266] Thread [140169191765952] is calling [RM_check_papi_status()]
-[TRACE]: [roofline.c:0000374] Thread [140169191765952] in RM_create_event_set(): Leaving the RM_create_event_set: papi_eventset_was_created 1.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169191765952] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169191765952] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169191765952] is calling [HOOKOMP_generic_next()]
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169143559936] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169143559936] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169143559936] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169143559936] is calling HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000100] Thread [140169143559936] is calling [HOOKOMP_registry_the_first_thread()]
-[TRACE]: [ hookomp.c:0000105] Thread [140169143559936] in HOOKOMP_registry_the_first_thread(): [HOOKOMP]: Thread [140169143559936] is entering in controled execution.
-[TRACE]: [ hookomp.c:0000197] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [INSIDE] Calling next function inside of measures section.
-[TRACE]: [ hookomp.c:0000198] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 0.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169160345344] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169160345344] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169160345344] is calling [HOOKOMP_generic_next()]
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169143559936] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000100] Thread [140169191765952] is calling [HOOKOMP_registry_the_first_thread()]
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000265] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] will be blocked.
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000178] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169160345344] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000265] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169160345344] will be blocked.
-[TRACE]: [ hookomp.c:0000265] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] will be blocked.
-[TRACE]: [ hookomp.c:0000153] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000200] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 32.
-[TRACE]: [ hookomp.c:0000202] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before]-> Update of executed iterations: 0.
-[TRACE]: [ hookomp.c:0000204] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After]-> Update of executed iterations: 32.
-TRACE-FUNC-NAME: [roofline.c:0000511] Thread [140169143559936] is calling [RM_registry_measures()]
-[TRACE]: [roofline.c:0000515] Thread [140169143559936] in RM_registry_measures(): [HOOKOMP]: Verifying if started the measuring.
-[TRACE]: [roofline.c:0000529] Thread [140169143559936] in RM_registry_measures(): call RM_start_counters().
-TRACE-FUNC-NAME: [roofline.c:0000382] Thread [140169143559936] is calling [RM_start_counters()]
-[TRACE]: [roofline.c:0000406] Thread [140169143559936] in RM_start_counters(): EventSet: 0
-[TRACE]: [roofline.c:0000408] Thread [140169143559936] in RM_start_counters(): Adding[PAPI_TOT_CYC].
-[TRACE]: [roofline.c:0000408] Thread [140169143559936] in RM_start_counters(): Adding[PAPI_REF_CYC].
-[TRACE]: [roofline.c:0000408] Thread [140169143559936] in RM_start_counters(): Adding[PAPI_L3_TCR].
-[TRACE]: [roofline.c:0000408] Thread [140169143559936] in RM_start_counters(): Adding[PAPI_L3_TCW].
-[TRACE]: [roofline.c:0000415] Thread [140169143559936] in RM_start_counters(): Resetting the counters.
-[TRACE]: [roofline.c:0000435] Thread [140169143559936] in RM_start_counters(): Starting counting...
-[TRACE]: [roofline.c:0000531] Thread [140169143559936] in RM_registry_measures(): [RM]: PAPI Counters Started.
-[TRACE]: [ hookomp.c:0000284] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169143559936] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169143559936] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169143559936] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169143559936] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000197] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [INSIDE] Calling next function inside of measures section.
-[TRACE]: [ hookomp.c:0000198] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 32.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169143559936] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000200] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 32 iend: 64.
-[TRACE]: [ hookomp.c:0000202] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before]-> Update of executed iterations: 32.
-[TRACE]: [ hookomp.c:0000204] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After]-> Update of executed iterations: 64.
-TRACE-FUNC-NAME: [roofline.c:0000511] Thread [140169143559936] is calling [RM_registry_measures()]
-[TRACE]: [roofline.c:0000515] Thread [140169143559936] in RM_registry_measures(): [HOOKOMP]: Verifying if started the measuring.
-[TRACE]: [roofline.c:0000517] Thread [140169143559936] in RM_registry_measures(): call RM_stop_and_accumulate().
-TRACE-FUNC-NAME: [roofline.c:0000454] Thread [140169143559936] is calling [RM_stop_and_accumulate()]
-[TRACE]: [roofline.c:0000458] Thread [140169143559936] in RM_stop_and_accumulate(): Trying accumulate counters.
-[TRACE]: [roofline.c:0000481] Thread [140169143559936] in RM_stop_and_accumulate(): Wall clock cycles: 			238924
-[TRACE]: [roofline.c:0000482] Thread [140169143559936] in RM_stop_and_accumulate(): Wall clock time in microseconds: 	91
-[TRACE]: [roofline.c:0000485] Thread [140169143559936] in RM_stop_and_accumulate(): Stopping the counters.
-[TRACE]: [roofline.c:0000491] Thread [140169143559936] in RM_stop_and_accumulate(): Removing events of EventSet: 0
-[TRACE]: [roofline.c:0000493] Thread [140169143559936] in RM_stop_and_accumulate(): Removing[PAPI_TOT_CYC].
-[TRACE]: [roofline.c:0000493] Thread [140169143559936] in RM_stop_and_accumulate(): Removing[PAPI_REF_CYC].
-[TRACE]: [roofline.c:0000493] Thread [140169143559936] in RM_stop_and_accumulate(): Removing[PAPI_L3_TCR].
-[TRACE]: [roofline.c:0000493] Thread [140169143559936] in RM_stop_and_accumulate(): Removing[PAPI_L3_TCW].
-TRACE-FUNC-NAME: [roofline.c:0000241] Thread [140169143559936] is calling [RM_print_counters_values()]
-[TRACE]: [roofline.c:0000244] Thread [140169143559936] in RM_print_counters_values(): Final Values:
-[TRACE]: [roofline.c:0000251] Thread [140169143559936] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L3_TCR;PAPI_L3_TCW;;
-[TRACE]: [roofline.c:0000259] Thread [140169143559936] in RM_print_counters_values(): 1;55366;71916;285;14;0;
-[TRACE]: [roofline.c:0000251] Thread [140169143559936] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L2_TCR;PAPI_L2_TCW;;
-[TRACE]: [roofline.c:0000259] Thread [140169143559936] in RM_print_counters_values(): 0;0;0;0;0;0;
-[TRACE]: [roofline.c:0000251] Thread [140169143559936] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L1_TCR;PAPI_L1_TCW;;
-[TRACE]: [roofline.c:0000259] Thread [140169143559936] in RM_print_counters_values(): 0;0;0;0;0;0;
-[TRACE]: [roofline.c:0000251] Thread [140169143559936] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_DP_OPS;;;
-[TRACE]: [roofline.c:0000259] Thread [140169143559936] in RM_print_counters_values(): 0;0;0;0;0;0;
-[TRACE]: [roofline.c:0000519] Thread [140169143559936] in RM_registry_measures(): [RM]: Stop and Accumulate.
-[TRACE]: [roofline.c:0000529] Thread [140169143559936] in RM_registry_measures(): call RM_start_counters().
-TRACE-FUNC-NAME: [roofline.c:0000382] Thread [140169143559936] is calling [RM_start_counters()]
-[TRACE]: [roofline.c:0000406] Thread [140169143559936] in RM_start_counters(): EventSet: 1
-[TRACE]: [roofline.c:0000408] Thread [140169143559936] in RM_start_counters(): Adding[PAPI_TOT_CYC].
-[TRACE]: [roofline.c:0000408] Thread [140169143559936] in RM_start_counters(): Adding[PAPI_REF_CYC].
-[TRACE]: [roofline.c:0000408] Thread [140169143559936] in RM_start_counters(): Adding[PAPI_L2_TCR].
-[TRACE]: [roofline.c:0000408] Thread [140169143559936] in RM_start_counters(): Adding[PAPI_L2_TCW].
-[TRACE]: [roofline.c:0000415] Thread [140169143559936] in RM_start_counters(): Resetting the counters.
-[TRACE]: [roofline.c:0000435] Thread [140169143559936] in RM_start_counters(): Starting counting...
-[TRACE]: [roofline.c:0000531] Thread [140169143559936] in RM_registry_measures(): [RM]: PAPI Counters Started.
-[TRACE]: [ hookomp.c:0000284] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169143559936] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169143559936] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169143559936] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169143559936] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000211] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: They were executed 64 iterations of 512.
-[TRACE]: [ hookomp.c:0000212] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Trying to make decision about offloading.
-[TRACE]: [ hookomp.c:0000217] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169143559936] is getting the performance counters to decide.
-TRACE-FUNC-NAME: [roofline.c:0000454] Thread [140169143559936] is calling [RM_stop_and_accumulate()]
-[TRACE]: [roofline.c:0000458] Thread [140169143559936] in RM_stop_and_accumulate(): Trying accumulate counters.
-[TRACE]: [roofline.c:0000481] Thread [140169143559936] in RM_stop_and_accumulate(): Wall clock cycles: 			116272
-[TRACE]: [roofline.c:0000482] Thread [140169143559936] in RM_stop_and_accumulate(): Wall clock time in microseconds: 	44
-[TRACE]: [roofline.c:0000485] Thread [140169143559936] in RM_stop_and_accumulate(): Stopping the counters.
-[TRACE]: [roofline.c:0000491] Thread [140169143559936] in RM_stop_and_accumulate(): Removing events of EventSet: 1
-[TRACE]: [roofline.c:0000493] Thread [140169143559936] in RM_stop_and_accumulate(): Removing[PAPI_TOT_CYC].
-[TRACE]: [roofline.c:0000493] Thread [140169143559936] in RM_stop_and_accumulate(): Removing[PAPI_REF_CYC].
-[TRACE]: [roofline.c:0000493] Thread [140169143559936] in RM_stop_and_accumulate(): Removing[PAPI_L2_TCR].
-[TRACE]: [roofline.c:0000493] Thread [140169143559936] in RM_stop_and_accumulate(): Removing[PAPI_L2_TCW].
-TRACE-FUNC-NAME: [roofline.c:0000241] Thread [140169143559936] is calling [RM_print_counters_values()]
-[TRACE]: [roofline.c:0000244] Thread [140169143559936] in RM_print_counters_values(): Final Values:
-[TRACE]: [roofline.c:0000251] Thread [140169143559936] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L3_TCR;PAPI_L3_TCW;;
-[TRACE]: [roofline.c:0000259] Thread [140169143559936] in RM_print_counters_values(): 1;55366;71916;285;14;0;
-[TRACE]: [roofline.c:0000251] Thread [140169143559936] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L2_TCR;PAPI_L2_TCW;;
-[TRACE]: [roofline.c:0000259] Thread [140169143559936] in RM_print_counters_values(): 1;29173;37830;1135;37;0;
-[TRACE]: [roofline.c:0000251] Thread [140169143559936] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L1_TCR;PAPI_L1_TCW;;
-[TRACE]: [roofline.c:0000259] Thread [140169143559936] in RM_print_counters_values(): 0;0;0;0;0;0;
-[TRACE]: [roofline.c:0000251] Thread [140169143559936] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_DP_OPS;;;
-[TRACE]: [roofline.c:0000259] Thread [140169143559936] in RM_print_counters_values(): 0;0;0;0;0;0;
-TRACE-FUNC-NAME: [roofline.c:0000548] Thread [140169143559936] is calling [RM_set_aditional_parameters()]
-[TRACE]: [roofline.c:0000554] Thread [140169143559936] in RM_set_aditional_parameters(): Total of iterations: 512, executed_iterations: 64, chunk_size: 32.
-TRACE-FUNC-NAME: [roofline.c:0000708] Thread [140169143559936] is calling [RM_decision_about_offloading()]
-TRACE-FUNC-NAME: [roofline.c:0000670] Thread [140169143559936] is calling [RM_get_operational_intensity()]
-TRACE-FUNC-NAME: [roofline.c:0000629] Thread [140169143559936] is calling [work()]
-TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140169143559936] is calling [estimated()]
-TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140169143559936] is calling [measured()]
-[TRACE]: [roofline.c:0000603] Thread [140169143559936] in measured(): value: 0.
-[TRACE]: [roofline.c:0000604] Thread [140169143559936] in measured(): # intervals: 0.
-[TRACE]: [roofline.c:0000607] Thread [140169143559936] in measured(): measured: -nan.
-TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140169143559936] is calling [total_of_chunks()]
-[TRACE]: [roofline.c:0000583] Thread [140169143559936] in total_of_chunks(): total of chunks: 16.
-[TRACE]: [roofline.c:0000623] Thread [140169143559936] in estimated(): estimative: -nan.
-[TRACE]: [roofline.c:0000631] Thread [140169143559936] in work(): work: -nan.
-[TRACE]: [roofline.c:0000681] Thread [140169143559936] in RM_get_operational_intensity(): W: -nan
-TRACE-FUNC-NAME: [roofline.c:0000661] Thread [140169143559936] is calling [Q_total()]
-TRACE-FUNC-NAME: [roofline.c:0000653] Thread [140169143559936] is calling [Q_level()]
-TRACE-FUNC-NAME: [roofline.c:0000637] Thread [140169143559936] is calling [Qr()]
-TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140169143559936] is calling [estimated()]
-TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140169143559936] is calling [measured()]
-[TRACE]: [roofline.c:0000603] Thread [140169143559936] in measured(): value: 285.
-[TRACE]: [roofline.c:0000604] Thread [140169143559936] in measured(): # intervals: 1.
-[TRACE]: [roofline.c:0000607] Thread [140169143559936] in measured(): measured: 285.000000.
-TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140169143559936] is calling [total_of_chunks()]
-[TRACE]: [roofline.c:0000583] Thread [140169143559936] in total_of_chunks(): total of chunks: 16.
-[TRACE]: [roofline.c:0000623] Thread [140169143559936] in estimated(): estimative: 4560.000000.
-[TRACE]: [roofline.c:0000639] Thread [140169143559936] in Qr(): Qr: 291840.000000.
-TRACE-FUNC-NAME: [roofline.c:0000645] Thread [140169143559936] is calling [Qw()]
-TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140169143559936] is calling [estimated()]
-TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140169143559936] is calling [measured()]
-[TRACE]: [roofline.c:0000603] Thread [140169143559936] in measured(): value: 14.
-[TRACE]: [roofline.c:0000604] Thread [140169143559936] in measured(): # intervals: 1.
-[TRACE]: [roofline.c:0000607] Thread [140169143559936] in measured(): measured: 14.000000.
-TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140169143559936] is calling [total_of_chunks()]
-[TRACE]: [roofline.c:0000583] Thread [140169143559936] in total_of_chunks(): total of chunks: 16.
-[TRACE]: [roofline.c:0000623] Thread [140169143559936] in estimated(): estimative: 224.000000.
-[TRACE]: [roofline.c:0000647] Thread [140169143559936] in Qw(): Qw: 14336.000000.
-[TRACE]: [roofline.c:0000655] Thread [140169143559936] in Q_level(): Q_level: 306176.000000.
-TRACE-FUNC-NAME: [roofline.c:0000653] Thread [140169143559936] is calling [Q_level()]
-TRACE-FUNC-NAME: [roofline.c:0000637] Thread [140169143559936] is calling [Qr()]
-TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140169143559936] is calling [estimated()]
-TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140169143559936] is calling [measured()]
-[TRACE]: [roofline.c:0000603] Thread [140169143559936] in measured(): value: 1135.
-[TRACE]: [roofline.c:0000604] Thread [140169143559936] in measured(): # intervals: 1.
-[TRACE]: [roofline.c:0000607] Thread [140169143559936] in measured(): measured: 1135.000000.
-TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140169143559936] is calling [total_of_chunks()]
-[TRACE]: [roofline.c:0000583] Thread [140169143559936] in total_of_chunks(): total of chunks: 16.
-[TRACE]: [roofline.c:0000623] Thread [140169143559936] in estimated(): estimative: 18160.000000.
-[TRACE]: [roofline.c:0000639] Thread [140169143559936] in Qr(): Qr: 1162240.000000.
-TRACE-FUNC-NAME: [roofline.c:0000645] Thread [140169143559936] is calling [Qw()]
-TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140169143559936] is calling [estimated()]
-TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140169143559936] is calling [measured()]
-[TRACE]: [roofline.c:0000603] Thread [140169143559936] in measured(): value: 37.
-[TRACE]: [roofline.c:0000604] Thread [140169143559936] in measured(): # intervals: 1.
-[TRACE]: [roofline.c:0000607] Thread [140169143559936] in measured(): measured: 37.000000.
-TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140169143559936] is calling [total_of_chunks()]
-[TRACE]: [roofline.c:0000583] Thread [140169143559936] in total_of_chunks(): total of chunks: 16.
-[TRACE]: [roofline.c:0000623] Thread [140169143559936] in estimated(): estimative: 592.000000.
-[TRACE]: [roofline.c:0000647] Thread [140169143559936] in Qw(): Qw: 37888.000000.
-[TRACE]: [roofline.c:0000655] Thread [140169143559936] in Q_level(): Q_level: 1200128.000000.
-TRACE-FUNC-NAME: [roofline.c:0000653] Thread [140169143559936] is calling [Q_level()]
-TRACE-FUNC-NAME: [roofline.c:0000637] Thread [140169143559936] is calling [Qr()]
-TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140169143559936] is calling [estimated()]
-TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140169143559936] is calling [measured()]
-[TRACE]: [roofline.c:0000603] Thread [140169143559936] in measured(): value: 0.
-[TRACE]: [roofline.c:0000604] Thread [140169143559936] in measured(): # intervals: 0.
-[TRACE]: [roofline.c:0000607] Thread [140169143559936] in measured(): measured: -nan.
-TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140169143559936] is calling [total_of_chunks()]
-[TRACE]: [roofline.c:0000583] Thread [140169143559936] in total_of_chunks(): total of chunks: 16.
-[TRACE]: [roofline.c:0000623] Thread [140169143559936] in estimated(): estimative: -nan.
-[TRACE]: [roofline.c:0000639] Thread [140169143559936] in Qr(): Qr: -nan.
-TRACE-FUNC-NAME: [roofline.c:0000645] Thread [140169143559936] is calling [Qw()]
-TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140169143559936] is calling [estimated()]
-TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140169143559936] is calling [measured()]
-[TRACE]: [roofline.c:0000603] Thread [140169143559936] in measured(): value: 0.
-[TRACE]: [roofline.c:0000604] Thread [140169143559936] in measured(): # intervals: 0.
-[TRACE]: [roofline.c:0000607] Thread [140169143559936] in measured(): measured: -nan.
-TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140169143559936] is calling [total_of_chunks()]
-[TRACE]: [roofline.c:0000583] Thread [140169143559936] in total_of_chunks(): total of chunks: 16.
-[TRACE]: [roofline.c:0000623] Thread [140169143559936] in estimated(): estimative: -nan.
-[TRACE]: [roofline.c:0000647] Thread [140169143559936] in Qw(): Qw: -nan.
-[TRACE]: [roofline.c:0000655] Thread [140169143559936] in Q_level(): Q_level: -nan.
-[TRACE]: [roofline.c:0000663] Thread [140169143559936] in Q_total(): Q_total: -nan.
-[TRACE]: [roofline.c:0000685] Thread [140169143559936] in RM_get_operational_intensity(): Q: -nan
-[TRACE]: [roofline.c:0000689] Thread [140169143559936] in RM_get_operational_intensity(): I: -nan
-[TRACE]: [roofline.c:0000713] Thread [140169143559936] in RM_decision_about_offloading(): Operational intensity:       -nan
-TRACE-FUNC-NAME: [roofline.c:0000697] Thread [140169143559936] is calling [RM_get_better_device_to_execution()]
-[TRACE]: [roofline.c:0000698] Thread [140169143559936] in RM_get_better_device_to_execution(): Operational intensity:       -nan
-[TRACE]: [roofline.c:0000716] Thread [140169143559936] in RM_decision_about_offloading(): Execution is better on device [-1409114752].
-[TRACE]: [ hookomp.c:0000228] Thread [140169143559936] in HOOKOMP_generic_next(): RM decided by device [1].
-[TRACE]: [ hookomp.c:0000230] Thread [140169143559936] in HOOKOMP_generic_next(): Trying to launch apropriated function on device: 1.
-TRACE-FUNC-NAME: [ hookomp.c:0000160] Thread [140169143559936] is calling [HOOKOMP_call_offloaging_function()]
-[TRACE]: [ hookomp.c:0000168] Thread [140169143559936] in HOOKOMP_call_offloaging_function(): Offloading function not defined in TablePointerFunctions.
-[TRACE]: [ hookomp.c:0000235] Thread [140169143559936] in HOOKOMP_generic_next(): The function offloading was not done.
-[TRACE]: [ hookomp.c:0000242] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [CONTINUE] Calling next function after offloading decision about.
-[TRACE]: [ hookomp.c:0000243] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 32 iend: 64.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169143559936] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000245] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 64 iend: 96.
-[TRACE]: [ hookomp.c:0000251] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Number of Blocked Threds: 3.
-TRACE-FUNC-NAME: [ hookomp.c:0000045] Thread [140169143559936] is calling [release_all_team_threads()]
-[TRACE]: [ hookomp.c:0000047] Thread [140169143559936] in release_all_team_threads(): [HOOKOMP]: Waking up the 3 blocked threads.
-[TRACE]: [ hookomp.c:0000284] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169143559936] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000269] Thread [140169160345344] in HOOKOMP_generic_next(): Verifying if was decided by offloading.
-[TRACE]: [ hookomp.c:0000269] Thread [140169191765952] in HOOKOMP_generic_next(): Verifying if was decided by offloading.
-[TRACE]: [ hookomp.c:0000269] Thread [140169151952640] in HOOKOMP_generic_next(): Verifying if was decided by offloading.
-[TRACE]: [ hookomp.c:0000273] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [WAKE UP] Calling next function out of measures section after wake up.
-[TRACE]: [ hookomp.c:0000651] Thread [140169143559936] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169143559936] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169143559936] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000274] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: -1 iend: 1.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169191765952] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000276] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 96 iend: 128.
-[TRACE]: [ hookomp.c:0000284] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169191765952] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000273] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [WAKE UP] Calling next function out of measures section after wake up.
-[TRACE]: [ hookomp.c:0000274] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 0.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000276] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 128 iend: 160.
-[TRACE]: [ hookomp.c:0000188] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 64 iend: 96.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169143559936] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000651] Thread [140169191765952] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169191765952] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 96 iend: 128.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169191765952] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-[TRACE]: [ hookomp.c:0000150] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000273] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [WAKE UP] Calling next function out of measures section after wake up.
-[TRACE]: [ hookomp.c:0000274] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 0.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169160345344] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000276] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 192 iend: 224.
-[TRACE]: [ hookomp.c:0000284] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169160345344] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169160345344] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169160345344] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169160345344] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000148] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 224 iend: 256.
-[TRACE]: [ hookomp.c:0000284] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169191765952] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000187] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 128 iend: 160.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000188] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 192 iend: 224.
-[TRACE]: [ hookomp.c:0000651] Thread [140169191765952] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 160 iend: 192.
-[TRACE]: [ hookomp.c:0000284] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169143559936] is calling [GOMP_loop_dynamic_next()]
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169191765952] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 224 iend: 256.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169191765952] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 288 iend: 320.
-[TRACE]: [ hookomp.c:0000284] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169191765952] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169191765952] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169191765952] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 288 iend: 320.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169191765952] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 256 iend: 288.
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 256 iend: 288.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 352 iend: 384.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169160345344] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 384 iend: 416.
-[TRACE]: [ hookomp.c:0000284] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169160345344] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169160345344] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-[TRACE]: [ hookomp.c:0000651] Thread [140169143559936] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169143559936] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169143559936] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169160345344] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169160345344] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000190] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 320 iend: 352.
-[TRACE]: [ hookomp.c:0000284] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169191765952] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169191765952] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169191765952] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 160 iend: 192.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169143559936] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 416 iend: 448.
-[TRACE]: [ hookomp.c:0000284] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169143559936] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169143559936] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169143559936] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000178] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169143559936] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 416 iend: 448.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169143559936] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000187] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 352 iend: 384.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000188] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 384 iend: 416.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169160345344] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 320 iend: 352.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169191765952] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 320 iend: 352.
-[TRACE]: [ hookomp.c:0000284] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000934] Thread [140169191765952] is calling [GOMP_loop_end_nowait()]
-[TRACE]: [ hookomp.c:0000190] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
-[TRACE]: [ hookomp.c:0000284] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 448 iend: 480.
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000939] Thread [140169191765952] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f7baea18701]
-[TRACE]: [ hookomp.c:0000941] Thread [140169191765952] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140169191765952] is calling GOMP_loop_end_nowait.
-TRACE-FUNC-NAME: [ hookomp.c:0001232] Thread [140169191765952] is calling [GOMP_parallel_end()]
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169160345344] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169160345344] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169160345344] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169160345344] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169160345344] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
-[TRACE]: [ hookomp.c:0000284] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 448 iend: 480.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000150] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 416 iend: 448.
-[TRACE]: [ hookomp.c:0000284] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000934] Thread [140169143559936] is calling [GOMP_loop_end_nowait()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000934] Thread [140169160345344] is calling [GOMP_loop_end_nowait()]
-[TRACE]: [ hookomp.c:0000939] Thread [140169160345344] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f7baea18701]
-[TRACE]: [ hookomp.c:0000941] Thread [140169160345344] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140169160345344] is calling GOMP_loop_end_nowait.
-[TRACE]: [ hookomp.c:0001237] Thread [140169191765952] in GOMP_parallel_end(): [LIBGOMP] GOMP_parallel_end@GOMP_X.X [0x7f7bae804720]
-TRACE-FUNC-NAME: [ hookomp.c:0000334] Thread [140169191765952] is calling [HOOKOMP_end()]
-[TRACE]: [ hookomp.c:0000336] Thread [140169191765952] in HOOKOMP_end(): [HOOKOMP] [Before] Destroying the semaphores. 
-[TRACE]: [ hookomp.c:0000939] Thread [140169143559936] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f7baea18701]
-[TRACE]: [ hookomp.c:0000941] Thread [140169143559936] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140169143559936] is calling GOMP_loop_end_nowait.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 448 iend: 480.
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000934] Thread [140169151952640] is calling [GOMP_loop_end_nowait()]
-[TRACE]: [ hookomp.c:0000939] Thread [140169151952640] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f7baea18701]
-[TRACE]: [ hookomp.c:0000941] Thread [140169151952640] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140169151952640] is calling GOMP_loop_end_nowait.
-[TRACE]: [ hookomp.c:0000342] Thread [140169191765952] in HOOKOMP_end(): [HOOKOMP] [After] Destroying the semaphores.
-TRACE-FUNC-NAME: [roofline.c:0000722] Thread [140169191765952] is calling [RM_library_shutdown()]
-[TRACE]: [roofline.c:0000725] Thread [140169191765952] in RM_library_shutdown(): Trying to unregister thread calling PAPI_unregister_thread().
-[TRACE]: [roofline.c:0000731] Thread [140169191765952] in RM_library_shutdown(): PAPI_unregister_thread OK.
-[TRACE]: [roofline.c:0000749] Thread [140169191765952] in RM_library_shutdown(): Trying to free allocated structures.
-[TRACE]: [ hookomp.c:0000352] Thread [140169191765952] in HOOKOMP_end(): [HOOKOMP]: Leaving the HOOKOMP_end.
-TRACE-FUNC-NAME: [ hookomp.c:0000804] Thread [140169191765952] is calling [GOMP_parallel_loop_dynamic_start()]
-[TRACE]: [ hookomp.c:0000809] Thread [140169191765952] in GOMP_parallel_loop_dynamic_start(): [LIBGOMP] GOMP_parallel_loop_dynamic_start@GOMP_X.X.[0x400b79]
-[TRACE]: [ hookomp.c:0000811] Thread [140169191765952] in GOMP_parallel_loop_dynamic_start(): [LIBGOMP] lib_GOMP_parallel_loop_dynamic_start[0x7f7bae8033a0]
-TRACE-FUNC-NAME: [ hookomp.c:0000056] Thread [140169191765952] is calling [HOOKOMP_initialization()]
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169191765952] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169191765952] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169191765952] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] is calling HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169143559936] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169143559936] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000100] Thread [140169151952640] is calling [HOOKOMP_registry_the_first_thread()]
-[TRACE]: [ hookomp.c:0000105] Thread [140169151952640] in HOOKOMP_registry_the_first_thread(): [HOOKOMP]: Thread [140169151952640] is entering in controled execution.
-[TRACE]: [ hookomp.c:0000187] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 25966336 iend: 4197106.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 32.
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 32.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 32 iend: 64.
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169143559936] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169143559936] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 25966336 iend: 4197106.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169143559936] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 64 iend: 96.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169160345344] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000188] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 32 iend: 64.
-TRACE-FUNC-NAME: [ hookomp.c:0000100] Thread [140169191765952] is calling [HOOKOMP_registry_the_first_thread()]
-[TRACE]: [ hookomp.c:0000187] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000284] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000651] Thread [140169160345344] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169160345344] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169160345344] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000188] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 140169189719559 iend: 1.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169191765952] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 128 iend: 160.
-[TRACE]: [ hookomp.c:0000284] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169191765952] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169191765952] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169191765952] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000190] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 96 iend: 128.
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 96 iend: 128.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000188] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 128 iend: 160.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169191765952] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 160 iend: 192.
-[TRACE]: [ hookomp.c:0000284] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169191765952] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000187] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 25966336 iend: 4197106.
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000651] Thread [140169191765952] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169191765952] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169143559936] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169143559936] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-[TRACE]: [ hookomp.c:0000190] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 192 iend: 224.
-[TRACE]: [ hookomp.c:0000188] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 160 iend: 192.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169191765952] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169143559936] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169143559936] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 64 iend: 96.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169143559936] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000153] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 224 iend: 256.
-[TRACE]: [ hookomp.c:0000284] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169160345344] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 256 iend: 288.
-[TRACE]: [ hookomp.c:0000148] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169191765952] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169191765952] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169191765952] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 224 iend: 256.
-[TRACE]: [ hookomp.c:0000284] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169160345344] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169191765952] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 320 iend: 352.
-[TRACE]: [ hookomp.c:0000190] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 288 iend: 320.
-[TRACE]: [ hookomp.c:0000284] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169143559936] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169143559936] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169143559936] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169143559936] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 288 iend: 320.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169143559936] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000651] Thread [140169160345344] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169160345344] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169160345344] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000284] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169191765952] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000188] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 192 iend: 224.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 352 iend: 384.
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 352 iend: 384.
-[TRACE]: [ hookomp.c:0000150] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 384 iend: 416.
-[TRACE]: [ hookomp.c:0000284] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169143559936] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169191765952] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000187] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169191765952] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000651] Thread [140169143559936] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169143559936] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169143559936] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000178] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 320 iend: 352.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169191765952] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000188] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 256 iend: 288.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169160345344] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000190] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 416 iend: 448.
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169151952640] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000153] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 448 iend: 480.
-[TRACE]: [ hookomp.c:0000651] Thread [140169151952640] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-[TRACE]: [ hookomp.c:0000150] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000284] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169151952640] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169151952640] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000153] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
-[TRACE]: [ hookomp.c:0000188] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 416 iend: 448.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169151952640] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000188] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 384 iend: 416.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169143559936] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169143559936] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 384 iend: 416.
-[TRACE]: [ hookomp.c:0000284] Thread [140169143559936] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169191765952] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169191765952] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169191765952] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169191765952] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 448 iend: 480.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169191765952] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169191765952] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 448 iend: 480.
-[TRACE]: [ hookomp.c:0000284] Thread [140169191765952] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000934] Thread [140169191765952] is calling [GOMP_loop_end_nowait()]
-[TRACE]: [ hookomp.c:0000939] Thread [140169191765952] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f7baea18701]
-[TRACE]: [ hookomp.c:0000941] Thread [140169191765952] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140169191765952] is calling GOMP_loop_end_nowait.
-TRACE-FUNC-NAME: [ hookomp.c:0001232] Thread [140169191765952] is calling [GOMP_parallel_end()]
-[TRACE]: [ hookomp.c:0001237] Thread [140169191765952] in GOMP_parallel_end(): [LIBGOMP] GOMP_parallel_end@GOMP_X.X [0x7f7bae804720]
-TRACE-FUNC-NAME: [ hookomp.c:0000334] Thread [140169191765952] is calling [HOOKOMP_end()]
-TRACE-FUNC-NAME: [ hookomp.c:0000934] Thread [140169143559936] is calling [GOMP_loop_end_nowait()]
-[TRACE]: [ hookomp.c:0000284] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000647] Thread [140169160345344] is calling [GOMP_loop_dynamic_next()]
-[TRACE]: [ hookomp.c:0000651] Thread [140169160345344] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
-[TRACE]: [ hookomp.c:0000336] Thread [140169191765952] in HOOKOMP_end(): [HOOKOMP] [Before] Destroying the semaphores. 
-[TRACE]: [ hookomp.c:0000342] Thread [140169191765952] in HOOKOMP_end(): [HOOKOMP] [After] Destroying the semaphores.
-TRACE-FUNC-NAME: [roofline.c:0000722] Thread [140169191765952] is calling [RM_library_shutdown()]
-[TRACE]: [roofline.c:0000725] Thread [140169191765952] in RM_library_shutdown(): Trying to unregister thread calling PAPI_unregister_thread().
-[TRACE]: [ hookomp.c:0000939] Thread [140169143559936] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f7baea18701]
-[TRACE]: [ hookomp.c:0000148] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169151952640] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 416 iend: 448.
-[TRACE]: [ hookomp.c:0000284] Thread [140169151952640] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000934] Thread [140169151952640] is calling [GOMP_loop_end_nowait()]
-[TRACE]: [ hookomp.c:0000939] Thread [140169151952640] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f7baea18701]
-[TRACE]: [ hookomp.c:0000941] Thread [140169143559936] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140169143559936] is calling GOMP_loop_end_nowait.
-[TRACE]: [roofline.c:0000727] Thread [140169191765952] in RM_library_shutdown(): PAPI_unregister_thread error.
+TRACE-FUNC-NAME: [ hookomp.c:0000805] Thread [140057917622208] is calling [GOMP_parallel_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000810] Thread [140057917622208] in GOMP_parallel_loop_dynamic_start(): [LIBGOMP] GOMP_parallel_loop_dynamic_start@GOMP_X.X.[0x400af2]
+[TRACE]: [ hookomp.c:0000812] Thread [140057917622208] in GOMP_parallel_loop_dynamic_start(): [LIBGOMP] lib_GOMP_parallel_loop_dynamic_start[0x7f61c60b73a0]
+TRACE-FUNC-NAME: [ hookomp.c:0000056] Thread [140057917622208] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [roofline.c:0000012] Thread [140057917622208] is calling [RM_library_init()]
+[TRACE]: [roofline.c:0000032] Thread [140057917622208] in RM_library_init(): values initialization.
+[TRACE]: [roofline.c:0000034] Thread [140057917622208] in RM_library_init(): # intervals [0]: 0
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[0][0]: 0.
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[0][1]: 0.
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[0][2]: 0.
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[0][3]: 0.
+[TRACE]: [roofline.c:0000034] Thread [140057917622208] in RM_library_init(): # intervals [1]: 0
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[1][0]: 0.
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[1][1]: 0.
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[1][2]: 0.
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[1][3]: 0.
+[TRACE]: [roofline.c:0000034] Thread [140057917622208] in RM_library_init(): # intervals [2]: 0
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[2][0]: 0.
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[2][1]: 0.
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[2][2]: 0.
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[2][3]: 0.
+[TRACE]: [roofline.c:0000034] Thread [140057917622208] in RM_library_init(): # intervals [3]: 0
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[3][0]: 0.
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[3][1]: 0.
+[TRACE]: [roofline.c:0000037] Thread [140057917622208] in RM_library_init(): ptr_measure->values[3][2]: 0.
+TRACE-FUNC-NAME: [roofline.c:0000241] Thread [140057917622208] is calling [RM_print_counters_values()]
+[TRACE]: [roofline.c:0000244] Thread [140057917622208] in RM_print_counters_values(): Final Values:
+[TRACE]: [roofline.c:0000251] Thread [140057917622208] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L3_TCR;PAPI_L3_TCW;;
+[TRACE]: [roofline.c:0000259] Thread [140057917622208] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000251] Thread [140057917622208] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L2_TCR;PAPI_L2_TCW;;
+[TRACE]: [roofline.c:0000259] Thread [140057917622208] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000251] Thread [140057917622208] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L1_TCR;PAPI_L1_TCW;;
+[TRACE]: [roofline.c:0000259] Thread [140057917622208] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000251] Thread [140057917622208] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_DP_OPS;;;
+[TRACE]: [roofline.c:0000259] Thread [140057917622208] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000064] Thread [140057917622208] in RM_library_init(): PAPI Library is initialized: 0
+[TRACE]: [roofline.c:0000066] Thread [140057917622208] in RM_library_init(): [Before] Value of papi_library_initialized: 0
+TRACE-FUNC-NAME: [roofline.c:0000142] Thread [140057917622208] is calling [RM_initialization_of_papi_libray_mode()]
+[TRACE]: [roofline.c:0000149] Thread [140057917622208] in RM_initialization_of_papi_libray_mode(): [Before]: Calling PAPI_library_init().
+[TRACE]: [roofline.c:0000180] Thread [140057917622208] in RM_initialization_of_papi_libray_mode(): [After]: PAPI_library_init. Value of papi_library_initialized: 1
+[TRACE]: [roofline.c:0000189] Thread [140057917622208] in RM_initialization_of_papi_libray_mode(): Setting debugging.
+[TRACE]: [roofline.c:0000068] Thread [140057917622208] in RM_library_init(): [After] Value of result: 1, papi_library_initialized: 1
+[TRACE]: [roofline.c:0000073] Thread [140057917622208] in RM_library_init(): Trying to registry the thread in papi.
+TRACE-FUNC-NAME: [roofline.c:0000088] Thread [140057917622208] is calling [RM_register_papi_thread()]
+[TRACE]: [roofline.c:0000092] Thread [140057917622208] in RM_register_papi_thread(): [RM_register_papi_thread] [Before] PAPI_register_thread.
+[TRACE]: [roofline.c:0000094] Thread [140057917622208] in RM_register_papi_thread(): [Before]: PAPI_thread_init.
+[TRACE]: [roofline.c:0000103] Thread [140057917622208] in RM_register_papi_thread(): [After]: PAPI_thread_init: 140057917622208
+[TRACE]: [roofline.c:0000126] Thread [140057917622208] in RM_register_papi_thread(): [RM_register_papi_thread] [After] PAPI_register_thread.
+[TRACE]: [roofline.c:0000133] Thread [140057917622208] in RM_register_papi_thread(): Thread id is: 140057917622208
+[TRACE]: [roofline.c:0000079] Thread [140057917622208] in RM_library_init(): Trying to create event set.
+TRACE-FUNC-NAME: [roofline.c:0000307] Thread [140057917622208] is calling [RM_create_event_set()]
+[TRACE]: [roofline.c:0000312] Thread [140057917622208] in RM_create_event_set(): Trying to create PAPI event set.
+[TRACE]: [roofline.c:0000323] Thread [140057917622208] in RM_create_event_set(): Assign it to the CPU component.
+TRACE-FUNC-NAME: [roofline.c:0000266] Thread [140057917622208] is calling [RM_check_papi_status()]
+[TRACE]: [roofline.c:0000374] Thread [140057917622208] in RM_create_event_set(): Leaving the RM_create_event_set: papi_eventset_was_created 1.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057917622208] is calling [GOMP_loop_dynamic_next()]
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057877804800] is calling [GOMP_loop_dynamic_next()]
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057886197504] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057886197504] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000652] Thread [140057877804800] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000652] Thread [140057917622208] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057917622208] is calling [HOOKOMP_generic_next()]
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057886197504] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057886197504] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000100] Thread [140057886197504] is calling [HOOKOMP_registry_the_first_thread()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057917622208] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000266] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057917622208] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000266] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] will be blocked.
+[TRACE]: [ hookomp.c:0000105] Thread [140057886197504] in HOOKOMP_registry_the_first_thread(): [HOOKOMP]: Thread [140057886197504] is entering in controled execution.
+[TRACE]: [ hookomp.c:0000196] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the number of executed iterations: 0.
+[TRACE]: [ hookomp.c:0000198] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [INSIDE] Calling next function inside of measures section.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057877804800] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057877804800] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000266] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057877804800] will be blocked.
+[TRACE]: [ hookomp.c:0000199] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 0.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057886197504] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000201] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 32.
+[TRACE]: [ hookomp.c:0000203] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [Before]-> Update of executed iterations: 0.
+[TRACE]: [ hookomp.c:0000205] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [After]-> Update of executed iterations: 32.
+TRACE-FUNC-NAME: [roofline.c:0000511] Thread [140057886197504] is calling [RM_registry_measures()]
+[TRACE]: [roofline.c:0000515] Thread [140057886197504] in RM_registry_measures(): [HOOKOMP]: Verifying if started the measuring.
+[TRACE]: [roofline.c:0000529] Thread [140057886197504] in RM_registry_measures(): call RM_start_counters().
+TRACE-FUNC-NAME: [roofline.c:0000382] Thread [140057886197504] is calling [RM_start_counters()]
+[TRACE]: [roofline.c:0000406] Thread [140057886197504] in RM_start_counters(): EventSet: 0
+[TRACE]: [roofline.c:0000408] Thread [140057886197504] in RM_start_counters(): Adding[PAPI_TOT_CYC].
+[TRACE]: [roofline.c:0000408] Thread [140057886197504] in RM_start_counters(): Adding[PAPI_REF_CYC].
+[TRACE]: [roofline.c:0000408] Thread [140057886197504] in RM_start_counters(): Adding[PAPI_L3_TCR].
+[TRACE]: [roofline.c:0000408] Thread [140057886197504] in RM_start_counters(): Adding[PAPI_L3_TCW].
+[TRACE]: [roofline.c:0000415] Thread [140057886197504] in RM_start_counters(): Resetting the counters.
+[TRACE]: [roofline.c:0000435] Thread [140057886197504] in RM_start_counters(): Starting counting...
+[TRACE]: [roofline.c:0000531] Thread [140057886197504] in RM_registry_measures(): [RM]: PAPI Counters Started.
+[TRACE]: [ hookomp.c:0000285] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057886197504] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057886197504] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057886197504] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057886197504] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000196] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the number of executed iterations: 32.
+[TRACE]: [ hookomp.c:0000198] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [INSIDE] Calling next function inside of measures section.
+[TRACE]: [ hookomp.c:0000199] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 32.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057886197504] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000201] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 32 iend: 64.
+[TRACE]: [ hookomp.c:0000203] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [Before]-> Update of executed iterations: 32.
+[TRACE]: [ hookomp.c:0000205] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [After]-> Update of executed iterations: 64.
+TRACE-FUNC-NAME: [roofline.c:0000511] Thread [140057886197504] is calling [RM_registry_measures()]
+[TRACE]: [roofline.c:0000515] Thread [140057886197504] in RM_registry_measures(): [HOOKOMP]: Verifying if started the measuring.
+[TRACE]: [roofline.c:0000517] Thread [140057886197504] in RM_registry_measures(): call RM_stop_and_accumulate().
+TRACE-FUNC-NAME: [roofline.c:0000454] Thread [140057886197504] is calling [RM_stop_and_accumulate()]
+[TRACE]: [roofline.c:0000458] Thread [140057886197504] in RM_stop_and_accumulate(): Trying accumulate counters.
+[TRACE]: [roofline.c:0000481] Thread [140057886197504] in RM_stop_and_accumulate(): Wall clock cycles: 			363504
+[TRACE]: [roofline.c:0000482] Thread [140057886197504] in RM_stop_and_accumulate(): Wall clock time in microseconds: 	138
+[TRACE]: [roofline.c:0000485] Thread [140057886197504] in RM_stop_and_accumulate(): Stopping the counters.
+[TRACE]: [roofline.c:0000491] Thread [140057886197504] in RM_stop_and_accumulate(): Removing events of EventSet: 0
+[TRACE]: [roofline.c:0000493] Thread [140057886197504] in RM_stop_and_accumulate(): Removing[PAPI_TOT_CYC].
+[TRACE]: [roofline.c:0000493] Thread [140057886197504] in RM_stop_and_accumulate(): Removing[PAPI_REF_CYC].
+[TRACE]: [roofline.c:0000493] Thread [140057886197504] in RM_stop_and_accumulate(): Removing[PAPI_L3_TCR].
+[TRACE]: [roofline.c:0000493] Thread [140057886197504] in RM_stop_and_accumulate(): Removing[PAPI_L3_TCW].
+TRACE-FUNC-NAME: [roofline.c:0000241] Thread [140057886197504] is calling [RM_print_counters_values()]
+[TRACE]: [roofline.c:0000244] Thread [140057886197504] in RM_print_counters_values(): Final Values:
+[TRACE]: [roofline.c:0000251] Thread [140057886197504] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L3_TCR;PAPI_L3_TCW;;
+[TRACE]: [roofline.c:0000259] Thread [140057886197504] in RM_print_counters_values(): 1;55954;111696;288;16;0;
+[TRACE]: [roofline.c:0000251] Thread [140057886197504] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L2_TCR;PAPI_L2_TCW;;
+[TRACE]: [roofline.c:0000259] Thread [140057886197504] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000251] Thread [140057886197504] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L1_TCR;PAPI_L1_TCW;;
+[TRACE]: [roofline.c:0000259] Thread [140057886197504] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000251] Thread [140057886197504] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_DP_OPS;;;
+[TRACE]: [roofline.c:0000259] Thread [140057886197504] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000519] Thread [140057886197504] in RM_registry_measures(): [RM]: Stop and Accumulate.
+[TRACE]: [roofline.c:0000529] Thread [140057886197504] in RM_registry_measures(): call RM_start_counters().
+TRACE-FUNC-NAME: [roofline.c:0000382] Thread [140057886197504] is calling [RM_start_counters()]
+[TRACE]: [roofline.c:0000406] Thread [140057886197504] in RM_start_counters(): EventSet: 1
+[TRACE]: [roofline.c:0000408] Thread [140057886197504] in RM_start_counters(): Adding[PAPI_TOT_CYC].
+[TRACE]: [roofline.c:0000408] Thread [140057886197504] in RM_start_counters(): Adding[PAPI_REF_CYC].
+[TRACE]: [roofline.c:0000408] Thread [140057886197504] in RM_start_counters(): Adding[PAPI_L2_TCR].
+[TRACE]: [roofline.c:0000408] Thread [140057886197504] in RM_start_counters(): Adding[PAPI_L2_TCW].
+[TRACE]: [roofline.c:0000415] Thread [140057886197504] in RM_start_counters(): Resetting the counters.
+[TRACE]: [roofline.c:0000435] Thread [140057886197504] in RM_start_counters(): Starting counting...
+[TRACE]: [roofline.c:0000531] Thread [140057886197504] in RM_registry_measures(): [RM]: PAPI Counters Started.
+[TRACE]: [ hookomp.c:0000285] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057886197504] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057886197504] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057886197504] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057886197504] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000196] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the number of executed iterations: 64.
+[TRACE]: [ hookomp.c:0000212] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: They were executed 64 iterations of 512.
+[TRACE]: [ hookomp.c:0000213] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Trying to make decision about offloading.
+[TRACE]: [ hookomp.c:0000218] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057886197504] is getting the performance counters to decide.
+TRACE-FUNC-NAME: [roofline.c:0000454] Thread [140057886197504] is calling [RM_stop_and_accumulate()]
+[TRACE]: [roofline.c:0000458] Thread [140057886197504] in RM_stop_and_accumulate(): Trying accumulate counters.
+[TRACE]: [roofline.c:0000481] Thread [140057886197504] in RM_stop_and_accumulate(): Wall clock cycles: 			208216
+[TRACE]: [roofline.c:0000482] Thread [140057886197504] in RM_stop_and_accumulate(): Wall clock time in microseconds: 	80
+[TRACE]: [roofline.c:0000485] Thread [140057886197504] in RM_stop_and_accumulate(): Stopping the counters.
+[TRACE]: [roofline.c:0000491] Thread [140057886197504] in RM_stop_and_accumulate(): Removing events of EventSet: 1
+[TRACE]: [roofline.c:0000493] Thread [140057886197504] in RM_stop_and_accumulate(): Removing[PAPI_TOT_CYC].
+[TRACE]: [roofline.c:0000493] Thread [140057886197504] in RM_stop_and_accumulate(): Removing[PAPI_REF_CYC].
+[TRACE]: [roofline.c:0000493] Thread [140057886197504] in RM_stop_and_accumulate(): Removing[PAPI_L2_TCR].
+[TRACE]: [roofline.c:0000493] Thread [140057886197504] in RM_stop_and_accumulate(): Removing[PAPI_L2_TCW].
+TRACE-FUNC-NAME: [roofline.c:0000241] Thread [140057886197504] is calling [RM_print_counters_values()]
+[TRACE]: [roofline.c:0000244] Thread [140057886197504] in RM_print_counters_values(): Final Values:
+[TRACE]: [roofline.c:0000251] Thread [140057886197504] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L3_TCR;PAPI_L3_TCW;;
+[TRACE]: [roofline.c:0000259] Thread [140057886197504] in RM_print_counters_values(): 1;55954;111696;288;16;0;
+[TRACE]: [roofline.c:0000251] Thread [140057886197504] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L2_TCR;PAPI_L2_TCW;;
+[TRACE]: [roofline.c:0000259] Thread [140057886197504] in RM_print_counters_values(): 1;32337;69966;1261;36;0;
+[TRACE]: [roofline.c:0000251] Thread [140057886197504] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L1_TCR;PAPI_L1_TCW;;
+[TRACE]: [roofline.c:0000259] Thread [140057886197504] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000251] Thread [140057886197504] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_DP_OPS;;;
+[TRACE]: [roofline.c:0000259] Thread [140057886197504] in RM_print_counters_values(): 0;0;0;0;0;0;
+TRACE-FUNC-NAME: [roofline.c:0000548] Thread [140057886197504] is calling [RM_set_aditional_parameters()]
+[TRACE]: [roofline.c:0000554] Thread [140057886197504] in RM_set_aditional_parameters(): Total of iterations: 512, executed_iterations: 64, chunk_size: 32.
+TRACE-FUNC-NAME: [roofline.c:0000708] Thread [140057886197504] is calling [RM_decision_about_offloading()]
+TRACE-FUNC-NAME: [roofline.c:0000670] Thread [140057886197504] is calling [RM_get_operational_intensity()]
+TRACE-FUNC-NAME: [roofline.c:0000629] Thread [140057886197504] is calling [work()]
+TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140057886197504] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140057886197504] is calling [measured()]
+[TRACE]: [roofline.c:0000603] Thread [140057886197504] in measured(): value: 0.
+[TRACE]: [roofline.c:0000604] Thread [140057886197504] in measured(): # intervals: 0.
+[TRACE]: [roofline.c:0000607] Thread [140057886197504] in measured(): measured: -nan.
+TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140057886197504] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000583] Thread [140057886197504] in total_of_chunks(): total of chunks: 16.
+[TRACE]: [roofline.c:0000623] Thread [140057886197504] in estimated(): estimative: -nan.
+[TRACE]: [roofline.c:0000631] Thread [140057886197504] in work(): work: -nan.
+[TRACE]: [roofline.c:0000681] Thread [140057886197504] in RM_get_operational_intensity(): W: -nan
+TRACE-FUNC-NAME: [roofline.c:0000661] Thread [140057886197504] is calling [Q_total()]
+TRACE-FUNC-NAME: [roofline.c:0000653] Thread [140057886197504] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000637] Thread [140057886197504] is calling [Qr()]
+TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140057886197504] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140057886197504] is calling [measured()]
+[TRACE]: [roofline.c:0000603] Thread [140057886197504] in measured(): value: 288.
+[TRACE]: [roofline.c:0000604] Thread [140057886197504] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000607] Thread [140057886197504] in measured(): measured: 288.000000.
+TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140057886197504] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000583] Thread [140057886197504] in total_of_chunks(): total of chunks: 16.
+[TRACE]: [roofline.c:0000623] Thread [140057886197504] in estimated(): estimative: 4608.000000.
+[TRACE]: [roofline.c:0000639] Thread [140057886197504] in Qr(): Qr: 294912.000000.
+TRACE-FUNC-NAME: [roofline.c:0000645] Thread [140057886197504] is calling [Qw()]
+TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140057886197504] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140057886197504] is calling [measured()]
+[TRACE]: [roofline.c:0000603] Thread [140057886197504] in measured(): value: 16.
+[TRACE]: [roofline.c:0000604] Thread [140057886197504] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000607] Thread [140057886197504] in measured(): measured: 16.000000.
+TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140057886197504] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000583] Thread [140057886197504] in total_of_chunks(): total of chunks: 16.
+[TRACE]: [roofline.c:0000623] Thread [140057886197504] in estimated(): estimative: 256.000000.
+[TRACE]: [roofline.c:0000647] Thread [140057886197504] in Qw(): Qw: 16384.000000.
+[TRACE]: [roofline.c:0000655] Thread [140057886197504] in Q_level(): Q_level: 311296.000000.
+TRACE-FUNC-NAME: [roofline.c:0000653] Thread [140057886197504] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000637] Thread [140057886197504] is calling [Qr()]
+TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140057886197504] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140057886197504] is calling [measured()]
+[TRACE]: [roofline.c:0000603] Thread [140057886197504] in measured(): value: 1261.
+[TRACE]: [roofline.c:0000604] Thread [140057886197504] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000607] Thread [140057886197504] in measured(): measured: 1261.000000.
+TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140057886197504] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000583] Thread [140057886197504] in total_of_chunks(): total of chunks: 16.
+[TRACE]: [roofline.c:0000623] Thread [140057886197504] in estimated(): estimative: 20176.000000.
+[TRACE]: [roofline.c:0000639] Thread [140057886197504] in Qr(): Qr: 1291264.000000.
+TRACE-FUNC-NAME: [roofline.c:0000645] Thread [140057886197504] is calling [Qw()]
+TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140057886197504] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140057886197504] is calling [measured()]
+[TRACE]: [roofline.c:0000603] Thread [140057886197504] in measured(): value: 36.
+[TRACE]: [roofline.c:0000604] Thread [140057886197504] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000607] Thread [140057886197504] in measured(): measured: 36.000000.
+TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140057886197504] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000583] Thread [140057886197504] in total_of_chunks(): total of chunks: 16.
+[TRACE]: [roofline.c:0000623] Thread [140057886197504] in estimated(): estimative: 576.000000.
+[TRACE]: [roofline.c:0000647] Thread [140057886197504] in Qw(): Qw: 36864.000000.
+[TRACE]: [roofline.c:0000655] Thread [140057886197504] in Q_level(): Q_level: 1328128.000000.
+TRACE-FUNC-NAME: [roofline.c:0000653] Thread [140057886197504] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000637] Thread [140057886197504] is calling [Qr()]
+TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140057886197504] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140057886197504] is calling [measured()]
+[TRACE]: [roofline.c:0000603] Thread [140057886197504] in measured(): value: 0.
+[TRACE]: [roofline.c:0000604] Thread [140057886197504] in measured(): # intervals: 0.
+[TRACE]: [roofline.c:0000607] Thread [140057886197504] in measured(): measured: -nan.
+TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140057886197504] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000583] Thread [140057886197504] in total_of_chunks(): total of chunks: 16.
+[TRACE]: [roofline.c:0000623] Thread [140057886197504] in estimated(): estimative: -nan.
+[TRACE]: [roofline.c:0000639] Thread [140057886197504] in Qr(): Qr: -nan.
+TRACE-FUNC-NAME: [roofline.c:0000645] Thread [140057886197504] is calling [Qw()]
+TRACE-FUNC-NAME: [roofline.c:0000621] Thread [140057886197504] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000601] Thread [140057886197504] is calling [measured()]
+[TRACE]: [roofline.c:0000603] Thread [140057886197504] in measured(): value: 0.
+[TRACE]: [roofline.c:0000604] Thread [140057886197504] in measured(): # intervals: 0.
+[TRACE]: [roofline.c:0000607] Thread [140057886197504] in measured(): measured: -nan.
+TRACE-FUNC-NAME: [roofline.c:0000581] Thread [140057886197504] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000583] Thread [140057886197504] in total_of_chunks(): total of chunks: 16.
+[TRACE]: [roofline.c:0000623] Thread [140057886197504] in estimated(): estimative: -nan.
+[TRACE]: [roofline.c:0000647] Thread [140057886197504] in Qw(): Qw: -nan.
+[TRACE]: [roofline.c:0000655] Thread [140057886197504] in Q_level(): Q_level: -nan.
+[TRACE]: [roofline.c:0000663] Thread [140057886197504] in Q_total(): Q_total: -nan.
+[TRACE]: [roofline.c:0000685] Thread [140057886197504] in RM_get_operational_intensity(): Q: -nan
+[TRACE]: [roofline.c:0000689] Thread [140057886197504] in RM_get_operational_intensity(): I: -nan
+[TRACE]: [roofline.c:0000713] Thread [140057886197504] in RM_decision_about_offloading(): Operational intensity:       -nan
+TRACE-FUNC-NAME: [roofline.c:0000697] Thread [140057886197504] is calling [RM_get_better_device_to_execution()]
+[TRACE]: [roofline.c:0000698] Thread [140057886197504] in RM_get_better_device_to_execution(): Operational intensity:       -nan
+[TRACE]: [roofline.c:0000716] Thread [140057886197504] in RM_decision_about_offloading(): Execution is better on device [-997327488].
+[TRACE]: [ hookomp.c:0000229] Thread [140057886197504] in HOOKOMP_generic_next(): RM decided by device [1].
+[TRACE]: [ hookomp.c:0000231] Thread [140057886197504] in HOOKOMP_generic_next(): Trying to launch apropriated function on device: 1.
+TRACE-FUNC-NAME: [ hookomp.c:0000160] Thread [140057886197504] is calling [HOOKOMP_call_offloaging_function()]
+[TRACE]: [ hookomp.c:0000168] Thread [140057886197504] in HOOKOMP_call_offloaging_function(): Offloading function not defined in TablePointerFunctions.
+[TRACE]: [ hookomp.c:0000236] Thread [140057886197504] in HOOKOMP_generic_next(): The function offloading was not done.
+[TRACE]: [ hookomp.c:0000243] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [CONTINUE] Calling next function after offloading decision about.
+[TRACE]: [ hookomp.c:0000244] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 32 iend: 64.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057886197504] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000246] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 64 iend: 96.
+[TRACE]: [ hookomp.c:0000252] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Number of Blocked Threds: 3.
+TRACE-FUNC-NAME: [ hookomp.c:0000045] Thread [140057886197504] is calling [release_all_team_threads()]
+[TRACE]: [ hookomp.c:0000047] Thread [140057886197504] in release_all_team_threads(): [HOOKOMP]: Waking up the 3 blocked threads.
+[TRACE]: [ hookomp.c:0000285] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057886197504] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057886197504] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000270] Thread [140057877804800] in HOOKOMP_generic_next(): Verifying if was decided by offloading.
+[TRACE]: [ hookomp.c:0000274] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [WAKE UP] Calling next function out of measures section after wake up.
+[TRACE]: [ hookomp.c:0000275] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 0.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057877804800] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000270] Thread [140057917622208] in HOOKOMP_generic_next(): Verifying if was decided by offloading.
+[TRACE]: [ hookomp.c:0000274] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: [WAKE UP] Calling next function out of measures section after wake up.
+[TRACE]: [ hookomp.c:0000270] Thread [140057869412096] in HOOKOMP_generic_next(): Verifying if was decided by offloading.
+[TRACE]: [ hookomp.c:0000274] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [WAKE UP] Calling next function out of measures section after wake up.
+[TRACE]: [ hookomp.c:0000275] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 0.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057886197504] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000277] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 128 iend: 160.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 128 iend: 160.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 160 iend: 192.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 160 iend: 192.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 192 iend: 224.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000277] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 96 iend: 128.
+[TRACE]: [ hookomp.c:0000285] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057877804800] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057877804800] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057877804800] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057877804800] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000275] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: -1 iend: 1.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057917622208] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057917622208] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057917622208] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057917622208] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000188] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 96 iend: 128.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057877804800] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 256 iend: 288.
+[TRACE]: [ hookomp.c:0000285] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000178] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057886197504] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000277] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 224 iend: 256.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057877804800] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000187] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000285] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000652] Thread [140057877804800] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000188] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 64 iend: 96.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057917622208] is calling [GOMP_loop_dynamic_next()]
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057886197504] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057877804800] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057877804800] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 192 iend: 224.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 320 iend: 352.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000190] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 288 iend: 320.
+[TRACE]: [ hookomp.c:0000285] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000188] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 256 iend: 288.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057877804800] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 352 iend: 384.
+[TRACE]: [ hookomp.c:0000285] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 320 iend: 352.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 384 iend: 416.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 384 iend: 416.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 416 iend: 448.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000652] Thread [140057917622208] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057917622208] is calling [HOOKOMP_generic_next()]
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057877804800] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057877804800] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057877804800] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057877804800] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 352 iend: 384.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057877804800] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 448 iend: 480.
+[TRACE]: [ hookomp.c:0000285] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057877804800] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057877804800] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057877804800] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057877804800] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057917622208] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057886197504] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000187] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000187] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000652] Thread [140057886197504] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000188] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 448 iend: 480.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000188] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 224 iend: 256.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057886197504] is calling [HOOKOMP_generic_next()]
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057877804800] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057917622208] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057886197504] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000148] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000148] Thread [140057917622208] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000187] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000150] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 416 iend: 448.
+[TRACE]: [ hookomp.c:0000150] Thread [140057917622208] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000188] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 288 iend: 320.
+[TRACE]: [ hookomp.c:0000153] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 416 iend: 448.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057917622208] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 224 iend: 256.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057886197504] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000190] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
+[TRACE]: [ hookomp.c:0000285] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057877804800] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057877804800] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057877804800] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057877804800] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057877804800] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
+[TRACE]: [ hookomp.c:0000285] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000935] Thread [140057877804800] is calling [GOMP_loop_end_nowait()]
+[TRACE]: [ hookomp.c:0000285] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000935] Thread [140057917622208] is calling [GOMP_loop_end_nowait()]
+[TRACE]: [ hookomp.c:0000150] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000940] Thread [140057917622208] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f61c62cc748]
+TRACE-FUNC-NAME: [ hookomp.c:0000935] Thread [140057869412096] is calling [GOMP_loop_end_nowait()]
+[TRACE]: [ hookomp.c:0000940] Thread [140057877804800] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f61c62cc748]
+[TRACE]: [ hookomp.c:0000153] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 288 iend: 320.
+[TRACE]: [ hookomp.c:0000940] Thread [140057869412096] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f61c62cc748]
+[TRACE]: [ hookomp.c:0000942] Thread [140057869412096] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140057869412096] is calling GOMP_loop_end_nowait.
+[TRACE]: [ hookomp.c:0000942] Thread [140057877804800] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140057877804800] is calling GOMP_loop_end_nowait.
+[TRACE]: [ hookomp.c:0000942] Thread [140057917622208] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140057917622208] is calling GOMP_loop_end_nowait.
+TRACE-FUNC-NAME: [ hookomp.c:0001233] Thread [140057917622208] is calling [GOMP_parallel_end()]
+[TRACE]: [ hookomp.c:0001238] Thread [140057917622208] in GOMP_parallel_end(): [LIBGOMP] GOMP_parallel_end@GOMP_X.X [0x7f61c60b8720]
+TRACE-FUNC-NAME: [ hookomp.c:0000335] Thread [140057917622208] is calling [HOOKOMP_end()]
+[TRACE]: [ hookomp.c:0000285] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000935] Thread [140057886197504] is calling [GOMP_loop_end_nowait()]
+[TRACE]: [ hookomp.c:0000337] Thread [140057917622208] in HOOKOMP_end(): [HOOKOMP] [Before] Destroying the semaphores. 
+[TRACE]: [ hookomp.c:0000343] Thread [140057917622208] in HOOKOMP_end(): [HOOKOMP] [After] Destroying the semaphores.
+TRACE-FUNC-NAME: [roofline.c:0000722] Thread [140057917622208] is calling [RM_library_shutdown()]
+[TRACE]: [roofline.c:0000725] Thread [140057917622208] in RM_library_shutdown(): Trying to unregister thread calling PAPI_unregister_thread().
+[TRACE]: [ hookomp.c:0000940] Thread [140057886197504] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f61c62cc748]
+[TRACE]: [roofline.c:0000731] Thread [140057917622208] in RM_library_shutdown(): PAPI_unregister_thread OK.
+[TRACE]: [roofline.c:0000749] Thread [140057917622208] in RM_library_shutdown(): Trying to free allocated structures.
+[TRACE]: [ hookomp.c:0000942] Thread [140057886197504] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140057886197504] is calling GOMP_loop_end_nowait.
+[TRACE]: [ hookomp.c:0000353] Thread [140057917622208] in HOOKOMP_end(): [HOOKOMP]: Leaving the HOOKOMP_end.
+TRACE-FUNC-NAME: [ hookomp.c:0000805] Thread [140057917622208] is calling [GOMP_parallel_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000810] Thread [140057917622208] in GOMP_parallel_loop_dynamic_start(): [LIBGOMP] GOMP_parallel_loop_dynamic_start@GOMP_X.X.[0x400b79]
+[TRACE]: [ hookomp.c:0000812] Thread [140057917622208] in GOMP_parallel_loop_dynamic_start(): [LIBGOMP] lib_GOMP_parallel_loop_dynamic_start[0x7f61c60b73a0]
+TRACE-FUNC-NAME: [ hookomp.c:0000056] Thread [140057917622208] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057877804800] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057877804800] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057877804800] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057877804800] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000100] Thread [140057877804800] is calling [HOOKOMP_registry_the_first_thread()]
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 35464960 iend: 4197106.
+[TRACE]: [ hookomp.c:0000105] Thread [140057877804800] in HOOKOMP_registry_the_first_thread(): [HOOKOMP]: Thread [140057877804800] is entering in controled execution.
+[TRACE]: [ hookomp.c:0000187] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 35464960 iend: 4197106.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057886197504] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057886197504] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057886197504] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057886197504] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 35464960 iend: 4197106.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057886197504] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 32.
+[TRACE]: [ hookomp.c:0000285] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057877804800] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 32 iend: 64.
+[TRACE]: [ hookomp.c:0000285] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 64 iend: 96.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 64 iend: 96.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 96 iend: 128.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 96 iend: 128.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 128 iend: 160.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 128 iend: 160.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 160 iend: 192.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 160 iend: 192.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 192 iend: 224.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 192 iend: 224.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 224 iend: 256.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057877804800] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057877804800] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057877804800] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057877804800] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 32 iend: 64.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057877804800] is calling [HOOKOMP_proxy_function_next()]
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057917622208] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057886197504] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000652] Thread [140057917622208] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 224 iend: 256.
+[TRACE]: [ hookomp.c:0000652] Thread [140057886197504] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000150] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 256 iend: 288.
+[TRACE]: [ hookomp.c:0000285] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057886197504] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057886197504] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 288 iend: 320.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 288 iend: 320.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 320 iend: 352.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 320 iend: 352.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 352 iend: 384.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 352 iend: 384.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 384 iend: 416.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 384 iend: 416.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 416 iend: 448.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057877804800] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057877804800] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057877804800] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057877804800] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057917622208] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057917622208] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 32.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 416 iend: 448.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 448 iend: 480.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 448 iend: 480.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000648] Thread [140057869412096] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000652] Thread [140057869412096] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140057869412096] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140057869412096] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000187] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057869412096] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057869412096] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
+[TRACE]: [ hookomp.c:0000285] Thread [140057869412096] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000935] Thread [140057869412096] is calling [GOMP_loop_end_nowait()]
+[TRACE]: [ hookomp.c:0000940] Thread [140057869412096] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f61c62cc748]
+[TRACE]: [ hookomp.c:0000942] Thread [140057869412096] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140057869412096] is calling GOMP_loop_end_nowait.
+[TRACE]: [ hookomp.c:0000187] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 140057915575815 iend: 1.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057886197504] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000187] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
+[TRACE]: [ hookomp.c:0000188] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 256 iend: 288.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057877804800] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057877804800] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 256 iend: 288.
+[TRACE]: [ hookomp.c:0000285] Thread [140057877804800] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000935] Thread [140057877804800] is calling [GOMP_loop_end_nowait()]
+[TRACE]: [ hookomp.c:0000940] Thread [140057877804800] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f61c62cc748]
+[TRACE]: [ hookomp.c:0000942] Thread [140057877804800] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140057877804800] is calling GOMP_loop_end_nowait.
+TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140057917622208] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000148] Thread [140057917622208] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000150] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057886197504] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 32.
+[TRACE]: [ hookomp.c:0000285] Thread [140057886197504] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000935] Thread [140057886197504] is calling [GOMP_loop_end_nowait()]
+[TRACE]: [ hookomp.c:0000940] Thread [140057886197504] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f61c62cc748]
+[TRACE]: [ hookomp.c:0000150] Thread [140057917622208] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000153] Thread [140057917622208] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000190] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 140057915575815 iend: 1.
+[TRACE]: [ hookomp.c:0000285] Thread [140057917622208] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000935] Thread [140057917622208] is calling [GOMP_loop_end_nowait()]
+[TRACE]: [ hookomp.c:0000940] Thread [140057917622208] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f61c62cc748]
+[TRACE]: [ hookomp.c:0000942] Thread [140057886197504] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140057886197504] is calling GOMP_loop_end_nowait.
+[TRACE]: [ hookomp.c:0000942] Thread [140057917622208] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140057917622208] is calling GOMP_loop_end_nowait.
+TRACE-FUNC-NAME: [ hookomp.c:0001233] Thread [140057917622208] is calling [GOMP_parallel_end()]
+[TRACE]: [ hookomp.c:0001238] Thread [140057917622208] in GOMP_parallel_end(): [LIBGOMP] GOMP_parallel_end@GOMP_X.X [0x7f61c60b8720]
+TRACE-FUNC-NAME: [ hookomp.c:0000335] Thread [140057917622208] is calling [HOOKOMP_end()]
+[TRACE]: [ hookomp.c:0000337] Thread [140057917622208] in HOOKOMP_end(): [HOOKOMP] [Before] Destroying the semaphores. 
+[TRACE]: [ hookomp.c:0000343] Thread [140057917622208] in HOOKOMP_end(): [HOOKOMP] [After] Destroying the semaphores.
+TRACE-FUNC-NAME: [roofline.c:0000722] Thread [140057917622208] is calling [RM_library_shutdown()]
+[TRACE]: [roofline.c:0000725] Thread [140057917622208] in RM_library_shutdown(): Trying to unregister thread calling PAPI_unregister_thread().
+[TRACE]: [roofline.c:0000727] Thread [140057917622208] in RM_library_shutdown(): PAPI_unregister_thread error.
 [RM_papi_handle_error] roofline.c -> RM_library_shutdown [line 728]: PAPI error -14: (null)
-[TRACE]: [ hookomp.c:0000941] Thread [140169151952640] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140169151952640] is calling GOMP_loop_end_nowait.
-TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140169160345344] is calling [HOOKOMP_generic_next()]
-[TRACE]: [ hookomp.c:0000178] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140169160345344] is calling HOOKOMP_generic_next.
-[TRACE]: [ hookomp.c:0000187] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [OUTSIDE] Calling next function out of measures section.
-[TRACE]: [ hookomp.c:0000188] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
-[TRACE]: [roofline.c:0000749] Thread [140169191765952] in RM_library_shutdown(): Trying to free allocated structures.
+[TRACE]: [roofline.c:0000749] Thread [140057917622208] in RM_library_shutdown(): Trying to free allocated structures.
 PAPI Error: PAPI_shutdown: PAPI is not initialized.
-[TRACE]: [ hookomp.c:0000346] Thread [140169191765952] in HOOKOMP_end(): Error calling RM_library_shutdown() in HOOKOMP_end.
-[TRACE]: [ hookomp.c:0000352] Thread [140169191765952] in HOOKOMP_end(): [HOOKOMP]: Leaving the HOOKOMP_end.
-TRACE-FUNC-NAME: [ hookomp.c:0000144] Thread [140169160345344] is calling [HOOKOMP_proxy_function_next()]
-[TRACE]: [ hookomp.c:0000148] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
-[TRACE]: [ hookomp.c:0000150] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000153] Thread [140169160345344] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
-[TRACE]: [ hookomp.c:0000190] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 480 iend: 512.
-[TRACE]: [ hookomp.c:0000284] Thread [140169160345344] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
-TRACE-FUNC-NAME: [ hookomp.c:0000934] Thread [140169160345344] is calling [GOMP_loop_end_nowait()]
-[TRACE]: [ hookomp.c:0000939] Thread [140169160345344] in GOMP_loop_end_nowait(): [LIBGOMP] lib_GOMP_loop_end_nowait[0x7f7baea18701]
-[TRACE]: [ hookomp.c:0000941] Thread [140169160345344] in GOMP_loop_end_nowait(): [HOOKOMP]: Thread [140169160345344] is calling GOMP_loop_end_nowait.
+[TRACE]: [ hookomp.c:0000347] Thread [140057917622208] in HOOKOMP_end(): Error calling RM_library_shutdown() in HOOKOMP_end.
+[TRACE]: [ hookomp.c:0000353] Thread [140057917622208] in HOOKOMP_end(): [HOOKOMP]: Leaving the HOOKOMP_end.
