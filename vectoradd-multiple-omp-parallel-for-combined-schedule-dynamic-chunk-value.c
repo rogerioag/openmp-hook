@@ -11,7 +11,7 @@
 
 // Size of vectors.
 #ifndef N
-#define N 1048576
+#define N 4096
 #endif
 // Entrada e saida.
 double h_a[N];
