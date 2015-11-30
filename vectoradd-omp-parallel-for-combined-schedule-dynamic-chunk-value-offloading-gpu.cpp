@@ -13,28 +13,58 @@
 #define omp_get_num_procs() (system("cat /proc/cpuinfo | grep 'processor' | wc -l"))
 #endif
 
-// CUDA driver & runtime
-#include <cuda.h>
-#include <cuda_runtime.h>
+#include "runtimegpu.h"
 
 // Size of vectors.
 #ifndef N
 #define N 1048576
 #endif
 
+#define NUMBER_OF_THREADS 4;
+
+/* Tipo para o ponteiro de função. */
+typedef void (*op_func) (void);
+
+/* Tabela de funções para chamada parametrizada. */
+// op_func getTargetFunc[2] = { func_CPU, func_GPU };
+op_func **getTargetFunc;
+/* Initialization of TablePointerFunctions to libhook. */
+extern op_func **TablePointerFunctions;
+
+struct grid_block_dim{
+  unsigned blockSizeX = 0;
+  unsigned blockSizeY = 0;
+  unsigned blockSizeZ = 0;
+  unsigned gridSizeX  = 0;
+  unsigned gridSizeY  = 0;
+  unsigned gridSizeZ  = 0;
+} grid_block_dim_t;
+
+
+CUdevice    device;
+CUmodule    cudaModule;
+CUcontext   context;
+CUfunction  function;
+CUlinkState linker;
+int         devCount;
+
 float h_a[N];
 float h_b[N];
 float h_c[N];
 
+/*------------------------------------------------------------------------------*/
 void init_array() {
   int i;
-  // Initialize vectors on host.
-    for (i = 0; i < N; i++) {
-      h_a[i] = 0.5;
-      h_b[i] = 0.5;
-    }
+  int number_of_threads = NUMBER_OF_THREADS;
+ 
+  #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
+  for (i = 0; i < N; i++) {
+    h_a[i] = 0.5;
+    h_b[i] = 0.5;
+  }
 }
 
+/*------------------------------------------------------------------------------*/
 void print_array() {
   int i;
   fprintf(stdout, "Thread [%02d]: Imprimindo o array de resultados:\n", omp_get_thread_num());
@@ -43,6 +73,7 @@ void print_array() {
   }
 }
 
+/*------------------------------------------------------------------------------*/
 void check_result(){
   // Soma dos elementos do array C e divide por N, o valor deve ser igual a 1.
   int i;
@@ -55,120 +86,240 @@ void check_result(){
   fprintf(stdout, "Thread [%02d]: Resultado Final: (%f, %f)\n", omp_get_thread_num(), sum, (float)(sum / (float)N));
 }
 
-void func_CPU(void) {
-    printf( "func_CPU.\n");
+/*------------------------------------------------------------------------------*/
+bool checkCudaErrors(CUresult err) {
+  return (err == CUDA_SUCCESS);
 }
 
+/*------------------------------------------------------------------------------*/
+bool init_runtime_gpu(){
 
-void checkCudaErrors(CUresult err) {
-  assert(err == CUDA_SUCCESS);
-}
+  bool result = true;
 
-void func_GPU(void){
-  CUdevice    device;
-  CUmodule    cudaModule;
-  CUcontext   context;
-  CUfunction  function;
-  CUlinkState linker;
-  int         devCount;
-
-   // Inicialização CUDA.
-  checkCudaErrors(cuInit(0));
-  checkCudaErrors(cuDeviceGetCount(&devCount));
-  checkCudaErrors(cuDeviceGet(&device, 0));
+  // Inicialização CUDA.
+  result = checkCudaErrors(cuInit(0));
+  result = checkCudaErrors(cuDeviceGetCount(&devCount));
+  result = checkCudaErrors(cuDeviceGet(&device, 0));
 
   char name[128];
-  checkCudaErrors(cuDeviceGetName(name, 128, device));
+  result = checkCudaErrors(cuDeviceGetName(name, 128, device));
   std::cout << "Using CUDA Device [0]: " << name << "\n";
 
   int devMajor, devMinor;
-  checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, device));
+  result = checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, device));
   std::cout << "Device Compute Capability: " << devMajor << "." << devMinor << "\n";
   if (devMajor < 2) {
     std::cerr << "ERROR: Device 0 is not SM 2.0 or greater\n";
+    result = false;
   }
 
-  std::cout << "Carregando vectoradd-kernel.ptx. " << "\n";
-  // Carregando o arquivo PTX.
-  std::ifstream t("vectoradd-kernel.ptx");
-  if (!t.is_open()) {
-    std::cerr << "vectoradd-kernel.ptx not found\n";
-  }
-  std::string str((std::istreambuf_iterator<char>(t)),std::istreambuf_iterator<char>());
+  return result;
+}
 
-  // Criando o Driver Context.
-  checkCudaErrors(cuCtxCreate(&context, 0, device));
+/*------------------------------------------------------------------------------*/
+bool data_allocation(){
 
-  // Criando um módulo.
-  checkCudaErrors(cuModuleLoadDataEx(&cudaModule, str.c_str(), 0, 0, 0));
+  bool result = true;
 
-  // Get kernel function.
-  checkCudaErrors(cuModuleGetFunction(&function, cudaModule, "vectoradd_kernel"));
-
-  // Alocação de Memória no disposito.
+  /* Memory Allocation. */
   CUdeviceptr devBufferA;
   CUdeviceptr devBufferB;
   CUdeviceptr devBufferC;
 
-  checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
-  checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
-  checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
+  result = checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
+  result = checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
+  result = checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
 
+  return result;
+}
+
+/*------------------------------------------------------------------------------*/
+bool data_transfer_and_sync(){
+  bool result = true;
   // Transferindo os dados para a memória do dispositivo.
-  checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
-  checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
 
-  unsigned blockSizeX = 32;
-  unsigned blockSizeY = 32;
-  unsigned blockSizeZ = 1;
-  unsigned gridSizeX  = 32;
-  unsigned gridSizeY  = 32;
-  unsigned gridSizeZ  = 1;
+  result = checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
+  result = checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
+
+  return result;
+}
+
+/*------------------------------------------------------------------------------*/
+bool kernel_loading(string kernel_name, CUfunction* function){
+  bool result = true;
+
+  std::cout << "Carregando" << kernel_name << ".ptx." << "\n";
+  // Carregando o arquivo PTX.
+  std::ifstream ifs(kernel_name + ".ptx");
+  if (!ifs.is_open()) {
+    std::cerr << kernel_name << ".ptx not found.\n";
+  }
+  std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
+
+  // Criando o Driver Context.
+  result = checkCudaErrors(cuCtxCreate(&context, 0, device));
+
+  // Criando um módulo.
+  result = checkCudaErrors(cuModuleLoadDataEx(&cudaModule, str.c_str(), 0, 0, 0));
+
+  // Get kernel function.
+  result = checkCudaErrors(cuModuleGetFunction(function, cudaModule, kernel_name));
+
+  return result;
+}
+
+/*------------------------------------------------------------------------------*/
+bool calculate_kernel_dimensions(grid_block_dim_t *gbd)){
+  bool result = true;
+
+  gdb.blockSizeX = 32;
+  gdb.blockSizeY = 32;
+  gdb.blockSizeZ = 1;
+  gdb.gridSizeX  = 32;
+  gdb.gridSizeY  = 32;
+  gdb.gridSizeZ  = 1;
+
+  return result;
+}
+
+/*------------------------------------------------------------------------------*/
+bool kernel_launching(CUfunction *func_kernel, grid_block_dim_t *gbd, void *KernelParams[]){
+  bool result = true;
+
+  std::cout << "Launching kernel\n";
+  // Lançando a execução do kernel.
+  result = checkCudaErrors(cuLaunchKernel(func_kernel, gdb.gridSizeX, gdb.gridSizeY, gdb.gridSizeZ, gdb.blockSizeX, gdb.blockSizeY, gdb.blockSizeZ, 0, NULL, KernelParams, NULL));
+
+  return result;
+}
+
+/*------------------------------------------------------------------------------*/
+bool data_transfer_retrieve_results(){
+  bool result = true;
+
+  // Recuperando os dados do resultado.
+  result = checkCudaErrors(cuMemcpyDtoH(&h_c[0], devBufferC, sizeof(float)*N));
+
+  return result;
+}
+
+/*------------------------------------------------------------------------------*/
+bool release_data_device(){
+  bool result = true;
+
+  // Liberando Memória do dispositivo.
+  result = checkCudaErrors(cuMemFree(devBufferA));
+  result = checkCudaErrors(cuMemFree(devBufferB));
+  result = checkCudaErrors(cuMemFree(devBufferC));
+  result = checkCudaErrors(cuModuleUnload(cudaModule));
+  result = checkCudaErrors(cuCtxDestroy(context));
+
+  result = checkCudaErrors(cudaDeviceReset());
+
+  return result;
+}
+
+/*------------------------------------------------------------------------------*/
+void handler_function_init_array_GPU(void){
+  init_array();
+}
+
+/*------------------------------------------------------------------------------*/
+void handler_function_main_GPU(void){
+
+  CUfunction *func_kernel;
+
+  grid_block_dim_t gbd;
+  
+  if(!init_runtime_gpu()){
+    fprintf(stderr, "Error initializing runtime GPU.\n");
+  }
+
+  if(!data_allocation()){
+    fprintf(stderr, "Error data allocation in GPU.\n");
+  }
+
+  if(!data_transfer_and_sync()){
+    fprintf(stderr, "Error data transfer or synchronization with GPU.\n");
+  }
+
+  if(!kernel_loading("vectoradd-kernel", func_kernel)){
+    fprintf(stderr, "Error loading kernel from file.\n"); 
+  }
+
+  if(!calculate_kernel_dimensions(&gbd)){
+    fprintf(stderr, "Error loading kernel from file.\n"); 
+  }
 
   // Parâmetros do kernel.
   void *KernelParams[] = { &devBufferA, &devBufferB, &devBufferC };
 
-  std::cout << "Launching kernel\n";
+  if(!kernel_launching(func_kernel, gdb, KernelParams)){
+    fprintf(stderr, "Error launching the kernel.\n");
+  }
 
-  // Lançando a execução do kernel.
-  checkCudaErrors(cuLaunchKernel(function, gridSizeX, gridSizeY, gridSizeZ, blockSizeX, blockSizeY, blockSizeZ, 0, NULL, KernelParams, NULL));
+  if(!data_transfer_retrieve_results()){
+    fprintf(stderr, "Error retrieving the results form GPU.\n");
+  }
 
-  // Recuperando os dados do resultado.
-  checkCudaErrors(cuMemcpyDtoH(&h_c[0], devBufferC, sizeof(float)*N));
-
-  // Liberando Memória do dispositivo.
-  checkCudaErrors(cuMemFree(devBufferA));
-  checkCudaErrors(cuMemFree(devBufferB));
-  checkCudaErrors(cuMemFree(devBufferC));
-  checkCudaErrors(cuModuleUnload(cudaModule));
-  checkCudaErrors(cuCtxDestroy(context));
-
-  cudaDeviceReset();
+  if(!release_data_device()){
+    fprintf(stderr, "Error retrieving the results form GPU.\n");
+  }
 }
 
-/* Tipo para o ponteiro de função. */
-typedef void (*op_func) (void);
+/*------------------------------------------------------------------------------*/
+bool create_target_functions_table(op_func **table, int nrows, int ncolumns){
 
-/* Tabela de funções para chamada parametrizada. */
-op_func getTargetFunc[2] = { func_CPU, func_GPU };
+  bool result = true;
 
-/* Initialization of TablePointerFunctions to libhook. */
-extern op_func *TablePointerFunctions = getTargetFunc;
+  table = malloc (nrows * sizeof(op_func *));
 
+  if(table == NULL){
+    fprintf(stderr, "Error in table of target functions allocation (rows).");
+    result= false;
+  }
+  else{
+    for(i = 0; i < nrows; i++){
+      table[i] = malloc(ncolumns * sizeof(op_func));
+      if(table [i] == NULL){
+        fprintf(stderr, "Error in table of target functions allocation (columns).");
+        result = false;
+      }
+    }
+  }
+
+  return result;
+}
+
+/* ------------------------------------------------------------------------- */
 int main() {
   int i;
 
-  init_array();
+  /*          device 0
+   * loop 1   init_array alternative
+   * loop 2   main alternative.
+   * matrix 2 x 1.
+  */
+  if(create_target_functions_table(getTargetFunc, 2, 1)){
+    /* Set up the library Functions table. */
+    getTargetFunc[0][1] = handler_function_init_array_GPU;
+    getTargetFunc[1][1] = handler_function_main_GPU;
 
-  int number_of_threads = 4;
-  // int chunk_size = N / number_of_threads;
-
-  #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
-  for (i = 0; i < N; i++) {
-    h_c[i] = h_a[i] + h_b[i];
+    TablePointerFunctions = getTargetFunc;
   }
 
-  // TablePointerFunctions[1]();
+  // init_array();
+  TablePointerFunctions[0][1]();
+  TablePointerFunctions[1][1]();
+
+
+//  int number_of_threads = NUMBER_OF_THREADS;
+//  // int chunk_size = N / number_of_threads;
+
+//  #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
+//  for (i = 0; i < N; i++) {
+//    h_c[i] = h_a[i] + h_b[i];
+//  }
 
   // print_array();
   check_result();
