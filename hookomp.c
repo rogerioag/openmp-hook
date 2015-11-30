@@ -202,7 +202,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 						TRACE("Trying to launch apropriated function on device: %d.\n", better_device);
 
-						made_the_offloading = HOOKOMP_call_offloaging_function(better_device);
+						made_the_offloading = HOOKOMP_call_offloaging_function(current_loop_index, better_device);
 
 						if (!made_the_offloading){
 							TRACE("The function offloading was not done.\n");
