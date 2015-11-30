@@ -13,7 +13,7 @@
 #define omp_get_num_procs() (system("cat /proc/cpuinfo | grep 'processor' | wc -l"))
 #endif
 
-#include "runtimegpu.h"
+// #include "runtimegpu.h"
 
 // Size of vectors.
 #ifndef N
