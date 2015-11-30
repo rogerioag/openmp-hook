@@ -13,6 +13,9 @@
 #define omp_get_num_procs() (system("cat /proc/cpuinfo | grep 'processor' | wc -l"))
 #endif
 
+#include <cuda.h>
+#include <cuda_runtime.h>
+
 // #include "runtimegpu.h"
 
 // Size of vectors.
