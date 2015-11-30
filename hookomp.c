@@ -127,12 +127,12 @@ bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
 
 /* ------------------------------------------------------------- */
 /* Call the appropriated function. */
-bool HOOKOMP_call_offloaging_function(int index){
+bool HOOKOMP_call_offloaging_function(long int loop_index, long int device_index){
 	PRINT_FUNC_NAME;
 	bool retval = false;
 
-	if((TablePointerFunctions != NULL) && (TablePointerFunctions[index] != NULL)){
-		TablePointerFunctions[index]();
+	if((TablePointerFunctions != NULL) && (TablePointerFunctions[loop_index][device_index] != NULL)){
+		TablePointerFunctions[loop_index][device_index]();
 		retval = true;
 	}
 	else{

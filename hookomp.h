@@ -341,8 +341,11 @@ static bool is_hookomp_initialized = false;
 extern "C" {
 #endif
 
-	/* Tabela de funções para chamada parametrizada. */
-	op_func *TablePointerFunctions;
+	/* Alternative Functions table pointer. */
+	op_func **TablePointerFunctions;
+	
+	/* Current loop index. To identify the loop in execution. */
+	long int current_loop_index;
 
 	void foo(void);
 	// GOMP_loop_runtime_start@@GOMP_1.0

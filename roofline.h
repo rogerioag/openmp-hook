@@ -19,12 +19,14 @@
 #define RM_papi_handle_error(function_name, n_error, n_line) \
   fprintf(stderr, "[RM_papi_handle_error] %s -> %s [line %d]: PAPI error %d: %s\n", __FILE__, function_name, n_line, n_error, PAPI_strerror(n_error));
 
+
+/* Cache line size: 64 bytes. http://www.cpu-world.com/CPUs/Xeon/Intel-Xeon%20E5-2630.html */
 #define CACHE_LINE_SIZE 64
 
 #define NUM_EVENT_SETS 4
 #define NUM_MAX_EVENTS 5
 
-// Events more PAPI_get_real_cyc() that work with time stamp counter (tsc), getting the value of rdtsc.
+/* Events more PAPI_get_real_cyc() that work with time stamp counter (tsc), getting the value of rdtsc. */
 
 /* Indexes to define the position of values. */
 #define IDX_LLC 0
