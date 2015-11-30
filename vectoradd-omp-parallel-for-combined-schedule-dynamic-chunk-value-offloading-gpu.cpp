@@ -275,8 +275,9 @@ void handler_function_main_GPU(void){
 bool create_target_functions_table(op_func **table, int nrows, int ncolumns){
 
   bool result = true;
+  int i;
 
-  table = malloc (nrows * sizeof(op_func *));
+  table = (op_func *) malloc(nrows * sizeof(op_func *));
 
   if(table == NULL){
     fprintf(stderr, "Error in table of target functions allocation (rows).");
