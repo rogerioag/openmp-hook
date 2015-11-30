@@ -149,7 +149,7 @@ bool data_transfer_and_sync(){
 }
 
 /*------------------------------------------------------------------------------*/
-bool kernel_loading(string kernel_name, CUfunction* function){
+bool kernel_loading(std::string kernel_name, CUfunction* function){
   bool result = true;
 
   std::cout << "Carregando" << kernel_name << ".ptx." << "\n";
