@@ -36,12 +36,12 @@ op_func **getTargetFunc;
 extern op_func **TablePointerFunctions;
 
 struct grid_block_dim{
-  unsigned blockSizeX = 0;
-  unsigned blockSizeY = 0;
-  unsigned blockSizeZ = 0;
-  unsigned gridSizeX  = 0;
-  unsigned gridSizeY  = 0;
-  unsigned gridSizeZ  = 0;
+  unsigned blockSizeX;
+  unsigned blockSizeY;
+  unsigned blockSizeZ;
+  unsigned gridSizeX;
+  unsigned gridSizeY;
+  unsigned gridSizeZ;
 } grid_block_dim_t;
 
 
