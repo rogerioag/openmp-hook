@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include <string.h>
 
 #ifdef _OPENMP
 #include <omp.h>
