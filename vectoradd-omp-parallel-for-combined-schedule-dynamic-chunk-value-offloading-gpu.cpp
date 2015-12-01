@@ -50,6 +50,11 @@ float h_a[N];
 float h_b[N];
 float h_c[N];
 
+// Alocação de Memória no disposito.
+CUdeviceptr devBufferA;
+CUdeviceptr devBufferB;
+CUdeviceptr devBufferC;
+
 /*------------------------------------------------------------------------------*/
 void init_array() {
   int i;
@@ -308,9 +313,9 @@ void handler_function_main_GPU(void){
   checkCudaErrors(cuCtxCreate(&context, 0, device));
 
   // Alocação de Memória no disposito.
-  CUdeviceptr devBufferA;
-  CUdeviceptr devBufferB;
-  CUdeviceptr devBufferC;
+  // CUdeviceptr devBufferA;
+  // CUdeviceptr devBufferB;
+  // CUdeviceptr devBufferC;
 
   checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
   checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
