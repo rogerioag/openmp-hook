@@ -46,21 +46,9 @@ typedef struct grid_block_dim{
 } grid_block_dim_t;
 
 
-CUdevice    device;
-CUmodule    cudaModule;
-CUcontext   context;
-CUfunction  function;
-CUlinkState linker;
-int         devCount;
-
 float h_a[N];
 float h_b[N];
 float h_c[N];
-
-/* Memory Allocation. */
-CUdeviceptr devBufferA;
-CUdeviceptr devBufferB;
-CUdeviceptr devBufferC;
 
 /*------------------------------------------------------------------------------*/
 void init_array() {
@@ -102,21 +90,22 @@ bool checkCudaErrors(CUresult err) {
 }
 
 /*------------------------------------------------------------------------------*/
-bool init_runtime_gpu(){
+bool init_runtime_gpu(CUdevice *device){
 
   bool result = true;
+  int  devCount;
 
   // Inicialização CUDA.
   result = checkCudaErrors(cuInit(0));
   result = checkCudaErrors(cuDeviceGetCount(&devCount));
-  result = checkCudaErrors(cuDeviceGet(&device, 0));
+  result = checkCudaErrors(cuDeviceGet(*device, 0));
 
   char name[128];
-  result = checkCudaErrors(cuDeviceGetName(name, 128, device));
+  result = checkCudaErrors(cuDeviceGetName(name, 128, *device));
   std::cout << "Using CUDA Device [0]: " << name << "\n";
 
   int devMajor, devMinor;
-  result = checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, device));
+  result = checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, *device));
   std::cout << "Device Compute Capability: " << devMajor << "." << devMinor << "\n";
   if (devMajor < 2) {
     std::cerr << "ERROR: Device 0 is not SM 2.0 or greater\n";
@@ -293,10 +282,10 @@ void handler_function_main_GPU(void){
   CUcontext   context;
   CUfunction  function;
   CUlinkState linker;
-  int         devCount;
+  // int         devCount;
 
   // Inicialização CUDA.
-  checkCudaErrors(cuInit(0));
+  /*checkCudaErrors(cuInit(0));
   checkCudaErrors(cuDeviceGetCount(&devCount));
   checkCudaErrors(cuDeviceGet(&device, 0));
 
@@ -309,11 +298,11 @@ void handler_function_main_GPU(void){
   std::cout << "Device Compute Capability: " << devMajor << "." << devMinor << "\n";
   if (devMajor < 2) {
     std::cerr << "ERROR: Device 0 is not SM 2.0 or greater\n";
-  }
-
-  /*if(!init_runtime_gpu()){
-    fprintf(stderr, "Error initializing runtime GPU.\n");
   }*/
+
+  if(!init_runtime_gpu(&device)){
+    fprintf(stderr, "Error initializing runtime GPU.\n");
+  }
 
   // Criando o Driver Context.
   checkCudaErrors(cuCtxCreate(&context, 0, device));
