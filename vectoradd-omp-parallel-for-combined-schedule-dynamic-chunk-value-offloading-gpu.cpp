@@ -280,23 +280,23 @@ void handler_function_main_GPU(void){
 }
 
 /*------------------------------------------------------------------------------*/
-bool create_target_functions_table(op_func ***table, int nrows, int ncolumns){
+bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
 
   bool result = true;
   int i, j;
 
   fprintf(stderr, "Allocating the rows.\n");
-  *table = (op_func **) malloc(nrows * sizeof(op_func *));
+  table = (op_func **) malloc(nrows * sizeof(op_func *));
 
-  if(*table == NULL){
+  if(table == NULL){
     fprintf(stderr, "Error in table of target functions allocation (rows).\n");
     result= false;
   }
   else{
     fprintf(stderr, "Allocating the columns.\n");
     for(i = 0; i < nrows; i++){
-      (*table)+i = (op_func *) malloc(ncolumns * sizeof(op_func));
-      if((*table) + i == NULL){
+      table[i] = (op_func *) malloc(ncolumns * sizeof(op_func));
+      if(table [i] == NULL){
         fprintf(stderr, "Error in table of target functions allocation (columns).\n");
         result = false;
       }
@@ -307,7 +307,7 @@ bool create_target_functions_table(op_func ***table, int nrows, int ncolumns){
   fprintf(stderr, "Initializing.\n");
   for(i = 0; i < nrows; i++) {
     for(j = 0; j < ncolumns; j++){
-      (*table)[i][j] = 0;
+      table[i][j] = 0;
     }
   }
   fprintf(stderr, "Initializing OK.\n");
@@ -334,7 +334,7 @@ int main() {
   int nloops = 2;
   int ndevices = 1;
 
-  if(create_target_functions_table(&table, nloops, ndevices)){
+  if(create_target_functions_table(&table_, nloops, ndevices)){
     /* Set up the library Functions table. */
     if(table == NULL){
       fprintf(stderr, "Structure is NULL.\n");      
