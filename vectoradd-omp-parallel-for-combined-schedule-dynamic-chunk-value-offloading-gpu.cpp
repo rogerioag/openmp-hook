@@ -282,7 +282,7 @@ void handler_function_main_GPU(void){
 bool create_target_functions_table(op_func **table, int nrows, int ncolumns){
 
   bool result = true;
-  int i;
+  int i, j;
 
   fprintf(stderr, "Allocating the rows.\n");
   table = (op_func **) malloc(nrows * sizeof(op_func *));
