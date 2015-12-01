@@ -277,7 +277,7 @@ bool create_target_functions_table(op_func **table, int nrows, int ncolumns){
   bool result = true;
   int i;
 
-  table = (op_func *) malloc(nrows * sizeof(op_func *));
+  table = (op_func **) malloc(nrows * sizeof(op_func **));
 
   if(table == NULL){
     fprintf(stderr, "Error in table of target functions allocation (rows).");
@@ -285,7 +285,7 @@ bool create_target_functions_table(op_func **table, int nrows, int ncolumns){
   }
   else{
     for(i = 0; i < nrows; i++){
-      table[i] = malloc(ncolumns * sizeof(op_func));
+      table[i] = (op_func *) malloc(ncolumns * sizeof(op_func*));
       if(table [i] == NULL){
         fprintf(stderr, "Error in table of target functions allocation (columns).");
         result = false;
