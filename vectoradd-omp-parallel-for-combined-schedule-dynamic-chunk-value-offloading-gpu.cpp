@@ -56,6 +56,11 @@ float h_a[N];
 float h_b[N];
 float h_c[N];
 
+/* Memory Allocation. */
+CUdeviceptr devBufferA;
+CUdeviceptr devBufferB;
+CUdeviceptr devBufferC;
+
 /*------------------------------------------------------------------------------*/
 void init_array() {
   int i;
@@ -124,11 +129,6 @@ bool init_runtime_gpu(){
 bool data_allocation(){
 
   bool result = true;
-
-  /* Memory Allocation. */
-  CUdeviceptr devBufferA;
-  CUdeviceptr devBufferB;
-  CUdeviceptr devBufferC;
 
   result = checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
   result = checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
