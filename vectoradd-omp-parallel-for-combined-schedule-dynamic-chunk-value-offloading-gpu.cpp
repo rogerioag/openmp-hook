@@ -346,14 +346,14 @@ int main() {
     fprintf(stderr, "declaring function in 1,0.\n");
     table[1][0] = &handler_function_main_GPU;
 
-    TablePointerFunctions = table;
+    // TablePointerFunctions = table;
   }
 
   // init_array();
   fprintf(stderr, "Calling the init_array by pointer.\n");
-  TablePointerFunctions[0][1]();
+  table[0][1]();
   fprintf(stderr, "Calling the vectoradd by pointer.\n");
-  TablePointerFunctions[1][1]();
+  table[1][1]();
 
 
 //  int number_of_threads = NUMBER_OF_THREADS;
