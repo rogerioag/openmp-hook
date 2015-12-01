@@ -263,7 +263,7 @@ void handler_function_main_GPU(void){
   // Parâmetros do kernel.
   void *KernelParams[] = { &devBufferA, &devBufferB, &devBufferC };
 
-  if(!kernel_launching(func_kernel, gdb, KernelParams)){
+  if(!kernel_launching(func_kernel, gbd, KernelParams)){
     fprintf(stderr, "Error launching the kernel.\n");
   }
 
