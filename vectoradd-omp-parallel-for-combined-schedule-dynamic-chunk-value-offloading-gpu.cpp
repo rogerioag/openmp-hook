@@ -296,7 +296,7 @@ void handler_function_main_GPU(void){
   int         devCount;
 
    // Inicialização CUDA.
-  checkCudaErrors(cuInit(0));
+  /*checkCudaErrors(cuInit(0));
   checkCudaErrors(cuDeviceGetCount(&devCount));
   checkCudaErrors(cuDeviceGet(&device, 0));
 
@@ -309,6 +309,10 @@ void handler_function_main_GPU(void){
   std::cout << "Device Compute Capability: " << devMajor << "." << devMinor << "\n";
   if (devMajor < 2) {
     std::cerr << "ERROR: Device 0 is not SM 2.0 or greater\n";
+  }*/
+
+  if(!init_runtime_gpu()){
+    fprintf(stderr, "Error initializing runtime GPU.\n");
   }
 
   std::cout << "Carregando vectoradd-kernel.ptx. " << "\n";
