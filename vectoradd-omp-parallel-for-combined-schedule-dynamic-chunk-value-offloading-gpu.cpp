@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cassert>
 #include <string.h>
+#include <sstream>
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -154,7 +155,11 @@ bool kernel_loading(std::string kernel_name, CUfunction* function){
 
   std::cout << "Carregando" << kernel_name << ".ptx." << "\n";
   // Carregando o arquivo PTX.
-  std::ifstream ifs(kernel_name + ".ptx");
+  std::stringstream ss;
+  ss << kernel_name << ".ptx";
+  std::string file_name = ss.str();
+
+  std::ifstream ifs(file_name);
   if (!ifs.is_open()) {
     std::cerr << kernel_name << ".ptx not found.\n";
   }
