@@ -172,7 +172,7 @@ bool init_runtime_gpu(CUdevice *device){
 }*/
 
 /*------------------------------------------------------------------------------*/
-/*bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
+bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
   bool result = true;
 
   gbd->blockSizeX = 32;
@@ -183,7 +183,7 @@ bool init_runtime_gpu(CUdevice *device){
   gbd->gridSizeZ  = 1;
 
   return result;
-}*/
+}
 
 /*------------------------------------------------------------------------------*/
 /*bool kernel_launching(CUfunction func_kernel, grid_block_dim_t *gbd, void *KernelParams[]){
@@ -287,6 +287,9 @@ void handler_function_main_GPU(void){
   CUcontext   context;
   CUfunction  function;
   CUlinkState linker;
+
+  grid_block_dim_t *gbd;
+  gbd = (grid_block_dim_t*) malloc(sizeof(grid_block_dim_t));
   // int         devCount;
 
   // Inicialização CUDA.
@@ -339,14 +342,16 @@ void handler_function_main_GPU(void){
   // Get kernel function.
   checkCudaErrors(cuModuleGetFunction(&function, cudaModule, "vectoradd_kernel"));
 
-  
-
-  unsigned blockSizeX = 32;
+  /*unsigned blockSizeX = 32;
   unsigned blockSizeY = 32;
   unsigned blockSizeZ = 1;
   unsigned gridSizeX  = 32;
   unsigned gridSizeY  = 32;
-  unsigned gridSizeZ  = 1;
+  unsigned gridSizeZ  = 1;*/
+
+  if(!calculate_kernel_dimensions(gbd)){
+    fprintf(stderr, "Error loading kernel from file.\n"); 
+  }
 
   // Parâmetros do kernel.
   void *KernelParams[] = { &devBufferA, &devBufferB, &devBufferC };
@@ -354,7 +359,7 @@ void handler_function_main_GPU(void){
   std::cout << "Launching kernel\n";
 
   // Lançando a execução do kernel.
-  checkCudaErrors(cuLaunchKernel(function, gridSizeX, gridSizeY, gridSizeZ, blockSizeX, blockSizeY, blockSizeZ, 0, NULL, KernelParams, NULL));
+  checkCudaErrors(cuLaunchKernel(function, gdb->gridSizeX, gdb->gridSizeY, gdb->gridSizeZ, gdb->blockSizeX, gdb->blockSizeY, gdb->blockSizeZ, 0, NULL, KernelParams, NULL));
 
   // Recuperando os dados do resultado.
   checkCudaErrors(cuMemcpyDtoH(&h_c[0], devBufferC, sizeof(float)*N));
