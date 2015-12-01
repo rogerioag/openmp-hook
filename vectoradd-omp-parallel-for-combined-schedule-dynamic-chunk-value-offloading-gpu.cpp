@@ -301,9 +301,10 @@ bool create_target_functions_table(op_func **table, int nrows, int ncolumns){
       }
     }
   }*/
-
+  fprintf(stderr, "Allocating the rows.\n");
   table = new op_func*[nrows];
   for(int i = 0; i < nrows; i++){
+    fprintf(stderr, "Allocating the columns.\n");
     table[i] = new op_func[ncolumns];
   }
 
