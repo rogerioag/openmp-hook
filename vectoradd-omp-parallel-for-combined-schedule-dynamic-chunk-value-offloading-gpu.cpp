@@ -312,6 +312,7 @@ int main() {
    * loop 2   main alternative.
    * matrix 2 x 1.
   */
+  fprintf(stderr, "Creating table of target functions.\n");
   if(create_target_functions_table(getTargetFunc, 2, 1)){
     /* Set up the library Functions table. */
     getTargetFunc[0][1] = handler_function_init_array_GPU;
@@ -321,7 +322,9 @@ int main() {
   }
 
   // init_array();
+  fprintf(stderr, "Calling the init_array by pointer.\n");
   TablePointerFunctions[0][1]();
+  fprintf(stderr, "Calling the vectoradd by pointer.\n");
   TablePointerFunctions[1][1]();
 
 
@@ -332,7 +335,7 @@ int main() {
 //  for (i = 0; i < N; i++) {
 //    h_c[i] = h_a[i] + h_b[i];
 //  }
-
+  fprintf(stderr, "Checking results.\n");
   // print_array();
   check_result();
 
