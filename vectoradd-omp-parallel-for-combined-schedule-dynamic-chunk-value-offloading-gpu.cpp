@@ -315,6 +315,9 @@ void handler_function_main_GPU(void){
     fprintf(stderr, "Error initializing runtime GPU.\n");
   }*/
 
+  // Criando o Driver Context.
+  checkCudaErrors(cuCtxCreate(&context, 0, device));
+
   // Alocação de Memória no disposito.
   CUdeviceptr devBufferA;
   CUdeviceptr devBufferB;
@@ -335,9 +338,6 @@ void handler_function_main_GPU(void){
     std::cerr << "vectoradd-kernel.ptx not found\n";
   }
   std::string str((std::istreambuf_iterator<char>(t)),std::istreambuf_iterator<char>());
-
-  // Criando o Driver Context.
-  checkCudaErrors(cuCtxCreate(&context, 0, device));
 
   // Criando um módulo.
   checkCudaErrors(cuModuleLoadDataEx(&cudaModule, str.c_str(), 0, 0, 0));
