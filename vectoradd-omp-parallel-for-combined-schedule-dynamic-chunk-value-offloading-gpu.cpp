@@ -282,6 +282,8 @@ void handler_function_main_GPU(void){
 /*------------------------------------------------------------------------------*/
 bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
 
+  op_func **table;
+
   bool result = true;
   int i, j;
 
@@ -318,6 +320,8 @@ bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
     table[i] = new op_func[ncolumns];
   }*/
 
+  *table_ = table;
+
   return result;
 }
 
@@ -334,7 +338,7 @@ int main() {
   int nloops = 2;
   int ndevices = 1;
 
-  if(create_target_functions_table(&table_, nloops, ndevices)){
+  if(create_target_functions_table(&table, nloops, ndevices)){
     /* Set up the library Functions table. */
     if(table == NULL){
       fprintf(stderr, "Structure is NULL.\n");      
