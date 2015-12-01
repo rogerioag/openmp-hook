@@ -359,7 +359,7 @@ void handler_function_main_GPU(void){
   std::cout << "Launching kernel\n";
 
   // Lançando a execução do kernel.
-  checkCudaErrors(cuLaunchKernel(function, gdb->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ, 0, NULL, KernelParams, NULL));
+  checkCudaErrors(cuLaunchKernel(function, gbd->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ, 0, NULL, KernelParams, NULL));
 
   // Recuperando os dados do resultado.
   checkCudaErrors(cuMemcpyDtoH(&h_c[0], devBufferC, sizeof(float)*N));
