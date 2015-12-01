@@ -223,7 +223,7 @@ bool release_data_device(){
   result = checkCudaErrors(cuModuleUnload(cudaModule));
   result = checkCudaErrors(cuCtxDestroy(context));
 
-  result = checkCudaErrors(cudaDeviceReset());
+  cudaDeviceReset();
 
   return result;
 }
