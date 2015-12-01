@@ -302,7 +302,7 @@ bool create_target_functions_table(op_func **table, int nrows, int ncolumns){
     }
   }*/
 
-  table = new op_func[nrows];
+  table = new op_func*[nrows];
   for(int i = 0; i < nrows; i++){
     table[i] = new op_func[ncolumns];
   }
