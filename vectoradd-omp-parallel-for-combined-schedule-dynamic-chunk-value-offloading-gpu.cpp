@@ -98,14 +98,14 @@ bool init_runtime_gpu(CUdevice *device){
   // Inicialização CUDA.
   result = checkCudaErrors(cuInit(0));
   result = checkCudaErrors(cuDeviceGetCount(&devCount));
-  result = checkCudaErrors(cuDeviceGet(*device, 0));
+  result = checkCudaErrors(cuDeviceGet(device, 0));
 
   char name[128];
-  result = checkCudaErrors(cuDeviceGetName(name, 128, *device));
+  result = checkCudaErrors(cuDeviceGetName(name, 128, device));
   std::cout << "Using CUDA Device [0]: " << name << "\n";
 
   int devMajor, devMinor;
-  result = checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, *device));
+  result = checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, device));
   std::cout << "Device Compute Capability: " << devMajor << "." << devMinor << "\n";
   if (devMajor < 2) {
     std::cerr << "ERROR: Device 0 is not SM 2.0 or greater\n";
