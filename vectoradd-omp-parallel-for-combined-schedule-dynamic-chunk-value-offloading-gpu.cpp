@@ -36,7 +36,7 @@ op_func **getTargetFunc;
 /* Initialization of TablePointerFunctions to libhook. */
 extern op_func **TablePointerFunctions;
 
-struct grid_block_dim{
+typedef struct grid_block_dim{
   unsigned blockSizeX;
   unsigned blockSizeY;
   unsigned blockSizeZ;
