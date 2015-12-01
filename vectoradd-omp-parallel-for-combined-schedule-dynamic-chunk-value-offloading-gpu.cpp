@@ -236,7 +236,7 @@ void handler_function_init_array_GPU(void){
 /*------------------------------------------------------------------------------*/
 void handler_function_main_GPU(void){
 
-  CUfunction *func_kernel;
+  CUfunction func_kernel;
 
   grid_block_dim_t gbd;
   
