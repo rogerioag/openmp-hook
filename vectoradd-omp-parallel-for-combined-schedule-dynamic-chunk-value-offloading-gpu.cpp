@@ -324,8 +324,8 @@ int main() {
   fprintf(stderr, "Creating table of target functions.\n");
   if(create_target_functions_table(getTargetFunc, 2, 1)){
     /* Set up the library Functions table. */
-    getTargetFunc[0][1] = handler_function_init_array_GPU;
-    getTargetFunc[1][1] = handler_function_main_GPU;
+    getTargetFunc[0][0] = handler_function_init_array_GPU;
+    getTargetFunc[1][0] = handler_function_main_GPU;
 
     TablePointerFunctions = getTargetFunc;
   }
