@@ -116,7 +116,7 @@ bool init_runtime_gpu(CUdevice *device){
 }
 
 /*------------------------------------------------------------------------------*/
-bool data_allocation(){
+/*bool data_allocation(){
 
   bool result = true;
 
@@ -125,10 +125,10 @@ bool data_allocation(){
   result = checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
 
   return result;
-}
+}*/
 
 /*------------------------------------------------------------------------------*/
-bool data_transfer_and_sync(){
+/*bool data_transfer_and_sync(){
   bool result = true;
   // Transferindo os dados para a memória do dispositivo.
 
@@ -136,10 +136,10 @@ bool data_transfer_and_sync(){
   result = checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
 
   return result;
-}
+}*/
 
 /*------------------------------------------------------------------------------*/
-bool kernel_loading(std::string kernel_name, CUfunction function){
+/*bool kernel_loading(std::string kernel_name, CUfunction function){
   bool result = true;
 
   std::cout << "Carregando" << kernel_name << ".ptx." << "\n";
@@ -164,10 +164,10 @@ bool kernel_loading(std::string kernel_name, CUfunction function){
   result = checkCudaErrors(cuModuleGetFunction(&function, cudaModule, kernel_name.c_str()));
 
   return result;
-}
+}*/
 
 /*------------------------------------------------------------------------------*/
-bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
+/*bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
   bool result = true;
 
   gbd->blockSizeX = 32;
@@ -178,10 +178,10 @@ bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
   gbd->gridSizeZ  = 1;
 
   return result;
-}
+}*/
 
 /*------------------------------------------------------------------------------*/
-bool kernel_launching(CUfunction func_kernel, grid_block_dim_t *gbd, void *KernelParams[]){
+/*bool kernel_launching(CUfunction func_kernel, grid_block_dim_t *gbd, void *KernelParams[]){
   bool result = true;
 
   std::cout << "Launching kernel\n";
@@ -189,20 +189,20 @@ bool kernel_launching(CUfunction func_kernel, grid_block_dim_t *gbd, void *Kerne
   result = checkCudaErrors(cuLaunchKernel(func_kernel, gbd->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ, 0, NULL, KernelParams, NULL));
 
   return result;
-}
+}*/
 
 /*------------------------------------------------------------------------------*/
-bool data_transfer_retrieve_results(){
+/*bool data_transfer_retrieve_results(){
   bool result = true;
 
   // Recuperando os dados do resultado.
   result = checkCudaErrors(cuMemcpyDtoH(&h_c[0], devBufferC, sizeof(float)*N));
 
   return result;
-}
+}*/
 
 /*------------------------------------------------------------------------------*/
-bool release_data_device(){
+/*bool release_data_device(){
   bool result = true;
 
   // Liberando Memória do dispositivo.
@@ -215,7 +215,7 @@ bool release_data_device(){
   cudaDeviceReset();
 
   return result;
-}
+}*/
 
 /*------------------------------------------------------------------------------*/
 void handler_function_init_array_GPU(void){
