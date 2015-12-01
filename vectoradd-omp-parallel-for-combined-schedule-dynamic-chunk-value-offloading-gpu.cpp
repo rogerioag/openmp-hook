@@ -33,6 +33,7 @@ typedef void (*op_func) (void);
 /* Tabela de funções para chamada parametrizada. */
 // op_func getTargetFunc[2] = { func_CPU, func_GPU };
 op_func **table;
+op_func **table_;
 /* Initialization of TablePointerFunctions to libhook. */
 extern op_func **TablePointerFunctions;
 
@@ -333,7 +334,7 @@ int main() {
   int nloops = 2;
   int ndevices = 1;
 
-  if(create_target_functions_table(&table, nloops, ndevices)){
+  if(create_target_functions_table(&table_, nloops, ndevices)){
     /* Set up the library Functions table. */
     if(table == NULL){
       fprintf(stderr, "Structure is NULL.\n");      
