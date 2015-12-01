@@ -333,7 +333,7 @@ int main() {
   int nloops = 2;
   int ndevices = 1;
 
-  if(create_target_functions_table(&getTargetFunc, nloops, ndevices)){
+  if(create_target_functions_table(&table, nloops, ndevices)){
     /* Set up the library Functions table. */
     if(table == NULL){
       fprintf(stderr, "Structure is NULL.\n");      
