@@ -178,7 +178,7 @@ bool kernel_loading(std::string kernel_name, CUfunction* function){
 }
 
 /*------------------------------------------------------------------------------*/
-bool calculate_kernel_dimensions(grid_block_dim_t *gbd)){
+bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
   bool result = true;
 
   gdb.blockSizeX = 32;
