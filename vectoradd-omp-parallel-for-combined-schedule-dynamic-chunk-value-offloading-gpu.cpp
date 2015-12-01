@@ -155,11 +155,10 @@ bool kernel_loading(std::string kernel_name, CUfunction* function){
 
   std::cout << "Carregando" << kernel_name << ".ptx." << "\n";
   // Carregando o arquivo PTX.
-  std::stringstream ss;
-  ss << kernel_name << ".ptx";
-  std::string file_name = ss.str();
+  std::stringstream file_name;
+  file_name << kernel_name << ".ptx";
 
-  std::ifstream ifs(file_name);
+  std::ifstream ifs(file_name.str());
   if (!ifs.is_open()) {
     std::cerr << kernel_name << ".ptx not found.\n";
   }
