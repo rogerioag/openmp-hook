@@ -295,9 +295,25 @@ void handler_function_main_GPU(void){
   CUlinkState linker;
   int         devCount;
 
-  if(!init_runtime_gpu()){
-    fprintf(stderr, "Error initializing runtime GPU.\n");
+  // Inicialização CUDA.
+  checkCudaErrors(cuInit(0));
+  checkCudaErrors(cuDeviceGetCount(&devCount));
+  checkCudaErrors(cuDeviceGet(&device, 0));
+
+  char name[128];
+  checkCudaErrors(cuDeviceGetName(name, 128, device));
+  std::cout << "Using CUDA Device [0]: " << name << "\n";
+
+  int devMajor, devMinor;
+  checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, device));
+  std::cout << "Device Compute Capability: " << devMajor << "." << devMinor << "\n";
+  if (devMajor < 2) {
+    std::cerr << "ERROR: Device 0 is not SM 2.0 or greater\n";
   }
+
+  /*if(!init_runtime_gpu()){
+    fprintf(stderr, "Error initializing runtime GPU.\n");
+  }*/
 
   // Alocação de Memória no disposito.
   CUdeviceptr devBufferA;
