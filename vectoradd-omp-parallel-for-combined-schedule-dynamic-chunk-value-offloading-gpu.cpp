@@ -192,7 +192,7 @@ bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
 }
 
 /*------------------------------------------------------------------------------*/
-bool kernel_launching(CUfunction *func_kernel, grid_block_dim_t *gbd, void *KernelParams[]){
+bool kernel_launching(CUfunction func_kernel, grid_block_dim_t *gbd, void *KernelParams[]){
   bool result = true;
 
   std::cout << "Launching kernel\n";
