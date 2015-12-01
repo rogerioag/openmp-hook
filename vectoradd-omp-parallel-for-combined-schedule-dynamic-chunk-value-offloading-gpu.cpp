@@ -234,7 +234,7 @@ void handler_function_init_array_GPU(void){
 }
 
 /*------------------------------------------------------------------------------*/
-void handler_function_main_GPU(void){
+/*void handler_function_main_GPU(void){
 
   CUfunction func_kernel;
 
@@ -250,7 +250,7 @@ void handler_function_main_GPU(void){
     fprintf(stderr, "Error data allocation in GPU.\n");
   }*/
 
-  bool result = true;
+  /*bool result = true;
 
   result = checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
   result = checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
@@ -286,8 +286,88 @@ void handler_function_main_GPU(void){
   if(!release_data_device()){
     fprintf(stderr, "Error retrieving the results form GPU.\n");
   }
-}
+}*/
+void handler_function_main_GPU(void){
+   CUdevice    device;
+  CUmodule    cudaModule;
+  CUcontext   context;
+  CUfunction  function;
+  CUlinkState linker;
+  int         devCount;
 
+   // Inicialização CUDA.
+  checkCudaErrors(cuInit(0));
+  checkCudaErrors(cuDeviceGetCount(&devCount));
+  checkCudaErrors(cuDeviceGet(&device, 0));
+
+  char name[128];
+  checkCudaErrors(cuDeviceGetName(name, 128, device));
+  std::cout << "Using CUDA Device [0]: " << name << "\n";
+
+  int devMajor, devMinor;
+  checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, device));
+  std::cout << "Device Compute Capability: " << devMajor << "." << devMinor << "\n";
+  if (devMajor < 2) {
+    std::cerr << "ERROR: Device 0 is not SM 2.0 or greater\n";
+  }
+
+  std::cout << "Carregando vectoradd-kernel.ptx. " << "\n";
+  // Carregando o arquivo PTX.
+  std::ifstream t("vectoradd-kernel.ptx");
+  if (!t.is_open()) {
+    std::cerr << "vectoradd-kernel.ptx not found\n";
+  }
+  std::string str((std::istreambuf_iterator<char>(t)),std::istreambuf_iterator<char>());
+
+  // Criando o Driver Context.
+  checkCudaErrors(cuCtxCreate(&context, 0, device));
+
+  // Criando um módulo.
+  checkCudaErrors(cuModuleLoadDataEx(&cudaModule, str.c_str(), 0, 0, 0));
+
+  // Get kernel function.
+  checkCudaErrors(cuModuleGetFunction(&function, cudaModule, "vectoradd_kernel"));
+
+  // Alocação de Memória no disposito.
+  CUdeviceptr devBufferA;
+  CUdeviceptr devBufferB;
+  CUdeviceptr devBufferC;
+
+  checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
+  checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
+  checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
+
+  // Transferindo os dados para a memória do dispositivo.
+  checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
+  checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
+
+  unsigned blockSizeX = 32;
+  unsigned blockSizeY = 32;
+  unsigned blockSizeZ = 1;
+  unsigned gridSizeX  = 32;
+  unsigned gridSizeY  = 32;
+  unsigned gridSizeZ  = 1;
+
+  // Parâmetros do kernel.
+  void *KernelParams[] = { &devBufferA, &devBufferB, &devBufferC };
+
+  std::cout << "Launching kernel\n";
+
+  // Lançando a execução do kernel.
+  checkCudaErrors(cuLaunchKernel(function, gridSizeX, gridSizeY, gridSizeZ, blockSizeX, blockSizeY, blockSizeZ, 0, NULL, KernelParams, NULL));
+
+  // Recuperando os dados do resultado.
+  checkCudaErrors(cuMemcpyDtoH(&h_c[0], devBufferC, sizeof(float)*N));
+
+  // Liberando Memória do dispositivo.
+  checkCudaErrors(cuMemFree(devBufferA));
+  checkCudaErrors(cuMemFree(devBufferB));
+  checkCudaErrors(cuMemFree(devBufferC));
+  checkCudaErrors(cuModuleUnload(cudaModule));
+  checkCudaErrors(cuCtxDestroy(context));
+
+  cudaDeviceReset();
+}
 /*------------------------------------------------------------------------------*/
 bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
 
