@@ -335,6 +335,11 @@ int main() {
 
   if(create_target_functions_table(getTargetFunc, nloops, ndevices)){
     /* Set up the library Functions table. */
+    if(getTargetFunc == NULL){
+      fprintf(stderr, "Structure is NULL.\n");      
+    }
+
+
     fprintf(stderr, "declaring function in 0,0.\n");
     getTargetFunc[0][0] = &handler_function_init_array_GPU;
     fprintf(stderr, "declaring function in 1,0.\n");
