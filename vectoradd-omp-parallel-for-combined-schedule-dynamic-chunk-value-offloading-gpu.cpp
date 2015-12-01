@@ -250,6 +250,8 @@ void handler_function_main_GPU(void){
     fprintf(stderr, "Error data allocation in GPU.\n");
   }*/
 
+  bool result = true;
+
   result = checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
   result = checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
   result = checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
