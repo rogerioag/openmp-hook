@@ -302,6 +302,14 @@ bool create_target_functions_table(op_func **table, int nrows, int ncolumns){
     }
   }
   fprintf(stderr, "Allocating the columns is OK.\n");
+
+  fprintf(stderr, "Initializing.\n");
+  for(i = 0; i < nrows; i++) {
+    for(j = 0; j < ncolumns; j++)
+      table[i][j] = 0;
+    }
+  }
+  fprintf(stderr, "Initializing OK.\n");
   /*fprintf(stderr, "Allocating the rows.\n");
   table = new op_func*[nrows];
   for(int i = 0; i < nrows; i++){
