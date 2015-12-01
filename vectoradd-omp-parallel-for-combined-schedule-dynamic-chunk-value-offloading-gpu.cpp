@@ -172,7 +172,7 @@ bool kernel_loading(std::string kernel_name, CUfunction* function){
   result = checkCudaErrors(cuModuleLoadDataEx(&cudaModule, str.c_str(), 0, 0, 0));
 
   // Get kernel function.
-  result = checkCudaErrors(cuModuleGetFunction(function, cudaModule, kernel_name));
+  result = checkCudaErrors(cuModuleGetFunction(function, cudaModule, kernel_name.c_str()));
 
   return result;
 }
