@@ -336,9 +336,9 @@ int main() {
   if(create_target_functions_table(getTargetFunc, nloops, ndevices)){
     /* Set up the library Functions table. */
     fprintf(stderr, "declaring function in 0,0.\n");
-    getTargetFunc[0 * ndevices + 0] = &handler_function_init_array_GPU;
+    getTargetFunc[0 * ndevices + 0] = handler_function_init_array_GPU;
     fprintf(stderr, "declaring function in 1,0.\n");
-    getTargetFunc[1 * ndevices + 0] = &handler_function_main_GPU;
+    getTargetFunc[1 * ndevices + 0] = handler_function_main_GPU;
 
     TablePointerFunctions = getTargetFunc;
   }
