@@ -32,7 +32,7 @@ typedef void (*op_func) (void);
 
 /* Tabela de funções para chamada parametrizada. */
 // op_func getTargetFunc[2] = { func_CPU, func_GPU };
-op_func **getTargetFunc;
+op_func **table;
 /* Initialization of TablePointerFunctions to libhook. */
 extern op_func **TablePointerFunctions;
 
@@ -279,23 +279,23 @@ void handler_function_main_GPU(void){
 }
 
 /*------------------------------------------------------------------------------*/
-bool create_target_functions_table(op_func ***table, int nrows, int ncolumns){
+bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
 
   bool result = true;
   int i, j;
 
   fprintf(stderr, "Allocating the rows.\n");
-  *table = (op_func **) malloc(nrows * sizeof(op_func *));
+  table = (op_func **) malloc(nrows * sizeof(op_func *));
 
-  if(*table == NULL){
+  if(table == NULL){
     fprintf(stderr, "Error in table of target functions allocation (rows).\n");
     result= false;
   }
   else{
     fprintf(stderr, "Allocating the columns.\n");
     for(i = 0; i < nrows; i++){
-      *table[i] = (op_func *) malloc(ncolumns * sizeof(op_func));
-      if(*table [i] == NULL){
+      table[i] = (op_func *) malloc(ncolumns * sizeof(op_func));
+      if(table [i] == NULL){
         fprintf(stderr, "Error in table of target functions allocation (columns).\n");
         result = false;
       }
@@ -306,7 +306,7 @@ bool create_target_functions_table(op_func ***table, int nrows, int ncolumns){
   fprintf(stderr, "Initializing.\n");
   for(i = 0; i < nrows; i++) {
     for(j = 0; j < ncolumns; j++){
-      *table[i][j] = 0;
+      table[i][j] = 0;
     }
   }
   fprintf(stderr, "Initializing OK.\n");
@@ -335,17 +335,17 @@ int main() {
 
   if(create_target_functions_table(&getTargetFunc, nloops, ndevices)){
     /* Set up the library Functions table. */
-    if(getTargetFunc == NULL){
+    if(table == NULL){
       fprintf(stderr, "Structure is NULL.\n");      
     }
 
 
     fprintf(stderr, "declaring function in 0,0.\n");
-    getTargetFunc[0][0] = &handler_function_init_array_GPU;
+    table[0][0] = &handler_function_init_array_GPU;
     fprintf(stderr, "declaring function in 1,0.\n");
-    getTargetFunc[1][0] = &handler_function_main_GPU;
+    table[1][0] = &handler_function_main_GPU;
 
-    TablePointerFunctions = getTargetFunc;
+    TablePointerFunctions = table;
   }
 
   // init_array();
