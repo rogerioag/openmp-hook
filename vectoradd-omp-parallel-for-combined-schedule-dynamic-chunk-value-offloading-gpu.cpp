@@ -33,7 +33,6 @@ typedef void (*op_func) (void);
 /* Tabela de funções para chamada parametrizada. */
 // op_func getTargetFunc[2] = { func_CPU, func_GPU };
 op_func **table;
-op_func **table_;
 /* Initialization of TablePointerFunctions to libhook. */
 extern op_func **TablePointerFunctions;
 
@@ -247,7 +246,15 @@ void handler_function_main_GPU(void){
     fprintf(stderr, "Error initializing runtime GPU.\n");
   }
 
-  if(!data_allocation()){
+  /*if(!data_allocation()){
+    fprintf(stderr, "Error data allocation in GPU.\n");
+  }*/
+
+  result = checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
+  result = checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
+  result = checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
+
+  if(!result){
     fprintf(stderr, "Error data allocation in GPU.\n");
   }
 
