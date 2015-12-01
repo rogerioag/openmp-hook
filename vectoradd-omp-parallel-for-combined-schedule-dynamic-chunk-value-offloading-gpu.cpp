@@ -197,7 +197,7 @@ bool kernel_launching(CUfunction *func_kernel, grid_block_dim_t *gbd, void *Kern
 
   std::cout << "Launching kernel\n";
   // Lançando a execução do kernel.
-  result = checkCudaErrors(cuLaunchKernel(func_kernel, gdb.gridSizeX, gdb.gridSizeY, gdb.gridSizeZ, gdb.blockSizeX, gdb.blockSizeY, gdb.blockSizeZ, 0, NULL, KernelParams, NULL));
+  result = checkCudaErrors(cuLaunchKernel(func_kernel, gbd->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ, 0, NULL, KernelParams, NULL));
 
   return result;
 }
