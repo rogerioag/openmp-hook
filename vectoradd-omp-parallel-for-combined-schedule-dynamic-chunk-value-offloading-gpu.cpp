@@ -305,7 +305,7 @@ bool create_target_functions_table(op_func **table, int nrows, int ncolumns){
 
   fprintf(stderr, "Initializing.\n");
   for(i = 0; i < nrows; i++) {
-    for(j = 0; j < ncolumns; j++)
+    for(j = 0; j < ncolumns; j++){
       table[i][j] = 0;
     }
   }
