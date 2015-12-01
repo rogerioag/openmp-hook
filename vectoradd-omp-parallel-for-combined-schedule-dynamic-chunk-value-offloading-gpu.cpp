@@ -351,9 +351,9 @@ int main() {
 
   // init_array();
   fprintf(stderr, "Calling the init_array by pointer.\n");
-  table[0][1]();
+  table[0][0]();
   fprintf(stderr, "Calling the vectoradd by pointer.\n");
-  table[1][1]();
+  table[1][0]();
 
 
 //  int number_of_threads = NUMBER_OF_THREADS;
