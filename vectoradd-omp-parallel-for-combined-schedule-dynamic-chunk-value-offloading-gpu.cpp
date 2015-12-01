@@ -284,6 +284,7 @@ bool create_target_functions_table(op_func **table, int nrows, int ncolumns){
   bool result = true;
   int i;
 
+  fprintf(stderr, "Allocating the rows.");
   table = (op_func **) malloc(nrows * sizeof(op_func **));
 
   if(table == NULL){
@@ -291,6 +292,7 @@ bool create_target_functions_table(op_func **table, int nrows, int ncolumns){
     result= false;
   }
   else{
+    fprintf(stderr, "Allocating the columns.");
     for(i = 0; i < nrows; i++){
       table[i] = (op_func *) malloc(ncolumns * sizeof(op_func*));
       if(table [i] == NULL){
