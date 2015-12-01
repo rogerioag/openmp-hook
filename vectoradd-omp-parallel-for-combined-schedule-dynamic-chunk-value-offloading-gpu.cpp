@@ -181,12 +181,12 @@ bool kernel_loading(std::string kernel_name, CUfunction* function){
 bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
   bool result = true;
 
-  gdb.blockSizeX = 32;
-  gdb.blockSizeY = 32;
-  gdb.blockSizeZ = 1;
-  gdb.gridSizeX  = 32;
-  gdb.gridSizeY  = 32;
-  gdb.gridSizeZ  = 1;
+  gbd.blockSizeX = 32;
+  gbd.blockSizeY = 32;
+  gbd.blockSizeZ = 1;
+  gbd.gridSizeX  = 32;
+  gbd.gridSizeY  = 32;
+  gbd.gridSizeZ  = 1;
 
   return result;
 }
