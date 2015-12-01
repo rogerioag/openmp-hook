@@ -240,7 +240,7 @@ void handler_function_main_GPU(void){
 
   grid_block_dim_t *gbd;
 
-  gbd = malloc (sizeof(grid_block_dim_t));
+  gbd = (grid_block_dim_t*) malloc(sizeof(grid_block_dim_t));
   
   if(!init_runtime_gpu()){
     fprintf(stderr, "Error initializing runtime GPU.\n");
