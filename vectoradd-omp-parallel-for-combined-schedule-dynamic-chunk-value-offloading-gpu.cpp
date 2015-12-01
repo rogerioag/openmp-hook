@@ -288,32 +288,29 @@ void handler_function_init_array_GPU(void){
   }
 }*/
 void handler_function_main_GPU(void){
-   CUdevice    device;
+  CUdevice    device;
   CUmodule    cudaModule;
   CUcontext   context;
   CUfunction  function;
   CUlinkState linker;
   int         devCount;
 
-   // Inicialização CUDA.
-  /*checkCudaErrors(cuInit(0));
-  checkCudaErrors(cuDeviceGetCount(&devCount));
-  checkCudaErrors(cuDeviceGet(&device, 0));
-
-  char name[128];
-  checkCudaErrors(cuDeviceGetName(name, 128, device));
-  std::cout << "Using CUDA Device [0]: " << name << "\n";
-
-  int devMajor, devMinor;
-  checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, device));
-  std::cout << "Device Compute Capability: " << devMajor << "." << devMinor << "\n";
-  if (devMajor < 2) {
-    std::cerr << "ERROR: Device 0 is not SM 2.0 or greater\n";
-  }*/
-
   if(!init_runtime_gpu()){
     fprintf(stderr, "Error initializing runtime GPU.\n");
   }
+
+  // Alocação de Memória no disposito.
+  CUdeviceptr devBufferA;
+  CUdeviceptr devBufferB;
+  CUdeviceptr devBufferC;
+
+  checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
+  checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
+  checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
+
+  // Transferindo os dados para a memória do dispositivo.
+  checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
+  checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
 
   std::cout << "Carregando vectoradd-kernel.ptx. " << "\n";
   // Carregando o arquivo PTX.
@@ -332,18 +329,7 @@ void handler_function_main_GPU(void){
   // Get kernel function.
   checkCudaErrors(cuModuleGetFunction(&function, cudaModule, "vectoradd_kernel"));
 
-  // Alocação de Memória no disposito.
-  CUdeviceptr devBufferA;
-  CUdeviceptr devBufferB;
-  CUdeviceptr devBufferC;
-
-  checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
-  checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
-  checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
-
-  // Transferindo os dados para a memória do dispositivo.
-  checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
-  checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
+  
 
   unsigned blockSizeX = 32;
   unsigned blockSizeY = 32;
