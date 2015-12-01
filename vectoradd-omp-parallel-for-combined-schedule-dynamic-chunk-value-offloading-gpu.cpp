@@ -101,7 +101,7 @@ bool init_runtime_gpu(CUdevice *device){
   result = checkCudaErrors(cuDeviceGet(device, 0));
 
   char name[128];
-  result = checkCudaErrors(cuDeviceGetName(name, 128, *device));
+  result = checkCudaErrors(cuDeviceGetName(name, 128, **device));
   std::cout << "Using CUDA Device [0]: " << name << "\n";
 
   int devMajor, devMinor;
