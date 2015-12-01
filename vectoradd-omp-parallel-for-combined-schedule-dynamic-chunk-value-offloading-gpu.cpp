@@ -258,7 +258,7 @@ void handler_function_main_GPU(void){
     fprintf(stderr, "Error loading kernel from file.\n"); 
   }
 
-  if(!calculate_kernel_dimensions(&gbd)){
+  if(!calculate_kernel_dimensions(gbd)){
     fprintf(stderr, "Error loading kernel from file.\n"); 
   }
 
