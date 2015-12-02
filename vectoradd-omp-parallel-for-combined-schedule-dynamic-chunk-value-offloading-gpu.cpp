@@ -442,9 +442,10 @@ int main() {
 
   if(create_target_functions_table(&table, nloops, ndevices)){
     /* Set up the library Functions table. */
-    if(table == NULL){
+    assert(table != NULL);
+    /*if(table == NULL){
       fprintf(stderr, "Structure is NULL.\n");      
-    }
+    }*/
 
 
     fprintf(stderr, "declaring function in 0,0.\n");
@@ -453,8 +454,9 @@ int main() {
     table[1][0] = &handler_function_main_GPU;
 
     TablePointerFunctions = table;
+    assert(TablePointerFunctions != NULL);
 
-    if(table[0][0] != NULL){
+    /*if(table[0][0] != NULL){
       fprintf(stderr, "[APP] table [0][0]: %p\n", table[0][0]);
     }
     else{
@@ -480,7 +482,7 @@ int main() {
     }
     else{
       fprintf(stderr, "[APP] TablePointerFunctions [1][0] is NULL.\n");
-    }
+    }*/
 
   }
 
