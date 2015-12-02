@@ -353,6 +353,8 @@ void handler_function_main_GPU(void){
     fprintf(stderr, "Error loading kernel from file.\n"); 
   }
 
+  fprintf(stderr, "Dimensions: %d, %d, %d, %d, %d, %d.\n", gbd->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ); 
+
   // Parâmetros do kernel.
   void *KernelParams[] = { &devBufferA, &devBufferB, &devBufferC };
 
