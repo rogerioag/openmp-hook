@@ -63,7 +63,7 @@ void init_array() {
   int i;
   int number_of_threads = NUMBER_OF_THREADS;
  
-  current_loop_index = 0;
+  extern long int current_loop_index = 0;
   #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
   for (i = 0; i < N; i++) {
     h_a[i] = 0.5;
@@ -463,7 +463,7 @@ int main() {
   int number_of_threads = NUMBER_OF_THREADS;
   // int chunk_size = N / number_of_threads;
 
-  current_loop_index = 1;
+  extern long int current_loop_index = 1;
   #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
   for (i = 0; i < N; i++) {
     h_c[i] = h_a[i] + h_b[i];
