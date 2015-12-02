@@ -230,7 +230,64 @@ bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
 
 /*------------------------------------------------------------------------------*/
 void handler_function_init_array_GPU(void){
-  init_array();
+  CUdevice    device;
+  CUmodule    cudaModule;
+  CUcontext   context;
+  CUfunction  function;
+  CUlinkState linker;
+
+  grid_block_dim_t *gbd;
+  gbd = (grid_block_dim_t*) malloc(sizeof(grid_block_dim_t));
+  
+  if(!init_runtime_gpu(&device)){
+    fprintf(stderr, "Error initializing runtime GPU.\n");
+  }
+
+  // Criando o Driver Context.
+  checkCudaErrors(cuCtxCreate(&context, 0, device));
+
+  if(devBufferA == NULL){
+    checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
+  }
+
+  if(devBufferB == NULL){
+    checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
+  }
+  
+  if(devBufferC == NULL){
+    checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
+  }
+
+  std::cout << "Carregando init_array-kernel.ptx. " << "\n";
+  // Carregando o arquivo PTX.
+  std::ifstream t("init_array-kernel.ptx");
+  if (!t.is_open()) {
+    std::cerr << "init_array-kernel.ptx not found\n";
+  }
+  std::string str((std::istreambuf_iterator<char>(t)),std::istreambuf_iterator<char>());
+
+  // Criando um módulo.
+  checkCudaErrors(cuModuleLoadDataEx(&cudaModule, str.c_str(), 0, 0, 0));
+
+  // Get kernel function.
+  checkCudaErrors(cuModuleGetFunction(&function, cudaModule, "init_array_kernel"));
+
+  if(!calculate_kernel_dimensions(gbd)){
+    fprintf(stderr, "Error calculating the kernel dimensions.\n"); 
+  }
+
+  fprintf(stderr, "Dimensions: %d, %d, %d, %d, %d, %d.\n", gbd->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ); 
+
+  // Parâmetros do kernel.
+  void *KernelParams[] = { &devBufferA, &devBufferB };
+
+  std::cout << "Launching kernel\n";
+
+  // Lançando a execução do kernel.
+  checkCudaErrors(cuLaunchKernel(function, gbd->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ, 0, NULL, KernelParams, NULL));
+
+  // No copy back. Data resident in GPU.
+
 }
 
 /*------------------------------------------------------------------------------*/
@@ -296,24 +353,7 @@ void handler_function_main_GPU(void){
 
   grid_block_dim_t *gbd;
   gbd = (grid_block_dim_t*) malloc(sizeof(grid_block_dim_t));
-  // int         devCount;
-
-  // Inicialização CUDA.
-  /*checkCudaErrors(cuInit(0));
-  checkCudaErrors(cuDeviceGetCount(&devCount));
-  checkCudaErrors(cuDeviceGet(&device, 0));
-
-  char name[128];
-  checkCudaErrors(cuDeviceGetName(name, 128, device));
-  std::cout << "Using CUDA Device [0]: " << name << "\n";
-
-  int devMajor, devMinor;
-  checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, device));
-  std::cout << "Device Compute Capability: " << devMajor << "." << devMinor << "\n";
-  if (devMajor < 2) {
-    std::cerr << "ERROR: Device 0 is not SM 2.0 or greater\n";
-  }*/
-
+  
   if(!init_runtime_gpu(&device)){
     fprintf(stderr, "Error initializing runtime GPU.\n");
   }
@@ -321,18 +361,21 @@ void handler_function_main_GPU(void){
   // Criando o Driver Context.
   checkCudaErrors(cuCtxCreate(&context, 0, device));
 
-  // Alocação de Memória no disposito.
-  // CUdeviceptr devBufferA;
-  // CUdeviceptr devBufferB;
-  // CUdeviceptr devBufferC;
+  if(devBufferA == NULL){
+    checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
+    checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
+  }
 
-  checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
-  checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
-  checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
+  if(devBufferB == NULL){
+    checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
+    checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
+  }
+  
+  if(devBufferC == NULL){
+    checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
+  }
 
-  // Transferindo os dados para a memória do dispositivo.
-  checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
-  checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
+  // Sincronização??
 
   std::cout << "Carregando vectoradd-kernel.ptx. " << "\n";
   // Carregando o arquivo PTX.
@@ -348,13 +391,7 @@ void handler_function_main_GPU(void){
   // Get kernel function.
   checkCudaErrors(cuModuleGetFunction(&function, cudaModule, "vectoradd_kernel"));
 
-  /*unsigned blockSizeX = 32;
-  unsigned blockSizeY = 32;
-  unsigned blockSizeZ = 1;
-  unsigned gridSizeX  = 32;
-  unsigned gridSizeY  = 32;
-  unsigned gridSizeZ  = 1;*/
-
+  // Calculate kernel dimensions.
   if(!calculate_kernel_dimensions(gbd)){
     fprintf(stderr, "Error loading kernel from file.\n"); 
   }
