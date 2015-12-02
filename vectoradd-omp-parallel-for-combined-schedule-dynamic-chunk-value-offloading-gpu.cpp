@@ -453,6 +453,35 @@ int main() {
     table[1][0] = &handler_function_main_GPU;
 
     TablePointerFunctions = table;
+
+    if(table[0][0] != NULL){
+      fprintf(stderr, "[APP] table [0][0]: %p\n", table[0][0]);
+    }
+    else{
+      fprintf(stderr, "[APP] table [0][0] is NULL".\n);
+    }
+
+    if(table[1][0] != NULL){
+      fprintf(stderr, "[APP] table [1][0]: %p\n", table[1][0]);
+    }
+    else{
+      fprintf(stderr, "[APP] table [1][0] is NULL".\n);
+    }
+
+    if(TablePointerFunctions[0][0] != NULL){
+      fprintf(stderr, "[APP] TablePointerFunctions [0][0]: %p\n", TablePointerFunctions[0][0]);
+    }
+    else{
+      fprintf(stderr, "[APP] TablePointerFunctions [0][0] is NULL".\n);
+    }
+
+    if(TablePointerFunctions[1][0] != NULL){
+      fprintf(stderr, "[APP] TablePointerFunctions [1][0]: %p\n", TablePointerFunctions[1][0]);
+    }
+    else{
+      fprintf(stderr, "[APP] TablePointerFunctions [1][0] is NULL".\n);
+    }
+
   }
 
   init_array();
