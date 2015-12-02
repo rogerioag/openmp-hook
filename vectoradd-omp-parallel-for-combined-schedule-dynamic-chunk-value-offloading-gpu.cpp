@@ -452,7 +452,7 @@ int main() {
     fprintf(stderr, "declaring function in 1,0.\n");
     table[1][0] = &handler_function_main_GPU;
 
-    // TablePointerFunctions = table;
+    TablePointerFunctions = table;
   }
 
   init_array();
