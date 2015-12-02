@@ -127,7 +127,7 @@ bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra) {
 
 /* ------------------------------------------------------------- */
 /* Call the appropriated function. */
-bool HOOKOMP_call_offloaging_function(long int loop_index, long int device_index){
+bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index){
 	PRINT_FUNC_NAME;
 	bool retval = false;
 
@@ -203,7 +203,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 						TRACE("Trying to launch apropriated function on device: %d.\n", better_device);
 
-						made_the_offloading = HOOKOMP_call_offloaging_function(current_loop_index, better_device);
+						made_the_offloading = HOOKOMP_call_offloading_function(current_loop_index, better_device);
 
 						if (!made_the_offloading){
 							TRACE("The function offloading was not done.\n");
