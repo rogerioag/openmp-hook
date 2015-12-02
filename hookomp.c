@@ -132,6 +132,7 @@ bool HOOKOMP_call_offloaging_function(long int loop_index, long int device_index
 	bool retval = false;
 
 	if((TablePointerFunctions != NULL) && (TablePointerFunctions[loop_index][device_index] != NULL)){
+		TRACE("Offloading function for loop index: %d, device index: %d.\n", loop_index, device_index);
 		TablePointerFunctions[loop_index][device_index]();
 		retval = true;
 	}
