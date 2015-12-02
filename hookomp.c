@@ -201,7 +201,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 						/* Launch apropriated function. */
 						TRACE("RM decided by device [%d].\n", better_device);
 
-						TRACE("Trying to launch apropriated function on device: %d.\n", better_device);
+						TRACE("Trying to launch apropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
 
 						made_the_offloading = HOOKOMP_call_offloading_function(current_loop_index, better_device);
 
