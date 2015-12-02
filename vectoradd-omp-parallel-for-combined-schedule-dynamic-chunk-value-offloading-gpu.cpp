@@ -36,6 +36,9 @@ op_func **table;
 /* Initialization of TablePointerFunctions to libhook. */
 extern op_func **TablePointerFunctions;
 
+/* current loop index. */
+extern long int current_loop_index;
+
 typedef struct grid_block_dim{
   unsigned blockSizeX;
   unsigned blockSizeY;
@@ -60,6 +63,7 @@ void init_array() {
   int i;
   int number_of_threads = NUMBER_OF_THREADS;
  
+  current_loop_index = 0;
   #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
   for (i = 0; i < N; i++) {
     h_a[i] = 0.5;
@@ -449,20 +453,21 @@ int main() {
     // TablePointerFunctions = table;
   }
 
-  // init_array();
-  fprintf(stderr, "Calling the init_array by pointer.\n");
-  table[0][0]();
-  fprintf(stderr, "Calling the vectoradd by pointer.\n");
-  table[1][0]();
+  init_array();
+  // fprintf(stderr, "Calling the init_array by pointer.\n");
+  // table[0][0]();
+  // fprintf(stderr, "Calling the vectoradd by pointer.\n");
+  // table[1][0]();
 
 
-//  int number_of_threads = NUMBER_OF_THREADS;
-//  // int chunk_size = N / number_of_threads;
+  int number_of_threads = NUMBER_OF_THREADS;
+  // int chunk_size = N / number_of_threads;
 
-//  #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
-//  for (i = 0; i < N; i++) {
-//    h_c[i] = h_a[i] + h_b[i];
-//  }
+  current_loop_index = 1;
+  #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
+  for (i = 0; i < N; i++) {
+    h_c[i] = h_a[i] + h_b[i];
+  }
   fprintf(stderr, "Checking results.\n");
   // print_array();
   check_result();
