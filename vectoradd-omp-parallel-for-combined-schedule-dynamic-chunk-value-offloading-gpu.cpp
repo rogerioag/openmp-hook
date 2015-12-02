@@ -65,6 +65,7 @@ void init_array() {
  
   // extern long int current_loop_index;
   current_loop_index = 0;
+  fprintf(stderr, "[APP] Current loop index: %d\n", current_loop_index);
   #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
   for (i = 0; i < N; i++) {
     h_a[i] = 0.5;
@@ -466,6 +467,7 @@ int main() {
 
   // extern long int current_loop_index;
   current_loop_index = 1;
+  fprintf(stderr, "[APP] Current loop index: %d\n", current_loop_index);
   #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
   for (i = 0; i < N; i++) {
     h_c[i] = h_a[i] + h_b[i];
