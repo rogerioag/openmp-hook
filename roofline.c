@@ -690,7 +690,7 @@ int RM_get_better_device_to_execution(double oi){
 
 
 	
-	return 1;
+	return 0;
 }
 
 /* ------------------------------------------------------------ */
