@@ -128,9 +128,9 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   polybench_start_instruments;
 
   gemm_omp_kernel(ni, nj, nk, alpha, beta, 
-                  POLYBENCH_ARRAY(C_outputFromOMP, NI, NJ, ni, nj),
-                  POLYBENCH_ARRAY(A, NI, NK, ni, nk), 
-                  POLYBENCH_ARRAY(B, NK, NJ, nk, nj));
+                  POLYBENCH_ARRAY(C_outputFromOMP),
+                  POLYBENCH_ARRAY(A), 
+                  POLYBENCH_ARRAY(B));
 
   /* Stop and print timer. */
   printf("OpenMP Time in seconds:\n");
