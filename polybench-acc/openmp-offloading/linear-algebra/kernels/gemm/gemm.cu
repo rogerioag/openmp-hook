@@ -100,8 +100,8 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
    including the call and return. */
 void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
           DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
-          DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj)),
-          DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj) {
+          DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
+          DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
   int i, j, k;
   #pragma scop
   #pragma omp parallel
