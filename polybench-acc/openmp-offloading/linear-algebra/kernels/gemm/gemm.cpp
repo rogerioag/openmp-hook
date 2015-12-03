@@ -86,9 +86,9 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   polybench_start_instruments;
 
   gemm(ni, nj, nk, alpha, beta, 
-        POLYBENCH_ARRAY(A), 
-        POLYBENCH_ARRAY(B),
-        POLYBENCH_ARRAY(C));
+        POLYBENCH_2D(A), 
+        POLYBENCH_2D(B),
+        POLYBENCH_2D(C));
 
   /* Stop and print timer. */
   printf("Original CPU Time in seconds:\n");
