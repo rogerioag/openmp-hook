@@ -66,7 +66,7 @@ static void kernel_gemm(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   #pragma omp parallel
   {
   /* C := alpha*A*B + beta*C */
-  #pragma omp for private(j, k)
+  #pragma omp for private(j, k) schedule(runtime)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NJ; j++) {
         C[i][j] *= beta;
