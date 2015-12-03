@@ -98,11 +98,10 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
 /* Main computational kernel. The whole function will be timed,
    including the call and return. */
-void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha,
-                            DATA_TYPE beta,
-                            DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
-                            DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
-                            DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj)) {
+void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
+          DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
+          DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj)),
+          DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj) {
   int i, j, k;
   #pragma scop
   #pragma omp parallel
@@ -128,9 +127,9 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   polybench_start_instruments;
 
   gemm_omp_kernel(ni, nj, nk, alpha, beta, 
-                  POLYBENCH_ARRAY(C_outputFromOMP),
                   POLYBENCH_ARRAY(A), 
-                  POLYBENCH_ARRAY(B));
+                  POLYBENCH_ARRAY(B),
+                  POLYBENCH_ARRAY(C_outputFromOMP));
 
   /* Stop and print timer. */
   printf("OpenMP Time in seconds:\n");
