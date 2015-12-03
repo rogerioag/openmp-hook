@@ -166,6 +166,7 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
               DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
               DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
+              DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NJ, ni, nj),
               DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NJ, ni, nj)) {
   DATA_TYPE *A_gpu;
   DATA_TYPE *B_gpu;
@@ -280,7 +281,7 @@ int main(int argc, char *argv[]) {
   GPU_argv_init();
 
   gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
-           POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
+           POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
 
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
