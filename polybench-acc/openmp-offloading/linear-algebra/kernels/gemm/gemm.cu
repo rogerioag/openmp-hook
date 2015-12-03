@@ -279,7 +279,7 @@ int main(int argc, char *argv[]) {
 
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  polybench_prevent_dce(print_array(ni, nj, POLYBENCH_ARRAY(C_outputFromGpu)));
+  // polybench_prevent_dce(print_array(ni, nj, POLYBENCH_ARRAY(C_outputFromGpu)));
 
   POLYBENCH_FREE_ARRAY(A);
   POLYBENCH_FREE_ARRAY(B);
@@ -290,5 +290,4 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-// #include <polybench.c>
-
+#include <polybench.c>
