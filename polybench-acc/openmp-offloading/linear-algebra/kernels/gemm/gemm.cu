@@ -98,7 +98,7 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
 /* Main computational kernel. The whole function will be timed,
    including the call and return. */
-static void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha,
+void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha,
                             DATA_TYPE beta,
                             DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
                             DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
