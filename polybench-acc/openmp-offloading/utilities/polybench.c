@@ -380,14 +380,14 @@ static
 void *
 xmalloc (size_t num)
 {
-  void* new = NULL;
-  int ret = posix_memalign (&new, 32, num);
-  if (! new || ret)
+  void* newA = NULL;
+  int ret = posix_memalign (&newA, 32, num);
+  if (! newA || ret)
     {
       fprintf (stderr, "[PolyBench] posix_memalign: cannot allocate memory");
       exit (1);
     }
-  return new;
+  return newA;
 }
 
 
