@@ -297,5 +297,5 @@ main:                                   # @main
 	.type	C,@object               # @C
 	.comm	C,9437184,16
 
-	.ident	"clang version 3.7.0 (tags/RELEASE_370/final 254071)"
+	.ident	"clang version 3.7.0 (tags/RELEASE_370/final 254107)"
 	.section	".note.GNU-stack","",@progbits
