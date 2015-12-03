@@ -1,2 +1,5 @@
--include ../../utilities/options.mk
--include ../../utilities/c.mk
+EXECUTABLE := adi.exe
+CUFILES := adi.cu
+PATH_TO_UTILS := ../../utilities
+
+include ${PATH_TO_UTILS}/common.mk
