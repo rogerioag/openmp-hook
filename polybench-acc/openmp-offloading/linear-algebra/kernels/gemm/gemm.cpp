@@ -19,7 +19,7 @@
 
 #define POLYBENCH_TIME 1
 
-#include "gemm.cuh"
+#include "gemm.h"
 #include <polybench.h>
 #include <polybenchUtilFuncts.h>
 
