@@ -30,6 +30,63 @@
 
 #define RUN_ON_CPU
 
+/* Tipo para o ponteiro de função. */
+typedef void (*op_func) (void);
+
+/* Tabela de funções para chamada parametrizada. */
+// op_func getTargetFunc[2] = { func_CPU, func_GPU };
+op_func **table;
+/* Initialization of TablePointerFunctions to libhook. */
+extern op_func **TablePointerFunctions;
+
+/* current loop index. */
+extern long int current_loop_index;
+
+bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
+
+  op_func **table;
+
+  bool result = true;
+  int i, j;
+
+  fprintf(stderr, "Allocating the rows.\n");
+  table = (op_func **) malloc(nrows * sizeof(op_func *));
+
+  if(table == NULL){
+    fprintf(stderr, "Error in table of target functions allocation (rows).\n");
+    result= false;
+  }
+  else{
+    fprintf(stderr, "Allocating the columns.\n");
+    for(i = 0; i < nrows; i++){
+      table[i] = (op_func *) malloc(ncolumns * sizeof(op_func));
+      if(table [i] == NULL){
+        fprintf(stderr, "Error in table of target functions allocation (columns).\n");
+        result = false;
+      }
+    }
+  }
+  fprintf(stderr, "Allocating the columns is OK.\n");
+
+  fprintf(stderr, "Initializing.\n");
+  for(i = 0; i < nrows; i++) {
+    for(j = 0; j < ncolumns; j++){
+      table[i][j] = 0;
+    }
+  }
+  fprintf(stderr, "Initializing OK.\n");
+  /*fprintf(stderr, "Allocating the rows.\n");
+  table = new op_func*[nrows];
+  for(int i = 0; i < nrows; i++){
+    fprintf(stderr, "Allocating the columns.\n");
+    table[i] = new op_func[ncolumns];
+  }*/
+
+  *table_ = table;
+
+  return result;
+} 
+
 /* Arrays initialization. */
 void init_array(int ni, int nj, int nk, DATA_TYPE *alpha, DATA_TYPE *beta,
                 DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
@@ -104,6 +161,7 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
           DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
 
   int i, j, k;
+  current_loop_index = 0;
   #pragma scop
   #pragma omp parallel
   {
@@ -264,6 +322,20 @@ int main(int argc, char *argv[]) {
   memcpy(C_outputFromOMP, C, sizeof(C_outputFromOMP));
 
   memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
+
+
+  int nloops = 1;
+  int ndevices = 1;
+
+  if(create_target_functions_table(&table, nloops, ndevices)){
+    /* Set up the library Functions table. */
+    assert(table != NULL);
+
+    fprintf(stderr, "declaring function in 0,0.\n");
+    table[0][0] = &handler_function_gemm_GPU;
+
+    TablePointerFunctions = table;
+    assert(TablePointerFunctions != NULL);
 
   gemm_original(ni, nj, nk, alpha, beta, 
         POLYBENCH_ARRAY(A), 
