@@ -49,11 +49,13 @@ extern long int current_loop_index;
 
 void* pack(...)
 {
+  fprintf(stderr, "Packing arguments.\n");
   return __builtin_apply_args();
 }
 
 void invoke(frec * func)
 {
+    fprintf(stderr, "Calling function.\n");
     void *ret = __builtin_apply((void*) func->f, func->args, 100);
     // __builtin_return(ret);
 }
@@ -245,6 +247,8 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   DATA_TYPE *A_gpu;
   DATA_TYPE *B_gpu;
   DATA_TYPE *C_gpu;
+
+  fprintf(stderr, "Calling function gemm_cuda.\n");
 
   cudaMalloc((void **)&A_gpu, sizeof(DATA_TYPE) * NI * NK);
   cudaMalloc((void **)&B_gpu, sizeof(DATA_TYPE) * NK * NJ);
