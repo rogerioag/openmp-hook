@@ -376,7 +376,7 @@ int main(int argc, char *argv[]) {
   f1.args = pack(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
   f1.f  = (void*) gemm_cuda; 
 
-  invoke(&f1);
+  int teste = invoke(&f1);
 
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
