@@ -344,15 +344,15 @@ int main(int argc, char *argv[]) {
   int nloops = 1;
   int ndevices = 1;
 
-  if(create_target_functions_table(&table, nloops, ndevices)){
-    /* Set up the library Functions table. */
+  /*if(create_target_functions_table(&table, nloops, ndevices)){
+    // Set up the library Functions table.
     assert(table != NULL);
 
     fprintf(stderr, "declaring function in 0,0.\n");
     table[0][0] = &handler_function_gemm_GPU;
 
     TablePointerFunctions = table;
-    assert(TablePointerFunctions != NULL);
+    assert(TablePointerFunctions != NULL); */
 
   gemm_original(ni, nj, nk, alpha, beta, 
         POLYBENCH_ARRAY(A), 
