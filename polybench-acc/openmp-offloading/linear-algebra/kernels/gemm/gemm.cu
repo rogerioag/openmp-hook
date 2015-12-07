@@ -359,14 +359,14 @@ int main(int argc, char *argv[]) {
         POLYBENCH_ARRAY(B),
         POLYBENCH_ARRAY(C));
 
-  gemm_omp(ni, nj, nk, alpha, beta, 
+  /*gemm_omp(ni, nj, nk, alpha, beta, 
         POLYBENCH_ARRAY(A), 
         POLYBENCH_ARRAY(B),
         POLYBENCH_ARRAY(C_outputFromOMP));
 
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
+  */
 
-  
   GPU_argv_init();
 
   // gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
