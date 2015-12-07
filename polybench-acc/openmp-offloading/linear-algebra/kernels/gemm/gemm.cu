@@ -55,7 +55,7 @@ void* pack(...)
 void invoke(frec * func)
 {
     void *ret = __builtin_apply((void*) func->f, func->args, 100);
-    __builtin_return(ret);
+    // __builtin_return(ret);
 }
 
 bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
