@@ -54,7 +54,7 @@ void* pack(...)
 
 void invoke(frec * func)
 {
-    void *ret = __builtin_apply((void*) func->f, func->args, (2 * sizeof(int)));
+    void *ret = __builtin_apply((void*) func->f, func->args, 100);
     __builtin_return(ret);
 }
 
