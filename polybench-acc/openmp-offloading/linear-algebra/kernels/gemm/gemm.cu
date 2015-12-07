@@ -33,6 +33,11 @@
 /* Tipo para o ponteiro de função. */
 typedef void (*op_func) (void);
 
+typedef struct {
+  void * (*f)();
+  void * args;
+} frec;
+
 /* Tabela de funções para chamada parametrizada. */
 // op_func getTargetFunc[2] = { func_CPU, func_GPU };
 op_func **table;
@@ -41,6 +46,17 @@ extern op_func **TablePointerFunctions;
 
 /* current loop index. */
 extern long int current_loop_index;
+
+void* pack()
+{
+  return __builtin_apply_args();
+}
+
+int invoke(frec * func)
+{
+    void *ret = __builtin_apply((void*) func->f, func->args, (2 * sizeof(int)));
+    __builtin_return(ret);
+}
 
 bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
 
@@ -298,6 +314,7 @@ static void print_array(int ni, int nj,
 }
 
 
+
 int main(int argc, char *argv[]) {
   /* Retrieve problem size. */
   int ni = NI;
@@ -352,8 +369,14 @@ int main(int argc, char *argv[]) {
   
   GPU_argv_init();
 
-  gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
-           POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
+  // gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
+  //         POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
+
+  frec f1;
+  f1.args = pack(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
+  f1.f  = (void*) gemm_cuda; 
+
+  invoke(&f1);
 
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 

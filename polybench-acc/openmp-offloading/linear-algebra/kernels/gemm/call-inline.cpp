@@ -45,10 +45,13 @@ void _cdelc_fcall2(void *func, const void *args, size_t argsz, void *result)
     mov  [edx], eax
     add  esp, argsz
   )*/
-  __asm__ ("movl %eax, %ebx\n\t"
-          "movl $56, %esi\n\t"
-          "movl %ecx, $label(%edx,%ebx,$4)\n\t"
-          "movb %ah, (%ebx)");
+  
+  int foo = 10, bar = 15;
+  printf("foo=%d, argsz=%d\n", foo, argsz);
+  __asm__ __volatile__("mov %1, %%ecx" : "=c"(foo) : "g"(argsz));
+    
+  printf("foo+bar=%d\n", foo);
+
 }
 
 
@@ -60,8 +63,8 @@ int main(int argc, char *argv[])
   args[1] = 20;
   args[2] = 30;
   
-  ret = test_func(args[0], args[1], args[2]);
-  printf("ret = %d\n", ret);
+  // ret = test_func(args[0], args[1], args[2]);
+  // printf("ret = %d\n", ret);
   
   // reset ret just to to make sure we change the value
   ret = 0;
