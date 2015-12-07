@@ -34,7 +34,7 @@
 typedef void (*op_func) (void);
 
 typedef struct {
-  op_func f;
+  void *f;
   void * args;
 } frec;
 
