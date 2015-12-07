@@ -486,7 +486,8 @@ int main() {
 
 
     fprintf(stderr, "declaring function in 0,0.\n");
-    table[0][0] = &handler_function_init_array_GPU;
+    table[0][0].f = &handler_function_init_array_GPU;
+    table[0][0].params = {p1, p2...}
     fprintf(stderr, "declaring function in 1,0.\n");
     table[1][0] = &handler_function_main_GPU;
 
