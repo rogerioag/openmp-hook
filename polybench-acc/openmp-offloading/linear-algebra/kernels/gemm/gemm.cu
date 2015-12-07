@@ -47,7 +47,7 @@ extern op_func **TablePointerFunctions;
 /* current loop index. */
 extern long int current_loop_index;
 
-void* pack()
+void* pack(...)
 {
   return __builtin_apply_args();
 }
