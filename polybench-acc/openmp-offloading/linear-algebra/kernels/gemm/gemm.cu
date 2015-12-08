@@ -47,19 +47,6 @@ extern op_func **TablePointerFunctions;
 /* current loop index. */
 extern long int current_loop_index;
 
-void* pack(...)
-{
-  fprintf(stderr, "Packing arguments.\n");
-  return __builtin_apply_args();
-}
-
-void invoke(frec * func)
-{
-    fprintf(stderr, "Calling function.\n");
-    void *ret = __builtin_apply((void*) func->f, func->args, 100);
-    // __builtin_return(ret);
-}
-
 bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
 
   op_func **table;
@@ -93,13 +80,7 @@ bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
     }
   }
   fprintf(stderr, "Initializing OK.\n");
-  /*fprintf(stderr, "Allocating the rows.\n");
-  table = new op_func*[nrows];
-  for(int i = 0; i < nrows; i++){
-    fprintf(stderr, "Allocating the columns.\n");
-    table[i] = new op_func[ncolumns];
-  }*/
-
+ 
   *table_ = table;
 
   return result;
@@ -367,15 +348,22 @@ int main(int argc, char *argv[]) {
 
   // compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
   
-  GPU_argv_init();
+  switch (offloading_device){
+    case DEV_GPU: {
+      GPU_argv_init();
+      gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
+      break;
+    }
+    default: {
 
-  // gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
+    }
+  }
 
-  frec f1;
-  f1.args = pack(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
-  f1.f  = (void*) gemm_cuda; 
+  // frec f1;
+  // f1.args = pack(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
+  // f1.f  = (void*) gemm_cuda; 
 
-  invoke(&f1);
+  // invoke(&f1);
 
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
