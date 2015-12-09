@@ -23,68 +23,22 @@
 #include <polybench.h>
 #include <polybenchUtilFuncts.h>
 
+ #include <stdio.h>
+#include <setjmp.h>
+
+jmp_buf ex_buf__;
+
+#define TRY do{ if( !setjmp(ex_buf__) ){
+#define CATCH } else {
+#define ETRY } }while(0)
+#define THROW longjmp(ex_buf__, 1)
+
 #define GPU_DEVICE 0
 
 // define the error threshold for the results "not matching"
 #define PERCENT_DIFF_ERROR_THRESHOLD 0.05
 
 #define RUN_ON_CPU
-
-/* Tipo para o ponteiro de função. */
-typedef void (*op_func) (void);
-
-typedef struct {
-  void *f;
-  void * args;
-} frec;
-
-/* Tabela de funções para chamada parametrizada. */
-// op_func getTargetFunc[2] = { func_CPU, func_GPU };
-op_func **table;
-/* Initialization of TablePointerFunctions to libhook. */
-extern op_func **TablePointerFunctions;
-
-/* current loop index. */
-extern long int current_loop_index;
-
-bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
-
-  op_func **table;
-
-  bool result = true;
-  int i, j;
-
-  fprintf(stderr, "Allocating the rows.\n");
-  table = (op_func **) malloc(nrows * sizeof(op_func *));
-
-  if(table == NULL){
-    fprintf(stderr, "Error in table of target functions allocation (rows).\n");
-    result= false;
-  }
-  else{
-    fprintf(stderr, "Allocating the columns.\n");
-    for(i = 0; i < nrows; i++){
-      table[i] = (op_func *) malloc(ncolumns * sizeof(op_func));
-      if(table [i] == NULL){
-        fprintf(stderr, "Error in table of target functions allocation (columns).\n");
-        result = false;
-      }
-    }
-  }
-  fprintf(stderr, "Allocating the columns is OK.\n");
-
-  fprintf(stderr, "Initializing.\n");
-  for(i = 0; i < nrows; i++) {
-    for(j = 0; j < ncolumns; j++){
-      table[i][j] = 0;
-    }
-  }
-  fprintf(stderr, "Initializing OK.\n");
- 
-  *table_ = table;
-
-  return result;
-} 
 
 /* Arrays initialization. */
 void init_array(int ni, int nj, int nk, DATA_TYPE *alpha, DATA_TYPE *beta,
@@ -160,9 +114,6 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
           DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
 
   int i, j, k;
-  current_loop_index = 0;
-  if (test) 
-
   #pragma scop
   #pragma omp parallel
   {
@@ -176,12 +127,7 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
       }
   }
   #pragma endscop
-`else 
-`//cude
-gemm_cuda(,,,,,,,,,,,,,,,,,,,,)
 }
-
-
 
 void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
@@ -332,51 +278,15 @@ int main(int argc, char *argv[]) {
 
   memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
 
+  gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
-  // int nloops = 1;
-  // int ndevices = 1;
+  gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
 
-  /*if(create_target_functions_table(&table, nloops, ndevices)){
-    // Set up the library Functions table.
-    assert(table != NULL);
-
-    fprintf(stderr, "declaring function in 0,0.\n");
-    table[0][0] = &handler_function_gemm_GPU;
-
-    TablePointerFunctions = table;
-    assert(TablePointerFunctions != NULL); */
-
-  gemm_original(ni, nj, nk, alpha, beta, 
-        POLYBENCH_ARRAY(A), 
-        POLYBENCH_ARRAY(B),
-        POLYBENCH_ARRAY(C));
-
-  // gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
-
-  // compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
- if setjump
-  omp_version()
-  else
-  cuda_version()
-  
-  switch (offloading_device){
-    case DEV_GPU: {
-      GPU_argv_init();
-      gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), 
+  compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
+  GPU_argv_init();
+  gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), 
         POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), 
         POLYBENCH_ARRAY(C_outputFromGpu));
-      break;
-    }
-    default: {
-
-    }
-  }
-
-  // frec f1;
-  // f1.args = pack(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
-  // f1.f  = (void*) gemm_cuda; 
-
-  // invoke(&f1);
 
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
