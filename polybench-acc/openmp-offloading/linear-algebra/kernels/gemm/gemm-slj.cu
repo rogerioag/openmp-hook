@@ -251,8 +251,6 @@ static void print_array(int ni, int nj,
   fprintf(stderr, "\n");
 }
 
-
-
 int main(int argc, char *argv[]) {
   /* Retrieve problem size. */
   int ni = NI;
@@ -280,15 +278,19 @@ int main(int argc, char *argv[]) {
 
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
-  gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
+  TRY
+  {
+      gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
+      compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
+  }
+  CATCH
+  {
+      GPU_argv_init();
+      gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
-  GPU_argv_init();
-  gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), 
-        POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), 
-        POLYBENCH_ARRAY(C_outputFromGpu));
-
-  compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
+      compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
+  }
+  ETRY;
 
   polybench_prevent_dce(print_array(ni, nj, POLYBENCH_ARRAY(C_outputFromGpu)));
 
