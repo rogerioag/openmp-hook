@@ -125,7 +125,6 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
         for (k = 0; k < _PB_NK; ++k)
           C[i][j] += alpha * A[i][k] * B[k][j];
       }
-      THROW;
   }
   #pragma endscop
 }
