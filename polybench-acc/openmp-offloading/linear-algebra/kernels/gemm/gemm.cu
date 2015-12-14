@@ -161,8 +161,6 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
   int i, j, k;
   current_loop_index = 0;
-  if (test) 
-
   #pragma scop
   #pragma omp parallel
   {
@@ -176,9 +174,6 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
       }
   }
   #pragma endscop
-`else 
-`//cude
-gemm_cuda(,,,,,,,,,,,,,,,,,,,,)
 }
 
 
