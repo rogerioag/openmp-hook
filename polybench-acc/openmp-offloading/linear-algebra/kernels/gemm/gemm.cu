@@ -55,7 +55,8 @@ Func ***table;
 extern Func ***TablePointerFunctions;
 
 /* current loop index. */
-extern long int current_loop_index;
+// extern long int current_loop_index;
+long int current_loop_index;
 
 bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
 
