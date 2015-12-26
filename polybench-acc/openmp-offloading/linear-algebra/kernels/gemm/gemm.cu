@@ -193,7 +193,7 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
           DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
 
   int i, j, k;
-  current_loop_index = 0;
+  // current_loop_index = 0;
   #pragma scop
   #pragma omp parallel
   {
@@ -356,6 +356,9 @@ int main(int argc, char *argv[]) {
 
   memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
 
+  fprintf(stderr, "Calling gemm_original.\n");
+  gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
+
   /* Preparing the call to target function.
   void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
@@ -411,9 +414,6 @@ int main(int argc, char *argv[]) {
     // TablePointerFunctions = table;
     // assert(TablePointerFunctions != NULL);
   }
-
-  fprintf(stderr, "Calling gemm_original.\n");
-  gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
   fprintf(stderr, "Calling gemm_omp.\n");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
