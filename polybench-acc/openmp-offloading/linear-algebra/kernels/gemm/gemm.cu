@@ -43,8 +43,8 @@
 typedef struct Func {
   void *f;
   int nargs;
-  ffi_type* arg_types[4];
-  void* arg_values[4];
+  ffi_type* arg_types[10];
+  void* arg_values[10];
   ffi_type* ret_type;
   void* ret_value;
 } Func;
