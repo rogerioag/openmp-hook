@@ -40,7 +40,7 @@
 
 #define RUN_ON_CPU
 
-typedef struct Func {
+typedef extern struct Func {
   void *f;
   int nargs;
   ffi_type* arg_types[11];
@@ -106,7 +106,7 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
 }
 
 /* Call the target function. */
-void call_function_ffi_call(Func* ff) {
+/*void call_function_ffi_call(Func* ff) {
   fprintf(stderr," In call_function_ffi_call.\n");
   ffi_cif cif;
 
@@ -117,7 +117,7 @@ void call_function_ffi_call(Func* ff) {
   }
 
   ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values);
-}
+}*/
 
 /* Arrays initialization. */
 void init_array(int ni, int nj, int nk, DATA_TYPE *alpha, DATA_TYPE *beta,
@@ -193,7 +193,7 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
           DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
 
   int i, j, k;
-  // current_loop_index = 0;
+  current_loop_index = 0;
   #pragma scop
   #pragma omp parallel
   {
@@ -232,6 +232,8 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 /* CUDA */
 void GPU_argv_init() {
   cudaDeviceProp deviceProp;
+  fprintf(stderr, "GPU init.\n");
+
   cudaGetDeviceProperties(&deviceProp, GPU_DEVICE);
   printf("setting device %d with name %s\n", GPU_DEVICE, deviceProp.name);
   cudaSetDevice(GPU_DEVICE);
@@ -258,11 +260,15 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
               DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NJ, ni, nj),
               DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NJ, ni, nj)) {
+  
+  fprintf(stderr, "Calling function gemm_cuda.\n");
+
+  // GPU initialization.
+  GPU_argv_init();
+
   DATA_TYPE *A_gpu;
   DATA_TYPE *B_gpu;
   DATA_TYPE *C_gpu;
-
-  fprintf(stderr, "Calling function gemm_cuda.\n");
 
   cudaMalloc((void **)&A_gpu, sizeof(DATA_TYPE) * NI * NK);
   cudaMalloc((void **)&B_gpu, sizeof(DATA_TYPE) * NK * NJ);
@@ -347,7 +353,7 @@ int main(int argc, char *argv[]) {
   POLYBENCH_2D_ARRAY_DECL(C_inputToGpu, DATA_TYPE, NI, NJ, ni, nj);
   POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NJ, ni, nj);
 
-
+  fprintf(stderr, "Calling init_array.\n");
   init_array(ni, nj, nk, &alpha, &beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
        POLYBENCH_ARRAY(C));
 
@@ -411,8 +417,8 @@ int main(int argc, char *argv[]) {
     fprintf(stderr, "Declaring function in 0,0.\n");
     table[0][0][0] = *ff;
 
-    // TablePointerFunctions = table;
-    // assert(TablePointerFunctions != NULL);
+    TablePointerFunctions = table;
+    assert(TablePointerFunctions != NULL);
   }
 
   fprintf(stderr, "Calling gemm_omp.\n");
@@ -421,14 +427,14 @@ int main(int argc, char *argv[]) {
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
 
-  fprintf(stderr, "GPU init.\n");
-  GPU_argv_init();
+  // fprintf(stderr, "GPU init.\n");
+  // GPU_argv_init();
 
   // fprintf(stderr, "Calling gemm_cuda.\n");
   // gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
-  call_function_ffi_call(table[0][0]);
+  // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
+  // call_function_ffi_call(table[0][0]);
 
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));

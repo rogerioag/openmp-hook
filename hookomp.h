@@ -45,7 +45,7 @@ sem_t sem_blocks_other_team_threads;
 sem_t mutex_hookomp_init;
 
 /* Tipo para o ponteiro de função. */
-typedef void (*op_func) (void);
+// typedef void (*op_func) (void);
 
 /* Ponteiro para a função proxy que irá chamar ou *_next ou *_start. */
 typedef bool (*chunk_next_fn)(long*, long*, void*);
@@ -341,8 +341,10 @@ static bool is_hookomp_initialized = false;
 extern "C" {
 #endif
 
+	extern struct Func;
+
 	/* Alternative Functions table pointer. */
-	op_func **TablePointerFunctions;
+	struct Func ***TablePointerFunctions;
 	
 	/* Current loop index. To identify the loop in execution. */
 	long int current_loop_index;
