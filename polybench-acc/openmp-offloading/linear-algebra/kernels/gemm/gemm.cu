@@ -412,6 +412,7 @@ int main(int argc, char *argv[]) {
     // assert(TablePointerFunctions != NULL);
   }
 
+  fprintf(stderr, "Calling gemm_original.\n");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
   // gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
