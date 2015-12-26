@@ -63,7 +63,7 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
   Func ***table;
 
   bool result = true;
-  int i, j, k;
+  int i, j;
 
   fprintf(stderr, "Allocating the rows.\n");
   table = (Func ***) malloc(nrows * sizeof(Func **));
