@@ -7,6 +7,14 @@
 #include <stdint.h>
 #include <semaphore.h>
 #include <pthread.h>
+
+#include <ffi.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <inttypes.h>
+#include <assert.h>
+
 #include "debug.h"
 #include "roofline.h"
 
