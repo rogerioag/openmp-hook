@@ -40,11 +40,11 @@
 
 #define RUN_ON_CPU
 
-typedef extern struct Func {
+typedef struct Func {
   void *f;
   int nargs;
-  ffi_type* arg_types[11];
-  void* arg_values[11];
+  ffi_type** arg_types;
+  void** arg_values;
   ffi_type* ret_type;
   void* ret_value;
 } Func;
@@ -373,7 +373,14 @@ int main(int argc, char *argv[]) {
               DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NJ, ni, nj),
               DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NJ, ni, nj))
   */
+  // Número de parametros.
+  int n_params = 10;
+
   Func *ff = (Func *) malloc(sizeof(Func));
+
+  // Número de parametros + 1, tem que ter um NULL finalizando as listas.
+  ff->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
+  ff->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
 
   ff->f = &gemm_cuda;
   memset(&ff->ret_value, 0, sizeof(ff->ret_value));
@@ -381,7 +388,7 @@ int main(int argc, char *argv[]) {
   // return type.
   ff->ret_type = &ffi_type_void;
 
-  ff->nargs = 10;
+  ff->nargs = n_params;
 
   ff->arg_values[0] = &ni;
   ff->arg_values[1] = &nj;
