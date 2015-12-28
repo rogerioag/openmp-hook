@@ -153,7 +153,7 @@ bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index
     }
 
 	TRACE("Verifying if function for loop index: %d, device index: %d is defined. \n", loop_index, device_index);
-	if((TablePointerFunctions != NULL) && (TablePointerFunctions[loop_index][device_index] != NULL)){
+	if((TablePointerFunctions != NULL) && (TablePointerFunctions[loop_index][device_index][0] != NULL)){
 		TRACE("Offloading function for loop index: %d, device index: %d.\n", loop_index, device_index);
 		retval = HOOKOMP_call_function_ffi(TablePointerFunctions[loop_index][device_index]);
 		// retval = true;
