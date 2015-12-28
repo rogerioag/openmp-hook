@@ -1,0 +1,50 @@
+digraph "Scop Graph for 'main' function" {
+	label="Scop Graph for 'main' function";
+
+	Node0x8eff80 [shape=record,label="{%0}"];
+	Node0x8eff80 -> Node0x8f0360;
+	Node0x8f0360 [shape=record,label="{.split}"];
+	Node0x8f0360 -> Node0x8f0420;
+	Node0x8f0420 [shape=record,label="{.preheader}"];
+	Node0x8f0420 -> Node0x8e1b30;
+	Node0x8e1b30 [shape=record,label="{%1}"];
+	Node0x8e1b30 -> Node0x8effa0;
+	Node0x8effa0 [shape=record,label="{%3}"];
+	Node0x8effa0 -> Node0x8effa0[constraint=false];
+	Node0x8effa0 -> Node0x8eec40;
+	Node0x8eec40 [shape=record,label="{%13}"];
+	Node0x8eec40 -> Node0x8e1b30[constraint=false];
+	Node0x8eec40 -> Node0x8eec60;
+	Node0x8eec60 [shape=record,label="{%14}"];
+	Node0x8eec60 -> Node0x8f0420[constraint=false];
+	Node0x8eec60 -> Node0x8e44e0;
+	Node0x8e44e0 [shape=record,label="{%15}"];
+	colorscheme = "paired12"
+        subgraph cluster_0x8e4e70 {
+          label = "";
+          style = solid;
+          color = 1
+          subgraph cluster_0x8f0110 {
+            label = "";
+            style = filled;
+            color = 3            subgraph cluster_0x8e4380 {
+              label = "";
+              style = solid;
+              color = 5
+              subgraph cluster_0x8f04e0 {
+                label = "";
+                style = solid;
+                color = 7
+                Node0x8effa0;
+              }
+              Node0x8e1b30;
+              Node0x8eec40;
+            }
+            Node0x8f0420;
+            Node0x8eec60;
+          }
+          Node0x8eff80;
+          Node0x8f0360;
+          Node0x8e44e0;
+        }
+}
