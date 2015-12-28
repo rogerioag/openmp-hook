@@ -70,7 +70,7 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
       if (table[i] != NULL) {
         for (j = 0; j < ncolumns; j++) {
           table[i][j] = (Func *) malloc(sizeof(Func));
-          memset(&table[i][j], 0, sizeof(Func));
+          // memset(&table[i][j], 0, sizeof(Func));
         }
       } else {
         fprintf(stderr,
@@ -94,6 +94,16 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
   }
 
   fprintf(stderr, "Initializing OK.\n");*/
+
+  fprintf(stderr, "Printing.\n");
+
+  for (i = 0; i < nrows; i++) {
+    for (j = 0; j < ncolumns; j++) {
+      fprintf(stderr, "table[%d][%d]= %p\n", i, j, (table[i][j])->f);
+    }
+  }
+
+  fprintf(stderr, "Printing OK.\n");
 
   *table_ = table;
 
