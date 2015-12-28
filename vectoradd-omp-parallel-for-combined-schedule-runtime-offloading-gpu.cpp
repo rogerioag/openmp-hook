@@ -272,7 +272,7 @@ int main() {
 
   int number_of_threads = 4;
 
-  current_loop_index = 0;
+  current_loop_index = 2;
   #pragma omp parallel for num_threads (number_of_threads) schedule (runtime)
   for (i = 0; i < N; i++) {
      h_c[i] = h_a[i] + h_b[i];
