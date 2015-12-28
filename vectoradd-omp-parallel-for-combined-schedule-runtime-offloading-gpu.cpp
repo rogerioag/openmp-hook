@@ -71,6 +71,7 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
         for (j = 0; j < ncolumns; j++) {
           table[i][j] = (Func *) malloc(sizeof(Func));
           // memset(&table[i][j], 0, sizeof(Func));
+          (table[i][j])->f = NULL;
         }
       } else {
         fprintf(stderr,
