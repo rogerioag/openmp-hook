@@ -100,7 +100,7 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
 }
 
 /* Call the target function. */
-/*void call_function_ffi_call(Func* ff) {
+void call_function_ffi_call(Func* ff) {
   fprintf(stderr," In call_function_ffi_call.\n");
   ffi_cif cif;
 
@@ -111,7 +111,7 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
   }
 
   ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values);
-}*/
+}
 
 void init_array() {
   int i;
