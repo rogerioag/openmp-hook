@@ -132,8 +132,7 @@ bool HOOKOMP_call_function_ffi(Func* ff) {
   ffi_cif cif;
   int retval = 0;
 
-  if ((retval = ffi_prep_cif(&cif, FFI_DEFAULT_ABI, ff->nargs, ff->ret_type,
-      ff->arg_types)) != FFI_OK){
+  if ((retval = ffi_prep_cif(&cif, FFI_DEFAULT_ABI, ff->nargs, ff->ret_type, ff->arg_types)) != FFI_OK){
 	TRACE("Error ffi_prep_cif.\n");
   }
   else{
@@ -156,8 +155,8 @@ bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index
 	TRACE("Verifying if function for loop index: %d, device index: %d is defined. \n", loop_index, device_index);
 	if((TablePointerFunctions != NULL) && (TablePointerFunctions[loop_index][device_index] != NULL)){
 		TRACE("Offloading function for loop index: %d, device index: %d.\n", loop_index, device_index);
-		HOOKOMP_call_function_ffi(TablePointerFunctions[loop_index][device_index]);
-		retval = true;
+		retval = HOOKOMP_call_function_ffi(TablePointerFunctions[loop_index][device_index]);
+		// retval = true;
 	}
 	else{
 		TRACE("Offloading function not defined in TablePointerFunctions.\n");
