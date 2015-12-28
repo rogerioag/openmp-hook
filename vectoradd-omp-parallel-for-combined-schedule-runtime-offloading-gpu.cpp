@@ -273,13 +273,13 @@ int main() {
   int number_of_threads = 4;
 
   current_loop_index = 0;
-  // #pragma omp parallel for num_threads (number_of_threads) schedule (runtime)
-  // for (i = 0; i < N; i++) {
-  //   h_c[i] = h_a[i] + h_b[i];
-  // }
+  #pragma omp parallel for num_threads (number_of_threads) schedule (runtime)
+  for (i = 0; i < N; i++) {
+     h_c[i] = h_a[i] + h_b[i];
+  }
 
-  fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
-  call_function_ffi_call(table[0][0]);
+  // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
+  // call_function_ffi_call(table[0][0]);
 
   // print_array();
   check_result();
