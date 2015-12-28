@@ -65,7 +65,7 @@ enum FUN_TYPES {
     FUN_NEXT
 };
 
-/* Struct for extra parameters. */
+/* Struct for extra parameters in generic next function. */
 typedef struct Params_ {
     long _0, _1, _2, _3;
     unsigned int func_type;
@@ -75,6 +75,16 @@ typedef struct Params_ {
     	bool (*func_next) (long *istart, long *iend);    	
   	};
 } Params;
+
+/* Struct to store pointer and arguments to alternative functions calls. */
+typedef struct Func {
+	void *f;
+	int nargs;
+	ffi_type** arg_types;
+	void** arg_values;
+	ffi_type* ret_type;
+	void* ret_value;
+	} Func;
 
 /* Ponteiros para as funções que serão recuperadas pela macro get runtime function.*/
 
@@ -349,10 +359,8 @@ static bool is_hookomp_initialized = false;
 extern "C" {
 #endif
 
-	extern struct Func;
-
-	/* Alternative Functions table pointer. */
-	struct Func ***TablePointerFunctions;
+	/* Alternative Functions table pointer and args structures. */
+	Func ***TablePointerFunctions;
 	
 	/* Current loop index. To identify the loop in execution. */
 	long int current_loop_index;
