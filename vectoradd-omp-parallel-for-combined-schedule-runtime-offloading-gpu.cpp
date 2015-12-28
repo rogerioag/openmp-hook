@@ -266,8 +266,8 @@ int main() {
   ff->arg_types[0] = &ffi_type_void;
   ff->arg_types[1] = NULL;
 
-  int nloops = 1;
-  int ndevices = 1;
+  int nloops = 2;
+  int ndevices = 2;
 
   if (create_target_functions_table(&table, nloops, ndevices)) {
     // Set up the library Functions table.
@@ -284,7 +284,7 @@ int main() {
 
   int number_of_threads = 4;
 
-  current_loop_index = 0;
+  current_loop_index = 1;
   #pragma omp parallel for num_threads (number_of_threads) schedule (runtime)
   for (i = 0; i < N; i++) {
      h_c[i] = h_a[i] + h_b[i];
