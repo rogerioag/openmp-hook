@@ -128,6 +128,7 @@ offloading-tests-without-hook:
 	@echo "*****Use: LD_PRELOAD=./libhookomp.so ./vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu-without-hook.exe"
 
 deploy-lib:
+	@echo "Deploying shared libraries..."
 	cp libhookomp.so ../function-pointers/
 	cp libroofline.so ../function-pointers/
 
@@ -135,6 +136,7 @@ deploy-lib:
 	cp libroofline.so ../polly-openmp/vectoradd/
 	
 clean:
+	@echo "Cleaning..."
 	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-schedule-default-1-region vectoradd-omp-parallel-single-for-schedule-default-2-regions vectoradd-omp-parallel-single-for-schedule-runtime-1-region vectoradd-omp-parallel-single-for-schedule-runtime-2-regions vectoradd-omp-for-runtime vectoradd-omp-for-guided vectoradd-omp-for-static vectoradd-omp-for-dynamic vectoradd-omp*.exe
 
 info:
