@@ -5,6 +5,14 @@
 #include <fstream>
 #include <cassert>
 
+#include <dlfcn.h>
+#include <ffi.h>
+#include <string.h>
+#include <fcntl.h>
+#include <stdint.h>
+#include <inttypes.h>
+#include <assert.h>
+
 #ifdef _OPENMP
 #include <omp.h>
 #else
@@ -26,6 +34,86 @@ float h_a[N];
 float h_b[N];
 float h_c[N];
 
+/* Support to table of functions. */
+typedef struct Func {
+  void *f;
+  int nargs;
+  ffi_type** arg_types;
+  void** arg_values;
+  ffi_type* ret_type;
+  void* ret_value;
+} Func;
+
+/* Alternative Functions table pointer. */
+Func ***table;
+
+extern Func ***TablePointerFunctions;
+
+/* current loop index. */
+extern long int current_loop_index;
+
+/* ------------------------------------------------------------- */
+bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
+
+  Func ***table;
+
+  bool result = true;
+  int i, j;
+
+  fprintf(stderr, "Allocating the rows.\n");
+  table = (Func ***) malloc(nrows * sizeof(Func **));
+
+  if (table != NULL) {
+    fprintf(stderr, "Allocating the columns.\n");
+
+    for (i = 0; i < nrows; i++) {
+      table[i] = (Func **) malloc(ncolumns * sizeof(Func *));
+      if (table[i] != NULL) {
+        for (j = 0; j < ncolumns; j++) {
+          table[i][j] = (Func *) malloc(sizeof(Func));
+        }
+      } else {
+        fprintf(stderr,
+            "Error in table of target functions allocation (columns).\n");
+        result = false;
+      }
+    }
+  } else {
+    fprintf(stderr,
+        "Error in table of target functions allocation (rows).\n");
+    result = false;
+  }
+  fprintf(stderr, "Allocating the columns is OK.\n");
+
+  /*fprintf(stderr, "Printing.\n");
+  for (i = 0; i < nrows; i++) {
+    for (j = 0; j < ncolumns; j++) {
+      fprintf(stderr, "table[%d][%d]= %p\n", i, j, (table[i][j])->f);
+    }
+  }
+  fprintf(stderr, "Printing OK.\n");*/
+
+  *table_ = table;
+
+  return result;
+}
+
+/* ------------------------------------------------------------- */
+/* Call the target function. */
+void call_function_ffi_call(Func* ff) {
+  fprintf(stderr," In call_function_ffi_call.\n");
+  ffi_cif cif;
+
+  if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, ff->nargs, ff->ret_type,
+      ff->arg_types) != FFI_OK) {
+    fprintf(stderr,"Error ffi_prep_cif.\n");
+    exit(1);
+  }
+
+  ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values);
+}
+
+/* ------------------------------------------------------------- */
 void init_array() {
   int i;
   // Initialize vectors on host.
@@ -35,6 +123,7 @@ void init_array() {
     }
 }
 
+/* ------------------------------------------------------------- */
 void print_array() {
   int i;
   fprintf(stdout, "Thread [%02d]: Imprimindo o array de resultados:\n", omp_get_thread_num());
@@ -43,11 +132,12 @@ void print_array() {
   }
 }
 
+/* ------------------------------------------------------------- */
 void check_result(){
   // Soma dos elementos do array C e divide por N, o valor deve ser igual a 1.
   int i;
   float sum = 0;
-  fprintf(stdout, "Thread [%02d]: Verificando o resultado.\n", omp_get_thread_num());  
+  fprintf(stdout, "Thread [%02d]: Verificando o resultado.\n", omp_get_thread_num());
   
   for (i = 0; i < N; i++) {
     sum += h_c[i];
@@ -55,15 +145,12 @@ void check_result(){
   fprintf(stdout, "Thread [%02d]: Resultado Final: (%f, %f)\n", omp_get_thread_num(), sum, (float)(sum / (float)N));
 }
 
-void func_CPU(void) {
-    printf( "func_CPU.\n");
-}
-
-
+/* ------------------------------------------------------------- */
 void checkCudaErrors(CUresult err) {
   assert(err == CUDA_SUCCESS);
 }
 
+/* ------------------------------------------------------------- */
 void func_GPU(void){
   CUdevice    device;
   CUmodule    cudaModule;
@@ -146,29 +233,67 @@ void func_GPU(void){
   cudaDeviceReset();
 }
 
-/* Tipo para o ponteiro de função. */
-typedef void (*op_func) (void);
+/* ------------------------------------------------------------- */
+void prepare_alternatives_functions(){
+  fprintf(stdout, "In prepare_alternatives_functions.\n");  
+  // Number of parameters to function.
+  // void func_GPU(void). void parameters are considered.
+  int n_params = 1;
 
-/* Tabela de funções para chamada parametrizada. */
-op_func getTargetFunc[2] = { func_CPU, func_GPU };
+  Func *ff = (Func *) malloc(sizeof(Func));
 
-/* Initialization of TablePointerFunctions to libhook. */
-extern op_func *TablePointerFunctions = getTargetFunc;
+  // Número de parametros + 1, tem que ter um NULL finalizando as listas.
+  ff->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
+  ff->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
 
+  ff->f = &func_GPU;
+  memset(&ff->ret_value, 0, sizeof(ff->ret_value));
+
+  // return type.
+  ff->ret_type = &ffi_type_void;
+
+  ff->nargs = n_params;
+
+  ff->arg_values[0] = &ffi_type_void;
+  ff->arg_values[1] = NULL;
+
+  ff->arg_types[0] = &ffi_type_void;
+  ff->arg_types[1] = NULL;
+
+  int nloops = 2;
+  int ndevices = 2;
+
+  if (create_target_functions_table(&table, nloops, ndevices)) {
+    // Set up the library Functions table.
+    assert(table != NULL);
+
+    fprintf(stderr, "Declaring function in 0,0.\n");
+    table[0][0][0] = *ff;
+
+    TablePointerFunctions = table;
+    assert(TablePointerFunctions != NULL);
+  }
+}
+
+/* ------------------------------------------------------------- */
 int main() {
   int i;
+
+  prepare_alternatives_functions();  
 
   init_array();
 
   int number_of_threads = 4;
   int chunk_size = N / number_of_threads;
 
+  current_loop_index = 0;
   #pragma omp parallel for num_threads (number_of_threads) schedule (guided, chunk_size)
   for (i = 0; i < N; i++) {
-    h_c[i] = h_a[i] + h_b[i];
+     h_c[i] = h_a[i] + h_b[i];
   }
 
-  // TablePointerFunctions[1]();
+  // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
+  // call_function_ffi_call(table[0][0]);
 
   // print_array();
   check_result();
