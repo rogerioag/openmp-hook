@@ -149,7 +149,7 @@ bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index
 	bool retval = false;
 
 	if(TablePointerFunctions == NULL){
-      fprintf(stderr, "TablePointerFunctions is NULL.\n");
+      TRACE("TablePointerFunctions is NULL.\n");
     }
 
 	TRACE("Verifying if function for loop index: %d, device index: %d is defined. \n", loop_index, device_index);
@@ -160,7 +160,6 @@ bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index
 	if((TablePointerFunctions != NULL) && (TablePointerFunctions[loop_index][device_index] != NULL) && ((TablePointerFunctions[loop_index][device_index])->f != NULL)){
 		TRACE("Offloading function for loop index: %d, device index: %d.\n", loop_index, device_index);
 		retval = HOOKOMP_call_function_ffi(TablePointerFunctions[loop_index][device_index]);
-		// retval = true;
 	}
 	else{
 		TRACE("Offloading function not defined in TablePointerFunctions.\n");
