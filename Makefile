@@ -94,11 +94,20 @@ offloading-tests-with-hook:
 	/home/goncalv/prototipo-370-gpu/llvm_build/bin/llc -march=nvptx64 vectoradd-kernel.ll -o vectoradd-kernel.ptx
 	/home/goncalv/prototipo-370-gpu/llvm_build/bin/llc -march=nvptx64 init_array-kernel.ll -o init_array-kernel.ptx
 	
-	# schedule runtime.
+	# Test of offloading function schedule runtime.
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp -lffi -fpermissive
 
-	# Test of offloading function schedule guided.
+	# Test of offloading function schedule guided, chunk variable.
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp -lffi -fpermissive
+
+	# Test of offloading function schedule guided, chunk value.
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp -lffi -fpermissive
+
+	# Test of offloading function schedule dynamic, chunk variable.
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp -lffi -fpermissive
+
+	# Test of offloading function schedule dynamic, chunk value.
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp -lffi -fpermissive
 
 
 offloading-tests-without-hook:	
@@ -108,30 +117,28 @@ offloading-tests-without-hook:
 	${CXX} vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu.o -o vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu-without-hook.exe -lcuda -lcudart -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -L. -fopenmp -lgomp -lhookomp -lroofline -lffi -fpermissive
 	@echo "*****Use: LD_PRELOAD=./libhookomp.so ./vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu-without-hook.exe"
 
-	
-
-
 	# Offloading test without hook. The program will be executed normaly.
-	${CXX} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu-without-hook.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -fopenmp -lgomp
+	# ${CXX} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu-without-hook.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -fopenmp -lgomp
+	${CXX} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu.cpp -c -g -I/home/goncalv/cuda/include -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -I/home/goncalv/cuda/samples/common/inc/ -lcuda -lcudart -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -L. -fopenmp -lgomp -lhookomp -lroofline -lffi -fpermissive
+	${CXX} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu.o -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu-without-hook.exe -lcuda -lcudart -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -L. -fopenmp -lgomp -lhookomp -lroofline -lffi -fpermissive
 	@echo "*****Use: LD_PRELOAD=./libhookomp.so ./vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu-without-hook.exe"
 
-	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp
-	
 	# Offloading test without hook. The program will be executed normaly.
-	${CXX} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu-without-hook.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -fopenmp -lgomp
+	# ${CXX} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu-without-hook.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -fopenmp -lgomp
+	${CXX} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu.cpp -c -g -I/home/goncalv/cuda/include -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -I/home/goncalv/cuda/samples/common/inc/ -lcuda -lcudart -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -L. -fopenmp -lgomp -lhookomp -lroofline -lffi -fpermissive
+	${CXX} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu.o -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu-without-hook.exe -lcuda -lcudart -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -L. -fopenmp -lgomp -lhookomp -lroofline -lffi -fpermissive
 	@echo "*****Use: LD_PRELOAD=./libhookomp.so ./vectoradd-omp-parallel-for-combined-schedule-guided-chunk-value-offloading-gpu-without-hook.exe"
-
-	# Test of offloading function schedule dynamic.
-	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp
 	
 	# Offloading test without hook. The program will be executed normaly.
-	${CXX} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu-without-hook.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -fopenmp -lgomp -lhookomp
+	# ${CXX} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu-without-hook.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -fopenmp -lgomp -lhookomp
+	${CXX} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu.cpp -c -g -I/home/goncalv/cuda/include -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -I/home/goncalv/cuda/samples/common/inc/ -lcuda -lcudart -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -L. -fopenmp -lgomp -lhookomp -lroofline -lffi -fpermissive
+	${CXX} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu.o -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu-without-hook.exe -lcuda -lcudart -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -L. -fopenmp -lgomp -lhookomp -lroofline -lffi -fpermissive
 	@echo "*****Use: LD_PRELOAD=./libhookomp.so ./vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-variable-offloading-gpu-without-hook.exe"
 
-	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -fopenmp -lgomp
-	
 	# Offloading test without hook. The program will be executed normaly.
-	${CXX} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu-without-hook.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -fopenmp -lgomp
+	# ${CXX} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu-without-hook.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -fopenmp -lgomp
+	${CXX} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu.cpp -c -g -I/home/goncalv/cuda/include -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -I/home/goncalv/cuda/samples/common/inc/ -lcuda -lcudart -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -L. -fopenmp -lgomp -lhookomp -lroofline -lffi -fpermissive
+	${CXX} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu.o -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu-without-hook.exe -lcuda -lcudart -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -L. -fopenmp -lgomp -lhookomp -lroofline -lffi -fpermissive
 	@echo "*****Use: LD_PRELOAD=./libhookomp.so ./vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu-without-hook.exe"
 
 deploy-lib:
