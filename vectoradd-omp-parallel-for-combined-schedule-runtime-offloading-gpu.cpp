@@ -49,8 +49,7 @@ Func ***table;
 extern Func ***TablePointerFunctions;
 
 /* current loop index. */
-// extern long int current_loop_index;
-long int current_loop_index;
+extern long int current_loop_index;
 
 bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
 
@@ -70,8 +69,6 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
       if (table[i] != NULL) {
         for (j = 0; j < ncolumns; j++) {
           table[i][j] = (Func *) malloc(sizeof(Func));
-          // memset(&table[i][j], 0, sizeof(Func));
-          // (table[i][j])->f = NULL;
         }
       } else {
         fprintf(stderr,
@@ -86,25 +83,13 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
   }
   fprintf(stderr, "Allocating the columns is OK.\n");
 
-  /*fprintf(stderr, "Initializing.\n");
-
-  for (i = 0; i < nrows; i++) {
-    for (j = 0; j < ncolumns; j++) {
-      table[i][j][0] = 0;
-    }
-  }
-
-  fprintf(stderr, "Initializing OK.\n");*/
-
-  fprintf(stderr, "Printing.\n");
-
+  /*fprintf(stderr, "Printing.\n");
   for (i = 0; i < nrows; i++) {
     for (j = 0; j < ncolumns; j++) {
       fprintf(stderr, "table[%d][%d]= %p\n", i, j, (table[i][j])->f);
     }
   }
-
-  fprintf(stderr, "Printing OK.\n");
+  fprintf(stderr, "Printing OK.\n");*/
 
   *table_ = table;
 
@@ -240,10 +225,9 @@ void func_GPU(void){
   cudaDeviceReset();
 }
 
-int main() {
-  int i;
-
-  // Número de parametros.
+void prepare_alternatives_functions(){
+  // Number of parameters to function.
+  // void func_GPU(void). void parameters are considered.
   int n_params = 1;
 
   Func *ff = (Func *) malloc(sizeof(Func));
@@ -279,6 +263,12 @@ int main() {
     TablePointerFunctions = table;
     assert(TablePointerFunctions != NULL);
   }
+}
+
+int main() {
+  int i;
+
+  prepare_alternatives_functions();  
 
   init_array();
 
