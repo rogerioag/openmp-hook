@@ -7,6 +7,14 @@
 #include <string.h>
 #include <sstream>
 
+#include <dlfcn.h>
+#include <ffi.h>
+#include <string.h>
+#include <fcntl.h>
+#include <stdint.h>
+#include <inttypes.h>
+#include <assert.h>
+
 #ifdef _OPENMP
 #include <omp.h>
 #else
@@ -27,14 +35,20 @@
 
 #define NUMBER_OF_THREADS 4;
 
-/* Tipo para o ponteiro de função. */
-typedef void (*op_func) (void);
+/* Support to table of functions. */
+typedef struct Func {
+  void *f;
+  int nargs;
+  ffi_type** arg_types;
+  void** arg_values;
+  ffi_type* ret_type;
+  void* ret_value;
+} Func;
 
-/* Tabela de funções para chamada parametrizada. */
-// op_func getTargetFunc[2] = { func_CPU, func_GPU };
-op_func **table;
-/* Initialization of TablePointerFunctions to libhook. */
-extern op_func **TablePointerFunctions;
+/* Alternative Functions table pointer. */
+Func ***table;
+
+extern Func ***TablePointerFunctions;
 
 /* current loop index. */
 extern long int current_loop_index;
@@ -47,7 +61,6 @@ typedef struct grid_block_dim{
   unsigned gridSizeY;
   unsigned gridSizeZ;
 } grid_block_dim_t;
-
 
 float h_a[N];
 float h_b[N];
@@ -418,55 +431,116 @@ void handler_function_main_GPU(void){
 
   cudaDeviceReset();
 }
-/*------------------------------------------------------------------------------*/
-bool create_target_functions_table(op_func ***table_, int nrows, int ncolumns){
 
-  op_func **table;
+/* ------------------------------------------------------------- */
+bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
+
+  Func ***table;
 
   bool result = true;
   int i, j;
 
   fprintf(stderr, "Allocating the rows.\n");
-  table = (op_func **) malloc(nrows * sizeof(op_func *));
+  table = (Func ***) malloc(nrows * sizeof(Func **));
 
-  if(table == NULL){
-    fprintf(stderr, "Error in table of target functions allocation (rows).\n");
-    result= false;
-  }
-  else{
+  if (table != NULL) {
     fprintf(stderr, "Allocating the columns.\n");
-    for(i = 0; i < nrows; i++){
-      table[i] = (op_func *) malloc(ncolumns * sizeof(op_func));
-      if(table [i] == NULL){
-        fprintf(stderr, "Error in table of target functions allocation (columns).\n");
+
+    for (i = 0; i < nrows; i++) {
+      table[i] = (Func **) malloc(ncolumns * sizeof(Func *));
+      if (table[i] != NULL) {
+        for (j = 0; j < ncolumns; j++) {
+          table[i][j] = (Func *) malloc(sizeof(Func));
+        }
+      } else {
+        fprintf(stderr,
+            "Error in table of target functions allocation (columns).\n");
         result = false;
       }
     }
+  } else {
+    fprintf(stderr,
+        "Error in table of target functions allocation (rows).\n");
+    result = false;
   }
   fprintf(stderr, "Allocating the columns is OK.\n");
 
-  fprintf(stderr, "Initializing.\n");
-  for(i = 0; i < nrows; i++) {
-    for(j = 0; j < ncolumns; j++){
-      table[i][j] = 0;
+  /*fprintf(stderr, "Printing.\n");
+  for (i = 0; i < nrows; i++) {
+    for (j = 0; j < ncolumns; j++) {
+      fprintf(stderr, "table[%d][%d]= %p\n", i, j, (table[i][j])->f);
     }
   }
-  fprintf(stderr, "Initializing OK.\n");
-  /*fprintf(stderr, "Allocating the rows.\n");
-  table = new op_func*[nrows];
-  for(int i = 0; i < nrows; i++){
-    fprintf(stderr, "Allocating the columns.\n");
-    table[i] = new op_func[ncolumns];
-  }*/
+  fprintf(stderr, "Printing OK.\n");*/
 
   *table_ = table;
 
   return result;
 }
 
-/* ------------------------------------------------------------------------- */
-int main() {
-  int i;
+/* ------------------------------------------------------------- */
+/* Call the target function. */
+void call_function_ffi_call(Func* ff) {
+  fprintf(stderr," In call_function_ffi_call.\n");
+  ffi_cif cif;
+
+  if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, ff->nargs, ff->ret_type,
+      ff->arg_types) != FFI_OK) {
+    fprintf(stderr,"Error ffi_prep_cif.\n");
+    exit(1);
+  }
+
+  ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values);
+}
+
+/* ------------------------------------------------------------- */
+void prepare_alternatives_functions(){
+  fprintf(stdout, "In prepare_alternatives_functions.\n");  
+  // Number of parameters to function.
+  // void func_GPU(void). void parameters are considered.
+  int n_params = 1;
+
+  // void handler_function_init_array_GPU(void)
+  Func *ff_1 = (Func *) malloc(sizeof(Func));
+
+  // Número de parametros + 1, tem que ter um NULL finalizando as listas.
+  ff_1->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
+  ff_1->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
+
+  ff_1->f = &handler_function_init_array_GPU;
+  memset(&ff_1->ret_value, 0, sizeof(ff_1->ret_value));
+
+  // return type.
+  ff_1->ret_type = &ffi_type_void;
+
+  ff_1->nargs = n_params;
+
+  ff_1->arg_values[0] = &ffi_type_void;
+  ff_1->arg_values[1] = NULL;
+
+  ff_1->arg_types[0] = &ffi_type_void;
+  ff_1->arg_types[1] = NULL;
+
+  // void handler_function_main_GPU(void).
+  Func *ff_2 = (Func *) malloc(sizeof(Func));
+
+  // Número de parametros + 1, tem que ter um NULL finalizando as listas.
+  ff_2->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
+  ff_2->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
+
+  ff_2->f = &handler_function_main_GPU;
+  memset(&ff_2->ret_value, 0, sizeof(ff_2->ret_value));
+
+  // return type.
+  ff_2->ret_type = &ffi_type_void;
+
+  ff_2->nargs = n_params;
+
+  ff_2->arg_values[0] = &ffi_type_void;
+  ff_2->arg_values[1] = NULL;
+
+  ff_2->arg_types[0] = &ffi_type_void;
+  ff_2->arg_types[1] = NULL;
 
   /*          device 0
    * loop 1   init_array alternative
@@ -477,71 +551,42 @@ int main() {
   int nloops = 2;
   int ndevices = 1;
 
-  if(create_target_functions_table(&table, nloops, ndevices)){
-    /* Set up the library Functions table. */
+  if (create_target_functions_table(&table, nloops, ndevices)) {
+    // Set up the library Functions table.
     assert(table != NULL);
-    /*if(table == NULL){
-      fprintf(stderr, "Structure is NULL.\n");      
-    }*/
 
+    fprintf(stderr, "Declaring function in 0,0.\n");
+    table[0][0][0] = *ff_1;
 
-    fprintf(stderr, "declaring function in 0,0.\n");
-    table[0][0].f = &handler_function_init_array_GPU;
-    table[0][0].params = {p1, p2...}
-    fprintf(stderr, "declaring function in 1,0.\n");
-    table[1][0] = &handler_function_main_GPU;
+    fprintf(stderr, "Declaring function in 1,0.\n");
+    table[1][0][0] = *ff_2;
 
     TablePointerFunctions = table;
     assert(TablePointerFunctions != NULL);
-
-    /*if(table[0][0] != NULL){
-      fprintf(stderr, "[APP] table [0][0]: %p\n", table[0][0]);
-    }
-    else{
-      fprintf(stderr, "[APP] table [0][0] is NULL.\n");
-    }
-
-    if(table[1][0] != NULL){
-      fprintf(stderr, "[APP] table [1][0]: %p\n", table[1][0]);
-    }
-    else{
-      fprintf(stderr, "[APP] table [1][0] is NULL.\n");
-    }
-
-    if(TablePointerFunctions[0][0] != NULL){
-      fprintf(stderr, "[APP] TablePointerFunctions [0][0]: %p.\n", TablePointerFunctions[0][0]);
-    }
-    else{
-      fprintf(stderr, "[APP] TablePointerFunctions [0][0] is NULL.\n");
-    }
-
-    if(TablePointerFunctions[1][0] != NULL){
-      fprintf(stderr, "[APP] TablePointerFunctions [1][0]: %p.\n", TablePointerFunctions[1][0]);
-    }
-    else{
-      fprintf(stderr, "[APP] TablePointerFunctions [1][0] is NULL.\n");
-    }*/
-
   }
+}
+
+/* ------------------------------------------------------------------------- */
+int main() {
+  int i;
+
+  prepare_alternatives_functions();  
 
   init_array();
-  // fprintf(stderr, "Calling the init_array by pointer.\n");
-  // table[0][0]();
-  // fprintf(stderr, "Calling the vectoradd by pointer.\n");
-  // table[1][0]();
-
 
   int number_of_threads = NUMBER_OF_THREADS;
   // int chunk_size = N / number_of_threads;
-
-  // extern long int current_loop_index;
+  
   current_loop_index = 1;
   fprintf(stderr, "[APP] Current loop index: %d\n", current_loop_index);
-  #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
+  #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 1024)
   for (i = 0; i < N; i++) {
-    h_c[i] = h_a[i] + h_b[i];
+     h_c[i] = h_a[i] + h_b[i];
   }
-  fprintf(stderr, "Checking results.\n");
+
+  // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
+  // call_function_ffi_call(table[0][0]);
+
   // print_array();
   check_result();
 
