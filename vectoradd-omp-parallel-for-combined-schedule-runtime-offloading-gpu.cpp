@@ -34,6 +34,7 @@ float h_a[N];
 float h_b[N];
 float h_c[N];
 
+/* Support to table of functions. */
 typedef struct Func {
   void *f;
   int nargs;
@@ -51,6 +52,7 @@ extern Func ***TablePointerFunctions;
 /* current loop index. */
 extern long int current_loop_index;
 
+/* ------------------------------------------------------------- */
 bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
 
   Func ***table;
@@ -96,6 +98,7 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
   return result;
 }
 
+/* ------------------------------------------------------------- */
 /* Call the target function. */
 void call_function_ffi_call(Func* ff) {
   fprintf(stderr," In call_function_ffi_call.\n");
@@ -110,6 +113,7 @@ void call_function_ffi_call(Func* ff) {
   ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values);
 }
 
+/* ------------------------------------------------------------- */
 void init_array() {
   int i;
   // Initialize vectors on host.
@@ -119,6 +123,7 @@ void init_array() {
     }
 }
 
+/* ------------------------------------------------------------- */
 void print_array() {
   int i;
   fprintf(stdout, "Thread [%02d]: Imprimindo o array de resultados:\n", omp_get_thread_num());
@@ -127,6 +132,7 @@ void print_array() {
   }
 }
 
+/* ------------------------------------------------------------- */
 void check_result(){
   // Soma dos elementos do array C e divide por N, o valor deve ser igual a 1.
   int i;
@@ -139,10 +145,12 @@ void check_result(){
   fprintf(stdout, "Thread [%02d]: Resultado Final: (%f, %f)\n", omp_get_thread_num(), sum, (float)(sum / (float)N));
 }
 
+/* ------------------------------------------------------------- */
 void checkCudaErrors(CUresult err) {
   assert(err == CUDA_SUCCESS);
 }
 
+/* ------------------------------------------------------------- */
 void func_GPU(void){
   CUdevice    device;
   CUmodule    cudaModule;
@@ -225,6 +233,7 @@ void func_GPU(void){
   cudaDeviceReset();
 }
 
+/* ------------------------------------------------------------- */
 void prepare_alternatives_functions(){
   fprintf(stdout, "In prepare_alternatives_functions.\n");  
   // Number of parameters to function.
@@ -266,6 +275,7 @@ void prepare_alternatives_functions(){
   }
 }
 
+/* ------------------------------------------------------------- */
 int main() {
   int i;
 
