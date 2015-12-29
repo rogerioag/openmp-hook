@@ -2,7 +2,7 @@ CC=gcc-4.8
 CXX=g++-4.8
 LIB_HOOKOMP_PATH=$(PWD)
 
-all: clean info libroofline libhookomp deploy-lib
+all: clean info libroofline libhookomp deploy-lib main
 
 # Step 1: Compiling with Position Independent Code
 roofline.o: roofline.c
