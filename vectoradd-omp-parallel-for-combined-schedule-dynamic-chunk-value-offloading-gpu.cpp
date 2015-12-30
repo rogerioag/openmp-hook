@@ -300,7 +300,6 @@ void handler_function_init_array_GPU(void){
   checkCudaErrors(cuLaunchKernel(function, gbd->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ, 0, NULL, KernelParams, NULL));
 
   // No copy back. Data resident in GPU.
-
 }
 
 /*------------------------------------------------------------------------------*/
