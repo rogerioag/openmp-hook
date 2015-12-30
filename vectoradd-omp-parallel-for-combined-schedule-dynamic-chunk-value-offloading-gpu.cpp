@@ -116,6 +116,7 @@ bool checkCudaErrors(CUresult err) {
 
 /*------------------------------------------------------------------------------*/
 bool init_runtime_gpu(CUdevice *device){
+  fprintf(stdout, "init_runtime_gpu.\n");
 
   bool result = true;
   int  devCount;
@@ -193,6 +194,7 @@ bool init_runtime_gpu(CUdevice *device){
 
 /*------------------------------------------------------------------------------*/
 bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
+  fprintf(stdout, "calculate_kernel_dimensions.\n");
   bool result = true;
 
   gbd->blockSizeX = 32;
@@ -244,6 +246,7 @@ bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
 
 /*------------------------------------------------------------------------------*/
 void handler_function_init_array_GPU(void){
+  fprintf(stdout, "handler_function_init_array_GPU.\n");
   CUdevice    device;
   CUmodule    cudaModule;
   CUcontext   context;
@@ -358,6 +361,7 @@ void handler_function_init_array_GPU(void){
   }
 }*/
 void handler_function_main_GPU(void){
+  fprintf(stdout, "handler_function_main_GPU.\n");
   CUdevice    device;
   CUmodule    cudaModule;
   CUcontext   context;
@@ -575,7 +579,7 @@ int main() {
   // init_array();
   handler_function_init_array_GPU();
 
-  int number_of_threads = NUMBER_OF_THREADS;
+  /*int number_of_threads = NUMBER_OF_THREADS;
   // int chunk_size = N / number_of_threads;
   
   current_loop_index = 1;
@@ -583,10 +587,11 @@ int main() {
   #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 1024)
   for (i = 0; i < N; i++) {
      h_c[i] = h_a[i] + h_b[i];
-  }
+  }*/
 
   // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
   // call_function_ffi_call(table[0][0]);
+  handler_function_main_GPU();
 
   // print_array();
   check_result();
