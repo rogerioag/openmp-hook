@@ -269,14 +269,17 @@ void handler_function_init_array_GPU(void){
   checkCudaErrors(cuCtxCreate(&context, 0, device));
 
   if(devBufferA == NULL){
+    std::cout << "Allocating devBufferA." << "\n";
     checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
   }
 
   if(devBufferB == NULL){
+    std::cout << "Allocating devBufferB." << "\n";
     checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
   }
   
   if(devBufferC == NULL){
+    std::cout << "Allocating devBufferC." << "\n";
     checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
   }
 
@@ -384,16 +387,19 @@ void handler_function_main_GPU(void){
   checkCudaErrors(cuCtxCreate(&context, 0, device));
 
   if(devBufferA == NULL){
+    std::cout << "Allocating devBufferA." << "\n";
     checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
     checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
   }
 
   if(devBufferB == NULL){
+    std::cout << "Allocating devBufferB." << "\n";
     checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
     checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
   }
   
   if(devBufferC == NULL){
+    std::cout << "Allocating devBufferC." << "\n";
     checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
   }
 
