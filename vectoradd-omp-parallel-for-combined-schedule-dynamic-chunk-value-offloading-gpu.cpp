@@ -571,7 +571,8 @@ int main() {
 
   prepare_alternatives_functions();  
 
-  init_array();
+  // init_array();
+  handler_function_init_array_GPU();
 
   int number_of_threads = NUMBER_OF_THREADS;
   // int chunk_size = N / number_of_threads;
