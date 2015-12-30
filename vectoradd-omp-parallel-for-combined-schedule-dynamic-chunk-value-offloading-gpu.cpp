@@ -118,7 +118,7 @@ bool checkCudaErrors(CUresult err) {
 
 /*------------------------------------------------------------------------------*/
 bool init_runtime_gpu(CUdevice *device){
-  fprintf(stdout, "init_runtime_gpu.\n");
+  fprintf(stdout, "init_runtime_gpu: %d.\n", gpu_was_initilized);
 
   bool result = true;
   int  devCount;
