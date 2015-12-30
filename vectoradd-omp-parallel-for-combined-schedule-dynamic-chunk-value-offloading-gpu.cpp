@@ -542,8 +542,8 @@ void prepare_alternatives_functions(){
   ff_2->arg_types[1] = NULL;
 
   /*          device 0
-   * loop 1   init_array alternative
-   * loop 2   main alternative.
+   * loop 0   init_array alternative
+   * loop 1   main alternative.
    * matrix 2 x 1.
   */
   fprintf(stderr, "Creating table of target functions.\n");
