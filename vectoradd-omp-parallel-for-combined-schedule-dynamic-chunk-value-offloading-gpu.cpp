@@ -67,6 +67,8 @@ float h_a[N];
 float h_b[N];
 float h_c[N];
 
+bool gpu_was_initilized = false;
+
 // Alocação de Memória no disposito.
 CUdeviceptr devBufferA;
 CUdeviceptr devBufferB;
@@ -121,21 +123,24 @@ bool init_runtime_gpu(CUdevice *device){
   bool result = true;
   int  devCount;
 
-  // Inicialização CUDA.
-  result = checkCudaErrors(cuInit(0));
-  result = checkCudaErrors(cuDeviceGetCount(&devCount));
-  result = checkCudaErrors(cuDeviceGet(device, 0));
+  if(!gpu_was_initilized){
+    // Inicialização CUDA.
+    result = checkCudaErrors(cuInit(0));
+    result = checkCudaErrors(cuDeviceGetCount(&devCount));
+    result = checkCudaErrors(cuDeviceGet(device, 0));
 
-  char name[128];
-  result = checkCudaErrors(cuDeviceGetName(name, 128, (int) *device));
-  std::cout << "Using CUDA Device [0]: " << name << "\n";
+    char name[128];
+    result = checkCudaErrors(cuDeviceGetName(name, 128, (int) *device));
+    std::cout << "Using CUDA Device [0]: " << name << "\n";
 
-  int devMajor, devMinor;
-  result = checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, (int) *device));
-  std::cout << "Device Compute Capability: " << devMajor << "." << devMinor << "\n";
-  if (devMajor < 2) {
-    std::cerr << "ERROR: Device 0 is not SM 2.0 or greater\n";
-    result = false;
+    int devMajor, devMinor;
+    result = checkCudaErrors(cuDeviceComputeCapability(&devMajor, &devMinor, (int) *device));
+    std::cout << "Device Compute Capability: " << devMajor << "." << devMinor << "\n";
+    if (devMajor < 2) {
+      std::cerr << "ERROR: Device 0 is not SM 2.0 or greater\n";
+      result = false;
+    }
+    gpu_was_initilized = true;  
   }
 
   return result;
@@ -573,6 +578,8 @@ void prepare_alternatives_functions(){
 /* ------------------------------------------------------------------------- */
 int main() {
   int i;
+
+  gpu_was_initilized = false;
 
   prepare_alternatives_functions();  
 
