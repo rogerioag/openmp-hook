@@ -150,7 +150,7 @@ bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index
 
 	TRACE("Verifying if function for loop index: %d, device index: %d is defined. \n", loop_index, device_index);
 	if(TablePointerFunctions == NULL){
-      TRACE("TablePointerFunctions is NULL.\n");
+      TRACE("TablePointerFunctions is not defined. (TablePointerFunctions is NULL).\n");
       return retval;
     }
 
