@@ -1,0 +1,4 @@
+nvcc gemm.cu -o gemm-offloading-gpu.exe -O2 -I../../../utilities -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc -L/home/goncalv/cuda/samples/common/lib -L . -DPOLYBENCH_TIME -ccbin=g++-4.8 -Xcompiler -fopenmp -lgomp -lhookomp -lroofline
+
+# standalone
+nvcc gemm.cu -o gemm-offloading-gpu.exe -O2 -I../../../utilities -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc -L/home/goncalv/cuda/samples/common/lib -L . -DPOLYBENCH_TIME -ccbin=g++-4.8 -Xcompiler -fopenmp -Xcompiler -lgomp -Xcompiler -fpermissive -Xcompiler -lffi -Xcompiler -ldl

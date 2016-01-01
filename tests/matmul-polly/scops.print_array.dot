@@ -1,0 +1,51 @@
+digraph "Scop Graph for 'print_array' function" {
+	label="Scop Graph for 'print_array' function";
+
+	Node0x269d4c0 [shape=record,label="{%0:\l  br label %.split\l}"];
+	Node0x269d4c0 -> Node0x269d440;
+	Node0x269d440 [shape=record,label="{.split:                                           \l  br label %.preheader\l}"];
+	Node0x269d440 -> Node0x269d2a0;
+	Node0x269d2a0 [shape=record,label="{.preheader:                                       \l  %indvars.iv6 = phi i64 [ 0, %.split ], [ %indvars.iv.next7, %15 ]\l  %1 = load %struct._IO_FILE*, %struct._IO_FILE** @stdout, align 8\l  br label %2\l}"];
+	Node0x269d2a0 -> Node0x269d160;
+	Node0x269d160 [shape=record,label="{%2:\l\l  %indvars.iv = phi i64 [ 0, %.preheader ], [ %indvars.iv.next, %13 ]\l  %3 = phi %struct._IO_FILE* [ %1, %.preheader ], [ %14, %13 ]\l  %4 = getelementptr inbounds [1536 x [1536 x float]], [1536 x [1536 x\l... float]]* @C, i64 0, i64 %indvars.iv6, i64 %indvars.iv\l  %5 = load float, float* %4, align 4\l  %6 = fpext float %5 to double\l  %7 = tail call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE*\l... %3, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str, i64 0, i64 0),\l... double %6) #2\l  %8 = trunc i64 %indvars.iv to i32\l  %9 = srem i32 %8, 80\l  %10 = icmp eq i32 %9, 79\l  br i1 %10, label %11, label %13\l}"];
+	Node0x269d160 -> Node0x269d180;
+	Node0x269d160 -> Node0x269cfa0;
+	Node0x269d180 [shape=record,label="{%11:\l\l  %12 = load %struct._IO_FILE*, %struct._IO_FILE** @stdout, align 8\l  %fputc3 = tail call i32 @fputc(i32 10, %struct._IO_FILE* %12)\l  br label %13\l}"];
+	Node0x269d180 -> Node0x269cfa0;
+	Node0x269cfa0 [shape=record,label="{%13:\l\l  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1\l  %14 = load %struct._IO_FILE*, %struct._IO_FILE** @stdout, align 8\l  %exitcond = icmp ne i64 %indvars.iv.next, 1536\l  br i1 %exitcond, label %2, label %15\l}"];
+	Node0x269cfa0 -> Node0x269d160[constraint=false];
+	Node0x269cfa0 -> Node0x269cfc0;
+	Node0x269cfc0 [shape=record,label="{%15:\l\l  %.lcssa = phi %struct._IO_FILE* [ %14, %13 ]\l  %fputc = tail call i32 @fputc(i32 10, %struct._IO_FILE* %.lcssa)\l  %indvars.iv.next7 = add nuw nsw i64 %indvars.iv6, 1\l  %exitcond8 = icmp ne i64 %indvars.iv.next7, 1536\l  br i1 %exitcond8, label %.preheader, label %16\l}"];
+	Node0x269cfc0 -> Node0x269d2a0[constraint=false];
+	Node0x269cfc0 -> Node0x269d5a0;
+	Node0x269d5a0 [shape=record,label="{%16:\l\l  ret void\l}"];
+	colorscheme = "paired12"
+        subgraph cluster_0x2691e10 {
+          label = "";
+          style = solid;
+          color = 1
+          subgraph cluster_0x269d4e0 {
+            label = "Call instruction:   %7 = tail call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %3, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str, i64 0, i64 0), double %6) #2";
+            style = solid;
+            color = 6
+            subgraph cluster_0x268eb10 {
+              label = "PHI node in exit BB";
+              style = solid;
+              color = 5
+              subgraph cluster_0x2691e90 {
+                label = "Region can not profitably be optimized!";
+                style = solid;
+                color = 7
+                Node0x269d160;
+                Node0x269d180;
+              }
+              Node0x269cfa0;
+            }
+            Node0x269d2a0;
+            Node0x269cfc0;
+          }
+          Node0x269d4c0;
+          Node0x269d440;
+          Node0x269d5a0;
+        }
+}
