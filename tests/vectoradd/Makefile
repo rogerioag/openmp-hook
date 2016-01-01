@@ -16,7 +16,7 @@ basic-tests:
 	# ${CXX} -L${PWD} -Wall -o main-test main-test.c -ldl -lhookomp 
 	${CXX} vectoradd-omp.c -o vectoradd-omp -fopenmp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-single.c -o vectoradd-omp-parallel-for-single -lhookomp -fopenmp
-	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling-for-to-1-thread.c -o vectoradd-omp-parallel-for-peeling-for-to-1-thread -lhookomp -fopenmp
+	${CXX} -L ${LIB_HOOKOMP_PATH} -I ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-peeling-for-to-1-thread.c -o vectoradd-omp-parallel-for-peeling-for-to-1-thread -lhookomp -fopenmp
 
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-schedule-default-1-region.c -o vectoradd-omp-parallel-single-for-schedule-default-1-region -lhookomp -fopenmp -lgomp
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-single-for-schedule-default-2-regions.c -o vectoradd-omp-parallel-single-for-schedule-default-2-regions -lhookomp -fopenmp -lgomp
