@@ -1,36 +1,10 @@
 CC=gcc-4.8
 CXX=g++-4.8
-LIB_HOOKOMP_PATH=$(PWD)
+LIB_HOOKOMP_PATH=../../
 
-all: clean info libroofline libhookomp deploy-lib main
+all: clean info tests
 
-# Step 1: Compiling with Position Independent Code
-roofline.o: roofline.c
-	${CXX} $(OPTIONS) -c -Wno-write-strings -fpic roofline.c
-
-# Step 2: Creating a shared library from an object file
-libroofline: roofline.o
-	${CXX} -shared -o libroofline.so roofline.o -ldl -lpapi -pthread -fopenmp
-
-
-# Step 1: Compiling with Position Independent Code
-hookomp.o: hookomp.c
-	${CXX} $(OPTIONS) -c -Wno-write-strings -fpic hookomp.c
-
-# Step 2: Creating a shared library from an object file
-libhookomp: hookomp.o
-	LD_LIBRARY_PATH=$(PWD):$(LD_LIBRARY_PATH) export LD_LIBRARY_PATH
-	${CXX} -L ${LIB_HOOKOMP_PATH} -shared -o libhookomp.so hookomp.o -ldl -fpermissive -lffi -lroofline
-
-# Step 3: Linking with a shared library
-# As you can see, that was actually pretty easy. We have a shared library. 
-# Let’s compile our main.c and link it with libfoo. We’ll call our final program “test.” 
-# Note that the -lfoo option is not looking for foo.o, but libfoo.so. GCC assumes that all 
-# libraries start with ‘lib’ and end with .so or .a (.so is for shared object or shared 
-# libraries, and .a is for archive, or statically linked libraries).
-
-# main: main-test.c
-main: basic-tests offloading-tests-with-hook offloading-tests-without-hook
+tests: basic-tests offloading-tests-with-hook offloading-tests-without-hook
 
 basic-tests:
 	# ${CXX} -L${PWD} -Wall -o main-test main-test.c -ldl -lhookomp 
@@ -109,7 +83,6 @@ offloading-tests-with-hook:
 	# Test of offloading function schedule dynamic, chunk value.
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -lroofline -fopenmp -lgomp -lffi -fpermissive
 
-
 offloading-tests-without-hook:	
 	# Offloading test without hook. The program will be executed normaly.
 	# ${CXX} vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu-without-hook.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -fopenmp -lgomp -fpermissive -lffi
@@ -141,17 +114,10 @@ offloading-tests-without-hook:
 	${CXX} vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu.o -o vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu-without-hook.exe -lcuda -lcudart -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -L. -fopenmp -lgomp -lhookomp -lroofline -lffi -fpermissive
 	@echo "*****Use: LD_PRELOAD=./libhookomp.so ./vectoradd-omp-parallel-for-combined-schedule-dynamic-chunk-value-offloading-gpu-without-hook.exe"
 
-deploy-lib:
-	@echo "Deploying shared libraries..."
-	cp libhookomp.so ../function-pointers/
-	cp libroofline.so ../function-pointers/
-
-	cp libhookomp.so ../polly-openmp/vectoradd/
-	cp libroofline.so ../polly-openmp/vectoradd/
-	
 clean:
 	@echo "Cleaning..."
-	rm -rf *.o main-test *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-schedule-default-1-region vectoradd-omp-parallel-single-for-schedule-default-2-regions vectoradd-omp-parallel-single-for-schedule-runtime-1-region vectoradd-omp-parallel-single-for-schedule-runtime-2-regions vectoradd-omp-for-runtime vectoradd-omp-for-guided vectoradd-omp-for-static vectoradd-omp-for-dynamic vectoradd-omp*.exe
+	rm -rf *.o *.so vectoradd-omp-parallel-for-peeling vectoradd-omp-parallel-for-peeling-for-to-1-thread /
+	vectoradd-omp-parallel-for-single vectoradd-omp vectoradd-omp-loops vectoradd-omp-parallel-single-for-schedule-default-1-region vectoradd-omp-parallel-single-for-schedule-default-2-regions vectoradd-omp-parallel-single-for-schedule-runtime-1-region vectoradd-omp-parallel-single-for-schedule-runtime-2-regions vectoradd-omp-for-runtime vectoradd-omp-for-guided vectoradd-omp-for-static vectoradd-omp-for-dynamic vectoradd-omp*.exe
 
 info:
 	@echo "Use make OPTIONS=\"-DVERBOSE -DDEBUG\" to compile with messages."
