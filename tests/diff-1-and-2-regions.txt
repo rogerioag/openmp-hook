@@ -1,0 +1,113 @@
+2c2
+< vectoradd-omp-parallel-single-for-1-region:     file format elf64-x86-64
+---
+> vectoradd-omp-parallel-single-for-2-regions:     file format elf64-x86-64
+18,30c18,30
+< 0000000000400dc4 l    d  .fini	0000000000000000              .fini
+< 0000000000400dd0 l    d  .rodata	0000000000000000              .rodata
+< 0000000000400e8c l    d  .eh_frame_hdr	0000000000000000              .eh_frame_hdr
+< 0000000000400ee0 l    d  .eh_frame	0000000000000000              .eh_frame
+< 000000000040107c l    d  .gcc_except_table	0000000000000000              .gcc_except_table
+< 0000000000601080 l    d  .init_array	0000000000000000              .init_array
+< 0000000000601088 l    d  .fini_array	0000000000000000              .fini_array
+< 0000000000601090 l    d  .jcr	0000000000000000              .jcr
+< 0000000000601098 l    d  .dynamic	0000000000000000              .dynamic
+< 00000000006012c8 l    d  .got	0000000000000000              .got
+< 00000000006012d0 l    d  .got.plt	0000000000000000              .got.plt
+< 0000000000601340 l    d  .data	0000000000000000              .data
+< 0000000000601360 l    d  .bss	0000000000000000              .bss
+---
+> 0000000000400e04 l    d  .fini	0000000000000000              .fini
+> 0000000000400e10 l    d  .rodata	0000000000000000              .rodata
+> 0000000000400ee8 l    d  .eh_frame_hdr	0000000000000000              .eh_frame_hdr
+> 0000000000400f48 l    d  .eh_frame	0000000000000000              .eh_frame
+> 000000000040110c l    d  .gcc_except_table	0000000000000000              .gcc_except_table
+> 0000000000601118 l    d  .init_array	0000000000000000              .init_array
+> 0000000000601120 l    d  .fini_array	0000000000000000              .fini_array
+> 0000000000601128 l    d  .jcr	0000000000000000              .jcr
+> 0000000000601130 l    d  .dynamic	0000000000000000              .dynamic
+> 0000000000601360 l    d  .got	0000000000000000              .got
+> 0000000000601368 l    d  .got.plt	0000000000000000              .got.plt
+> 00000000006013d8 l    d  .data	0000000000000000              .data
+> 0000000000601400 l    d  .bss	0000000000000000              .bss
+33c33
+< 0000000000601090 l     O .jcr	0000000000000000              __JCR_LIST__
+---
+> 0000000000601128 l     O .jcr	0000000000000000              __JCR_LIST__
+37,38c37,38
+< 0000000000601368 l     O .bss	0000000000000001              completed.6373
+< 0000000000601088 l     O .fini_array	0000000000000000              __do_global_dtors_aux_fini_array_entry
+---
+> 0000000000601408 l     O .bss	0000000000000001              completed.6373
+> 0000000000601120 l     O .fini_array	0000000000000000              __do_global_dtors_aux_fini_array_entry
+40,42c40,43
+< 0000000000601080 l     O .init_array	0000000000000000              __frame_dummy_init_array_entry
+< 0000000000000000 l    df *ABS*	0000000000000000              vectoradd-omp-parallel-single-for-1-region.c
+< 0000000000400bd7 l     F .text	000000000000016d              main._omp_fn.0
+---
+> 0000000000601118 l     O .init_array	0000000000000000              __frame_dummy_init_array_entry
+> 0000000000000000 l    df *ABS*	0000000000000000              vectoradd-omp-parallel-single-for-2-regions.c
+> 0000000000400c18 l     F .text	00000000000000ad              main._omp_fn.0
+> 0000000000400cc5 l     F .text	00000000000000c6              main._omp_fn.1
+44,45c45,46
+< 0000000000401078 l     O .eh_frame	0000000000000000              __FRAME_END__
+< 0000000000601090 l     O .jcr	0000000000000000              __JCR_END__
+---
+> 0000000000401108 l     O .eh_frame	0000000000000000              __FRAME_END__
+> 0000000000601128 l     O .jcr	0000000000000000              __JCR_END__
+47,51c48,52
+< 00000000006012d0 l     O .got.plt	0000000000000000              _GLOBAL_OFFSET_TABLE_
+< 0000000000601088 l       .init_array	0000000000000000              __init_array_end
+< 0000000000601080 l       .init_array	0000000000000000              __init_array_start
+< 0000000000601098 l     O .dynamic	0000000000000000              _DYNAMIC
+< 0000000000601340  w      .data	0000000000000000              data_start
+---
+> 0000000000601368 l     O .got.plt	0000000000000000              _GLOBAL_OFFSET_TABLE_
+> 0000000000601120 l       .init_array	0000000000000000              __init_array_end
+> 0000000000601118 l       .init_array	0000000000000000              __init_array_start
+> 0000000000601130 l     O .dynamic	0000000000000000              _DYNAMIC
+> 00000000006013d8  w      .data	0000000000000000              data_start
+53c54
+< 0000000000400dc0 g     F .text	0000000000000002              __libc_csu_fini
+---
+> 0000000000400e00 g     F .text	0000000000000002              __libc_csu_fini
+59c60
+< 0000000000400dc4 g     F .fini	0000000000000000              _fini
+---
+> 0000000000400e04 g     F .fini	0000000000000000              _fini
+64c65
+< 0000000000400dd0 g     O .rodata	0000000000000004              _IO_stdin_used
+---
+> 0000000000400e10 g     O .rodata	0000000000000004              _IO_stdin_used
+68,75c69,76
+< 0000000000601340 g       .data	0000000000000000              __data_start
+< 0000000000601380 g     O .bss	0000000000000040              h_a
+< 0000000000601350 g     O .data	0000000000000000              .hidden __TMC_END__
+< 0000000000601348 g     O .data	0000000000000000              .hidden __dso_handle
+< 0000000000400d50 g     F .text	0000000000000065              __libc_csu_init
+< 00000000006013c0 g     O .bss	0000000000000040              h_b
+< 0000000000601350 g       .bss	0000000000000000              __bss_start
+< 0000000000601440 g       .bss	0000000000000000              _end
+---
+> 00000000006013d8 g       .data	0000000000000000              __data_start
+> 0000000000601420 g     O .bss	0000000000000040              h_a
+> 00000000006013e8 g     O .data	0000000000000000              .hidden __TMC_END__
+> 00000000006013e0 g     O .data	0000000000000000              .hidden __dso_handle
+> 0000000000400d90 g     F .text	0000000000000065              __libc_csu_init
+> 0000000000601460 g     O .bss	0000000000000040              h_b
+> 00000000006013e8 g       .bss	0000000000000000              __bss_start
+> 00000000006014e0 g       .bss	0000000000000000              _end
+78c79
+< 0000000000601400 g     O .bss	0000000000000040              h_c
+---
+> 00000000006014a0 g     O .bss	0000000000000040              h_c
+80c81
+< 0000000000601350 g       .data	0000000000000000              _edata
+---
+> 00000000006013e8 g       .data	0000000000000000              _edata
+83,84c84,85
+< 0000000000601360 g     O .bss	0000000000000008              stdout@@GLIBC_2.2.5
+< 0000000000400b4f g     F .text	0000000000000088              main
+---
+> 0000000000601400 g     O .bss	0000000000000008              stdout@@GLIBC_2.2.5
+> 0000000000400b4f g     F .text	00000000000000c9              main
