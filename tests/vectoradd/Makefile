@@ -2,7 +2,13 @@ CC=gcc-4.8
 CXX=g++-4.8
 LIB_HOOKOMP_PATH=../../
 
-all: clean info tests
+LD_LIBRARY_PATH="$LD_LIBRARY_PATH":${LIB_HOOKOMP_PATH}
+
+all: setenv clean info tests
+
+setenv:
+	@echo "Setting LD_LIBRARY_PATH..."
+	export LD_LIBRARY_PATH
 
 tests: basic-tests offloading-tests-with-hook offloading-tests-without-hook
 
