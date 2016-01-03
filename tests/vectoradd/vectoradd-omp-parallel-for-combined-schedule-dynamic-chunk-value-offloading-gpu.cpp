@@ -208,6 +208,8 @@ bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
   gbd->gridSizeY  = 32;
   gbd->gridSizeZ  = 1;
 
+  fprintf(stdout, "Dimensions for %d threads (elements).\n", (gbd->blockSizeX * gbd->blockSizeY * gbd->blockSizeZ * gbd->gridSizeX * gbd->gridSizeY * gbd->gridSizeZ));
+
   return result;
 }
 
