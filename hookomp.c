@@ -217,7 +217,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				TRACE("[HOOKOMP]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
 
 				if(!RM_stop_and_accumulate()){
-					TRACE("[HOOKOMP]: Error calling RM_stop_measures.\n");
+					TRACE("[HOOKOMP]: Error calling RM_stop_and_accumulate.\n");
 				}
 				else{
 					// N: total of iterations, Number of executed iterations (percentual), last chunk_size.
