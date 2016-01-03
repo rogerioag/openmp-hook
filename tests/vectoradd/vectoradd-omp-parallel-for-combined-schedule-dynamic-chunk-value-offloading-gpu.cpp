@@ -251,21 +251,11 @@ bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
 /*------------------------------------------------------------------------------*/
 void handler_function_init_array_GPU(void){
   fprintf(stdout, "handler_function_init_array_GPU.\n");
-  CUdevice    device;
   CUmodule    cudaModule;
-  CUcontext   context;
   CUfunction  function;
-  CUlinkState linker;
-
-  grid_block_dim_t *gbd;
-  gbd = (grid_block_dim_t*) malloc(sizeof(grid_block_dim_t));
   
-  if(!init_runtime_gpu(&device)){
-    fprintf(stderr, "Error initializing runtime GPU.\n");
-  }
-
-  // Criando o Driver Context.
-  checkCudaErrors(cuCtxCreate(&context, 0, device));
+  grid_block_dim_t *gbd;
+  gbd = (grid_block_dim_t*) malloc(sizeof(grid_block_dim_t));  
 
   if(devBufferA == NULL){
     std::cout << "Allocating devBufferA." << "\n";
@@ -314,59 +304,6 @@ void handler_function_init_array_GPU(void){
 }
 
 /*------------------------------------------------------------------------------*/
-/*void handler_function_main_GPU(void){
-
-  CUfunction func_kernel;
-
-  grid_block_dim_t *gbd;
-
-  gbd = (grid_block_dim_t*) malloc(sizeof(grid_block_dim_t));
-  
-  if(!init_runtime_gpu()){
-    fprintf(stderr, "Error initializing runtime GPU.\n");
-  }
-
-  /*if(!data_allocation()){
-    fprintf(stderr, "Error data allocation in GPU.\n");
-  }*/
-
-  /*bool result = true;
-
-  result = checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
-  result = checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
-  result = checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
-
-  if(!result){
-    fprintf(stderr, "Error data allocation in GPU.\n");
-  }
-
-  if(!data_transfer_and_sync()){
-    fprintf(stderr, "Error data transfer or synchronization with GPU.\n");
-  }
-
-  if(!kernel_loading("vectoradd-kernel", func_kernel)){
-    fprintf(stderr, "Error loading kernel from file.\n"); 
-  }
-
-  if(!calculate_kernel_dimensions(gbd)){
-    fprintf(stderr, "Error loading kernel from file.\n"); 
-  }
-
-  // Parâmetros do kernel.
-  void *KernelParams[] = { &devBufferA, &devBufferB, &devBufferC };
-
-  if(!kernel_launching(func_kernel, gbd, KernelParams)){
-    fprintf(stderr, "Error launching the kernel.\n");
-  }
-
-  if(!data_transfer_retrieve_results()){
-    fprintf(stderr, "Error retrieving the results form GPU.\n");
-  }
-
-  if(!release_data_device()){
-    fprintf(stderr, "Error retrieving the results form GPU.\n");
-  }
-}*/
 void handler_function_main_GPU(void){
   fprintf(stdout, "handler_function_main_GPU.\n");
   CUdevice    device;
@@ -584,9 +521,19 @@ void prepare_alternatives_functions(){
 int main() {
   int i;
 
+  CUdevice    device;
+  CUcontext   context;
+
   gpu_was_initilized = false;
 
   // prepare_alternatives_functions();  
+
+  if(!init_runtime_gpu(&device)){
+    fprintf(stderr, "Error initializing runtime GPU.\n");
+  }
+
+  // Criando o Driver Context.
+  checkCudaErrors(cuCtxCreate(&context, 0, device));
 
   // init_array();
   handler_function_init_array_GPU();
