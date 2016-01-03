@@ -309,21 +309,11 @@ void handler_function_init_array_GPU(void){
 /*------------------------------------------------------------------------------*/
 void handler_function_main_GPU(void){
   fprintf(stdout, "handler_function_main_GPU.\n");
-  CUdevice    device;
   CUmodule    cudaModule;
-  CUcontext   context;
   CUfunction  function;
-  CUlinkState linker;
 
   grid_block_dim_t *gbd;
   gbd = (grid_block_dim_t*) malloc(sizeof(grid_block_dim_t));
-  
-  if(!init_runtime_gpu(&device)){
-    fprintf(stderr, "Error initializing runtime GPU.\n");
-  }
-
-  // Criando o Driver Context.
-  checkCudaErrors(cuCtxCreate(&context, 0, device));
 
   if(devBufferA == NULL){
     std::cout << "Allocating devBufferA." << "\n";
@@ -376,14 +366,7 @@ void handler_function_main_GPU(void){
   // Recuperando os dados do resultado.
   checkCudaErrors(cuMemcpyDtoH(&h_c[0], devBufferC, sizeof(float)*N));
 
-  // Liberando Memória do dispositivo.
-  checkCudaErrors(cuMemFree(devBufferA));
-  checkCudaErrors(cuMemFree(devBufferB));
-  checkCudaErrors(cuMemFree(devBufferC));
-  checkCudaErrors(cuModuleUnload(cudaModule));
-  checkCudaErrors(cuCtxDestroy(context));
-
-  cudaDeviceReset();
+  
 }
 
 /* ------------------------------------------------------------- */
@@ -553,10 +536,19 @@ int main() {
 
   // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
   // call_function_ffi_call(table[0][0]);
-  // handler_function_main_GPU();
+  handler_function_main_GPU();
 
   // print_array();
   // check_result();
+
+  // Liberando Memória do dispositivo.
+  checkCudaErrors(cuMemFree(devBufferA));
+  checkCudaErrors(cuMemFree(devBufferB));
+  checkCudaErrors(cuMemFree(devBufferC));
+  checkCudaErrors(cuModuleUnload(cudaModule));
+  checkCudaErrors(cuCtxDestroy(context));
+
+  cudaDeviceReset();
 
   return 0;
 }
