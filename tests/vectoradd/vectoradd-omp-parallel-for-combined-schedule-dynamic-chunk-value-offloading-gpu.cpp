@@ -523,9 +523,11 @@ int main() {
   // Criando o Driver Context.
   checkCudaErrors(cuCtxCreate(&context, 0, device));
 
+  // OMP version.
   // init_array();
+
   // CUDA version directly.
-  handler_function_init_array_GPU();
+  // handler_function_init_array_GPU();
 
   // CUDA version by table.
   call_function_ffi_call(table[0][0]);
@@ -544,7 +546,7 @@ int main() {
   // call_function_ffi_call(table[0][0]);
   
   // CUDA version directly.
-  handler_function_main_GPU();
+  // handler_function_main_GPU();
 
   // CUDA version by table.
   call_function_ffi_call(table[1][0]);
