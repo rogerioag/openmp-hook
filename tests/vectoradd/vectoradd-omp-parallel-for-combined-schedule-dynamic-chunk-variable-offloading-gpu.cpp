@@ -27,7 +27,7 @@
 
 // Size of vectors.
 #ifndef N
-#define N 4096
+#define N 1048576
 #endif
 
 float h_a[N];
@@ -205,11 +205,11 @@ void func_GPU(void){
   checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
   checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
 
-  unsigned blockSizeX = 1024;
-  unsigned blockSizeY = 1;
+  unsigned blockSizeX = 32;
+  unsigned blockSizeY = 32;
   unsigned blockSizeZ = 1;
-  unsigned gridSizeX  = 4;
-  unsigned gridSizeY  = 1;
+  unsigned gridSizeX  = 32;
+  unsigned gridSizeY  = 32;
   unsigned gridSizeZ  = 1;
 
   // Parâmetros do kernel.
