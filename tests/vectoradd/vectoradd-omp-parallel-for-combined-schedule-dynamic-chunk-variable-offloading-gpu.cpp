@@ -205,8 +205,8 @@ void func_GPU(void){
   checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
   checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
 
-  unsigned blockSizeX = 32;
-  unsigned blockSizeY = 32;
+  unsigned blockSizeX = 1024;
+  unsigned blockSizeY = 1;
   unsigned blockSizeZ = 1;
   unsigned gridSizeX  = 4;
   unsigned gridSizeY  = 1;
