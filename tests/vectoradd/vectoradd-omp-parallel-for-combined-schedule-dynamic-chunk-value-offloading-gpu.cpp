@@ -524,15 +524,15 @@ int main() {
   checkCudaErrors(cuCtxCreate(&context, 0, device));
 
   // OMP version.
-  // init_array();
+  init_array();
 
   // CUDA version directly.
   // handler_function_init_array_GPU();
 
   // CUDA version by table.
-  call_function_ffi_call(table[0][0]);
+  // call_function_ffi_call(table[0][0]);
 
-  /*int number_of_threads = NUMBER_OF_THREADS;
+  int number_of_threads = NUMBER_OF_THREADS;
   // int chunk_size = N / number_of_threads;
   
   current_loop_index = 1;
@@ -540,7 +540,7 @@ int main() {
   #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 1024)
   for (i = 0; i < N; i++) {
      h_c[i] = h_a[i] + h_b[i];
-  }*/
+  }
 
   // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
   // call_function_ffi_call(table[0][0]);
@@ -549,7 +549,7 @@ int main() {
   // handler_function_main_GPU();
 
   // CUDA version by table.
-  call_function_ffi_call(table[1][0]);
+  // call_function_ffi_call(table[1][0]);
 
   // print_array();
   check_result();
