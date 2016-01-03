@@ -82,7 +82,7 @@ void init_array() {
   // extern long int current_loop_index;
   current_loop_index = 0;
   fprintf(stderr, "[APP] Current loop index: %d\n", current_loop_index);
-  #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 32)
+  #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 1024)
   for (i = 0; i < N; i++) {
     h_a[i] = 0.5;
     h_b[i] = 0.5;
@@ -541,12 +541,12 @@ int main() {
   int number_of_threads = NUMBER_OF_THREADS;
   // int chunk_size = N / number_of_threads;
   
-  /*current_loop_index = 1;
+  current_loop_index = 1;
   fprintf(stderr, "[APP] Current loop index: %d\n", current_loop_index);
   #pragma omp parallel for num_threads (number_of_threads) schedule (dynamic, 1024)
   for (i = 0; i < N; i++) {
      h_c[i] = h_a[i] + h_b[i];
-  }*/
+  }
 
   // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
     
@@ -554,7 +554,7 @@ int main() {
   // handler_function_main_GPU();
 
   // CUDA version by table.
-  call_function_ffi_call(table[1][0]);
+  // call_function_ffi_call(table[1][0]);
 
   // print_array();
   check_result();
