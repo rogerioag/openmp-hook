@@ -208,7 +208,8 @@ bool calculate_kernel_dimensions(grid_block_dim_t *gbd){
   gbd->gridSizeY  = 32;
   gbd->gridSizeZ  = 1;
 
-  fprintf(stdout, "Dimensions for %d threads (elements).\n", (gbd->blockSizeX * gbd->blockSizeY * gbd->blockSizeZ * gbd->gridSizeX * gbd->gridSizeY * gbd->gridSizeZ));
+  fprintf(stderr, "Dimensions: %d, %d, %d, %d, %d, %d.\n", gbd->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ); 
+  fprintf(stdout, "For %d threads (elements).\n", (gbd->blockSizeX * gbd->blockSizeY * gbd->blockSizeZ * gbd->gridSizeX * gbd->gridSizeY * gbd->gridSizeZ));
 
   return result;
 }
@@ -292,7 +293,7 @@ void handler_function_init_array_GPU(void){
     fprintf(stderr, "Error calculating the kernel dimensions.\n"); 
   }
 
-  fprintf(stderr, "Dimensions: %d, %d, %d, %d, %d, %d.\n", gbd->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ); 
+  fprintf(stderr, "Dimensions: %d, %d, %d, %d, %d, %d.\n", gbd->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ);
 
   // Parâmetros do kernel.
   void *KernelParams[] = { &devBufferA, &devBufferB };
