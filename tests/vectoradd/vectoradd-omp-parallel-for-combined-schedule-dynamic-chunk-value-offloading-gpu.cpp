@@ -514,7 +514,7 @@ int main() {
 
   gpu_was_initilized = false;
 
-  // prepare_alternatives_functions();  
+  prepare_alternatives_functions();  
 
   if(!init_runtime_gpu(&device)){
     fprintf(stderr, "Error initializing runtime GPU.\n");
@@ -524,7 +524,11 @@ int main() {
   checkCudaErrors(cuCtxCreate(&context, 0, device));
 
   // init_array();
+  // CUDA version directly.
   handler_function_init_array_GPU();
+
+  // CUDA version by table.
+  call_function_ffi_call(table[0][0]);
 
   /*int number_of_threads = NUMBER_OF_THREADS;
   // int chunk_size = N / number_of_threads;
@@ -538,7 +542,12 @@ int main() {
 
   // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
   // call_function_ffi_call(table[0][0]);
+  
+  // CUDA version directly.
   handler_function_main_GPU();
+
+  // CUDA version by table.
+  call_function_ffi_call(table[1][0]);
 
   // print_array();
   check_result();
