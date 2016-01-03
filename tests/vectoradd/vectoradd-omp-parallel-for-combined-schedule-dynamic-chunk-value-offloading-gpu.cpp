@@ -530,13 +530,13 @@ int main() {
   checkCudaErrors(cuCtxCreate(&context, 0, device));
 
   // OMP version.
-  init_array();
+  // init_array();
 
   // CUDA version directly.
   // handler_function_init_array_GPU();
 
   // CUDA version by table.
-  // call_function_ffi_call(table[0][0]);
+  call_function_ffi_call(table[0][0]);
 
   int number_of_threads = NUMBER_OF_THREADS;
   // int chunk_size = N / number_of_threads;
