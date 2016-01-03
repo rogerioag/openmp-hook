@@ -75,6 +75,7 @@ CUdeviceptr devBufferC;
 
 /*------------------------------------------------------------------------------*/
 void init_array() {
+  fprintf(stdout, "init_array.\n");
   int i;
   int number_of_threads = NUMBER_OF_THREADS;
  
@@ -99,6 +100,7 @@ void print_array() {
 
 /*------------------------------------------------------------------------------*/
 void check_result(){
+  fprintf(stdout, "check_result.\n");
   // Soma dos elementos do array C e divide por N, o valor deve ser igual a 1.
   int i;
   float sum = 0;
@@ -283,9 +285,12 @@ void handler_function_init_array_GPU(void){
   }
   std::string str((std::istreambuf_iterator<char>(t)),std::istreambuf_iterator<char>());
 
+
+  fprintf(stdout, "Creating and loading the module.\n");
   // Criando um módulo.
   checkCudaErrors(cuModuleLoadDataEx(&cudaModule, str.c_str(), 0, 0, 0));
 
+  fprintf(stdout, "Getting the kernel function: init_array_kernel.\n");
   // Get kernel function.
   checkCudaErrors(cuModuleGetFunction(&function, cudaModule, "init_array_kernel"));
 
