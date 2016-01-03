@@ -294,6 +294,7 @@ void handler_function_init_array_GPU(void){
   // Get kernel function.
   checkCudaErrors(cuModuleGetFunction(&function, cudaModule, "init_array_kernel"));
 
+  fprintf(stdout, "Calling calculate_kernel_dimensions.\n");
   if(!calculate_kernel_dimensions(gbd)){
     fprintf(stderr, "Error calculating the kernel dimensions.\n"); 
   }
