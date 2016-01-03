@@ -541,7 +541,7 @@ int main() {
   handler_function_main_GPU();
 
   // print_array();
-  // check_result();
+  check_result();
 
   // Liberando Memória do dispositivo.
   checkCudaErrors(cuMemFree(devBufferA));
