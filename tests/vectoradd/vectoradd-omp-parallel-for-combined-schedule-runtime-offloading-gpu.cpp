@@ -30,9 +30,7 @@
 #define N 4096
 #endif
 
-float h_a[N];
-float h_b[N];
-float h_c[N];
+#define NUMBER_OF_THREADS 4;
 
 /* Support to table of functions. */
 typedef struct Func {
@@ -43,6 +41,10 @@ typedef struct Func {
   ffi_type* ret_type;
   void* ret_value;
 } Func;
+
+float h_a[N];
+float h_b[N];
+float h_c[N];
 
 /* Alternative Functions table pointer. */
 Func ***table;
