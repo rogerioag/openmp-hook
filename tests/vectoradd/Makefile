@@ -10,6 +10,10 @@ setenv:
 	@echo "Setting LD_LIBRARY_PATH..."
 	export LD_LIBRARY_PATH
 
+mk-libs:
+	${MAKE} -C ../.. PWD=.
+	@cp ../../*.so .
+
 tests: basic-tests offloading-tests-with-hook offloading-tests-without-hook
 
 basic-tests:
