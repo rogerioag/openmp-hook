@@ -304,6 +304,8 @@ void handler_function_init_array_GPU(void){
   checkCudaErrors(cuLaunchKernel(function, gbd->gridSizeX, gbd->gridSizeY, gbd->gridSizeZ, gbd->blockSizeX, gbd->blockSizeY, gbd->blockSizeZ, 0, NULL, KernelParams, NULL));
 
   // No copy back. Data resident in GPU.
+
+  checkCudaErrors(cuModuleUnload(cudaModule));
 }
 
 /*------------------------------------------------------------------------------*/
@@ -366,7 +368,7 @@ void handler_function_main_GPU(void){
   // Recuperando os dados do resultado.
   checkCudaErrors(cuMemcpyDtoH(&h_c[0], devBufferC, sizeof(float)*N));
 
-  
+  checkCudaErrors(cuModuleUnload(cudaModule));  
 }
 
 /* ------------------------------------------------------------- */
@@ -545,7 +547,6 @@ int main() {
   checkCudaErrors(cuMemFree(devBufferA));
   checkCudaErrors(cuMemFree(devBufferB));
   checkCudaErrors(cuMemFree(devBufferC));
-  checkCudaErrors(cuModuleUnload(cudaModule));
   checkCudaErrors(cuCtxDestroy(context));
 
   cudaDeviceReset();
