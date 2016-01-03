@@ -27,7 +27,7 @@
 
 // Size of vectors.
 #ifndef N
-#define N 1048576
+#define N 4096
 #endif
 
 float h_a[N];
@@ -208,8 +208,8 @@ void func_GPU(void){
   unsigned blockSizeX = 32;
   unsigned blockSizeY = 32;
   unsigned blockSizeZ = 1;
-  unsigned gridSizeX  = 32;
-  unsigned gridSizeY  = 32;
+  unsigned gridSizeX  = 4;
+  unsigned gridSizeY  = 1;
   unsigned gridSizeZ  = 1;
 
   // Parâmetros do kernel.
