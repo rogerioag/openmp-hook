@@ -553,7 +553,7 @@ int main() {
   // handler_function_main_GPU();
 
   // print_array();
-  check_result();
+  // check_result();
 
   return 0;
 }
