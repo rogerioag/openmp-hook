@@ -554,7 +554,7 @@ int main() {
   // handler_function_main_GPU();
 
   // CUDA version by table.
-  // call_function_ffi_call(table[1][0]);
+  call_function_ffi_call(table[1][0]);
 
   // print_array();
   check_result();
