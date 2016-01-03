@@ -2,7 +2,11 @@ CC=gcc-4.8
 CXX=g++-4.8
 LIB_HOOKOMP_PATH=$(PWD)
 
-all: clean info libroofline libhookomp deploy-lib
+all: clean info setenv libroofline libhookomp deploy-lib
+
+setenv:
+	LD_LIBRARY_PATH="$(LIB_HOOKOMP_PATH):$(LD_LIBRARY_PATH)"
+        export LD_LIBRARY_PATH
 
 # Step 1: Compiling with Position Independent Code
 roofline.o: roofline.c
@@ -10,7 +14,7 @@ roofline.o: roofline.c
 
 # Step 2: Creating a shared library from an object file
 libroofline: roofline.o
-	${CXX} -shared -o libroofline.so roofline.o -ldl -lpapi -pthread -fopenmp
+	${CXX} -L ${LIB_HOOKOMP_PATH} -shared -o libroofline.so roofline.o -ldl -lpapi -pthread -fopenmp
 
 
 # Step 1: Compiling with Position Independent Code
@@ -19,7 +23,6 @@ hookomp.o: hookomp.c
 
 # Step 2: Creating a shared library from an object file
 libhookomp: hookomp.o
-	LD_LIBRARY_PATH=$(PWD):$(LD_LIBRARY_PATH) export LD_LIBRARY_PATH
 	${CXX} -L ${LIB_HOOKOMP_PATH} -shared -o libhookomp.so hookomp.o -ldl -fpermissive -lffi -lroofline
 
 # Step 3: Linking with a shared library
