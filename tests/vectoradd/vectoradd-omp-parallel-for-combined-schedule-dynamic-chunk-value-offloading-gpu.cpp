@@ -4,7 +4,6 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
-#include <string.h>
 #include <sstream>
 
 #include <dlfcn.h>
@@ -46,14 +45,6 @@ typedef struct Func {
   void* ret_value;
 } Func;
 
-/* Alternative Functions table pointer. */
-Func ***table;
-
-extern Func ***TablePointerFunctions;
-
-/* current loop index. */
-extern long int current_loop_index;
-
 typedef struct grid_block_dim{
   unsigned blockSizeX;
   unsigned blockSizeY;
@@ -62,6 +53,14 @@ typedef struct grid_block_dim{
   unsigned gridSizeY;
   unsigned gridSizeZ;
 } grid_block_dim_t;
+
+/* Alternative Functions table pointer. */
+Func ***table;
+
+extern Func ***TablePointerFunctions;
+
+/* current loop index. */
+extern long int current_loop_index;
 
 float h_a[N];
 float h_b[N];
@@ -587,7 +586,7 @@ int main() {
 
   gpu_was_initilized = false;
 
-  prepare_alternatives_functions();  
+  // prepare_alternatives_functions();  
 
   // init_array();
   handler_function_init_array_GPU();
@@ -604,7 +603,7 @@ int main() {
 
   // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
   // call_function_ffi_call(table[0][0]);
-  handler_function_main_GPU();
+  // handler_function_main_GPU();
 
   // print_array();
   check_result();
