@@ -99,7 +99,7 @@ bool (*func_start_next_runtime) (long start, long end, long incr, long *istart, 
 bool HOOKOMP_proxy_function_start_next_runtime (long* istart, long* iend, void* extra) {
 	PRINT_FUNC_NAME;
 	Params *params = (Params*) extra;
-	
+
 	TRACE("[HOOKOMP]: function type -> %d.\n", params->func_type);
 
 	TRACE("[HOOKOMP]: calling the lib_GOMP_loop_runtime_start in %s.\n", __FUNCTION__);
@@ -132,10 +132,12 @@ bool HOOKOMP_call_function_ffi(Func* ff) {
   ffi_cif cif;
   int retval = 0;
 
+  TRACE("Preparing calling.\n");
   if ((retval = ffi_prep_cif(&cif, FFI_DEFAULT_ABI, ff->nargs, ff->ret_type, ff->arg_types)) != FFI_OK){
 	TRACE("Error ffi_prep_cif.\n");
   }
   else{
+  	TRACE("Calling the target function.\n");
   	ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values);	
   }  
 
@@ -216,13 +218,16 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				// Get counters and decide about the migration.
 				TRACE("[HOOKOMP]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
 
+				TRACE("Calling RM_stop_and_accumulate.\n");
 				if(!RM_stop_and_accumulate()){
 					TRACE("[HOOKOMP]: Error calling RM_stop_and_accumulate.\n");
 				}
 				else{
+					TRACE("Defining aditional parameters.\n");
 					// N: total of iterations, Number of executed iterations (percentual), last chunk_size.
 					RM_set_aditional_parameters(total_of_iterations, executed_loop_iterations, (*iend - *istart));
 					// A decisão de migrar é aqui.
+					TRACE("Getting decision about offloading.\n");
 					if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
 						/* Launch apropriated function. */
 						TRACE("RM decided by device [%d].\n", better_device);
@@ -231,10 +236,16 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 						made_the_offloading = HOOKOMP_call_offloading_function(current_loop_index, better_device);
 
+						TRACE("After to try launching of apropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
+
 						if (!made_the_offloading){
 							TRACE("The function offloading was not done.\n");
 						}
+						else{
+							TRACE("The offloading was done.\n");
+						}
 					}
+					TRACE("After decision about offloading.\n");
 				}
 
 				/* Continue execution. */
