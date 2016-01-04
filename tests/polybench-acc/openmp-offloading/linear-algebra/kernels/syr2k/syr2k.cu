@@ -125,15 +125,14 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 
 /* ------------------------------------------------------------- */
 void syr2k_omp(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
-                         DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni),
+                         DATA_TYPE POLYBENCH_2D(C_outputFromOMP, NI, NI, ni, ni),
                          DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
                          DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj)) {
 
   /* Start timer. */
   polybench_start_instruments;
 
-  syr2k_omp_kernel(ni, nj, alpha, beta, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(A),
-               POLYBENCH_ARRAY(B));
+  syr2k_omp_kernel(ni, nj, alpha, beta, C_outputFromOMP, A, B);
 
   /* Stop and print timer. */
   printf("OpenMP Time in seconds:\n");
@@ -192,7 +191,7 @@ __global__ void syr2k_cuda_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE bet
 void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
                DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
-               DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni),
+               DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NI, ni, ni),
                DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NI, ni, ni)) {
 
   GPU_argv_init();
@@ -206,7 +205,7 @@ void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   cudaMalloc((void **)&C_gpu, sizeof(DATA_TYPE) * NI * NI);
   cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
   cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
-  cudaMemcpy(C_gpu, C, sizeof(DATA_TYPE) * NI * NI, cudaMemcpyHostToDevice);
+  cudaMemcpy(C_gpu, C_inputToGpu, sizeof(DATA_TYPE) * NI * NI, cudaMemcpyHostToDevice);
 
   dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
   dim3 grid((size_t)ceil(((float)NI) / ((float)DIM_THREAD_BLOCK_X)),
