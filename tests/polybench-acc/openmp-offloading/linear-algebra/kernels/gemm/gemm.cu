@@ -464,8 +464,8 @@ int main(int argc, char *argv[]) {
   // fprintf(stderr, "Calling gemm_cuda.\n");
   // gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
-  call_function_ffi_call(table[0][0]);
+  // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
+  // call_function_ffi_call(table[0][0]);
 
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
