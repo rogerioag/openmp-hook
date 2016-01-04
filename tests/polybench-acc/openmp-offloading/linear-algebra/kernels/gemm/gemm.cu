@@ -57,6 +57,7 @@ extern Func ***TablePointerFunctions;
 /* current loop index. */
 extern long int current_loop_index;
 
+/* ------------------------------------------------------------- */
 bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
 
   Func ***table;
@@ -117,6 +118,7 @@ void call_function_ffi_call(Func* ff) {
   ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values);
 }
 
+/* ------------------------------------------------------------- */
 /* Arrays initialization. */
 void init_array(int ni, int nj, int nk, DATA_TYPE *alpha, DATA_TYPE *beta,
                 DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
@@ -146,6 +148,7 @@ void init_array(int ni, int nj, int nk, DATA_TYPE *alpha, DATA_TYPE *beta,
   }
 }
 
+/* ------------------------------------------------------------- */
 /* Original Version. */
 void gemm(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
           DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
@@ -164,6 +167,7 @@ void gemm(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   }
 }
 
+/* ------------------------------------------------------------- */
 void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
           DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
           DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
@@ -183,6 +187,7 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   polybench_print_instruments;
 }
 
+/* ------------------------------------------------------------- */
 /* Main computational kernel. The whole function will be timed,
    including the call and return. */
 void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
@@ -206,7 +211,7 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   }
   #pragma endscop
 }
-
+/* ------------------------------------------------------------- */
 void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
               DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
@@ -237,6 +242,7 @@ void GPU_argv_init() {
   cudaSetDevice(GPU_DEVICE);
 }
 
+/* ------------------------------------------------------------- */
 __global__ void gemm_cuda_kernel(int ni, int nj, int nk, DATA_TYPE alpha,
                             DATA_TYPE beta, DATA_TYPE *a, DATA_TYPE *b,
                             DATA_TYPE *c) {
@@ -252,6 +258,7 @@ __global__ void gemm_cuda_kernel(int ni, int nj, int nk, DATA_TYPE alpha,
   }
 }
 
+/* ------------------------------------------------------------- */
 void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
               DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
@@ -299,6 +306,7 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   cudaFree(C_gpu);
 }
 
+/* ------------------------------------------------------------- */
 void compareResults(int ni, int nj, DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
                     DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NJ, ni, nj)) {
   int i, j, fail;
@@ -320,6 +328,7 @@ void compareResults(int ni, int nj, DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
          PERCENT_DIFF_ERROR_THRESHOLD, fail);
 }
 
+/* ------------------------------------------------------------- */
 /* DCE code. Must scan the entire live-out data.
    Can be used also to check the correctness of the output. */
 static void print_array(int ni, int nj,
@@ -336,9 +345,23 @@ static void print_array(int ni, int nj,
 }
 
 /* ------------------------------------------------------------- */
-void prepare_alternatives_functions(){
-  fprintf(stdout, "In prepare_alternatives_functions.\n");
-  
+int main(int argc, char *argv[]) {
+  /* Retrieve problem size. */
+  int ni = NI;
+  int nj = NJ;
+  int nk = NK;
+
+  /* Variable declaration/allocation. */
+  DATA_TYPE alpha;
+  DATA_TYPE beta;
+  POLYBENCH_2D_ARRAY_DECL(A, DATA_TYPE, NI, NK, ni, nk);
+  POLYBENCH_2D_ARRAY_DECL(B, DATA_TYPE, NK, NJ, nk, nj);
+  POLYBENCH_2D_ARRAY_DECL(C, DATA_TYPE, NI, NJ, ni, nj);
+  POLYBENCH_2D_ARRAY_DECL(C_outputFromOMP, DATA_TYPE, NI, NJ, ni, nj);
+  POLYBENCH_2D_ARRAY_DECL(C_inputToGpu, DATA_TYPE, NI, NJ, ni, nj);
+  POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NJ, ni, nj);
+
+  fprintf(stderr, "Preparing alternatives functions.\n");
   /*void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
               DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
@@ -406,27 +429,6 @@ void prepare_alternatives_functions(){
     TablePointerFunctions = table;
     assert(TablePointerFunctions != NULL);
   }
-}
-
-
-int main(int argc, char *argv[]) {
-  /* Retrieve problem size. */
-  int ni = NI;
-  int nj = NJ;
-  int nk = NK;
-
-  /* Variable declaration/allocation. */
-  DATA_TYPE alpha;
-  DATA_TYPE beta;
-  POLYBENCH_2D_ARRAY_DECL(A, DATA_TYPE, NI, NK, ni, nk);
-  POLYBENCH_2D_ARRAY_DECL(B, DATA_TYPE, NK, NJ, nk, nj);
-  POLYBENCH_2D_ARRAY_DECL(C, DATA_TYPE, NI, NJ, ni, nj);
-  POLYBENCH_2D_ARRAY_DECL(C_outputFromOMP, DATA_TYPE, NI, NJ, ni, nj);
-  POLYBENCH_2D_ARRAY_DECL(C_inputToGpu, DATA_TYPE, NI, NJ, ni, nj);
-  POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NJ, ni, nj);
-
-  fprintf(stderr, "Preparing alternatives functions.\n");
-  prepare_alternatives_functions();
 
   fprintf(stderr, "Calling init_array.\n");
   init_array(ni, nj, nk, &alpha, &beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
@@ -462,8 +464,8 @@ int main(int argc, char *argv[]) {
   // fprintf(stderr, "Calling gemm_cuda.\n");
   // gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
-  // call_function_ffi_call(table[0][0]);
+  fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
+  call_function_ffi_call(table[0][0]);
 
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
