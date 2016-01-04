@@ -278,14 +278,14 @@ int main(int argc, char *argv[]) {
                POLYBENCH_ARRAY(B));
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
-  compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
+  compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
 
-  fprintf(stderr, "Calling CUDA.\n");
+    fprintf(stderr, "Calling CUDA.\n");
   syr2k_cuda(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
             POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
 
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
-  compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
+  compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
   
   polybench_prevent_dce(print_array(ni, POLYBENCH_ARRAY(C_outputFromGpu)));
 
