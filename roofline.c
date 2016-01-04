@@ -484,11 +484,15 @@ bool RM_stop_and_accumulate(void){
 		TRACE("Removing[%s].\n", event_names[ptr_measure->current_eventset][j] );
   		if ((retval = PAPI_remove_named_event(ptr_measure->EventSet, event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){
 			TRACE("PAPI_remove_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
+			// The retval when the platform don't have support the counter was returned and supressing the offloading.
+			// PAPI can continue after errors. So defining retval to PAPI_OK.
+			retval = PAPI_OK;
 		}
 	}
 
 	ptr_measure->quant_intervals[ptr_measure->current_eventset] = ptr_measure->quant_intervals[ptr_measure->current_eventset] + 1;
 
+	TRACE("Calling the printing of counter values.\n");
 	RM_print_counters_values();
 
 	ptr_measure->current_eventset = ((ptr_measure->current_eventset + 1) % NUM_EVENT_SETS);
@@ -687,8 +691,6 @@ double RM_get_operational_intensity(void){
 int RM_get_better_device_to_execution(double oi){
 	PRINT_FUNC_NAME;
 	TRACE("Operational intensity: %10.6f\n", oi);
-
-
 	
 	return 0;
 }
