@@ -88,8 +88,7 @@ void syr2k_original(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   polybench_start_instruments;
 
   /* Run kernel. */
-  syr2kCpu(ni, nj, alpha, beta, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(A),
-               POLYBENCH_ARRAY(B));
+  syr2kCpu(ni, nj, alpha, beta, C, A, B);
 
   /* Stop and print timer. */
   printf("Original CPU Time in seconds:\n");
