@@ -4,10 +4,10 @@ LIBS_DIR := -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -
 LIBRARIES:= -lhookomp -lroofline -fopenmp -lgomp -lffi -ldl -lcuda -lcudart
 
 all:
-	nvcc -O3 -c ${CUFILES} -I${PATH_TO_UTILS} ${INCLUDE_DIR} -DPOLYBENCH_TIME -ccbin=${CXX} -Xcompiler -fpermissive -o ${OBJFILE} 
+	nvcc ${OPT_LEVEL} -c ${CUFILES} -I${PATH_TO_UTILS} ${INCLUDE_DIR} -DPOLYBENCH_TIME -ccbin=${CXX} -Xcompiler -fopenmp -Xcompiler -lgomp -Xcompiler -fpermissive -Xcompiler -lffi -Xcompiler -ldl -o ${OBJFILE} 
 
-	${CXX} -g ${OBJTFILE} -O3 ${LIBS_DIR} ${LIBRARIES} -o ${EXECUTABLE} -fpermissive
+	${CXX} -g ${OBJFILE} ${OPT_LEVEL} ${LIBS_DIR} ${LIBRARIES} -o ${EXECUTABLE}
 
 clean:
-	rm -f *~ *.exe
+	rm -f *~ *.o *.exe
 
