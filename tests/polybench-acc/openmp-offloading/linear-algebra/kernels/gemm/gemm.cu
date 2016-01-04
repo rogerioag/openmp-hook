@@ -308,14 +308,14 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
 /* ------------------------------------------------------------- */
 void compareResults(int ni, int nj, DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
-                    DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NJ, ni, nj)) {
+                    DATA_TYPE POLYBENCH_2D(C_output, NI, NJ, ni, nj)) {
   int i, j, fail;
   fail = 0;
 
   // Compare CPU and GPU outputs
   for (i = 0; i < ni; i++) {
     for (j = 0; j < nj; j++) {
-      if (percentDiff(C[i][j], C_outputFromGpu[i][j]) >
+      if (percentDiff(C[i][j], C_output[i][j]) >
           PERCENT_DIFF_ERROR_THRESHOLD) {
         fail++;
       }
