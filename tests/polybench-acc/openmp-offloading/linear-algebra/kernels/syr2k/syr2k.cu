@@ -142,14 +142,14 @@ void syr2k_omp(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 
 /* ------------------------------------------------------------- */
 void compareResults(int ni, DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni),
-                    DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NI, ni, ni)) {
+                    DATA_TYPE POLYBENCH_2D(C_output, NI, NI, ni, ni)) {
   int i, j, fail;
   fail = 0;
 
   // Compare C with D
   for (i = 0; i < ni; i++) {
     for (j = 0; j < ni; j++) {
-      if (percentDiff(C[i][j], C_outputFromGpu[i][j]) >
+      if (percentDiff(C[i][j], C_output[i][j]) >
           PERCENT_DIFF_ERROR_THRESHOLD) {
         fail++;
       }
