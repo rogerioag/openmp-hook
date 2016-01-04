@@ -55,8 +55,7 @@ Func ***table;
 extern Func ***TablePointerFunctions;
 
 /* current loop index. */
-// extern long int current_loop_index;
-long int current_loop_index;
+extern long int current_loop_index;
 
 bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
 
@@ -90,23 +89,22 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
   }
   fprintf(stderr, "Allocating the columns is OK.\n");
 
-  /*fprintf(stderr, "Initializing.\n");
-
+  /*fprintf(stderr, "Printing.\n");
   for (i = 0; i < nrows; i++) {
     for (j = 0; j < ncolumns; j++) {
-      table[i][j][0] = 0;
+      fprintf(stderr, "table[%d][%d]= %p\n", i, j, (table[i][j])->f);
     }
   }
-
-  fprintf(stderr, "Initializing OK.\n");*/
+  fprintf(stderr, "Printing OK.\n");*/
 
   *table_ = table;
 
   return result;
 }
 
+/* ------------------------------------------------------------- */
 /* Call the target function. */
-/*void call_function_ffi_call(Func* ff) {
+void call_function_ffi_call(Func* ff) {
   fprintf(stderr," In call_function_ffi_call.\n");
   ffi_cif cif;
 
@@ -117,7 +115,7 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
   }
 
   ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values);
-}*/
+}
 
 /* Arrays initialization. */
 void init_array(int ni, int nj, int nk, DATA_TYPE *alpha, DATA_TYPE *beta,
@@ -337,6 +335,80 @@ static void print_array(int ni, int nj,
   fprintf(stderr, "\n");
 }
 
+/* ------------------------------------------------------------- */
+void prepare_alternatives_functions(){
+  fprintf(stdout, "In prepare_alternatives_functions.\n");
+  
+  /*void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
+              DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
+              DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
+              DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
+              DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NJ, ni, nj),
+              DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NJ, ni, nj))
+  */
+  // Number of parameters to function.
+  int n_params = 10;
+
+  // void handler_function_init_array_GPU(void)
+  Func *ff_1 = (Func *) malloc(sizeof(Func));
+
+  // Number of arguments + 1, the lists need to have last element NULL.
+  ff_1->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
+  ff_1->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
+
+  ff_1->f = &gemm_cuda;
+  memset(&ff_1->ret_value, 0, sizeof(ff_1->ret_value));
+
+  // return type.
+  ff_1->ret_type = &ffi_type_void;
+
+  ff_1->nargs = n_params;
+
+  ff_1->arg_values[0] = &ni;
+  ff_1->arg_values[1] = &nj;
+  ff_1->arg_values[2] = &nk;
+  ff_1->arg_values[3] = &alpha;
+  ff_1->arg_values[4] = &beta;
+  ff_1->arg_values[5] = &A;
+  ff_1->arg_values[6] = &B;
+  ff_1->arg_values[7] = &C;
+  ff_1->arg_values[8] = &C_inputToGpu;
+  ff_1->arg_values[9] = &C_outputFromGpu;
+  ff_1->arg_values[10] = NULL;
+
+  ff_1->arg_types[0] = &ffi_type_sint32;
+  ff_1->arg_types[1] = &ffi_type_sint32;
+  ff_1->arg_types[2] = &ffi_type_sint32;
+  ff_1->arg_types[3] = &ffi_type_double;
+  ff_1->arg_types[4] = &ffi_type_double;
+  ff_1->arg_types[5] = &ffi_type_pointer;
+  ff_1->arg_types[6] = &ffi_type_pointer;
+  ff_1->arg_types[7] = &ffi_type_pointer;
+  ff_1->arg_types[8] = &ffi_type_pointer;
+  ff_1->arg_types[9] = &ffi_type_pointer;
+  ff_1->arg_types[10] = NULL;
+
+  /*          device 0
+   * loop 0   gemm_cuda
+   * matrix 1 x 1.
+  */
+  fprintf(stderr, "Creating table of target functions.\n");
+  int nloops = 1;
+  int ndevices = 1;
+
+  if (create_target_functions_table(&table, nloops, ndevices)) {
+    // Set up the library Functions table.
+    assert(table != NULL);
+
+    fprintf(stderr, "Declaring function in 0,0.\n");
+    table[0][0][0] = *ff_1;
+
+    TablePointerFunctions = table;
+    assert(TablePointerFunctions != NULL);
+  }
+}
+
+
 int main(int argc, char *argv[]) {
   /* Retrieve problem size. */
   int ni = NI;
@@ -352,6 +424,9 @@ int main(int argc, char *argv[]) {
   POLYBENCH_2D_ARRAY_DECL(C_outputFromOMP, DATA_TYPE, NI, NJ, ni, nj);
   POLYBENCH_2D_ARRAY_DECL(C_inputToGpu, DATA_TYPE, NI, NJ, ni, nj);
   POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NJ, ni, nj);
+
+  fprintf(stderr, "Preparing alternatives functions.\n");
+  prepare_alternatives_functions();
 
   fprintf(stderr, "Calling init_array.\n");
   init_array(ni, nj, nk, &alpha, &beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
@@ -373,60 +448,7 @@ int main(int argc, char *argv[]) {
               DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NJ, ni, nj),
               DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NJ, ni, nj))
   */
-  // Número de parametros.
-  int n_params = 10;
-
-  Func *ff = (Func *) malloc(sizeof(Func));
-
-  // Número de parametros + 1, tem que ter um NULL finalizando as listas.
-  ff->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
-  ff->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
-
-  ff->f = &gemm_cuda;
-  memset(&ff->ret_value, 0, sizeof(ff->ret_value));
-
-  // return type.
-  ff->ret_type = &ffi_type_void;
-
-  ff->nargs = n_params;
-
-  ff->arg_values[0] = &ni;
-  ff->arg_values[1] = &nj;
-  ff->arg_values[2] = &nk;
-  ff->arg_values[3] = &alpha;
-  ff->arg_values[4] = &beta;
-  ff->arg_values[5] = &A;
-  ff->arg_values[6] = &B;
-  ff->arg_values[7] = &C;
-  ff->arg_values[8] = &C_inputToGpu;
-  ff->arg_values[9] = &C_outputFromGpu;
-  ff->arg_values[10] = NULL;
-
-  ff->arg_types[0] = &ffi_type_sint32;
-  ff->arg_types[1] = &ffi_type_sint32;
-  ff->arg_types[2] = &ffi_type_sint32;
-  ff->arg_types[3] = &ffi_type_double;
-  ff->arg_types[4] = &ffi_type_double;
-  ff->arg_types[5] = &ffi_type_pointer;
-  ff->arg_types[6] = &ffi_type_pointer;
-  ff->arg_types[7] = &ffi_type_pointer;
-  ff->arg_types[8] = &ffi_type_pointer;
-  ff->arg_types[9] = &ffi_type_pointer;
-  ff->arg_types[10] = NULL;
-
-  int nloops = 1;
-  int ndevices = 1;
-
-  if (create_target_functions_table(&table, nloops, ndevices)) {
-    // Set up the library Functions table.
-    assert(table != NULL);
-
-    fprintf(stderr, "Declaring function in 0,0.\n");
-    table[0][0][0] = *ff;
-
-    TablePointerFunctions = table;
-    assert(TablePointerFunctions != NULL);
-  }
+  
 
   fprintf(stderr, "Calling gemm_omp.\n");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
