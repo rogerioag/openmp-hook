@@ -17,21 +17,14 @@
 #include <time.h>
 #include <unistd.h>
 
-#include <dlfcn.h>
-#include <ffi.h>
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-#include <fcntl.h>
-#include <stdint.h>
-#include <inttypes.h>
-#include <assert.h>
-
 #define POLYBENCH_TIME 1
 
 #include "gemm.h"
 #include <polybench.h>
 #include <polybenchUtilFuncts.h>
+
+// Offloading support functions.
+#include <offload.h> 
 
 #define GPU_DEVICE 0
 
@@ -39,84 +32,6 @@
 #define PERCENT_DIFF_ERROR_THRESHOLD 0.05
 
 #define RUN_ON_CPU
-
-typedef struct Func {
-  void *f;
-  int nargs;
-  ffi_type** arg_types;
-  void** arg_values;
-  ffi_type* ret_type;
-  void* ret_value;
-} Func;
-
-/* Alternative Functions table pointer. */
-Func ***table;
-
-extern Func ***TablePointerFunctions;
-
-/* current loop index. */
-extern long int current_loop_index;
-
-/* ------------------------------------------------------------- */
-bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
-
-  Func ***table;
-
-  bool result = true;
-  int i, j;
-
-  fprintf(stderr, "Allocating the rows.\n");
-  table = (Func ***) malloc(nrows * sizeof(Func **));
-
-  if (table != NULL) {
-    fprintf(stderr, "Allocating the columns.\n");
-
-    for (i = 0; i < nrows; i++) {
-      table[i] = (Func **) malloc(ncolumns * sizeof(Func *));
-      if (table[i] != NULL) {
-        for (j = 0; j < ncolumns; j++) {
-          table[i][j] = (Func *) malloc(sizeof(Func));
-        }
-      } else {
-        fprintf(stderr,
-            "Error in table of target functions allocation (columns).\n");
-        result = false;
-      }
-    }
-  } else {
-    fprintf(stderr,
-        "Error in table of target functions allocation (rows).\n");
-    result = false;
-  }
-  fprintf(stderr, "Allocating the columns is OK.\n");
-
-  /*fprintf(stderr, "Printing.\n");
-  for (i = 0; i < nrows; i++) {
-    for (j = 0; j < ncolumns; j++) {
-      fprintf(stderr, "table[%d][%d]= %p\n", i, j, (table[i][j])->f);
-    }
-  }
-  fprintf(stderr, "Printing OK.\n");*/
-
-  *table_ = table;
-
-  return result;
-}
-
-/* ------------------------------------------------------------- */
-/* Call the target function. */
-void call_function_ffi_call(Func* ff) {
-  fprintf(stderr," In call_function_ffi_call.\n");
-  ffi_cif cif;
-
-  if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, ff->nargs, ff->ret_type,
-      ff->arg_types) != FFI_OK) {
-    fprintf(stderr,"Error ffi_prep_cif.\n");
-    exit(1);
-  }
-
-  ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values);
-}
 
 /* ------------------------------------------------------------- */
 /* Arrays initialization. */
@@ -362,7 +277,8 @@ int main(int argc, char *argv[]) {
   POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NJ, ni, nj);
 
   fprintf(stderr, "Preparing alternatives functions.\n");
-  /*void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
+  /* Preparing the call to target function.
+  void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
               DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
               DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
@@ -441,17 +357,7 @@ int main(int argc, char *argv[]) {
 
   fprintf(stderr, "Calling gemm_original.\n");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
-
-  /* Preparing the call to target function.
-  void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
-              DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
-              DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
-              DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
-              DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NJ, ni, nj),
-              DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NJ, ni, nj))
-  */
   
-
   fprintf(stderr, "Calling gemm_omp.\n");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
 

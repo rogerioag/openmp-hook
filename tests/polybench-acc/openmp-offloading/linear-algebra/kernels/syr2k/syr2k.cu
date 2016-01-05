@@ -101,7 +101,7 @@ void syr2k_original(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   polybench_start_instruments;
 
   /* Run kernel. */
-  syr2kCpu(ni, nj, alpha, beta, C, A, B);
+  syr2kCpu(ni, nj, alpha, beta, A, B, C);
 
   /* Stop and print timer. */
   printf("Original CPU Time in seconds:\n");
@@ -113,22 +113,20 @@ void syr2k_original(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 /* Main computational kernel. The whole function will be timed,
    including the call and return. */
 static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
-                         DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni),
                          DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
-                         DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj)) {
+                         DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
+                         DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
   int i, j, k;
 
-  printf("NI e NJ: %d - %d\n", _PB_NI, _PB_NJ);
-
-#pragma scop
-#pragma omp parallel
+  #pragma scop
+  #pragma omp parallel
   {
-/*    C := alpha*A*B' + alpha*B*A' + beta*C */
-#pragma omp for private(j) schedule(static)
+    /*    C := alpha*A*B' + alpha*B*A' + beta*C */
+    #pragma omp for private(j) schedule(static)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NI; j++)
         C[i][j] *= beta;
-#pragma omp for private(j, k) schedule(static)
+    #pragma omp for private(j, k) schedule(static)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NI; j++)
         for (k = 0; k < _PB_NJ; k++) {
@@ -136,19 +134,19 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
           C[i][j] += alpha * B[i][k] * A[j][k];
         }
   }
-#pragma endscop
+  #pragma endscop
 }
 
 /* ------------------------------------------------------------- */
 void syr2k_omp(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
-                         DATA_TYPE POLYBENCH_2D(C_outputFromOMP, NI, NI, ni, ni),
                          DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
-                         DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj)) {
+                         DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
+                         DATA_TYPE POLYBENCH_2D(C_outputFromOMP, NI, NI, ni, ni)) {
 
   /* Start timer. */
   polybench_start_instruments;
 
-  syr2k_omp_kernel(ni, nj, alpha, beta, C_outputFromOMP, A, B);
+  syr2k_omp_kernel(ni, nj, alpha, beta, A, B, C_outputFromOMP);
 
   /* Stop and print timer. */
   printf("OpenMP Time in seconds:\n");
@@ -282,28 +280,28 @@ int main(int argc, char *argv[]) {
               POLYBENCH_ARRAY(C));
 
   /*Copy the original C to C of OMP.*/
+  fprintf(stderr, "Copying C to C_outputFromOMP.\n");
   // memcpy(C_outputFromOMP, C, sizeof(C_outputFromOMP));
   copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
   
-  *(C[0][0]) = (DATA_TYPE) 24;
-  
-  printf("%4.2f - %4.2f\n", *(C[0][0]), *(C_outputFromOMP[0][0]));
+  // printf("%4.2f - %4.2f\n", *(C[0][0]), *(C_outputFromOMP[0][0]));
+  compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
 
+  fprintf(stderr, "Copying C to C_outputFromOMP.\n");
   // memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
   copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
+  compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
   fprintf(stderr, "Calling Original.\n");
-  syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(A),
-               POLYBENCH_ARRAY(B));
+  syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
   fprintf(stderr, "Calling OMP.\n");
-  syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(C_outputFromOMP), POLYBENCH_ARRAY(A),
-               POLYBENCH_ARRAY(B));
+  syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
 
-    fprintf(stderr, "Calling CUDA.\n");
+  fprintf(stderr, "Calling CUDA.\n");
   syr2k_cuda(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
             POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
 
