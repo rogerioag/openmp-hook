@@ -24,7 +24,7 @@
 #include <polybenchUtilFuncts.h>
 
 // Offloading support functions.
-#include <offload.h> 
+#include <offload.h>
 
 #define GPU_DEVICE 0
 
