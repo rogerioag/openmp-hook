@@ -122,6 +122,7 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   int i, j, k;
 
   #pragma scop
+  current_loop_index = 0;
   #pragma omp parallel
   {
     /*    C := alpha*A*B' + alpha*B*A' + beta*C */
