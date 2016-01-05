@@ -161,8 +161,7 @@ void compareResults(int ni, DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni),
   // Compare C with D
   for (i = 0; i < ni; i++) {
     for (j = 0; j < ni; j++) {
-      printf("%4.2f - %4.2f\n", C[i][j], C_output[i][j]);
-
+      // printf("%4.2f - %4.2f\n", C[i][j], C_output[i][j]);
       if (percentDiff(C[i][j], C_output[i][j]) >
           PERCENT_DIFF_ERROR_THRESHOLD) {
         fail++;
