@@ -60,7 +60,7 @@ void copy_array(int ni, DATA_TYPE POLYBENCH_2D(C_source, NI, NI, ni, ni), DATA_T
   for (i = 0; i < ni; i++) {
     for (j = 0; j < ni; j++) {
       C_dest[i][j] = C_source[i][j];
-      printf("%4.2f - %4.2f\n", C_dest[i][j], C_source[i][j]);
+      // printf("%4.2f - %4.2f\n", C_dest[i][j], C_source[i][j]);
     }
   }
 }
