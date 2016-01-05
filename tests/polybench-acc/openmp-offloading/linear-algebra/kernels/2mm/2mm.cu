@@ -178,10 +178,10 @@ void kernel_2mm(int ni, int nj, int nk, int nl,
 {
   int i, j, k;
   #pragma scop
-  current_loop_index = 0;
   /* D := alpha*A*B*C + beta*D */
   #pragma omp parallel
   {
+  	current_loop_index = 0;
     #pragma omp for private(j, k) schedule(runtime)
     for (i = 0; i < _PB_NI; i++){
       for (j = 0; j < _PB_NJ; j++){
@@ -190,7 +190,8 @@ void kernel_2mm(int ni, int nj, int nk, int nl,
 	    	tmp[i][j] += alpha * A[i][k] * B[k][j];
         }
       }
-    } 
+    }
+    current_loop_index = 1;
     #pragma omp for private(j, k) schedule(runtime)
     for (i = 0; i < _PB_NI; i++){
       for (j = 0; j < _PB_NL; j++){
