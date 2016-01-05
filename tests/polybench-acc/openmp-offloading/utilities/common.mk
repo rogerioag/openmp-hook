@@ -4,7 +4,7 @@ LIBS_DIR := -L/home/goncalv/prova-de-conceito/testes-prova-conceito/openmp-hook 
 LIBRARIES:= -lhookomp -lroofline -fopenmp -lgomp -lffi -ldl -lcuda -lcudart
 
 all:
-	nvcc ${OPT_LEVEL} -c ${CUFILES} -I${PATH_TO_UTILS} ${INCLUDE_DIR} -DPOLYBENCH_TIME -ccbin=${CXX} -Xcompiler -fopenmp -Xcompiler -lgomp -Xcompiler -fpermissive -Xcompiler -lffi -Xcompiler -ldl -o ${OBJFILE} 
+	nvcc ${OPT_LEVEL} -c ${CUFILES} -I${PATH_TO_UTILS} ${INCLUDE_DIR} -DPOLYBENCH_TIME -ccbin=${CXX} -Xcompiler -lhookomp -Xcompiler -lroofline -Xcompiler -fopenmp -Xcompiler -lgomp -Xcompiler -fpermissive -Xcompiler -lffi -Xcompiler -ldl -o ${OBJFILE} 
 
 	${CXX} -g ${OBJFILE} ${OPT_LEVEL} ${LIBS_DIR} ${LIBRARIES} -o ${EXECUTABLE}
 

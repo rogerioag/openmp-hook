@@ -22,6 +22,9 @@
 #include <polybench.h>
 #include <polybenchUtilFuncts.h>
 
+// Offloading support functions.
+#include <offload.h>
+
 // define the error threshold for the results "not matching"
 #define PERCENT_DIFF_ERROR_THRESHOLD 0.05
 
@@ -276,6 +279,72 @@ int main(int argc, char *argv[]) {
   POLYBENCH_2D_ARRAY_DECL(C_inputToGpu, DATA_TYPE, NI, NJ, ni, nj);
   POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NJ, ni, nj);
 
+  fprintf(stderr, "Preparing alternatives functions.\n");
+  /* Preparing the call to target function.
+  void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
+               DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
+               DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
+               DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NI, ni, ni),
+               DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NI, ni, ni))
+  */
+  // Number of parameters to function.
+  int n_params = 8;
+
+  // void handler_function_init_array_GPU(void)
+  Func *ff_1 = (Func *) malloc(sizeof(Func));
+
+  // Number of arguments + 1, the lists need to have last element NULL.
+  ff_1->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
+  ff_1->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
+
+  ff_1->f = &syr2k_cuda;
+  memset(&ff_1->ret_value, 0, sizeof(ff_1->ret_value));
+
+  // return type.
+  ff_1->ret_type = &ffi_type_void;
+
+  ff_1->nargs = n_params;
+
+  ff_1->arg_values[0] = &ni;
+  ff_1->arg_values[1] = &nj;
+  ff_1->arg_values[2] = &alpha;
+  ff_1->arg_values[3] = &beta;
+  ff_1->arg_values[4] = &A;
+  ff_1->arg_values[5] = &B;
+  ff_1->arg_values[6] = &C_inputToGpu;
+  ff_1->arg_values[7] = &C_outputFromGpu;
+  ff_1->arg_values[8] = NULL;
+
+  ff_1->arg_types[0] = &ffi_type_sint32;
+  ff_1->arg_types[1] = &ffi_type_sint32;
+  ff_1->arg_types[2] = &ffi_type_double;
+  ff_1->arg_types[3] = &ffi_type_double;
+  ff_1->arg_types[4] = &ffi_type_pointer;
+  ff_1->arg_types[5] = &ffi_type_pointer;
+  ff_1->arg_types[6] = &ffi_type_pointer;
+  ff_1->arg_types[7] = &ffi_type_pointer;
+  ff_1->arg_types[8] = NULL;
+
+  /*          device 0
+   * loop 0   gemm_cuda
+   * matrix 1 x 1.
+  */
+  fprintf(stderr, "Creating table of target functions.\n");
+  int nloops = 1;
+  int ndevices = 1;
+
+  if (create_target_functions_table(&table, nloops, ndevices)) {
+    // Set up the library Functions table.
+    assert(table != NULL);
+
+    fprintf(stderr, "Declaring function in 0,0.\n");
+    table[0][0][0] = *ff_1;
+
+    TablePointerFunctions = table;
+    assert(TablePointerFunctions != NULL);
+  }
+
+  fprintf(stderr, "Calling init_array.\n");
   init_arrays(ni, nj, &alpha, &beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
               POLYBENCH_ARRAY(C));
 
@@ -285,12 +354,12 @@ int main(int argc, char *argv[]) {
   copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
   
   // printf("%4.2f - %4.2f\n", *(C[0][0]), *(C_outputFromOMP[0][0]));
-  compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
+  // compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
 
   fprintf(stderr, "Copying C to C_outputFromOMP.\n");
   // memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
   copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
-  compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
+  // compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
   fprintf(stderr, "Calling Original.\n");
   syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
@@ -301,9 +370,11 @@ int main(int argc, char *argv[]) {
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
 
-  fprintf(stderr, "Calling CUDA.\n");
-  syr2k_cuda(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
-            POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
+  // fprintf(stderr, "Calling CUDA.\n");
+  // syr2k_cuda(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
+
+  // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
+  // call_function_ffi_call(table[0][0]);
 
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
