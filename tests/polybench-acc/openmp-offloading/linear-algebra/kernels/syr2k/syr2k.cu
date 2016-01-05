@@ -117,6 +117,9 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                          DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
                          DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj)) {
   int i, j, k;
+
+  printf("NI e NJ: %d - %d\n", _PB_NI, _PB_NJ);
+
 #pragma scop
 #pragma omp parallel
   {
