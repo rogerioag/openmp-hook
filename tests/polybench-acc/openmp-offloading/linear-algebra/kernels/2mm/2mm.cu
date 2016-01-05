@@ -150,11 +150,11 @@ void mm_original(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta
 
   mm2_cpu(ni, nj, nk, nl,
 	      alpha, beta,
-	      POLYBENCH_ARRAY(tmp),
-	      POLYBENCH_ARRAY(A),
-	      POLYBENCH_ARRAY(B),
-	      POLYBENCH_ARRAY(C),
-	      POLYBENCH_ARRAY(D));
+	      tmp,
+	      A,
+	      B,
+	      C,
+	      D);
 
   /* Stop and print timer. */
   printf("Original CPU Time in seconds:\n");
