@@ -285,7 +285,7 @@ int main(int argc, char *argv[]) {
   // memcpy(C_outputFromOMP, C, sizeof(C_outputFromOMP));
   copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
   
-  C[0][0] = 24;
+  *(C[0][0]) = (DATA_TYPE) 24;
   
   printf("%4.2f - %4.2f\n", C[0][0], C_outputFromOMP[0][0]);
 
