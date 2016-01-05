@@ -287,7 +287,7 @@ int main(int argc, char *argv[]) {
   
   *(C[0][0]) = (DATA_TYPE) 24;
   
-  printf("%4.2f - %4.2f\n", C[0][0], C_outputFromOMP[0][0]);
+  printf("%4.2f - %4.2f\n", *(C[0][0]), *(C_outputFromOMP[0][0]));
 
   // memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
   copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
