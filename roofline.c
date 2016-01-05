@@ -398,7 +398,9 @@ bool RM_start_counters (void){
 	for ( j = 0; event_names[ptr_measure->current_eventset][j] != NULL; j++ ) {
 		TRACE("Adding[%s].\n", event_names[ptr_measure->current_eventset][j] );
   		if ((retval = PAPI_add_named_event( ptr_measure->EventSet, event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){+
-			fprintf(stderr,"PAPI_add_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
+			// fprintf(stderr,"PAPI_add_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
+			// TRACE("PAPI_add_named_event[%s] error.\n");// , event_names[ptr_measure->current_eventset][j]);
+			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 		}
 	}
 
