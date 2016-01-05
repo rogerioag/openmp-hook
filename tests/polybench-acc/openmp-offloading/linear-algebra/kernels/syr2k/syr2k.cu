@@ -284,7 +284,9 @@ int main(int argc, char *argv[]) {
   /*Copy the original C to C of OMP.*/
   // memcpy(C_outputFromOMP, C, sizeof(C_outputFromOMP));
   copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
-  C[0][0] = 24.24;
+  
+  C[0][0] = 24;
+  
   printf("%4.2f - %4.2f\n", C[0][0], C_outputFromOMP[0][0]);
 
   // memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
