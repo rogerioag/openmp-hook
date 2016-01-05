@@ -3,8 +3,8 @@
 #define DEBUG_H
 #include <time.h>
 
-#define DEBUG 1
-#define VERBOSE 1
+// #define DEBUG 1
+// #define VERBOSE 1
 
 void timestamp()
 {

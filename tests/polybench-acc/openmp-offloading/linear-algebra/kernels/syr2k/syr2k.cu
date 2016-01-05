@@ -125,11 +125,11 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   #pragma omp parallel
   {
     /*    C := alpha*A*B' + alpha*B*A' + beta*C */
-    #pragma omp for private(j) schedule(static)
+    #pragma omp for private(j) schedule(runtime)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NI; j++)
         C[i][j] *= beta;
-    #pragma omp for private(j, k) schedule(static)
+    #pragma omp for private(j, k) schedule(runtime)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NI; j++)
         for (k = 0; k < _PB_NJ; k++) {
