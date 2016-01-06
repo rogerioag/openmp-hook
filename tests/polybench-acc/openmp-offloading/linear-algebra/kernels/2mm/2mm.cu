@@ -307,7 +307,7 @@ void GPU_data_copy_for_kernel_1(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
              DATA_TYPE POLYBENCH_2D(C, NL, NJ, nl, nj),
              DATA_TYPE POLYBENCH_2D(D, NI, NL, ni, nl)){
 
-  fprintf(stderr, "GPU_data_copy.\n");
+  fprintf(stderr, "GPU_data_copy_for_kernel_1.\n");
 
   if(!gpu_data_for_kernel_1_copied){
     cudaMemcpy(tmp_gpu, tmp, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
@@ -323,7 +323,7 @@ void GPU_data_copy_for_kernel_2(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
              DATA_TYPE POLYBENCH_2D(C, NL, NJ, nl, nj),
              DATA_TYPE POLYBENCH_2D(D, NI, NL, ni, nl)){
 
-  fprintf(stderr, "GPU_data_copy.\n");
+  fprintf(stderr, "GPU_data_copy_for_kernel_2.\n");
 
   if(!gpu_data_for_kernel_2_copied){
     cudaMemcpy(C_gpu, C, sizeof(DATA_TYPE) * NL * NJ, cudaMemcpyHostToDevice);
@@ -334,6 +334,8 @@ void GPU_data_copy_for_kernel_2(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
 
 /* ------------------------------------------------------------- */
 void GPU_data_copy_back(DATA_TYPE POLYBENCH_2D(D_outputFromGpu, NI, NL, ni, nl)){
+
+fprintf(stderr, "GPU_data_copy_back.\n");
 
 cudaMemcpy(D_outputFromGpu, D_gpu, sizeof(DATA_TYPE) * NI * NL,
              cudaMemcpyDeviceToHost);
@@ -407,7 +409,7 @@ void mm2Cuda_2(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
   polybench_stop_instruments;
   polybench_print_instruments;
 
-  GPU_data_copy_back(D_outputFromGpu);
+  GPU_data_copy_back(&D_outputFromGpu);
 }
 
 /* ------------------------------------------------------------- */
