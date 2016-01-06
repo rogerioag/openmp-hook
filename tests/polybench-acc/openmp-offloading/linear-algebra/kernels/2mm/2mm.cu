@@ -41,7 +41,8 @@ DATA_TYPE *D_gpu;
 
 // If data pointer was allocated in GPU Memory.
 bool gpu_data_allocated = false;
-bool gpu_data_copied = false;
+bool gpu_data_for_kernel_1_copied = false;
+bool gpu_data_for_kernel_2_copied = false;
 
 /* ------------------------------------------------------------- */
 /* Arrays initialization. */
@@ -300,7 +301,7 @@ void GPU_data_allocation(void){
 }
 
 /* ------------------------------------------------------------- */
-void GPU_data_copy(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
+void GPU_data_copy_for_kernel_1(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
              DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
              DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
              DATA_TYPE POLYBENCH_2D(C, NL, NJ, nl, nj),
@@ -308,13 +309,26 @@ void GPU_data_copy(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
 
   fprintf(stderr, "GPU_data_copy.\n");
 
-  if(!gpu_data_copied){
+  if(!gpu_data_for_kernel_1_copied){
     cudaMemcpy(tmp_gpu, tmp, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
     cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NK, cudaMemcpyHostToDevice);
     cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NK * NJ, cudaMemcpyHostToDevice);
+    gpu_data_for_kernel_1_copied = true;
+  }
+}
+
+void GPU_data_copy_for_kernel_2(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
+             DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
+             DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
+             DATA_TYPE POLYBENCH_2D(C, NL, NJ, nl, nj),
+             DATA_TYPE POLYBENCH_2D(D, NI, NL, ni, nl)){
+
+  fprintf(stderr, "GPU_data_copy.\n");
+
+  if(!gpu_data_for_kernel_2_copied){
     cudaMemcpy(C_gpu, C, sizeof(DATA_TYPE) * NL * NJ, cudaMemcpyHostToDevice);
     cudaMemcpy(D_gpu, D, sizeof(DATA_TYPE) * NI * NL, cudaMemcpyHostToDevice);
-    gpu_data_copied = true;
+    gpu_data_for_kernel_2_copied = true;
   }
 }
 
@@ -342,7 +356,7 @@ void mm2Cuda_1(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
 
   GPU_data_allocation();
 
-  GPU_data_copy(tmp, A, B, C, D);
+  GPU_data_copy_for_kernel_1(tmp, A, B, C, D);
 
   dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
   dim3 grid1((size_t)ceil(((float)NJ) / ((float)block.x)),
@@ -373,7 +387,7 @@ void mm2Cuda_2(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
 
   GPU_data_allocation();
 
-  GPU_data_copy(tmp, A, B, C, D);
+  GPU_data_copy_for_kernel_2(tmp, A, B, C, D);
 
   dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
   
