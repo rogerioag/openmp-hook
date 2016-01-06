@@ -288,15 +288,17 @@ __global__ void mm2_kernel2(int ni, int nj, int nk, int nl, DATA_TYPE alpha,
 void GPU_data_allocation(void){
   fprintf(stderr, "GPU_data_allocation.\n");
 
-  if(! gpu_data_allocated){
+  if(!gpu_data_allocated){
     cudaMalloc((void **)&tmp_gpu, sizeof(DATA_TYPE) * NI * NJ);
     cudaMalloc((void **)&A_gpu, sizeof(DATA_TYPE) * NI * NK);
     cudaMalloc((void **)&B_gpu, sizeof(DATA_TYPE) * NK * NJ);
     cudaMalloc((void **)&C_gpu, sizeof(DATA_TYPE) * NL * NJ);
     cudaMalloc((void **)&D_gpu, sizeof(DATA_TYPE) * NI * NL);
+    gpu_data_allocated = true;
   }
 }
 
+/* ------------------------------------------------------------- */
 void GPU_data_copy(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
              DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
              DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
@@ -305,14 +307,24 @@ void GPU_data_copy(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
 
   fprintf(stderr, "GPU_data_copy.\n");
 
-  if(! gpu_data_copied){
+  if(!gpu_data_copied){
     cudaMemcpy(tmp_gpu, tmp, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
     cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NK, cudaMemcpyHostToDevice);
     cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NK * NJ, cudaMemcpyHostToDevice);
     cudaMemcpy(C_gpu, C, sizeof(DATA_TYPE) * NL * NJ, cudaMemcpyHostToDevice);
     cudaMemcpy(D_gpu, D, sizeof(DATA_TYPE) * NI * NL, cudaMemcpyHostToDevice);
+    gpu_data_copied = true;
   }
 }
+
+/* ------------------------------------------------------------- */
+void GPU_data_copy_back(DATA_TYPE POLYBENCH_2D(D_outputFromGpu, NI, NL, ni, nl))
+
+cudaMemcpy(D_outputFromGpu, D_gpu, sizeof(DATA_TYPE) * NI * NL,
+             cudaMemcpyDeviceToHost);
+
+}
+
 
 
 /* ------------------------------------------------------------- */
@@ -337,9 +349,7 @@ void mm2Cuda_1(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
   dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
   dim3 grid1((size_t)ceil(((float)NJ) / ((float)block.x)),
              (size_t)ceil(((float)NI) / ((float)block.y)));
-  dim3 grid2((size_t)ceil(((float)NL) / ((float)block.x)),
-             (size_t)ceil(((float)NI) / ((float)block.y)));
-
+  
   /* Start timer. */
   polybench_start_instruments;
 
@@ -350,15 +360,6 @@ void mm2Cuda_1(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
   printf("GPU Time in seconds:\n");
   polybench_stop_instruments;
   polybench_print_instruments;
-
-  cudaMemcpy(D_outputFromGpu, D_gpu, sizeof(DATA_TYPE) * NI * NL,
-             cudaMemcpyDeviceToHost);
-
-  cudaFree(tmp_gpu);
-  cudaFree(A_gpu);
-  cudaFree(B_gpu);
-  cudaFree(C_gpu);
-  cudaFree(D_gpu);
 }
 
 /* ------------------------------------------------------------- */
@@ -372,36 +373,18 @@ void mm2Cuda_2(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
   
   GPU_argv_init();
 
-  DATA_TYPE *tmp_gpu;
-  DATA_TYPE *A_gpu;
-  DATA_TYPE *B_gpu;
-  DATA_TYPE *C_gpu;
-  DATA_TYPE *D_gpu;
+  GPU_data_allocation();
 
-  cudaMalloc((void **)&tmp_gpu, sizeof(DATA_TYPE) * NI * NJ);
-  cudaMalloc((void **)&A_gpu, sizeof(DATA_TYPE) * NI * NK);
-  cudaMalloc((void **)&B_gpu, sizeof(DATA_TYPE) * NK * NJ);
-  cudaMalloc((void **)&C_gpu, sizeof(DATA_TYPE) * NL * NJ);
-  cudaMalloc((void **)&D_gpu, sizeof(DATA_TYPE) * NI * NL);
-
-  cudaMemcpy(tmp_gpu, tmp, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
-  cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NK, cudaMemcpyHostToDevice);
-  cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NK * NJ, cudaMemcpyHostToDevice);
-  cudaMemcpy(C_gpu, C, sizeof(DATA_TYPE) * NL * NJ, cudaMemcpyHostToDevice);
-  cudaMemcpy(D_gpu, D, sizeof(DATA_TYPE) * NI * NL, cudaMemcpyHostToDevice);
+  GPU_data_copy();
 
   dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
-  dim3 grid1((size_t)ceil(((float)NJ) / ((float)block.x)),
-             (size_t)ceil(((float)NI) / ((float)block.y)));
+  
   dim3 grid2((size_t)ceil(((float)NL) / ((float)block.x)),
              (size_t)ceil(((float)NI) / ((float)block.y)));
 
   /* Start timer. */
   polybench_start_instruments;
 
-  mm2_kernel1<<<grid1, block>>>(ni, nj, nk, nl, alpha, beta, tmp_gpu, A_gpu,
-                                B_gpu);
-  cudaThreadSynchronize();
   mm2_kernel2<<<grid2, block>>>(ni, nj, nk, nl, alpha, beta, tmp_gpu, C_gpu,
                                 D_gpu);
   cudaThreadSynchronize();
@@ -410,14 +393,7 @@ void mm2Cuda_2(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
   polybench_stop_instruments;
   polybench_print_instruments;
 
-  cudaMemcpy(D_outputFromGpu, D_gpu, sizeof(DATA_TYPE) * NI * NL,
-             cudaMemcpyDeviceToHost);
-
-  cudaFree(tmp_gpu);
-  cudaFree(A_gpu);
-  cudaFree(B_gpu);
-  cudaFree(C_gpu);
-  cudaFree(D_gpu);
+  GPU_data_copy_back(D_outputFromGpu);
 }
 
 /* ------------------------------------------------------------- */
@@ -455,16 +431,27 @@ int main(int argc, char **argv) {
 
   // void handler_function_init_array_GPU(void)
   Func *ff_1 = (Func *) malloc(sizeof(Func));
+  Func *ff_2 = (Func *) malloc(sizeof(Func));
 
   // Number of arguments + 1, the lists need to have last element NULL.
   ff_1->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
   ff_1->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
 
+  ff_2->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
+  ff_2->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
+
   ff_1->f = &mm2Cuda_1;
+
   memset(&ff_1->ret_value, 0, sizeof(ff_1->ret_value));
+
+  ff_2->f = &mm2Cuda_2;
+  memset(&ff_2->ret_value, 0, sizeof(ff_2->ret_value));
 
   // return type.
   ff_1->ret_type = &ffi_type_void;
+
+  // return type.
+  ff_2->ret_type = &ffi_type_void;
 
   ff_1->nargs = n_params;
 
@@ -496,12 +483,43 @@ int main(int argc, char **argv) {
   ff_1->arg_types[11] = &ffi_type_pointer;
   ff_1->arg_types[12] = NULL;
 
+  ff_2->nargs = n_params;
+
+  ff_2->arg_values[0] = &ni;
+  ff_2->arg_values[1] = &nj;
+  ff_2->arg_values[2] = &nk;
+  ff_2->arg_values[3] = &nl;
+  ff_2->arg_values[4] = &alpha;
+  ff_2->arg_values[5] = &beta;
+  ff_2->arg_values[6] = &tmp;
+  ff_2->arg_values[7] = &A;
+  ff_2->arg_values[8] = &B;
+  ff_2->arg_values[9] = &C;
+  ff_2->arg_values[10] = &D;
+  ff_2->arg_values[11] = &D_outputFromGpu;
+  ff_2->arg_values[12] = NULL;
+
+  ff_2->arg_types[0] = &ffi_type_sint32;
+  ff_2->arg_types[1] = &ffi_type_sint32;
+  ff_2->arg_types[2] = &ffi_type_sint32;
+  ff_2->arg_types[3] = &ffi_type_sint32;
+  ff_2->arg_types[4] = &ffi_type_double;
+  ff_2->arg_types[5] = &ffi_type_double;
+  ff_2->arg_types[6] = &ffi_type_pointer;
+  ff_2->arg_types[7] = &ffi_type_pointer;
+  ff_2->arg_types[8] = &ffi_type_pointer;
+  ff_2->arg_types[9] = &ffi_type_pointer;
+  ff_2->arg_types[10] = &ffi_type_pointer;
+  ff_2->arg_types[11] = &ffi_type_pointer;
+  ff_2->arg_types[12] = NULL;
+
   /*          device 0
-   * loop 0   gemm_cuda
-   * matrix 1 x 1.
+   * loop 0   mm2Cuda_1
+   * loop 1   mm2Cuda_2
+   * matrix 2 x 1.
   */
   fprintf(stderr, "Creating table of target functions.\n");
-  int nloops = 1;
+  int nloops = 2;
   int ndevices = 1;
 
   if (create_target_functions_table(&table, nloops, ndevices)) {
@@ -510,6 +528,7 @@ int main(int argc, char **argv) {
 
     fprintf(stderr, "Declaring function in 0,0.\n");
     table[0][0][0] = *ff_1;
+    table[1][0][0] = *ff_2;
 
     TablePointerFunctions = table;
     assert(TablePointerFunctions != NULL);
@@ -520,7 +539,6 @@ int main(int argc, char **argv) {
   init_array(ni, nj, nk, nl, &alpha, &beta, POLYBENCH_ARRAY(A),
              POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(D));
   
-
   fprintf(stderr, "Calling gemm_original.\n");
   mm_original(ni, nj, nk, nl, alpha, beta, POLYBENCH_ARRAY(tmp), POLYBENCH_ARRAY(A),
           POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(D));
@@ -558,6 +576,15 @@ int main(int argc, char **argv) {
   POLYBENCH_FREE_ARRAY(D);
   POLYBENCH_FREE_ARRAY(D_outputFromOMP);
   POLYBENCH_FREE_ARRAY(D_outputFromGpu);
+
+
+  if(gpu_data_allocated){
+  	cudaFree(tmp_gpu);
+  	cudaFree(A_gpu);
+  	cudaFree(B_gpu);
+  	cudaFree(C_gpu);
+  	cudaFree(D_gpu);	
+  }
 
   return 0;
 }
