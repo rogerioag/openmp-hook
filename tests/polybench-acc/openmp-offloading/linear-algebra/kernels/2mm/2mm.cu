@@ -32,6 +32,16 @@
 
 #define RUN_ON_CPU
 
+/* GPU pointers now as global to be shared between kernels. */
+DATA_TYPE *tmp_gpu;
+DATA_TYPE *A_gpu;
+DATA_TYPE *B_gpu;
+DATA_TYPE *C_gpu;
+DATA_TYPE *D_gpu;
+
+// If data pointer was allocated in GPU Memory.
+bool gpu_data_allocated = false;
+
 /* ------------------------------------------------------------- */
 /* Arrays initialization. */
 void init_array(int ni, int nj, int nk, int nl, DATA_TYPE *alpha,
@@ -235,6 +245,7 @@ void mm_omp(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
 /* ------------------------------------------------------------- */
 /* CUDA Version. */
 void GPU_argv_init() {
+  fprintf(stderr, "GPU init.\n");
   cudaDeviceProp deviceProp;
   cudaGetDeviceProperties(&deviceProp, GPU_DEVICE);
   printf("setting device %d with name %s\n", GPU_DEVICE, deviceProp.name);
@@ -274,7 +285,84 @@ __global__ void mm2_kernel2(int ni, int nj, int nk, int nl, DATA_TYPE alpha,
 }
 
 /* ------------------------------------------------------------- */
-void mm2Cuda(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
+void GPU_data_allocation(void){
+  fprintf(stderr, "GPU_data_allocation.\n");
+
+  if(! gpu_data_allocated){
+    cudaMalloc((void **)&tmp_gpu, sizeof(DATA_TYPE) * NI * NJ);
+    cudaMalloc((void **)&A_gpu, sizeof(DATA_TYPE) * NI * NK);
+    cudaMalloc((void **)&B_gpu, sizeof(DATA_TYPE) * NK * NJ);
+    cudaMalloc((void **)&C_gpu, sizeof(DATA_TYPE) * NL * NJ);
+    cudaMalloc((void **)&D_gpu, sizeof(DATA_TYPE) * NI * NL);
+  }
+}
+
+void GPU_data_copy(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
+             DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
+             DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
+             DATA_TYPE POLYBENCH_2D(C, NL, NJ, nl, nj),
+             DATA_TYPE POLYBENCH_2D(D, NI, NL, ni, nl)){
+
+  fprintf(stderr, "GPU_data_copy.\n");
+
+  if(! gpu_data_copied){
+    cudaMemcpy(tmp_gpu, tmp, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
+    cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NK, cudaMemcpyHostToDevice);
+    cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NK * NJ, cudaMemcpyHostToDevice);
+    cudaMemcpy(C_gpu, C, sizeof(DATA_TYPE) * NL * NJ, cudaMemcpyHostToDevice);
+    cudaMemcpy(D_gpu, D, sizeof(DATA_TYPE) * NI * NL, cudaMemcpyHostToDevice);
+  }
+}
+
+
+/* ------------------------------------------------------------- */
+/* A caller for each kernel, because OMP generate two for loops structures. 
+ * Put the gpu pointer as global, to verify allocations and copies.
+*/
+void mm2Cuda_1(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
+             DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
+             DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
+             DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
+             DATA_TYPE POLYBENCH_2D(C, NL, NJ, nl, nj),
+             DATA_TYPE POLYBENCH_2D(D, NI, NL, ni, nl),
+             DATA_TYPE POLYBENCH_2D(D_outputFromGpu, NI, NL, ni, nl)) {
+  fprintf(stderr, "mm2Cuda_1.\n");
+  
+  GPU_argv_init();
+
+  GPU_data_allocation();
+
+  GPU_data_copy();
+
+  dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
+  dim3 grid1((size_t)ceil(((float)NJ) / ((float)block.x)),
+             (size_t)ceil(((float)NI) / ((float)block.y)));
+  dim3 grid2((size_t)ceil(((float)NL) / ((float)block.x)),
+             (size_t)ceil(((float)NI) / ((float)block.y)));
+
+  /* Start timer. */
+  polybench_start_instruments;
+
+  mm2_kernel1<<<grid1, block>>>(ni, nj, nk, nl, alpha, beta, tmp_gpu, A_gpu,
+                                B_gpu);
+  cudaThreadSynchronize();
+  
+  printf("GPU Time in seconds:\n");
+  polybench_stop_instruments;
+  polybench_print_instruments;
+
+  cudaMemcpy(D_outputFromGpu, D_gpu, sizeof(DATA_TYPE) * NI * NL,
+             cudaMemcpyDeviceToHost);
+
+  cudaFree(tmp_gpu);
+  cudaFree(A_gpu);
+  cudaFree(B_gpu);
+  cudaFree(C_gpu);
+  cudaFree(D_gpu);
+}
+
+/* ------------------------------------------------------------- */
+void mm2Cuda_2(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
              DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
              DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
              DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
@@ -372,7 +460,7 @@ int main(int argc, char **argv) {
   ff_1->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
   ff_1->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
 
-  ff_1->f = &mm2Cuda;
+  ff_1->f = &mm2Cuda_1;
   memset(&ff_1->ret_value, 0, sizeof(ff_1->ret_value));
 
   // return type.
@@ -450,7 +538,7 @@ int main(int argc, char **argv) {
   compareResults(ni, nl, POLYBENCH_ARRAY(D), POLYBENCH_ARRAY(D_outputFromOMP));
 
   fprintf(stderr, "Calling gemm_cuda.\n");  
-  mm2Cuda(ni, nj, nk, nl, alpha, beta, POLYBENCH_ARRAY(tmp), POLYBENCH_ARRAY(A),
+  mm2Cuda_1(ni, nj, nk, nl, alpha, beta, POLYBENCH_ARRAY(tmp), POLYBENCH_ARRAY(A),
           POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(D),
           POLYBENCH_ARRAY(D_outputFromGpu));
 
