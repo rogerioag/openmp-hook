@@ -620,4 +620,6 @@ int main(int argc, char **argv) {
   return 0;
 }
 
+#undef _OPENMP
+
 #include <polybench.c>
