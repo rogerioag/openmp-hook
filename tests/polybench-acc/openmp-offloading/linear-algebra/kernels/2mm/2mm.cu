@@ -553,10 +553,10 @@ int main(int argc, char **argv) {
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, nl, POLYBENCH_ARRAY(D), POLYBENCH_ARRAY(D_outputFromOMP));
 
-  fprintf(stderr, "Calling gemm_cuda.\n");  
-  mm2Cuda_1(ni, nj, nk, nl, alpha, beta, POLYBENCH_ARRAY(tmp), POLYBENCH_ARRAY(A),
-          POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(D),
-          POLYBENCH_ARRAY(D_outputFromGpu));
+  // fprintf(stderr, "Calling gemm_cuda.\n");  
+  // mm2Cuda_1(ni, nj, nk, nl, alpha, beta, POLYBENCH_ARRAY(tmp), POLYBENCH_ARRAY(A), 
+  //        POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(D),
+  //        POLYBENCH_ARRAY(D_outputFromGpu));
 
   // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
   // call_function_ffi_call(table[0][0]);
