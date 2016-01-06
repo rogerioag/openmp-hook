@@ -373,7 +373,7 @@ void mm2Cuda_2(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
 
   GPU_data_allocation();
 
-  GPU_data_copy();
+  GPU_data_copy(tmp, A, B, C, D);
 
   dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
   
