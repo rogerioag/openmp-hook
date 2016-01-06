@@ -41,6 +41,7 @@ DATA_TYPE *D_gpu;
 
 // If data pointer was allocated in GPU Memory.
 bool gpu_data_allocated = false;
+bool gpu_data_copied = false;
 
 /* ------------------------------------------------------------- */
 /* Arrays initialization. */
