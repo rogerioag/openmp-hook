@@ -178,71 +178,71 @@ void mm_original(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta
 /* OMP Version. */
 /* Main computational kernel. The whole function will be timed,
    including the call and return. */
-static
-void kernel_2mm(int ni, int nj, int nk, int nl,
-		DATA_TYPE alpha,
-		DATA_TYPE beta,
-		DATA_TYPE POLYBENCH_2D(tmp,NI,NJ,ni,nj),
-		DATA_TYPE POLYBENCH_2D(A,NI,NK,ni,nk),
-		DATA_TYPE POLYBENCH_2D(B,NK,NJ,nk,nj),
-		DATA_TYPE POLYBENCH_2D(C,NL,NJ,nl,nj),
-		DATA_TYPE POLYBENCH_2D(D,NI,NL,ni,nl))
-{
-  int i, j, k;
-  #pragma scop
-  /* D := alpha*A*B*C + beta*D */
-  #pragma omp parallel
-  {
-  	current_loop_index = 0;
-    #pragma omp for private(j, k) schedule(runtime)
-    for (i = 0; i < _PB_NI; i++){
-      for (j = 0; j < _PB_NJ; j++){
-    	tmp[i][j] = 0;
-  	  	for (k = 0; k < _PB_NK; ++k){
-	    	tmp[i][j] += alpha * A[i][k] * B[k][j];
-        }
-      }
-    }
-    current_loop_index = 1;
-    #pragma omp for private(j, k) schedule(runtime)
-    for (i = 0; i < _PB_NI; i++){
-      for (j = 0; j < _PB_NL; j++){
-	  	D[i][j] *= beta;
-	  	for (k = 0; k < _PB_NJ; ++k){
-	    	D[i][j] += tmp[i][k] * C[k][j];
-	    }
-	  }
-	}
-  }
-  #pragma endscop
-}
+// static
+// void kernel_2mm(int ni, int nj, int nk, int nl,
+// 		DATA_TYPE alpha,
+// 		DATA_TYPE beta,
+// 		DATA_TYPE POLYBENCH_2D(tmp,NI,NJ,ni,nj),
+// 		DATA_TYPE POLYBENCH_2D(A,NI,NK,ni,nk),
+// 		DATA_TYPE POLYBENCH_2D(B,NK,NJ,nk,nj),
+// 		DATA_TYPE POLYBENCH_2D(C,NL,NJ,nl,nj),
+// 		DATA_TYPE POLYBENCH_2D(D,NI,NL,ni,nl))
+// {
+//   int i, j, k;
+//   #pragma scop
+//   /* D := alpha*A*B*C + beta*D */
+//   #pragma omp parallel
+//   {
+//   	current_loop_index = 0;
+//     #pragma omp for private(j, k) schedule(runtime)
+//     for (i = 0; i < _PB_NI; i++){
+//       for (j = 0; j < _PB_NJ; j++){
+//     	tmp[i][j] = 0;
+//   	  	for (k = 0; k < _PB_NK; ++k){
+// 	    	tmp[i][j] += alpha * A[i][k] * B[k][j];
+//         }
+//       }
+//     }
+//     current_loop_index = 1;
+//     #pragma omp for private(j, k) schedule(runtime)
+//     for (i = 0; i < _PB_NI; i++){
+//       for (j = 0; j < _PB_NL; j++){
+// 	  	D[i][j] *= beta;
+// 	  	for (k = 0; k < _PB_NJ; ++k){
+// 	    	D[i][j] += tmp[i][k] * C[k][j];
+// 	    }
+// 	  }
+// 	}
+//   }
+//   #pragma endscop
+// }
 
-/* ------------------------------------------------------------- */
-/* OMP Version. */
-void mm_omp(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
-             DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
-             DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
-             DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
-             DATA_TYPE POLYBENCH_2D(C, NL, NJ, nl, nj),
-             DATA_TYPE POLYBENCH_2D(D, NI, NL, ni, nl)) {
+// /* ------------------------------------------------------------- */
+// /* OMP Version. */
+// void mm_omp(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
+//              DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
+//              DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
+//              DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
+//              DATA_TYPE POLYBENCH_2D(C, NL, NJ, nl, nj),
+//              DATA_TYPE POLYBENCH_2D(D, NI, NL, ni, nl)) {
   
-  /* Start timer. */
-  polybench_start_instruments;
+//   /* Start timer. */
+//   polybench_start_instruments;
 
-  /* Run kernel. */
-  kernel_2mm (ni, nj, nk, nl,
-	      alpha, beta,
-	      tmp,
-	      A,
-	      B,
-	      C,
-	      D);
+//   /* Run kernel. */
+//   kernel_2mm (ni, nj, nk, nl,
+// 	      alpha, beta,
+// 	      tmp,
+// 	      A,
+// 	      B,
+// 	      C,
+// 	      D);
 
-  /* Stop and print timer. */
-  printf("CPU OMP Time in seconds:\n");
-  polybench_stop_instruments;
-  polybench_print_instruments;
-}
+//   /* Stop and print timer. */
+//   printf("CPU OMP Time in seconds:\n");
+//   polybench_stop_instruments;
+//   polybench_print_instruments;
+// }
 
 /* ------------------------------------------------------------- */
 /* CUDA Version. */
@@ -570,7 +570,7 @@ int main(int argc, char **argv) {
   mm_original(ni, nj, nk, nl, alpha, beta, POLYBENCH_ARRAY(tmp), POLYBENCH_ARRAY(A),
           POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(D));
 
-  fprintf(stderr, "Calling gemm_omp.\n");
+  // fprintf(stderr, "Calling gemm_omp.\n");
   /*mm_omp(ni, nj, nk, nl,
 	      alpha, beta,
 	      POLYBENCH_ARRAY(tmp),
