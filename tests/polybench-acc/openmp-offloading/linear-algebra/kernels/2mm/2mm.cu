@@ -319,14 +319,11 @@ void GPU_data_copy(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
 }
 
 /* ------------------------------------------------------------- */
-void GPU_data_copy_back(DATA_TYPE POLYBENCH_2D(D_outputFromGpu, NI, NL, ni, nl))
+void GPU_data_copy_back(DATA_TYPE POLYBENCH_2D(D_outputFromGpu, NI, NL, ni, nl)){
 
 cudaMemcpy(D_outputFromGpu, D_gpu, sizeof(DATA_TYPE) * NI * NL,
              cudaMemcpyDeviceToHost);
-
 }
-
-
 
 /* ------------------------------------------------------------- */
 /* A caller for each kernel, because OMP generate two for loops structures. 
