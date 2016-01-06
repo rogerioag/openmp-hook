@@ -383,7 +383,7 @@ void mm2Cuda_2(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
              DATA_TYPE POLYBENCH_2D(D, NI, NL, ni, nl),
              DATA_TYPE POLYBENCH_2D(D_outputFromGpu, NI, NL, ni, nl)) {
   
-  GPU_argv_init();
+  // GPU_argv_init();
 
   GPU_data_allocation();
 
