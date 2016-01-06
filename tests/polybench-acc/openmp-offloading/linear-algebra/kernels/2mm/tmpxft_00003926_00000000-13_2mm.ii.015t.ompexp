@@ -1,0 +1,2549 @@
+
+;; Function void __nv_save_fatbinhandle_for_managed_rt(void**) (_ZL37__nv_save_fatbinhandle_for_managed_rtPPv, funcdef_no=0, decl_uid=2204, cgraph_uid=0)
+
+void __nv_save_fatbinhandle_for_managed_rt(void**) (void * * in)
+{
+  <bb 2>:
+  __nv_fatbinhandle_for_managed_rt = in;
+  return;
+
+}
+
+
+
+;; Function void kernel_2mm(int, int, int, int, double, double, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (_ZL10kernel_2mmiiiiddPA1024_dS0_S0_S0_S0_, funcdef_no=3146, decl_uid=48046, cgraph_uid=3008)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 12: gimple_omp_for
+    bb 19: GIMPLE_OMP_CONTINUE
+    bb 20: GIMPLE_OMP_RETURN
+    bb 3: gimple_omp_for
+    bb 10: GIMPLE_OMP_CONTINUE
+    bb 11: GIMPLE_OMP_RETURN
+bb 21: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 28
+Merging blocks 2 and 22
+void kernel_2mm(int, int, int, int, double, double, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (int ni, int nj, int nk, int nl, double alpha, double beta, double[1024] * tmp, double[1024] * A, double[1024] * B, double[1024] * C, double[1024] * D)
+{
+  bool D.49384;
+  long int .iend0.73;
+  int D.49383;
+  long int .istart0.72;
+  long int D.49379;
+  bool D.49380;
+  long int .iend0.71;
+  long int .istart0.70;
+  bool D.49376;
+  long int .iend0.69;
+  int D.49375;
+  long int .istart0.68;
+  long int D.49371;
+  bool D.49372;
+  long int .iend0.67;
+  long int .istart0.66;
+  int k;
+  int j;
+  int i;
+  int D.49078;
+  int k;
+  int j;
+  int i;
+  int D.49068;
+  int k;
+  int j;
+  int i;
+  struct .omp_data_s.6 .omp_data_o.7;
+  int D.49077;
+  int D.49076;
+  double[1024] * D.49075;
+  double[1024] * D.49074;
+  double[1024] * D.49073;
+  double[1024] * D.49072;
+  double D.49071;
+  double[1024] * D.49070;
+  double[1024] * D.49069;
+  int D.49067;
+  int D.49066;
+  double[1024] * D.49065;
+  double D.49064;
+  double[1024] * D.49063;
+  double[1024] * D.49062;
+  double[1024] * D.49061;
+  double[1024] * D.49060;
+
+  <bb 2>:
+  .omp_data_o.7.alpha = alpha;
+  .omp_data_o.7.beta = beta;
+  .omp_data_o.7.tmp = tmp;
+  .omp_data_o.7.A = A;
+  .omp_data_o.7.B = B;
+  .omp_data_o.7.C = C;
+  .omp_data_o.7.D = D;
+  .omp_data_o.7.ni = ni;
+  .omp_data_o.7.nj = nj;
+  .omp_data_o.7.nk = nk;
+  .omp_data_o.7.nl = nl;
+  __builtin_GOMP_parallel_start (_ZL10kernel_2mmiiiiddPA1024_dS0_S0_S0_S0_._omp_fn.0, &.omp_data_o.7, 0);
+  _ZL10kernel_2mmiiiiddPA1024_dS0_S0_S0_S0_._omp_fn.0 (&.omp_data_o.7);
+  __builtin_GOMP_parallel_end ();
+  alpha = .omp_data_o.7.alpha;
+  beta = .omp_data_o.7.beta;
+  tmp = .omp_data_o.7.tmp;
+  A = .omp_data_o.7.A;
+  B = .omp_data_o.7.B;
+  C = .omp_data_o.7.C;
+  D = .omp_data_o.7.D;
+  ni = .omp_data_o.7.ni;
+  nj = .omp_data_o.7.nj;
+  nk = .omp_data_o.7.nk;
+  nl = .omp_data_o.7.nl;
+  return;
+
+}
+
+
+
+;; Function void ____nv_dummy_param_ref(void*) (_ZL22____nv_dummy_param_refPv, funcdef_no=3160, decl_uid=48485, cgraph_uid=3021)
+
+void ____nv_dummy_param_ref(void*) (void * param)
+{
+  static volatile void * * __ref;
+
+  <bb 2>:
+  __ref = param;
+  return;
+
+}
+
+
+
+;; Function void print_array(int, int, double (*)[1024]) (_ZL11print_arrayiiPA1024_d, funcdef_no=3143, decl_uid=47970, cgraph_uid=3005)
+
+void print_array(int, int, double (*)[1024]) (int ni, int nl, double[1024] * D)
+{
+  int j;
+  int i;
+  int D.49207;
+  int D.49206;
+  int D.49205;
+  struct _IO_FILE * stderr.35;
+  double D.49203;
+  double[1024] * D.49202;
+  long unsigned int D.49201;
+  long unsigned int D.49200;
+
+  <bb 2>:
+  i = 0;
+  goto <bb 9>;
+
+  <bb 3>:
+  j = 0;
+  goto <bb 7>;
+
+  <bb 4>:
+  D.49200 = (long unsigned int) i;
+  D.49201 = D.49200 * 8192;
+  D.49202 = D + D.49201;
+  D.49203 = *D.49202[j];
+  stderr.35 = stderr;
+  fprintf (stderr.35, "%0.2lf ", D.49203);
+  D.49205 = i * ni;
+  D.49206 = D.49205 + j;
+  D.49207 = D.49206 % 20;
+  if (D.49207 == 0)
+    goto <bb 5>;
+  else
+    goto <bb 6>;
+
+  <bb 5>:
+  stderr.35 = stderr;
+  __builtin_fputc (10, stderr.35);
+
+  <bb 6>:
+  j = j + 1;
+
+  <bb 7>:
+  if (j < nl)
+    goto <bb 4>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  i = i + 1;
+
+  <bb 9>:
+  if (i < ni)
+    goto <bb 3>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  stderr.35 = stderr;
+  __builtin_fputc (10, stderr.35);
+  return;
+
+}
+
+
+
+;; Function double rtclock() (_ZL7rtclockv, funcdef_no=3151, decl_uid=48448, cgraph_uid=3013)
+
+double rtclock() ()
+{
+  int stat;
+  struct timeval Tp;
+  double D.49246;
+  double D.49245;
+  long int D.49244;
+  double D.49243;
+  long int D.49242;
+  double D.49241;
+
+  <bb 2>:
+  stat = gettimeofday (&Tp, 0B);
+  if (stat != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  printf ("Error return from gettimeofday: %d", stat);
+
+  <bb 4>:
+  D.49242 = Tp.tv_sec;
+  D.49243 = (double) D.49242;
+  D.49244 = Tp.tv_usec;
+  D.49245 = (double) D.49244;
+  D.49246 = D.49245 * 9.99999999999999954748111825886258685613938723690807819366e-7;
+  D.49241 = D.49243 + D.49246;
+  Tp = {CLOBBER};
+  return D.49241;
+
+<L5>:
+  Tp = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function void* xmalloc(size_t) (_ZL7xmallocm, funcdef_no=3157, decl_uid=48469, cgraph_uid=3019)
+
+void* xmalloc(size_t) (size_t num)
+{
+  int ret;
+  void * newA;
+  void * D.49264;
+  struct _IO_FILE * stderr.43;
+  void * newA.42;
+
+  <bb 2>:
+  newA = 0B;
+  ret = posix_memalign (&newA, 32, num);
+  newA.42 = newA;
+  if (newA.42 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  if (ret != 0)
+    goto <bb 4>;
+  else
+    goto <bb 6>;
+
+  <bb 4>:
+  stderr.43 = stderr;
+  __builtin_fwrite ("[PolyBench] posix_memalign: cannot allocate memory", 1, 50, stderr.43);
+
+  <bb 5>:
+  exit (1);
+
+  <bb 6>:
+  D.49264 = newA;
+  newA = {CLOBBER};
+  return D.49264;
+
+<L5>:
+  newA = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function void __cudaUnregisterBinaryUtil() (_ZL26__cudaUnregisterBinaryUtilv, funcdef_no=3161, decl_uid=48549, cgraph_uid=3022)
+
+void __cudaUnregisterBinaryUtil() ()
+{
+  void * * __cudaFatCubinHandle.64;
+
+  <bb 2>:
+  ____nv_dummy_param_ref (&__cudaFatCubinHandle);
+  __cudaFatCubinHandle.64 = __cudaFatCubinHandle;
+  __cudaUnregisterFatBinary (__cudaFatCubinHandle.64);
+  return;
+
+}
+
+
+
+;; Function void __nv_cudaEntityRegisterCallback(void**) (_ZL31__nv_cudaEntityRegisterCallbackPPv, funcdef_no=3195, decl_uid=48759, cgraph_uid=3056)
+
+void __nv_cudaEntityRegisterCallback(void**) (void * * __T210)
+{
+  static volatile void * * __ref;
+
+  <bb 2>:
+  __ref = __T210;
+  __nv_save_fatbinhandle_for_managed_rt (__T210);
+  __cudaRegisterFunction (__T210, mm2_kernel2, "_Z11mm2_kernel2iiiiddPdS_S_", "_Z11mm2_kernel2iiiiddPdS_S_", -1, 0B, 0B, 0B, 0B, 0B);
+  __cudaRegisterFunction (__T210, mm2_kernel1, "_Z11mm2_kernel1iiiiddPdS_S_", "_Z11mm2_kernel1iiiiddPdS_S_", -1, 0B, 0B, 0B, 0B, 0B);
+  return;
+
+}
+
+
+
+;; Function dim3::dim3(unsigned int, unsigned int, unsigned int) (_ZN4dim3C2Ejjj, funcdef_no=3, decl_uid=3003, cgraph_uid=3)
+
+dim3::dim3(unsigned int, unsigned int, unsigned int) (struct dim3 * const this, unsigned int vx, unsigned int vy, unsigned int vz)
+{
+  <bb 2>:
+  this->x = vx;
+  this->y = vy;
+  this->z = vz;
+  return;
+
+}
+
+
+
+;; Function float std::ceil(float) (_ZSt4ceilf, funcdef_no=139, decl_uid=8260, cgraph_uid=131)
+
+float std::ceil(float) (float __x)
+{
+  float D.49116;
+
+  <bb 2>:
+  D.49116 = __builtin_ceilf (__x);
+  return D.49116;
+
+}
+
+
+
+;; Function float absVal(float) (_Z6absValf, funcdef_no=3133, decl_uid=47339, cgraph_uid=2995)
+
+float absVal(float) (float a)
+{
+  float D.48876;
+
+  <bb 2>:
+  if (a < 0.0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  D.48876 = -a;
+  goto <bb 5>;
+
+  <bb 4>:
+  D.48876 = a;
+
+  <bb 5>:
+  return D.48876;
+
+}
+
+
+
+;; Function float percentDiff(double, double) (_Z11percentDiffdd, funcdef_no=3134, decl_uid=47343, cgraph_uid=2996)
+
+float percentDiff(double, double) (double val1, double val2)
+{
+  float D.48900;
+  float D.48899;
+  float D.48898;
+  float D.48897;
+  double D.48896;
+  float D.48895;
+  float D.48894;
+  double D.48893;
+  float D.48892;
+  double D.48888;
+  float D.48887;
+  float D.48886;
+  double D.48884;
+  float D.48883;
+  float D.48882;
+  bool iftmp.1;
+  bool retval.0;
+
+  <bb 2>:
+  D.48882 = (float) val1;
+  D.48883 = absVal (D.48882);
+  D.48884 = (double) D.48883;
+  if (D.48884 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 3>:
+  D.48886 = (float) val2;
+  D.48887 = absVal (D.48886);
+  D.48888 = (double) D.48887;
+  if (D.48888 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  iftmp.1 = 1;
+  goto <bb 6>;
+
+  <bb 5>:
+  iftmp.1 = 0;
+
+  <bb 6>:
+  retval.0 = iftmp.1;
+  if (retval.0 != 0)
+    goto <bb 7>;
+  else
+    goto <bb 8>;
+
+  <bb 7>:
+  D.48892 = 0.0;
+  goto <bb 9>;
+
+  <bb 8>:
+  D.48893 = val1 - val2;
+  D.48894 = (float) D.48893;
+  D.48895 = absVal (D.48894);
+  D.48896 = val1 + 9.99999993922529029077850282192230224609375e-9;
+  D.48897 = (float) D.48896;
+  D.48898 = absVal (D.48897);
+  D.48899 = D.48895 / D.48898;
+  D.48900 = absVal (D.48899);
+  D.48892 = D.48900 * 1.0e+2;
+
+  <bb 9>:
+  return D.48892;
+
+}
+
+
+
+;; Function bool create_target_functions_table(Func****, int, int) (_Z29create_target_functions_tablePPPP4Funcii, funcdef_no=3139, decl_uid=47886, cgraph_uid=3001)
+
+bool create_target_functions_table(Func****, int, int) (struct Func * * * * table_, int nrows, int ncolumns)
+{
+  int j;
+  int i;
+  bool result;
+  struct Func * * * table;
+  bool D.48922;
+  void * D.48919;
+  struct Func * * D.48918;
+  long unsigned int D.48917;
+  long unsigned int D.48916;
+  struct Func * * D.48913;
+  void * D.48912;
+  long unsigned int D.48911;
+  long unsigned int D.48910;
+  struct Func * * * D.48909;
+  long unsigned int D.48908;
+  long unsigned int D.48907;
+  long unsigned int D.48904;
+  long unsigned int D.48903;
+  struct _IO_FILE * stderr.2;
+
+  <bb 2>:
+  result = 1;
+  stderr.2 = stderr;
+  __builtin_fwrite ("Allocating the rows.\n", 1, 21, stderr.2);
+  D.48903 = (long unsigned int) nrows;
+  D.48904 = D.48903 * 8;
+  table = malloc (D.48904);
+  if (table != 0B)
+    goto <bb 3>;
+  else
+    goto <bb 11>;
+
+  <bb 3>:
+  stderr.2 = stderr;
+  __builtin_fwrite ("Allocating the columns.\n", 1, 24, stderr.2);
+  i = 0;
+  goto <bb 10>;
+
+  <bb 4>:
+  D.48907 = (long unsigned int) i;
+  D.48908 = D.48907 * 8;
+  D.48909 = table + D.48908;
+  D.48910 = (long unsigned int) ncolumns;
+  D.48911 = D.48910 * 8;
+  D.48912 = malloc (D.48911);
+  *D.48909 = D.48912;
+  D.48907 = (long unsigned int) i;
+  D.48908 = D.48907 * 8;
+  D.48909 = table + D.48908;
+  D.48913 = *D.48909;
+  if (D.48913 != 0B)
+    goto <bb 5>;
+  else
+    goto <bb 8>;
+
+  <bb 5>:
+  j = 0;
+  goto <bb 7>;
+
+  <bb 6>:
+  D.48907 = (long unsigned int) i;
+  D.48908 = D.48907 * 8;
+  D.48909 = table + D.48908;
+  D.48913 = *D.48909;
+  D.48916 = (long unsigned int) j;
+  D.48917 = D.48916 * 8;
+  D.48918 = D.48913 + D.48917;
+  D.48919 = malloc (48);
+  *D.48918 = D.48919;
+  j = j + 1;
+
+  <bb 7>:
+  if (j < ncolumns)
+    goto <bb 6>;
+  else
+    goto <bb 9>;
+
+  <bb 8>:
+  stderr.2 = stderr;
+  __builtin_fwrite ("Error in table of target functions allocation (columns).\n", 1, 57, stderr.2);
+  result = 0;
+
+  <bb 9>:
+  i = i + 1;
+
+  <bb 10>:
+  if (i < nrows)
+    goto <bb 4>;
+  else
+    goto <bb 12>;
+
+  <bb 11>:
+  stderr.2 = stderr;
+  __builtin_fwrite ("Error in table of target functions allocation (rows).\n", 1, 54, stderr.2);
+  result = 0;
+
+  <bb 12>:
+  stderr.2 = stderr;
+  __builtin_fwrite ("Allocating the columns is OK.\n", 1, 30, stderr.2);
+  *table_ = table;
+  D.48922 = result;
+  return D.48922;
+
+}
+
+
+
+;; Function void call_function_ffi_call(Func*) (_Z22call_function_ffi_callP4Func, funcdef_no=3140, decl_uid=47901, cgraph_uid=3002)
+
+void call_function_ffi_call(Func*) (struct Func * ff)
+{
+  ffi_status D.48937;
+  struct ffi_cif cif;
+  void (*<T18c2>) (void) D.48936;
+  void * D.48935;
+  void * D.48934;
+  void * * D.48933;
+  ffi_status D.48930;
+  unsigned int D.48929;
+  int D.48928;
+  struct ffi_type * D.48927;
+  struct ffi_type * * D.48926;
+  bool retval.4;
+  struct _IO_FILE * stderr.3;
+
+  <bb 2>:
+  stderr.3 = stderr;
+  __builtin_fwrite (" In call_function_ffi_call.\n", 1, 28, stderr.3);
+
+  <bb 3>:
+  D.48926 = ff->arg_types;
+  D.48927 = ff->ret_type;
+  D.48928 = ff->nargs;
+  D.48929 = (unsigned int) D.48928;
+  D.48937 = ffi_prep_cif (&cif, 2, D.48929, D.48927, D.48926);
+
+  <bb 4>:
+  D.48930 = D.48937;
+  retval.4 = D.48930 != 0;
+  if (retval.4 != 0)
+    goto <bb 5>;
+  else
+    goto <bb 7>;
+
+  <bb 5>:
+  stderr.3 = stderr;
+  __builtin_fwrite ("Error ffi_prep_cif.\n", 1, 20, stderr.3);
+
+  <bb 6>:
+  exit (1);
+
+  <bb 7>:
+  D.48933 = ff->arg_values;
+  D.48934 = ff->ret_value;
+  D.48935 = ff->f;
+  D.48936 = (void (*<T18c2>) (void)) D.48935;
+  ffi_call (&cif, D.48936, D.48934, D.48933);
+
+  <bb 8>:
+  cif = {CLOBBER};
+  return;
+
+<L2>:
+  cif = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function void init_array(int, int, int, int, double*, double*, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (_Z10init_arrayiiiiPdS_PA1024_dS1_S1_S1_, funcdef_no=3141, decl_uid=47914, cgraph_uid=3003)
+
+void init_array(int, int, int, int, double*, double*, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (int ni, int nj, int nk, int nl, double * alpha, double * beta, double[1024] * A, double[1024] * B, double[1024] * C, double[1024] * D)
+{
+  int j;
+  int i;
+  double D.48961;
+  double D.48960;
+  double D.48959;
+  int D.48958;
+  double[1024] * D.48957;
+  double D.48956;
+  double D.48955;
+  double D.48954;
+  int D.48953;
+  double[1024] * D.48952;
+  double D.48951;
+  double D.48950;
+  double D.48949;
+  int D.48948;
+  double[1024] * D.48947;
+  double D.48946;
+  double D.48945;
+  double D.48944;
+  double D.48943;
+  double[1024] * D.48942;
+  long unsigned int D.48941;
+  long unsigned int D.48940;
+
+  <bb 2>:
+  *alpha = 3.2412e+4;
+  *beta = 2.123e+3;
+  i = 0;
+  goto <bb 7>;
+
+  <bb 3>:
+  j = 0;
+  goto <bb 5>;
+
+  <bb 4>:
+  D.48940 = (long unsigned int) i;
+  D.48941 = D.48940 * 8192;
+  D.48942 = A + D.48941;
+  D.48943 = (double) i;
+  D.48944 = (double) j;
+  D.48945 = D.48943 * D.48944;
+  D.48946 = D.48945 * 9.765625e-4;
+  *D.48942[j] = D.48946;
+  j = j + 1;
+
+  <bb 5>:
+  if (j < nk)
+    goto <bb 4>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  i = i + 1;
+
+  <bb 7>:
+  if (i < ni)
+    goto <bb 3>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  i = 0;
+  goto <bb 13>;
+
+  <bb 9>:
+  j = 0;
+  goto <bb 11>;
+
+  <bb 10>:
+  D.48940 = (long unsigned int) i;
+  D.48941 = D.48940 * 8192;
+  D.48947 = B + D.48941;
+  D.48943 = (double) i;
+  D.48948 = j + 1;
+  D.48949 = (double) D.48948;
+  D.48950 = D.48943 * D.48949;
+  D.48951 = D.48950 * 9.765625e-4;
+  *D.48947[j] = D.48951;
+  j = j + 1;
+
+  <bb 11>:
+  if (j < nj)
+    goto <bb 10>;
+  else
+    goto <bb 12>;
+
+  <bb 12>:
+  i = i + 1;
+
+  <bb 13>:
+  if (i < nk)
+    goto <bb 9>;
+  else
+    goto <bb 14>;
+
+  <bb 14>:
+  i = 0;
+  goto <bb 19>;
+
+  <bb 15>:
+  j = 0;
+  goto <bb 17>;
+
+  <bb 16>:
+  D.48940 = (long unsigned int) i;
+  D.48941 = D.48940 * 8192;
+  D.48952 = C + D.48941;
+  D.48943 = (double) i;
+  D.48953 = j + 3;
+  D.48954 = (double) D.48953;
+  D.48955 = D.48943 * D.48954;
+  D.48956 = D.48955 * 9.765625e-4;
+  *D.48952[j] = D.48956;
+  j = j + 1;
+
+  <bb 17>:
+  if (j < nj)
+    goto <bb 16>;
+  else
+    goto <bb 18>;
+
+  <bb 18>:
+  i = i + 1;
+
+  <bb 19>:
+  if (i < nl)
+    goto <bb 15>;
+  else
+    goto <bb 20>;
+
+  <bb 20>:
+  i = 0;
+  goto <bb 25>;
+
+  <bb 21>:
+  j = 0;
+  goto <bb 23>;
+
+  <bb 22>:
+  D.48940 = (long unsigned int) i;
+  D.48941 = D.48940 * 8192;
+  D.48957 = D + D.48941;
+  D.48943 = (double) i;
+  D.48958 = j + 2;
+  D.48959 = (double) D.48958;
+  D.48960 = D.48943 * D.48959;
+  D.48961 = D.48960 * 9.765625e-4;
+  *D.48957[j] = D.48961;
+  j = j + 1;
+
+  <bb 23>:
+  if (j < nl)
+    goto <bb 22>;
+  else
+    goto <bb 24>;
+
+  <bb 24>:
+  i = i + 1;
+
+  <bb 25>:
+  if (i < ni)
+    goto <bb 21>;
+  else
+    goto <bb 26>;
+
+  <bb 26>:
+  return;
+
+}
+
+
+
+;; Function void compareResults(int, int, double (*)[1024], double (*)[1024]) (_Z14compareResultsiiPA1024_dS0_, funcdef_no=3142, decl_uid=47954, cgraph_uid=3004)
+
+void compareResults(int, int, double (*)[1024], double (*)[1024]) (int ni, int nl, double[1024] * D, double[1024] * D_outputFromGpu)
+{
+  int fail;
+  int j;
+  int i;
+  double D.48970;
+  float D.48969;
+  double D.48968;
+  double[1024] * D.48967;
+  double D.48966;
+  double[1024] * D.48965;
+  long unsigned int D.48964;
+  long unsigned int D.48963;
+  bool retval.5;
+
+  <bb 2>:
+  fail = 0;
+  i = 0;
+  goto <bb 9>;
+
+  <bb 3>:
+  j = 0;
+  goto <bb 7>;
+
+  <bb 4>:
+  D.48963 = (long unsigned int) i;
+  D.48964 = D.48963 * 8192;
+  D.48965 = D_outputFromGpu + D.48964;
+  D.48966 = *D.48965[j];
+  D.48963 = (long unsigned int) i;
+  D.48964 = D.48963 * 8192;
+  D.48967 = D + D.48964;
+  D.48968 = *D.48967[j];
+  D.48969 = percentDiff (D.48968, D.48966);
+  D.48970 = (double) D.48969;
+  retval.5 = D.48970 > 5.000000000000000277555756156289135105907917022705078125e-2;
+  if (retval.5 != 0)
+    goto <bb 5>;
+  else
+    goto <bb 6>;
+
+  <bb 5>:
+  fail = fail + 1;
+
+  <bb 6>:
+  j = j + 1;
+
+  <bb 7>:
+  if (j < nl)
+    goto <bb 4>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  i = i + 1;
+
+  <bb 9>:
+  if (i < ni)
+    goto <bb 3>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  printf ("Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f Percent: %d\n", 5.000000000000000277555756156289135105907917022705078125e-2, fail);
+  return;
+
+}
+
+
+
+;; Function void mm2_cpu(int, int, int, int, double, double, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (_Z7mm2_cpuiiiiddPA1024_dS0_S0_S0_S0_, funcdef_no=3144, decl_uid=47993, cgraph_uid=3006)
+
+void mm2_cpu(int, int, int, int, double, double, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (int ni, int nj, int nk, int nl, double alpha, double beta, double[1024] * tmp, double[1024] * A, double[1024] * B, double[1024] * C, double[1024] * D)
+{
+  int k;
+  int j;
+  int i;
+  double D.48994;
+  double D.48993;
+  double D.48992;
+  double[1024] * D.48991;
+  double D.48990;
+  double D.48989;
+  double D.48988;
+  double[1024] * D.48987;
+  double D.48986;
+  double D.48985;
+  double D.48984;
+  double[1024] * D.48983;
+  long unsigned int D.48982;
+  long unsigned int D.48981;
+  double D.48980;
+  double D.48979;
+  double[1024] * D.48978;
+  double D.48977;
+  double[1024] * D.48976;
+  long unsigned int D.48975;
+  long unsigned int D.48974;
+
+  <bb 2>:
+  i = 0;
+  goto <bb 10>;
+
+  <bb 3>:
+  j = 0;
+  goto <bb 8>;
+
+  <bb 4>:
+  D.48974 = (long unsigned int) i;
+  D.48975 = D.48974 * 8192;
+  D.48976 = tmp + D.48975;
+  *D.48976[j] = 0.0;
+  k = 0;
+  goto <bb 6>;
+
+  <bb 5>:
+  D.48974 = (long unsigned int) i;
+  D.48975 = D.48974 * 8192;
+  D.48976 = tmp + D.48975;
+  D.48974 = (long unsigned int) i;
+  D.48975 = D.48974 * 8192;
+  D.48976 = tmp + D.48975;
+  D.48977 = *D.48976[j];
+  D.48974 = (long unsigned int) i;
+  D.48975 = D.48974 * 8192;
+  D.48978 = A + D.48975;
+  D.48979 = *D.48978[k];
+  D.48980 = D.48979 * alpha;
+  D.48981 = (long unsigned int) k;
+  D.48982 = D.48981 * 8192;
+  D.48983 = B + D.48982;
+  D.48984 = *D.48983[j];
+  D.48985 = D.48980 * D.48984;
+  D.48986 = D.48977 + D.48985;
+  *D.48976[j] = D.48986;
+  k = k + 1;
+
+  <bb 6>:
+  if (k < nk)
+    goto <bb 5>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  j = j + 1;
+
+  <bb 8>:
+  if (j < nj)
+    goto <bb 4>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  i = i + 1;
+
+  <bb 10>:
+  if (i < ni)
+    goto <bb 3>;
+  else
+    goto <bb 11>;
+
+  <bb 11>:
+  i = 0;
+  goto <bb 19>;
+
+  <bb 12>:
+  j = 0;
+  goto <bb 17>;
+
+  <bb 13>:
+  D.48974 = (long unsigned int) i;
+  D.48975 = D.48974 * 8192;
+  D.48987 = D + D.48975;
+  D.48974 = (long unsigned int) i;
+  D.48975 = D.48974 * 8192;
+  D.48987 = D + D.48975;
+  D.48988 = *D.48987[j];
+  D.48989 = D.48988 * beta;
+  *D.48987[j] = D.48989;
+  k = 0;
+  goto <bb 15>;
+
+  <bb 14>:
+  D.48974 = (long unsigned int) i;
+  D.48975 = D.48974 * 8192;
+  D.48987 = D + D.48975;
+  D.48974 = (long unsigned int) i;
+  D.48975 = D.48974 * 8192;
+  D.48987 = D + D.48975;
+  D.48988 = *D.48987[j];
+  D.48974 = (long unsigned int) i;
+  D.48975 = D.48974 * 8192;
+  D.48976 = tmp + D.48975;
+  D.48990 = *D.48976[k];
+  D.48981 = (long unsigned int) k;
+  D.48982 = D.48981 * 8192;
+  D.48991 = C + D.48982;
+  D.48992 = *D.48991[j];
+  D.48993 = D.48990 * D.48992;
+  D.48994 = D.48988 + D.48993;
+  *D.48987[j] = D.48994;
+  k = k + 1;
+
+  <bb 15>:
+  if (k < nj)
+    goto <bb 14>;
+  else
+    goto <bb 16>;
+
+  <bb 16>:
+  j = j + 1;
+
+  <bb 17>:
+  if (j < nl)
+    goto <bb 13>;
+  else
+    goto <bb 18>;
+
+  <bb 18>:
+  i = i + 1;
+
+  <bb 19>:
+  if (i < ni)
+    goto <bb 12>;
+  else
+    goto <bb 20>;
+
+  <bb 20>:
+  return;
+
+}
+
+
+
+;; Function void GPU_argv_init() (_Z13GPU_argv_initv, funcdef_no=3148, decl_uid=48082, cgraph_uid=3010)
+
+void GPU_argv_init() ()
+{
+  struct cudaDeviceProp deviceProp;
+
+  <bb 2>:
+  cudaGetDeviceProperties (&deviceProp, 0);
+
+  <bb 3>:
+  printf ("setting device %d with name %s\n", 0, &deviceProp.name);
+
+  <bb 4>:
+  cudaSetDevice (0);
+
+  <bb 5>:
+  deviceProp = {CLOBBER};
+  return;
+
+<L0>:
+  deviceProp = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function void polybench_flush_cache() (_Z21polybench_flush_cachev, funcdef_no=3152, decl_uid=48452, cgraph_uid=3014)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 3: gimple_omp_for
+    bb 4: GIMPLE_OMP_CONTINUE
+    bb 5: GIMPLE_OMP_RETURN
+bb 6: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 14
+Merging blocks 2 and 7
+void polybench_flush_cache() ()
+{
+  int D.49513;
+  int D.49511;
+  int D.49512;
+  int tt.92;
+  int q.91;
+  int D.49508;
+  int D.49507;
+  int i;
+  int D.49234;
+  static const char __PRETTY_FUNCTION__[29] = "void polybench_flush_cache()";
+  double tmp;
+  int i;
+  double * flush;
+  int cs;
+  long unsigned int D.49212;
+  long unsigned int D.49211;
+  struct .omp_data_s.36 .omp_data_o.37;
+  double D.49232;
+  double D.49233;
+  double * D.49231;
+
+  <bb 2>:
+  D.49211 = 4194560;
+  cs = (int) D.49211;
+  D.49212 = (long unsigned int) cs;
+  flush = calloc (D.49212, 8);
+  tmp = 0.0;
+  .omp_data_o.37.flush = flush;
+  .omp_data_o.37.tmp = tmp;
+  .omp_data_o.37.cs = cs;
+  __builtin_GOMP_parallel_start (_Z21polybench_flush_cachev._omp_fn.1, &.omp_data_o.37, 0);
+  _Z21polybench_flush_cachev._omp_fn.1 (&.omp_data_o.37);
+  __builtin_GOMP_parallel_end ();
+  flush = .omp_data_o.37.flush;
+  tmp = .omp_data_o.37.tmp;
+  cs = .omp_data_o.37.cs;
+  if (tmp <= 1.0e+1)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  __assert_fail ("tmp <= 10.0", "../../../utilities/polybench.c", 96, &__PRETTY_FUNCTION__);
+
+  <bb 4>:
+  free (flush);
+  return;
+
+}
+
+
+
+;; Function void polybench_prepare_instruments() (_Z29polybench_prepare_instrumentsv, funcdef_no=3153, decl_uid=48460, cgraph_uid=3015)
+
+void polybench_prepare_instruments() ()
+{
+  <bb 2>:
+  polybench_flush_cache ();
+  return;
+
+}
+
+
+
+;; Function void polybench_timer_start() (_Z21polybench_timer_startv, funcdef_no=3154, decl_uid=47329, cgraph_uid=3016)
+
+void polybench_timer_start() ()
+{
+  double D.49237;
+  double polybench_t_start.38;
+
+  <bb 2>:
+  polybench_prepare_instruments ();
+  D.49237 = rtclock ();
+  polybench_t_start.38 = D.49237;
+  polybench_t_start = polybench_t_start.38;
+  return;
+
+}
+
+
+
+;; Function void polybench_timer_stop() (_Z20polybench_timer_stopv, funcdef_no=3155, decl_uid=47330, cgraph_uid=3017)
+
+void polybench_timer_stop() ()
+{
+  double D.49251;
+  double polybench_t_end.39;
+
+  <bb 2>:
+  D.49251 = rtclock ();
+  polybench_t_end.39 = D.49251;
+  polybench_t_end = polybench_t_end.39;
+  return;
+
+}
+
+
+
+;; Function void polybench_timer_print() (_Z21polybench_timer_printv, funcdef_no=3156, decl_uid=47331, cgraph_uid=3018)
+
+void polybench_timer_print() ()
+{
+  double D.49254;
+  double polybench_t_start.41;
+  double polybench_t_end.40;
+
+  <bb 2>:
+  polybench_t_end.40 = polybench_t_end;
+  polybench_t_start.41 = polybench_t_start;
+  D.49254 = polybench_t_end.40 - polybench_t_start.41;
+  printf ("%0.6f\n", D.49254);
+  return;
+
+}
+
+
+
+;; Function void mm_original(int, int, int, int, double, double, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (_Z11mm_originaliiiiddPA1024_dS0_S0_S0_S0_, funcdef_no=3145, decl_uid=48033, cgraph_uid=3007)
+
+void mm_original(int, int, int, int, double, double, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (int ni, int nj, int nk, int nl, double alpha, double beta, double[1024] * tmp, double[1024] * A, double[1024] * B, double[1024] * C, double[1024] * D)
+{
+  <bb 2>:
+  polybench_timer_start ();
+  mm2_cpu (ni, nj, nk, nl, alpha, beta, tmp, A, B, C, D);
+  __builtin_puts (&"Original CPU Time in seconds:"[0]);
+  polybench_timer_stop ();
+  polybench_timer_print ();
+  return;
+
+}
+
+
+
+;; Function void mm_omp(int, int, int, int, double, double, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (_Z6mm_ompiiiiddPA1024_dS0_S0_S0_S0_, funcdef_no=3147, decl_uid=48080, cgraph_uid=3009)
+
+void mm_omp(int, int, int, int, double, double, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (int ni, int nj, int nk, int nl, double alpha, double beta, double[1024] * tmp, double[1024] * A, double[1024] * B, double[1024] * C, double[1024] * D)
+{
+  <bb 2>:
+  polybench_timer_start ();
+  kernel_2mm (ni, nj, nk, nl, alpha, beta, tmp, A, B, C, D);
+  __builtin_puts (&"CPU OMP Time in seconds:"[0]);
+  polybench_timer_stop ();
+  polybench_timer_print ();
+  return;
+
+}
+
+
+
+;; Function void* polybench_alloc_data(long long unsigned int, int) (_Z20polybench_alloc_datayi, funcdef_no=3158, decl_uid=47337, cgraph_uid=3020)
+
+void* polybench_alloc_data(long long unsigned int, int) (long long unsigned int n, int elt_size)
+{
+  void * D.49258;
+  void * ret;
+  size_t val;
+  void * D.49256;
+  long unsigned int D.49255;
+
+  <bb 2>:
+  val = n;
+  D.49255 = (long unsigned int) elt_size;
+  val = D.49255 * val;
+  D.49258 = xmalloc (val);
+  ret = D.49258;
+  D.49256 = ret;
+  return D.49256;
+
+}
+
+
+
+;; Function void __sti____cudaRegisterAll_38_tmpxft_00003926_00000000_6_2mm_cpp1_ii_132e4611() (_ZL75__sti____cudaRegisterAll_38_tmpxft_00003926_00000000_6_2mm_cpp1_ii_132e4611v, funcdef_no=3196, decl_uid=48760, cgraph_uid=3057)
+
+void __sti____cudaRegisterAll_38_tmpxft_00003926_00000000_6_2mm_cpp1_ii_132e4611() ()
+{
+  void * * D.49365;
+  void (*<T5304>) (void * *) callback_fp;
+  void * * __cudaFatCubinHandle.63;
+  void * * __cudaFatCubinHandle.62;
+
+  <bb 2>:
+  D.49365 = __cudaRegisterFatBinary (&__fatDeviceText);
+  __cudaFatCubinHandle.62 = D.49365;
+  __cudaFatCubinHandle = __cudaFatCubinHandle.62;
+  callback_fp = __nv_cudaEntityRegisterCallback;
+  __cudaFatCubinHandle.63 = __cudaFatCubinHandle;
+  callback_fp (__cudaFatCubinHandle.63);
+  atexit (__cudaUnregisterBinaryUtil);
+  return;
+
+}
+
+
+
+;; Function cudaError_t _GLOBAL__N__38_tmpxft_00003926_00000000_6_2mm_cpp1_ii_132e4611::cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (_ZN62_GLOBAL__N__38_tmpxft_00003926_00000000_6_2mm_cpp1_ii_132e461110cudaLaunchIcEE9cudaErrorPT_, funcdef_no=3197, decl_uid=48791, cgraph_uid=3058)
+
+cudaError_t _GLOBAL__N__38_tmpxft_00003926_00000000_6_2mm_cpp1_ii_132e4611::cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (char * func)
+{
+  cudaError_t D.49316;
+  cudaError_t D.49314;
+
+  <bb 2>:
+  D.49316 = cudaLaunch (func);
+  D.49314 = D.49316;
+  return D.49314;
+
+}
+
+
+
+;; Function void __device_stub__Z11mm2_kernel1iiiiddPdS_S_(int, int, int, int, double, double, double*, double*, double*) (_Z41__device_stub__Z11mm2_kernel1iiiiddPdS_S_iiiiddPdS_S_, funcdef_no=3191, decl_uid=48747, cgraph_uid=3052)
+
+void __device_stub__Z11mm2_kernel1iiiiddPdS_S_(int, int, int, int, double, double, double*, double*, double*) (int __par0, int __par1, int __par2, int __par3, double __par4, double __par5, double * __par6, double * __par7, double * __par8)
+{
+  cudaError D.49313;
+  cudaError D.49312;
+  cudaError D.49311;
+  cudaError D.49310;
+  cudaError D.49309;
+  cudaError D.49308;
+  cudaError D.49307;
+  cudaError D.49306;
+  cudaError D.49305;
+  static volatile char * __f;
+  cudaError D.49301;
+  bool retval.52;
+  cudaError D.49297;
+  bool retval.51;
+  cudaError D.49293;
+  bool retval.50;
+  cudaError D.49289;
+  bool retval.49;
+  cudaError D.49285;
+  bool retval.48;
+  cudaError D.49281;
+  bool retval.47;
+  cudaError D.49277;
+  bool retval.46;
+  cudaError D.49273;
+  bool retval.45;
+  cudaError D.49269;
+  bool retval.44;
+
+  <bb 2>:
+  D.49305 = cudaSetupArgument (&__par0, 4, 0);
+  D.49269 = D.49305;
+  retval.44 = D.49269 != 0;
+  if (retval.44 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  D.49306 = cudaSetupArgument (&__par1, 4, 4);
+  D.49273 = D.49306;
+  retval.45 = D.49273 != 0;
+  if (retval.45 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 4>;
+
+  <bb 4>:
+  D.49307 = cudaSetupArgument (&__par2, 4, 8);
+  D.49277 = D.49307;
+  retval.46 = D.49277 != 0;
+  if (retval.46 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  D.49308 = cudaSetupArgument (&__par3, 4, 12);
+  D.49281 = D.49308;
+  retval.47 = D.49281 != 0;
+  if (retval.47 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  D.49309 = cudaSetupArgument (&__par4, 8, 16);
+  D.49285 = D.49309;
+  retval.48 = D.49285 != 0;
+  if (retval.48 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  D.49310 = cudaSetupArgument (&__par5, 8, 24);
+  D.49289 = D.49310;
+  retval.49 = D.49289 != 0;
+  if (retval.49 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  D.49311 = cudaSetupArgument (&__par6, 8, 32);
+  D.49293 = D.49311;
+  retval.50 = D.49293 != 0;
+  if (retval.50 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  D.49312 = cudaSetupArgument (&__par7, 8, 40);
+  D.49297 = D.49312;
+  retval.51 = D.49297 != 0;
+  if (retval.51 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  D.49313 = cudaSetupArgument (&__par8, 8, 48);
+  D.49301 = D.49313;
+  retval.52 = D.49301 != 0;
+  if (retval.52 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 11>;
+
+  <bb 11>:
+  __f = mm2_kernel1;
+  _GLOBAL__N__38_tmpxft_00003926_00000000_6_2mm_cpp1_ii_132e4611::cudaLaunch<char> (mm2_kernel1);
+
+  <bb 12>:
+  return;
+
+}
+
+
+
+;; Function void mm2_kernel1(int, int, int, int, double, double, double*, double*, double*) (_Z11mm2_kernel1iiiiddPdS_S_, funcdef_no=3192, decl_uid=48094, cgraph_uid=3053)
+
+void mm2_kernel1(int, int, int, int, double, double, double*, double*, double*) (int __cuda_0, int __cuda_1, int __cuda_2, int __cuda_3, double __cuda_4, double __cuda_5, double * __cuda_6, double * __cuda_7, double * __cuda_8)
+{
+  <bb 2>:
+  __device_stub__Z11mm2_kernel1iiiiddPdS_S_ (__cuda_0, __cuda_1, __cuda_2, __cuda_3, __cuda_4, __cuda_5, __cuda_6, __cuda_7, __cuda_8);
+  return;
+
+}
+
+
+
+;; Function void __device_stub__Z11mm2_kernel2iiiiddPdS_S_(int, int, int, int, double, double, double*, double*, double*) (_Z41__device_stub__Z11mm2_kernel2iiiiddPdS_S_iiiiddPdS_S_, funcdef_no=3193, decl_uid=48757, cgraph_uid=3054)
+
+void __device_stub__Z11mm2_kernel2iiiiddPdS_S_(int, int, int, int, double, double, double*, double*, double*) (int __par0, int __par1, int __par2, int __par3, double __par4, double __par5, double * __par6, double * __par7, double * __par8)
+{
+  cudaError D.49362;
+  cudaError D.49361;
+  cudaError D.49360;
+  cudaError D.49359;
+  cudaError D.49358;
+  cudaError D.49357;
+  cudaError D.49356;
+  cudaError D.49355;
+  cudaError D.49354;
+  static volatile char * __f;
+  cudaError D.49350;
+  bool retval.61;
+  cudaError D.49346;
+  bool retval.60;
+  cudaError D.49342;
+  bool retval.59;
+  cudaError D.49338;
+  bool retval.58;
+  cudaError D.49334;
+  bool retval.57;
+  cudaError D.49330;
+  bool retval.56;
+  cudaError D.49326;
+  bool retval.55;
+  cudaError D.49322;
+  bool retval.54;
+  cudaError D.49318;
+  bool retval.53;
+
+  <bb 2>:
+  D.49354 = cudaSetupArgument (&__par0, 4, 0);
+  D.49318 = D.49354;
+  retval.53 = D.49318 != 0;
+  if (retval.53 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  D.49355 = cudaSetupArgument (&__par1, 4, 4);
+  D.49322 = D.49355;
+  retval.54 = D.49322 != 0;
+  if (retval.54 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 4>;
+
+  <bb 4>:
+  D.49356 = cudaSetupArgument (&__par2, 4, 8);
+  D.49326 = D.49356;
+  retval.55 = D.49326 != 0;
+  if (retval.55 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  D.49357 = cudaSetupArgument (&__par3, 4, 12);
+  D.49330 = D.49357;
+  retval.56 = D.49330 != 0;
+  if (retval.56 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  D.49358 = cudaSetupArgument (&__par4, 8, 16);
+  D.49334 = D.49358;
+  retval.57 = D.49334 != 0;
+  if (retval.57 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  D.49359 = cudaSetupArgument (&__par5, 8, 24);
+  D.49338 = D.49359;
+  retval.58 = D.49338 != 0;
+  if (retval.58 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  D.49360 = cudaSetupArgument (&__par6, 8, 32);
+  D.49342 = D.49360;
+  retval.59 = D.49342 != 0;
+  if (retval.59 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  D.49361 = cudaSetupArgument (&__par7, 8, 40);
+  D.49346 = D.49361;
+  retval.60 = D.49346 != 0;
+  if (retval.60 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  D.49362 = cudaSetupArgument (&__par8, 8, 48);
+  D.49350 = D.49362;
+  retval.61 = D.49350 != 0;
+  if (retval.61 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 11>;
+
+  <bb 11>:
+  __f = mm2_kernel2;
+  _GLOBAL__N__38_tmpxft_00003926_00000000_6_2mm_cpp1_ii_132e4611::cudaLaunch<char> (mm2_kernel2);
+
+  <bb 12>:
+  return;
+
+}
+
+
+
+;; Function void mm2_kernel2(int, int, int, int, double, double, double*, double*, double*) (_Z11mm2_kernel2iiiiddPdS_S_, funcdef_no=3194, decl_uid=48104, cgraph_uid=3055)
+
+void mm2_kernel2(int, int, int, int, double, double, double*, double*, double*) (int __cuda_0, int __cuda_1, int __cuda_2, int __cuda_3, double __cuda_4, double __cuda_5, double * __cuda_6, double * __cuda_7, double * __cuda_8)
+{
+  <bb 2>:
+  __device_stub__Z11mm2_kernel2iiiiddPdS_S_ (__cuda_0, __cuda_1, __cuda_2, __cuda_3, __cuda_4, __cuda_5, __cuda_6, __cuda_7, __cuda_8);
+  return;
+
+}
+
+
+
+;; Function void mm2Cuda(int, int, int, int, double, double, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (_Z7mm2CudaiiiiddPA1024_dS0_S0_S0_S0_S0_, funcdef_no=3149, decl_uid=48117, cgraph_uid=3011)
+
+void mm2Cuda(int, int, int, int, double, double, double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024], double (*)[1024]) (int ni, int nj, int nk, int nl, double alpha, double beta, double[1024] * tmp, double[1024] * A, double[1024] * B, double[1024] * C, double[1024] * D, double[1024] * D_outputFromGpu)
+{
+  cudaError D.49114;
+  cudaError D.49113;
+  struct dim3 grid2;
+  struct dim3 grid1;
+  struct dim3 block;
+  double * D_gpu;
+  double * C_gpu;
+  double * B_gpu;
+  double * A_gpu;
+  double * tmp_gpu;
+  cudaError D.49109;
+  cudaError D.49105;
+  unsigned int D.49104;
+  long unsigned int D.49103;
+  float D.49102;
+  unsigned int D.49101;
+  long unsigned int D.49100;
+  float D.49099;
+  unsigned int D.49098;
+  long unsigned int D.49097;
+  float D.49096;
+  float D.49095;
+  float D.49094;
+  unsigned int D.49093;
+  unsigned int D.49092;
+  long unsigned int D.49091;
+  float D.49090;
+  float D.49089;
+  float D.49088;
+  unsigned int D.49087;
+  double * D_gpu.12;
+  double * C_gpu.11;
+  double * B_gpu.10;
+  double * A_gpu.9;
+  double * tmp_gpu.8;
+  long unsigned int D.49081;
+
+  <bb 2>:
+  GPU_argv_init ();
+
+  <bb 3>:
+  D.49081 = 8388608;
+  cudaMalloc (&tmp_gpu, D.49081);
+
+  <bb 4>:
+  D.49081 = 8388608;
+  cudaMalloc (&A_gpu, D.49081);
+
+  <bb 5>:
+  D.49081 = 8388608;
+  cudaMalloc (&B_gpu, D.49081);
+
+  <bb 6>:
+  D.49081 = 8388608;
+  cudaMalloc (&C_gpu, D.49081);
+
+  <bb 7>:
+  D.49081 = 8388608;
+  cudaMalloc (&D_gpu, D.49081);
+
+  <bb 8>:
+  D.49081 = 8388608;
+  tmp_gpu.8 = tmp_gpu;
+  cudaMemcpy (tmp_gpu.8, tmp, D.49081, 1);
+
+  <bb 9>:
+  D.49081 = 8388608;
+  A_gpu.9 = A_gpu;
+  cudaMemcpy (A_gpu.9, A, D.49081, 1);
+
+  <bb 10>:
+  D.49081 = 8388608;
+  B_gpu.10 = B_gpu;
+  cudaMemcpy (B_gpu.10, B, D.49081, 1);
+
+  <bb 11>:
+  D.49081 = 8388608;
+  C_gpu.11 = C_gpu;
+  cudaMemcpy (C_gpu.11, C, D.49081, 1);
+
+  <bb 12>:
+  D.49081 = 8388608;
+  D_gpu.12 = D_gpu;
+  cudaMemcpy (D_gpu.12, D, D.49081, 1);
+
+  <bb 13>:
+  dim3::dim3 (&block, 32, 8, 1);
+  D.49087 = block.y;
+  D.49088 = (float) D.49087;
+  D.49089 = 1.024e+3 / D.49088;
+  D.49090 = std::ceil (D.49089);
+  D.49091 = (long unsigned int) D.49090;
+  D.49092 = (unsigned int) D.49091;
+  D.49093 = block.x;
+  D.49094 = (float) D.49093;
+  D.49095 = 1.024e+3 / D.49094;
+  D.49096 = std::ceil (D.49095);
+  D.49097 = (long unsigned int) D.49096;
+  D.49098 = (unsigned int) D.49097;
+  dim3::dim3 (&grid1, D.49098, D.49092, 1);
+  D.49087 = block.y;
+  D.49088 = (float) D.49087;
+  D.49089 = 1.024e+3 / D.49088;
+  D.49099 = std::ceil (D.49089);
+  D.49100 = (long unsigned int) D.49099;
+  D.49101 = (unsigned int) D.49100;
+  D.49093 = block.x;
+  D.49094 = (float) D.49093;
+  D.49095 = 1.024e+3 / D.49094;
+  D.49102 = std::ceil (D.49095);
+  D.49103 = (long unsigned int) D.49102;
+  D.49104 = (unsigned int) D.49103;
+  dim3::dim3 (&grid2, D.49104, D.49101, 1);
+  polybench_timer_start ();
+
+  <bb 14>:
+  D.49113 = cudaConfigureCall (grid1, block, 0, 0B);
+
+  <bb 15>:
+  D.49105 = D.49113;
+  if (D.49105 == 0)
+    goto <bb 16>;
+  else
+    goto <bb 17>;
+
+  <bb 16>:
+  B_gpu.10 = B_gpu;
+  A_gpu.9 = A_gpu;
+  tmp_gpu.8 = tmp_gpu;
+  mm2_kernel1 (ni, nj, nk, nl, alpha, beta, tmp_gpu.8, A_gpu.9, B_gpu.10);
+
+  <bb 17>:
+  cudaThreadSynchronize ();
+
+  <bb 18>:
+  D.49114 = cudaConfigureCall (grid2, block, 0, 0B);
+
+  <bb 19>:
+  D.49109 = D.49114;
+  if (D.49109 == 0)
+    goto <bb 20>;
+  else
+    goto <bb 21>;
+
+  <bb 20>:
+  D_gpu.12 = D_gpu;
+  C_gpu.11 = C_gpu;
+  tmp_gpu.8 = tmp_gpu;
+  mm2_kernel2 (ni, nj, nk, nl, alpha, beta, tmp_gpu.8, C_gpu.11, D_gpu.12);
+
+  <bb 21>:
+  cudaThreadSynchronize ();
+
+  <bb 22>:
+  __builtin_puts (&"GPU Time in seconds:"[0]);
+
+  <bb 23>:
+  polybench_timer_stop ();
+
+  <bb 24>:
+  polybench_timer_print ();
+
+  <bb 25>:
+  D.49081 = 8388608;
+  D_gpu.12 = D_gpu;
+  cudaMemcpy (D_outputFromGpu, D_gpu.12, D.49081, 2);
+
+  <bb 26>:
+  tmp_gpu.8 = tmp_gpu;
+  cudaFree (tmp_gpu.8);
+
+  <bb 27>:
+  A_gpu.9 = A_gpu;
+  cudaFree (A_gpu.9);
+
+  <bb 28>:
+  B_gpu.10 = B_gpu;
+  cudaFree (B_gpu.10);
+
+  <bb 29>:
+  C_gpu.11 = C_gpu;
+  cudaFree (C_gpu.11);
+
+  <bb 30>:
+  D_gpu.12 = D_gpu;
+  cudaFree (D_gpu.12);
+
+  <bb 31>:
+  tmp_gpu = {CLOBBER};
+  A_gpu = {CLOBBER};
+  B_gpu = {CLOBBER};
+  C_gpu = {CLOBBER};
+  D_gpu = {CLOBBER};
+  block = {CLOBBER};
+  grid1 = {CLOBBER};
+  grid2 = {CLOBBER};
+  return;
+
+<L6>:
+  tmp_gpu = {CLOBBER};
+  A_gpu = {CLOBBER};
+  B_gpu = {CLOBBER};
+  C_gpu = {CLOBBER};
+  D_gpu = {CLOBBER};
+  block = {CLOBBER};
+  grid1 = {CLOBBER};
+  grid2 = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function int main(int, char**) (main, funcdef_no=3150, decl_uid=48148, cgraph_uid=3012)
+
+int main(int, char**) (int argc, char * * argv)
+{
+  bool D.49197;
+  void * D.49196;
+  double[1024][1024] * D.49195;
+  void * D.49194;
+  void * D.49193;
+  void * D.49192;
+  void * D.49191;
+  void * D.49190;
+  static const char __PRETTY_FUNCTION__[22] = "int main(int, char**)";
+  int ndevices;
+  int nloops;
+  struct Func * ff_1;
+  int n_params;
+  double[1024][1024] * D_outputFromGpu;
+  double[1024][1024] * D_outputFromOMP;
+  double[1024][1024] * D;
+  double[1024][1024] * C;
+  double[1024][1024] * B;
+  double[1024][1024] * A;
+  double[1024][1024] * tmp;
+  double beta;
+  double alpha;
+  int nl;
+  int nk;
+  int nj;
+  int ni;
+  int D.49188;
+  unsigned char D.49184;
+  char * D.49183;
+  double[1024][1024] * D_outputFromGpu.34;
+  double alpha.33;
+  double beta.32;
+  double[1024][1024] * tmp.31;
+  int ni.30;
+  int nj.29;
+  int nk.28;
+  int nl.27;
+  double[1024][1024] * A.26;
+  double[1024][1024] * B.25;
+  double[1024][1024] * C.24;
+  double[1024][1024] * D.23;
+  struct Func * * * TablePointerFunctions.22;
+  struct Func * D.49164;
+  struct Func * * D.49163;
+  struct Func * * * table.21;
+  bool retval.20;
+  struct ffi_type * * D.49156;
+  struct ffi_type * * D.49155;
+  struct ffi_type * * D.49154;
+  struct ffi_type * * D.49153;
+  struct ffi_type * * D.49152;
+  struct ffi_type * * D.49151;
+  struct ffi_type * * D.49150;
+  struct ffi_type * * D.49149;
+  struct ffi_type * * D.49148;
+  struct ffi_type * * D.49147;
+  struct ffi_type * * D.49146;
+  struct ffi_type * * D.49145;
+  struct ffi_type * * D.49144;
+  void * * D.49143;
+  void * * D.49142;
+  void * * D.49141;
+  void * * D.49140;
+  void * * D.49139;
+  void * * D.49138;
+  void * * D.49137;
+  void * * D.49136;
+  void * * D.49135;
+  void * * D.49134;
+  void * * D.49133;
+  void * * D.49132;
+  void * * D.49131;
+  void * * D.49130;
+  void * D.49129;
+  void * D.49128;
+  long unsigned int D.49127;
+  long unsigned int D.49126;
+  int D.49125;
+  struct _IO_FILE * stderr.19;
+  void * D_outputFromGpu.18;
+  void * D.17;
+  void * C.16;
+  void * B.15;
+  void * A.14;
+  void * tmp.13;
+
+  <bb 2>:
+  ni = 1024;
+  nj = 1024;
+  nk = 1024;
+  nl = 1024;
+  D.49190 = polybench_alloc_data (1048576, 8);
+
+  <bb 3>:
+  tmp.13 = D.49190;
+  tmp = tmp.13;
+  D.49191 = polybench_alloc_data (1048576, 8);
+
+  <bb 4>:
+  A.14 = D.49191;
+  A = A.14;
+  D.49192 = polybench_alloc_data (1048576, 8);
+
+  <bb 5>:
+  B.15 = D.49192;
+  B = B.15;
+  D.49193 = polybench_alloc_data (1048576, 8);
+
+  <bb 6>:
+  C.16 = D.49193;
+  C = C.16;
+  D.49194 = polybench_alloc_data (1048576, 8);
+
+  <bb 7>:
+  D.17 = D.49194;
+  D = D.17;
+  D.49195 = polybench_alloc_data (1048576, 8);
+
+  <bb 8>:
+  D_outputFromOMP = D.49195;
+  D.49196 = polybench_alloc_data (1048576, 8);
+
+  <bb 9>:
+  D_outputFromGpu.18 = D.49196;
+  D_outputFromGpu = D_outputFromGpu.18;
+  stderr.19 = stderr;
+  __builtin_fwrite ("Preparing alternatives functions.\n", 1, 34, stderr.19);
+
+  <bb 10>:
+  n_params = 12;
+  ff_1 = malloc (48);
+  D.49125 = n_params + 1;
+  D.49126 = (long unsigned int) D.49125;
+  D.49127 = D.49126 * 8;
+  D.49128 = malloc (D.49127);
+  ff_1->arg_types = D.49128;
+  D.49125 = n_params + 1;
+  D.49126 = (long unsigned int) D.49125;
+  D.49127 = D.49126 * 8;
+  D.49129 = malloc (D.49127);
+  ff_1->arg_values = D.49129;
+  ff_1->f = mm2Cuda;
+  D.49130 = &ff_1->ret_value;
+  memset (D.49130, 0, 8);
+  ff_1->ret_type = &ffi_type_void;
+  ff_1->nargs = n_params;
+  D.49131 = ff_1->arg_values;
+  *D.49131 = &ni;
+  D.49131 = ff_1->arg_values;
+  D.49132 = D.49131 + 8;
+  *D.49132 = &nj;
+  D.49131 = ff_1->arg_values;
+  D.49133 = D.49131 + 16;
+  *D.49133 = &nk;
+  D.49131 = ff_1->arg_values;
+  D.49134 = D.49131 + 24;
+  *D.49134 = &nl;
+  D.49131 = ff_1->arg_values;
+  D.49135 = D.49131 + 32;
+  *D.49135 = &alpha;
+  D.49131 = ff_1->arg_values;
+  D.49136 = D.49131 + 40;
+  *D.49136 = &beta;
+  D.49131 = ff_1->arg_values;
+  D.49137 = D.49131 + 48;
+  *D.49137 = &tmp;
+  D.49131 = ff_1->arg_values;
+  D.49138 = D.49131 + 56;
+  *D.49138 = &A;
+  D.49131 = ff_1->arg_values;
+  D.49139 = D.49131 + 64;
+  *D.49139 = &B;
+  D.49131 = ff_1->arg_values;
+  D.49140 = D.49131 + 72;
+  *D.49140 = &C;
+  D.49131 = ff_1->arg_values;
+  D.49141 = D.49131 + 80;
+  *D.49141 = &D;
+  D.49131 = ff_1->arg_values;
+  D.49142 = D.49131 + 88;
+  *D.49142 = &D_outputFromGpu;
+  D.49131 = ff_1->arg_values;
+  D.49143 = D.49131 + 96;
+  *D.49143 = 0B;
+  D.49144 = ff_1->arg_types;
+  *D.49144 = &ffi_type_sint32;
+  D.49144 = ff_1->arg_types;
+  D.49145 = D.49144 + 8;
+  *D.49145 = &ffi_type_sint32;
+  D.49144 = ff_1->arg_types;
+  D.49146 = D.49144 + 16;
+  *D.49146 = &ffi_type_sint32;
+  D.49144 = ff_1->arg_types;
+  D.49147 = D.49144 + 24;
+  *D.49147 = &ffi_type_sint32;
+  D.49144 = ff_1->arg_types;
+  D.49148 = D.49144 + 32;
+  *D.49148 = &ffi_type_double;
+  D.49144 = ff_1->arg_types;
+  D.49149 = D.49144 + 40;
+  *D.49149 = &ffi_type_double;
+  D.49144 = ff_1->arg_types;
+  D.49150 = D.49144 + 48;
+  *D.49150 = &ffi_type_pointer;
+  D.49144 = ff_1->arg_types;
+  D.49151 = D.49144 + 56;
+  *D.49151 = &ffi_type_pointer;
+  D.49144 = ff_1->arg_types;
+  D.49152 = D.49144 + 64;
+  *D.49152 = &ffi_type_pointer;
+  D.49144 = ff_1->arg_types;
+  D.49153 = D.49144 + 72;
+  *D.49153 = &ffi_type_pointer;
+  D.49144 = ff_1->arg_types;
+  D.49154 = D.49144 + 80;
+  *D.49154 = &ffi_type_pointer;
+  D.49144 = ff_1->arg_types;
+  D.49155 = D.49144 + 88;
+  *D.49155 = &ffi_type_pointer;
+  D.49144 = ff_1->arg_types;
+  D.49156 = D.49144 + 96;
+  *D.49156 = 0B;
+  stderr.19 = stderr;
+  __builtin_fwrite ("Creating table of target functions.\n", 1, 36, stderr.19);
+
+  <bb 11>:
+  nloops = 1;
+  ndevices = 1;
+  D.49197 = create_target_functions_table (&table, nloops, ndevices);
+
+  <bb 12>:
+  retval.20 = D.49197;
+  if (retval.20 != 0)
+    goto <bb 13>;
+  else
+    goto <bb 18>;
+
+  <bb 13>:
+  table.21 = table;
+  if (table.21 == 0B)
+    goto <bb 14>;
+  else
+    goto <bb 15>;
+
+  <bb 14>:
+  __assert_fail ("table != __null", "2mm.cu", 421, &__PRETTY_FUNCTION__);
+
+  <bb 15>:
+  stderr.19 = stderr;
+  __builtin_fwrite ("Declaring function in 0,0.\n", 1, 27, stderr.19);
+
+  <bb 16>:
+  table.21 = table;
+  D.49163 = *table.21;
+  D.49164 = *D.49163;
+  *D.49164 = MEM[(const struct Func &)ff_1];
+  table.21 = table;
+  TablePointerFunctions = table.21;
+  TablePointerFunctions.22 = TablePointerFunctions;
+  if (TablePointerFunctions.22 == 0B)
+    goto <bb 17>;
+  else
+    goto <bb 18>;
+
+  <bb 17>:
+  __assert_fail ("TablePointerFunctions != __null", "2mm.cu", 427, &__PRETTY_FUNCTION__);
+
+  <bb 18>:
+  stderr.19 = stderr;
+  __builtin_fwrite ("Calling init_array.\n", 1, 20, stderr.19);
+
+  <bb 19>:
+  D.23 = D;
+  C.24 = C;
+  B.25 = B;
+  A.26 = A;
+  nl.27 = nl;
+  nk.28 = nk;
+  nj.29 = nj;
+  ni.30 = ni;
+  init_array (ni.30, nj.29, nk.28, nl.27, &alpha, &beta, A.26, B.25, C.24, D.23);
+  stderr.19 = stderr;
+  __builtin_fwrite ("Calling gemm_original.\n", 1, 23, stderr.19);
+
+  <bb 20>:
+  D.23 = D;
+  C.24 = C;
+  B.25 = B;
+  A.26 = A;
+  tmp.31 = tmp;
+  beta.32 = beta;
+  alpha.33 = alpha;
+  nl.27 = nl;
+  nk.28 = nk;
+  nj.29 = nj;
+  ni.30 = ni;
+  mm_original (ni.30, nj.29, nk.28, nl.27, alpha.33, beta.32, tmp.31, A.26, B.25, C.24, D.23);
+
+  <bb 21>:
+  stderr.19 = stderr;
+  __builtin_fwrite ("Calling gemm_omp.\n", 1, 18, stderr.19);
+
+  <bb 22>:
+  C.24 = C;
+  B.25 = B;
+  A.26 = A;
+  tmp.31 = tmp;
+  beta.32 = beta;
+  alpha.33 = alpha;
+  nl.27 = nl;
+  nk.28 = nk;
+  nj.29 = nj;
+  ni.30 = ni;
+  mm_omp (ni.30, nj.29, nk.28, nl.27, alpha.33, beta.32, tmp.31, A.26, B.25, C.24, D_outputFromOMP);
+
+  <bb 23>:
+  stderr.19 = stderr;
+  __builtin_fwrite ("Calling compareResults(original, omp).\n", 1, 39, stderr.19);
+
+  <bb 24>:
+  D.23 = D;
+  nl.27 = nl;
+  ni.30 = ni;
+  compareResults (ni.30, nl.27, D.23, D_outputFromOMP);
+
+  <bb 25>:
+  stderr.19 = stderr;
+  __builtin_fwrite ("Calling gemm_cuda.\n", 1, 19, stderr.19);
+
+  <bb 26>:
+  D_outputFromGpu.34 = D_outputFromGpu;
+  D.23 = D;
+  C.24 = C;
+  B.25 = B;
+  A.26 = A;
+  tmp.31 = tmp;
+  beta.32 = beta;
+  alpha.33 = alpha;
+  nl.27 = nl;
+  nk.28 = nk;
+  nj.29 = nj;
+  ni.30 = ni;
+  mm2Cuda (ni.30, nj.29, nk.28, nl.27, alpha.33, beta.32, tmp.31, A.26, B.25, C.24, D.23, D_outputFromGpu.34);
+
+  <bb 27>:
+  stderr.19 = stderr;
+  __builtin_fwrite ("Calling compareResults(original, cuda).\n", 1, 40, stderr.19);
+
+  <bb 28>:
+  D_outputFromGpu.34 = D_outputFromGpu;
+  D.23 = D;
+  nl.27 = nl;
+  ni.30 = ni;
+  compareResults (ni.30, nl.27, D.23, D_outputFromGpu.34);
+
+  <bb 29>:
+  if (argc > 42)
+    goto <bb 30>;
+  else
+    goto <bb 32>;
+
+  <bb 30>:
+  D.49183 = *argv;
+  D.49184 = MEM[(const unsigned char * {ref-all})D.49183];
+  if (D.49184 == 0)
+    goto <bb 31>;
+  else
+    goto <bb 32>;
+
+  <bb 31>:
+  D_outputFromGpu.34 = D_outputFromGpu;
+  nl.27 = nl;
+  ni.30 = ni;
+  print_array (ni.30, nl.27, D_outputFromGpu.34);
+
+  <bb 32>:
+  tmp.31 = tmp;
+  free (tmp.31);
+  A.26 = A;
+  free (A.26);
+  B.25 = B;
+  free (B.25);
+  C.24 = C;
+  free (C.24);
+  D.23 = D;
+  free (D.23);
+  free (D_outputFromOMP);
+  D_outputFromGpu.34 = D_outputFromGpu;
+  free (D_outputFromGpu.34);
+  D.49188 = 0;
+  ni = {CLOBBER};
+  nj = {CLOBBER};
+  nk = {CLOBBER};
+  nl = {CLOBBER};
+  alpha = {CLOBBER};
+  beta = {CLOBBER};
+  tmp = {CLOBBER};
+  A = {CLOBBER};
+  B = {CLOBBER};
+  C = {CLOBBER};
+  D = {CLOBBER};
+  D_outputFromGpu = {CLOBBER};
+  return D.49188;
+
+<L14>:
+  ni = {CLOBBER};
+  nj = {CLOBBER};
+  nk = {CLOBBER};
+  nl = {CLOBBER};
+  alpha = {CLOBBER};
+  beta = {CLOBBER};
+  tmp = {CLOBBER};
+  A = {CLOBBER};
+  B = {CLOBBER};
+  C = {CLOBBER};
+  D = {CLOBBER};
+  D_outputFromGpu = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function <built-in> (_ZL10kernel_2mmiiiiddPA1024_dS0_S0_S0_S0_._omp_fn.0, funcdef_no=3198, decl_uid=49017, cgraph_uid=3067)
+
+<built-in> (struct .omp_data_s.6 * .omp_data_i)
+{
+  double[1024] * D [value-expr: .omp_data_i->D];
+  double[1024] * C [value-expr: .omp_data_i->C];
+  double[1024] * B [value-expr: .omp_data_i->B];
+  double[1024] * A [value-expr: .omp_data_i->A];
+  double[1024] * tmp [value-expr: .omp_data_i->tmp];
+  double beta [value-expr: .omp_data_i->beta];
+  double alpha [value-expr: .omp_data_i->alpha];
+  int nl [value-expr: .omp_data_i->nl];
+  int nk [value-expr: .omp_data_i->nk];
+  int nj [value-expr: .omp_data_i->nj];
+  int ni [value-expr: .omp_data_i->ni];
+  double D.49446;
+  double D.49445;
+  double D.49444;
+  double[1024] * D.49443;
+  double[1024] * D.49442;
+  double D.49441;
+  double[1024] * D.49440;
+  double[1024] * D.49439;
+  double[1024] * D.49438;
+  int D.49437;
+  int k;
+  double D.49435;
+  double D.49434;
+  double D.49433;
+  double[1024] * D.49432;
+  double[1024] * D.49431;
+  double[1024] * D.49430;
+  bool D.49429;
+  int D.49428;
+  int j;
+  int D.49426;
+  long int .iend0.69;
+  int i;
+  long int .istart0.68;
+  bool D.49422;
+  long int .iend0.67;
+  long int .istart0.66;
+  long int D.49419;
+  int D.49418;
+  double D.49417;
+  double D.49416;
+  double D.49415;
+  double[1024] * D.49414;
+  double[1024] * D.49413;
+  long unsigned int D.49412;
+  long unsigned int D.49411;
+  double D.49410;
+  double D.49409;
+  double D.49408;
+  double[1024] * D.49407;
+  double[1024] * D.49406;
+  double D.49405;
+  double[1024] * D.49404;
+  double[1024] * D.49403;
+  int D.49402;
+  int k;
+  double[1024] * D.49400;
+  double[1024] * D.49399;
+  long unsigned int D.49398;
+  long unsigned int D.49397;
+  bool D.49396;
+  int D.49395;
+  int j;
+  int D.49393;
+  long int .iend0.73;
+  int i;
+  long int .istart0.72;
+  bool D.49389;
+  long int .iend0.71;
+  long int .istart0.70;
+  long int D.49386;
+  int D.49385;
+
+  <bb 27>:
+
+  <bb 3>:
+  current_loop_index = 0;
+  D.49385 = .omp_data_i->ni;
+  D.49386 = (long int) D.49385;
+  D.49389 = __builtin_GOMP_loop_runtime_start (0, D.49386, 1, &.istart0.70, &.iend0.71);
+  if (D.49389 != 0)
+    goto <bb 25>;
+  else
+    goto <bb 11>;
+
+  <bb 25>:
+  .istart0.72 = .istart0.70;
+  i = (int) .istart0.72;
+  .iend0.73 = .iend0.71;
+  D.49393 = (int) .iend0.73;
+
+  <bb 4>:
+  j = 0;
+
+  <bb 9>:
+  D.49395 = .omp_data_i->nj;
+  if (j < D.49395)
+    goto <bb 5>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  i = i + 1;
+  if (i < D.49393)
+    goto <bb 4>;
+  else
+    goto <bb 26>;
+
+  <bb 26>:
+  D.49396 = __builtin_GOMP_loop_runtime_next (&.istart0.70, &.iend0.71);
+  if (D.49396 != 0)
+    goto <bb 25>;
+  else
+    goto <bb 11>;
+
+  <bb 5>:
+  D.49397 = (long unsigned int) i;
+  D.49398 = D.49397 * 8192;
+  D.49399 = .omp_data_i->tmp;
+  D.49400 = D.49399 + D.49398;
+  *D.49400[j] = 0.0;
+  k = 0;
+
+  <bb 7>:
+  D.49402 = .omp_data_i->nk;
+  if (k < D.49402)
+    goto <bb 6>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  j = j + 1;
+  goto <bb 9>;
+
+  <bb 6>:
+  D.49397 = (long unsigned int) i;
+  D.49398 = D.49397 * 8192;
+  D.49403 = .omp_data_i->tmp;
+  D.49400 = D.49403 + D.49398;
+  D.49397 = (long unsigned int) i;
+  D.49398 = D.49397 * 8192;
+  D.49404 = .omp_data_i->tmp;
+  D.49400 = D.49404 + D.49398;
+  D.49405 = *D.49400[j];
+  D.49397 = (long unsigned int) i;
+  D.49398 = D.49397 * 8192;
+  D.49406 = .omp_data_i->A;
+  D.49407 = D.49406 + D.49398;
+  D.49408 = *D.49407[k];
+  D.49409 = .omp_data_i->alpha;
+  D.49410 = D.49408 * D.49409;
+  D.49411 = (long unsigned int) k;
+  D.49412 = D.49411 * 8192;
+  D.49413 = .omp_data_i->B;
+  D.49414 = D.49413 + D.49412;
+  D.49415 = *D.49414[j];
+  D.49416 = D.49410 * D.49415;
+  D.49417 = D.49405 + D.49416;
+  *D.49400[j] = D.49417;
+  k = k + 1;
+  goto <bb 7>;
+
+  <bb 11>:
+  __builtin_GOMP_loop_end ();
+
+  <bb 12>:
+  current_loop_index = 1;
+  D.49418 = .omp_data_i->ni;
+  D.49419 = (long int) D.49418;
+  D.49422 = __builtin_GOMP_loop_runtime_start (0, D.49419, 1, &.istart0.66, &.iend0.67);
+  if (D.49422 != 0)
+    goto <bb 23>;
+  else
+    goto <bb 20>;
+
+  <bb 23>:
+  .istart0.68 = .istart0.66;
+  i = (int) .istart0.68;
+  .iend0.69 = .iend0.67;
+  D.49426 = (int) .iend0.69;
+
+  <bb 13>:
+  j = 0;
+
+  <bb 18>:
+  D.49428 = .omp_data_i->nl;
+  if (j < D.49428)
+    goto <bb 14>;
+  else
+    goto <bb 19>;
+
+  <bb 19>:
+  i = i + 1;
+  if (i < D.49426)
+    goto <bb 13>;
+  else
+    goto <bb 24>;
+
+  <bb 24>:
+  D.49429 = __builtin_GOMP_loop_runtime_next (&.istart0.66, &.iend0.67);
+  if (D.49429 != 0)
+    goto <bb 23>;
+  else
+    goto <bb 20>;
+
+  <bb 14>:
+  D.49397 = (long unsigned int) i;
+  D.49398 = D.49397 * 8192;
+  D.49430 = .omp_data_i->D;
+  D.49431 = D.49430 + D.49398;
+  D.49397 = (long unsigned int) i;
+  D.49398 = D.49397 * 8192;
+  D.49432 = .omp_data_i->D;
+  D.49431 = D.49432 + D.49398;
+  D.49433 = *D.49431[j];
+  D.49434 = .omp_data_i->beta;
+  D.49435 = D.49433 * D.49434;
+  *D.49431[j] = D.49435;
+  k = 0;
+
+  <bb 16>:
+  D.49437 = .omp_data_i->nj;
+  if (k < D.49437)
+    goto <bb 15>;
+  else
+    goto <bb 17>;
+
+  <bb 17>:
+  j = j + 1;
+  goto <bb 18>;
+
+  <bb 15>:
+  D.49397 = (long unsigned int) i;
+  D.49398 = D.49397 * 8192;
+  D.49438 = .omp_data_i->D;
+  D.49431 = D.49438 + D.49398;
+  D.49397 = (long unsigned int) i;
+  D.49398 = D.49397 * 8192;
+  D.49439 = .omp_data_i->D;
+  D.49431 = D.49439 + D.49398;
+  D.49433 = *D.49431[j];
+  D.49397 = (long unsigned int) i;
+  D.49398 = D.49397 * 8192;
+  D.49440 = .omp_data_i->tmp;
+  D.49400 = D.49440 + D.49398;
+  D.49441 = *D.49400[k];
+  D.49411 = (long unsigned int) k;
+  D.49412 = D.49411 * 8192;
+  D.49442 = .omp_data_i->C;
+  D.49443 = D.49442 + D.49412;
+  D.49444 = *D.49443[j];
+  D.49445 = D.49441 * D.49444;
+  D.49446 = D.49433 + D.49445;
+  *D.49431[j] = D.49446;
+  k = k + 1;
+  goto <bb 16>;
+
+  <bb 20>:
+  __builtin_GOMP_loop_end_nowait ();
+
+  <bb 21>:
+  return;
+
+}
+
+
+
+;; Function <built-in> (_Z21polybench_flush_cachev._omp_fn.1, funcdef_no=3199, decl_uid=49221, cgraph_uid=3082)
+
+<built-in> (struct .omp_data_s.36 * .omp_data_i)
+{
+  double tmp [value-expr: .omp_data_i->tmp];
+  double * flush [value-expr: .omp_data_i->flush];
+  int cs [value-expr: .omp_data_i->cs];
+  double D.49529;
+  double D.49528;
+  double D.49527;
+  double * D.49526;
+  double * D.49525;
+  long unsigned int D.49524;
+  long unsigned int D.49523;
+  int i;
+  int D.49521;
+  int D.49520;
+  int D.49519;
+  int tt.92;
+  int q.91;
+  int D.49516;
+  int D.49515;
+  int D.49514;
+
+  <bb 13>:
+
+  <bb 3>:
+  D.49514 = .omp_data_i->cs;
+  D.49515 = __builtin_omp_get_num_threads ();
+  D.49516 = __builtin_omp_get_thread_num ();
+  q.91 = D.49514 / D.49515;
+  tt.92 = D.49514 % D.49515;
+  if (D.49516 < tt.92)
+    goto <bb 11>;
+  else
+    goto <bb 12>;
+
+  <bb 12>:
+  D.49519 = q.91 * D.49516;
+  D.49520 = D.49519 + tt.92;
+  D.49521 = D.49520 + q.91;
+  if (D.49520 >= D.49521)
+    goto <bb 5>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  i = D.49520;
+
+  <bb 4>:
+  D.49523 = (long unsigned int) i;
+  D.49524 = D.49523 * 8;
+  D.49525 = .omp_data_i->flush;
+  D.49526 = D.49525 + D.49524;
+  D.49527 = *D.49526;
+  D.49528 = .omp_data_i->tmp;
+  D.49529 = D.49527 + D.49528;
+  .omp_data_i->tmp = D.49529;
+  i = i + 1;
+  if (i < D.49521)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+
+  <bb 6>:
+  return;
+
+  <bb 11>:
+  tt.92 = 0;
+  q.91 = q.91 + 1;
+  goto <bb 12>;
+
+}
+
+
