@@ -7,14 +7,13 @@
  * Louis-Noel Pouchet <pouchet@cse.ohio-state.edu>
  * Web address: http://www.cse.ohio-state.edu/~pouchet/software/polybench/GPU
  */
-
-#include <assert.h>
-#include <cuda.h>
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/time.h>
+#include <math.h>
+#include <assert.h>
 #include <unistd.h>
+#include <sys/time.h>
+#include <cuda.h>
 
 #define POLYBENCH_TIME 1
 
@@ -161,12 +160,12 @@ void mm_original(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta
   polybench_start_instruments;
 
   mm2_cpu(ni, nj, nk, nl,
-	      alpha, beta,
-	      tmp,
-	      A,
-	      B,
-	      C,
-	      D);
+        alpha, beta,
+        tmp,
+        A,
+        B,
+        C,
+        D);
 
   /* Stop and print timer. */
   printf("Original CPU Time in seconds:\n");
@@ -180,26 +179,26 @@ void mm_original(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta
    including the call and return. */
 static
 void kernel_2mm(int ni, int nj, int nk, int nl,
-		DATA_TYPE alpha,
-		DATA_TYPE beta,
-		DATA_TYPE POLYBENCH_2D(tmp,NI,NJ,ni,nj),
-		DATA_TYPE POLYBENCH_2D(A,NI,NK,ni,nk),
-		DATA_TYPE POLYBENCH_2D(B,NK,NJ,nk,nj),
-		DATA_TYPE POLYBENCH_2D(C,NL,NJ,nl,nj),
-		DATA_TYPE POLYBENCH_2D(D,NI,NL,ni,nl))
+    DATA_TYPE alpha,
+    DATA_TYPE beta,
+    DATA_TYPE POLYBENCH_2D(tmp,NI,NJ,ni,nj),
+    DATA_TYPE POLYBENCH_2D(A,NI,NK,ni,nk),
+    DATA_TYPE POLYBENCH_2D(B,NK,NJ,nk,nj),
+    DATA_TYPE POLYBENCH_2D(C,NL,NJ,nl,nj),
+    DATA_TYPE POLYBENCH_2D(D,NI,NL,ni,nl))
 {
   int i, j, k;
   #pragma scop
   /* D := alpha*A*B*C + beta*D */
   #pragma omp parallel
   {
-  	current_loop_index = 0;
+    current_loop_index = 0;
     #pragma omp for private(j, k) schedule(runtime)
     for (i = 0; i < _PB_NI; i++){
       for (j = 0; j < _PB_NJ; j++){
-    	tmp[i][j] = 0;
-  	  	for (k = 0; k < _PB_NK; ++k){
-	    	tmp[i][j] += alpha * A[i][k] * B[k][j];
+      tmp[i][j] = 0;
+        for (k = 0; k < _PB_NK; ++k){
+        tmp[i][j] += alpha * A[i][k] * B[k][j];
         }
       }
     }
@@ -207,12 +206,12 @@ void kernel_2mm(int ni, int nj, int nk, int nl,
     #pragma omp for private(j, k) schedule(runtime)
     for (i = 0; i < _PB_NI; i++){
       for (j = 0; j < _PB_NL; j++){
-	  	D[i][j] *= beta;
-	  	for (k = 0; k < _PB_NJ; ++k){
-	    	D[i][j] += tmp[i][k] * C[k][j];
-	    }
-	  }
-	}
+      D[i][j] *= beta;
+      for (k = 0; k < _PB_NJ; ++k){
+        D[i][j] += tmp[i][k] * C[k][j];
+      }
+    }
+  }
   }
   #pragma endscop
 }
@@ -231,12 +230,12 @@ void mm_omp(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
 
   /* Run kernel. */
   kernel_2mm (ni, nj, nk, nl,
-	      alpha, beta,
-	      tmp,
-	      A,
-	      B,
-	      C,
-	      D);
+        alpha, beta,
+        tmp,
+        A,
+        B,
+        C,
+        D);
 
   /* Stop and print timer. */
   printf("CPU OMP Time in seconds:\n");
@@ -310,7 +309,7 @@ void GPU_data_copy_for_kernel_1(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
   fprintf(stderr, "GPU_data_copy_for_kernel_1.\n");
 
   if(!gpu_data_for_kernel_1_copied){
-  	fprintf(stderr, "Copying...\n");
+   fprintf(stderr, "Copying...\n");
     cudaMemcpy(tmp_gpu, tmp, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
     cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NK, cudaMemcpyHostToDevice);
     cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NK * NJ, cudaMemcpyHostToDevice);
@@ -328,7 +327,7 @@ void GPU_data_copy_for_kernel_2(DATA_TYPE POLYBENCH_2D(tmp, NI, NJ, ni, nj),
   fprintf(stderr, "GPU_data_copy_for_kernel_2.\n");
 
   if(!gpu_data_for_kernel_2_copied){
-  	fprintf(stderr, "Copying...\n");
+   fprintf(stderr, "Copying...\n");
     cudaMemcpy(C_gpu, C, sizeof(DATA_TYPE) * NL * NJ, cudaMemcpyHostToDevice);
     cudaMemcpy(D_gpu, D, sizeof(DATA_TYPE) * NI * NL, cudaMemcpyHostToDevice);
     gpu_data_for_kernel_2_copied = true;
@@ -351,6 +350,54 @@ fprintf(stderr, "GPU_data_copy_back_kernel_2.\n");
 
 cudaMemcpy(D_outputFromGpu, D_gpu, sizeof(DATA_TYPE) * NI * NL, cudaMemcpyDeviceToHost);
 }
+
+/* ------------------------------------------------------------- */
+/*void mm2Cuda(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta, DATA_TYPE POLYBENCH_2D(tmp,NI,NJ,ni,nj), 
+  DATA_TYPE POLYBENCH_2D(A,NI,NK,ni,nk), DATA_TYPE POLYBENCH_2D(B,NK,NJ,nk,nj), DATA_TYPE POLYBENCH_2D(C,NL,NJ,nl,nj), 
+  DATA_TYPE POLYBENCH_2D(D,NI,NL,ni,nl), DATA_TYPE POLYBENCH_2D(D_outputFromGpu,NI,NL,ni,nl))
+{
+  DATA_TYPE *tmp_gpu;
+  DATA_TYPE *A_gpu;
+  DATA_TYPE *B_gpu;
+  DATA_TYPE *C_gpu;
+  DATA_TYPE *D_gpu;
+
+  cudaMalloc((void **)&tmp_gpu, sizeof(DATA_TYPE) * NI * NJ);
+  cudaMalloc((void **)&A_gpu, sizeof(DATA_TYPE) * NI * NK);
+  cudaMalloc((void **)&B_gpu, sizeof(DATA_TYPE) * NK * NJ);
+  cudaMalloc((void **)&C_gpu, sizeof(DATA_TYPE) * NL * NJ);
+  cudaMalloc((void **)&D_gpu, sizeof(DATA_TYPE) * NI * NL);
+  
+  cudaMemcpy(tmp_gpu, tmp, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
+  cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NK, cudaMemcpyHostToDevice);
+  cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NK * NJ, cudaMemcpyHostToDevice);
+  cudaMemcpy(C_gpu, C, sizeof(DATA_TYPE) * NL * NJ, cudaMemcpyHostToDevice);
+  cudaMemcpy(D_gpu, D, sizeof(DATA_TYPE) * NI * NL, cudaMemcpyHostToDevice);  
+    
+  dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
+  dim3 grid1((size_t)ceil( ((float)NJ) / ((float)block.x) ), (size_t)ceil( ((float)NI) / ((float)block.y)) );
+  dim3 grid2((size_t)ceil( ((float)NL) / ((float)block.x) ), (size_t)ceil( ((float)NI) / ((float)block.y)) );
+
+  // Start timer.
+  polybench_start_instruments;
+
+  mm2_kernel1<<<grid1,block>>>(ni, nj, nk, nl, alpha, beta, tmp_gpu, A_gpu, B_gpu);
+  cudaThreadSynchronize();
+  mm2_kernel2<<<grid2,block>>>(ni, nj, nk, nl, alpha, beta, tmp_gpu, C_gpu, D_gpu);
+  cudaThreadSynchronize();
+
+  printf("GPU Time in seconds:\n");
+    polybench_stop_instruments;
+  polybench_print_instruments;
+
+  cudaMemcpy(D_outputFromGpu, D_gpu, sizeof(DATA_TYPE) * NI * NL, cudaMemcpyDeviceToHost);
+
+  cudaFree(tmp_gpu);
+  cudaFree(A_gpu);
+  cudaFree(B_gpu);
+  cudaFree(C_gpu);
+  cudaFree(D_gpu);
+}*/
 
 /* ------------------------------------------------------------- */
 /* A caller for each kernel, because OMP generate two for loops structures. 
@@ -424,6 +471,17 @@ void mm2Cuda_2(int ni, int nj, int nk, int nl, DATA_TYPE alpha, DATA_TYPE beta,
 }
 
 /* ------------------------------------------------------------- */
+void copy_array(int ni, int nl, DATA_TYPE POLYBENCH_2D(D_source, NI, NI, ni, ni), DATA_TYPE POLYBENCH_2D(D_dest, NI, NI, ni, ni)) {
+  int i, j;
+
+  for (i = 0; i < ni; i++) {
+    for (j = 0; j < nl; j++) {
+      D_dest[i][j] = D_source[i][j];
+    }
+  }
+}
+
+/* ------------------------------------------------------------- */
 int main(int argc, char **argv) {
   /* Retrieve problem size. */
   int ni = NI;
@@ -439,9 +497,10 @@ int main(int argc, char **argv) {
   POLYBENCH_2D_ARRAY_DECL(B, DATA_TYPE, NK, NJ, nk, nj);
   POLYBENCH_2D_ARRAY_DECL(C, DATA_TYPE, NL, NJ, nl, nj);
   POLYBENCH_2D_ARRAY_DECL(D, DATA_TYPE, NI, NL, ni, nl);
+  POLYBENCH_2D_ARRAY_DECL(D_inputToOMP, DATA_TYPE, NI, NL, ni, nl);
   POLYBENCH_2D_ARRAY_DECL(D_outputFromOMP, DATA_TYPE, NI, NL, ni, nl);
+  POLYBENCH_2D_ARRAY_DECL(D_inputToGpu, DATA_TYPE, NI, NL, ni, nl);
   POLYBENCH_2D_ARRAY_DECL(D_outputFromGpu, DATA_TYPE, NI, NL, ni, nl);
-
 
   fprintf(stderr, "Preparing alternatives functions.\n");
   /* Preparing the call to target function.
@@ -492,7 +551,7 @@ int main(int argc, char **argv) {
   ff_1->arg_values[7] = &A;
   ff_1->arg_values[8] = &B;
   ff_1->arg_values[9] = &C;
-  ff_1->arg_values[10] = &D;
+  ff_1->arg_values[10] = &D_inputToGpu;
   ff_1->arg_values[11] = &D_outputFromGpu;
   ff_1->arg_values[12] = NULL;
 
@@ -522,7 +581,7 @@ int main(int argc, char **argv) {
   ff_2->arg_values[7] = &A;
   ff_2->arg_values[8] = &B;
   ff_2->arg_values[9] = &C;
-  ff_2->arg_values[10] = &D;
+  ff_2->arg_values[10] = &D_inputToGpu;
   ff_2->arg_values[11] = &D_outputFromGpu;
   ff_2->arg_values[12] = NULL;
 
@@ -565,27 +624,42 @@ int main(int argc, char **argv) {
   /* Initialize array(s). */
   init_array(ni, nj, nk, nl, &alpha, &beta, POLYBENCH_ARRAY(A),
              POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(D));
+
+  fprintf(stderr, "Copying input D to D_inputFromOMP.\n");
+  // memcpy(C_outputFromOMP, C, sizeof(C_outputFromOMP));
+  copy_array(ni, nl, POLYBENCH_ARRAY(D), POLYBENCH_ARRAY(D_inputToOMP));
+  copy_array(ni, nl, POLYBENCH_ARRAY(D), POLYBENCH_ARRAY(D_inputToOMP));
+
+  // GPU_argv_init();
+
+  // mm2Cuda(ni, nj, nk, nl, alpha, beta, POLYBENCH_ARRAY(tmp), POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), 
+  //  POLYBENCH_ARRAY(D), POLYBENCH_ARRAY(D_outputFromGpu));
+
+  //fprintf(stderr, "Calling CUDA version.\n");  
+  //mm2Cuda_1(ni, nj, nk, nl, alpha, beta, POLYBENCH_ARRAY(tmp), POLYBENCH_ARRAY(A), 
+  //        POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(D_inputToGpu),
+  //        POLYBENCH_ARRAY(D_outputFromGpu));
+
+  //mm2Cuda_2(ni, nj, nk, nl, alpha, beta, POLYBENCH_ARRAY(tmp), POLYBENCH_ARRAY(A), 
+  //        POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(D_inputToGpu),
+  //        POLYBENCH_ARRAY(D_outputFromGpu));
+
   
   fprintf(stderr, "Calling gemm_original.\n");
   mm_original(ni, nj, nk, nl, alpha, beta, POLYBENCH_ARRAY(tmp), POLYBENCH_ARRAY(A),
           POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(D));
 
-  // fprintf(stderr, "Calling gemm_omp.\n");
+  fprintf(stderr, "Calling OMP version.\n");
   mm_omp(ni, nj, nk, nl,
-	      alpha, beta,
-	      POLYBENCH_ARRAY(tmp),
-	      POLYBENCH_ARRAY(A),
-	      POLYBENCH_ARRAY(B),
-	      POLYBENCH_ARRAY(C),
-	      POLYBENCH_ARRAY(D_outputFromOMP));
+        alpha, beta,
+       POLYBENCH_ARRAY(tmp),
+       POLYBENCH_ARRAY(A),
+       POLYBENCH_ARRAY(B),
+       POLYBENCH_ARRAY(C),
+        POLYBENCH_ARRAY(D_outputFromOMP));
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, nl, POLYBENCH_ARRAY(D), POLYBENCH_ARRAY(D_outputFromOMP));
-
-  // fprintf(stderr, "Calling gemm_cuda.\n");  
-  // mm2Cuda_1(ni, nj, nk, nl, alpha, beta, POLYBENCH_ARRAY(tmp), POLYBENCH_ARRAY(A), 
-  //        POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(D),
-  //        POLYBENCH_ARRAY(D_outputFromGpu));
 
   // fprintf(stderr, "Calling mm2Cuda_1 using Table of Pointers.\n");
   // call_function_ffi_call(table[0][0]);
@@ -596,7 +670,6 @@ int main(int argc, char **argv) {
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
   compareResults(ni, nl, POLYBENCH_ARRAY(D), POLYBENCH_ARRAY(D_outputFromGpu));
 
-
   polybench_prevent_dce(print_array(ni, nl, POLYBENCH_ARRAY(D_outputFromGpu)));
 
   POLYBENCH_FREE_ARRAY(tmp);
@@ -604,17 +677,10 @@ int main(int argc, char **argv) {
   POLYBENCH_FREE_ARRAY(B);
   POLYBENCH_FREE_ARRAY(C);
   POLYBENCH_FREE_ARRAY(D);
+  POLYBENCH_FREE_ARRAY(D_inputToOMP);
   POLYBENCH_FREE_ARRAY(D_outputFromOMP);
+  POLYBENCH_FREE_ARRAY(D_inputToGpu);
   POLYBENCH_FREE_ARRAY(D_outputFromGpu);
-
-
-  if(gpu_data_allocated){
-  	cudaFree(tmp_gpu);
-  	cudaFree(A_gpu);
-  	cudaFree(B_gpu);
-  	cudaFree(C_gpu);
-  	cudaFree(D_gpu);	
-  }
 
   return 0;
 }
