@@ -68,7 +68,6 @@ void copy_array(int ni, DATA_TYPE POLYBENCH_2D(C_source, NI, NI, ni, ni), DATA_T
   }
 }
 
-
 /* ------------------------------------------------------------- */
 void syr2kCpu(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
