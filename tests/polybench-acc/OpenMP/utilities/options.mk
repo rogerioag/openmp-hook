@@ -1,8 +1,8 @@
 # CODE GENERATION OPTIONS
 ########################################
 
-# Default OpenACC Target is OpenCL
-TARGET_LANG = OPENCL
+# Default OpenMP Target is OpenCL
+TARGET_LANG = OPENMP
 
 # Uncomment if you want CUDA
 # TARGET_LANG = CUDA
@@ -11,10 +11,10 @@ TARGET_LANG = OPENCL
 ########################################
 
 # Accelerator Compiler
-ACC = hmpp
+# ACC = hmpp
 
 # Accelerator Compiler flags
-ACCFLAGS = --codelet-required --openacc-target=$(TARGET_LANG)
+# ACCFLAGS = --codelet-required --openacc-target=$(TARGET_LANG)
 
 # COMPILER OPTIONS -- HOST
 ########################################
@@ -23,4 +23,4 @@ ACCFLAGS = --codelet-required --openacc-target=$(TARGET_LANG)
 CC = gcc
 
 # Compiler flags
-CFLAGS = -O2
+CFLAGS = -O2 -fopenmp

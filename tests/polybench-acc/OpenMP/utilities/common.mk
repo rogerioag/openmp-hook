@@ -1,7 +1,7 @@
 INCPATHS = -I$(UTIL_DIR)
 
 BENCHMARK = $(shell basename `pwd`)
-EXE = $(BENCHMARK)_acc
+EXE = $(BENCHMARK)_omp
 SRC = $(BENCHMARK).c
 HEADERS = $(BENCHMARK).h
 
@@ -17,7 +17,8 @@ all : exe
 exe : $(EXE)
 
 $(EXE) : $(SRC)
-	$(ACC) $(ACCFLAGS) $(CC) $(CFLAGS) $(INCPATHS) $^ -o $@
+	# $(ACC) $(ACCFLAGS) $(CC) $(CFLAGS) $(INCPATHS) $^ -o $@
+	$(CC) $(CFLAGS) $(INCPATHS) $^ -o $@
 
 clean :
 	-rm -vf __hmpp* -vf $(EXE) *~ 
