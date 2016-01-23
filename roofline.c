@@ -372,7 +372,7 @@ bool RM_create_event_set(void){
 bool RM_start_counters (void){
 	PRINT_FUNC_NAME;
 	
-	int i, j, retval, result;
+	int i, j, retval, result, EventCode;
   	unsigned long int tid;
 
 	/* Initialize RM library. */
@@ -397,9 +397,18 @@ bool RM_start_counters (void){
 	TRACE("EventSet: %d\n", ptr_measure->current_eventset);
 	for ( j = 0; event_names[ptr_measure->current_eventset][j] != NULL; j++ ) {
 		TRACE("Adding[%s].\n", event_names[ptr_measure->current_eventset][j] );
-  		if ((retval = PAPI_add_named_event( ptr_measure->EventSet, event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){+
+  		/*if ((retval = PAPI_add_named_event( ptr_measure->EventSet, event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){
 			// fprintf(stderr,"PAPI_add_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
 			// TRACE("PAPI_add_named_event[%s] error.\n");// , event_names[ptr_measure->current_eventset][j]);
+			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+		}*/
+
+		if ((retval = PAPI_event_name_to_code(event_names[ptr_measure->current_eventset][j], &EventCode )) != PAPI_OK){
+			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+		}
+
+		TRACE("Adding[%X].\n", EventCode);
+		if ((retval = PAPI_add_event(ptr_measure->EventSet, &EventCode )) != PAPI_OK){
 			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 		}
 	}
