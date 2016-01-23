@@ -23,19 +23,21 @@
 /* Cache line size: 64 bytes. http://www.cpu-world.com/CPUs/Xeon/Intel-Xeon%20E5-2630.html */
 #define CACHE_LINE_SIZE 64
 
-#define NUM_EVENT_SETS 4
+#define NUM_EVENT_SETS 5
 #define NUM_MAX_EVENTS 5
 
 /* Events more PAPI_get_real_cyc() that work with time stamp counter (tsc), getting the value of rdtsc. */
 
 /* Indexes to define the position of values. */
-#define IDX_LLC 0
-#define IDX_L2 1
-#define IDX_L1 2
-#define IDX_FPO 3
+#define IDX_MEM 0
+#define IDX_LLC 1
+#define IDX_L2 2
+#define IDX_L1 3
+#define IDX_FPO 4
 
 /* Names of Events. */
 static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = { 
+/* MEM_event_names */{ "ivbep_unc_ha0::UNC_H_IMC_READS:cpu=0", "ivbep_unc_ha0::UNC_H_IMC_WRITES:cpu=0", NULL, NULL, NULL },
 /* L3_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L3_TCR", "PAPI_L3_TCW", NULL },
 /* L2_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L2_TCR", "PAPI_L2_TCW", NULL },
 /* L1_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L1_TCR", "PAPI_L1_TCW", NULL },
