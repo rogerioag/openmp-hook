@@ -37,7 +37,8 @@
 
 /* Names of Events. */
 static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = { 
-/* MEM_event_names */{ "ivbep_unc_ha0::UNC_H_IMC_READS:cpu=0", "ivbep_unc_ha0::UNC_H_IMC_WRITES:cpu=0", NULL, NULL, NULL },
+/* MEM_event_names */ //{ "ivbep_unc_ha0::UNC_H_IMC_READS:cpu=0", "ivbep_unc_ha0::UNC_H_IMC_WRITES:cpu=0", NULL, NULL, NULL },
+/* MEM_event_names */{ "UNC_H_IMC_READS", "UNC_H_IMC_WRITES", NULL, NULL, NULL },
 /* L3_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L3_TCR", "PAPI_L3_TCW", NULL },
 /* L2_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L2_TCR", "PAPI_L2_TCW", NULL },
 /* L1_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L1_TCR", "PAPI_L1_TCW", NULL },
