@@ -394,7 +394,7 @@ bool RM_start_counters (void){
 		result = RM_create_event_set();
 	}
 
-	unsigned int EventCode = 0x0;
+	int EventCode = 0x0;
 
 	TRACE("EventSet: %d\n", ptr_measure->current_eventset);
 	for ( j = 0; event_names[ptr_measure->current_eventset][j] != NULL; j++ ) {
