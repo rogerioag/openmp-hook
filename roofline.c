@@ -408,7 +408,7 @@ bool RM_start_counters (void){
 		}
 
 		TRACE("Adding[%X].\n", EventCode);
-		if ((retval = PAPI_add_event(ptr_measure->EventSet, &EventCode )) != PAPI_OK){
+		if ((retval = PAPI_add_event(ptr_measure->EventSet, EventCode )) != PAPI_OK){
 			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 		}
 	}
