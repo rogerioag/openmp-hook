@@ -23,6 +23,9 @@
 /* Cache line size: 64 bytes. http://www.cpu-world.com/CPUs/Xeon/Intel-Xeon%20E5-2630.html */
 #define CACHE_LINE_SIZE 64
 
+/* One to preset, cpu and other to native and uncore. */
+#define NUM_PAPI_EVENT_SETS 2
+
 #define NUM_EVENT_SETS 5
 #define NUM_MAX_EVENTS 5
 
@@ -35,6 +38,9 @@
 #define IDX_L1 3
 #define IDX_FPO 4
 
+#define COMP_CORE 0
+#define COMP_UNCORE 1
+
 /* Names of Events. */
 static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = { 
 /* MEM_event_names */ //{ "ivbep_unc_ha0::UNC_H_IMC_READS:cpu=0", "ivbep_unc_ha0::UNC_H_IMC_WRITES:cpu=0", NULL, NULL, NULL },
@@ -45,10 +51,22 @@ static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = {
 /* FPO_event_names */{ "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_DP_OPS", 		 NULL, NULL }
 };
 
+/* The kind of component the eventset was associated. Is need different event sets to measures preset events and native events. 
+   Components cpu (0) and perf_event_uncore to uncore events are associated with EventSet. 
+   This kind is used to switch between EventSets. */
+static int kind_of_event_set[NUM_EVENT_SETS] = { 
+/* MEM_event_names */{ COMP_UNCORE },
+/* L3_event_names */ { COMP_CORE },
+/* L2_event_names */ { COMP_CORE },
+/* L1_event_names */ { COMP_CORE },
+/* FPO_event_names */{ COMP_CORE }
+};
+
 /* Struct to registry performance counters and time. */
 struct _papi_thread_record {
   /* Shared EventSet. Each set of events is copied to this to get measures. */
-  int EventSet = PAPI_NULL;
+  /* EventSets[0] for core and preset events. EventSet[1] for uncore and native events. */
+  int *EventSets;  
 
   struct timeval initial_time;
   struct timeval final_time;
@@ -82,7 +100,7 @@ static pthread_key_t papi_thread_info_key;
 
 static bool papi_library_initialized = false;
 
-static bool papi_eventset_was_created = false;
+static bool papi_eventsets_were_created = false;
 // static bool papi_in_multiplexing_mode = false;
 
 static bool thread_was_registred_in_papi = false;
@@ -120,7 +138,7 @@ extern "C" {
 
 	bool RM_register_papi_thread(void);
 
-	bool RM_create_event_set(void);
+	bool RM_create_event_sets(void);
 
 	void RM_print_counters_values(void);
 

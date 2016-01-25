@@ -38,14 +38,19 @@ bool RM_library_init(void){
 
 	ptr_measure->initial_time = (struct timeval){0};
 	ptr_measure->final_time = (struct timeval){0};
-	ptr_measure->EventSet = PAPI_NULL;
+
+	// ptr_measure->EventSetCore = PAPI_NULL;
+	// ptr_measure->EventSetUnCore = PAPI_NULL;
+	ptr_measure->EventSets = (int *) malloc(sizeof(int) * NUM_PAPI_EVENT_SETS);
+	ptr_measure->EventSets[COMP_CORE] = PAPI_NULL;
+	ptr_measure->EventSets[COMP_UNCORE] = PAPI_NULL;
 
 	/* Aditional parameters. */
 	ptr_measure->total_of_iterations = 0;
   	ptr_measure->executed_loop_iterations = 0;
  	ptr_measure->chunk_size = 0;
 
-	// papi_eventset_was_created = false;
+	// papi_eventsets_were_created = false;
 	// thread_was_registred_in_papi = false;
 
 	TRACE("PAPI Library was initialized: %d\n", papi_library_initialized);
@@ -63,10 +68,10 @@ bool RM_library_init(void){
   	}
 
   	/* Event set was created. */
-  	TRACE("Verifying if eventset was created: %d.\n", papi_eventset_was_created);
-	if(!papi_eventset_was_created){
+  	TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
+	if(!papi_eventsets_were_created){
 		TRACE("Trying to create event set.\n");
-		result = RM_create_event_set();
+		result = RM_create_event_sets();
 	}
 
 	return result;
@@ -252,12 +257,13 @@ void RM_print_counters_values(void) {
 
 /* ------------------------------------------------------------ */
 /* PAPI Status.													*/
-void RM_check_papi_status(){
+void RM_check_papi_status(int idx){
 	PRINT_FUNC_NAME;
 	int retval;
 
 	int status = 0;
-	if((retval = PAPI_state(ptr_measure->EventSet, &status)) != PAPI_OK){
+	TRACE("Checking the Status of EventSet[%d].\n", idx);
+	if((retval = PAPI_state(ptr_measure->EventSets[idx], &status)) != PAPI_OK){
 		switch (retval){
 			case PAPI_STOPPED :
 				TRACE("EventSet is stopped.\n");
@@ -288,36 +294,195 @@ void RM_check_papi_status(){
 		//    	break;
 		    defaul: TRACE("Undefined retval.\n");
 		} 
-	}    
+	}
+	// TRACE("Checking the Status of EventSetUnCore.\n");
+	// if((retval = PAPI_state(ptr_measure->EventSetUnCore, &status)) != PAPI_OK){
+	// 	switch (retval){
+	// 		case PAPI_STOPPED :
+	// 			TRACE("EventSet is stopped.\n");
+	// 			break;
+	// 		case PAPI_RUNNING :
+	// 			TRACE("EventSet is running.\n");
+	// 			break;
+	// 		case PAPI_PAUSED :
+	// 			TRACE("EventSet temporarily disabled by the library.\n"); 
+	// 			break;
+	// 		case PAPI_NOT_INIT :
+	// 			TRACE("EventSet defined, but not initialized.\n");
+	// 			break;
+ //    		case PAPI_OVERFLOWING :
+	// 			TRACE("EventSet has overflowing enabled.\n");
+ //    			break;
+	// 	    case PAPI_PROFILING :
+	// 			TRACE("EventSet has profiling enabled.\n");
+	// 	    	break;
+	// 	    case PAPI_MULTIPLEXING :
+	// 			TRACE("EventSet has multiplexing enabled.\n");
+	// 	    	break;
+	// 	//    case PAPI_ACCUMULATING :
+	// 	//		TRACE("reserved for future use.\n");
+	// 	//    	break;
+	// 	//    case PAPI_HWPROFILING :
+	// 	//		TRACE("reserved for future use.\n");
+	// 	//    	break;
+	// 	    defaul: TRACE("Undefined retval.\n");
+	// 	} 
+	// }
 }
 
 /* ------------------------------------------------------------ */
 /* Create event set. 											*/
-bool RM_create_event_set(void){
+bool RM_create_event_sets(void){
 	PRINT_FUNC_NAME;
-	int i, retval;
+	int i, retval_1, retval_2;
+
+	int uncore_cidx = -1;
+   	const PAPI_component_info_t *cmp_info;
 
 	int native = 0x0;
 
-	TRACE("Trying to create PAPI event set.\n");
+	TRACE("Trying to create PAPI Event Sets.\n");
 
+	TRACE("Trying to create ptr_measure->EventSets[COMP_CORE].\n");
 	/* Create an EventSet */
-  	if ((retval = PAPI_create_eventset(&ptr_measure->EventSet)) != PAPI_OK){
-    	TRACE("PAPI_create_eventset error: %d %s\n", retval, PAPI_strerror(retval));
-    	RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+  	if ((retval_1 = PAPI_create_eventset(&ptr_measure->EventSets[COMP_CORE])) != PAPI_OK){
+    	TRACE("PAPI_create_eventset error: %d %s\n", retval_1, PAPI_strerror(retval_1));
+    	RM_papi_handle_error(__FUNCTION__, retval_1, __LINE__);
   	}
-
-  	/* Set eventset was created. */
-  	papi_eventset_was_created = (retval == PAPI_OK);
 
   	/* Assign it to the CPU component */
 	TRACE("Assign it to the CPU component.\n");
-	if ((retval = PAPI_assign_eventset_component(ptr_measure->EventSet, 0)) != PAPI_OK){
-  		TRACE("PAPI_assign_eventset_component: %d %s\n", retval, PAPI_strerror(retval));
-  		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	if ((retval_1 = PAPI_assign_eventset_component(ptr_measure->EventSets[COMP_CORE], 0)) != PAPI_OK){
+  		TRACE("PAPI_assign_eventset_component: %d %s\n", retval_1, PAPI_strerror(retval_1));
+  		RM_papi_handle_error(__FUNCTION__, retval_1, __LINE__);
   	}
 
-	/* Convert the ''EventSet'' to a multiplexed event set */
+   // 	/* we need to set to a certain cpu for uncore to work */
+
+   // 	PAPI_cpu_option_t cpu_opt_is_core;
+
+   // 	cpu_opt_is_core.eventset = ptr_measure->EventSetCore;
+   // 	cpu_opt_is_core.cpu_num = 0;
+
+   // retval = PAPI_set_opt(PAPI_CPU_ATTACH,(PAPI_option_t*)&cpu_opt_is_core);
+   // if (retval != PAPI_OK) {
+   //    test_skip( __FILE__, __LINE__,
+   //          "this test; trying to PAPI_CPU_ATTACH; need to run as root",
+   //          retval);
+   // }
+
+   // /* we need to set the granularity to system-wide for uncore to work */
+
+   // PAPI_granularity_option_t gran_opt_is_core;
+
+   //  PAPI_GRN_THR   Count each individual thread
+   //    PAPI_GRN_PROC  Count each individual process
+   //    PAPI_GRN_PROCG    Count each individual process group
+   //    PAPI_GRN_SYS   Count the current CPU
+   //    PAPI_GRN_SYS_CPU  Count all CPU's individually
+   //    PAPI_GRN_MIN   The finest available granularity
+   //    PAPI_GRN_MAX   The coarsest available granularity 
+   
+   // gran_opt_is_core.def_cidx = 0;
+   // gran_opt_is_core.eventset = ptr_measure->EventSetCore;
+   // gran_opt_is_core.granularity = PAPI_GRN_SYS;
+
+   // retval = PAPI_set_opt(PAPI_GRANUL, (PAPI_option_t*) &gran_opt_is_core);
+   // if (retval != PAPI_OK) {
+   //    test_skip( __FILE__, __LINE__,
+   //          "this test; trying to set PAPI_GRN_SYS",
+   //          retval);
+   // }
+
+   // /* we need to set domain to be as inclusive as possible */
+
+   // PAPI_domain_option_t domain_opt_is_core;
+
+   // domain_opt_is_core.def_cidx = 0;
+   // domain_opt_is_core.eventset = ptr_measure->EventSetCore;
+   // domain_opt_is_core.domain = PAPI_DOM_ALL;
+
+   // retval = PAPI_set_opt(PAPI_DOMAIN,(PAPI_option_t*) &domain_opt_is_core);
+   // if (retval != PAPI_OK) {
+   //    test_skip( __FILE__, __LINE__,
+   //          "this test; trying to set PAPI_DOM_ALL; need to run as root",
+   //          retval);
+   // }
+
+  	TRACE("Trying to create ptr_measure->EventSets[COMP_UNCORE].\n");
+
+  	/* Find the uncore PMU */
+  	if ((uncore_cidx = PAPI_get_component_index("perf_event_uncore")) < 0){
+  		TRACE("perf_event_uncore component not found: %d %s\n", uncore_cidx, PAPI_strerror(uncore_cidx));
+   	}
+
+   	/* Check if component disabled */
+   	if ((cmp_info = PAPI_get_component_info(uncore_cidx)) == NULL){
+   		TRACE("Uncore component %d not found.\n", uncore_cidx);	
+   	}
+   	else{
+   		if (cmp_info->disabled) {
+    	  TRACE("Uncore component disabled.\n");
+   		}	
+   	}
+
+   	/* Create an eventset */
+   	if ((retval_2 = PAPI_create_eventset(&ptr_measure->EventSets[COMP_UNCORE])) != PAPI_OK){
+    	TRACE("PAPI_create_eventset error: %d %s\n", retval_2, PAPI_strerror(retval_2));
+    	RM_papi_handle_error(__FUNCTION__, retval_2, __LINE__);
+  	}
+
+  	/* Assign it to the perf_uncore component */
+	TRACE("Assign it to perf_uncore component.\n");
+	if ((retval_2 = PAPI_assign_eventset_component(ptr_measure->EventSets[COMP_UNCORE], uncore_cidx)) != PAPI_OK){
+  		TRACE("PAPI_assign_eventset_component: %d %s\n", retval_2, PAPI_strerror(retval_2));
+  		RM_papi_handle_error(__FUNCTION__, retval_2, __LINE__);
+  	}
+
+   	/* we need to set to a certain cpu for uncore to work */
+  	TRACE("Defining CPU to uncore component.\n");
+   	PAPI_cpu_option_t cpu_opt_uncore;
+
+   	cpu_opt_uncore.eventset = ptr_measure->EventSets[COMP_UNCORE];
+   	cpu_opt_uncore.cpu_num = 0;
+
+   	if ((retval_2 = PAPI_set_opt(PAPI_CPU_ATTACH, (PAPI_option_t*) &cpu_opt_uncore)) != PAPI_OK){
+   		TRACE("Trying to PAPI_CPU_ATTACH; need to run as root: %d %s\n", retval_2, PAPI_strerror(retval_2));
+   	}
+
+   	/* we need to set the granularity to system-wide for uncore to work */
+   	TRACE("Defining granularity to uncore component.\n");
+   	PAPI_granularity_option_t gran_opt_uncore;
+
+   	/* PAPI_GRN_THR   Count each individual thread
+      PAPI_GRN_PROC  Count each individual process
+      PAPI_GRN_PROCG    Count each individual process group
+      PAPI_GRN_SYS   Count the current CPU
+      PAPI_GRN_SYS_CPU  Count all CPU's individually
+      PAPI_GRN_MIN   The finest available granularity
+      PAPI_GRN_MAX   The coarsest available granularity 
+   	*/
+   	gran_opt_uncore.def_cidx = 0;
+   	gran_opt_uncore.eventset = ptr_measure->EventSets[COMP_UNCORE];
+   	gran_opt_uncore.granularity = PAPI_GRN_SYS;
+
+   	if ((retval_2 = PAPI_set_opt(PAPI_GRANUL, (PAPI_option_t*) &gran_opt__uncore)) != PAPI_OK){
+   		TRACE("Trying to PAPI_GRN_SYS: %d %s\n", retval_2, PAPI_strerror(retval_2));
+   	}
+
+   	/* we need to set domain to be as inclusive as possible */
+   	TRACE("Defining domain to uncore component.\n");
+   	PAPI_domain_opt_uncoreion_t domain_opt_uncore;
+
+   	domain_opt_uncore.def_cidx = 0;
+   	domain_opt_uncore.eventset = ptr_measure->EventSets[COMP_UNCORE];
+   	domain_opt_uncore.domain = PAPI_DOM_ALL;
+
+   	if ((retval_2 = PAPI_set_opt(PAPI_DOMAIN,(PAPI_option_t*) &domain_opt_uncore)) != PAPI_OK){
+   		TRACE("Trying to PAPI_DOM_ALL; need to run as root %d %s\n", retval_2, PAPI_strerror(retval_2));
+   	}
+   
+   	/* Convert the ''EventSet'' to a multiplexed event set */
 	/*TRACE("Convert the EventSet to a multiplexed event set.\n");
 	if ((retval = PAPI_set_multiplex(ptr_measure->EventSet)) != PAPI_OK){
 		if ( retval == PAPI_ENOSUPP) {
@@ -360,11 +525,15 @@ bool RM_create_event_set(void){
 	    }
 	}*/
 
-	RM_check_papi_status();
+	/* Set eventsets were created. */
+  	papi_eventsets_were_created = ((retval_1 == PAPI_OK) && (retval_2 == PAPI_OK));
 
-	TRACE("Leaving the RM_create_event_set: papi_eventset_was_created %d.\n", papi_eventset_was_created);
+	RM_check_papi_status(COMP_CORE);
+	RM_check_papi_status(COMP_UNCORE);
 
-	return papi_eventset_was_created;
+	TRACE("Leaving the RM_create_event_sets: papi_eventsets_were_created %d.\n", papi_eventsets_were_created);
+
+	return papi_eventsets_were_created;
 }
 
 /* ------------------------------------------------------------ */
@@ -389,9 +558,9 @@ bool RM_start_counters (void){
   	}
 
   	/* Event set was created. */
-	if(!papi_eventset_was_created){
+	if(!papi_eventsets_were_created){
 		TRACE("Trying to create event set.\n");
-		result = RM_create_event_set();
+		result = RM_create_event_sets();
 	}
 
 	int EventCode = 0x0;
@@ -410,14 +579,14 @@ bool RM_start_counters (void){
 		}
 
 		TRACE("Adding[%X].\n", EventCode);
-		if ((retval = PAPI_add_event(ptr_measure->EventSet, EventCode )) != PAPI_OK){
+		if ((retval = PAPI_add_event(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], EventCode )) != PAPI_OK){
 			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 		}
 	}
 
 	/* Restart the counters. */
 	TRACE("Resetting the counters.\n");
-	if ((retval = PAPI_reset(ptr_measure->EventSet)) != PAPI_OK) {
+	if ((retval = PAPI_reset(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]])) != PAPI_OK) {
 		TRACE("PAPI_reset() counters error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 
@@ -437,7 +606,7 @@ bool RM_start_counters (void){
 
 	/* Start counting */
 	TRACE("Starting counting...\n");
-  	if ((retval = PAPI_start(ptr_measure->EventSet)) != PAPI_OK) {
+  	if ((retval = PAPI_start(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]])) != PAPI_OK) {
 		TRACE("PAPI_start() Starting counting error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 
@@ -460,7 +629,7 @@ bool RM_stop_and_accumulate(void){
 	int j;
 
   	TRACE("Trying accumulate counters.\n");
-	if ((retval = PAPI_accum(ptr_measure->EventSet, &ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 0])) != PAPI_OK){
+	if ((retval = PAPI_accum(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], &ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 0])) != PAPI_OK){
 		TRACE("PAPI_accum error: %d %s\n", retval, PAPI_strerror(retval));
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 
@@ -487,7 +656,7 @@ bool RM_stop_and_accumulate(void){
 		 
 	/* Stop de measures. */
 	TRACE("Stopping the counters.\n");
-	if ((retval = PAPI_stop(ptr_measure->EventSet, &discarded_values)) != PAPI_OK){
+	if ((retval = PAPI_stop(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], &discarded_values)) != PAPI_OK){
 		TRACE("PAPI_stop error: %d %s\n", retval, PAPI_strerror(retval));
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
@@ -495,7 +664,7 @@ bool RM_stop_and_accumulate(void){
 	TRACE("Removing events of EventSet: %d\n", ptr_measure->current_eventset);
 	for ( j = 0; event_names[ptr_measure->current_eventset][j] != NULL; j++ ) {
 		TRACE("Removing[%s].\n", event_names[ptr_measure->current_eventset][j] );
-  		if ((retval = PAPI_remove_named_event(ptr_measure->EventSet, event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){
+  		if ((retval = PAPI_remove_named_event(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){
 			TRACE("PAPI_remove_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
 			// The retval when the platform don't have support the counter was returned and supressing the offloading.
 			// PAPI can continue after errors. So defining retval to PAPI_OK.
@@ -667,7 +836,7 @@ double Q_level(int i){
 /* ------------------------------------------------------------ */
 double Q_total(){
 	PRINT_FUNC_NAME;
-	double qtotal = (Q_level(IDX_LLC) + Q_level(IDX_L2) + Q_level(IDX_L1));
+	double qtotal = (Q_level(IDX_MEM) + (Q_level(IDX_LLC) + Q_level(IDX_L2) + Q_level(IDX_L1));
 	TRACE("Q_total: %f.\n", qtotal);
 	return qtotal;
 }
@@ -730,7 +899,7 @@ bool RM_library_shutdown(void){
 
   	/* Event set was created. */
   	TRACE("Trying to destroy event set.\n");
-	if(papi_eventset_was_created){
+	if(papi_eventsets_were_created){
 		/*TRACE("Trying to clean up the event set.\n");
 		if ((retval = PAPI_cleanup_eventset(ptr_measure->EventSet)) != PAPI_OK){
 			TRACE("PAPI_cleanup_eventset error.\n");
@@ -745,7 +914,7 @@ bool RM_library_shutdown(void){
 		}
 		else{
 			TRACE("PAPI_destroy_eventset OK.\n");
-			papi_eventset_was_created = false;
+			papi_eventsets_were_created = false;
 		}
 	}
 
