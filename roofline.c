@@ -893,14 +893,9 @@ bool RM_decision_about_offloading(long *better_device_index){
 	return offload_decision;
 }
 /* ------------------------------------------------------------ */
-bool RM_library_shutdown(void){
-	PRINT_FUNC_NAME;
-	int retval = 0;
-
-  	/* Event set was created. */
-  	TRACE("Trying to destroy event set.\n");
-	if(papi_eventsets_were_created){
-		/*TRACE("Trying to clean up the event set.\n");
+bool RM_destroy_event_sets(void){
+	int i, retval = 0;
+	/*TRACE("Trying to clean up the event set.\n");
 		if ((retval = PAPI_cleanup_eventset(ptr_measure->EventSet)) != PAPI_OK){
 			TRACE("PAPI_cleanup_eventset error.\n");
 			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
@@ -908,12 +903,29 @@ bool RM_library_shutdown(void){
 		else{
 			TRACE("PAPI_cleanup_eventset OK.\n");
 		}*/
-		if ((retval = PAPI_destroy_eventset(&ptr_measure->EventSet)) != PAPI_OK){
+	for(i = 0; i < NUM_PAPI_EVENT_SETS; i++){
+		TRACE("Trying to destroy EventSet, ptr_measure->EventSets[%d].\n", i);
+		if ((retval = PAPI_destroy_eventset(&ptr_measure->EventSets[i])) != PAPI_OK){
 			TRACE("PAPI_destroy_eventset error.\n");
 			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+			return false;
 		}
 		else{
 			TRACE("PAPI_destroy_eventset OK.\n");
+		}
+	}
+	return true;		
+}
+/* ------------------------------------------------------------ */
+bool RM_library_shutdown(void){
+	PRINT_FUNC_NAME;
+	int retval = 0;
+
+  	/* Event set was created. */
+  	TRACE("Trying to destroy event sets.\n");
+	if(papi_eventsets_were_created){
+		if(RM_destroy_event_sets()){
+			TRACE("EventSets were destroied.\n");
 			papi_eventsets_were_created = false;
 		}
 	}
