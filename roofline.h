@@ -55,11 +55,11 @@ static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = {
    Components cpu (0) and perf_event_uncore to uncore events are associated with EventSet. 
    This kind is used to switch between EventSets. */
 static int kind_of_event_set[NUM_EVENT_SETS] = { 
-/* MEM_event_names */{ COMP_UNCORE },
-/* L3_event_names */ { COMP_CORE },
-/* L2_event_names */ { COMP_CORE },
-/* L1_event_names */ { COMP_CORE },
-/* FPO_event_names */{ COMP_CORE }
+/* MEM_event_names */ COMP_UNCORE ,
+/* L3_event_names */  COMP_CORE ,
+/* L2_event_names */  COMP_CORE ,
+/* L1_event_names */  COMP_CORE ,
+/* FPO_event_names */ COMP_CORE 
 };
 
 /* Struct to registry performance counters and time. */
