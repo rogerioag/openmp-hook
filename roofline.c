@@ -836,7 +836,7 @@ double Q_level(int i){
 /* ------------------------------------------------------------ */
 double Q_total(){
 	PRINT_FUNC_NAME;
-	double qtotal = (Q_level(IDX_MEM) + (Q_level(IDX_LLC) + Q_level(IDX_L2) + Q_level(IDX_L1));
+	double qtotal = ( Q_level(IDX_MEM) + Q_level(IDX_LLC) + Q_level(IDX_L2) + Q_level(IDX_L1) );
 	TRACE("Q_total: %f.\n", qtotal);
 	return qtotal;
 }
