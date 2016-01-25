@@ -466,13 +466,13 @@ bool RM_create_event_sets(void){
    	gran_opt_uncore.eventset = ptr_measure->EventSets[COMP_UNCORE];
    	gran_opt_uncore.granularity = PAPI_GRN_SYS;
 
-   	if ((retval_2 = PAPI_set_opt(PAPI_GRANUL, (PAPI_option_t*) &gran_opt__uncore)) != PAPI_OK){
+   	if ((retval_2 = PAPI_set_opt(PAPI_GRANUL, (PAPI_option_t*) &gran_opt_uncore)) != PAPI_OK){
    		TRACE("Trying to PAPI_GRN_SYS: %d %s\n", retval_2, PAPI_strerror(retval_2));
    	}
 
    	/* we need to set domain to be as inclusive as possible */
    	TRACE("Defining domain to uncore component.\n");
-   	PAPI_domain_opt_uncoreion_t domain_opt_uncore;
+   	PAPI_domain_option_t domain_opt_uncore;
 
    	domain_opt_uncore.def_cidx = 0;
    	domain_opt_uncore.eventset = ptr_measure->EventSets[COMP_UNCORE];
