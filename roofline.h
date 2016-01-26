@@ -15,6 +15,7 @@
 #include <stdbool.h>
 
 #include "debug.h"
+#include "platform.h"
 
 #define RM_papi_handle_error(function_name, n_error, n_line) \
   fprintf(stderr, "[RM_papi_handle_error] %s -> %s [line %d]: PAPI error %d: %s\n", __FILE__, function_name, n_line, n_error, PAPI_strerror(n_error));
@@ -139,7 +140,7 @@ extern "C" {
 	bool RM_register_papi_thread(void);
 
 	bool RM_create_event_sets(void);
-  
+
   bool RM_destroy_event_sets(void);
 
 	void RM_print_counters_values(void);
