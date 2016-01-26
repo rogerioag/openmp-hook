@@ -869,12 +869,37 @@ double RM_get_operational_intensity(void){
 }
 
 /* ------------------------------------------------------------ */
+/* Calc Attainable performance in device                        */
+double RM_attainable_performance(int id_device, double op_intensity){
+	PRINT_FUNC_NAME;
+	double ap = 0.0;
+
+	TRACE("Calculating Attainable Performance to device %d with Operational intensity %10.6f\n", id_device, op_intensity);
+	// Attainable performance = Min( F_flops, B_mem * I).
+	ap = min(devices[id_device].flops, (devices[id_device].bandwidth * op_intensity));
+	
+	TRACE("AP: %10.6f\n", ap);
+
+	return ap;
+}
+
+/* ------------------------------------------------------------ */
 /* Better Device to execution.									*/
 int RM_get_better_device_to_execution(double oi){
 	PRINT_FUNC_NAME;
 	TRACE("Operational intensity: %10.6f\n", oi);
-	
-	return 0;
+
+	int best_dev = 0;
+	double best_ap_tmp = 0.0;
+	for(i = 0; i < NUM_DEVICES; i++){
+		if ((calc_ap = RM_attainable_performance(i, oi)) > best_ap_tmp){
+			best_ap_tmp = calc_ap;
+			best_dev = i;
+			TRACE("High Attainable Performance: %10.6f on device %d.\n", best_ap_tmp, best_dev);
+		}
+	}
+	TRACE("Chosen device: %d.\n", best_dev);
+	return best_dev;
 }
 
 /* ------------------------------------------------------------ */
