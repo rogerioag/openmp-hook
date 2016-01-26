@@ -887,15 +887,16 @@ double RM_attainable_performance(int id_device, double op_intensity){
 /* Better Device to execution.									*/
 int RM_get_better_device_to_execution(double oi){
 	PRINT_FUNC_NAME;
+	int i = 0;
 	TRACE("Operational intensity: %10.6f\n", oi);
 
 	int best_dev = 0;
-	double best_ap_tmp = 0.0;
+	double best_ap, calc_ap = 0.0;
 	for(i = 0; i < NUM_DEVICES; i++){
-		if ((calc_ap = RM_attainable_performance(i, oi)) > best_ap_tmp){
-			best_ap_tmp = calc_ap;
+		if ((calc_ap = RM_attainable_performance(i, oi)) > best_ap){
+			best_ap = calc_ap;
 			best_dev = i;
-			TRACE("High Attainable Performance: %10.6f on device %d.\n", best_ap_tmp, best_dev);
+			TRACE("High Attainable Performance: %10.6f on device %d.\n", best_ap, best_dev);
 		}
 	}
 	TRACE("Chosen device: %d.\n", best_dev);
