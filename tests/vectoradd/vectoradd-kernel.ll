@@ -23,9 +23,9 @@ declare i32 @llvm.nvvm.read.ptx.sreg.nctaid.y() readnone nounwind
 declare i32 @llvm.nvvm.read.ptx.sreg.nctaid.z() readnone nounwind
 
 
-define ptx_kernel void @vectoradd_kernel(float addrspace(1)* %d_a, 
-	                                     float addrspace(1)* %d_b, 
-	                                     float addrspace(1)* %d_c) {
+define ptx_kernel void @vectoradd_kernel(double addrspace(1)* %d_a, 
+	                                     double addrspace(1)* %d_b, 
+	                                     double addrspace(1)* %d_c) {
 entry:
 	;int indice =  blockIdx.y  * gridDim.x  * blockDim.z * blockDim.y * blockDim.x
 	;	     + blockIdx.x  * blockDim.z * blockDim.y * blockDim.x
@@ -82,16 +82,16 @@ entry:
 	br label %bb_1
 
 bb_1:                                         ; preds = %entry	
-	%scevgep = getelementptr float, float addrspace(1)* %d_c, i64 %indice
-	%scevgep1 = bitcast float addrspace(1)* %scevgep to float addrspace(1)*
-	%scevgep2 = getelementptr float, float addrspace(1)* %d_b, i64 %indice
-	%scevgep23 = bitcast float addrspace(1)* %scevgep2 to float addrspace(1)*
-	%scevgep4 = getelementptr float, float addrspace(1)* %d_a, i64 %indice
-	%scevgep45 = bitcast float addrspace(1)* %scevgep4 to float addrspace(1)*
-	%wide.load = load float, float addrspace(1)* %scevgep45, align 4
-	%wide.load4 = load float, float addrspace(1)* %scevgep23, align 4
-	%ab = fadd float %wide.load, %wide.load4
-	store float %ab , float addrspace(1)* %scevgep1 , align 4
+	%scevgep = getelementptr double, double addrspace(1)* %d_c, i64 %indice
+	%scevgep1 = bitcast double addrspace(1)* %scevgep to double addrspace(1)*
+	%scevgep2 = getelementptr double, double addrspace(1)* %d_b, i64 %indice
+	%scevgep23 = bitcast double addrspace(1)* %scevgep2 to double addrspace(1)*
+	%scevgep4 = getelementptr double, double addrspace(1)* %d_a, i64 %indice
+	%scevgep45 = bitcast double addrspace(1)* %scevgep4 to double addrspace(1)*
+	%wide.load = load double, double addrspace(1)* %scevgep45, align 4
+	%wide.load4 = load double, double addrspace(1)* %scevgep23, align 4
+	%ab = fadd double %wide.load, %wide.load4
+	store double %ab , double addrspace(1)* %scevgep1 , align 4
 	
 	br label %return
 
