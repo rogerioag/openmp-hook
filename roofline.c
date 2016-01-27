@@ -870,12 +870,12 @@ double RM_get_operational_intensity(void){
 
 	Q_L1 = Q_level(IDX_L1);
 	Q_L2 = Q_level(IDX_L1) + Q_level(IDX_L2);
-	Q_L3 = Q_level(IDX_L1) + Q_level(IDX_L2) + Q_level(IDX_LLC);
+	Q_LLC = Q_level(IDX_L1) + Q_level(IDX_L2) + Q_level(IDX_LLC);
 	Q_MEM = Q;
 
 	TRACE("I_L1: %f\n", (double) W / Q_L1);	
 	TRACE("I_L2: %f\n", (double) W / Q_L2);	
-	TRACE("I_L3: %f\n", (double) W / Q_L3);	
+	TRACE("I_LLC: %f\n", (double) W / Q_LLC);	
 	TRACE("I_MEM: %f\n", (double) W / Q_MEM);
 
 	return I;
