@@ -731,8 +731,7 @@ bool RM_registry_measures (void){
   	ptr_measure->q_data_transfer_write = q_data_transfer_write;
   	ptr_measure->q_data_transfer_read = q_data_transfer_read;
 
-  	TRACE("Total of iterations: %ld, executed_iterations: %lld, chunk_size: %lld, q_data_transfer_write: %lld, q_data_transfer_read: %lld.\n", ptr_measure->total_of_iterations, ptr_measure->executed_loop_iterations, ptr_measure->chunk_size, ptr_measure->q
-  		, ptr_measure->q_data_transfer_read);
+  	TRACE("Total of iterations: %ld, executed_iterations: %lld, chunk_size: %lld, q_data_transfer_write: %lld, q_data_transfer_read: %lld.\n", ptr_measure->total_of_iterations, ptr_measure->executed_loop_iterations, ptr_measure->chunk_size, ptr_measure->q_data_transfer_write, ptr_measure->q_data_transfer_read);
  }
 
 /* ------------------------------------------------------------ */
