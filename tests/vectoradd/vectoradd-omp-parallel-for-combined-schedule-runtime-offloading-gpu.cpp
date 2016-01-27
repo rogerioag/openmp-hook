@@ -216,7 +216,7 @@ void func_GPU(void){
   unsigned blockSizeX = 1024;
   unsigned blockSizeY = 1;
   unsigned blockSizeZ = 1;
-  unsigned gridSizeX  = 4;
+  unsigned gridSizeX  = N / blockSizeX;
   unsigned gridSizeY  = 1;
   unsigned gridSizeZ  = 1;
 
