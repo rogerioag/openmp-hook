@@ -720,15 +720,19 @@ bool RM_registry_measures (void){
  * N: total of iterations, 
  * executed_iterations: Number of executed iterations (percentual)
  * chunk_size: last chunk_size.
+ * q_data_transfer: number of bytes that will be transfered to device.
  */
- void RM_set_aditional_parameters(long long total_of_iterations, long long executed_loop_iterations, long long chunk_size) {
+ void RM_set_aditional_parameters(long long total_of_iterations, long long executed_loop_iterations, long long chunk_size, long long q_data_transfer_write, long long q_data_transfer_read) {
  	PRINT_FUNC_NAME;
 
  	ptr_measure->total_of_iterations = total_of_iterations;
   	ptr_measure->executed_loop_iterations = executed_loop_iterations;
   	ptr_measure->chunk_size = chunk_size;
+  	ptr_measure->q_data_transfer_write = q_data_transfer_write;
+  	ptr_measure->q_data_transfer_read = q_data_transfer_read;
 
-  	TRACE("Total of iterations: %ld, executed_iterations: %lld, chunk_size: %lld.\n", ptr_measure->total_of_iterations, ptr_measure->executed_loop_iterations, ptr_measure->chunk_size);
+  	TRACE("Total of iterations: %ld, executed_iterations: %lld, chunk_size: %lld, q_data_transfer_write: %lld, q_data_transfer_read: %lld.\n", ptr_measure->total_of_iterations, ptr_measure->executed_loop_iterations, ptr_measure->chunk_size, ptr_measure->q
+  		, ptr_measure->q_data_transfer_read);
  }
 
 /* ------------------------------------------------------------ */
@@ -851,19 +855,29 @@ double RM_get_operational_intensity(void){
 	// Work.
 	double W = 0.0;
 	// Memory traffic.
-	double Q = 0.0;
+	double Q, Q_MEM, Q_LLC, Q_L2, Q_L1 = 0.0;
 
 	// W.
 	W = work();
 	TRACE("W: %f\n", W);
 
-	// Q = Q_LLC + Q_L2 + Q_L1.
+	// Q = Q_MEM + Q_LLC + Q_L2 + Q_L1.
 	Q = Q_total();
 	TRACE("Q: %f\n", Q);
 
 	I =  (double) W / Q;
 
-	TRACE("I: %f\n", I);	
+	TRACE("I: %f\n", I);
+
+	Q_L1 = Q_level(IDX_L1);
+	Q_L2 = Q_level(IDX_L1) + Q_level(IDX_L2);
+	Q_L3 = Q_level(IDX_L1) + Q_level(IDX_L2) + Q_level(IDX_LLC);
+	Q_MEM = Q;
+
+	TRACE("I_L1: %f\n", (double) W / Q_L1);	
+	TRACE("I_L2: %f\n", (double) W / Q_L2);	
+	TRACE("I_L3: %f\n", (double) W / Q_L3);	
+	TRACE("I_MEM: %f\n", (double) W / Q_MEM);
 
 	return I;
 }
