@@ -91,6 +91,11 @@ struct _papi_thread_record {
   long long total_of_iterations;
   long long executed_loop_iterations;
   long long chunk_size;
+
+  /* Data IN to device. */
+  long long q_data_transfer_write;
+  /* Data OUT from device. */
+  long long q_data_transfer_read;
 };
 
 /* Registry for thread. */
@@ -147,7 +152,7 @@ extern "C" {
 
 	void RM_print_counters_values(void);
 
-	void RM_set_aditional_parameters(long long, long long, long long);
+	void RM_set_aditional_parameters(long long, long long, long long, long long, long long);
 	
 #ifdef __cplusplus
 }

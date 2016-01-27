@@ -365,6 +365,12 @@ extern "C" {
 	/* Current loop index. To identify the loop in execution. */
 	long int current_loop_index;
 
+	/* Amount of bytes that will be moved to device, if offloading. */
+	/* Write: sent to device. Inputs to kernel. */
+	long long q_data_transfer_write;
+	/* Read: get from device. Results, data that was modified. */
+	long long q_data_transfer_read;
+
 	void foo(void);
 	// GOMP_loop_runtime_start@@GOMP_1.0
 
