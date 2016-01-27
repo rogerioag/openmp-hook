@@ -276,7 +276,7 @@ void prepare_alternatives_functions(){
     assert(table != NULL);
 
     fprintf(stderr, "Declaring function in 0,0.\n");
-    table[0][0][0] = *ff;
+    table[0][1][0] = *ff;
 
     TablePointerFunctions = table;
     assert(TablePointerFunctions != NULL);
