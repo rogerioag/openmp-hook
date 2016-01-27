@@ -42,9 +42,9 @@ typedef struct Func {
   void* ret_value;
 } Func;
 
-float h_a[N];
-float h_b[N];
-float h_c[N];
+double h_a[N];
+double h_b[N];
+double h_c[N];
 
 /* Alternative Functions table pointer. */
 Func ***table;
@@ -144,13 +144,13 @@ void print_array() {
 void check_result(){
   // Soma dos elementos do array C e divide por N, o valor deve ser igual a 1.
   int i;
-  float sum = 0;
+  double sum = 0;
   fprintf(stdout, "Thread [%02d]: Verificando o resultado.\n", omp_get_thread_num());
   
   for (i = 0; i < N; i++) {
     sum += h_c[i];
   }
-  fprintf(stdout, "Thread [%02d]: Resultado Final: (%f, %f)\n", omp_get_thread_num(), sum, (float)(sum / (float)N));
+  fprintf(stdout, "Thread [%02d]: Resultado Final: (%f, %f)\n", omp_get_thread_num(), sum, (double)(sum / (double)N));
 }
 
 /* ------------------------------------------------------------- */
@@ -205,13 +205,13 @@ void func_GPU(void){
   CUdeviceptr devBufferB;
   CUdeviceptr devBufferC;
 
-  checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(float)*N));
-  checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(float)*N));
-  checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(float)*N));
+  checkCudaErrors(cuMemAlloc(&devBufferA, sizeof(double)*N));
+  checkCudaErrors(cuMemAlloc(&devBufferB, sizeof(double)*N));
+  checkCudaErrors(cuMemAlloc(&devBufferC, sizeof(double)*N));
 
   // Transferindo os dados para a memória do dispositivo.
-  checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(float)*N));
-  checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(float)*N));
+  checkCudaErrors(cuMemcpyHtoD(devBufferA, &h_a[0], sizeof(double)*N));
+  checkCudaErrors(cuMemcpyHtoD(devBufferB, &h_b[0], sizeof(double)*N));
 
   unsigned blockSizeX = 1024;
   unsigned blockSizeY = 1;
@@ -229,7 +229,7 @@ void func_GPU(void){
   checkCudaErrors(cuLaunchKernel(function, gridSizeX, gridSizeY, gridSizeZ, blockSizeX, blockSizeY, blockSizeZ, 0, NULL, KernelParams, NULL));
 
   // Recuperando os dados do resultado.
-  checkCudaErrors(cuMemcpyDtoH(&h_c[0], devBufferC, sizeof(float)*N));
+  checkCudaErrors(cuMemcpyDtoH(&h_c[0], devBufferC, sizeof(double)*N));
 
   // Liberando Memória do dispositivo.
   checkCudaErrors(cuMemFree(devBufferA));
@@ -294,8 +294,8 @@ int main() {
   int number_of_threads = 4;
 
   current_loop_index = 0;
-  q_data_transfer_write = 2 * N * sizeof(float);
-  q_data_transfer_read = N * sizeof(float);
+  q_data_transfer_write = 2 * N * sizeof(double);
+  q_data_transfer_read = N * sizeof(double);
   #pragma omp parallel for num_threads (number_of_threads) schedule (runtime)
   for (i = 0; i < N; i++) {
      h_c[i] = h_a[i] + h_b[i];
