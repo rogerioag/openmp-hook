@@ -144,7 +144,7 @@ void print_array() {
 void check_result(){
   // Soma dos elementos do array C e divide por N, o valor deve ser igual a 1.
   int i;
-  double sum = 0;
+  double sum = 0.0;
   fprintf(stdout, "Thread [%02d]: Verificando o resultado.\n", omp_get_thread_num());
   
   for (i = 0; i < N; i++) {
