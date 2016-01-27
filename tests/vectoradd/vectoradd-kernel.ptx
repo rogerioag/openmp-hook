@@ -14,9 +14,9 @@
 	.param .u64 vectoradd_kernel_param_2
 )
 {
-	.reg .f32 	%f<4>;
 	.reg .s32 	%r<17>;
-	.reg .s64 	%rd<9>;
+	.reg .f64 	%fd<4>;
+	.reg .s64 	%rd<19>;
 
 // BB#0:                                // %entry
 	ld.param.u64 	%rd4, [vectoradd_kernel_param_2];
@@ -40,14 +40,25 @@
 	mad.lo.s32 	%r16, %r5, %r12, %r15;
 	cvt.s64.s32	%rd1, %r16;
 // BB#1:                                // %bb_1
-	shl.b64 	%rd5, %rd1, 2;
+	shl.b64 	%rd5, %rd1, 3;
 	add.s64 	%rd6, %rd4, %rd5;
 	add.s64 	%rd7, %rd3, %rd5;
 	add.s64 	%rd8, %rd2, %rd5;
-	ld.global.f32 	%f1, [%rd8];
-	ld.global.f32 	%f2, [%rd7];
-	add.rn.f32 	%f3, %f1, %f2;
-	st.global.f32 	[%rd6], %f3;
+	ld.global.u32 	%rd9, [%rd8];
+	ld.global.u32 	%rd10, [%rd8+4];
+	shl.b64 	%rd11, %rd10, 32;
+	or.b64  	%rd12, %rd11, %rd9;
+	mov.b64 	 %fd1, %rd12;
+	ld.global.u32 	%rd13, [%rd7];
+	ld.global.u32 	%rd14, [%rd7+4];
+	shl.b64 	%rd15, %rd14, 32;
+	or.b64  	%rd16, %rd15, %rd13;
+	mov.b64 	 %fd2, %rd16;
+	add.rn.f64 	%fd3, %fd1, %fd2;
+	mov.b64 	 %rd17, %fd3;
+	st.global.u32 	[%rd6], %rd17;
+	shr.u64 	%rd18, %rd17, 32;
+	st.global.u32 	[%rd6+4], %rd18;
 // BB#2:                                // %return
 	ret;
 }
