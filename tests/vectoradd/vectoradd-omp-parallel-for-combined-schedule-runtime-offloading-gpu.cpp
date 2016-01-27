@@ -54,6 +54,12 @@ extern Func ***TablePointerFunctions;
 /* current loop index. */
 extern long int current_loop_index;
 
+/* Amount of bytes that will be moved to device, if offloading. */
+  /* Write: sent to device. Inputs to kernel. */
+extern long long q_data_transfer_write;
+/* Read: get from device. Results, data that was modified. */
+extern long long q_data_transfer_read;
+
 /* ------------------------------------------------------------- */
 bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
 
@@ -288,6 +294,8 @@ int main() {
   int number_of_threads = 4;
 
   current_loop_index = 0;
+  q_data_transfer_write = 2 * N * sizeof(float);
+  q_data_transfer_read = N * sizeof(float);
   #pragma omp parallel for num_threads (number_of_threads) schedule (runtime)
   for (i = 0; i < N; i++) {
      h_c[i] = h_a[i] + h_b[i];
