@@ -27,7 +27,7 @@
 
 // Size of vectors.
 #ifndef N
-#define N 4096
+#define N 32768
 #endif
 
 #define NUMBER_OF_THREADS 4;
