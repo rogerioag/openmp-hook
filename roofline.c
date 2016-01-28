@@ -866,25 +866,55 @@ double RM_get_operational_intensity(void){
 
 	// W.
 	W = work();
-	TRACE("W: %f\n", W);
+	TRACE("W: %10.6f\n", W);
 
 	// Q = Q_MEM + Q_LLC + Q_L2 + Q_L1.
 	Q = Q_total();
-	TRACE("Q: %f\n", Q);
+	TRACE("Q: %10.6f\n", Q);
 
 	I =  (double) W / Q;
 
-	TRACE("I: %f\n", I);
+	TRACE("I: %10.6f\n", I);
 
 	Q_L1 = Q_level(IDX_L1);
 	Q_L2 = Q_level(IDX_L1) + Q_level(IDX_L2);
 	Q_LLC = Q_level(IDX_L1) + Q_level(IDX_L2) + Q_level(IDX_LLC);
 	Q_MEM = Q;
+	
+	TRACE("I_L1: %10.6f\n", (double) W / Q_L1);	
+	TRACE("I_L2: %10.6f\n", (double) W / Q_L2);	
+	TRACE("I_LLC: %10.6f\n", (double) W / Q_LLC);	
+	TRACE("I_MEM: %10.6f\n", (double) W / Q_MEM);
 
-	TRACE("I_L1: %f\n", (double) W / Q_L1);	
-	TRACE("I_L2: %f\n", (double) W / Q_L2);	
-	TRACE("I_LLC: %f\n", (double) W / Q_LLC);	
-	TRACE("I_MEM: %f\n", (double) W / Q_MEM);
+	return I;
+}
+
+/* ------------------------------------------------------------ */
+/* Operational Intensity.										*/
+double RM_get_operational_intensity_in_GPU(void){
+	PRINT_FUNC_NAME;
+
+	// Operational intensity.
+	double I = 0.0;
+	// Work.
+	double W = 0.0;
+	// Memory traffic.
+	double Q_data_transfer, Q = 0.0;
+
+	// W.
+	W = work();
+	TRACE("W: %f\n", W);
+
+	// Q = Q_MEM + Q_LLC + Q_L2 + Q_L1.
+	Q = Q_total();
+	TRACE("Q: %10.6f\n", Q);
+
+	Q_data_transfer = ptr_measure->q_data_transfer_read + ptr_measure->q_data_transfer_write;
+	TRACE("Q_data_transfer: %10.6f\n", Q_data_transfer);
+
+	I =  (double) W / Q + Q_data_transfer;
+
+	TRACE("I_GPU: %10.6f\n", I);
 
 	return I;
 }
@@ -899,7 +929,7 @@ double RM_attainable_performance(int id_device, double op_intensity){
 	// Attainable performance = Min( F_flops, B_mem * I).
 	ap = MIN(devices[id_device].flops, (devices[id_device].bandwidth * op_intensity));
 	
-	TRACE("AP: %10.6f\n", ap);
+	TRACE("AP in device %d: %10.6f\n", id_device, ap);
 
 	return ap;
 }

@@ -57,6 +57,7 @@ static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = {
 /* FPO_event_names */{ "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_DP_OPS", 		 NULL, NULL }
 };
 
+/* Position, column in te values table according with events names. */
 static int event_position[NUM_EVENT_SETS] = { 
 /* MEM_events */  0 ,
 /* L3_events  */  2,
