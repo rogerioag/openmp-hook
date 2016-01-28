@@ -821,16 +821,18 @@ double work(){
 /* ------------------------------------------------------------ */
 double Qr(int i, int j){
 	PRINT_FUNC_NAME;
+	TRACE("Getting Qr(%d,%d).\n", i, j);
 	double qr = estimated(i, j) * CACHE_LINE_SIZE;
-	TRACE("Qr: %f.\n", qr);
+	TRACE("Qr(%d,%d): %f.\n", i, j, qr);
 	return qr;
 }
 
 /* ------------------------------------------------------------ */
 double Qw(int i, int j){
 	PRINT_FUNC_NAME;
+	TRACE("Getting Qw(%d,%d).\n", i, j);
 	double qw = estimated(i, j) * CACHE_LINE_SIZE;
-	TRACE("Qw: %f.\n", qw);
+	TRACE("Qw(%d,%d): %f.\n", i, j, qw);
 	return qw;
 }
 
@@ -838,7 +840,7 @@ double Qw(int i, int j){
 double Q_level(int i){
 	PRINT_FUNC_NAME;
 	double qlevel = (Qr(i, event_position[i]) + Qw(i, event_position[i]));
-	TRACE("Q_level: %f.\n", qlevel);
+	TRACE("Q_level(%d): %f.\n", i, qlevel);
 	return qlevel;
 }
 
