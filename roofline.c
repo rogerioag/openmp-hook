@@ -942,6 +942,7 @@ int RM_get_better_device_to_execution(double oi){
 	TRACE("Operational intensity in CPU: %10.10f\n", oi);
 
 	double oi_gpu = RM_get_operational_intensity_in_GPU();
+	TRACE("Operational intensity in CPU: %10.10f\n", oi);
 	TRACE("Operational intensity in GPU: %10.10f\n", oi_gpu);
 
 	int best_dev = 0;
