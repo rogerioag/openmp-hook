@@ -772,10 +772,12 @@ long long total_of_chunks() {
 // #define MEASURED_CHUNKS (ptr_measure->quant_intervals[0] + ptr_measure->quant_intervals[1] + ptr_measure->quant_intervals[2] + ptr_measure->quant_intervals[3])
 long long measured_chunks(){
 	PRINT_FUNC_NAME;
-	long long measured_chunks = (ptr_measure->quant_intervals[0] + 
-			ptr_measure->quant_intervals[1] + 
-			ptr_measure->quant_intervals[2] + 
-			ptr_measure->quant_intervals[3]);
+	int i = 0;
+	long long measured_chunks = 0;
+
+	for ( i = 0; i < NUM_EVENT_SETS; i++ ){
+		measured_chunks += ptr_measure->quant_intervals[i];
+	}
 	TRACE("measured chunks: %ld.\n", measured_chunks);
 	return measured_chunks;
 }
@@ -817,17 +819,17 @@ double work(){
 }
 
 /* ------------------------------------------------------------ */
-double Qr(int i){
+double Qr(int i, int j){
 	PRINT_FUNC_NAME;
-	double qr = estimated(i, 2) * CACHE_LINE_SIZE;
+	double qr = estimated(i, j) * CACHE_LINE_SIZE;
 	TRACE("Qr: %f.\n", qr);
 	return qr;
 }
 
 /* ------------------------------------------------------------ */
-double Qw(int i){
+double Qw(int i, int j){
 	PRINT_FUNC_NAME;
-	double qw = estimated(i, 3) * CACHE_LINE_SIZE;
+	double qw = estimated(i, j) * CACHE_LINE_SIZE;
 	TRACE("Qw: %f.\n", qw);
 	return qw;
 }
@@ -835,7 +837,7 @@ double Qw(int i){
 /* ------------------------------------------------------------ */
 double Q_level(int i){
 	PRINT_FUNC_NAME;
-	double qlevel = (Qr(i) + Qw(i));
+	double qlevel = (Qr(i, event_position[i]) + Qw(i, event_position[i]));
 	TRACE("Q_level: %f.\n", qlevel);
 	return qlevel;
 }
