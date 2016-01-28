@@ -25,12 +25,12 @@ bool RM_library_init(void){
 
   	ptr_measure->current_eventset = 0;
 
-  	TRACE("values initialization.\n");
+  	TRACE("ptr_measure->values initialization.\n");
   	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
   		TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
-		for ( j = 0; event_names[i][j] != NULL; j++ ) {
+		for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
 			ptr_measure->values[i * NUM_MAX_EVENTS + j] = 0;
-			TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i * NUM_MAX_EVENTS + j]);
+			TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i * NUM_MAX_EVENTS + j]);	
 		}
 	}
 
@@ -566,21 +566,23 @@ bool RM_start_counters (void){
 	int EventCode = 0x0;
 
 	TRACE("EventSet: %d\n", ptr_measure->current_eventset);
-	for ( j = 0; event_names[ptr_measure->current_eventset][j] != NULL; j++ ) {
-		TRACE("Adding[%s].\n", event_names[ptr_measure->current_eventset][j] );
-  		/*if ((retval = PAPI_add_named_event( ptr_measure->EventSet, event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){
-			// fprintf(stderr,"PAPI_add_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
-			// TRACE("PAPI_add_named_event[%s] error.\n");// , event_names[ptr_measure->current_eventset][j]);
-			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-		}*/
-		EventCode = 0x0;
-		if ((retval = PAPI_event_name_to_code(event_names[ptr_measure->current_eventset][j], &EventCode )) != PAPI_OK){
-			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-		}
+	for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
+		if(event_names[ptr_measure->current_eventset][j] != NULL){
+			TRACE("Adding[%s].\n", event_names[ptr_measure->current_eventset][j] );
+  			/*if ((retval = PAPI_add_named_event( ptr_measure->EventSet, event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){
+				// fprintf(stderr,"PAPI_add_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
+				// TRACE("PAPI_add_named_event[%s] error.\n");// , event_names[ptr_measure->current_eventset][j]);
+				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+			}*/
+			EventCode = 0x0;
+			if ((retval = PAPI_event_name_to_code(event_names[ptr_measure->current_eventset][j], &EventCode )) != PAPI_OK){
+				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+			}
 
-		TRACE("Adding[%X].\n", EventCode);
-		if ((retval = PAPI_add_event(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], EventCode )) != PAPI_OK){
-			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+			TRACE("Adding[%X].\n", EventCode);
+			if ((retval = PAPI_add_event(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], EventCode )) != PAPI_OK){
+				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+			}	
 		}
 	}
 
@@ -662,12 +664,14 @@ bool RM_stop_and_accumulate(void){
 	}
 
 	TRACE("Removing events of EventSet: %d\n", ptr_measure->current_eventset);
-	for ( j = 0; event_names[ptr_measure->current_eventset][j] != NULL; j++ ) {
-		TRACE("Removing[%s].\n", event_names[ptr_measure->current_eventset][j] );
-  		if ((retval = PAPI_remove_named_event(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){
-			TRACE("PAPI_remove_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
-			// The retval when the platform don't have support the counter was returned and supressing the offloading.
-			// PAPI can continue after errors. So defining retval to PAPI_OK.
+	for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
+		if(event_names[ptr_measure->current_eventset][j] != NULL){
+			TRACE("Removing[%s].\n", event_names[ptr_measure->current_eventset][j] );
+  			if ((retval = PAPI_remove_named_event(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){
+				TRACE("PAPI_remove_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
+				// The retval when the platform don't have support the counter was returned and supressing the offloading.
+				// PAPI can continue after errors. So defining retval to PAPI_OK.
+			}
 			retval = PAPI_OK;
 		}
 	}
