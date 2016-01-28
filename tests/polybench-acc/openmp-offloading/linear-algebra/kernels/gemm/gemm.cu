@@ -112,6 +112,10 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
   int i, j, k;
   current_loop_index = 0;
+  // Copy to device A, B, C.
+  q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NK) + (sizeof(DATA_TYPE) * NK * NJ) + (sizeof(DATA_TYPE) * NI * NJ);
+  // Copy back C.
+  q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NJ);
   #pragma scop
   #pragma omp parallel
   {

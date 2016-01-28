@@ -35,6 +35,12 @@ Func ***TablePointerFunctions;
 /* current loop index. */
 long int current_loop_index;
 
+/* Amount of bytes that will be moved to device, if offloading. */
+  /* Write: sent to device. Inputs to kernel. */
+long long q_data_transfer_write;
+/* Read: get from device. Results, data that was modified. */
+long long q_data_transfer_read;
+
 /* ------------------------------------------------------------- */
 /* Creation of alternative functions table. */
 bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
