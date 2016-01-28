@@ -941,6 +941,9 @@ int RM_get_better_device_to_execution(double oi){
 	int i = 0;
 	TRACE("Operational intensity: %10.6f\n", oi);
 
+	double oi_gpu = RM_get_operational_intensity_in_GPU();
+	TRACE("Operational intensity in GPU: %10.6f\n", oi_gpu);
+
 	int best_dev = 0;
 	double best_ap, calc_ap = 0.0;
 	for(i = 0; i < NUM_DEVICES; i++){
