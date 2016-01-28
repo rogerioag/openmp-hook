@@ -939,7 +939,7 @@ double RM_attainable_performance(int id_device, double op_intensity){
 int RM_get_better_device_to_execution(double oi){
 	PRINT_FUNC_NAME;
 	int i = 0;
-	TRACE("Operational intensity: %10.6f\n", oi);
+	TRACE("Operational intensity in CPU: %10.6f\n", oi);
 
 	double oi_gpu = RM_get_operational_intensity_in_GPU();
 	TRACE("Operational intensity in GPU: %10.6f\n", oi_gpu);
