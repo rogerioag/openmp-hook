@@ -45,6 +45,7 @@
 #define COMP_UNCORE 1
 
 /* Names of Events. */
+/* Attention: Position is important to read the table values after. */
 static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = { 
 /* MEM_event_names */ //{ "ivbep_unc_ha0::UNC_H_IMC_READS:cpu=0", "ivbep_unc_ha0::UNC_H_IMC_WRITES:cpu=0", NULL, NULL, NULL },
 /* MEM_event_names */{ NULL, NULL, "UNC_H_IMC_READS", "UNC_H_IMC_WRITES", NULL },
