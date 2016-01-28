@@ -790,7 +790,7 @@ double measured(int i, int j){
 	TRACE("# intervals: %ld.\n", ptr_measure->quant_intervals[i]);
 
 	double measure = (double) (((double) ptr_measure->values[i * NUM_MAX_EVENTS + j]) / ((double) ptr_measure->quant_intervals[i]));
-	TRACE("measured: %f.\n", measure);
+	TRACE("measured: %10.6f.\n", measure);
 	return measure;
 }
 
@@ -798,7 +798,7 @@ double measured(int i, int j){
 double measured_percentual(int i, int j){
 	PRINT_FUNC_NAME;
 	double measure = (measured(i,j) * measured_chunks());
-	TRACE("measured percentual: %f.\n", measure);
+	TRACE("measured percentual: %10.6f.\n", measure);
 	return measure;
 }
 
@@ -806,7 +806,7 @@ double measured_percentual(int i, int j){
 double estimated(int i, int j){
 	PRINT_FUNC_NAME;
 	double estimative = (measured(i,j) * total_of_chunks());
-	TRACE("estimative: %f.\n", estimative);
+	TRACE("estimative: %10.6f\n", estimative);
 	return estimative;
 }
 
@@ -814,7 +814,7 @@ double estimated(int i, int j){
 double work(){
 	PRINT_FUNC_NAME;
 	double w = estimated(IDX_FPO, 2);
-	TRACE("work: %f.\n", w);
+	TRACE("work: %10.6f\n", w);
 	return w;
 }
 
@@ -823,7 +823,7 @@ double Qr(int i, int j){
 	PRINT_FUNC_NAME;
 	TRACE("Getting Qr(%d,%d).\n", i, j);
 	double qr = estimated(i, j) * CACHE_LINE_SIZE;
-	TRACE("Qr(%d,%d): %f.\n", i, j, qr);
+	TRACE("Qr(%d,%d): %10.6f\n", i, j, qr);
 	return qr;
 }
 
@@ -832,7 +832,7 @@ double Qw(int i, int j){
 	PRINT_FUNC_NAME;
 	TRACE("Getting Qw(%d,%d).\n", i, j);
 	double qw = estimated(i, j) * CACHE_LINE_SIZE;
-	TRACE("Qw(%d,%d): %f.\n", i, j, qw);
+	TRACE("Qw(%d,%d): %10.6f\n", i, j, qw);
 	return qw;
 }
 
@@ -840,7 +840,7 @@ double Qw(int i, int j){
 double Q_level(int i){
 	PRINT_FUNC_NAME;
 	double qlevel = (Qr(i, event_position[i]) + Qw(i, event_position[i]));
-	TRACE("Q_level(%d): %f.\n", i, qlevel);
+	TRACE("Q_level(%d): %10.6f\n", i, qlevel);
 	return qlevel;
 }
 
@@ -848,7 +848,7 @@ double Q_level(int i){
 double Q_total(){
 	PRINT_FUNC_NAME;
 	double qtotal = ( Q_level(IDX_MEM) + Q_level(IDX_LLC) + Q_level(IDX_L2) + Q_level(IDX_L1) );
-	TRACE("Q_total: %f.\n", qtotal);
+	TRACE("Q_total: %10.6f\n", qtotal);
 	return qtotal;
 }
 
@@ -910,9 +910,9 @@ double RM_get_operational_intensity_in_GPU(void){
 	TRACE("Q: %10.6f\n", Q);
 
 	Q_data_transfer = ptr_measure->q_data_transfer_read + ptr_measure->q_data_transfer_write;
-	TRACE("Q_data_transfer: %10.6f\n", Q_data_transfer);
+	TRACE("Q_data_transfer: %f\n", Q_data_transfer);
 
-	I =  (double) W / Q + Q_data_transfer;
+	I =  (double) W / (Q + Q_data_transfer);
 
 	TRACE("I_GPU: %10.6f\n", I);
 
