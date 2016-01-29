@@ -331,14 +331,14 @@ int main(int argc, char *argv[]) {
   */
   fprintf(stderr, "Creating table of target functions.\n");
   int nloops = 1;
-  int ndevices = 1;
+  int ndevices = 2;
 
   if (create_target_functions_table(&table, nloops, ndevices)) {
     // Set up the library Functions table.
     assert(table != NULL);
 
     fprintf(stderr, "Declaring function in 0,0.\n");
-    table[0][0][0] = *ff_1;
+    table[0][1][0] = *ff_1;
 
     TablePointerFunctions = table;
     assert(TablePointerFunctions != NULL);
