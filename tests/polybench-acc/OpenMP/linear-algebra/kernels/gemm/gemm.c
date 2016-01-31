@@ -14,7 +14,9 @@
 
 /* Include polybench common header. */
 #include <polybench.h>
- #include <polybenchUtilFuncts.h>
+#include <polybenchUtilFuncts.h>
+
+#include <macros.h>
 
 /* Include benchmark-specific header. */
 /* Default data type is double, default size is 4000. */
@@ -105,7 +107,6 @@ void gemm(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   }
 }
 
-
 /* ------------------------------------------------------------- */
 void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
           DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
@@ -136,10 +137,12 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
   int i, j, k;
   #pragma scop
-  #pragma omp parallel
+  // #pragma omp parallel
+  #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
   {
   /* C := alpha*A*B + beta*C */
-  #pragma omp for private(j, k) schedule(runtime)
+  // #pragma omp for private(j, k) schedule(runtime)
+    #pragma omp parallel for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NJ; j++) {
         C[i][j] *= beta;
