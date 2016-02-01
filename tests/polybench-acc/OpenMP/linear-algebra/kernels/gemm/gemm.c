@@ -142,7 +142,7 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   {
   	/* C := alpha*A*B + beta*C */
   	// #pragma omp for private(j, k) schedule(runtime)
-    #pragma omp parallel for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+    #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NJ; j++) {
         C[i][j] *= beta;
