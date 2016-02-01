@@ -106,8 +106,8 @@ void syr2k_original(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   syr2kCpu(ni, nj, alpha, beta, A, B, C);
 
   /* Stop and print timer. */
-  printf("Original CPU Time in seconds:\n");
   polybench_stop_instruments;
+  printf("Original CPU Time in seconds:\n");
   polybench_print_instruments;
 }
 
@@ -152,8 +152,8 @@ void syr2k_omp(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   syr2k_omp_kernel(ni, nj, alpha, beta, A, B, C_outputFromOMP);
 
   /* Stop and print timer. */
-  printf("OpenMP Time in seconds:\n");
   polybench_stop_instruments;
+  printf("OpenMP Time in seconds:\n");
   polybench_print_instruments;
 }
 
@@ -236,8 +236,8 @@ void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   cudaThreadSynchronize();
 
   /* Stop and print timer. */
-  printf("GPU Time in seconds:\n");
   polybench_stop_instruments;
+  printf("GPU Time in seconds:\n");
   polybench_print_instruments;
 
   cudaMemcpy(C_outputFromGpu, C_gpu, sizeof(DATA_TYPE) * NI * NI,
