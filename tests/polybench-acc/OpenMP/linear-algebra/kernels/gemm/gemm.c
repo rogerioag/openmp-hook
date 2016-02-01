@@ -122,8 +122,8 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
         C);
 
   /* Stop and print timer. */
-  printf("Original CPU Time in seconds:\n");
   polybench_stop_instruments;
+  printf("Original CPU Time in seconds:\n");
   polybench_print_instruments;
 }
 
@@ -140,8 +140,8 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // #pragma omp parallel
   #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
   {
-  /* C := alpha*A*B + beta*C */
-  // #pragma omp for private(j, k) schedule(runtime)
+  	/* C := alpha*A*B + beta*C */
+  	// #pragma omp for private(j, k) schedule(runtime)
     #pragma omp parallel for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NJ; j++) {
@@ -167,8 +167,8 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
                   C_outputFromOMP);
 
   /* Stop and print timer. */
-  printf("OpenMP Time in seconds:\n");
   polybench_stop_instruments;
+  printf("OpenMP Time in seconds:\n");
   polybench_print_instruments;
 }
 
