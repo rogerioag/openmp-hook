@@ -22,6 +22,8 @@
 #include <polybench.h>
 #include <polybenchUtilFuncts.h>
 
+// Macros to generate openmp schedule.
+#include <macros.h>
 // Offloading support functions.
 #include <offload.h>
 
