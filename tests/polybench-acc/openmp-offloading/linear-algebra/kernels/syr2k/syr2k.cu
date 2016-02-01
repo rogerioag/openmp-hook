@@ -69,6 +69,21 @@ void copy_array(int ni, DATA_TYPE POLYBENCH_2D(C_source, NI, NI, ni, ni), DATA_T
 }
 
 /* ------------------------------------------------------------- */
+/* DCE code. Must scan the entire live-out data.
+   Can be used also to check the correctness of the output. */
+static void print_array(int ni, DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
+  int i, j;
+
+  for (i = 0; i < ni; i++)
+    for (j = 0; j < ni; j++) {
+      fprintf(stderr, DATA_PRINTF_MODIFIER, C[i][j]);
+      if ((i * ni + j) % 20 == 0)
+        fprintf(stderr, "\n");
+    }
+  fprintf(stderr, "\n");
+}
+
+/* ------------------------------------------------------------- */
 void syr2kCpu(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
               DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
@@ -122,14 +137,24 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 
   #pragma scop
   current_loop_index = 0;
-  #pragma omp parallel
+  // Copy to device A, B, C.
+  q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
+  // Copy back C.
+  q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NI);
+
+  // #pragma omp parallel
+  #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
   {
     /*    C := alpha*A*B' + alpha*B*A' + beta*C */
-    #pragma omp for private(j) schedule(runtime)
+    // #pragma omp for private(j) schedule(runtime)
+    #pragma omp for private(j) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NI; j++)
         C[i][j] *= beta;
-    #pragma omp for private(j, k) schedule(runtime)
+
+    current_loop_index = 1;
+    // #pragma omp for private(j, k) schedule(runtime)
+    #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NI; j++)
         for (k = 0; k < _PB_NJ; k++) {
@@ -189,6 +214,7 @@ void GPU_argv_init() {
 }
 
 /* ------------------------------------------------------------- */
+/* Original of Benchmarks, join the loops. */
 __global__ void syr2k_cuda_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                              DATA_TYPE *a, DATA_TYPE *b, DATA_TYPE *c) {
   int j = blockIdx.x * blockDim.x + threadIdx.x;
@@ -205,6 +231,33 @@ __global__ void syr2k_cuda_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE bet
   }
 }
 
+/* It was separated in two kernels, because the loop index. */
+/* ------------------------------------------------------------- */
+__global__ void syr2k_cuda_kernel_1(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
+                             DATA_TYPE *a, DATA_TYPE *b, DATA_TYPE *c) {
+  int j = blockIdx.x * blockDim.x + threadIdx.x;
+  int i = blockIdx.y * blockDim.y + threadIdx.y;
+
+  if ((i < NI) && (j < NI)) {
+    c[i * NI + j] *= beta;
+  }
+}
+
+/* ------------------------------------------------------------- */
+__global__ void syr2k_cuda_kernel_2(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
+                             DATA_TYPE *a, DATA_TYPE *b, DATA_TYPE *c) {
+  int j = blockIdx.x * blockDim.x + threadIdx.x;
+  int i = blockIdx.y * blockDim.y + threadIdx.y;
+
+  if ((i < NI) && (j < NI)) {
+    int k;
+    for (k = 0; k < NJ; k++) {
+      c[i * NI + j] += alpha * a[i * NJ + k] * b[j * NJ + k] +
+                       alpha * b[i * NJ + k] * a[j * NJ + k];
+    }
+  }
+}
+
 /* ------------------------------------------------------------- */
 void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
@@ -212,6 +265,9 @@ void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NI, ni, ni),
                DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NI, ni, ni)) {
 
+  fprintf(stderr, "Calling function syr2k_cuda.\n");
+
+  // GPU initialization.
   GPU_argv_init();
 
   DATA_TYPE *A_gpu;
@@ -232,7 +288,10 @@ void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   /* Start timer. */
   polybench_start_instruments;
 
-  syr2k_cuda_kernel<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
+  syr2k_cuda_kernel_1<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
+  cudaThreadSynchronize();
+
+  syr2k_cuda_kernel_2<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
   cudaThreadSynchronize();
 
   /* Stop and print timer. */
@@ -246,21 +305,6 @@ void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   cudaFree(A_gpu);
   cudaFree(B_gpu);
   cudaFree(C_gpu);
-}
-
-/* ------------------------------------------------------------- */
-/* DCE code. Must scan the entire live-out data.
-   Can be used also to check the correctness of the output. */
-static void print_array(int ni, DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
-  int i, j;
-
-  for (i = 0; i < ni; i++)
-    for (j = 0; j < ni; j++) {
-      fprintf(stderr, DATA_PRINTF_MODIFIER, C[i][j]);
-      if ((i * ni + j) % 20 == 0)
-        fprintf(stderr, "\n");
-    }
-  fprintf(stderr, "\n");
 }
 
 /* ------------------------------------------------------------- */
