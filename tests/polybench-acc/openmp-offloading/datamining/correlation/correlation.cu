@@ -21,6 +21,9 @@
 #include <polybench.h>
 #include <polybenchUtilFuncts.h>
 
+// Offloading support functions.
+#include <offload.h>
+
 //define the error threshold for the results "not matching"
 #define PERCENT_DIFF_ERROR_THRESHOLD 1.05
 
@@ -33,7 +36,8 @@
 
 #define RUN_ON_CPU
 
-
+/* ------------------------------------------------------------- */
+/* Arrays initialization. */
 void init_arrays(int m, int n, DATA_TYPE POLYBENCH_2D(data, M, N, m, n))
 {
 	int i, j;
@@ -47,7 +51,47 @@ void init_arrays(int m, int n, DATA_TYPE POLYBENCH_2D(data, M, N, m, n))
     	}
 }
 
+/* ------------------------------------------------------------- */
+void compareResults(int m, int n, DATA_TYPE POLYBENCH_2D(symmat, M, N, m, n), DATA_TYPE POLYBENCH_2D(symmat_outputFromGpu, M, N, m, n))
+{
+	int i,j,fail;
+	fail = 0;
 
+	for (i=0; i < m; i++)
+	{
+		for (j=0; j < n; j++)
+		{
+			if (percentDiff(symmat[i][j], symmat_outputFromGpu[i][j]) > PERCENT_DIFF_ERROR_THRESHOLD)
+			{
+				fail++;		
+			}
+		}
+	}
+	
+	// print results
+	printf("Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f Percent: %d\n", PERCENT_DIFF_ERROR_THRESHOLD, fail);
+}
+
+/* ------------------------------------------------------------- */
+/* DCE code. Must scan the entire live-out data.
+   Can be used also to check the correctness of the output. */
+static
+void print_array(int m,
+		 DATA_TYPE POLYBENCH_2D(symmat,M,M,m,m))
+
+{
+  int i, j;
+
+  for (i = 0; i < m; i++)
+    for (j = 0; j < m; j++) {
+      fprintf (stderr, DATA_PRINTF_MODIFIER, symmat[i][j]);
+      if ((i * m + j) % 20 == 0) fprintf (stderr, "\n");
+    }
+  fprintf (stderr, "\n");
+}
+
+/* ------------------------------------------------------------- */
+/* Original Version. */
 void correlation(int m, int n, DATA_TYPE POLYBENCH_2D(data, M, N, m, n), DATA_TYPE POLYBENCH_1D(mean, M, m), DATA_TYPE POLYBENCH_1D(stddev, M, m),
 		DATA_TYPE POLYBENCH_2D(symmat, M, N, m, n))
 {
@@ -112,37 +156,122 @@ void correlation(int m, int n, DATA_TYPE POLYBENCH_2D(data, M, N, m, n), DATA_TY
 	symmat[M-1][M-1] = 1.0;
 }
 
+/* ------------------------------------------------------------- */
+void correlation_original(int m, int n, DATA_TYPE POLYBENCH_2D(data, M, N, m, n), DATA_TYPE POLYBENCH_1D(mean, M, m), DATA_TYPE POLYBENCH_1D(stddev, M, m),
+		DATA_TYPE POLYBENCH_2D(symmat, M, N, m, n)) {
+  
+  /* Start timer. */
+  polybench_start_instruments;
 
-void compareResults(int m, int n, DATA_TYPE POLYBENCH_2D(symmat, M, N, m, n), DATA_TYPE POLYBENCH_2D(symmat_outputFromGpu, M, N, m, n))
-{
-	int i,j,fail;
-	fail = 0;
+  correlation(m, n, data, mean, stddev,
+		symmat);
 
-	for (i=0; i < m; i++)
-	{
-		for (j=0; j < n; j++)
-		{
-			if (percentDiff(symmat[i][j], symmat_outputFromGpu[i][j]) > PERCENT_DIFF_ERROR_THRESHOLD)
-			{
-				fail++;		
-			}
-		}
-	}
-	
-	// print results
-	printf("Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f Percent: %d\n", PERCENT_DIFF_ERROR_THRESHOLD, fail);
+  /* Stop and print timer. */
+  polybench_stop_instruments;
+  polybench_print_instruments;
 }
 
-
-void GPU_argv_init()
+/* ------------------------------------------------------------- */
+/* Main computational kernel. The whole function will be timed,
+   including the call and return. */
+static
+void correlation_omp_kernel(int m, int n,
+			DATA_TYPE float_n,
+			DATA_TYPE POLYBENCH_2D(data,M,N,m,n),
+			DATA_TYPE POLYBENCH_2D(symmat,M,M,m,m),
+			DATA_TYPE POLYBENCH_1D(mean,M,m),
+			DATA_TYPE POLYBENCH_1D(stddev,M,m))
 {
+  int i, j, j1, j2;
+
+  DATA_TYPE eps = 0.1f;
+
+#define sqrt_of_array_cell(x,j) sqrt(x[j])
+
+  #pragma scop
+  /* Determine mean of column vectors of input data matrix */
+  #pragma omp parallel
+  {
+    #pragma omp for private (i)
+    for (j = 0; j < _PB_M; j++)
+      {
+        mean[j] = 0.0;
+	for (i = 0; i < _PB_N; i++)
+	  mean[j] += data[i][j];
+	mean[j] /= float_n;
+      }
+    /* Determine standard deviations of column vectors of data matrix. */
+    #pragma omp for private (i)
+    for (j = 0; j < _PB_M; j++)
+      {
+        stddev[j] = 0.0;
+	for (i = 0; i < _PB_N; i++)
+	  stddev[j] += (data[i][j] - mean[j]) * (data[i][j] - mean[j]);
+	stddev[j] /= float_n;
+	stddev[j] = sqrt_of_array_cell(stddev, j);
+	/* The following in an inelegant but usual way to handle
+	   near-zero std. dev. values, which below would cause a zero-
+	   divide. */
+	stddev[j] = stddev[j] <= eps ? 1.0 : stddev[j];
+      }
+    
+    /* Center and reduce the column vectors. */
+    #pragma omp for private (j)
+    for (i = 0; i < _PB_N; i++)
+      for (j = 0; j < _PB_M; j++)
+	{
+          data[i][j] -= mean[j];
+          data[i][j] /= sqrt(float_n) * stddev[j];
+	}
+    
+    /* Calculate the m * m correlation matrix. */
+    #pragma omp for private (j2, i)
+    for (j1 = 0; j1 < _PB_M-1; j1++)
+      {
+        symmat[j1][j1] = 1.0;
+	for (j2 = j1+1; j2 < _PB_M; j2++)
+	  {
+            symmat[j1][j2] = 0.0;
+	    for (i = 0; i < _PB_N; i++)
+	      symmat[j1][j2] += (data[i][j1] * data[i][j2]);
+	    symmat[j2][j1] = symmat[j1][j2];
+          }
+      }
+  }
+  #pragma endscop
+  symmat[_PB_M-1][_PB_M-1] = 1.0;
+}
+
+/* ------------------------------------------------------------- */
+void correlation_omp(int m, int n,
+			DATA_TYPE float_n,
+			DATA_TYPE POLYBENCH_2D(data,M,N,m,n),
+			DATA_TYPE POLYBENCH_2D(symmat,M,M,m,m),
+			DATA_TYPE POLYBENCH_1D(mean,M,m),
+			DATA_TYPE POLYBENCH_1D(stddev,M,m)) {
+
+  /* Start timer. */
+  polybench_start_instruments;
+  /* Run kernel. */
+  kernel_correlation (m, n, float_n,
+		      POLYBENCH_ARRAY(data),
+		      POLYBENCH_ARRAY(symmat),
+		      POLYBENCH_ARRAY(mean),
+		      POLYBENCH_ARRAY(stddev));
+  /* Stop and print timer. */
+  polybench_stop_instruments;
+  polybench_print_instruments;
+}
+
+/* ------------------------------------------------------------- */
+void GPU_argv_init() {
 	cudaDeviceProp deviceProp;
 	cudaGetDeviceProperties(&deviceProp, GPU_DEVICE);
 	printf("setting device %d with name %s\n",GPU_DEVICE,deviceProp.name);
 	cudaSetDevice( GPU_DEVICE );
 }
 
-	
+/* ------------------------------------------------------------- */
 __global__ void mean_kernel(int m, int n, DATA_TYPE *mean, DATA_TYPE *data)
 {
 	int j = blockIdx.x * blockDim.x + threadIdx.x;
@@ -161,7 +290,7 @@ __global__ void mean_kernel(int m, int n, DATA_TYPE *mean, DATA_TYPE *data)
 	}
 }
 
-
+/* ------------------------------------------------------------- */
 __global__ void std_kernel(int m, int n, DATA_TYPE *mean, DATA_TYPE *std, DATA_TYPE *data)
 {
 	int j = blockIdx.x * blockDim.x + threadIdx.x;
@@ -184,7 +313,7 @@ __global__ void std_kernel(int m, int n, DATA_TYPE *mean, DATA_TYPE *std, DATA_T
 	}
 }
 
-
+/* ------------------------------------------------------------- */
 __global__ void reduce_kernel(int m, int n, DATA_TYPE *mean, DATA_TYPE *std, DATA_TYPE *data)
 {
 	int j = blockIdx.x * blockDim.x + threadIdx.x;
@@ -197,7 +326,7 @@ __global__ void reduce_kernel(int m, int n, DATA_TYPE *mean, DATA_TYPE *std, DAT
 	}
 }
 
-
+/* ------------------------------------------------------------- */
 __global__ void corr_kernel(int m, int n, DATA_TYPE *symmat, DATA_TYPE *data)
 {
 	int j1 = blockIdx.x * blockDim.x + threadIdx.x;
@@ -220,8 +349,8 @@ __global__ void corr_kernel(int m, int n, DATA_TYPE *symmat, DATA_TYPE *data)
 	}
 }
 
-
-void correlationCuda(int m, int n, DATA_TYPE POLYBENCH_2D(data, M, N, m, n), DATA_TYPE POLYBENCH_1D(mean, M, m), 
+/* ------------------------------------------------------------- */
+void correlation_cuda(int m, int n, DATA_TYPE POLYBENCH_2D(data, M, N, m, n), DATA_TYPE POLYBENCH_1D(mean, M, m), 
 			DATA_TYPE POLYBENCH_1D(stddev, M, m), DATA_TYPE POLYBENCH_2D(symmat, M, N, m, n), 
 			DATA_TYPE POLYBENCH_2D(symmat_outputFromGpu, M, N, m, n))
 {
@@ -280,22 +409,6 @@ void correlationCuda(int m, int n, DATA_TYPE POLYBENCH_2D(data, M, N, m, n), DAT
 }
 
 
-/* DCE code. Must scan the entire live-out data.
-   Can be used also to check the correctness of the output. */
-static
-void print_array(int m,
-		 DATA_TYPE POLYBENCH_2D(symmat,M,M,m,m))
-
-{
-  int i, j;
-
-  for (i = 0; i < m; i++)
-    for (j = 0; j < m; j++) {
-      fprintf (stderr, DATA_PRINTF_MODIFIER, symmat[i][j]);
-      if ((i * m + j) % 20 == 0) fprintf (stderr, "\n");
-    }
-  fprintf (stderr, "\n");
-}
 
 
 int main(int argc, char** argv)

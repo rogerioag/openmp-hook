@@ -23,6 +23,9 @@
 #include <polybench.h>
 #include <polybenchUtilFuncts.h>
 
+ // Macros to generate openmp schedule.
+#include <macros.h>
+
 // Offloading support functions.
 #include <offload.h>
 
@@ -61,6 +64,44 @@ void init_array(int ni, int nj, int nk, DATA_TYPE *alpha, DATA_TYPE *beta,
       C[i][j] = ((DATA_TYPE)i * j) / NI;
     }
   }
+}
+
+/* ------------------------------------------------------------- */
+void compareResults(int ni, int nj, DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
+                    DATA_TYPE POLYBENCH_2D(C_output, NI, NJ, ni, nj)) {
+  int i, j, fail;
+  fail = 0;
+
+  // Compare CPU and GPU outputs
+  for (i = 0; i < ni; i++) {
+    for (j = 0; j < nj; j++) {
+      if (percentDiff(C[i][j], C_output[i][j]) >
+          PERCENT_DIFF_ERROR_THRESHOLD) {
+        fail++;
+      }
+    }
+  }
+
+  // Print results
+  printf("Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f "
+         "Percent: %d\n",
+         PERCENT_DIFF_ERROR_THRESHOLD, fail);
+}
+
+/* ------------------------------------------------------------- */
+/* DCE code. Must scan the entire live-out data.
+   Can be used also to check the correctness of the output. */
+static void print_array(int ni, int nj,
+                        DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
+  int i, j;
+
+  for (i = 0; i < ni; i++)
+    for (j = 0; j < nj; j++) {
+      fprintf(stderr, DATA_PRINTF_MODIFIER, C[i][j]);
+      if ((i * ni + j) % 20 == 0)
+        fprintf(stderr, "\n");
+    }
+  fprintf(stderr, "\n");
 }
 
 /* ------------------------------------------------------------- */
@@ -117,10 +158,12 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // Copy back C.
   q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NJ);
   #pragma scop
-  #pragma omp parallel
+  // #pragma omp parallel
+  #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
   {
-  /* C := alpha*A*B + beta*C */
-  #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE)
+    /* C := alpha*A*B + beta*C */
+    // #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE)
+    #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NJ; j++) {
         C[i][j] *= beta;
@@ -200,8 +243,8 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   cudaMalloc((void **)&B_gpu, sizeof(DATA_TYPE) * NK * NJ);
   cudaMalloc((void **)&C_gpu, sizeof(DATA_TYPE) * NI * NJ);
 
-  printf("GPU cuda Malloc Time in seconds:\n");
   polybench_stop_instruments;
+  printf("GPU cuda Malloc Time in seconds:\n");
   polybench_print_instruments;
 
   polybench_start_instruments;
@@ -210,8 +253,8 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NK * NJ, cudaMemcpyHostToDevice);
   cudaMemcpy(C_gpu, C_inputToGpu, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
 
-  printf("GPU Data Transfers Time in seconds:\n");
   polybench_stop_instruments;
+  printf("GPU Data Transfers Time in seconds:\n");
   polybench_print_instruments;
 
   dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
@@ -243,43 +286,7 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   cudaFree(C_gpu);
 }
 
-/* ------------------------------------------------------------- */
-void compareResults(int ni, int nj, DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
-                    DATA_TYPE POLYBENCH_2D(C_output, NI, NJ, ni, nj)) {
-  int i, j, fail;
-  fail = 0;
 
-  // Compare CPU and GPU outputs
-  for (i = 0; i < ni; i++) {
-    for (j = 0; j < nj; j++) {
-      if (percentDiff(C[i][j], C_output[i][j]) >
-          PERCENT_DIFF_ERROR_THRESHOLD) {
-        fail++;
-      }
-    }
-  }
-
-  // Print results
-  printf("Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f "
-         "Percent: %d\n",
-         PERCENT_DIFF_ERROR_THRESHOLD, fail);
-}
-
-/* ------------------------------------------------------------- */
-/* DCE code. Must scan the entire live-out data.
-   Can be used also to check the correctness of the output. */
-static void print_array(int ni, int nj,
-                        DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
-  int i, j;
-
-  for (i = 0; i < ni; i++)
-    for (j = 0; j < nj; j++) {
-      fprintf(stderr, DATA_PRINTF_MODIFIER, C[i][j]);
-      if ((i * ni + j) % 20 == 0)
-        fprintf(stderr, "\n");
-    }
-  fprintf(stderr, "\n");
-}
 
 /* ------------------------------------------------------------- */
 int main(int argc, char *argv[]) {
