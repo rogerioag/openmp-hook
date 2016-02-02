@@ -381,7 +381,7 @@ int main(int argc, char *argv[]) {
   ff_0->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
 
   ff_0->f = &syr2k_cuda_0;
-  memset(&ff_0->ret_value, 0, sizeof(ff_1->ret_value));
+  memset(&ff_0->ret_value, 0, sizeof(ff_0->ret_value));
 
   // return type.
   ff_0->ret_type = &ffi_type_void;
