@@ -45,4 +45,5 @@ clean:
 	rm -rf *.o *.so
 
 info:
-	@echo "Use make OPTIONS=\"-DVERBOSE -DDEBUG\" to compile with messages."
+	@echo "For compiling with DEBUG messages, use:"
+	@echo "make OPTIONS=\"-DVERBOSE -DDEBUG\""
