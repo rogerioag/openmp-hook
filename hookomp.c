@@ -300,7 +300,9 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 /* ------------------------------------------------------------- */
 void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
-	/* Code was moved to generic next function. */
+	if(is_hookomp_initialized){
+		HOOKOMP_end();	
+	}
 }
 
 /* ------------------------------------------------------------- */
@@ -913,7 +915,7 @@ void GOMP_loop_end_nowait (void){
 
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
-	// HOOKOMP_loop_end_nowait();
+	HOOKOMP_loop_end_nowait();
 
 	lib_GOMP_loop_end_nowait();
 }
@@ -1209,9 +1211,10 @@ void GOMP_parallel_end (void){
 
 	TRACE("[LIBGOMP] GOMP_parallel_end@GOMP_X.X [%p]\n", (void* ) lib_GOMP_parallel_end);
 
-	if(is_hookomp_initialized){
+	/* In cases of benchmark have two loops inside the same parallel region. The second was ignored, because the control had no reinitilized. */
+	/*if(is_hookomp_initialized){
 		HOOKOMP_end();	
-	}
+	}*/
 	
 	lib_GOMP_parallel_end();
 }
