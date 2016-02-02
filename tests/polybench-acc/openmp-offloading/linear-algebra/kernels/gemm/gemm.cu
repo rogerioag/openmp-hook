@@ -286,8 +286,6 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   cudaFree(C_gpu);
 }
 
-
-
 /* ------------------------------------------------------------- */
 int main(int argc, char *argv[]) {
   /* Retrieve problem size. */
