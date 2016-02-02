@@ -159,6 +159,8 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
       for (j = 0; j < _PB_NI; j++)
         C[i][j] *= beta;
   // }
+
+    #pragma omp barrier
   
     current_loop_index = 1;
     // Copy to device A, B, C.
