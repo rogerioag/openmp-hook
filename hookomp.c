@@ -324,6 +324,7 @@ void HOOKOMP_end(void){
 /* ------------------------------------------------------------- */
 void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
+	
 	if(is_hookomp_initialized){
 		/* Set flag to control initialization of hook. */
 		is_hookomp_initialized = false;	
