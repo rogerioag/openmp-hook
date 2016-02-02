@@ -1,0 +1,908 @@
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original.
+Calling gemm_omp.
+TRACE-FUNC-NAME: [ hookomp.c:0001196] Thread [140427534411712] is calling [GOMP_parallel_start()]
+[TRACE]: [ hookomp.c:0001201] Thread [140427534411712] in GOMP_parallel_start(): [LIBGOMP] GOMP_parallel_start@GOMP_X.X.[0x401910]
+[TRACE]: [ hookomp.c:0001203] Thread [140427534411712] in GOMP_parallel_start(): [LIBGOMP] lib_GOMP_parallel_start[0x7fb7d4cb86e0]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427534411712] is calling [GOMP_loop_dynamic_start()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427262953216] is calling [GOMP_loop_dynamic_start()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427128669952] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427128669952] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427128669952] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427179026176] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427179026176] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427137062656] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427137062656] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427137062656] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427137062656] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427212596992] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427212596992] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427120277248] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427120277248] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427229382400] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427229382400] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427145455360] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427145455360] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427145455360] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427145455360] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427220989696] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427220989696] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427220989696] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427288131328] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427288131328] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427288131328] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427288131328] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427153848064] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427153848064] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427153848064] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427153848064] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427187418880] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427187418880] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427187418880] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427187418880] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427237775104] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427237775104] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427237775104] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427237775104] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427103491840] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427103491840] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427111884544] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427111884544] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427111884544] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427111884544] is calling [HOOKOMP_initialization()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427262953216] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427262953216] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427262953216] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427128669952] is calling [HOOKOMP_initialization()]
+[TRACE]: [ hookomp.c:0000453] Thread [140427179026176] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427179026176] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427246167808] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427246167808] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427246167808] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427246167808] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [roofline.c:0000012] Thread [140427137062656] is calling [RM_library_init()]
+[TRACE]: [ hookomp.c:0000453] Thread [140427212596992] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427212596992] is calling [HOOKOMP_initialization()]
+[TRACE]: [ hookomp.c:0000453] Thread [140427229382400] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427229382400] is calling [HOOKOMP_initialization()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427534411712] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427534411712] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427254560512] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427254560512] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427254560512] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427254560512] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427220989696] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427170633472] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427170633472] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427170633472] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427195811584] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427195811584] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427195811584] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427195811584] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427271345920] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427271345920] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427271345920] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427271345920] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427204204288] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427204204288] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427204204288] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427204204288] is calling [HOOKOMP_initialization()]
+[TRACE]: [ hookomp.c:0000453] Thread [140427103491840] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427103491840] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427162240768] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427162240768] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427162240768] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427162240768] is calling [HOOKOMP_initialization()]
+[TRACE]: [roofline.c:0000028] Thread [140427137062656] in RM_library_init(): ptr_measure->values initialization.
+[TRACE]: [roofline.c:0000030] Thread [140427137062656] in RM_library_init(): # intervals [0]: 0
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[0][0]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[0][1]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[0][2]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[0][3]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[0][4]: 0.
+[TRACE]: [roofline.c:0000030] Thread [140427137062656] in RM_library_init(): # intervals [1]: 0
+[TRACE]: [ hookomp.c:0000453] Thread [140427120277248] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427120277248] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427534411712] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427170633472] is calling [HOOKOMP_initialization()]
+TRACE-FUNC-NAME: [ hookomp.c:0000447] Thread [140427279738624] is calling [GOMP_loop_dynamic_start()]
+[TRACE]: [ hookomp.c:0000451] Thread [140427279738624] in GOMP_loop_dynamic_start(): [LIBGOMP] GOMP_loop_dynamic_start@GOMP_X.X.
+[TRACE]: [ hookomp.c:0000453] Thread [140427279738624] in GOMP_loop_dynamic_start(): Starting with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000023] Thread [140427279738624] is calling [HOOKOMP_initialization()]
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[1][0]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[1][1]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[1][2]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[1][3]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[1][4]: 0.
+[TRACE]: [roofline.c:0000030] Thread [140427137062656] in RM_library_init(): # intervals [2]: 0
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[2][0]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[2][1]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[2][2]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[2][3]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[2][4]: 0.
+[TRACE]: [roofline.c:0000030] Thread [140427137062656] in RM_library_init(): # intervals [3]: 0
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[3][0]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[3][1]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[3][2]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[3][3]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[3][4]: 0.
+[TRACE]: [roofline.c:0000030] Thread [140427137062656] in RM_library_init(): # intervals [4]: 0
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[4][0]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[4][1]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[4][2]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[4][3]: 0.
+[TRACE]: [roofline.c:0000033] Thread [140427137062656] in RM_library_init(): ptr_measure->values[4][4]: 0.
+TRACE-FUNC-NAME: [roofline.c:0000236] Thread [140427137062656] is calling [RM_print_counters_values()]
+[TRACE]: [roofline.c:0000239] Thread [140427137062656] in RM_print_counters_values(): Final Values:
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;UNC_H_IMC_READS;UNC_H_IMC_WRITES;;;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L3_DCR;PAPI_L3_DCW;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L2_DCR;PAPI_L2_DCW;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;UNHALTED_CORE_CYCLES;UNHALTED_REFERENCE_CYCLES;perf::PERF_COUNT_HW_CACHE_L1D:READ;perf::PERF_COUNT_HW_CACHE_L1D:WRITE;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_DP_OPS;;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000056] Thread [140427137062656] in RM_library_init(): PAPI Library was initialized: 0
+[TRACE]: [roofline.c:0000058] Thread [140427137062656] in RM_library_init(): [Before] Value of papi_library_initialized: 0
+TRACE-FUNC-NAME: [roofline.c:0000136] Thread [140427137062656] is calling [RM_initialization_of_papi_libray_mode()]
+[TRACE]: [roofline.c:0000143] Thread [140427137062656] in RM_initialization_of_papi_libray_mode(): [Before]: Calling PAPI_library_init().
+[TRACE]: [roofline.c:0000175] Thread [140427137062656] in RM_initialization_of_papi_libray_mode(): [After]: PAPI_library_init. Value of papi_library_initialized: 1
+[TRACE]: [roofline.c:0000184] Thread [140427137062656] in RM_initialization_of_papi_libray_mode(): Setting debugging.
+[TRACE]: [roofline.c:0000060] Thread [140427137062656] in RM_library_init(): [After] Value of result: 1, papi_library_initialized: 1
+[TRACE]: [roofline.c:0000064] Thread [140427137062656] in RM_library_init(): Verifying if the thread was registered in PAPI: 0.
+[TRACE]: [roofline.c:0000066] Thread [140427137062656] in RM_library_init(): Trying to registry the thread in papi.
+TRACE-FUNC-NAME: [roofline.c:0000082] Thread [140427137062656] is calling [RM_register_papi_thread()]
+[TRACE]: [roofline.c:0000086] Thread [140427137062656] in RM_register_papi_thread(): [RM_register_papi_thread] [Before] PAPI_register_thread.
+[TRACE]: [roofline.c:0000088] Thread [140427137062656] in RM_register_papi_thread(): [Before]: PAPI_thread_init.
+[TRACE]: [roofline.c:0000097] Thread [140427137062656] in RM_register_papi_thread(): [After]: PAPI_thread_init: 140427137062656
+[TRACE]: [roofline.c:0000120] Thread [140427137062656] in RM_register_papi_thread(): [RM_register_papi_thread] [After] PAPI_register_thread.
+[TRACE]: [roofline.c:0000127] Thread [140427137062656] in RM_register_papi_thread(): Thread id is: 140427137062656
+[TRACE]: [roofline.c:0000071] Thread [140427137062656] in RM_library_init(): Verifying if eventset was created: 0.
+[TRACE]: [roofline.c:0000073] Thread [140427137062656] in RM_library_init(): Trying to create event set.
+TRACE-FUNC-NAME: [roofline.c:0000336] Thread [140427137062656] is calling [RM_create_event_sets()]
+[TRACE]: [roofline.c:0000344] Thread [140427137062656] in RM_create_event_sets(): Trying to create PAPI Event Sets.
+[TRACE]: [roofline.c:0000346] Thread [140427137062656] in RM_create_event_sets(): Trying to create ptr_measure->EventSets[COMP_CORE].
+[TRACE]: [roofline.c:0000354] Thread [140427137062656] in RM_create_event_sets(): Assign it to the CPU component.
+[TRACE]: [roofline.c:0000412] Thread [140427137062656] in RM_create_event_sets(): Trying to create ptr_measure->EventSets[COMP_UNCORE].
+[TRACE]: [roofline.c:0000436] Thread [140427137062656] in RM_create_event_sets(): Assign it to perf_uncore component.
+[TRACE]: [roofline.c:0000443] Thread [140427137062656] in RM_create_event_sets(): Defining CPU to uncore component.
+[TRACE]: [roofline.c:0000454] Thread [140427137062656] in RM_create_event_sets(): Defining granularity to uncore component.
+[TRACE]: [roofline.c:0000474] Thread [140427137062656] in RM_create_event_sets(): Defining domain to uncore component.
+TRACE-FUNC-NAME: [roofline.c:0000261] Thread [140427137062656] is calling [RM_check_papi_status()]
+[TRACE]: [roofline.c:0000265] Thread [140427137062656] in RM_check_papi_status(): Checking the Status of EventSet[0].
+TRACE-FUNC-NAME: [roofline.c:0000261] Thread [140427137062656] is calling [RM_check_papi_status()]
+[TRACE]: [roofline.c:0000265] Thread [140427137062656] in RM_check_papi_status(): Checking the Status of EventSet[1].
+[TRACE]: [roofline.c:0000534] Thread [140427137062656] in RM_create_event_sets(): Leaving the RM_create_event_sets: papi_eventsets_were_created 1.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427137062656] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427137062656] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000071] Thread [140427137062656] is calling [HOOKOMP_registry_the_first_thread()]
+[TRACE]: [ hookomp.c:0000076] Thread [140427137062656] in HOOKOMP_registry_the_first_thread(): [HOOKOMP]: Thread [140427137062656] is entering in controled execution.
+[TRACE]: [ hookomp.c:0000194] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000197] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the number of executed iterations: 0.
+[TRACE]: [ hookomp.c:0000199] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [INSIDE] Calling next function inside of measures section.
+[TRACE]: [ hookomp.c:0000200] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 0.
+TRACE-FUNC-NAME: [ hookomp.c:0000085] Thread [140427137062656] is calling [HOOKOMP_proxy_function_start_next()]
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427145455360] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427145455360] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427145455360] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427145455360] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427145455360] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427145455360] will be blocked.
+[TRACE]: [ hookomp.c:0000088] Thread [140427137062656] in HOOKOMP_proxy_function_start_next(): [HOOKOMP]: function type -> 0.
+[TRACE]: [ hookomp.c:0000090] Thread [140427137062656] in HOOKOMP_proxy_function_start_next(): [HOOKOMP]: calling the GOMP_loop_*_start in HOOKOMP_proxy_function_start_next.
+[TRACE]: [ hookomp.c:0000092] Thread [140427137062656] in HOOKOMP_proxy_function_start_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_start_next.
+[TRACE]: [ hookomp.c:0000202] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 64.
+[TRACE]: [ hookomp.c:0000204] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [Before]-> Update of executed iterations: 0.
+[TRACE]: [ hookomp.c:0000206] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [After]-> Update of executed iterations: 64.
+TRACE-FUNC-NAME: [roofline.c:0000692] Thread [140427137062656] is calling [RM_registry_measures()]
+[TRACE]: [roofline.c:0000696] Thread [140427137062656] in RM_registry_measures(): [HOOKOMP]: Verifying if started the measuring.
+[TRACE]: [roofline.c:0000710] Thread [140427137062656] in RM_registry_measures(): call RM_start_counters().
+TRACE-FUNC-NAME: [roofline.c:0000542] Thread [140427137062656] is calling [RM_start_counters()]
+[TRACE]: [roofline.c:0000568] Thread [140427137062656] in RM_start_counters(): EventSet: 0
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[UNC_H_IMC_READS].
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427288131328] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427288131328] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427288131328] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427288131328] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427187418880] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427187418880] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427187418880] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000277] Thread [140427288131328] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427288131328] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427153848064] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427153848064] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427153848064] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427237775104] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427237775104] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427237775104] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427237775104] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427111884544] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427111884544] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427111884544] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427229382400] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427229382400] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427229382400] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427229382400] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427229382400] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427229382400] will be blocked.
+[TRACE]: [ hookomp.c:0000277] Thread [140427237775104] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427237775104] will be blocked.
+[TRACE]: [ hookomp.c:0000194] Thread [140427153848064] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427153848064] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427153848064] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427128669952] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427128669952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427128669952] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427128669952] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427246167808] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427246167808] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427246167808] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427246167808] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427246167808] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427246167808] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427262953216] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427262953216] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427262953216] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427204204288] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427204204288] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427204204288] is calling HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427120277248] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427120277248] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427120277248] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427120277248] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427120277248] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427120277248] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427220989696] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427220989696] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427220989696] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427220989696] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427128669952] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427128669952] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427195811584] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427195811584] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427195811584] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427195811584] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427195811584] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427195811584] will be blocked.
+[TRACE]: [ hookomp.c:0000194] Thread [140427262953216] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427262953216] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427262953216] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427103491840] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427103491840] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427103491840] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427103491840] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427103491840] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427103491840] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427162240768] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427162240768] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427162240768] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427162240768] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427162240768] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427162240768] will be blocked.
+[TRACE]: [ hookomp.c:0000194] Thread [140427204204288] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427204204288] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427204204288] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427534411712] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427534411712] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427534411712] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427534411712] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427534411712] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427534411712] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427170633472] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427170633472] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427170633472] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427170633472] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427179026176] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427179026176] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427179026176] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427179026176] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427179026176] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427179026176] will be blocked.
+[TRACE]: [ hookomp.c:0000277] Thread [140427220989696] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427220989696] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427212596992] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427212596992] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427212596992] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427212596992] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427271345920] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427271345920] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427271345920] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427271345920] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427254560512] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427254560512] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427254560512] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427254560512] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427170633472] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427170633472] will be blocked.
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[40000023].
+[TRACE]: [ hookomp.c:0000277] Thread [140427212596992] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427212596992] will be blocked.
+[TRACE]: [ hookomp.c:0000194] Thread [140427111884544] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[UNC_H_IMC_WRITES].
+[TRACE]: [ hookomp.c:0000277] Thread [140427271345920] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427271345920] will be blocked.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427279738624] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427279738624] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427279738624] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427279738624] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427279738624] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427279738624] will be blocked.
+[TRACE]: [ hookomp.c:0000277] Thread [140427254560512] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427254560512] will be blocked.
+[TRACE]: [ hookomp.c:0000277] Thread [140427111884544] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427111884544] will be blocked.
+[TRACE]: [ hookomp.c:0000194] Thread [140427187418880] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000277] Thread [140427187418880] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427187418880] will be blocked.
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[40000024].
+[TRACE]: [roofline.c:0000590] Thread [140427137062656] in RM_start_counters(): Resetting the counters.
+[TRACE]: [roofline.c:0000610] Thread [140427137062656] in RM_start_counters(): Starting counting...
+[TRACE]: [roofline.c:0000712] Thread [140427137062656] in RM_registry_measures(): [RM]: PAPI Counters Started.
+[TRACE]: [ hookomp.c:0000296] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000474] Thread [140427137062656] in GOMP_loop_dynamic_start(): Leaving GOMP_loop_dynamic_start with 1 threads.
+TRACE-FUNC-NAME: [ hookomp.c:0000626] Thread [140427137062656] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000630] Thread [140427137062656] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427137062656] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427137062656] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000197] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the number of executed iterations: 64.
+[TRACE]: [ hookomp.c:0000199] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [INSIDE] Calling next function inside of measures section.
+[TRACE]: [ hookomp.c:0000200] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 0 iend: 64.
+TRACE-FUNC-NAME: [ hookomp.c:0000115] Thread [140427137062656] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000119] Thread [140427137062656] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000121] Thread [140427137062656] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000124] Thread [140427137062656] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000202] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 64 iend: 128.
+[TRACE]: [ hookomp.c:0000204] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [Before]-> Update of executed iterations: 64.
+[TRACE]: [ hookomp.c:0000206] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [After]-> Update of executed iterations: 128.
+TRACE-FUNC-NAME: [roofline.c:0000692] Thread [140427137062656] is calling [RM_registry_measures()]
+[TRACE]: [roofline.c:0000696] Thread [140427137062656] in RM_registry_measures(): [HOOKOMP]: Verifying if started the measuring.
+[TRACE]: [roofline.c:0000698] Thread [140427137062656] in RM_registry_measures(): call RM_stop_and_accumulate().
+TRACE-FUNC-NAME: [roofline.c:0000629] Thread [140427137062656] is calling [RM_stop_and_accumulate()]
+[TRACE]: [roofline.c:0000633] Thread [140427137062656] in RM_stop_and_accumulate(): Trying accumulate counters.
+[TRACE]: [roofline.c:0000656] Thread [140427137062656] in RM_stop_and_accumulate(): Wall clock cycles: 			6860372605
+[TRACE]: [roofline.c:0000657] Thread [140427137062656] in RM_stop_and_accumulate(): Wall clock time in microseconds: 	2638694
+[TRACE]: [roofline.c:0000660] Thread [140427137062656] in RM_stop_and_accumulate(): Stopping the counters.
+[TRACE]: [roofline.c:0000666] Thread [140427137062656] in RM_stop_and_accumulate(): Removing events of EventSet: 0
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[UNC_H_IMC_READS].
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[UNC_H_IMC_WRITES].
+[TRACE]: [roofline.c:0000681] Thread [140427137062656] in RM_stop_and_accumulate(): Calling the printing of counter values.
+TRACE-FUNC-NAME: [roofline.c:0000236] Thread [140427137062656] is calling [RM_print_counters_values()]
+[TRACE]: [roofline.c:0000239] Thread [140427137062656] in RM_print_counters_values(): Final Values:
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;UNC_H_IMC_READS;UNC_H_IMC_WRITES;;;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 1;17789;14520;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L3_DCR;PAPI_L3_DCW;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L2_DCR;PAPI_L2_DCW;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;UNHALTED_CORE_CYCLES;UNHALTED_REFERENCE_CYCLES;perf::PERF_COUNT_HW_CACHE_L1D:READ;perf::PERF_COUNT_HW_CACHE_L1D:WRITE;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_DP_OPS;;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000700] Thread [140427137062656] in RM_registry_measures(): [RM]: Stop and Accumulate.
+[TRACE]: [roofline.c:0000710] Thread [140427137062656] in RM_registry_measures(): call RM_start_counters().
+TRACE-FUNC-NAME: [roofline.c:0000542] Thread [140427137062656] is calling [RM_start_counters()]
+[TRACE]: [roofline.c:0000568] Thread [140427137062656] in RM_start_counters(): EventSet: 1
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[PAPI_TOT_CYC].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[8000003B].
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[PAPI_REF_CYC].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[8000006B].
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[PAPI_L3_DCR].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[80000045].
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[PAPI_L3_DCW].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[80000048].
+[TRACE]: [roofline.c:0000590] Thread [140427137062656] in RM_start_counters(): Resetting the counters.
+[TRACE]: [roofline.c:0000610] Thread [140427137062656] in RM_start_counters(): Starting counting...
+[TRACE]: [roofline.c:0000712] Thread [140427137062656] in RM_registry_measures(): [RM]: PAPI Counters Started.
+[TRACE]: [ hookomp.c:0000296] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000626] Thread [140427137062656] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000630] Thread [140427137062656] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427137062656] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427137062656] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000197] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the number of executed iterations: 128.
+[TRACE]: [ hookomp.c:0000199] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [INSIDE] Calling next function inside of measures section.
+[TRACE]: [ hookomp.c:0000200] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 64 iend: 128.
+TRACE-FUNC-NAME: [ hookomp.c:0000115] Thread [140427137062656] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000119] Thread [140427137062656] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000121] Thread [140427137062656] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000124] Thread [140427137062656] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000202] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 128 iend: 192.
+[TRACE]: [ hookomp.c:0000204] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [Before]-> Update of executed iterations: 128.
+[TRACE]: [ hookomp.c:0000206] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [After]-> Update of executed iterations: 192.
+TRACE-FUNC-NAME: [roofline.c:0000692] Thread [140427137062656] is calling [RM_registry_measures()]
+[TRACE]: [roofline.c:0000696] Thread [140427137062656] in RM_registry_measures(): [HOOKOMP]: Verifying if started the measuring.
+[TRACE]: [roofline.c:0000698] Thread [140427137062656] in RM_registry_measures(): call RM_stop_and_accumulate().
+TRACE-FUNC-NAME: [roofline.c:0000629] Thread [140427137062656] is calling [RM_stop_and_accumulate()]
+[TRACE]: [roofline.c:0000633] Thread [140427137062656] in RM_stop_and_accumulate(): Trying accumulate counters.
+[TRACE]: [roofline.c:0000656] Thread [140427137062656] in RM_stop_and_accumulate(): Wall clock cycles: 			6860093858
+[TRACE]: [roofline.c:0000657] Thread [140427137062656] in RM_stop_and_accumulate(): Wall clock time in microseconds: 	2638587
+[TRACE]: [roofline.c:0000660] Thread [140427137062656] in RM_stop_and_accumulate(): Stopping the counters.
+[TRACE]: [roofline.c:0000666] Thread [140427137062656] in RM_stop_and_accumulate(): Removing events of EventSet: 1
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[PAPI_TOT_CYC].
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[PAPI_REF_CYC].
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[PAPI_L3_DCR].
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[PAPI_L3_DCW].
+[TRACE]: [roofline.c:0000681] Thread [140427137062656] in RM_stop_and_accumulate(): Calling the printing of counter values.
+TRACE-FUNC-NAME: [roofline.c:0000236] Thread [140427137062656] is calling [RM_print_counters_values()]
+[TRACE]: [roofline.c:0000239] Thread [140427137062656] in RM_print_counters_values(): Final Values:
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;UNC_H_IMC_READS;UNC_H_IMC_WRITES;;;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 1;17789;14520;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L3_DCR;PAPI_L3_DCW;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 1;7631568150;6842113980;251247854;79;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L2_DCR;PAPI_L2_DCW;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;UNHALTED_CORE_CYCLES;UNHALTED_REFERENCE_CYCLES;perf::PERF_COUNT_HW_CACHE_L1D:READ;perf::PERF_COUNT_HW_CACHE_L1D:WRITE;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_DP_OPS;;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000700] Thread [140427137062656] in RM_registry_measures(): [RM]: Stop and Accumulate.
+[TRACE]: [roofline.c:0000710] Thread [140427137062656] in RM_registry_measures(): call RM_start_counters().
+TRACE-FUNC-NAME: [roofline.c:0000542] Thread [140427137062656] is calling [RM_start_counters()]
+[TRACE]: [roofline.c:0000568] Thread [140427137062656] in RM_start_counters(): EventSet: 2
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[PAPI_TOT_CYC].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[8000003B].
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[PAPI_REF_CYC].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[8000006B].
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[PAPI_L2_DCR].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[80000044].
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[PAPI_L2_DCW].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[80000047].
+[TRACE]: [roofline.c:0000590] Thread [140427137062656] in RM_start_counters(): Resetting the counters.
+[TRACE]: [roofline.c:0000610] Thread [140427137062656] in RM_start_counters(): Starting counting...
+[TRACE]: [roofline.c:0000712] Thread [140427137062656] in RM_registry_measures(): [RM]: PAPI Counters Started.
+[TRACE]: [ hookomp.c:0000296] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000626] Thread [140427137062656] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000630] Thread [140427137062656] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427137062656] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427137062656] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000197] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the number of executed iterations: 192.
+[TRACE]: [ hookomp.c:0000199] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [INSIDE] Calling next function inside of measures section.
+[TRACE]: [ hookomp.c:0000200] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: 128 iend: 192.
+TRACE-FUNC-NAME: [ hookomp.c:0000115] Thread [140427137062656] is calling [HOOKOMP_proxy_function_next()]
+[TRACE]: [ hookomp.c:0000119] Thread [140427137062656] in HOOKOMP_proxy_function_next(): [HOOKOMP]: function type -> 2.
+[TRACE]: [ hookomp.c:0000121] Thread [140427137062656] in HOOKOMP_proxy_function_next(): [HOOKOMP]: calling the GOMP_loop_*_next in HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000124] Thread [140427137062656] in HOOKOMP_proxy_function_next(): [HOOKOMP]: Leaving the HOOKOMP_proxy_function_next.
+[TRACE]: [ hookomp.c:0000202] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: 192 iend: 256.
+[TRACE]: [ hookomp.c:0000204] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [Before]-> Update of executed iterations: 192.
+[TRACE]: [ hookomp.c:0000206] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: [After]-> Update of executed iterations: 256.
+TRACE-FUNC-NAME: [roofline.c:0000692] Thread [140427137062656] is calling [RM_registry_measures()]
+[TRACE]: [roofline.c:0000696] Thread [140427137062656] in RM_registry_measures(): [HOOKOMP]: Verifying if started the measuring.
+[TRACE]: [roofline.c:0000698] Thread [140427137062656] in RM_registry_measures(): call RM_stop_and_accumulate().
+TRACE-FUNC-NAME: [roofline.c:0000629] Thread [140427137062656] is calling [RM_stop_and_accumulate()]
+[TRACE]: [roofline.c:0000633] Thread [140427137062656] in RM_stop_and_accumulate(): Trying accumulate counters.
+[TRACE]: [roofline.c:0000656] Thread [140427137062656] in RM_stop_and_accumulate(): Wall clock cycles: 			6698816385
+[TRACE]: [roofline.c:0000657] Thread [140427137062656] in RM_stop_and_accumulate(): Wall clock time in microseconds: 	2576555
+[TRACE]: [roofline.c:0000660] Thread [140427137062656] in RM_stop_and_accumulate(): Stopping the counters.
+[TRACE]: [roofline.c:0000666] Thread [140427137062656] in RM_stop_and_accumulate(): Removing events of EventSet: 2
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[PAPI_TOT_CYC].
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[PAPI_REF_CYC].
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[PAPI_L2_DCR].
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[PAPI_L2_DCW].
+[TRACE]: [roofline.c:0000681] Thread [140427137062656] in RM_stop_and_accumulate(): Calling the printing of counter values.
+TRACE-FUNC-NAME: [roofline.c:0000236] Thread [140427137062656] is calling [RM_print_counters_values()]
+[TRACE]: [roofline.c:0000239] Thread [140427137062656] in RM_print_counters_values(): Final Values:
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;UNC_H_IMC_READS;UNC_H_IMC_WRITES;;;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 1;17789;14520;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L3_DCR;PAPI_L3_DCW;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 1;7631568150;6842113980;251247854;79;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L2_DCR;PAPI_L2_DCW;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 1;7640847299;6680262420;413104759;107;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;UNHALTED_CORE_CYCLES;UNHALTED_REFERENCE_CYCLES;perf::PERF_COUNT_HW_CACHE_L1D:READ;perf::PERF_COUNT_HW_CACHE_L1D:WRITE;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_DP_OPS;;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [roofline.c:0000700] Thread [140427137062656] in RM_registry_measures(): [RM]: Stop and Accumulate.
+[TRACE]: [roofline.c:0000710] Thread [140427137062656] in RM_registry_measures(): call RM_start_counters().
+TRACE-FUNC-NAME: [roofline.c:0000542] Thread [140427137062656] is calling [RM_start_counters()]
+[TRACE]: [roofline.c:0000568] Thread [140427137062656] in RM_start_counters(): EventSet: 3
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[UNHALTED_CORE_CYCLES].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[40000000].
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[UNHALTED_REFERENCE_CYCLES].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[40000001].
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[perf::PERF_COUNT_HW_CACHE_L1D:READ].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[40000027].
+[TRACE]: [roofline.c:0000571] Thread [140427137062656] in RM_start_counters(): Adding[perf::PERF_COUNT_HW_CACHE_L1D:WRITE].
+[TRACE]: [roofline.c:0000582] Thread [140427137062656] in RM_start_counters(): Adding[40000028].
+[TRACE]: [roofline.c:0000590] Thread [140427137062656] in RM_start_counters(): Resetting the counters.
+[TRACE]: [roofline.c:0000610] Thread [140427137062656] in RM_start_counters(): Starting counting...
+[TRACE]: [roofline.c:0000712] Thread [140427137062656] in RM_registry_measures(): [RM]: PAPI Counters Started.
+[TRACE]: [ hookomp.c:0000296] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Leaving the HOOKOMP_generic_next.
+TRACE-FUNC-NAME: [ hookomp.c:0000626] Thread [140427137062656] is calling [GOMP_loop_dynamic_next()]
+[TRACE]: [ hookomp.c:0000630] Thread [140427137062656] in GOMP_loop_dynamic_next(): [LIBGOMP] GOMP_loop_dynamic_next@GOMP_X.X.
+TRACE-FUNC-NAME: [ hookomp.c:0000176] Thread [140427137062656] is calling [HOOKOMP_generic_next()]
+[TRACE]: [ hookomp.c:0000178] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427137062656] is calling HOOKOMP_generic_next.
+[TRACE]: [ hookomp.c:0000194] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the registred thread id: 140427137062656.
+[TRACE]: [ hookomp.c:0000197] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Testing the number of executed iterations: 256.
+[TRACE]: [ hookomp.c:0000213] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: They were executed 256 iterations of 2000.
+[TRACE]: [ hookomp.c:0000214] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Trying to make decision about offloading.
+[TRACE]: [ hookomp.c:0000219] Thread [140427137062656] in HOOKOMP_generic_next(): [HOOKOMP]: Thread [140427137062656] is getting the performance counters to decide.
+[TRACE]: [ hookomp.c:0000221] Thread [140427137062656] in HOOKOMP_generic_next(): Calling RM_stop_and_accumulate.
+TRACE-FUNC-NAME: [roofline.c:0000629] Thread [140427137062656] is calling [RM_stop_and_accumulate()]
+[TRACE]: [roofline.c:0000633] Thread [140427137062656] in RM_stop_and_accumulate(): Trying accumulate counters.
+[TRACE]: [roofline.c:0000656] Thread [140427137062656] in RM_stop_and_accumulate(): Wall clock cycles: 			6440113456
+[TRACE]: [roofline.c:0000657] Thread [140427137062656] in RM_stop_and_accumulate(): Wall clock time in microseconds: 	2477051
+[TRACE]: [roofline.c:0000660] Thread [140427137062656] in RM_stop_and_accumulate(): Stopping the counters.
+[TRACE]: [roofline.c:0000666] Thread [140427137062656] in RM_stop_and_accumulate(): Removing events of EventSet: 3
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[UNHALTED_CORE_CYCLES].
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[UNHALTED_REFERENCE_CYCLES].
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[perf::PERF_COUNT_HW_CACHE_L1D:READ].
+[TRACE]: [roofline.c:0000669] Thread [140427137062656] in RM_stop_and_accumulate(): Removing[perf::PERF_COUNT_HW_CACHE_L1D:WRITE].
+[TRACE]: [roofline.c:0000681] Thread [140427137062656] in RM_stop_and_accumulate(): Calling the printing of counter values.
+TRACE-FUNC-NAME: [roofline.c:0000236] Thread [140427137062656] is calling [RM_print_counters_values()]
+[TRACE]: [roofline.c:0000239] Thread [140427137062656] in RM_print_counters_values(): Final Values:
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;UNC_H_IMC_READS;UNC_H_IMC_WRITES;;;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 1;17789;14520;0;0;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L3_DCR;PAPI_L3_DCW;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 1;7631568150;6842113980;251247854;79;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_L2_DCR;PAPI_L2_DCW;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 1;7640847299;6680262420;413104759;107;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;UNHALTED_CORE_CYCLES;UNHALTED_REFERENCE_CYCLES;perf::PERF_COUNT_HW_CACHE_L1D:READ;perf::PERF_COUNT_HW_CACHE_L1D:WRITE;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 1;7654679501;6421194468;413483070;84504;0;
+[TRACE]: [roofline.c:0000246] Thread [140427137062656] in RM_print_counters_values(): measures;PAPI_TOT_CYC;PAPI_REF_CYC;PAPI_DP_OPS;;;
+[TRACE]: [roofline.c:0000254] Thread [140427137062656] in RM_print_counters_values(): 0;0;0;0;0;0;
+[TRACE]: [ hookomp.c:0000226] Thread [140427137062656] in HOOKOMP_generic_next(): Current loop index: 0.
+[TRACE]: [ hookomp.c:0000227] Thread [140427137062656] in HOOKOMP_generic_next(): Defining aditional parameters.
+TRACE-FUNC-NAME: [roofline.c:0000730] Thread [140427137062656] is calling [RM_set_aditional_parameters()]
+[TRACE]: [roofline.c:0000738] Thread [140427137062656] in RM_set_aditional_parameters(): Total of iterations: 2000, executed_iterations: 256, chunk_size: 64, q_data_transfer_write: 96000000, q_data_transfer_read: 32000000.
+[TRACE]: [ hookomp.c:0000231] Thread [140427137062656] in HOOKOMP_generic_next(): Getting decision about offloading.
+TRACE-FUNC-NAME: [roofline.c:0000964] Thread [140427137062656] is calling [RM_decision_about_offloading()]
+TRACE-FUNC-NAME: [roofline.c:0000858] Thread [140427137062656] is calling [RM_get_operational_intensity()]
+TRACE-FUNC-NAME: [roofline.c:0000815] Thread [140427137062656] is calling [work()]
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 0.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 0.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured:       -nan.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative:       -nan
+[TRACE]: [roofline.c:0000817] Thread [140427137062656] in work(): work:       -nan
+[TRACE]: [roofline.c:0000869] Thread [140427137062656] in RM_get_operational_intensity(): W:       -nan
+TRACE-FUNC-NAME: [roofline.c:0000849] Thread [140427137062656] is calling [Q_total()]
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(0,0).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 17789.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 17789.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 551459.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(0,0): 35293376.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(0,0).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 17789.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 17789.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 551459.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(0,0): 35293376.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(0): 70586752.000000
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(1,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 251247854.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 251247854.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 7788683474.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(1,2): 498475742336.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(1,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 251247854.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 251247854.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 7788683474.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(1,2): 498475742336.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(1): 996951484672.000000
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(2,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413104759.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413104759.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12806247529.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(2,2): 819599841856.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(2,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413104759.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413104759.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12806247529.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(2,2): 819599841856.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(2): 1639199683712.000000
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(3,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413483070.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413483070.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12817975170.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(3,2): 820350410880.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(3,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413483070.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413483070.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12817975170.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(3,2): 820350410880.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(3): 1640700821760.000000
+[TRACE]: [roofline.c:0000851] Thread [140427137062656] in Q_total(): Q_total: 4276922576896.000000
+[TRACE]: [roofline.c:0000873] Thread [140427137062656] in RM_get_operational_intensity(): Q: 4276922576896.000000
+[TRACE]: [roofline.c:0000877] Thread [140427137062656] in RM_get_operational_intensity(): I:       -nan
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(3,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413483070.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413483070.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12817975170.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(3,2): 820350410880.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(3,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413483070.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413483070.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12817975170.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(3,2): 820350410880.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(3): 1640700821760.000000
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(3,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413483070.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413483070.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12817975170.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(3,2): 820350410880.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(3,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413483070.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413483070.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12817975170.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(3,2): 820350410880.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(3): 1640700821760.000000
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(2,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413104759.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413104759.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12806247529.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(2,2): 819599841856.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(2,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413104759.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413104759.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12806247529.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(2,2): 819599841856.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(2): 1639199683712.000000
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(3,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413483070.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413483070.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12817975170.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(3,2): 820350410880.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(3,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413483070.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413483070.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12817975170.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(3,2): 820350410880.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(3): 1640700821760.000000
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(2,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413104759.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413104759.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12806247529.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(2,2): 819599841856.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(2,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413104759.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413104759.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12806247529.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(2,2): 819599841856.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(2): 1639199683712.000000
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(1,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 251247854.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 251247854.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 7788683474.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(1,2): 498475742336.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(1,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 251247854.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 251247854.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 7788683474.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(1,2): 498475742336.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(1): 996951484672.000000
+[TRACE]: [roofline.c:0000884] Thread [140427137062656] in RM_get_operational_intensity(): I_L1:       -nan
+[TRACE]: [roofline.c:0000885] Thread [140427137062656] in RM_get_operational_intensity(): I_L2:       -nan
+[TRACE]: [roofline.c:0000886] Thread [140427137062656] in RM_get_operational_intensity(): I_LLC:       -nan
+[TRACE]: [roofline.c:0000887] Thread [140427137062656] in RM_get_operational_intensity(): I_MEM:       -nan
+[TRACE]: [roofline.c:0000969] Thread [140427137062656] in RM_decision_about_offloading(): Operational intensity:       -nan
+TRACE-FUNC-NAME: [roofline.c:0000940] Thread [140427137062656] is calling [RM_get_better_device_to_execution()]
+[TRACE]: [roofline.c:0000942] Thread [140427137062656] in RM_get_better_device_to_execution(): Operational intensity in CPU:       -nan
+TRACE-FUNC-NAME: [roofline.c:0000895] Thread [140427137062656] is calling [RM_get_operational_intensity_in_GPU()]
+TRACE-FUNC-NAME: [roofline.c:0000815] Thread [140427137062656] is calling [work()]
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 0.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 0.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured:       -nan.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative:       -nan
+[TRACE]: [roofline.c:0000817] Thread [140427137062656] in work(): work:       -nan
+[TRACE]: [roofline.c:0000906] Thread [140427137062656] in RM_get_operational_intensity_in_GPU(): W: -nan
+TRACE-FUNC-NAME: [roofline.c:0000849] Thread [140427137062656] is calling [Q_total()]
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(0,0).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 17789.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 17789.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 551459.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(0,0): 35293376.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(0,0).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 17789.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 17789.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 551459.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(0,0): 35293376.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(0): 70586752.000000
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(1,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 251247854.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 251247854.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 7788683474.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(1,2): 498475742336.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(1,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 251247854.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 251247854.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 7788683474.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(1,2): 498475742336.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(1): 996951484672.000000
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(2,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413104759.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413104759.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12806247529.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(2,2): 819599841856.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(2,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413104759.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413104759.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12806247529.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(2,2): 819599841856.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(2): 1639199683712.000000
+TRACE-FUNC-NAME: [roofline.c:0000841] Thread [140427137062656] is calling [Q_level()]
+TRACE-FUNC-NAME: [roofline.c:0000823] Thread [140427137062656] is calling [Qr()]
+[TRACE]: [roofline.c:0000824] Thread [140427137062656] in Qr(): Getting Qr(3,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413483070.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413483070.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12817975170.000000
+[TRACE]: [roofline.c:0000826] Thread [140427137062656] in Qr(): Qr(3,2): 820350410880.000000
+TRACE-FUNC-NAME: [roofline.c:0000832] Thread [140427137062656] is calling [Qw()]
+[TRACE]: [roofline.c:0000833] Thread [140427137062656] in Qw(): Getting Qw(3,2).
+TRACE-FUNC-NAME: [roofline.c:0000807] Thread [140427137062656] is calling [estimated()]
+TRACE-FUNC-NAME: [roofline.c:0000787] Thread [140427137062656] is calling [measured()]
+[TRACE]: [roofline.c:0000789] Thread [140427137062656] in measured(): value: 413483070.
+[TRACE]: [roofline.c:0000790] Thread [140427137062656] in measured(): # intervals: 1.
+[TRACE]: [roofline.c:0000793] Thread [140427137062656] in measured(): measured: 413483070.000000.
+TRACE-FUNC-NAME: [roofline.c:0000765] Thread [140427137062656] is calling [total_of_chunks()]
+[TRACE]: [roofline.c:0000767] Thread [140427137062656] in total_of_chunks(): total of chunks: 31.
+[TRACE]: [roofline.c:0000809] Thread [140427137062656] in estimated(): estimative: 12817975170.000000
+[TRACE]: [roofline.c:0000835] Thread [140427137062656] in Qw(): Qw(3,2): 820350410880.000000
+[TRACE]: [roofline.c:0000843] Thread [140427137062656] in Q_level(): Q_level(3): 1640700821760.000000
+[TRACE]: [roofline.c:0000851] Thread [140427137062656] in Q_total(): Q_total: 4276922576896.000000
+[TRACE]: [roofline.c:0000910] Thread [140427137062656] in RM_get_operational_intensity_in_GPU(): Q: 4276922576896.000000
+[TRACE]: [roofline.c:0000913] Thread [140427137062656] in RM_get_operational_intensity_in_GPU(): Q_data_transfer: 128000000.000000
+[TRACE]: [roofline.c:0000917] Thread [140427137062656] in RM_get_operational_intensity_in_GPU(): I_GPU:       -nan
+[TRACE]: [roofline.c:0000945] Thread [140427137062656] in RM_get_better_device_to_execution(): Operational intensity in CPU:       -nan
+[TRACE]: [roofline.c:0000946] Thread [140427137062656] in RM_get_better_device_to_execution(): Operational intensity in GPU:       -nan
+TRACE-FUNC-NAME: [roofline.c:0000925] Thread [140427137062656] is calling [RM_attainable_performance()]
+[TRACE]: [roofline.c:0000928] Thread [140427137062656] in RM_attainable_performance(): Calculating Attainable Performance to device 0 with Operational intensity       -nan
+[TRACE]: [roofline.c:0000932] Thread [140427137062656] in RM_attainable_performance(): AP in device 0:       -nan
+TRACE-FUNC-NAME: [roofline.c:0000925] Thread [140427137062656] is calling [RM_attainable_performance()]
+[TRACE]: [roofline.c:0000928] Thread [140427137062656] in RM_attainable_performance(): Calculating Attainable Performance to device 1 with Operational intensity       -nan
+[TRACE]: [roofline.c:0000932] Thread [140427137062656] in RM_attainable_performance(): AP in device 1:       -nan
+[TRACE]: [roofline.c:0000957] Thread [140427137062656] in RM_get_better_device_to_execution(): Chosen device: 0.
+[TRACE]: [roofline.c:0000972] Thread [140427137062656] in RM_decision_about_offloading(): Execution is better on device [-1113649808].
+[TRACE]: [ hookomp.c:0000234] Thread [140427137062656] in HOOKOMP_generic_next(): RM decided by device [0].
+[TRACE]: [ hookomp.c:0000236] Thread [140427137062656] in HOOKOMP_generic_next(): Trying to launch apropriated function to loop 0 on device: 0.
+TRACE-FUNC-NAME: [ hookomp.c:0000150] Thread [140427137062656] is calling [HOOKOMP_call_offloading_function()]
+[TRACE]: [ hookomp.c:0000153] Thread [140427137062656] in HOOKOMP_call_offloading_function(): Verifying if function for loop index: 0, device index: 0 is defined. 
+[TRACE]: [ hookomp.c:0000159] Thread [140427137062656] in HOOKOMP_call_offloading_function(): TablePointerFunctions: 0x2316340.
+[TRACE]: [ hookomp.c:0000160] Thread [140427137062656] in HOOKOMP_call_offloading_function(): TablePointerFunctions[0][0]: 0x2316380.
+[TRACE]: [ hookomp.c:0000161] Thread [140427137062656] in HOOKOMP_call_offloading_function(): (TablePointerFunctions[0][0])->f: 0x3232757063040020.
+[TRACE]: [ hookomp.c:0000164] Thread [140427137062656] in HOOKOMP_call_offloading_function(): Offloading function for loop index: 0, device index: 0.
+TRACE-FUNC-NAME: [ hookomp.c:0000131] Thread [140427137062656] is calling [HOOKOMP_call_function_ffi()]
+[TRACE]: [ hookomp.c:0000135] Thread [140427137062656] in HOOKOMP_call_function_ffi(): Preparing calling.
