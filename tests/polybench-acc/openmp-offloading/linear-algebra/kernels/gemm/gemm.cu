@@ -316,43 +316,43 @@ int main(int argc, char *argv[]) {
   int n_params = 10;
 
   // void handler_function_init_array_GPU(void)
-  Func *ff_1 = (Func *) malloc(sizeof(Func));
+  Func *ff_0 = (Func *) malloc(sizeof(Func));
 
   // Number of arguments + 1, the lists need to have last element NULL.
-  ff_1->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
-  ff_1->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
+  ff_0->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
+  ff_0->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
 
-  ff_1->f = &gemm_cuda;
-  memset(&ff_1->ret_value, 0, sizeof(ff_1->ret_value));
+  ff_0->f = &gemm_cuda;
+  memset(&ff_0->ret_value, 0, sizeof(ff_0->ret_value));
 
   // return type.
-  ff_1->ret_type = &ffi_type_void;
+  ff_0->ret_type = &ffi_type_void;
 
-  ff_1->nargs = n_params;
+  ff_0->nargs = n_params;
 
-  ff_1->arg_values[0] = &ni;
-  ff_1->arg_values[1] = &nj;
-  ff_1->arg_values[2] = &nk;
-  ff_1->arg_values[3] = &alpha;
-  ff_1->arg_values[4] = &beta;
-  ff_1->arg_values[5] = &A;
-  ff_1->arg_values[6] = &B;
-  ff_1->arg_values[7] = &C;
-  ff_1->arg_values[8] = &C_inputToGpu;
-  ff_1->arg_values[9] = &C_outputFromGpu;
-  ff_1->arg_values[10] = NULL;
+  ff_0->arg_values[0] = &ni;
+  ff_0->arg_values[1] = &nj;
+  ff_0->arg_values[2] = &nk;
+  ff_0->arg_values[3] = &alpha;
+  ff_0->arg_values[4] = &beta;
+  ff_0->arg_values[5] = &A;
+  ff_0->arg_values[6] = &B;
+  ff_0->arg_values[7] = &C;
+  ff_0->arg_values[8] = &C_inputToGpu;
+  ff_0->arg_values[9] = &C_outputFromGpu;
+  ff_0->arg_values[10] = NULL;
 
-  ff_1->arg_types[0] = &ffi_type_sint32;
-  ff_1->arg_types[1] = &ffi_type_sint32;
-  ff_1->arg_types[2] = &ffi_type_sint32;
-  ff_1->arg_types[3] = &ffi_type_double;
-  ff_1->arg_types[4] = &ffi_type_double;
-  ff_1->arg_types[5] = &ffi_type_pointer;
-  ff_1->arg_types[6] = &ffi_type_pointer;
-  ff_1->arg_types[7] = &ffi_type_pointer;
-  ff_1->arg_types[8] = &ffi_type_pointer;
-  ff_1->arg_types[9] = &ffi_type_pointer;
-  ff_1->arg_types[10] = NULL;
+  ff_0->arg_types[0] = &ffi_type_sint32;
+  ff_0->arg_types[1] = &ffi_type_sint32;
+  ff_0->arg_types[2] = &ffi_type_sint32;
+  ff_0->arg_types[3] = &ffi_type_double;
+  ff_0->arg_types[4] = &ffi_type_double;
+  ff_0->arg_types[5] = &ffi_type_pointer;
+  ff_0->arg_types[6] = &ffi_type_pointer;
+  ff_0->arg_types[7] = &ffi_type_pointer;
+  ff_0->arg_types[8] = &ffi_type_pointer;
+  ff_0->arg_types[9] = &ffi_type_pointer;
+  ff_0->arg_types[10] = NULL;
 
   /*          device 0
    * loop 0   gemm_cuda
@@ -367,8 +367,7 @@ int main(int argc, char *argv[]) {
     assert(table != NULL);
     // 0,0 is CPU = NULL, because is openmp code.
     fprintf(stderr, "Declaring function in 0,1.\n");
-    table[0][0][0] = 0;
-    table[0][1][0] = *ff_1;
+    table[0][1][0] = *ff_0;
 
     TablePointerFunctions = table;
     assert(TablePointerFunctions != NULL);
