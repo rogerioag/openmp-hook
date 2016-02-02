@@ -223,6 +223,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					TRACE("[HOOKOMP]: Error calling RM_stop_and_accumulate.\n");
 				}
 				else{
+					TRACE("Current loop index: %d.\n", current_loop_index);
 					TRACE("Defining aditional parameters.\n");
 					// N: total of iterations, Number of executed iterations (percentual), last chunk_size.
 					RM_set_aditional_parameters(total_of_iterations, executed_loop_iterations, (*iend - *istart), q_data_transfer_write, q_data_transfer_read);
