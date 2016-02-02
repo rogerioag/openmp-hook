@@ -35,6 +35,10 @@
 
 #define RUN_ON_CPU
 
+ DATA_TYPE *A_gpu;
+ DATA_TYPE *B_gpu;
+ DATA_TYPE *C_gpu;
+
 /* ------------------------------------------------------------- */
 void init_arrays(int ni, int nj, DATA_TYPE *alpha, DATA_TYPE *beta,
                  DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
@@ -273,9 +277,10 @@ void syr2k_cuda_0(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   // GPU initialization.
   GPU_argv_init();
 
-  DATA_TYPE *A_gpu;
-  DATA_TYPE *B_gpu;
-  DATA_TYPE *C_gpu;
+  // Moved to Global.
+  // DATA_TYPE *A_gpu;
+  // DATA_TYPE *B_gpu;
+  // DATA_TYPE *C_gpu;
 
   cudaMalloc((void **)&A_gpu, sizeof(DATA_TYPE) * NI * NJ);
   cudaMalloc((void **)&B_gpu, sizeof(DATA_TYPE) * NI * NJ);
