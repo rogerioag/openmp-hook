@@ -11,20 +11,6 @@ void __nv_save_fatbinhandle_for_managed_rt(void**) (void * * in)
 
 
 
-;; Function void ____nv_dummy_param_ref(void*) (_ZL22____nv_dummy_param_refPv, funcdef_no=3162, decl_uid=48467, cgraph_uid=3023)
-
-void ____nv_dummy_param_ref(void*) (void * param)
-{
-  static volatile void * * __ref;
-
-  <bb 2>:
-  __ref = param;
-  return;
-
-}
-
-
-
 ;; Function void syr2k_omp_kernel(int, int, float, float, float (*)[2048], float (*)[2048], float (*)[2048]) (_ZL16syr2k_omp_kerneliiffPA2048_fS0_S0_, funcdef_no=3146, decl_uid=48079, cgraph_uid=3008)
 
 
@@ -43,22 +29,22 @@ Merging blocks 2 and 25
 Merging blocks 2 and 19
 void syr2k_omp_kernel(int, int, float, float, float (*)[2048], float (*)[2048], float (*)[2048]) (int ni, int nj, float alpha, float beta, float[2048] * A, float[2048] * B, float[2048] * C)
 {
-  bool D.49390;
-  long int .iend0.73;
-  int D.49389;
-  long int .istart0.72;
-  long int D.49385;
-  bool D.49386;
-  long int .iend0.71;
-  long int .istart0.70;
-  bool D.49382;
-  long int .iend0.69;
-  int D.49381;
-  long int .istart0.68;
-  long int D.49377;
-  bool D.49378;
-  long int .iend0.67;
-  long int .istart0.66;
+  bool D.49388;
+  long int .iend0.72;
+  int D.49387;
+  long int .istart0.71;
+  long int D.49383;
+  bool D.49384;
+  long int .iend0.70;
+  long int .istart0.69;
+  bool D.49380;
+  long int .iend0.68;
+  int D.49379;
+  long int .istart0.67;
+  long int D.49375;
+  bool D.49376;
+  long int .iend0.66;
+  long int .istart0.65;
   int k;
   int j;
   int i;
@@ -105,6 +91,20 @@ void syr2k_omp_kernel(int, int, float, float, float (*)[2048], float (*)[2048], 
   nj = .omp_data_o.8.nj;
   alpha = .omp_data_o.8.alpha;
   beta = .omp_data_o.8.beta;
+  return;
+
+}
+
+
+
+;; Function void ____nv_dummy_param_ref(void*) (_ZL22____nv_dummy_param_refPv, funcdef_no=3162, decl_uid=48467, cgraph_uid=3023)
+
+void ____nv_dummy_param_ref(void*) (void * param)
+{
+  static volatile void * * __ref;
+
+  <bb 2>:
+  __ref = param;
   return;
 
 }
@@ -1633,9 +1633,9 @@ int main(int, char**) (int argc, char * * argv)
 
 
 
-;; Function void __sti____cudaRegisterAll_40_tmpxft_00003c4f_00000000_6_syr2k_cpp1_ii_132e4611() (_ZL77__sti____cudaRegisterAll_40_tmpxft_00003c4f_00000000_6_syr2k_cpp1_ii_132e4611v, funcdef_no=3200, decl_uid=48746, cgraph_uid=3061)
+;; Function void __sti____cudaRegisterAll_40_tmpxft_000041dc_00000000_6_syr2k_cpp1_ii_132e4611() (_ZL77__sti____cudaRegisterAll_40_tmpxft_000041dc_00000000_6_syr2k_cpp1_ii_132e4611v, funcdef_no=3200, decl_uid=48746, cgraph_uid=3061)
 
-void __sti____cudaRegisterAll_40_tmpxft_00003c4f_00000000_6_syr2k_cpp1_ii_132e4611() ()
+void __sti____cudaRegisterAll_40_tmpxft_000041dc_00000000_6_syr2k_cpp1_ii_132e4611() ()
 {
   void * * D.49369;
   void (*<T52ef>) (void * *) callback_fp;
@@ -1656,9 +1656,9 @@ void __sti____cudaRegisterAll_40_tmpxft_00003c4f_00000000_6_syr2k_cpp1_ii_132e46
 
 
 
-;; Function cudaError_t _GLOBAL__N__40_tmpxft_00003c4f_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (_ZN64_GLOBAL__N__40_tmpxft_00003c4f_00000000_6_syr2k_cpp1_ii_132e461110cudaLaunchIcEE9cudaErrorPT_, funcdef_no=3201, decl_uid=48771, cgraph_uid=3062)
+;; Function cudaError_t _GLOBAL__N__40_tmpxft_000041dc_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (_ZN64_GLOBAL__N__40_tmpxft_000041dc_00000000_6_syr2k_cpp1_ii_132e461110cudaLaunchIcEE9cudaErrorPT_, funcdef_no=3201, decl_uid=48771, cgraph_uid=3062)
 
-cudaError_t _GLOBAL__N__40_tmpxft_00003c4f_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (char * func)
+cudaError_t _GLOBAL__N__40_tmpxft_000041dc_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (char * func)
 {
   cudaError_t D.49294;
   cudaError_t D.49292;
@@ -1764,7 +1764,7 @@ void __device_stub__Z17syr2k_cuda_kerneliiffPfS_S_(int, int, float, float, float
 
   <bb 9>:
   __f = syr2k_cuda_kernel;
-  _GLOBAL__N__40_tmpxft_00003c4f_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel);
+  _GLOBAL__N__40_tmpxft_000041dc_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel);
 
   <bb 10>:
   return;
@@ -1877,7 +1877,7 @@ void __device_stub__Z19syr2k_cuda_kernel_1iiffPfS_S_(int, int, float, float, flo
 
   <bb 9>:
   __f = syr2k_cuda_kernel_1;
-  _GLOBAL__N__40_tmpxft_00003c4f_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel_1);
+  _GLOBAL__N__40_tmpxft_000041dc_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel_1);
 
   <bb 10>:
   return;
@@ -2097,7 +2097,7 @@ void __device_stub__Z19syr2k_cuda_kernel_2iiffPfS_S_(int, int, float, float, flo
 
   <bb 9>:
   __f = syr2k_cuda_kernel_2;
-  _GLOBAL__N__40_tmpxft_00003c4f_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel_2);
+  _GLOBAL__N__40_tmpxft_000041dc_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel_2);
 
   <bb 10>:
   return;
@@ -2223,136 +2223,136 @@ void syr2k_cuda_1(int, int, float, float, float (*)[2048], float (*)[2048], floa
   float alpha [value-expr: .omp_data_i->alpha];
   int nj [value-expr: .omp_data_i->nj];
   int ni [value-expr: .omp_data_i->ni];
-  float D.49456;
-  float D.49455;
   float D.49454;
-  float[2048] * D.49453;
-  float[2048] * D.49452;
-  float D.49451;
-  float D.49450;
+  float D.49453;
+  float D.49452;
+  float[2048] * D.49451;
+  float[2048] * D.49450;
   float D.49449;
-  float[2048] * D.49448;
-  float[2048] * D.49447;
+  float D.49448;
+  float D.49447;
   float[2048] * D.49446;
   float[2048] * D.49445;
-  float D.49444;
-  float D.49443;
+  float[2048] * D.49444;
+  float[2048] * D.49443;
   float D.49442;
-  float[2048] * D.49441;
-  float[2048] * D.49440;
-  long unsigned int D.49439;
-  long unsigned int D.49438;
-  float D.49437;
-  float D.49436;
+  float D.49441;
+  float D.49440;
+  float[2048] * D.49439;
+  float[2048] * D.49438;
+  long unsigned int D.49437;
+  long unsigned int D.49436;
   float D.49435;
-  float[2048] * D.49434;
-  float[2048] * D.49433;
+  float D.49434;
+  float D.49433;
   float[2048] * D.49432;
   float[2048] * D.49431;
-  int D.49430;
+  float[2048] * D.49430;
+  float[2048] * D.49429;
+  int D.49428;
   int k;
-  bool D.49428;
-  int D.49427;
-  int j;
+  bool D.49426;
   int D.49425;
-  long int .iend0.69;
-  int i;
-  long int .istart0.68;
-  bool D.49421;
-  long int .iend0.67;
-  long int .istart0.66;
-  long int D.49418;
-  int D.49417;
-  float D.49416;
-  float D.49415;
-  float D.49414;
-  float[2048] * D.49413;
-  float[2048] * D.49412;
-  float[2048] * D.49411;
-  long unsigned int D.49410;
-  long unsigned int D.49409;
-  bool D.49408;
-  int D.49407;
   int j;
-  int D.49405;
-  long int .iend0.73;
+  int D.49423;
+  long int .iend0.68;
   int i;
-  long int .istart0.72;
-  bool D.49401;
-  long int .iend0.71;
-  long int .istart0.70;
-  long int D.49398;
-  int D.49397;
+  long int .istart0.67;
+  bool D.49419;
+  long int .iend0.66;
+  long int .istart0.65;
+  long int D.49416;
+  int D.49415;
+  float D.49414;
+  float D.49413;
+  float D.49412;
+  float[2048] * D.49411;
+  float[2048] * D.49410;
+  float[2048] * D.49409;
+  long unsigned int D.49408;
+  long unsigned int D.49407;
+  bool D.49406;
+  int D.49405;
+  int j;
+  int D.49403;
+  long int .iend0.72;
+  int i;
+  long int .istart0.71;
+  bool D.49399;
+  long int .iend0.70;
+  long int .istart0.69;
+  long int D.49396;
+  int D.49395;
   long long int q_data_transfer_read.6;
-  long unsigned int D.49395;
-  long long int q_data_transfer_write.5;
   long unsigned int D.49393;
-  long unsigned int D.49392;
+  long long int q_data_transfer_write.5;
   long unsigned int D.49391;
+  long unsigned int D.49390;
+  long unsigned int D.49389;
 
   <bb 24>:
 
   <bb 3>:
   current_loop_index = 0;
-  D.49391 = 8;
-  D.49392 = D.49391 + 4;
-  D.49393 = D.49392 * 4194304;
-  q_data_transfer_write.5 = (long long int) D.49393;
+  D.49389 = 8;
+  D.49390 = D.49389 + 4;
+  D.49391 = D.49390 * 4194304;
+  q_data_transfer_write.5 = (long long int) D.49391;
   q_data_transfer_write = q_data_transfer_write.5;
-  D.49395 = 16777216;
-  q_data_transfer_read.6 = (long long int) D.49395;
+  D.49393 = 16777216;
+  q_data_transfer_read.6 = (long long int) D.49393;
   q_data_transfer_read = q_data_transfer_read.6;
-  D.49397 = .omp_data_i->ni;
-  D.49398 = (long int) D.49397;
-  D.49401 = __builtin_GOMP_loop_dynamic_start (0, D.49398, 1, 64, &.istart0.70, &.iend0.71);
-  if (D.49401 != 0)
+  D.49395 = .omp_data_i->ni;
+  D.49396 = (long int) D.49395;
+  D.49399 = __builtin_GOMP_loop_dynamic_start (0, D.49396, 1, 64, &.istart0.69, &.iend0.70);
+  if (D.49399 != 0)
     goto <bb 22>;
   else
     goto <bb 8>;
 
   <bb 22>:
-  .istart0.72 = .istart0.70;
-  i = (int) .istart0.72;
-  .iend0.73 = .iend0.71;
-  D.49405 = (int) .iend0.73;
+  .istart0.71 = .istart0.69;
+  i = (int) .istart0.71;
+  .iend0.72 = .iend0.70;
+  D.49403 = (int) .iend0.72;
 
   <bb 4>:
   j = 0;
 
   <bb 6>:
-  D.49407 = .omp_data_i->ni;
-  if (j < D.49407)
+  D.49405 = .omp_data_i->ni;
+  if (j < D.49405)
     goto <bb 5>;
   else
     goto <bb 7>;
 
   <bb 7>:
   i = i + 1;
-  if (i < D.49405)
+  if (i < D.49403)
     goto <bb 4>;
   else
     goto <bb 23>;
 
   <bb 23>:
-  D.49408 = __builtin_GOMP_loop_dynamic_next (&.istart0.70, &.iend0.71);
-  if (D.49408 != 0)
+  D.49406 = __builtin_GOMP_loop_dynamic_next (&.istart0.69, &.iend0.70);
+  if (D.49406 != 0)
     goto <bb 22>;
   else
     goto <bb 8>;
 
   <bb 5>:
-  D.49409 = (long unsigned int) i;
-  D.49410 = D.49409 * 8192;
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49409 = .omp_data_i->C;
+  D.49410 = D.49409 + D.49408;
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
   D.49411 = .omp_data_i->C;
-  D.49412 = D.49411 + D.49410;
-  D.49409 = (long unsigned int) i;
-  D.49410 = D.49409 * 8192;
-  D.49413 = .omp_data_i->C;
-  D.49412 = D.49413 + D.49410;
-  D.49414 = *D.49412[j];
-  D.49415 = .omp_data_i->beta;
-  D.49416 = D.49414 * D.49415;
-  *D.49412[j] = D.49416;
+  D.49410 = D.49411 + D.49408;
+  D.49412 = *D.49410[j];
+  D.49413 = .omp_data_i->beta;
+  D.49414 = D.49412 * D.49413;
+  *D.49410[j] = D.49414;
   j = j + 1;
   goto <bb 6>;
 
@@ -2360,50 +2360,49 @@ void syr2k_cuda_1(int, int, float, float, float (*)[2048], float (*)[2048], floa
   __builtin_GOMP_loop_end ();
 
   <bb 9>:
-  __builtin_GOMP_barrier ();
   current_loop_index = 1;
-  D.49391 = 8;
-  D.49392 = D.49391 + 4;
-  D.49393 = D.49392 * 4194304;
-  q_data_transfer_write.5 = (long long int) D.49393;
+  D.49389 = 8;
+  D.49390 = D.49389 + 4;
+  D.49391 = D.49390 * 4194304;
+  q_data_transfer_write.5 = (long long int) D.49391;
   q_data_transfer_write = q_data_transfer_write.5;
-  D.49395 = 16777216;
-  q_data_transfer_read.6 = (long long int) D.49395;
+  D.49393 = 16777216;
+  q_data_transfer_read.6 = (long long int) D.49393;
   q_data_transfer_read = q_data_transfer_read.6;
-  D.49417 = .omp_data_i->ni;
-  D.49418 = (long int) D.49417;
-  D.49421 = __builtin_GOMP_loop_dynamic_start (0, D.49418, 1, 64, &.istart0.66, &.iend0.67);
-  if (D.49421 != 0)
+  D.49415 = .omp_data_i->ni;
+  D.49416 = (long int) D.49415;
+  D.49419 = __builtin_GOMP_loop_dynamic_start (0, D.49416, 1, 64, &.istart0.65, &.iend0.66);
+  if (D.49419 != 0)
     goto <bb 20>;
   else
     goto <bb 17>;
 
   <bb 20>:
-  .istart0.68 = .istart0.66;
-  i = (int) .istart0.68;
-  .iend0.69 = .iend0.67;
-  D.49425 = (int) .iend0.69;
+  .istart0.67 = .istart0.65;
+  i = (int) .istart0.67;
+  .iend0.68 = .iend0.66;
+  D.49423 = (int) .iend0.68;
 
   <bb 10>:
   j = 0;
 
   <bb 15>:
-  D.49427 = .omp_data_i->ni;
-  if (j < D.49427)
+  D.49425 = .omp_data_i->ni;
+  if (j < D.49425)
     goto <bb 11>;
   else
     goto <bb 16>;
 
   <bb 16>:
   i = i + 1;
-  if (i < D.49425)
+  if (i < D.49423)
     goto <bb 10>;
   else
     goto <bb 21>;
 
   <bb 21>:
-  D.49428 = __builtin_GOMP_loop_dynamic_next (&.istart0.66, &.iend0.67);
-  if (D.49428 != 0)
+  D.49426 = __builtin_GOMP_loop_dynamic_next (&.istart0.65, &.iend0.66);
+  if (D.49426 != 0)
     goto <bb 20>;
   else
     goto <bb 17>;
@@ -2412,8 +2411,8 @@ void syr2k_cuda_1(int, int, float, float, float (*)[2048], float (*)[2048], floa
   k = 0;
 
   <bb 13>:
-  D.49430 = .omp_data_i->nj;
-  if (k < D.49430)
+  D.49428 = .omp_data_i->nj;
+  if (k < D.49428)
     goto <bb 12>;
   else
     goto <bb 14>;
@@ -2423,54 +2422,54 @@ void syr2k_cuda_1(int, int, float, float, float (*)[2048], float (*)[2048], floa
   goto <bb 15>;
 
   <bb 12>:
-  D.49409 = (long unsigned int) i;
-  D.49410 = D.49409 * 8192;
-  D.49431 = .omp_data_i->C;
-  D.49412 = D.49431 + D.49410;
-  D.49409 = (long unsigned int) i;
-  D.49410 = D.49409 * 8192;
-  D.49432 = .omp_data_i->C;
-  D.49412 = D.49432 + D.49410;
-  D.49414 = *D.49412[j];
-  D.49409 = (long unsigned int) i;
-  D.49410 = D.49409 * 8192;
-  D.49433 = .omp_data_i->A;
-  D.49434 = D.49433 + D.49410;
-  D.49435 = *D.49434[k];
-  D.49436 = .omp_data_i->alpha;
-  D.49437 = D.49435 * D.49436;
-  D.49438 = (long unsigned int) j;
-  D.49439 = D.49438 * 8192;
-  D.49440 = .omp_data_i->B;
-  D.49441 = D.49440 + D.49439;
-  D.49442 = *D.49441[k];
-  D.49443 = D.49437 * D.49442;
-  D.49444 = D.49414 + D.49443;
-  *D.49412[j] = D.49444;
-  D.49409 = (long unsigned int) i;
-  D.49410 = D.49409 * 8192;
-  D.49445 = .omp_data_i->C;
-  D.49412 = D.49445 + D.49410;
-  D.49409 = (long unsigned int) i;
-  D.49410 = D.49409 * 8192;
-  D.49446 = .omp_data_i->C;
-  D.49412 = D.49446 + D.49410;
-  D.49414 = *D.49412[j];
-  D.49409 = (long unsigned int) i;
-  D.49410 = D.49409 * 8192;
-  D.49447 = .omp_data_i->B;
-  D.49448 = D.49447 + D.49410;
-  D.49449 = *D.49448[k];
-  D.49450 = .omp_data_i->alpha;
-  D.49451 = D.49449 * D.49450;
-  D.49438 = (long unsigned int) j;
-  D.49439 = D.49438 * 8192;
-  D.49452 = .omp_data_i->A;
-  D.49453 = D.49452 + D.49439;
-  D.49454 = *D.49453[k];
-  D.49455 = D.49451 * D.49454;
-  D.49456 = D.49414 + D.49455;
-  *D.49412[j] = D.49456;
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49429 = .omp_data_i->C;
+  D.49410 = D.49429 + D.49408;
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49430 = .omp_data_i->C;
+  D.49410 = D.49430 + D.49408;
+  D.49412 = *D.49410[j];
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49431 = .omp_data_i->A;
+  D.49432 = D.49431 + D.49408;
+  D.49433 = *D.49432[k];
+  D.49434 = .omp_data_i->alpha;
+  D.49435 = D.49433 * D.49434;
+  D.49436 = (long unsigned int) j;
+  D.49437 = D.49436 * 8192;
+  D.49438 = .omp_data_i->B;
+  D.49439 = D.49438 + D.49437;
+  D.49440 = *D.49439[k];
+  D.49441 = D.49435 * D.49440;
+  D.49442 = D.49412 + D.49441;
+  *D.49410[j] = D.49442;
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49443 = .omp_data_i->C;
+  D.49410 = D.49443 + D.49408;
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49444 = .omp_data_i->C;
+  D.49410 = D.49444 + D.49408;
+  D.49412 = *D.49410[j];
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49445 = .omp_data_i->B;
+  D.49446 = D.49445 + D.49408;
+  D.49447 = *D.49446[k];
+  D.49448 = .omp_data_i->alpha;
+  D.49449 = D.49447 * D.49448;
+  D.49436 = (long unsigned int) j;
+  D.49437 = D.49436 * 8192;
+  D.49450 = .omp_data_i->A;
+  D.49451 = D.49450 + D.49437;
+  D.49452 = *D.49451[k];
+  D.49453 = D.49449 * D.49452;
+  D.49454 = D.49412 + D.49453;
+  *D.49410[j] = D.49454;
   k = k + 1;
   goto <bb 13>;
 
