@@ -904,6 +904,8 @@ void GOMP_loop_end (void){
 
 	TRACE("[LIBGOMP] lib_GOMP_loop_end[%p]\n", (void* )lib_GOMP_loop_end);
 
+	HOOKOMP_loop_end_nowait();
+
 	lib_GOMP_loop_end();
 
 
