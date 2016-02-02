@@ -35,9 +35,10 @@
 
 #define RUN_ON_CPU
 
- DATA_TYPE *A_gpu;
- DATA_TYPE *B_gpu;
- DATA_TYPE *C_gpu;
+/* GPU pointers now as global to be shared between kernels. */
+DATA_TYPE *A_gpu;
+DATA_TYPE *B_gpu;
+DATA_TYPE *C_gpu;
 
 /* ------------------------------------------------------------- */
 void init_arrays(int ni, int nj, DATA_TYPE *alpha, DATA_TYPE *beta,
