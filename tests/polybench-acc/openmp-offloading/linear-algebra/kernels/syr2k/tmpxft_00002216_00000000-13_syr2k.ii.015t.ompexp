@@ -16,46 +16,42 @@ void __nv_save_fatbinhandle_for_managed_rt(void**) (void * * in)
 
 OMP region tree
 
-bb 10: gimple_omp_parallel
-    bb 11: gimple_omp_for
-    bb 18: GIMPLE_OMP_CONTINUE
-    bb 19: GIMPLE_OMP_RETURN
-bb 20: GIMPLE_OMP_RETURN
 bb 2: gimple_omp_parallel
+    bb 9: gimple_omp_for
+    bb 16: GIMPLE_OMP_CONTINUE
+    bb 17: GIMPLE_OMP_RETURN
     bb 3: gimple_omp_for
     bb 7: GIMPLE_OMP_CONTINUE
     bb 8: GIMPLE_OMP_RETURN
-bb 9: GIMPLE_OMP_RETURN
+bb 18: GIMPLE_OMP_RETURN
 
-Merging blocks 2 and 29
-Merging blocks 10 and 25
-Merging blocks 2 and 10
-Merging blocks 2 and 21
+Merging blocks 2 and 25
+Merging blocks 2 and 19
 void syr2k_omp_kernel(int, int, float, float, float (*)[2048], float (*)[2048], float (*)[2048]) (int ni, int nj, float alpha, float beta, float[2048] * A, float[2048] * B, float[2048] * C)
 {
-  bool D.49451;
+  bool D.49394;
   long int .iend0.74;
-  int D.49450;
+  int D.49393;
   long int .istart0.73;
-  long int D.49446;
-  bool D.49447;
+  long int D.49389;
+  bool D.49390;
   long int .iend0.72;
   long int .istart0.71;
-  bool D.49393;
+  bool D.49386;
   long int .iend0.70;
-  int D.49392;
+  int D.49385;
   long int .istart0.69;
-  long int D.49388;
-  bool D.49389;
+  long int D.49381;
+  bool D.49382;
   long int .iend0.68;
   long int .istart0.67;
   int k;
   int j;
   int i;
-  int D.49071;
+  int D.49064;
   int j;
   int i;
-  int D.49057;
+  int D.49051;
   int k;
   int j;
   int i;
@@ -65,45 +61,26 @@ void syr2k_omp_kernel(int, int, float, float, float (*)[2048], float (*)[2048], 
   long unsigned int D.48984;
   long unsigned int D.48983;
   long unsigned int D.48982;
-  struct .omp_data_s.8 .omp_data_o.10;
-  int D.49070;
-  int D.49069;
-  float[2048] * D.49068;
-  float D.49067;
-  float[2048] * D.49066;
-  float[2048] * D.49065;
-  float[2048] * D.49064;
-  float[2048] * D.49063;
-  float D.49062;
+  struct .omp_data_s.9 .omp_data_o.10;
+  int D.49063;
+  int D.49062;
   float[2048] * D.49061;
-  float[2048] * D.49060;
+  float D.49060;
   float[2048] * D.49059;
-  struct .omp_data_s.7 .omp_data_o.9;
-  int D.49056;
+  float[2048] * D.49058;
+  float[2048] * D.49057;
+  float[2048] * D.49056;
   float D.49055;
   float[2048] * D.49054;
   float[2048] * D.49053;
+  float[2048] * D.49052;
+  int D.49050;
+  float D.49049;
+  float[2048] * D.49048;
+  float[2048] * D.49047;
 
   <bb 2>:
   current_loop_index = 0;
-  D.48982 = 8;
-  D.48983 = D.48982 + 4;
-  D.48984 = D.48983 * 4194304;
-  q_data_transfer_write.5 = (long long int) D.48984;
-  q_data_transfer_write = q_data_transfer_write.5;
-  D.48986 = 16777216;
-  q_data_transfer_read.6 = (long long int) D.48986;
-  q_data_transfer_read = q_data_transfer_read.6;
-  .omp_data_o.9.C = C;
-  .omp_data_o.9.ni = ni;
-  .omp_data_o.9.beta = beta;
-  __builtin_GOMP_parallel_start (_ZL16syr2k_omp_kerneliiffPA2048_fS0_S0_._omp_fn.0, &.omp_data_o.9, 24);
-  _ZL16syr2k_omp_kerneliiffPA2048_fS0_S0_._omp_fn.0 (&.omp_data_o.9);
-  __builtin_GOMP_parallel_end ();
-  C = .omp_data_o.9.C;
-  ni = .omp_data_o.9.ni;
-  beta = .omp_data_o.9.beta;
-  current_loop_index = 1;
   D.48982 = 8;
   D.48983 = D.48982 + 4;
   D.48984 = D.48983 * 4194304;
@@ -118,8 +95,9 @@ void syr2k_omp_kernel(int, int, float, float, float (*)[2048], float (*)[2048], 
   .omp_data_o.10.ni = ni;
   .omp_data_o.10.nj = nj;
   .omp_data_o.10.alpha = alpha;
-  __builtin_GOMP_parallel_start (_ZL16syr2k_omp_kerneliiffPA2048_fS0_S0_._omp_fn.1, &.omp_data_o.10, 24);
-  _ZL16syr2k_omp_kerneliiffPA2048_fS0_S0_._omp_fn.1 (&.omp_data_o.10);
+  .omp_data_o.10.beta = beta;
+  __builtin_GOMP_parallel_start (_ZL16syr2k_omp_kerneliiffPA2048_fS0_S0_._omp_fn.0, &.omp_data_o.10, 24);
+  _ZL16syr2k_omp_kerneliiffPA2048_fS0_S0_._omp_fn.0 (&.omp_data_o.10);
   __builtin_GOMP_parallel_end ();
   A = .omp_data_o.10.A;
   B = .omp_data_o.10.B;
@@ -127,6 +105,7 @@ void syr2k_omp_kernel(int, int, float, float, float (*)[2048], float (*)[2048], 
   ni = .omp_data_o.10.ni;
   nj = .omp_data_o.10.nj;
   alpha = .omp_data_o.10.alpha;
+  beta = .omp_data_o.10.beta;
   return;
 
 }
@@ -153,15 +132,15 @@ void print_array(int, float (*)[2048]) (int ni, float[2048] * C)
 {
   int j;
   int i;
-  int D.49224;
-  int D.49223;
-  int D.49222;
+  int D.49217;
+  int D.49216;
+  int D.49215;
   struct _IO_FILE * stderr.35;
-  double D.49220;
-  float D.49219;
-  float[2048] * D.49218;
-  long unsigned int D.49217;
-  long unsigned int D.49216;
+  double D.49213;
+  float D.49212;
+  float[2048] * D.49211;
+  long unsigned int D.49210;
+  long unsigned int D.49209;
 
   <bb 2>:
   i = 0;
@@ -172,17 +151,17 @@ void print_array(int, float (*)[2048]) (int ni, float[2048] * C)
   goto <bb 7>;
 
   <bb 4>:
-  D.49216 = (long unsigned int) i;
-  D.49217 = D.49216 * 8192;
-  D.49218 = C + D.49217;
-  D.49219 = *D.49218[j];
-  D.49220 = (double) D.49219;
+  D.49209 = (long unsigned int) i;
+  D.49210 = D.49209 * 8192;
+  D.49211 = C + D.49210;
+  D.49212 = *D.49211[j];
+  D.49213 = (double) D.49212;
   stderr.35 = stderr;
-  fprintf (stderr.35, "%0.2lf ", D.49220);
-  D.49222 = i * ni;
-  D.49223 = D.49222 + j;
-  D.49224 = D.49223 % 20;
-  if (D.49224 == 0)
+  fprintf (stderr.35, "%0.2lf ", D.49213);
+  D.49215 = i * ni;
+  D.49216 = D.49215 + j;
+  D.49217 = D.49216 % 20;
+  if (D.49217 == 0)
     goto <bb 5>;
   else
     goto <bb 6>;
@@ -224,12 +203,12 @@ double rtclock() ()
 {
   int stat;
   struct timeval Tp;
-  double D.49247;
-  double D.49246;
-  long int D.49245;
-  double D.49244;
-  long int D.49243;
-  double D.49242;
+  double D.49240;
+  double D.49239;
+  long int D.49238;
+  double D.49237;
+  long int D.49236;
+  double D.49235;
 
   <bb 2>:
   stat = gettimeofday (&Tp, 0B);
@@ -242,14 +221,14 @@ double rtclock() ()
   printf ("Error return from gettimeofday: %d", stat);
 
   <bb 4>:
-  D.49243 = Tp.tv_sec;
-  D.49244 = (double) D.49243;
-  D.49245 = Tp.tv_usec;
-  D.49246 = (double) D.49245;
-  D.49247 = D.49246 * 9.99999999999999954748111825886258685613938723690807819366e-7;
-  D.49242 = D.49244 + D.49247;
+  D.49236 = Tp.tv_sec;
+  D.49237 = (double) D.49236;
+  D.49238 = Tp.tv_usec;
+  D.49239 = (double) D.49238;
+  D.49240 = D.49239 * 9.99999999999999954748111825886258685613938723690807819366e-7;
+  D.49235 = D.49237 + D.49240;
   Tp = {CLOBBER};
-  return D.49242;
+  return D.49235;
 
 <L5>:
   Tp = {CLOBBER};
@@ -265,7 +244,7 @@ void* xmalloc(size_t) (size_t num)
 {
   int ret;
   void * newA;
-  void * D.49265;
+  void * D.49258;
   struct _IO_FILE * stderr.41;
   void * newA.40;
 
@@ -292,9 +271,9 @@ void* xmalloc(size_t) (size_t num)
   exit (1);
 
   <bb 6>:
-  D.49265 = newA;
+  D.49258 = newA;
   newA = {CLOBBER};
-  return D.49265;
+  return D.49258;
 
 <L5>:
   newA = {CLOBBER};
@@ -356,11 +335,11 @@ dim3::dim3(unsigned int, unsigned int, unsigned int) (struct dim3 * const this, 
 
 float std::ceil(float) (float __x)
 {
-  float D.49105;
+  float D.49098;
 
   <bb 2>:
-  D.49105 = __builtin_ceilf (__x);
-  return D.49105;
+  D.49098 = __builtin_ceilf (__x);
+  return D.49098;
 
 }
 
@@ -955,16 +934,16 @@ void compareResults(int, float (*)[2048], float (*)[2048]) (int ni, float[2048] 
   int fail;
   int j;
   int i;
-  double D.49083;
-  float D.49082;
-  double D.49081;
-  float D.49080;
-  float[2048] * D.49079;
-  double D.49078;
-  float D.49077;
-  float[2048] * D.49076;
-  long unsigned int D.49075;
-  long unsigned int D.49074;
+  double D.49076;
+  float D.49075;
+  double D.49074;
+  float D.49073;
+  float[2048] * D.49072;
+  double D.49071;
+  float D.49070;
+  float[2048] * D.49069;
+  long unsigned int D.49068;
+  long unsigned int D.49067;
   bool retval.11;
 
   <bb 2>:
@@ -977,19 +956,19 @@ void compareResults(int, float (*)[2048], float (*)[2048]) (int ni, float[2048] 
   goto <bb 7>;
 
   <bb 4>:
-  D.49074 = (long unsigned int) i;
-  D.49075 = D.49074 * 8192;
-  D.49076 = C_output + D.49075;
-  D.49077 = *D.49076[j];
-  D.49078 = (double) D.49077;
-  D.49074 = (long unsigned int) i;
-  D.49075 = D.49074 * 8192;
-  D.49079 = C + D.49075;
-  D.49080 = *D.49079[j];
-  D.49081 = (double) D.49080;
-  D.49082 = percentDiff (D.49081, D.49078);
-  D.49083 = (double) D.49082;
-  retval.11 = D.49083 > 5.000000000000000277555756156289135105907917022705078125e-2;
+  D.49067 = (long unsigned int) i;
+  D.49068 = D.49067 * 8192;
+  D.49069 = C_output + D.49068;
+  D.49070 = *D.49069[j];
+  D.49071 = (double) D.49070;
+  D.49067 = (long unsigned int) i;
+  D.49068 = D.49067 * 8192;
+  D.49072 = C + D.49068;
+  D.49073 = *D.49072[j];
+  D.49074 = (double) D.49073;
+  D.49075 = percentDiff (D.49074, D.49071);
+  D.49076 = (double) D.49075;
+  retval.11 = D.49076 > 5.000000000000000277555756156289135105907917022705078125e-2;
   if (retval.11 != 0)
     goto <bb 5>;
   else
@@ -1060,28 +1039,28 @@ void polybench_flush_cache() ()
   int i;
   double * flush;
   int cs;
-  double D.49233;
-  double * D.49232;
-  long unsigned int D.49231;
-  long unsigned int D.49230;
-  long unsigned int D.49229;
-  long unsigned int D.49228;
+  double D.49226;
+  double * D.49225;
+  long unsigned int D.49224;
+  long unsigned int D.49223;
+  long unsigned int D.49222;
+  long unsigned int D.49221;
 
   <bb 2>:
-  D.49228 = 4194560;
-  cs = (int) D.49228;
-  D.49229 = (long unsigned int) cs;
-  flush = calloc (D.49229, 8);
+  D.49221 = 4194560;
+  cs = (int) D.49221;
+  D.49222 = (long unsigned int) cs;
+  flush = calloc (D.49222, 8);
   tmp = 0.0;
   i = 0;
   goto <bb 4>;
 
   <bb 3>:
-  D.49230 = (long unsigned int) i;
-  D.49231 = D.49230 * 8;
-  D.49232 = flush + D.49231;
-  D.49233 = *D.49232;
-  tmp = D.49233 + tmp;
+  D.49223 = (long unsigned int) i;
+  D.49224 = D.49223 * 8;
+  D.49225 = flush + D.49224;
+  D.49226 = *D.49225;
+  tmp = D.49226 + tmp;
   i = i + 1;
 
   <bb 4>:
@@ -1123,13 +1102,13 @@ void polybench_prepare_instruments() ()
 
 void polybench_timer_start() ()
 {
-  double D.49238;
+  double D.49231;
   double polybench_t_start.36;
 
   <bb 2>:
   polybench_prepare_instruments ();
-  D.49238 = rtclock ();
-  polybench_t_start.36 = D.49238;
+  D.49231 = rtclock ();
+  polybench_t_start.36 = D.49231;
   polybench_t_start = polybench_t_start.36;
   return;
 
@@ -1141,12 +1120,12 @@ void polybench_timer_start() ()
 
 void polybench_timer_stop() ()
 {
-  double D.49252;
+  double D.49245;
   double polybench_t_end.37;
 
   <bb 2>:
-  D.49252 = rtclock ();
-  polybench_t_end.37 = D.49252;
+  D.49245 = rtclock ();
+  polybench_t_end.37 = D.49245;
   polybench_t_end = polybench_t_end.37;
   return;
 
@@ -1158,15 +1137,15 @@ void polybench_timer_stop() ()
 
 void polybench_timer_print() ()
 {
-  double D.49255;
+  double D.49248;
   double polybench_t_start.39;
   double polybench_t_end.38;
 
   <bb 2>:
   polybench_t_end.38 = polybench_t_end;
   polybench_t_start.39 = polybench_t_start;
-  D.49255 = polybench_t_end.38 - polybench_t_start.39;
-  printf ("%0.6f\n", D.49255);
+  D.49248 = polybench_t_end.38 - polybench_t_start.39;
+  printf ("%0.6f\n", D.49248);
   return;
 
 }
@@ -1209,20 +1188,20 @@ void syr2k_omp(int, int, float, float, float (*)[2048], float (*)[2048], float (
 
 void* polybench_alloc_data(long long unsigned int, int) (long long unsigned int n, int elt_size)
 {
-  void * D.49259;
+  void * D.49252;
   void * ret;
   size_t val;
-  void * D.49257;
-  long unsigned int D.49256;
+  void * D.49250;
+  long unsigned int D.49249;
 
   <bb 2>:
   val = n;
-  D.49256 = (long unsigned int) elt_size;
-  val = D.49256 * val;
-  D.49259 = xmalloc (val);
-  ret = D.49259;
-  D.49257 = ret;
-  return D.49257;
+  D.49249 = (long unsigned int) elt_size;
+  val = D.49249 * val;
+  D.49252 = xmalloc (val);
+  ret = D.49252;
+  D.49250 = ret;
+  return D.49250;
 
 }
 
@@ -1232,13 +1211,13 @@ void* polybench_alloc_data(long long unsigned int, int) (long long unsigned int 
 
 int main(int, char**) (int argc, char * * argv)
 {
-  bool D.49213;
-  void * D.49212;
-  void * D.49211;
-  float[2048][2048] * D.49210;
-  float[2048][2048] * D.49209;
-  void * D.49208;
-  void * D.49207;
+  bool D.49206;
+  void * D.49205;
+  void * D.49204;
+  float[2048][2048] * D.49203;
+  float[2048][2048] * D.49202;
+  void * D.49201;
+  void * D.49200;
   static const char __PRETTY_FUNCTION__[22] = "int main(int, char**)";
   int ndevices;
   int nloops;
@@ -1255,9 +1234,9 @@ int main(int, char**) (int argc, char * * argv)
   float alpha;
   int nj;
   int ni;
-  int D.49205;
-  unsigned char D.49201;
-  char * D.49200;
+  int D.49198;
+  unsigned char D.49194;
+  char * D.49193;
   float alpha.34;
   float beta.33;
   float[2048][2048] * C_outputFromGpu.32;
@@ -1266,60 +1245,60 @@ int main(int, char**) (int argc, char * * argv)
   float[2048][2048] * A.29;
   float[2048][2048] * B.28;
   struct Func * * * TablePointerFunctions.27;
-  struct Func * D.49186;
-  struct Func * * D.49185;
-  struct Func * * D.49184;
-  struct Func * * * D.49183;
-  struct Func * D.49182;
-  struct Func * * D.49181;
-  struct Func * * D.49180;
+  struct Func * D.49179;
+  struct Func * * D.49178;
+  struct Func * * D.49177;
+  struct Func * * * D.49176;
+  struct Func * D.49175;
+  struct Func * * D.49174;
+  struct Func * * D.49173;
   struct Func * * * table.26;
   bool retval.25;
-  struct ffi_type * * D.49173;
-  struct ffi_type * * D.49172;
-  struct ffi_type * * D.49171;
-  struct ffi_type * * D.49170;
-  struct ffi_type * * D.49169;
-  struct ffi_type * * D.49168;
-  struct ffi_type * * D.49167;
   struct ffi_type * * D.49166;
   struct ffi_type * * D.49165;
-  void * * D.49164;
-  void * * D.49163;
-  void * * D.49162;
-  void * * D.49161;
-  void * * D.49160;
-  void * * D.49159;
-  void * * D.49158;
+  struct ffi_type * * D.49164;
+  struct ffi_type * * D.49163;
+  struct ffi_type * * D.49162;
+  struct ffi_type * * D.49161;
+  struct ffi_type * * D.49160;
+  struct ffi_type * * D.49159;
+  struct ffi_type * * D.49158;
   void * * D.49157;
   void * * D.49156;
   void * * D.49155;
-  void * D.49154;
-  void * D.49153;
-  struct ffi_type * * D.49152;
-  struct ffi_type * * D.49151;
-  struct ffi_type * * D.49150;
-  struct ffi_type * * D.49149;
-  struct ffi_type * * D.49148;
-  struct ffi_type * * D.49147;
-  struct ffi_type * * D.49146;
+  void * * D.49154;
+  void * * D.49153;
+  void * * D.49152;
+  void * * D.49151;
+  void * * D.49150;
+  void * * D.49149;
+  void * * D.49148;
+  void * D.49147;
+  void * D.49146;
   struct ffi_type * * D.49145;
   struct ffi_type * * D.49144;
-  void * * D.49143;
-  void * * D.49142;
-  void * * D.49141;
-  void * * D.49140;
-  void * * D.49139;
-  void * * D.49138;
-  void * * D.49137;
+  struct ffi_type * * D.49143;
+  struct ffi_type * * D.49142;
+  struct ffi_type * * D.49141;
+  struct ffi_type * * D.49140;
+  struct ffi_type * * D.49139;
+  struct ffi_type * * D.49138;
+  struct ffi_type * * D.49137;
   void * * D.49136;
   void * * D.49135;
   void * * D.49134;
-  void * D.49133;
-  void * D.49132;
-  long unsigned int D.49131;
-  long unsigned int D.49130;
-  int D.49129;
+  void * * D.49133;
+  void * * D.49132;
+  void * * D.49131;
+  void * * D.49130;
+  void * * D.49129;
+  void * * D.49128;
+  void * * D.49127;
+  void * D.49126;
+  void * D.49125;
+  long unsigned int D.49124;
+  long unsigned int D.49123;
+  int D.49122;
   struct _IO_FILE * stderr.24;
   void * C_outputFromGpu.23;
   void * C_inputToGpu.22;
@@ -1329,33 +1308,33 @@ int main(int, char**) (int argc, char * * argv)
   <bb 2>:
   ni = 2048;
   nj = 2048;
-  D.49207 = polybench_alloc_data (4194304, 4);
+  D.49200 = polybench_alloc_data (4194304, 4);
 
   <bb 3>:
-  A.20 = D.49207;
+  A.20 = D.49200;
   A = A.20;
-  D.49208 = polybench_alloc_data (4194304, 4);
+  D.49201 = polybench_alloc_data (4194304, 4);
 
   <bb 4>:
-  B.21 = D.49208;
+  B.21 = D.49201;
   B = B.21;
-  D.49209 = polybench_alloc_data (4194304, 4);
+  D.49202 = polybench_alloc_data (4194304, 4);
 
   <bb 5>:
-  C = D.49209;
-  D.49210 = polybench_alloc_data (4194304, 4);
+  C = D.49202;
+  D.49203 = polybench_alloc_data (4194304, 4);
 
   <bb 6>:
-  C_outputFromOMP = D.49210;
-  D.49211 = polybench_alloc_data (4194304, 4);
+  C_outputFromOMP = D.49203;
+  D.49204 = polybench_alloc_data (4194304, 4);
 
   <bb 7>:
-  C_inputToGpu.22 = D.49211;
+  C_inputToGpu.22 = D.49204;
   C_inputToGpu = C_inputToGpu.22;
-  D.49212 = polybench_alloc_data (4194304, 4);
+  D.49205 = polybench_alloc_data (4194304, 4);
 
   <bb 8>:
-  C_outputFromGpu.23 = D.49212;
+  C_outputFromGpu.23 = D.49205;
   C_outputFromGpu = C_outputFromGpu.23;
   stderr.24 = stderr;
   __builtin_fwrite ("Preparing alternatives functions.\n", 1, 34, stderr.24);
@@ -1363,151 +1342,151 @@ int main(int, char**) (int argc, char * * argv)
   <bb 9>:
   n_params = 8;
   ff_0 = malloc (48);
-  D.49129 = n_params + 1;
-  D.49130 = (long unsigned int) D.49129;
-  D.49131 = D.49130 * 8;
-  D.49132 = malloc (D.49131);
-  ff_0->arg_types = D.49132;
-  D.49129 = n_params + 1;
-  D.49130 = (long unsigned int) D.49129;
-  D.49131 = D.49130 * 8;
-  D.49133 = malloc (D.49131);
-  ff_0->arg_values = D.49133;
+  D.49122 = n_params + 1;
+  D.49123 = (long unsigned int) D.49122;
+  D.49124 = D.49123 * 8;
+  D.49125 = malloc (D.49124);
+  ff_0->arg_types = D.49125;
+  D.49122 = n_params + 1;
+  D.49123 = (long unsigned int) D.49122;
+  D.49124 = D.49123 * 8;
+  D.49126 = malloc (D.49124);
+  ff_0->arg_values = D.49126;
   ff_0->f = syr2k_cuda_0;
-  D.49134 = &ff_0->ret_value;
-  memset (D.49134, 0, 8);
+  D.49127 = &ff_0->ret_value;
+  memset (D.49127, 0, 8);
   ff_0->ret_type = &ffi_type_void;
   ff_0->nargs = n_params;
-  D.49135 = ff_0->arg_values;
-  *D.49135 = &ni;
-  D.49135 = ff_0->arg_values;
-  D.49136 = D.49135 + 8;
-  *D.49136 = &nj;
-  D.49135 = ff_0->arg_values;
-  D.49137 = D.49135 + 16;
-  *D.49137 = &alpha;
-  D.49135 = ff_0->arg_values;
-  D.49138 = D.49135 + 24;
-  *D.49138 = &beta;
-  D.49135 = ff_0->arg_values;
-  D.49139 = D.49135 + 32;
-  *D.49139 = &A;
-  D.49135 = ff_0->arg_values;
-  D.49140 = D.49135 + 40;
-  *D.49140 = &B;
-  D.49135 = ff_0->arg_values;
-  D.49141 = D.49135 + 48;
-  *D.49141 = &C_inputToGpu;
-  D.49135 = ff_0->arg_values;
-  D.49142 = D.49135 + 56;
-  *D.49142 = &C_outputFromGpu;
-  D.49135 = ff_0->arg_values;
-  D.49143 = D.49135 + 64;
-  *D.49143 = 0B;
-  D.49144 = ff_0->arg_types;
-  *D.49144 = &ffi_type_sint32;
-  D.49144 = ff_0->arg_types;
-  D.49145 = D.49144 + 8;
-  *D.49145 = &ffi_type_sint32;
-  D.49144 = ff_0->arg_types;
-  D.49146 = D.49144 + 16;
-  *D.49146 = &ffi_type_double;
-  D.49144 = ff_0->arg_types;
-  D.49147 = D.49144 + 24;
-  *D.49147 = &ffi_type_double;
-  D.49144 = ff_0->arg_types;
-  D.49148 = D.49144 + 32;
-  *D.49148 = &ffi_type_pointer;
-  D.49144 = ff_0->arg_types;
-  D.49149 = D.49144 + 40;
-  *D.49149 = &ffi_type_pointer;
-  D.49144 = ff_0->arg_types;
-  D.49150 = D.49144 + 48;
-  *D.49150 = &ffi_type_pointer;
-  D.49144 = ff_0->arg_types;
-  D.49151 = D.49144 + 56;
-  *D.49151 = &ffi_type_pointer;
-  D.49144 = ff_0->arg_types;
-  D.49152 = D.49144 + 64;
-  *D.49152 = 0B;
+  D.49128 = ff_0->arg_values;
+  *D.49128 = &ni;
+  D.49128 = ff_0->arg_values;
+  D.49129 = D.49128 + 8;
+  *D.49129 = &nj;
+  D.49128 = ff_0->arg_values;
+  D.49130 = D.49128 + 16;
+  *D.49130 = &alpha;
+  D.49128 = ff_0->arg_values;
+  D.49131 = D.49128 + 24;
+  *D.49131 = &beta;
+  D.49128 = ff_0->arg_values;
+  D.49132 = D.49128 + 32;
+  *D.49132 = &A;
+  D.49128 = ff_0->arg_values;
+  D.49133 = D.49128 + 40;
+  *D.49133 = &B;
+  D.49128 = ff_0->arg_values;
+  D.49134 = D.49128 + 48;
+  *D.49134 = &C_inputToGpu;
+  D.49128 = ff_0->arg_values;
+  D.49135 = D.49128 + 56;
+  *D.49135 = &C_outputFromGpu;
+  D.49128 = ff_0->arg_values;
+  D.49136 = D.49128 + 64;
+  *D.49136 = 0B;
+  D.49137 = ff_0->arg_types;
+  *D.49137 = &ffi_type_sint32;
+  D.49137 = ff_0->arg_types;
+  D.49138 = D.49137 + 8;
+  *D.49138 = &ffi_type_sint32;
+  D.49137 = ff_0->arg_types;
+  D.49139 = D.49137 + 16;
+  *D.49139 = &ffi_type_double;
+  D.49137 = ff_0->arg_types;
+  D.49140 = D.49137 + 24;
+  *D.49140 = &ffi_type_double;
+  D.49137 = ff_0->arg_types;
+  D.49141 = D.49137 + 32;
+  *D.49141 = &ffi_type_pointer;
+  D.49137 = ff_0->arg_types;
+  D.49142 = D.49137 + 40;
+  *D.49142 = &ffi_type_pointer;
+  D.49137 = ff_0->arg_types;
+  D.49143 = D.49137 + 48;
+  *D.49143 = &ffi_type_pointer;
+  D.49137 = ff_0->arg_types;
+  D.49144 = D.49137 + 56;
+  *D.49144 = &ffi_type_pointer;
+  D.49137 = ff_0->arg_types;
+  D.49145 = D.49137 + 64;
+  *D.49145 = 0B;
   ff_1 = malloc (48);
-  D.49129 = n_params + 1;
-  D.49130 = (long unsigned int) D.49129;
-  D.49131 = D.49130 * 8;
-  D.49153 = malloc (D.49131);
-  ff_1->arg_types = D.49153;
-  D.49129 = n_params + 1;
-  D.49130 = (long unsigned int) D.49129;
-  D.49131 = D.49130 * 8;
-  D.49154 = malloc (D.49131);
-  ff_1->arg_values = D.49154;
+  D.49122 = n_params + 1;
+  D.49123 = (long unsigned int) D.49122;
+  D.49124 = D.49123 * 8;
+  D.49146 = malloc (D.49124);
+  ff_1->arg_types = D.49146;
+  D.49122 = n_params + 1;
+  D.49123 = (long unsigned int) D.49122;
+  D.49124 = D.49123 * 8;
+  D.49147 = malloc (D.49124);
+  ff_1->arg_values = D.49147;
   ff_1->f = syr2k_cuda_1;
-  D.49155 = &ff_1->ret_value;
-  memset (D.49155, 0, 8);
+  D.49148 = &ff_1->ret_value;
+  memset (D.49148, 0, 8);
   ff_1->ret_type = &ffi_type_void;
   ff_1->nargs = n_params;
-  D.49156 = ff_1->arg_values;
-  *D.49156 = &ni;
-  D.49156 = ff_1->arg_values;
-  D.49157 = D.49156 + 8;
-  *D.49157 = &nj;
-  D.49156 = ff_1->arg_values;
-  D.49158 = D.49156 + 16;
-  *D.49158 = &alpha;
-  D.49156 = ff_1->arg_values;
-  D.49159 = D.49156 + 24;
-  *D.49159 = &beta;
-  D.49156 = ff_1->arg_values;
-  D.49160 = D.49156 + 32;
-  *D.49160 = &A;
-  D.49156 = ff_1->arg_values;
-  D.49161 = D.49156 + 40;
-  *D.49161 = &B;
-  D.49156 = ff_1->arg_values;
-  D.49162 = D.49156 + 48;
-  *D.49162 = &C_inputToGpu;
-  D.49156 = ff_1->arg_values;
-  D.49163 = D.49156 + 56;
-  *D.49163 = &C_outputFromGpu;
-  D.49156 = ff_1->arg_values;
-  D.49164 = D.49156 + 64;
-  *D.49164 = 0B;
-  D.49165 = ff_1->arg_types;
-  *D.49165 = &ffi_type_sint32;
-  D.49165 = ff_1->arg_types;
-  D.49166 = D.49165 + 8;
-  *D.49166 = &ffi_type_sint32;
-  D.49165 = ff_1->arg_types;
-  D.49167 = D.49165 + 16;
-  *D.49167 = &ffi_type_double;
-  D.49165 = ff_1->arg_types;
-  D.49168 = D.49165 + 24;
-  *D.49168 = &ffi_type_double;
-  D.49165 = ff_1->arg_types;
-  D.49169 = D.49165 + 32;
-  *D.49169 = &ffi_type_pointer;
-  D.49165 = ff_1->arg_types;
-  D.49170 = D.49165 + 40;
-  *D.49170 = &ffi_type_pointer;
-  D.49165 = ff_1->arg_types;
-  D.49171 = D.49165 + 48;
-  *D.49171 = &ffi_type_pointer;
-  D.49165 = ff_1->arg_types;
-  D.49172 = D.49165 + 56;
-  *D.49172 = &ffi_type_pointer;
-  D.49165 = ff_1->arg_types;
-  D.49173 = D.49165 + 64;
-  *D.49173 = 0B;
+  D.49149 = ff_1->arg_values;
+  *D.49149 = &ni;
+  D.49149 = ff_1->arg_values;
+  D.49150 = D.49149 + 8;
+  *D.49150 = &nj;
+  D.49149 = ff_1->arg_values;
+  D.49151 = D.49149 + 16;
+  *D.49151 = &alpha;
+  D.49149 = ff_1->arg_values;
+  D.49152 = D.49149 + 24;
+  *D.49152 = &beta;
+  D.49149 = ff_1->arg_values;
+  D.49153 = D.49149 + 32;
+  *D.49153 = &A;
+  D.49149 = ff_1->arg_values;
+  D.49154 = D.49149 + 40;
+  *D.49154 = &B;
+  D.49149 = ff_1->arg_values;
+  D.49155 = D.49149 + 48;
+  *D.49155 = &C_inputToGpu;
+  D.49149 = ff_1->arg_values;
+  D.49156 = D.49149 + 56;
+  *D.49156 = &C_outputFromGpu;
+  D.49149 = ff_1->arg_values;
+  D.49157 = D.49149 + 64;
+  *D.49157 = 0B;
+  D.49158 = ff_1->arg_types;
+  *D.49158 = &ffi_type_sint32;
+  D.49158 = ff_1->arg_types;
+  D.49159 = D.49158 + 8;
+  *D.49159 = &ffi_type_sint32;
+  D.49158 = ff_1->arg_types;
+  D.49160 = D.49158 + 16;
+  *D.49160 = &ffi_type_double;
+  D.49158 = ff_1->arg_types;
+  D.49161 = D.49158 + 24;
+  *D.49161 = &ffi_type_double;
+  D.49158 = ff_1->arg_types;
+  D.49162 = D.49158 + 32;
+  *D.49162 = &ffi_type_pointer;
+  D.49158 = ff_1->arg_types;
+  D.49163 = D.49158 + 40;
+  *D.49163 = &ffi_type_pointer;
+  D.49158 = ff_1->arg_types;
+  D.49164 = D.49158 + 48;
+  *D.49164 = &ffi_type_pointer;
+  D.49158 = ff_1->arg_types;
+  D.49165 = D.49158 + 56;
+  *D.49165 = &ffi_type_pointer;
+  D.49158 = ff_1->arg_types;
+  D.49166 = D.49158 + 64;
+  *D.49166 = 0B;
   stderr.24 = stderr;
   __builtin_fwrite ("Creating table of target functions.\n", 1, 36, stderr.24);
 
   <bb 10>:
   nloops = 2;
   ndevices = 2;
-  D.49213 = create_target_functions_table (&table, nloops, ndevices);
+  D.49206 = create_target_functions_table (&table, nloops, ndevices);
 
   <bb 11>:
-  retval.25 = D.49213;
+  retval.25 = D.49206;
   if (retval.25 != 0)
     goto <bb 12>;
   else
@@ -1529,16 +1508,16 @@ int main(int, char**) (int argc, char * * argv)
 
   <bb 15>:
   table.26 = table;
-  D.49180 = *table.26;
-  D.49181 = D.49180 + 8;
-  D.49182 = *D.49181;
-  *D.49182 = MEM[(const struct Func &)ff_0];
+  D.49173 = *table.26;
+  D.49174 = D.49173 + 8;
+  D.49175 = *D.49174;
+  *D.49175 = MEM[(const struct Func &)ff_0];
   table.26 = table;
-  D.49183 = table.26 + 8;
-  D.49184 = *D.49183;
-  D.49185 = D.49184 + 8;
-  D.49186 = *D.49185;
-  *D.49186 = MEM[(const struct Func &)ff_1];
+  D.49176 = table.26 + 8;
+  D.49177 = *D.49176;
+  D.49178 = D.49177 + 8;
+  D.49179 = *D.49178;
+  *D.49179 = MEM[(const struct Func &)ff_1];
   table.26 = table;
   TablePointerFunctions = table.26;
   TablePointerFunctions.27 = TablePointerFunctions;
@@ -1622,9 +1601,9 @@ int main(int, char**) (int argc, char * * argv)
     goto <bb 31>;
 
   <bb 29>:
-  D.49200 = *argv;
-  D.49201 = MEM[(const unsigned char * {ref-all})D.49200];
-  if (D.49201 == 0)
+  D.49193 = *argv;
+  D.49194 = MEM[(const unsigned char * {ref-all})D.49193];
+  if (D.49194 == 0)
     goto <bb 30>;
   else
     goto <bb 31>;
@@ -1643,7 +1622,7 @@ int main(int, char**) (int argc, char * * argv)
   free (C_outputFromOMP);
   C_outputFromGpu.32 = C_outputFromGpu;
   free (C_outputFromGpu.32);
-  D.49205 = 0;
+  D.49198 = 0;
   ni = {CLOBBER};
   nj = {CLOBBER};
   alpha = {CLOBBER};
@@ -1652,7 +1631,7 @@ int main(int, char**) (int argc, char * * argv)
   B = {CLOBBER};
   C_inputToGpu = {CLOBBER};
   C_outputFromGpu = {CLOBBER};
-  return D.49205;
+  return D.49198;
 
 <L14>:
   ni = {CLOBBER};
@@ -1669,18 +1648,18 @@ int main(int, char**) (int argc, char * * argv)
 
 
 
-;; Function void __sti____cudaRegisterAll_40_tmpxft_00001e38_00000000_6_syr2k_cpp1_ii_132e4611() (_ZL77__sti____cudaRegisterAll_40_tmpxft_00001e38_00000000_6_syr2k_cpp1_ii_132e4611v, funcdef_no=3200, decl_uid=48746, cgraph_uid=3061)
+;; Function void __sti____cudaRegisterAll_40_tmpxft_00002216_00000000_6_syr2k_cpp1_ii_132e4611() (_ZL77__sti____cudaRegisterAll_40_tmpxft_00002216_00000000_6_syr2k_cpp1_ii_132e4611v, funcdef_no=3200, decl_uid=48746, cgraph_uid=3061)
 
-void __sti____cudaRegisterAll_40_tmpxft_00001e38_00000000_6_syr2k_cpp1_ii_132e4611() ()
+void __sti____cudaRegisterAll_40_tmpxft_00002216_00000000_6_syr2k_cpp1_ii_132e4611() ()
 {
-  void * * D.49382;
+  void * * D.49375;
   void (*<T52ef>) (void * *) callback_fp;
   void * * __cudaFatCubinHandle.64;
   void * * __cudaFatCubinHandle.63;
 
   <bb 2>:
-  D.49382 = __cudaRegisterFatBinary (&__fatDeviceText);
-  __cudaFatCubinHandle.63 = D.49382;
+  D.49375 = __cudaRegisterFatBinary (&__fatDeviceText);
+  __cudaFatCubinHandle.63 = D.49375;
   __cudaFatCubinHandle = __cudaFatCubinHandle.63;
   callback_fp = __nv_cudaEntityRegisterCallback;
   __cudaFatCubinHandle.64 = __cudaFatCubinHandle;
@@ -1692,17 +1671,17 @@ void __sti____cudaRegisterAll_40_tmpxft_00001e38_00000000_6_syr2k_cpp1_ii_132e46
 
 
 
-;; Function cudaError_t _GLOBAL__N__40_tmpxft_00001e38_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (_ZN64_GLOBAL__N__40_tmpxft_00001e38_00000000_6_syr2k_cpp1_ii_132e461110cudaLaunchIcEE9cudaErrorPT_, funcdef_no=3201, decl_uid=48771, cgraph_uid=3062)
+;; Function cudaError_t _GLOBAL__N__40_tmpxft_00002216_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (_ZN64_GLOBAL__N__40_tmpxft_00002216_00000000_6_syr2k_cpp1_ii_132e461110cudaLaunchIcEE9cudaErrorPT_, funcdef_no=3201, decl_uid=48771, cgraph_uid=3062)
 
-cudaError_t _GLOBAL__N__40_tmpxft_00001e38_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (char * func)
+cudaError_t _GLOBAL__N__40_tmpxft_00002216_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (char * func)
 {
-  cudaError_t D.49307;
-  cudaError_t D.49305;
+  cudaError_t D.49300;
+  cudaError_t D.49298;
 
   <bb 2>:
-  D.49307 = cudaLaunch (func);
-  D.49305 = D.49307;
-  return D.49305;
+  D.49300 = cudaLaunch (func);
+  D.49298 = D.49300;
+  return D.49298;
 
 }
 
@@ -1712,87 +1691,87 @@ cudaError_t _GLOBAL__N__40_tmpxft_00001e38_00000000_6_syr2k_cpp1_ii_132e4611::cu
 
 void __device_stub__Z17syr2k_cuda_kerneliiffPfS_S_(int, int, float, float, float*, float*, float*) (int __par0, int __par1, float __par2, float __par3, float * __par4, float * __par5, float * __par6)
 {
-  cudaError D.49304;
-  cudaError D.49303;
-  cudaError D.49302;
-  cudaError D.49301;
-  cudaError D.49300;
-  cudaError D.49299;
-  cudaError D.49298;
-  static volatile char * __f;
+  cudaError D.49297;
+  cudaError D.49296;
+  cudaError D.49295;
   cudaError D.49294;
+  cudaError D.49293;
+  cudaError D.49292;
+  cudaError D.49291;
+  static volatile char * __f;
+  cudaError D.49287;
   bool retval.48;
-  cudaError D.49290;
+  cudaError D.49283;
   bool retval.47;
-  cudaError D.49286;
+  cudaError D.49279;
   bool retval.46;
-  cudaError D.49282;
+  cudaError D.49275;
   bool retval.45;
-  cudaError D.49278;
+  cudaError D.49271;
   bool retval.44;
-  cudaError D.49274;
+  cudaError D.49267;
   bool retval.43;
-  cudaError D.49270;
+  cudaError D.49263;
   bool retval.42;
 
   <bb 2>:
-  D.49298 = cudaSetupArgument (&__par0, 4, 0);
-  D.49270 = D.49298;
-  retval.42 = D.49270 != 0;
+  D.49291 = cudaSetupArgument (&__par0, 4, 0);
+  D.49263 = D.49291;
+  retval.42 = D.49263 != 0;
   if (retval.42 != 0)
     goto <bb 10>;
   else
     goto <bb 3>;
 
   <bb 3>:
-  D.49299 = cudaSetupArgument (&__par1, 4, 4);
-  D.49274 = D.49299;
-  retval.43 = D.49274 != 0;
+  D.49292 = cudaSetupArgument (&__par1, 4, 4);
+  D.49267 = D.49292;
+  retval.43 = D.49267 != 0;
   if (retval.43 != 0)
     goto <bb 10>;
   else
     goto <bb 4>;
 
   <bb 4>:
-  D.49300 = cudaSetupArgument (&__par2, 4, 8);
-  D.49278 = D.49300;
-  retval.44 = D.49278 != 0;
+  D.49293 = cudaSetupArgument (&__par2, 4, 8);
+  D.49271 = D.49293;
+  retval.44 = D.49271 != 0;
   if (retval.44 != 0)
     goto <bb 10>;
   else
     goto <bb 5>;
 
   <bb 5>:
-  D.49301 = cudaSetupArgument (&__par3, 4, 12);
-  D.49282 = D.49301;
-  retval.45 = D.49282 != 0;
+  D.49294 = cudaSetupArgument (&__par3, 4, 12);
+  D.49275 = D.49294;
+  retval.45 = D.49275 != 0;
   if (retval.45 != 0)
     goto <bb 10>;
   else
     goto <bb 6>;
 
   <bb 6>:
-  D.49302 = cudaSetupArgument (&__par4, 8, 16);
-  D.49286 = D.49302;
-  retval.46 = D.49286 != 0;
+  D.49295 = cudaSetupArgument (&__par4, 8, 16);
+  D.49279 = D.49295;
+  retval.46 = D.49279 != 0;
   if (retval.46 != 0)
     goto <bb 10>;
   else
     goto <bb 7>;
 
   <bb 7>:
-  D.49303 = cudaSetupArgument (&__par5, 8, 24);
-  D.49290 = D.49303;
-  retval.47 = D.49290 != 0;
+  D.49296 = cudaSetupArgument (&__par5, 8, 24);
+  D.49283 = D.49296;
+  retval.47 = D.49283 != 0;
   if (retval.47 != 0)
     goto <bb 10>;
   else
     goto <bb 8>;
 
   <bb 8>:
-  D.49304 = cudaSetupArgument (&__par6, 8, 32);
-  D.49294 = D.49304;
-  retval.48 = D.49294 != 0;
+  D.49297 = cudaSetupArgument (&__par6, 8, 32);
+  D.49287 = D.49297;
+  retval.48 = D.49287 != 0;
   if (retval.48 != 0)
     goto <bb 10>;
   else
@@ -1800,7 +1779,7 @@ void __device_stub__Z17syr2k_cuda_kerneliiffPfS_S_(int, int, float, float, float
 
   <bb 9>:
   __f = syr2k_cuda_kernel;
-  _GLOBAL__N__40_tmpxft_00001e38_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel);
+  _GLOBAL__N__40_tmpxft_00002216_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel);
 
   <bb 10>:
   return;
@@ -1825,87 +1804,87 @@ void syr2k_cuda_kernel(int, int, float, float, float*, float*, float*) (int __cu
 
 void __device_stub__Z19syr2k_cuda_kernel_1iiffPfS_S_(int, int, float, float, float*, float*, float*) (int __par0, int __par1, float __par2, float __par3, float * __par4, float * __par5, float * __par6)
 {
-  cudaError D.49343;
-  cudaError D.49342;
-  cudaError D.49341;
-  cudaError D.49340;
-  cudaError D.49339;
-  cudaError D.49338;
-  cudaError D.49337;
-  static volatile char * __f;
+  cudaError D.49336;
+  cudaError D.49335;
+  cudaError D.49334;
   cudaError D.49333;
+  cudaError D.49332;
+  cudaError D.49331;
+  cudaError D.49330;
+  static volatile char * __f;
+  cudaError D.49326;
   bool retval.55;
-  cudaError D.49329;
+  cudaError D.49322;
   bool retval.54;
-  cudaError D.49325;
+  cudaError D.49318;
   bool retval.53;
-  cudaError D.49321;
+  cudaError D.49314;
   bool retval.52;
-  cudaError D.49317;
+  cudaError D.49310;
   bool retval.51;
-  cudaError D.49313;
+  cudaError D.49306;
   bool retval.50;
-  cudaError D.49309;
+  cudaError D.49302;
   bool retval.49;
 
   <bb 2>:
-  D.49337 = cudaSetupArgument (&__par0, 4, 0);
-  D.49309 = D.49337;
-  retval.49 = D.49309 != 0;
+  D.49330 = cudaSetupArgument (&__par0, 4, 0);
+  D.49302 = D.49330;
+  retval.49 = D.49302 != 0;
   if (retval.49 != 0)
     goto <bb 10>;
   else
     goto <bb 3>;
 
   <bb 3>:
-  D.49338 = cudaSetupArgument (&__par1, 4, 4);
-  D.49313 = D.49338;
-  retval.50 = D.49313 != 0;
+  D.49331 = cudaSetupArgument (&__par1, 4, 4);
+  D.49306 = D.49331;
+  retval.50 = D.49306 != 0;
   if (retval.50 != 0)
     goto <bb 10>;
   else
     goto <bb 4>;
 
   <bb 4>:
-  D.49339 = cudaSetupArgument (&__par2, 4, 8);
-  D.49317 = D.49339;
-  retval.51 = D.49317 != 0;
+  D.49332 = cudaSetupArgument (&__par2, 4, 8);
+  D.49310 = D.49332;
+  retval.51 = D.49310 != 0;
   if (retval.51 != 0)
     goto <bb 10>;
   else
     goto <bb 5>;
 
   <bb 5>:
-  D.49340 = cudaSetupArgument (&__par3, 4, 12);
-  D.49321 = D.49340;
-  retval.52 = D.49321 != 0;
+  D.49333 = cudaSetupArgument (&__par3, 4, 12);
+  D.49314 = D.49333;
+  retval.52 = D.49314 != 0;
   if (retval.52 != 0)
     goto <bb 10>;
   else
     goto <bb 6>;
 
   <bb 6>:
-  D.49341 = cudaSetupArgument (&__par4, 8, 16);
-  D.49325 = D.49341;
-  retval.53 = D.49325 != 0;
+  D.49334 = cudaSetupArgument (&__par4, 8, 16);
+  D.49318 = D.49334;
+  retval.53 = D.49318 != 0;
   if (retval.53 != 0)
     goto <bb 10>;
   else
     goto <bb 7>;
 
   <bb 7>:
-  D.49342 = cudaSetupArgument (&__par5, 8, 24);
-  D.49329 = D.49342;
-  retval.54 = D.49329 != 0;
+  D.49335 = cudaSetupArgument (&__par5, 8, 24);
+  D.49322 = D.49335;
+  retval.54 = D.49322 != 0;
   if (retval.54 != 0)
     goto <bb 10>;
   else
     goto <bb 8>;
 
   <bb 8>:
-  D.49343 = cudaSetupArgument (&__par6, 8, 32);
-  D.49333 = D.49343;
-  retval.55 = D.49333 != 0;
+  D.49336 = cudaSetupArgument (&__par6, 8, 32);
+  D.49326 = D.49336;
+  retval.55 = D.49326 != 0;
   if (retval.55 != 0)
     goto <bb 10>;
   else
@@ -1913,7 +1892,7 @@ void __device_stub__Z19syr2k_cuda_kernel_1iiffPfS_S_(int, int, float, float, flo
 
   <bb 9>:
   __f = syr2k_cuda_kernel_1;
-  _GLOBAL__N__40_tmpxft_00001e38_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel_1);
+  _GLOBAL__N__40_tmpxft_00002216_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel_1);
 
   <bb 10>:
   return;
@@ -1938,20 +1917,20 @@ void syr2k_cuda_kernel_1(int, int, float, float, float*, float*, float*) (int __
 
 void syr2k_cuda_0(int, int, float, float, float (*)[2048], float (*)[2048], float (*)[2048], float (*)[2048]) (int ni, int nj, float alpha, float beta, float[2048] * A, float[2048] * B, float[2048] * C_inputToGpu, float[2048] * C_outputFromGpu)
 {
-  cudaError D.49103;
+  cudaError D.49096;
   struct dim3 grid;
   struct dim3 block;
-  cudaError D.49099;
-  unsigned int D.49098;
-  long unsigned int D.49097;
-  float D.49096;
-  unsigned int D.49095;
-  long unsigned int D.49094;
-  float D.49093;
+  cudaError D.49092;
+  unsigned int D.49091;
+  long unsigned int D.49090;
+  float D.49089;
+  unsigned int D.49088;
+  long unsigned int D.49087;
+  float D.49086;
   float * C_gpu.15;
   float * B_gpu.14;
   float * A_gpu.13;
-  long unsigned int D.49089;
+  long unsigned int D.49082;
   struct _IO_FILE * stderr.12;
 
   <bb 2>:
@@ -1962,49 +1941,49 @@ void syr2k_cuda_0(int, int, float, float, float (*)[2048], float (*)[2048], floa
   GPU_argv_init ();
 
   <bb 4>:
-  D.49089 = 16777216;
-  cudaMalloc (&A_gpu, D.49089);
+  D.49082 = 16777216;
+  cudaMalloc (&A_gpu, D.49082);
 
   <bb 5>:
-  D.49089 = 16777216;
-  cudaMalloc (&B_gpu, D.49089);
+  D.49082 = 16777216;
+  cudaMalloc (&B_gpu, D.49082);
 
   <bb 6>:
-  D.49089 = 16777216;
-  cudaMalloc (&C_gpu, D.49089);
+  D.49082 = 16777216;
+  cudaMalloc (&C_gpu, D.49082);
 
   <bb 7>:
-  D.49089 = 16777216;
+  D.49082 = 16777216;
   A_gpu.13 = A_gpu;
-  cudaMemcpy (A_gpu.13, A, D.49089, 1);
+  cudaMemcpy (A_gpu.13, A, D.49082, 1);
 
   <bb 8>:
-  D.49089 = 16777216;
+  D.49082 = 16777216;
   B_gpu.14 = B_gpu;
-  cudaMemcpy (B_gpu.14, B, D.49089, 1);
+  cudaMemcpy (B_gpu.14, B, D.49082, 1);
 
   <bb 9>:
-  D.49089 = 16777216;
+  D.49082 = 16777216;
   C_gpu.15 = C_gpu;
-  cudaMemcpy (C_gpu.15, C_inputToGpu, D.49089, 1);
+  cudaMemcpy (C_gpu.15, C_inputToGpu, D.49082, 1);
 
   <bb 10>:
   dim3::dim3 (&block, 32, 8, 1);
-  D.49093 = std::ceil (2.56e+2);
-  D.49094 = (long unsigned int) D.49093;
-  D.49095 = (unsigned int) D.49094;
-  D.49096 = std::ceil (6.4e+1);
-  D.49097 = (long unsigned int) D.49096;
-  D.49098 = (unsigned int) D.49097;
-  dim3::dim3 (&grid, D.49098, D.49095, 1);
+  D.49086 = std::ceil (2.56e+2);
+  D.49087 = (long unsigned int) D.49086;
+  D.49088 = (unsigned int) D.49087;
+  D.49089 = std::ceil (6.4e+1);
+  D.49090 = (long unsigned int) D.49089;
+  D.49091 = (unsigned int) D.49090;
+  dim3::dim3 (&grid, D.49091, D.49088, 1);
   polybench_timer_start ();
 
   <bb 11>:
-  D.49103 = cudaConfigureCall (grid, block, 0, 0B);
+  D.49096 = cudaConfigureCall (grid, block, 0, 0B);
 
   <bb 12>:
-  D.49099 = D.49103;
-  if (D.49099 == 0)
+  D.49092 = D.49096;
+  if (D.49092 == 0)
     goto <bb 13>;
   else
     goto <bb 14>;
@@ -2045,87 +2024,87 @@ void syr2k_cuda_0(int, int, float, float, float (*)[2048], float (*)[2048], floa
 
 void __device_stub__Z19syr2k_cuda_kernel_2iiffPfS_S_(int, int, float, float, float*, float*, float*) (int __par0, int __par1, float __par2, float __par3, float * __par4, float * __par5, float * __par6)
 {
-  cudaError D.49379;
-  cudaError D.49378;
-  cudaError D.49377;
-  cudaError D.49376;
-  cudaError D.49375;
-  cudaError D.49374;
-  cudaError D.49373;
-  static volatile char * __f;
+  cudaError D.49372;
+  cudaError D.49371;
+  cudaError D.49370;
   cudaError D.49369;
+  cudaError D.49368;
+  cudaError D.49367;
+  cudaError D.49366;
+  static volatile char * __f;
+  cudaError D.49362;
   bool retval.62;
-  cudaError D.49365;
+  cudaError D.49358;
   bool retval.61;
-  cudaError D.49361;
+  cudaError D.49354;
   bool retval.60;
-  cudaError D.49357;
+  cudaError D.49350;
   bool retval.59;
-  cudaError D.49353;
+  cudaError D.49346;
   bool retval.58;
-  cudaError D.49349;
+  cudaError D.49342;
   bool retval.57;
-  cudaError D.49345;
+  cudaError D.49338;
   bool retval.56;
 
   <bb 2>:
-  D.49373 = cudaSetupArgument (&__par0, 4, 0);
-  D.49345 = D.49373;
-  retval.56 = D.49345 != 0;
+  D.49366 = cudaSetupArgument (&__par0, 4, 0);
+  D.49338 = D.49366;
+  retval.56 = D.49338 != 0;
   if (retval.56 != 0)
     goto <bb 10>;
   else
     goto <bb 3>;
 
   <bb 3>:
-  D.49374 = cudaSetupArgument (&__par1, 4, 4);
-  D.49349 = D.49374;
-  retval.57 = D.49349 != 0;
+  D.49367 = cudaSetupArgument (&__par1, 4, 4);
+  D.49342 = D.49367;
+  retval.57 = D.49342 != 0;
   if (retval.57 != 0)
     goto <bb 10>;
   else
     goto <bb 4>;
 
   <bb 4>:
-  D.49375 = cudaSetupArgument (&__par2, 4, 8);
-  D.49353 = D.49375;
-  retval.58 = D.49353 != 0;
+  D.49368 = cudaSetupArgument (&__par2, 4, 8);
+  D.49346 = D.49368;
+  retval.58 = D.49346 != 0;
   if (retval.58 != 0)
     goto <bb 10>;
   else
     goto <bb 5>;
 
   <bb 5>:
-  D.49376 = cudaSetupArgument (&__par3, 4, 12);
-  D.49357 = D.49376;
-  retval.59 = D.49357 != 0;
+  D.49369 = cudaSetupArgument (&__par3, 4, 12);
+  D.49350 = D.49369;
+  retval.59 = D.49350 != 0;
   if (retval.59 != 0)
     goto <bb 10>;
   else
     goto <bb 6>;
 
   <bb 6>:
-  D.49377 = cudaSetupArgument (&__par4, 8, 16);
-  D.49361 = D.49377;
-  retval.60 = D.49361 != 0;
+  D.49370 = cudaSetupArgument (&__par4, 8, 16);
+  D.49354 = D.49370;
+  retval.60 = D.49354 != 0;
   if (retval.60 != 0)
     goto <bb 10>;
   else
     goto <bb 7>;
 
   <bb 7>:
-  D.49378 = cudaSetupArgument (&__par5, 8, 24);
-  D.49365 = D.49378;
-  retval.61 = D.49365 != 0;
+  D.49371 = cudaSetupArgument (&__par5, 8, 24);
+  D.49358 = D.49371;
+  retval.61 = D.49358 != 0;
   if (retval.61 != 0)
     goto <bb 10>;
   else
     goto <bb 8>;
 
   <bb 8>:
-  D.49379 = cudaSetupArgument (&__par6, 8, 32);
-  D.49369 = D.49379;
-  retval.62 = D.49369 != 0;
+  D.49372 = cudaSetupArgument (&__par6, 8, 32);
+  D.49362 = D.49372;
+  retval.62 = D.49362 != 0;
   if (retval.62 != 0)
     goto <bb 10>;
   else
@@ -2133,7 +2112,7 @@ void __device_stub__Z19syr2k_cuda_kernel_2iiffPfS_S_(int, int, float, float, flo
 
   <bb 9>:
   __f = syr2k_cuda_kernel_2;
-  _GLOBAL__N__40_tmpxft_00001e38_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel_2);
+  _GLOBAL__N__40_tmpxft_00002216_00000000_6_syr2k_cpp1_ii_132e4611::cudaLaunch<char> (syr2k_cuda_kernel_2);
 
   <bb 10>:
   return;
@@ -2158,20 +2137,20 @@ void syr2k_cuda_kernel_2(int, int, float, float, float*, float*, float*) (int __
 
 void syr2k_cuda_1(int, int, float, float, float (*)[2048], float (*)[2048], float (*)[2048], float (*)[2048]) (int ni, int nj, float alpha, float beta, float[2048] * A, float[2048] * B, float[2048] * C_inputToGpu, float[2048] * C_outputFromGpu)
 {
-  cudaError D.49122;
+  cudaError D.49115;
   struct dim3 grid;
   struct dim3 block;
-  long unsigned int D.49121;
+  long unsigned int D.49114;
   float * A_gpu.19;
   float * B_gpu.18;
   float * C_gpu.17;
-  cudaError D.49114;
-  unsigned int D.49113;
-  long unsigned int D.49112;
-  float D.49111;
-  unsigned int D.49110;
-  long unsigned int D.49109;
-  float D.49108;
+  cudaError D.49107;
+  unsigned int D.49106;
+  long unsigned int D.49105;
+  float D.49104;
+  unsigned int D.49103;
+  long unsigned int D.49102;
+  float D.49101;
   struct _IO_FILE * stderr.16;
 
   <bb 2>:
@@ -2180,21 +2159,21 @@ void syr2k_cuda_1(int, int, float, float, float (*)[2048], float (*)[2048], floa
 
   <bb 3>:
   dim3::dim3 (&block, 32, 8, 1);
-  D.49108 = std::ceil (2.56e+2);
-  D.49109 = (long unsigned int) D.49108;
-  D.49110 = (unsigned int) D.49109;
-  D.49111 = std::ceil (6.4e+1);
-  D.49112 = (long unsigned int) D.49111;
-  D.49113 = (unsigned int) D.49112;
-  dim3::dim3 (&grid, D.49113, D.49110, 1);
+  D.49101 = std::ceil (2.56e+2);
+  D.49102 = (long unsigned int) D.49101;
+  D.49103 = (unsigned int) D.49102;
+  D.49104 = std::ceil (6.4e+1);
+  D.49105 = (long unsigned int) D.49104;
+  D.49106 = (unsigned int) D.49105;
+  dim3::dim3 (&grid, D.49106, D.49103, 1);
   polybench_timer_start ();
 
   <bb 4>:
-  D.49122 = cudaConfigureCall (grid, block, 0, 0B);
+  D.49115 = cudaConfigureCall (grid, block, 0, 0B);
 
   <bb 5>:
-  D.49114 = D.49122;
-  if (D.49114 == 0)
+  D.49107 = D.49115;
+  if (D.49107 == 0)
     goto <bb 6>;
   else
     goto <bb 7>;
@@ -2218,9 +2197,9 @@ void syr2k_cuda_1(int, int, float, float, float (*)[2048], float (*)[2048], floa
   polybench_timer_print ();
 
   <bb 11>:
-  D.49121 = 16777216;
+  D.49114 = 16777216;
   C_gpu.17 = C_gpu;
-  cudaMemcpy (C_outputFromGpu, C_gpu.17, D.49121, 2);
+  cudaMemcpy (C_outputFromGpu, C_gpu.17, D.49114, 2);
 
   <bb 12>:
   A_gpu.19 = A_gpu;
@@ -2248,260 +2227,138 @@ void syr2k_cuda_1(int, int, float, float, float (*)[2048], float (*)[2048], floa
 
 
 
-;; Function <built-in> (_ZL16syr2k_omp_kerneliiffPA2048_fS0_S0_._omp_fn.1, funcdef_no=3203, decl_uid=49029, cgraph_uid=3071)
+;; Function <built-in> (_ZL16syr2k_omp_kerneliiffPA2048_fS0_S0_._omp_fn.0, funcdef_no=3202, decl_uid=49016, cgraph_uid=3070)
 
-<built-in> (struct .omp_data_s.8 * .omp_data_i)
+<built-in> (struct .omp_data_s.9 * .omp_data_i)
 {
   float[2048] * C [value-expr: .omp_data_i->C];
   float[2048] * B [value-expr: .omp_data_i->B];
   float[2048] * A [value-expr: .omp_data_i->A];
+  float beta [value-expr: .omp_data_i->beta];
   float alpha [value-expr: .omp_data_i->alpha];
   int nj [value-expr: .omp_data_i->nj];
   int ni [value-expr: .omp_data_i->ni];
-  float D.49437;
-  float D.49436;
-  float D.49435;
-  float[2048] * D.49434;
-  float[2048] * D.49433;
-  float D.49432;
-  float D.49431;
-  float D.49430;
-  float[2048] * D.49429;
-  float[2048] * D.49428;
-  float[2048] * D.49427;
-  float[2048] * D.49426;
-  float D.49425;
-  float D.49424;
-  float D.49423;
-  float[2048] * D.49422;
-  float[2048] * D.49421;
-  long unsigned int D.49420;
-  long unsigned int D.49419;
-  float D.49418;
-  float D.49417;
-  float D.49416;
-  float[2048] * D.49415;
-  float[2048] * D.49414;
-  float D.49413;
-  float[2048] * D.49412;
-  float[2048] * D.49411;
-  float[2048] * D.49410;
-  long unsigned int D.49409;
-  long unsigned int D.49408;
-  int D.49407;
+  float D.49460;
+  float D.49459;
+  float D.49458;
+  float[2048] * D.49457;
+  float[2048] * D.49456;
+  float D.49455;
+  float D.49454;
+  float D.49453;
+  float[2048] * D.49452;
+  float[2048] * D.49451;
+  float[2048] * D.49450;
+  float[2048] * D.49449;
+  float D.49448;
+  float D.49447;
+  float D.49446;
+  float[2048] * D.49445;
+  float[2048] * D.49444;
+  long unsigned int D.49443;
+  long unsigned int D.49442;
+  float D.49441;
+  float D.49440;
+  float D.49439;
+  float[2048] * D.49438;
+  float[2048] * D.49437;
+  float[2048] * D.49436;
+  float[2048] * D.49435;
+  int D.49434;
   int k;
-  bool D.49405;
-  int D.49404;
+  bool D.49432;
+  int D.49431;
   int j;
-  int D.49402;
+  int D.49429;
   long int .iend0.70;
   int i;
   long int .istart0.69;
-  bool D.49398;
+  bool D.49425;
   long int .iend0.68;
   long int .istart0.67;
-  long int D.49395;
-  int D.49394;
-
-  <bb 24>:
-
-  <bb 11>:
-  D.49394 = .omp_data_i->ni;
-  D.49395 = (long int) D.49394;
-  D.49398 = __builtin_GOMP_loop_dynamic_start (0, D.49395, 1, 64, &.istart0.67, &.iend0.68);
-  if (D.49398 != 0)
-    goto <bb 22>;
-  else
-    goto <bb 19>;
-
-  <bb 22>:
-  .istart0.69 = .istart0.67;
-  i = (int) .istart0.69;
-  .iend0.70 = .iend0.68;
-  D.49402 = (int) .iend0.70;
-
-  <bb 12>:
-  j = 0;
-
-  <bb 17>:
-  D.49404 = .omp_data_i->ni;
-  if (j < D.49404)
-    goto <bb 13>;
-  else
-    goto <bb 18>;
-
-  <bb 18>:
-  i = i + 1;
-  if (i < D.49402)
-    goto <bb 12>;
-  else
-    goto <bb 23>;
-
-  <bb 23>:
-  D.49405 = __builtin_GOMP_loop_dynamic_next (&.istart0.67, &.iend0.68);
-  if (D.49405 != 0)
-    goto <bb 22>;
-  else
-    goto <bb 19>;
-
-  <bb 13>:
-  k = 0;
-
-  <bb 15>:
-  D.49407 = .omp_data_i->nj;
-  if (k < D.49407)
-    goto <bb 14>;
-  else
-    goto <bb 16>;
-
-  <bb 16>:
-  j = j + 1;
-  goto <bb 17>;
-
-  <bb 14>:
-  D.49408 = (long unsigned int) i;
-  D.49409 = D.49408 * 8192;
-  D.49410 = .omp_data_i->C;
-  D.49411 = D.49410 + D.49409;
-  D.49408 = (long unsigned int) i;
-  D.49409 = D.49408 * 8192;
-  D.49412 = .omp_data_i->C;
-  D.49411 = D.49412 + D.49409;
-  D.49413 = *D.49411[j];
-  D.49408 = (long unsigned int) i;
-  D.49409 = D.49408 * 8192;
-  D.49414 = .omp_data_i->A;
-  D.49415 = D.49414 + D.49409;
-  D.49416 = *D.49415[k];
-  D.49417 = .omp_data_i->alpha;
-  D.49418 = D.49416 * D.49417;
-  D.49419 = (long unsigned int) j;
-  D.49420 = D.49419 * 8192;
-  D.49421 = .omp_data_i->B;
-  D.49422 = D.49421 + D.49420;
-  D.49423 = *D.49422[k];
-  D.49424 = D.49418 * D.49423;
-  D.49425 = D.49413 + D.49424;
-  *D.49411[j] = D.49425;
-  D.49408 = (long unsigned int) i;
-  D.49409 = D.49408 * 8192;
-  D.49426 = .omp_data_i->C;
-  D.49411 = D.49426 + D.49409;
-  D.49408 = (long unsigned int) i;
-  D.49409 = D.49408 * 8192;
-  D.49427 = .omp_data_i->C;
-  D.49411 = D.49427 + D.49409;
-  D.49413 = *D.49411[j];
-  D.49408 = (long unsigned int) i;
-  D.49409 = D.49408 * 8192;
-  D.49428 = .omp_data_i->B;
-  D.49429 = D.49428 + D.49409;
-  D.49430 = *D.49429[k];
-  D.49431 = .omp_data_i->alpha;
-  D.49432 = D.49430 * D.49431;
-  D.49419 = (long unsigned int) j;
-  D.49420 = D.49419 * 8192;
-  D.49433 = .omp_data_i->A;
-  D.49434 = D.49433 + D.49420;
-  D.49435 = *D.49434[k];
-  D.49436 = D.49432 * D.49435;
-  D.49437 = D.49413 + D.49436;
-  *D.49411[j] = D.49437;
-  k = k + 1;
-  goto <bb 15>;
-
-  <bb 19>:
-  __builtin_GOMP_loop_end_nowait ();
-
-  <bb 20>:
-  return;
-
-}
-
-
-
-;; Function <built-in> (_ZL16syr2k_omp_kerneliiffPA2048_fS0_S0_._omp_fn.0, funcdef_no=3202, decl_uid=49014, cgraph_uid=3070)
-
-<built-in> (struct .omp_data_s.7 * .omp_data_i)
-{
-  float[2048] * C [value-expr: .omp_data_i->C];
-  float beta [value-expr: .omp_data_i->beta];
-  int ni [value-expr: .omp_data_i->ni];
-  float D.49471;
-  float D.49470;
-  float D.49469;
-  float[2048] * D.49468;
-  float[2048] * D.49467;
-  float[2048] * D.49466;
-  long unsigned int D.49465;
-  long unsigned int D.49464;
-  bool D.49463;
-  int D.49462;
+  long int D.49422;
+  int D.49421;
+  long long int q_data_transfer_read.8;
+  long unsigned int D.49419;
+  long long int q_data_transfer_write.7;
+  long unsigned int D.49417;
+  long unsigned int D.49416;
+  long unsigned int D.49415;
+  float D.49414;
+  float D.49413;
+  float D.49412;
+  float[2048] * D.49411;
+  float[2048] * D.49410;
+  float[2048] * D.49409;
+  long unsigned int D.49408;
+  long unsigned int D.49407;
+  bool D.49406;
+  int D.49405;
   int j;
-  int D.49460;
+  int D.49403;
   long int .iend0.74;
   int i;
   long int .istart0.73;
-  bool D.49456;
+  bool D.49399;
   long int .iend0.72;
   long int .istart0.71;
-  long int D.49453;
-  int D.49452;
+  long int D.49396;
+  int D.49395;
 
-  <bb 28>:
+  <bb 24>:
 
   <bb 3>:
-  D.49452 = .omp_data_i->ni;
-  D.49453 = (long int) D.49452;
-  D.49456 = __builtin_GOMP_loop_dynamic_start (0, D.49453, 1, 64, &.istart0.71, &.iend0.72);
-  if (D.49456 != 0)
-    goto <bb 26>;
+  D.49395 = .omp_data_i->ni;
+  D.49396 = (long int) D.49395;
+  D.49399 = __builtin_GOMP_loop_dynamic_start (0, D.49396, 1, 64, &.istart0.71, &.iend0.72);
+  if (D.49399 != 0)
+    goto <bb 22>;
   else
     goto <bb 8>;
 
-  <bb 26>:
+  <bb 22>:
   .istart0.73 = .istart0.71;
   i = (int) .istart0.73;
   .iend0.74 = .iend0.72;
-  D.49460 = (int) .iend0.74;
+  D.49403 = (int) .iend0.74;
 
   <bb 4>:
   j = 0;
 
   <bb 6>:
-  D.49462 = .omp_data_i->ni;
-  if (j < D.49462)
+  D.49405 = .omp_data_i->ni;
+  if (j < D.49405)
     goto <bb 5>;
   else
     goto <bb 7>;
 
   <bb 7>:
   i = i + 1;
-  if (i < D.49460)
+  if (i < D.49403)
     goto <bb 4>;
   else
-    goto <bb 27>;
+    goto <bb 23>;
 
-  <bb 27>:
-  D.49463 = __builtin_GOMP_loop_dynamic_next (&.istart0.71, &.iend0.72);
-  if (D.49463 != 0)
-    goto <bb 26>;
+  <bb 23>:
+  D.49406 = __builtin_GOMP_loop_dynamic_next (&.istart0.71, &.iend0.72);
+  if (D.49406 != 0)
+    goto <bb 22>;
   else
     goto <bb 8>;
 
   <bb 5>:
-  D.49464 = (long unsigned int) i;
-  D.49465 = D.49464 * 8192;
-  D.49466 = .omp_data_i->C;
-  D.49467 = D.49466 + D.49465;
-  D.49464 = (long unsigned int) i;
-  D.49465 = D.49464 * 8192;
-  D.49468 = .omp_data_i->C;
-  D.49467 = D.49468 + D.49465;
-  D.49469 = *D.49467[j];
-  D.49470 = .omp_data_i->beta;
-  D.49471 = D.49469 * D.49470;
-  *D.49467[j] = D.49471;
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49409 = .omp_data_i->C;
+  D.49410 = D.49409 + D.49408;
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49411 = .omp_data_i->C;
+  D.49410 = D.49411 + D.49408;
+  D.49412 = *D.49410[j];
+  D.49413 = .omp_data_i->beta;
+  D.49414 = D.49412 * D.49413;
+  *D.49410[j] = D.49414;
   j = j + 1;
   goto <bb 6>;
 
@@ -2509,6 +2366,123 @@ void syr2k_cuda_1(int, int, float, float, float (*)[2048], float (*)[2048], floa
   __builtin_GOMP_loop_end ();
 
   <bb 9>:
+  current_loop_index = 1;
+  D.49415 = 8;
+  D.49416 = D.49415 + 4;
+  D.49417 = D.49416 * 4194304;
+  q_data_transfer_write.7 = (long long int) D.49417;
+  q_data_transfer_write = q_data_transfer_write.7;
+  D.49419 = 16777216;
+  q_data_transfer_read.8 = (long long int) D.49419;
+  q_data_transfer_read = q_data_transfer_read.8;
+  D.49421 = .omp_data_i->ni;
+  D.49422 = (long int) D.49421;
+  D.49425 = __builtin_GOMP_loop_dynamic_start (0, D.49422, 1, 64, &.istart0.67, &.iend0.68);
+  if (D.49425 != 0)
+    goto <bb 20>;
+  else
+    goto <bb 17>;
+
+  <bb 20>:
+  .istart0.69 = .istart0.67;
+  i = (int) .istart0.69;
+  .iend0.70 = .iend0.68;
+  D.49429 = (int) .iend0.70;
+
+  <bb 10>:
+  j = 0;
+
+  <bb 15>:
+  D.49431 = .omp_data_i->ni;
+  if (j < D.49431)
+    goto <bb 11>;
+  else
+    goto <bb 16>;
+
+  <bb 16>:
+  i = i + 1;
+  if (i < D.49429)
+    goto <bb 10>;
+  else
+    goto <bb 21>;
+
+  <bb 21>:
+  D.49432 = __builtin_GOMP_loop_dynamic_next (&.istart0.67, &.iend0.68);
+  if (D.49432 != 0)
+    goto <bb 20>;
+  else
+    goto <bb 17>;
+
+  <bb 11>:
+  k = 0;
+
+  <bb 13>:
+  D.49434 = .omp_data_i->nj;
+  if (k < D.49434)
+    goto <bb 12>;
+  else
+    goto <bb 14>;
+
+  <bb 14>:
+  j = j + 1;
+  goto <bb 15>;
+
+  <bb 12>:
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49435 = .omp_data_i->C;
+  D.49410 = D.49435 + D.49408;
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49436 = .omp_data_i->C;
+  D.49410 = D.49436 + D.49408;
+  D.49412 = *D.49410[j];
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49437 = .omp_data_i->A;
+  D.49438 = D.49437 + D.49408;
+  D.49439 = *D.49438[k];
+  D.49440 = .omp_data_i->alpha;
+  D.49441 = D.49439 * D.49440;
+  D.49442 = (long unsigned int) j;
+  D.49443 = D.49442 * 8192;
+  D.49444 = .omp_data_i->B;
+  D.49445 = D.49444 + D.49443;
+  D.49446 = *D.49445[k];
+  D.49447 = D.49441 * D.49446;
+  D.49448 = D.49412 + D.49447;
+  *D.49410[j] = D.49448;
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49449 = .omp_data_i->C;
+  D.49410 = D.49449 + D.49408;
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49450 = .omp_data_i->C;
+  D.49410 = D.49450 + D.49408;
+  D.49412 = *D.49410[j];
+  D.49407 = (long unsigned int) i;
+  D.49408 = D.49407 * 8192;
+  D.49451 = .omp_data_i->B;
+  D.49452 = D.49451 + D.49408;
+  D.49453 = *D.49452[k];
+  D.49454 = .omp_data_i->alpha;
+  D.49455 = D.49453 * D.49454;
+  D.49442 = (long unsigned int) j;
+  D.49443 = D.49442 * 8192;
+  D.49456 = .omp_data_i->A;
+  D.49457 = D.49456 + D.49443;
+  D.49458 = *D.49457[k];
+  D.49459 = D.49455 * D.49458;
+  D.49460 = D.49412 + D.49459;
+  *D.49410[j] = D.49460;
+  k = k + 1;
+  goto <bb 13>;
+
+  <bb 17>:
+  __builtin_GOMP_loop_end_nowait ();
+
+  <bb 18>:
   return;
 
 }
