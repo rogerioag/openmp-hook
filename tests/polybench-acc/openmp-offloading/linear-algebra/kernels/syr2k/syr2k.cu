@@ -144,16 +144,15 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   int i, j, k;
 
   #pragma scop
-  current_loop_index = 0;
-  // Copy to device A, B, C.
-  q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
-  // Copy back C.
-  q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NI);
-
   // #pragma omp parallel
   #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
   {
     /*    C := alpha*A*B' + alpha*B*A' + beta*C */
+    current_loop_index = 0;
+    // Copy to device A, B, C.
+    q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
+    // Copy back C.
+    q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NI);
     // #pragma omp for private(j) schedule(runtime)
     #pragma omp for private(j) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++)
@@ -161,11 +160,11 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
         C[i][j] *= beta;
   // }
   
-  current_loop_index = 1;
-  // Copy to device A, B, C.
-  q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
-  // Copy back C.
-  q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NI);
+    current_loop_index = 1;
+    // Copy to device A, B, C.
+    q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
+    // Copy back C.
+    q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NI);
   // #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
   // {
     // #pragma omp for private(j, k) schedule(runtime)
