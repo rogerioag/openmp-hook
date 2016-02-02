@@ -29,10 +29,10 @@
 // Offloading support functions.
 #include <offload.h>
 
-#define GPU_DEVICE 0
-
 // define the error threshold for the results "not matching"
 #define PERCENT_DIFF_ERROR_THRESHOLD 0.05
+
+#define GPU_DEVICE 0
 
 #define RUN_ON_CPU
 
@@ -415,5 +415,8 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
+
+// polybench.c uses the OpenMP to parallelize somethings. This call were intercepted by hookomp.
+#undef _OPENMP
 
 #include <polybench.c>
