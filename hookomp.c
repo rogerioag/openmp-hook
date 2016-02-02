@@ -326,10 +326,10 @@ void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s in current loop index %d.\n", (long int) pthread_self(), __FUNCTION__, current_loop_index);
 	
-	if(is_hookomp_initialized){
+	// if(is_hookomp_initialized){
 		/* Set flag to control initialization of hook. */
-		is_hookomp_initialized = false;	
-	}
+	// 	is_hookomp_initialized = false;	
+	// }
 }
 
 /* ------------------------------------------------------------- */
@@ -904,7 +904,7 @@ void GOMP_loop_end (void){
 
 	TRACE("[LIBGOMP] lib_GOMP_loop_end[%p]\n", (void* )lib_GOMP_loop_end);
 
-	HOOKOMP_loop_end_nowait();
+	// HOOKOMP_loop_end_nowait();
 
 	lib_GOMP_loop_end();
 
@@ -921,7 +921,7 @@ void GOMP_loop_end_nowait (void){
 
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
-	HOOKOMP_loop_end_nowait();
+	// HOOKOMP_loop_end_nowait();
 
 	lib_GOMP_loop_end_nowait();
 }
