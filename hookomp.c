@@ -324,6 +324,7 @@ void HOOKOMP_end(void){
 /* ------------------------------------------------------------- */
 void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
+	TRACE("[HOOKOMP]: Thread [%lu] is calling %s in current loop index %d.\n", (long int) pthread_self(), __FUNCTION__, current_loop_index);
 	
 	if(is_hookomp_initialized){
 		/* Set flag to control initialization of hook. */
