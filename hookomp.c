@@ -298,14 +298,6 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 }
 
 /* ------------------------------------------------------------- */
-void HOOKOMP_loop_end_nowait(void){
-	PRINT_FUNC_NAME;
-	if(is_hookomp_initialized){
-		HOOKOMP_end();	
-	}
-}
-
-/* ------------------------------------------------------------- */
 /* Function to parallel_end. */
 void HOOKOMP_end(void){
 	PRINT_FUNC_NAME;
@@ -328,6 +320,15 @@ void HOOKOMP_end(void){
 
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 }
+
+/* ------------------------------------------------------------- */
+void HOOKOMP_loop_end_nowait(void){
+	PRINT_FUNC_NAME;
+	if(is_hookomp_initialized){
+		HOOKOMP_end();	
+	}
+}
+
 /* ------------------------------------------------------------- */
 /* barrier.c                                                     */
 /* ------------------------------------------------------------- */
