@@ -24,6 +24,7 @@
 
 // Macros to generate openmp schedule.
 #include <macros.h>
+
 // Offloading support functions.
 #include <offload.h>
 
@@ -261,13 +262,13 @@ __global__ void syr2k_cuda_kernel_2(int ni, int nj, DATA_TYPE alpha, DATA_TYPE b
 }
 
 /* ------------------------------------------------------------- */
-void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
+void syr2k_cuda_0(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
                DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
                DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NI, ni, ni),
                DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NI, ni, ni)) {
 
-  fprintf(stderr, "Calling function syr2k_cuda.\n");
+  fprintf(stderr, "Calling function syr2k_cuda_0.\n");
 
   // GPU initialization.
   GPU_argv_init();
@@ -292,6 +293,37 @@ void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 
   syr2k_cuda_kernel_1<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
   cudaThreadSynchronize();
+
+  // syr2k_cuda_kernel_2<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu); 
+  // cudaThreadSynchronize();
+
+  /* Stop and print timer. */
+  polybench_stop_instruments;
+  printf("GPU Time in seconds:\n");
+  polybench_print_instruments;
+
+  // cudaMemcpy(C_outputFromGpu, C_gpu, sizeof(DATA_TYPE) * NI * NI, cudaMemcpyDeviceToHost);
+
+  // cudaFree(A_gpu);
+  // cudaFree(B_gpu);
+  // cudaFree(C_gpu);
+}
+
+/* ------------------------------------------------------------- */
+void syr2k_cuda_1(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
+               DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
+               DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
+               DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NI, ni, ni),
+               DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NI, ni, ni)) {
+
+  fprintf(stderr, "Calling function syr2k_cuda_1.\n");
+
+  dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
+  dim3 grid((size_t)ceil(((float)NI) / ((float)DIM_THREAD_BLOCK_X)),
+            (size_t)(ceil(((float)NI) / ((float)DIM_THREAD_BLOCK_Y))));
+
+  /* Start timer. */
+  polybench_start_instruments;
 
   syr2k_cuda_kernel_2<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
   cudaThreadSynchronize();
@@ -336,14 +368,49 @@ int main(int argc, char *argv[]) {
   // Number of parameters to function.
   int n_params = 8;
 
-  // void handler_function_init_array_GPU(void)
+  // loop 0.
+  Func *ff_0 = (Func *) malloc(sizeof(Func));
+
+  // Number of arguments + 1, the lists need to have last element NULL.
+  ff_0->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
+  ff_0->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
+
+  ff_0->f = &syr2k_cuda_0;
+  memset(&ff_0->ret_value, 0, sizeof(ff_1->ret_value));
+
+  // return type.
+  ff_0->ret_type = &ffi_type_void;
+
+  ff_0->nargs = n_params;
+
+  ff_0->arg_values[0] = &ni;
+  ff_0->arg_values[1] = &nj;
+  ff_0->arg_values[2] = &alpha;
+  ff_0->arg_values[3] = &beta;
+  ff_0->arg_values[4] = &A;
+  ff_0->arg_values[5] = &B;
+  ff_0->arg_values[6] = &C_inputToGpu;
+  ff_0->arg_values[7] = &C_outputFromGpu;
+  ff_0->arg_values[8] = NULL;
+
+  ff_0->arg_types[0] = &ffi_type_sint32;
+  ff_0->arg_types[1] = &ffi_type_sint32;
+  ff_0->arg_types[2] = &ffi_type_double;
+  ff_0->arg_types[3] = &ffi_type_double;
+  ff_0->arg_types[4] = &ffi_type_pointer;
+  ff_0->arg_types[5] = &ffi_type_pointer;
+  ff_0->arg_types[6] = &ffi_type_pointer;
+  ff_0->arg_types[7] = &ffi_type_pointer;
+  ff_0->arg_types[8] = NULL;
+
+  // loop 1.
   Func *ff_1 = (Func *) malloc(sizeof(Func));
 
   // Number of arguments + 1, the lists need to have last element NULL.
   ff_1->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
   ff_1->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
 
-  ff_1->f = &syr2k_cuda;
+  ff_1->f = &syr2k_cuda_1;
   memset(&ff_1->ret_value, 0, sizeof(ff_1->ret_value));
 
   // return type.
@@ -376,7 +443,7 @@ int main(int argc, char *argv[]) {
    * matrix 1 x 1.
   */
   fprintf(stderr, "Creating table of target functions.\n");
-  int nloops = 1;
+  int nloops = 2;
   int ndevices = 2;
 
   if (create_target_functions_table(&table, nloops, ndevices)) {
@@ -384,7 +451,8 @@ int main(int argc, char *argv[]) {
     assert(table != NULL);
 
     fprintf(stderr, "Declaring function in 0,0.\n");
-    table[0][1][0] = *ff_1;
+    table[0][1][0] = *ff_0;
+    table[1][1][0] = *ff_1;
 
     TablePointerFunctions = table;
     assert(TablePointerFunctions != NULL);
