@@ -154,13 +154,13 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
     // Copy back C.
     q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NI);
     // #pragma omp for private(j) schedule(runtime)
-    #pragma omp for private(j) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+    #pragma omp for private(j) schedule(OPENMP_SCHEDULE_WITH_CHUNK) firstprivate(current_loop_index)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NI; j++)
         C[i][j] *= beta;
   // }
     
-    #pragma omp barrier
+    // #pragma omp barrier
 
     current_loop_index = 1;
     // Copy to device A, B, C.
@@ -170,7 +170,7 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   // #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
   // {
     // #pragma omp for private(j, k) schedule(runtime)
-    #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+    #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK) firstprivate(current_loop_index)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NI; j++)
         for (k = 0; k < _PB_NJ; k++) {
