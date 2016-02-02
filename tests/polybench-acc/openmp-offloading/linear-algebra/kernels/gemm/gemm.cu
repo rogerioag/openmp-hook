@@ -367,7 +367,7 @@ int main(int argc, char *argv[]) {
     assert(table != NULL);
     // 0,0 is CPU = NULL, because is openmp code.
     fprintf(stderr, "Declaring function in 0,1.\n");
-    table[0][0][0] = NULL;
+    table[0][0][0] = 0;
     table[0][1][0] = *ff_1;
 
     TablePointerFunctions = table;
