@@ -325,7 +325,8 @@ void HOOKOMP_end(void){
 void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
 	if(is_hookomp_initialized){
-		HOOKOMP_end();	
+		/* Set flag to control initialization of hook. */
+		is_hookomp_initialized = false;	
 	}
 }
 
@@ -1213,9 +1214,9 @@ void GOMP_parallel_end (void){
 	TRACE("[LIBGOMP] GOMP_parallel_end@GOMP_X.X [%p]\n", (void* ) lib_GOMP_parallel_end);
 
 	/* In cases of benchmark have two loops inside the same parallel region. The second was ignored, because the control had no reinitilized. */
-	/*if(is_hookomp_initialized){
+	if(is_hookomp_initialized){
 		HOOKOMP_end();	
-	}*/
+	}
 	
 	lib_GOMP_parallel_end();
 }
