@@ -520,7 +520,8 @@ int main(int argc, char *argv[]) {
   fprintf(stderr, "Comparing threads accesses:\n");
   // compareResults(ni, POLYBENCH_ARRAY(Control_Loop_0), POLYBENCH_ARRAY(Control_Loop_1));
   // Compare C with D
-  int i, int j;
+  int i;
+  int j;
   for (i = 0; i < ni; i++) {
     for (j = 0; j < ni; j++) {
       printf("CL[%lu][%lu] = %d.\n", Control_Loop_0[i][j], Control_Loop_1[i][j], (Control_Loop_0[i][j] != Control_Loop_1[i][j]);
