@@ -518,7 +518,13 @@ int main(int argc, char *argv[]) {
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
   fprintf(stderr, "Comparing threads accesses:\n");
-  compareResults(ni, POLYBENCH_ARRAY(Control_Loop_0), POLYBENCH_ARRAY(Control_Loop_1));
+  // compareResults(ni, POLYBENCH_ARRAY(Control_Loop_0), POLYBENCH_ARRAY(Control_Loop_1));
+  // Compare C with D
+  for (i = 0; i < ni; i++) {
+    for (j = 0; j < ni; j++) {
+      printf("CL[%lu][%lu] = %d.\n", Control_Loop_0[i][j], Control_Loop_1[i][j], (Control_Loop_0[i][j] != Control_Loop_1[i][j]);
+    }
+  }
   
   polybench_prevent_dce(print_array(ni, POLYBENCH_ARRAY(C_outputFromGpu)));
 
