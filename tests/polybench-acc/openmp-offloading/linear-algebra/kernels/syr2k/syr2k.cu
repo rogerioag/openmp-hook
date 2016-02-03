@@ -156,12 +156,12 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
     // #pragma omp for private(j) schedule(runtime)
     #pragma omp for private(j) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++)
-      for (j = 0; j < _PB_NI; j++)
+      for (j = 0; j < _PB_NI; j++){
         C[i][j] *= beta;
+        Control_Loop_0[i][j] = pthread_self();
+      }
   // }
     
-    // #pragma omp barrier
-
     current_loop_index = 1;
     // Copy to device A, B, C.
     q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
@@ -176,6 +176,7 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
         for (k = 0; k < _PB_NJ; k++) {
           C[i][j] += alpha * A[i][k] * B[j][k];
           C[i][j] += alpha * B[i][k] * A[j][k];
+          Control_Loop_1[i][j] = pthread_self();
         }
   }
   #pragma endscop
@@ -367,9 +368,12 @@ int main(int argc, char *argv[]) {
   POLYBENCH_2D_ARRAY_DECL(A, DATA_TYPE, NI, NJ, ni, nj);
   POLYBENCH_2D_ARRAY_DECL(B, DATA_TYPE, NI, NJ, ni, nj);
   POLYBENCH_2D_ARRAY_DECL(C, DATA_TYPE, NI, NI, ni, ni);
-  POLYBENCH_2D_ARRAY_DECL(C_outputFromOMP, DATA_TYPE, NI, NJ, ni, nj);
-  POLYBENCH_2D_ARRAY_DECL(C_inputToGpu, DATA_TYPE, NI, NJ, ni, nj);
-  POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NJ, ni, nj);
+  POLYBENCH_2D_ARRAY_DECL(C_outputFromOMP, DATA_TYPE, NI, NI, ni, ni);
+  POLYBENCH_2D_ARRAY_DECL(C_inputToGpu, DATA_TYPE, NI, NI, ni, ni);
+  POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NI, ni, ni);
+  
+  POLYBENCH_2D_ARRAY_DECL(Control_Loop_0, long int, NI, NI, ni, nj);
+  POLYBENCH_2D_ARRAY_DECL(Control_Loop_1, long int, NI, NI, ni, nj);
 
   fprintf(stderr, "Preparing alternatives functions.\n");
   /* Preparing the call to target function.
@@ -506,6 +510,9 @@ int main(int argc, char *argv[]) {
 
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
+
+  fprintf(stderr, "Comparing threads accesses:\n");
+  compareResults(ni, POLYBENCH_ARRAY(Control_Loop_0), POLYBENCH_ARRAY(Control_Loop_1));
   
   polybench_prevent_dce(print_array(ni, POLYBENCH_ARRAY(C_outputFromGpu)));
 
