@@ -16,6 +16,8 @@
 #include <sys/time.h>
 #include <unistd.h>
 
+ #include <pthread.h>
+
 #define POLYBENCH_TIME 1
 
 #include "syr2k.cuh"
