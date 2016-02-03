@@ -162,7 +162,7 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NI; j++){
         C[i][j] *= beta;
-        Control_Loop_0[i][j] = pthread_self();
+        Control_Loop_0[i][j] = omp_get_thread_num();
       }
   // }
     
@@ -180,7 +180,7 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
         for (k = 0; k < _PB_NJ; k++) {
           C[i][j] += alpha * A[i][k] * B[j][k];
           C[i][j] += alpha * B[i][k] * A[j][k];
-          Control_Loop_1[i][j] = pthread_self();
+          Control_Loop_1[i][j] = omp_get_thread_num();
         }
   }
   #pragma endscop
