@@ -525,7 +525,7 @@ int main(int argc, char *argv[]) {
   int count_dff = 0;
   for (i = 0; i < ni; i++) {
     for (j = 0; j < ni; j++) {
-      printf("CL[%lu][%lu] = %d.\n", Control_Loop_0[i][j], Control_Loop_1[i][j], (Control_Loop_0[i][j] == Control_Loop_1[i][j]));
+      printf("CL0[%lu][%lu] = %d, CL1[%lu][%lu] = %d [%d], \n", i, j, Control_Loop_0[i][j], i, j, Control_Loop_1[i][j], (Control_Loop_0[i][j] == Control_Loop_1[i][j]));
       if (Control_Loop_0[i][j] != Control_Loop_1[i][j]){
         count_dff++;
       }
