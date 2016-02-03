@@ -298,8 +298,18 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 }
 
 /* ------------------------------------------------------------- */
+/* Function to parallel_start. */
+void HOOKOMP_parallel_start(void){
+	PRINT_FUNC_NAME;
+
+	sem_init(&mutex_hookomp_init, 0, 1);
+
+	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
+}
+
+/* ------------------------------------------------------------- */
 /* Function to parallel_end. */
-void HOOKOMP_end(void){
+void HOOKOMP_parallel_end(void){
 	PRINT_FUNC_NAME;
 
 	TRACE("[HOOKOMP] [Before] Destroying the semaphores. \n");
@@ -323,6 +333,17 @@ void HOOKOMP_end(void){
 
 /* ------------------------------------------------------------- */
 void HOOKOMP_loop_end_nowait(void){
+	PRINT_FUNC_NAME;
+	TRACE("[HOOKOMP]: Thread [%lu] is calling %s in current loop index %d.\n", (long int) pthread_self(), __FUNCTION__, current_loop_index);
+	
+	// if(is_hookomp_initialized){
+		/* Set flag to control initialization of hook. */
+	// 	is_hookomp_initialized = false;	
+	// }
+}
+
+/* ------------------------------------------------------------- */
+void HOOKOMP_loop_end(void){
 	PRINT_FUNC_NAME;
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s in current loop index %d.\n", (long int) pthread_self(), __FUNCTION__, current_loop_index);
 	
@@ -789,7 +810,8 @@ void GOMP_parallel_loop_dynamic_start (void (*fn) (void *), void *data,
 	
 	TRACE("[LIBGOMP] lib_GOMP_parallel_loop_dynamic_start[%p]\n", (void* )lib_GOMP_parallel_loop_dynamic_start);
 
-	sem_init(&mutex_hookomp_init, 0, 1);
+	// sem_init(&mutex_hookomp_init, 0, 1);
+	HOOKOMP_parallel_start();
 
 	// Initializations.
 	HOOKOMP_initialization(start, end, num_threads);
@@ -810,7 +832,8 @@ void GOMP_parallel_loop_guided_start (void (*fn) (void *), void *data,
 	
 	TRACE("[LIBGOMP] lib_GOMP_parallel_loop_guided_start[%p]\n", (void* )lib_GOMP_parallel_loop_guided_start);
 
-	sem_init(&mutex_hookomp_init, 0, 1);
+	// sem_init(&mutex_hookomp_init, 0, 1);
+	HOOKOMP_parallel_start();
 
 	// Initializations.
 	HOOKOMP_initialization(start, end, num_threads);
@@ -831,7 +854,8 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	
 	TRACE("[LIBGOMP] lib_GOMP_parallel_loop_runtime_start[%p]\n", (void* )lib_GOMP_parallel_loop_runtime_start);
 
-	sem_init(&mutex_hookomp_init, 0, 1);
+	// sem_init(&mutex_hookomp_init, 0, 1);
+	HOOKOMP_parallel_start();
 
 	// Initializations.
 	HOOKOMP_initialization(start, end, num_threads);
@@ -904,7 +928,7 @@ void GOMP_loop_end (void){
 
 	TRACE("[LIBGOMP] lib_GOMP_loop_end[%p]\n", (void* )lib_GOMP_loop_end);
 
-	// HOOKOMP_loop_end_nowait();
+	HOOKOMP_loop_end();
 
 	lib_GOMP_loop_end();
 
@@ -921,7 +945,7 @@ void GOMP_loop_end_nowait (void){
 
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
-	// HOOKOMP_loop_end_nowait();
+	HOOKOMP_loop_end_nowait();
 
 	lib_GOMP_loop_end_nowait();
 }
@@ -1204,7 +1228,8 @@ void GOMP_parallel_start (void (*fn) (void *), void *data, unsigned num_threads)
 
 	lib_GOMP_parallel_start(fn, data, num_threads);
 
-	sem_init(&mutex_hookomp_init, 0, 1);
+	// sem_init(&mutex_hookomp_init, 0, 1);
+	HOOKOMP_parallel_start();
 }
 
 /* ------------------------------------------------------------- */
@@ -1219,7 +1244,7 @@ void GOMP_parallel_end (void){
 
 	/* In cases of benchmark have two loops inside the same parallel region. The second was ignored, because the control had no reinitilized. */
 	if(is_hookomp_initialized){
-		HOOKOMP_end();	
+		HOOKOMP_parallel_end();	
 	}
 	
 	lib_GOMP_parallel_end();
