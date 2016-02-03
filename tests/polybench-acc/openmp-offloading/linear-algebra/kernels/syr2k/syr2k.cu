@@ -189,7 +189,7 @@ void syr2k_omp(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                          DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
                          DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
                          DATA_TYPE POLYBENCH_2D(C_outputFromOMP, NI, NI, ni, ni),
-                         DATA_TYPE POLYBENCH_2D(Control_Loop_0, NI, NI, ni, ni)
+                         DATA_TYPE POLYBENCH_2D(Control_Loop_0, NI, NI, ni, ni),
                          DATA_TYPE POLYBENCH_2D(Control_Loop_1, NI, NI, ni, ni)) {
 
   /* Start timer. */
