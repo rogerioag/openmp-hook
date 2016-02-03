@@ -526,12 +526,12 @@ int main(int argc, char *argv[]) {
   for (i = 0; i < ni; i++) {
     for (j = 0; j < ni; j++) {
       printf("CL[%lu][%lu] = %d.\n", Control_Loop_0[i][j], Control_Loop_1[i][j], (Control_Loop_0[i][j] == Control_Loop_1[i][j]));
-      if ((Control_Loop_0[i][j] != Control_Loop_1[i][j])){
+      if (Control_Loop_0[i][j] != Control_Loop_1[i][j]){
         count_dff++;
       }
     }
   }
-  printf("Diferentes: %d"\n", count_dff);
+  printf("Diferentes: %d\n", count_dff);
   
   polybench_prevent_dce(print_array(ni, POLYBENCH_ARRAY(C_outputFromGpu)));
 
