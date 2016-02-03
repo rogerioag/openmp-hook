@@ -140,7 +140,7 @@ void syr2k_original(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                          DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
                          DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
-                         DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
+                         DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni), DATA_TYPE POLYBENCH_2D(Control_Loop_0, NI, NI, ni, ni), DATA_TYPE POLYBENCH_2D(Control_Loop_1, NI, NI, ni, ni)) {
   int i, j, k;
 
   #pragma scop
@@ -497,7 +497,7 @@ int main(int argc, char *argv[]) {
   syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
   fprintf(stderr, "Calling OMP.\n");
-  syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
+  syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP), POLYBENCH_ARRAY(Control_Loop_0), POLYBENCH_ARRAY(Control_Loop_1));
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
