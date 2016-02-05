@@ -142,9 +142,7 @@ void syr2k_original(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                          DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
                          DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
-                         DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni), 
-                         long int POLYBENCH_2D(Control_Loop_0, NI, NI, ni, ni), 
-                         long int POLYBENCH_2D(Control_Loop_1, NI, NI, ni, ni)) {
+                         DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
   int i, j, k;
 
   #pragma scop
@@ -157,12 +155,11 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
     q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
     // Copy back C.
     q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NI);
-    
+
     #pragma omp for private(j) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NI; j++){
         C[i][j] *= beta;
-        Control_Loop_0[i][j] = pthread_self();
       }
   }
   
@@ -180,7 +177,6 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
         for (k = 0; k < _PB_NJ; k++) {
           C[i][j] += alpha * A[i][k] * B[j][k];
           C[i][j] += alpha * B[i][k] * A[j][k];
-          Control_Loop_1[i][j] = pthread_self();
         }
   }
   #pragma endscop
@@ -190,14 +186,12 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 void syr2k_omp(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                          DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
                          DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
-                         DATA_TYPE POLYBENCH_2D(C_outputFromOMP, NI, NI, ni, ni),
-                         long int POLYBENCH_2D(Control_Loop_0, NI, NI, ni, ni),
-                         long int POLYBENCH_2D(Control_Loop_1, NI, NI, ni, ni)) {
+                         DATA_TYPE POLYBENCH_2D(C_outputFromOMP, NI, NI, ni, ni)) {
 
   /* Start timer. */
   polybench_start_instruments;
 
-  syr2k_omp_kernel(ni, nj, alpha, beta, A, B, C_outputFromOMP, Control_Loop_0, Control_Loop_1);
+  syr2k_omp_kernel(ni, nj, alpha, beta, A, B, C_outputFromOMP);
 
   /* Stop and print timer. */
   polybench_stop_instruments;
@@ -378,9 +372,6 @@ int main(int argc, char *argv[]) {
   POLYBENCH_2D_ARRAY_DECL(C_inputToGpu, DATA_TYPE, NI, NI, ni, ni);
   POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NI, ni, ni);
   
-  POLYBENCH_2D_ARRAY_DECL(Control_Loop_0, long int, NI, NI, ni, nj);
-  POLYBENCH_2D_ARRAY_DECL(Control_Loop_1, long int, NI, NI, ni, nj);
-
   fprintf(stderr, "Preparing alternatives functions.\n");
   /* Preparing the call to target function.
   void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
@@ -503,7 +494,7 @@ int main(int argc, char *argv[]) {
   syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
   fprintf(stderr, "Calling OMP.\n");
-  syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP), POLYBENCH_ARRAY(Control_Loop_0), POLYBENCH_ARRAY(Control_Loop_1));
+  syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
@@ -517,22 +508,6 @@ int main(int argc, char *argv[]) {
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  fprintf(stderr, "Comparing threads accesses:\n");
-  // compareResults(ni, POLYBENCH_ARRAY(Control_Loop_0), POLYBENCH_ARRAY(Control_Loop_1));
-  // Compare C with D
-  int i;
-  int j;
-  int count_dff = 0;
-  for (i = 0; i < ni; i++) {
-    for (j = 0; j < ni; j++) {
-      printf("CL0[%d][%d] = %lu, CL1[%d][%d] = %lu [%d], \n", i, j, Control_Loop_0[i][j], i, j, Control_Loop_1[i][j], (Control_Loop_0[i][j] == Control_Loop_1[i][j]));
-      if (Control_Loop_0[i][j] != Control_Loop_1[i][j]){
-        count_dff++;
-      }
-    }
-  }
-  printf("Diferentes: %d\n", count_dff);
-  
   polybench_prevent_dce(print_array(ni, POLYBENCH_ARRAY(C_outputFromGpu)));
 
   POLYBENCH_FREE_ARRAY(A);
