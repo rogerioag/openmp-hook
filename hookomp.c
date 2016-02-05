@@ -182,7 +182,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		HOOKOMP_registry_the_first_thread();
 	}
 
-	/* Is not getting neasuresm execute directly. */
+	/* Is not getting measures execute directly. */
 	if(!is_executing_measures_section){
 		TRACE("[HOOKOMP]: [OUTSIDE] Calling next function out of measures section.\n");
 		TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
