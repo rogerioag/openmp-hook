@@ -955,7 +955,10 @@ int RM_get_better_device_to_execution(double oi){
 		}
 	}
 	TRACE("Chosen device: %d.\n", best_dev);
-	return best_dev;
+	
+	return 1;
+
+	// return best_dev;
 }
 
 /* ------------------------------------------------------------ */
