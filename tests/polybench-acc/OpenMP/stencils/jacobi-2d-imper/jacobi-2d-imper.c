@@ -139,7 +139,7 @@ void jacobi_2d_imper_omp_kernel(int tsteps,
   
   #pragma omp parallel private(i,j,t) num_threads(OPENMP_NUM_THREADS)
   {
-    #pragma omp master
+    #pragma omp single
     {
       for (t = 0; t < _PB_TSTEPS; t++) {
         #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK) 
