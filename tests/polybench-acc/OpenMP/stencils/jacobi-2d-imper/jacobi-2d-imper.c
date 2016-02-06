@@ -137,22 +137,19 @@ void jacobi_2d_imper_omp_kernel(int tsteps,
 
   #pragma scop
   
-  #pragma omp parallel private(i,j,t) num_threads(OPENMP_NUM_THREADS)
+  #pragma omp master
   {
-    #pragma omp single
-    {
       for (t = 0; t < _PB_TSTEPS; t++) {
-        #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK) 
+        #pragma omp parallel for private(i,j) schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS)
         for (i = 1; i < _PB_N - 1; i++)
           for (j = 1; j < _PB_N - 1; j++)
             B[i][j] = 0.2 * (A[i][j] + A[i][j-1] + A[i][1+j] + A[1+i][j] + A[i-1][j]);
       
-        #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK) 
+        #pragma omp parallel for private(i,j) schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS) 
         for (i = 1; i < _PB_N-1; i++)
           for (j = 1; j < _PB_N-1; j++)
             A[i][j] = B[i][j];
       }
-    }
   }
 
   #pragma endscop
