@@ -23,7 +23,7 @@
 #include <polybench.h>
 #include <polybenchUtilFuncts.h>
 
- // Macros to generate openmp schedule.
+// Macros to generate openmp schedule.
 #include <macros.h>
 
 // Offloading support functions.
@@ -138,8 +138,8 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
         C);
 
   /* Stop and print timer. */
-  printf("Original CPU Time in seconds:\n");
   polybench_stop_instruments;
+  printf("Original CPU Time in seconds:\n");
   polybench_print_instruments;
 }
 
