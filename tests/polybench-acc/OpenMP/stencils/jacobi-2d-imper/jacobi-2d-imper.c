@@ -208,7 +208,7 @@ int main(int argc, char** argv)
   jacobi2d_original(tsteps, n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B));
   
   fprintf(stderr, "Calling jacobi_2d_imper_omp.\n");
-  jacobi_2d_imper_omp(tsteps, n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B));
+  jacobi_2d_imper_omp(tsteps, n, POLYBENCH_ARRAY(A_OMP), POLYBENCH_ARRAY(B_OMP));
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(A_OMP), 
