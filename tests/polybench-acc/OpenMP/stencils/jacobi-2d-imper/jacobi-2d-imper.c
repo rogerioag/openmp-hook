@@ -26,6 +26,7 @@
 // define the error threshold for the results "not matching"
 #define PERCENT_DIFF_ERROR_THRESHOLD 0.05
 
+/* ------------------------------------------------------------- */
 /* Array initialization. */
 static
 void init_array (int n,
@@ -41,7 +42,7 @@ void init_array (int n,
     }
 }
 
-
+/* ------------------------------------------------------------- */
 /* DCE code. Must scan the entire live-out data.
    Can be used also to check the correctness of the output. */
 static
@@ -57,6 +58,17 @@ void print_array(int n,
       if ((i * n + j) % 20 == 0) fprintf(stderr, "\n");
     }
   fprintf(stderr, "\n");
+}
+
+/* ------------------------------------------------------------- */
+void copy_array(int n, DATA_TYPE POLYBENCH_2D(source, N, N, n, n), DATA_TYPE POLYBENCH_2D(dest, N, N, n, n)) {
+  int i, j;
+
+  for (i = 0; i < n; i++) {
+    for (j = 0; j < n; j++) {
+      dest[i][j] = source[i][j];
+    }
+  }
 }
 
 /* ------------------------------------------------------------- */
@@ -139,17 +151,17 @@ void jacobi_2d_imper_omp_kernel(int tsteps,
   
   #pragma omp master
   {
-      for (t = 0; t < _PB_TSTEPS; t++) {
-        #pragma omp parallel for private(i,j) schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS)
-        for (i = 1; i < _PB_N - 1; i++)
-          for (j = 1; j < _PB_N - 1; j++)
-            B[i][j] = 0.2 * (A[i][j] + A[i][j-1] + A[i][1+j] + A[1+i][j] + A[i-1][j]);
+    for (t = 0; t < _PB_TSTEPS; t++) {
+      #pragma omp parallel for private(i,j) schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS)
+      for (i = 1; i < _PB_N - 1; i++)
+        for (j = 1; j < _PB_N - 1; j++)
+          B[i][j] = 0.2 * (A[i][j] + A[i][j-1] + A[i][1+j] + A[1+i][j] + A[i-1][j]);
       
-        #pragma omp parallel for private(i,j) schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS) 
-        for (i = 1; i < _PB_N-1; i++)
-          for (j = 1; j < _PB_N-1; j++)
-            A[i][j] = B[i][j];
-      }
+      #pragma omp parallel for private(i,j) schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS) 
+      for (i = 1; i < _PB_N-1; i++)
+        for (j = 1; j < _PB_N-1; j++)
+          A[i][j] = B[i][j];
+    }
   }
 
   #pragma endscop
@@ -172,7 +184,7 @@ void jacobi_2d_imper_omp(int tsteps,
 
 }
 
-
+/* ------------------------------------------------------------- */
 int main(int argc, char** argv)
 {
   /* Retrieve problem size. */
