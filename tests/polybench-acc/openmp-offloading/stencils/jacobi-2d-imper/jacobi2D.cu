@@ -249,13 +249,12 @@ void jacobi2d_cuda(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A,N,N,n,n), DATA_TY
 }
 
 /* ------------------------------------------------------------- */
-void copy_array(int ni, DATA_TYPE POLYBENCH_2D(C_source, NI, NI, ni, ni), DATA_TYPE POLYBENCH_2D(C_dest, NI, NI, ni, ni)) {
+void copy_array(int n, DATA_TYPE POLYBENCH_2D(source, N, N, n, n), DATA_TYPE POLYBENCH_2D(dest, N, N, n, n)) {
   int i, j;
 
-  for (i = 0; i < ni; i++) {
-    for (j = 0; j < ni; j++) {
-      C_dest[i][j] = C_source[i][j];
-      // printf("%4.2f - %4.2f\n", C_dest[i][j], C_source[i][j]);
+  for (i = 0; i < n; i++) {
+    for (j = 0; j < n; j++) {
+      dest[i][j] = source[i][j];
     }
   }
 }
