@@ -28,6 +28,17 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		/* Initialization of semaphores of control. */
 		sem_init(&mutex_registry_thread_in_func_next, 0, 1);
 
+		/* Semaphore to registred thread wait for block the others. 
+		 * The idea is block all and the last blocked wake up the registred thread.
+		 * Must be initialized with (1 - (num_threads - 1)).
+		 * Ex. num_threads = 4
+		 * 1 thread will execute.
+		 * 3 threads will blocked and up the sem_block_registred_thread.
+		 * (1 - (num_threads - 1)) = (1 - (4 - 1)) = -2.
+		 * 3 threads up -> -2 ... 1 (thread execute).
+		*/
+		sem_init(&sem_block_registred_thread, 0, (1 - (num_threads - 1)));
+
 		/* Initialization of block to other team threads. 1 thread will be executing. 
 		The initialization with 0 is proposital to block other threads.
 		*/
@@ -69,12 +80,31 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 /* Registry the first thread that entry in function next. */
 void HOOKOMP_registry_the_first_thread(void){
 	PRINT_FUNC_NAME;
+
 	sem_wait(&mutex_registry_thread_in_func_next);
 
+	long int thread_id = (long int) pthread_self();
+
 	if(registred_thread_executing_function_next == -1){
-		registred_thread_executing_function_next = pthread_self();
+		registred_thread_executing_function_next = thread_id;
+		TRACE("[HOOKOMP]: Thread [%lu] was registred and now is waiting for the block of other threads.\n", (long int) registred_thread_executing_function_next);
+		
+		sem_wait(&sem_block_registred_thread);
+
 		TRACE("[HOOKOMP]: Thread [%lu] is entering in controled execution.\n", (long int) registred_thread_executing_function_next);
 	}
+	else {  /* Block other threads. */
+			/* If it is executing in a section to measurements, the threads will be blocked. */		
+			/* Other team threads will be blocked. */
+			number_of_blocked_threads++;
+			TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
+			TRACE("[HOOKOMP]: Before Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
+			sem_post(&sem_block_registred_thread);
+			TRACE("[HOOKOMP]: After Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
+			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
+			sem_wait(&sem_blocks_other_team_threads);
+		}
+
 	/* up semaphore. */
 	sem_post(&mutex_registry_thread_in_func_next);
 }
@@ -178,9 +208,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
 	/* Registry the thread which will be execute alone. down semaphore. */
-	if(registred_thread_executing_function_next == -1){
-		HOOKOMP_registry_the_first_thread();
-	}
+	HOOKOMP_registry_the_first_thread();
 
 	/* Is not getting measures execute directly. */
 	if(!is_executing_measures_section){
@@ -274,9 +302,9 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		else{ /* Block other threads. */
 			/* If it is executing in a section to measurements, the threads will be blocked. */		
 			/* Other team threads will be blocked. */
-			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
-			number_of_blocked_threads++;
-			sem_wait(&sem_blocks_other_team_threads);	
+			// TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
+			// number_of_blocked_threads++;
+			// sem_wait(&sem_blocks_other_team_threads);	
 		
 			TRACE("Verifying if was decided by offloading.\n");
 		
