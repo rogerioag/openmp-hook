@@ -81,6 +81,8 @@ offloading-tests-with-hook:
 	# Test of offloading function schedule runtime.
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -lroofline -fopenmp -lgomp -lffi -fpermissive
 
+	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu-two-loops.cpp -o vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu-two-loops.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -lroofline -fopenmp -lgomp -lffi -fpermissive
+
 	# Test of offloading function schedule guided, chunk variable.
 	${CXX} -L ${LIB_HOOKOMP_PATH} vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu.cpp -o vectoradd-omp-parallel-for-combined-schedule-guided-chunk-variable-offloading-gpu.exe -g -I/home/goncalv/cuda/include -lcuda -lcudart -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -L/home/goncalv/cuda/lib64 -I/home/goncalv/cuda/samples/common/inc/ -L/home/goncalv/cuda/samples/common/lib -lhookomp -lroofline -fopenmp -lgomp -lffi -fpermissive
 
