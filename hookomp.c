@@ -300,8 +300,6 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 				}
 
-				// started_measuring = false;
-
 				/* Release all blocked team threads. */
 				TRACE("[HOOKOMP]: Number of Blocked Threds: %ld.\n", number_of_blocked_threads);
 				if(number_of_blocked_threads > 0){
