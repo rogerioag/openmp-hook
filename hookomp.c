@@ -39,7 +39,9 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		 * (1 - (num_threads - 1)) = (1 - (4 - 1)) = -2.
 		 * 3 threads up -> -2 ... 1 (thread execute).
 		*/
-		sem_init(&sem_block_registred_thread, 0, (1 - (num_threads - 1)));
+		// sem_init(&sem_block_registred_thread, 0, (1 - (num_threads - 1)));
+
+		 sem_init(&sem_block_registred_thread, 0, 0;
 
 		TRACE("sem_block_registred_thread: %d.\n", sem_block_registred_thread);
 
@@ -224,6 +226,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	PRINT_FUNC_NAME;
 	bool result = false;
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
+
+	number_of_threads_in_team = omp_get_num_threads();
 
 	/* Registry the thread which will be execute alone. down semaphore. */
 	if(!thread_was_registred_to_execute_alone){
