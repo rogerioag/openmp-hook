@@ -61,6 +61,7 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
       if (table[i] != NULL) {
         for (j = 0; j < ncolumns; j++) {
           table[i][j] = (Func *) malloc(sizeof(Func));
+          (table[i][j])-> f = NULL;
         }
       } else {
         fprintf(stderr,
