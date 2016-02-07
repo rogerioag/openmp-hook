@@ -41,7 +41,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		*/
 		// sem_init(&sem_block_registred_thread, 0, (1 - (num_threads - 1)));
 
-		 sem_init(&sem_block_registred_thread, 0, 0;
+		 sem_init(&sem_block_registred_thread, 0, 0);
 
 		TRACE("sem_block_registred_thread: %d.\n", sem_block_registred_thread);
 
