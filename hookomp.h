@@ -331,6 +331,9 @@ typedef struct Func {
 /* Registry the thread which can execute the next function. */
 static long int registred_thread_executing_function_next = -1;
 
+/* Flag to control the thread registry. */
+static bool thread_was_registred_to_execute_alone = false;
+
 /* Interval control for calculate the portion of code to execute. 10% */
 static long int loop_iterations_start = 0;
 static long int loop_iterations_end = 0;

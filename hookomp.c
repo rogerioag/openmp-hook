@@ -113,7 +113,8 @@ void HOOKOMP_registry_the_first_thread(void){
 			/* The last thread Wake up the registred thread. */
 			if(number_of_blocked_threads == number_of_threads_in_team - 1) {
 				sem_post(&sem_block_registred_thread);
-				TRACE("[HOOKOMP]: After Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);	
+				TRACE("[HOOKOMP]: After Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
+				thread_was_registred_to_execute_alone = true;
 			}
 			
 			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
@@ -220,7 +221,9 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
 	/* Registry the thread which will be execute alone. down semaphore. */
-	HOOKOMP_registry_the_first_thread();
+	if(!thread_was_registred_to_execute_alone){
+		HOOKOMP_registry_the_first_thread();	
+	}
 
 	/* Is not getting measures execute directly. */
 	if(!is_executing_measures_section){
