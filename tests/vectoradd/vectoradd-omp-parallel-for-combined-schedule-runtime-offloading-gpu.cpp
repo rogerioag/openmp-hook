@@ -292,7 +292,7 @@ int main() {
 
   init_array();
 
-  int number_of_threads = 1;
+  int number_of_threads = 4;
 
   current_loop_index = 0;
   q_data_transfer_write = 2 * N * sizeof(double);
