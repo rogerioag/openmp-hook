@@ -87,6 +87,8 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 void HOOKOMP_registry_the_first_thread(void){
 	PRINT_FUNC_NAME;
 
+	number_of_threads_in_team = 24;
+
 	long int thread_id = (long int) pthread_self();
 
 	sem_wait(&mutex_registry_thread_in_func_next);
