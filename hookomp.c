@@ -98,7 +98,7 @@ void HOOKOMP_registry_the_first_thread(void){
 
 	sem_post(&mutex_registry_thread_in_func_next);
 	
-	if(registred_thread_executing_function_next == (long int) pthread_self()){
+	if((registred_thread_executing_function_next == (long int) pthread_self()) && (number_of_threads_in_team > 1)){
 		TRACE("[HOOKOMP]: Thread [%lu] was registred and now is waiting for the block of other threads.\n", (long int) registred_thread_executing_function_next);
 		
 		sem_wait(&sem_block_registred_thread);
