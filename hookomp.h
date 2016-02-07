@@ -46,6 +46,10 @@
 
 /* Semaphore to registry the thread which can execute the function to get next block of iterations. */
 sem_t mutex_registry_thread_in_func_next;
+
+/* Semaphore to block the first thread to wait others threads. */
+sem_t sem_block_registred_thread;
+
 /* Semaphore to block other team threads.*/
 sem_t sem_blocks_other_team_threads;
 
