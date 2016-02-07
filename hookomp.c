@@ -88,6 +88,8 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 void HOOKOMP_registry_the_first_thread(void){
 	PRINT_FUNC_NAME;
 
+	number_of_threads_in_team = num_threads_defined;
+
 	long int thread_id = (long int) pthread_self();
 
 	/* Thread registry. */
