@@ -85,12 +85,17 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 void HOOKOMP_registry_the_first_thread(void){
 	PRINT_FUNC_NAME;
 
-	sem_wait(&mutex_registry_thread_in_func_next);
-
 	long int thread_id = (long int) pthread_self();
 
+	sem_wait(&mutex_registry_thread_in_func_next);
+	
 	if(registred_thread_executing_function_next == -1){
 		registred_thread_executing_function_next = thread_id;
+	}
+
+	sem_post(&mutex_registry_thread_in_func_next);
+	
+	if(registred_thread_executing_function_next == (long int) pthread_self()){
 		TRACE("[HOOKOMP]: Thread [%lu] was registred and now is waiting for the block of other threads.\n", (long int) registred_thread_executing_function_next);
 		
 		sem_wait(&sem_block_registred_thread);
@@ -103,14 +108,16 @@ void HOOKOMP_registry_the_first_thread(void){
 			number_of_blocked_threads++;
 			TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
 			TRACE("[HOOKOMP]: Before Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
-			sem_post(&sem_block_registred_thread);
-			TRACE("[HOOKOMP]: After Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
+
+			/* The last thread Wake up the registred thread. */
+			if(number_of_blocked_threads == omp_get_num_threads() - 1) {
+				sem_post(&sem_block_registred_thread);
+				TRACE("[HOOKOMP]: After Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);	
+			}
+			
 			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
 			sem_wait(&sem_blocks_other_team_threads);
-		}
-
-	/* up semaphore. */
-	sem_post(&mutex_registry_thread_in_func_next);
+	}	
 }
 
 /* ------------------------------------------------------------- */
