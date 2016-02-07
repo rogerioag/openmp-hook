@@ -54,6 +54,8 @@ extern Func ***TablePointerFunctions;
 /* current loop index. */
 extern long int current_loop_index;
 
+extern long int num_threads_defined;
+
 /* Amount of bytes that will be moved to device, if offloading. */
   /* Write: sent to device. Inputs to kernel. */
 extern long long q_data_transfer_write;
@@ -297,6 +299,7 @@ int main() {
 
   #pragma omp parallel num_threads(number_of_threads)
   { 
+    num_threads_defined = number_of_threads;
     current_loop_index = 0;
     q_data_transfer_write = 2 * N * sizeof(double);
     q_data_transfer_read = N * sizeof(double);
