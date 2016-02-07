@@ -276,8 +276,7 @@ void prepare_alternatives_functions(){
     // Set up the library Functions table.
     assert(table != NULL);
 
-    fprintf(stderr, "Declaring function in 0,0.\n");
-    table[0][0][0] = NULL;
+    fprintf(stderr, "Declaring function in 0,1.\n");
     table[0][1][0] = *ff;
 
     TablePointerFunctions = table;
