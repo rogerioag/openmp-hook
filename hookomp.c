@@ -87,17 +87,14 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 void HOOKOMP_registry_the_first_thread(void){
 	PRINT_FUNC_NAME;
 
-	number_of_threads_in_team = 24;
-
 	long int thread_id = (long int) pthread_self();
 
+	/* Thread registry. */
 	sem_wait(&mutex_registry_thread_in_func_next);
-	
 	if(registred_thread_executing_function_next == -1){
 		registred_thread_executing_function_next = thread_id;
 		TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
 	}
-
 	sem_post(&mutex_registry_thread_in_func_next);
 	
 	if((registred_thread_executing_function_next == (long int) pthread_self()) && (number_of_threads_in_team > 1)){
