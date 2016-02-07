@@ -111,7 +111,7 @@ void HOOKOMP_registry_the_first_thread(void){
 			TRACE("[HOOKOMP]: Before Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
 
 			/* The last thread Wake up the registred thread. */
-			if(number_of_blocked_threads == omp_get_num_threads() - 1) {
+			if(number_of_blocked_threads == number_of_threads_in_team - 1) {
 				sem_post(&sem_block_registred_thread);
 				TRACE("[HOOKOMP]: After Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);	
 			}
