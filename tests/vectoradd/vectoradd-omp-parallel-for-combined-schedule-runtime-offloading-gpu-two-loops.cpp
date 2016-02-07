@@ -278,6 +278,7 @@ void prepare_alternatives_functions(){
 
     fprintf(stderr, "Declaring function in 0,1.\n");
     table[0][1][0] = *ff;
+    table[1][1][0] = *ff;
 
     TablePointerFunctions = table;
     assert(TablePointerFunctions != NULL);
@@ -294,12 +295,23 @@ int main() {
 
   int number_of_threads = 4;
 
-  current_loop_index = 0;
-  q_data_transfer_write = 2 * N * sizeof(double);
-  q_data_transfer_read = N * sizeof(double);
-  #pragma omp parallel for num_threads (number_of_threads) schedule (runtime)
-  for (i = 0; i < N; i++) {
-     h_c[i] = h_a[i] + h_b[i];
+  #pragma omp parallel num_threads(number_of_threads)
+  { 
+    current_loop_index = 0;
+    q_data_transfer_write = 2 * N * sizeof(double);
+    q_data_transfer_read = N * sizeof(double);
+    #pragma omp for schedule (runtime)
+    for (i = 0; i < N; i++) {
+      h_c[i] = h_a[i] + h_b[i];
+    }
+
+    current_loop_index = 1;
+    q_data_transfer_write = 2 * N * sizeof(double);
+    q_data_transfer_read = N * sizeof(double);
+    #pragma omp for schedule (runtime)
+    for (i = 0; i < N; i++) {
+      h_c[i] = h_a[i] + h_b[i];
+    }
   }
 
   // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
@@ -309,4 +321,5 @@ int main() {
   check_result();
 
   return 0;
+  
 }
