@@ -227,8 +227,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	bool result = false;
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
-	number_of_threads_in_team = omp_get_num_threads();
-	TRACE("[HOOKOMP]: Number of treads in team **: %d.\n", number_of_threads_in_team);
+	TRACE("[HOOKOMP]: Number of treads in team **: %d, omp_get_num_threads: %d.\n", number_of_threads_in_team, omp_get_num_threads());
 
 	/* Registry the thread which will be execute alone. down semaphore. */
 	if(!thread_was_registred_to_execute_alone){
