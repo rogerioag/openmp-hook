@@ -990,7 +990,7 @@ void GOMP_loop_end (void){
 
 	lib_GOMP_loop_end();
 
-
+	TRACE("***End of loop: %d\n", current_loop_index);
 }
 /* ------------------------------------------------------------- */
 void GOMP_loop_end_nowait (void){

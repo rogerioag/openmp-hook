@@ -308,6 +308,7 @@ int main() {
       h_c[i] = h_a[i] + h_b[i];
     }
 
+    num_threads_defined = number_of_threads;
     current_loop_index = 1;
     q_data_transfer_write = 2 * N * sizeof(double);
     q_data_transfer_read = N * sizeof(double);
