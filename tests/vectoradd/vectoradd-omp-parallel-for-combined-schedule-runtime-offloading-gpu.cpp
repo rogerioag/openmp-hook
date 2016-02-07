@@ -79,6 +79,7 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
       if (table[i] != NULL) {
         for (j = 0; j < ncolumns; j++) {
           table[i][j] = (Func *) malloc(sizeof(Func));
+          (table[i][j])-> f = NULL;
         }
       } else {
         fprintf(stderr,
@@ -276,6 +277,7 @@ void prepare_alternatives_functions(){
     assert(table != NULL);
 
     fprintf(stderr, "Declaring function in 0,0.\n");
+    table[0][0][0] = NULL;
     table[0][1][0] = *ff;
 
     TablePointerFunctions = table;
