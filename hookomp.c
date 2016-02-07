@@ -22,6 +22,8 @@ void release_all_team_threads(void){
 void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 	PRINT_FUNC_NAME;
 
+	TRACE("Number of threads: %d.\n", num_threads);
+
 	sem_wait(&mutex_hookomp_init);
 
 	if(!is_hookomp_initialized){
@@ -38,6 +40,8 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		 * 3 threads up -> -2 ... 1 (thread execute).
 		*/
 		sem_init(&sem_block_registred_thread, 0, (1 - (num_threads - 1)));
+
+		TRACE("sem_block_registred_thread: %d.\n", sem_block_registred_thread);
 
 		/* Initialization of block to other team threads. 1 thread will be executing. 
 		The initialization with 0 is proposital to block other threads.
