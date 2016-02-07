@@ -110,6 +110,11 @@ void HOOKOMP_registry_the_first_thread(void){
 			TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
 			TRACE("[HOOKOMP]: Before Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
 
+			TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
+
+			TRACE("[HOOKOMP]: Number of threads omp_get_num_threads: %d.\n", omp_get_num_threads());
+
+
 			/* The last thread Wake up the registred thread. */
 			if(number_of_blocked_threads == number_of_threads_in_team - 1) {
 				sem_post(&sem_block_registred_thread);
