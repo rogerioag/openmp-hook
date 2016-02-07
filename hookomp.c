@@ -91,6 +91,7 @@ void HOOKOMP_registry_the_first_thread(void){
 	
 	if(registred_thread_executing_function_next == -1){
 		registred_thread_executing_function_next = thread_id;
+		TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
 	}
 
 	sem_post(&mutex_registry_thread_in_func_next);
