@@ -66,6 +66,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		/* Initialization of thread and measures section. */
 		registred_thread_executing_function_next = -1;
 		is_executing_measures_section = true;
+		thread_was_registred_to_execute_alone = false;
 		
 		/* Control of decision about offloding. */		
 		decided_by_offloading = false;
