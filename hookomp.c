@@ -151,22 +151,27 @@ void HOOKOMP_registry_the_first_thread(void){
 	TRACE("[HOOKOMP]: Thread [%lu] is trying to register.\n", (long int) thread_id);
 
 	if(number_of_blocked_threads < number_of_threads_in_team - 1) {
+		sem_wait(&mutex_registry_thread_in_func_next);
+
 		number_of_blocked_threads++;
+
+		sem_post(&mutex_registry_thread_in_func_next);
+
 		TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
 		TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
 		TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
+
 		sem_wait(&sem_blocks_other_team_threads);
 		TRACE("[HOOKOMP]: Thread [%lu] is waking up of block.\n", thread_id);
 	}
 	else { // The last thread will registry and execute.
-		sem_wait(&mutex_registry_thread_in_func_next);
 		if(registred_thread_executing_function_next == -1){
 			registred_thread_executing_function_next = thread_id;
 			TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
 			/* The registry was made. */
 			thread_was_registred_to_execute_alone = true;
 		}
-		sem_post(&mutex_registry_thread_in_func_next);
+		
 	}
 
 }
