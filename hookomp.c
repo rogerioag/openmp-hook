@@ -85,6 +85,61 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 
 /* ------------------------------------------------------------- */
 /* Registry the first thread that entry in function next. */
+// void HOOKOMP_registry_the_first_thread(void){
+// 	PRINT_FUNC_NAME;
+
+// 	/* Set the number of threads requested in application code. */
+// 	number_of_threads_in_team = num_threads_defined;
+
+// 	long int thread_id = (long int) pthread_self();
+
+// 	TRACE("[HOOKOMP]: Thread [%lu] is trying to register.\n", (long int) thread_id);
+
+// 	/* Thread registry. */
+// 	sem_wait(&mutex_registry_thread_in_func_next);
+// 	if(registred_thread_executing_function_next == -1){
+// 		registred_thread_executing_function_next = thread_id;
+// 		TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
+// 		/* The registry was made. */
+// 	}
+// 	sem_post(&mutex_registry_thread_in_func_next);
+	
+// 	/* Single thread execution, don't wait. */
+// 	if (number_of_threads_in_team > 1){
+// 		if(registred_thread_executing_function_next == (long int) pthread_self()){
+// 			TRACE("[HOOKOMP]: Thread [%lu] was registred and now is waiting for the block of other threads.\n", (long int) registred_thread_executing_function_next);
+		
+// 			sem_wait(&sem_block_registred_thread);
+
+// 			thread_was_registred_to_execute_alone = true;
+
+// 			TRACE("[HOOKOMP]: Thread [%lu] is entering in controled execution.\n", (long int) registred_thread_executing_function_next);
+// 		}
+// 		else {  /* Block other threads. */
+// 			/* If it is executing in a section to measurements, the threads will be blocked. */		
+// 			/* Other team threads will be blocked. */
+// 			number_of_blocked_threads++;
+// 			TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
+// 			TRACE("[HOOKOMP]: Before Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
+
+// 			TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
+
+// 			TRACE("[HOOKOMP]: Number of threads omp_get_num_threads: %d.\n", omp_get_num_threads());
+
+// 			/* The last thread Wake up the registred thread. */
+// 			if(number_of_blocked_threads == number_of_threads_in_team - 1) {
+// 				sem_post(&sem_block_registred_thread);
+// 				TRACE("[HOOKOMP]: After Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
+// 			}
+			
+// 			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
+// 			sem_wait(&sem_blocks_other_team_threads);
+// 		}
+// 	}
+// 	else {
+// 		thread_was_registred_to_execute_alone = true;
+// 	}	
+// }
 void HOOKOMP_registry_the_first_thread(void){
 	PRINT_FUNC_NAME;
 
@@ -95,52 +150,26 @@ void HOOKOMP_registry_the_first_thread(void){
 
 	TRACE("[HOOKOMP]: Thread [%lu] is trying to register.\n", (long int) thread_id);
 
-	/* Thread registry. */
-	sem_wait(&mutex_registry_thread_in_func_next);
-	if(registred_thread_executing_function_next == -1){
-		registred_thread_executing_function_next = thread_id;
-		TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
-		/* The registry was made. */
+	if(number_of_blocked_threads < number_of_threads_in_team - 1) {
+		number_of_blocked_threads++;
+		TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
+		TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
+		TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
+		sem_wait(&sem_blocks_other_team_threads);
+		TRACE("[HOOKOMP]: Thread [%lu] is waking up of block.\n", thread_id);
 	}
-	sem_post(&mutex_registry_thread_in_func_next);
-	
-	/* Single thread execution, don't wait. */
-	if (number_of_threads_in_team > 1){
-		if(registred_thread_executing_function_next == (long int) pthread_self()){
-			TRACE("[HOOKOMP]: Thread [%lu] was registred and now is waiting for the block of other threads.\n", (long int) registred_thread_executing_function_next);
-		
-			sem_wait(&sem_block_registred_thread);
-
+	else { // The last thread will registry and execute.
+		sem_wait(&mutex_registry_thread_in_func_next);
+		if(registred_thread_executing_function_next == -1){
+			registred_thread_executing_function_next = thread_id;
+			TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
+			/* The registry was made. */
 			thread_was_registred_to_execute_alone = true;
-
-			TRACE("[HOOKOMP]: Thread [%lu] is entering in controled execution.\n", (long int) registred_thread_executing_function_next);
 		}
-		else {  /* Block other threads. */
-			/* If it is executing in a section to measurements, the threads will be blocked. */		
-			/* Other team threads will be blocked. */
-			number_of_blocked_threads++;
-			TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
-			TRACE("[HOOKOMP]: Before Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
-
-			TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
-
-			TRACE("[HOOKOMP]: Number of threads omp_get_num_threads: %d.\n", omp_get_num_threads());
-
-			/* The last thread Wake up the registred thread. */
-			if(number_of_blocked_threads == number_of_threads_in_team - 1) {
-				sem_post(&sem_block_registred_thread);
-				TRACE("[HOOKOMP]: After Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
-			}
-			
-			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
-			sem_wait(&sem_blocks_other_team_threads);
-		}
+		sem_post(&mutex_registry_thread_in_func_next);
 	}
-	else {
-		thread_was_registred_to_execute_alone = true;
-	}	
-}
 
+}
 /* ------------------------------------------------------------- */
 /* Proxy function to *_start */
 bool HOOKOMP_proxy_function_start_next (long* istart, long* iend, void* extra) {
