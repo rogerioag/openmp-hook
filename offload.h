@@ -35,6 +35,9 @@ Func ***TablePointerFunctions;
 /* current loop index. */
 long int current_loop_index;
 
+/* Number of threads requested to create in app. omp_num_threads is no precise. */
+extern long int num_threads_defined;
+
 /* Amount of bytes that will be moved to device, if offloading. */
   /* Write: sent to device. Inputs to kernel. */
 long long q_data_transfer_write;
