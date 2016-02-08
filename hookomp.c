@@ -152,7 +152,7 @@ void HOOKOMP_registry_the_first_thread(void){
 
 	TRACE("[HOOKOMP]: Thread [%lu] is trying to register.\n", (long int) thread_id);
 
-	if(number_of_blocked_threads < number_of_threads_in_team) {
+	if(number_of_blocked_threads < (number_of_threads_in_team - 1)) {
 		sem_wait(&mutex_registry_thread_in_func_next);
 
 		number_of_blocked_threads++;
