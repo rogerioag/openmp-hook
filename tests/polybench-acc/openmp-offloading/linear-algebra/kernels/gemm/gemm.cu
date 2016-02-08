@@ -152,17 +152,19 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
           DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
 
   int i, j, k;
-  current_loop_index = 0;
-  // Copy to device A, B, C.
-  q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NK) + (sizeof(DATA_TYPE) * NK * NJ) + (sizeof(DATA_TYPE) * NI * NJ);
-  // Copy back C.
-  q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NJ);
+
   #pragma scop
   // #pragma omp parallel
   #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
   {
     /* C := alpha*A*B + beta*C */
     // #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE)
+  	current_loop_index = 0;
+  	num_threads_defined = OPENMP_NUM_THREADS;
+  	// Copy to device A, B, C.
+  	q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NK) + (sizeof(DATA_TYPE) * NK * NJ) + (sizeof(DATA_TYPE) * NI * NJ);
+  	// Copy back C.
+  	q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NJ);
     #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NJ; j++) {
