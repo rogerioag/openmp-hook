@@ -54,6 +54,8 @@ extern Func ***TablePointerFunctions;
 /* current loop index. */
 extern long int current_loop_index;
 
+extern long int num_threads_defined;
+
 /* Amount of bytes that will be moved to device, if offloading. */
   /* Write: sent to device. Inputs to kernel. */
 extern long long q_data_transfer_write;
