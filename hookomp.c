@@ -41,7 +41,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		*/
 		// sem_init(&sem_block_registred_thread, 0, (1 - (num_threads - 1)));
 
-		 sem_init(&sem_block_registred_thread, 0, 0);
+		sem_init(&sem_block_registred_thread, 0, 0);
 
 		TRACE("sem_block_registred_thread: %d.\n", sem_block_registred_thread);
 
@@ -88,6 +88,7 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 void HOOKOMP_registry_the_first_thread(void){
 	PRINT_FUNC_NAME;
 
+	/* Set the number of threads requested in application code. */
 	number_of_threads_in_team = num_threads_defined;
 
 	long int thread_id = (long int) pthread_self();
@@ -100,7 +101,6 @@ void HOOKOMP_registry_the_first_thread(void){
 		registred_thread_executing_function_next = thread_id;
 		TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
 		/* The registry was made. */
-		thread_was_registred_to_execute_alone = true;
 	}
 	sem_post(&mutex_registry_thread_in_func_next);
 	
@@ -110,6 +110,8 @@ void HOOKOMP_registry_the_first_thread(void){
 			TRACE("[HOOKOMP]: Thread [%lu] was registred and now is waiting for the block of other threads.\n", (long int) registred_thread_executing_function_next);
 		
 			sem_wait(&sem_block_registred_thread);
+
+			thread_was_registred_to_execute_alone = true;
 
 			TRACE("[HOOKOMP]: Thread [%lu] is entering in controled execution.\n", (long int) registred_thread_executing_function_next);
 		}
@@ -133,6 +135,9 @@ void HOOKOMP_registry_the_first_thread(void){
 			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
 			sem_wait(&sem_blocks_other_team_threads);
 		}
+	}
+	else {
+		thread_was_registred_to_execute_alone = true;
 	}	
 }
 
@@ -869,11 +874,10 @@ void GOMP_parallel_loop_dynamic_start (void (*fn) (void *), void *data,
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_dynamic_start, "GOMP_parallel_loop_dynamic_start");
 
-	TRACE("[LIBGOMP] GOMP_parallel_loop_dynamic_start@GOMP_X.X.[%p]\n", (void* )fn);
+	// TRACE("[LIBGOMP] GOMP_parallel_loop_dynamic_start@GOMP_X.X.[%p]\n", (void* )fn);
 	
-	TRACE("[LIBGOMP] lib_GOMP_parallel_loop_dynamic_start[%p]\n", (void* )lib_GOMP_parallel_loop_dynamic_start);
+	// TRACE("[LIBGOMP] lib_GOMP_parallel_loop_dynamic_start[%p]\n", (void* )lib_GOMP_parallel_loop_dynamic_start);
 
-	// sem_init(&mutex_hookomp_init, 0, 1);
 	HOOKOMP_parallel_start();
 
 	// Initializations.
@@ -891,11 +895,10 @@ void GOMP_parallel_loop_guided_start (void (*fn) (void *), void *data,
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_guided_start, "GOMP_parallel_loop_guided_start");
 
-	TRACE("[LIBGOMP] GOMP_parallel_loop_guided_start@GOMP_X.X.[%p]\n", (void* )fn);
+	// TRACE("[LIBGOMP] GOMP_parallel_loop_guided_start@GOMP_X.X.[%p]\n", (void* )fn);
 	
-	TRACE("[LIBGOMP] lib_GOMP_parallel_loop_guided_start[%p]\n", (void* )lib_GOMP_parallel_loop_guided_start);
+	// TRACE("[LIBGOMP] lib_GOMP_parallel_loop_guided_start[%p]\n", (void* )lib_GOMP_parallel_loop_guided_start);
 
-	// sem_init(&mutex_hookomp_init, 0, 1);
 	HOOKOMP_parallel_start();
 
 	// Initializations.
@@ -913,11 +916,10 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	// Retrieve the OpenMP runtime function.
 	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_runtime_start, "GOMP_parallel_loop_runtime_start");
 
-	TRACE("[LIBGOMP] GOMP_parallel_loop_runtime_start@GOMP_X.X.[%p]\n", (void* )fn);
+	// TRACE("[LIBGOMP] GOMP_parallel_loop_runtime_start@GOMP_X.X.[%p]\n", (void* )fn);
 	
-	TRACE("[LIBGOMP] lib_GOMP_parallel_loop_runtime_start[%p]\n", (void* )lib_GOMP_parallel_loop_runtime_start);
+	// TRACE("[LIBGOMP] lib_GOMP_parallel_loop_runtime_start[%p]\n", (void* )lib_GOMP_parallel_loop_runtime_start);
 
-	// sem_init(&mutex_hookomp_init, 0, 1);
 	HOOKOMP_parallel_start();
 
 	// Initializations.
@@ -1289,10 +1291,9 @@ void GOMP_parallel_start (void (*fn) (void *), void *data, unsigned num_threads)
 	
 	TRACE("[LIBGOMP] lib_GOMP_parallel_start[%p]\n", (void* ) lib_GOMP_parallel_start);
 
-	lib_GOMP_parallel_start(fn, data, num_threads);
-
-	// sem_init(&mutex_hookomp_init, 0, 1);
 	HOOKOMP_parallel_start();
+
+	lib_GOMP_parallel_start(fn, data, num_threads);
 }
 
 /* ------------------------------------------------------------- */
