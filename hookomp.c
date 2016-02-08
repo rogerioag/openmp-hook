@@ -273,8 +273,6 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	bool result = false;
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
-	TRACE("[HOOKOMP]: Number of treads in team **: %d, omp_get_num_threads: %d.\n", number_of_threads_in_team, omp_get_num_threads());
-
 	/* Registry the thread which will be execute alone. down semaphore. */
 	if(!thread_was_registred_to_execute_alone){
 		HOOKOMP_registry_the_first_thread();	
@@ -282,10 +280,19 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 	/* Is not getting measures execute directly. */
 	if(!is_executing_measures_section){
+		TRACE("Verifying if was decided by offloading.\n");
 		TRACE("[HOOKOMP]: [OUTSIDE] Calling next function out of measures section.\n");
-		TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-		result = fn_proxy(istart, iend, extra);
-		TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+		
+		/* if decided by offloading, no more work to do, so return false. */
+		if(!made_the_offloading){
+			TRACE("[HOOKOMP]: [WAKE UP] Calling next function out of measures section after wake up.\n");
+			TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+			result = fn_proxy(istart, iend, extra);
+			TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+		}
+		else{ /* Indicates have no more work to do. */
+			result = false;
+		}
 	}
 	else{
 		/* Verify if the thread is the thread registred to execute and get measures. */
@@ -333,26 +340,14 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 						TRACE("Trying to launch apropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
 
-						made_the_offloading = HOOKOMP_call_offloading_function(current_loop_index, better_device);
-
-						TRACE("After to try launching of apropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
-
-						if (!made_the_offloading){
+						if((made_the_offloading = HOOKOMP_call_offloading_function(current_loop_index, better_device)) == 0){
 							TRACE("The function offloading was not done.\n");
 						}
 						else{
-							TRACE("The offloading was done.\n");
+							TRACE("The offloading was done launching of apropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
 						}
 					}
 					TRACE("After decision about offloading.\n");
-				}
-
-				/* Continue execution. */
-				if(!(decided_by_offloading && made_the_offloading)){
-					TRACE("[HOOKOMP]: [CONTINUE] Calling next function after offloading decision about.\n");
-					TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-					result = fn_proxy(istart, iend, extra);
-					TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 				}
 
 				/* Release all blocked team threads. */
@@ -367,25 +362,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				is_executing_measures_section = false;
 			}
 		}
-		else{ /* Block other threads. */
-			/* If it is executing in a section to measurements, the threads will be blocked. */		
-			/* Other team threads will be blocked. */
-			// TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
-			// number_of_blocked_threads++;
-			// sem_wait(&sem_blocks_other_team_threads);	
-		
-			TRACE("Verifying if was decided by offloading.\n");
-		
-			/* if decided by offloading, no more work to do, so return false. */
-			if(!made_the_offloading){
-				TRACE("[HOOKOMP]: [WAKE UP] Calling next function out of measures section after wake up.\n");
-				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-				result = fn_proxy(istart, iend, extra);
-				TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-			}
-			else{ /* Indicates have no more work to do. */
-				result = false;
-			}
+		else{ 
+			TRACE("Error: Some thread was not blocked. Execution not permited.\n");		
 		}
 	}
 
