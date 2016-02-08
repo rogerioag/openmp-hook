@@ -297,6 +297,7 @@ int main() {
   current_loop_index = 0;
   q_data_transfer_write = 2 * N * sizeof(double);
   q_data_transfer_read = N * sizeof(double);
+  num_threads_defined = number_of_threads;
   #pragma omp parallel for num_threads (number_of_threads) schedule (runtime)
   for (i = 0; i < N; i++) {
      h_c[i] = h_a[i] + h_b[i];
