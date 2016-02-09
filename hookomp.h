@@ -56,6 +56,15 @@ sem_t sem_blocks_other_team_threads;
 /* Control access to HOOKOMP_initialization. */
 sem_t mutex_hookomp_init;
 
+/* Control access to loop initialization. */
+semt_t mutex_hookomp_loop_init
+
+/* Control loop end. */
+sem_t mutex_loop_end;
+
+/* Control the threads in final of loop. For parallel regions with 2 or more loops. */
+sem_t sem_blocks_threads_in_loop_end;
+
 /* Tipo para o ponteiro de função. */
 // typedef void (*op_func) (void);
 
@@ -347,6 +356,8 @@ static long int percentual_of_code = PERC_OF_CODE_TO_EXECUTE;
 static long int number_of_threads_in_team = 0;
 static long int number_of_blocked_threads = 0;
 
+static long int number_of_blocked_threads_in_loop_end = 0;
+
 static bool is_executing_measures_section = true;
 
 // static bool started_measuring = false;
@@ -356,6 +367,8 @@ static bool decided_by_offloading = false;
 static bool made_the_offloading = false;
 
 static bool is_hookomp_initialized = false;
+
+static bool is_loop_initialized = false;
 
 // extern struct gomp_team gomp_team;
 // extern struct gomp_work_share gomp_work_share;
