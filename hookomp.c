@@ -1352,6 +1352,8 @@ void GOMP_parallel_start (void (*fn) (void *), void *data, unsigned num_threads)
 
 	HOOKOMP_parallel_start();
 
+	HOOKOMP_init();
+
 	lib_GOMP_parallel_start(fn, data, num_threads);
 }
 
