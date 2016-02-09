@@ -81,9 +81,6 @@ bool RM_measure_session_init(void){
 	ptr_measure->initial_time = (struct timeval){0};
 	ptr_measure->final_time = (struct timeval){0};
 
-	ptr_measure->EventSets[COMP_CORE] = PAPI_NULL;
-	ptr_measure->EventSets[COMP_UNCORE] = PAPI_NULL;
-
 	/* Aditional parameters. */
 	ptr_measure->total_of_iterations = 0;
   	ptr_measure->executed_loop_iterations = 0;
@@ -598,10 +595,10 @@ bool RM_start_counters (void){
 				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 			}
 
-			TRACE("DEBUG: ptr_measure->current_eventset: %d", ptr_measure->current_eventset);
-			TRACE("DEBUG: kind_of_event_set[ptr_measure->current_eventset]: %d", kind_of_event_set[ptr_measure->current_eventset]);
+			TRACE("DEBUG: ptr_measure->current_eventset: %d\n", ptr_measure->current_eventset);
+			TRACE("DEBUG: kind_of_event_set[ptr_measure->current_eventset]: %d\n", kind_of_event_set[ptr_measure->current_eventset]);
 
-			TRACE("DEBUG: ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]]: %d", ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]]);
+			TRACE("DEBUG: ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]]: %d\n", ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]]);
 			
 
 			TRACE("Adding[%X].\n", EventCode);
