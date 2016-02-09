@@ -57,7 +57,7 @@ sem_t sem_blocks_other_team_threads;
 sem_t mutex_hookomp_init;
 
 /* Control access to loop initialization. */
-semt_t mutex_hookomp_loop_init
+sem_t mutex_hookomp_loop_init;
 
 /* Control loop end. */
 sem_t mutex_loop_end;
