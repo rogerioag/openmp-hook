@@ -656,47 +656,47 @@ std::basic_ifstream<_CharT, _Traits>::~basic_ifstream() [with _CharT = char; _Tr
 
 std::basic_istream<_CharT, _Traits>::~basic_istream() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_istream * const this)
 {
-  int D.30235;
-  struct basic_ios * D.30233;
-  int D.30230;
-  int (*__vtbl_ptr_type) () * iftmp.94;
-  struct basic_ios * D.30225;
-  long int D.30223;
+  int D.30236;
+  struct basic_ios * D.30234;
+  int D.30231;
+  int (*__vtbl_ptr_type) () * iftmp.95;
+  struct basic_ios * D.30226;
+  long int D.30224;
+  int (*__vtbl_ptr_type) () * D.30223;
   int (*__vtbl_ptr_type) () * D.30222;
-  int (*__vtbl_ptr_type) () * D.30221;
-  sizetype iftmp.93;
-  const void * * D.30216;
-  int (*__vtbl_ptr_type) () * iftmp.92;
+  sizetype iftmp.94;
+  const void * * D.30217;
+  int (*__vtbl_ptr_type) () * iftmp.93;
 
   <bb 2>:
 
   <bb 3>:
-  iftmp.92 = &MEM[(void *)&_ZTVSi + 24B];
-  this->_vptr.basic_istream = iftmp.92;
+  iftmp.93 = &MEM[(void *)&_ZTVSi + 24B];
+  this->_vptr.basic_istream = iftmp.93;
 
   <bb 4>:
-  iftmp.93 = 16;
+  iftmp.94 = 16;
 
   <bb 5>:
-  D.30225 = this + iftmp.93;
+  D.30226 = this + iftmp.94;
 
   <bb 6>:
-  iftmp.94 = &MEM[(void *)&_ZTVSi + 64B];
-  D.30225->D.19077._vptr.ios_base = iftmp.94;
+  iftmp.95 = &MEM[(void *)&_ZTVSi + 64B];
+  D.30226->D.19077._vptr.ios_base = iftmp.95;
   this->_M_gcount = 0;
-  D.30230 = 2;
-  if (D.30230 != 0)
+  D.30231 = 2;
+  if (D.30231 != 0)
     goto <bb 7>;
   else
     goto <bb 8> (<L12>);
 
   <bb 7>:
-  D.30233 = &this->D.20585;
-  std::basic_ios<char>::~basic_ios (D.30233);
+  D.30234 = &this->D.20585;
+  std::basic_ios<char>::~basic_ios (D.30234);
 
 <L12>:
-  D.30235 = 0;
-  if (D.30235 != 0)
+  D.30236 = 0;
+  if (D.30236 != 0)
     goto <bb 9>;
   else
     goto <bb 10>;
@@ -1836,12 +1836,13 @@ void checkCudaErrors(CUresult) (CUresult err)
 
 void prepare_alternatives_functions() ()
 {
-  bool D.30177;
+  bool D.30178;
   static const char __PRETTY_FUNCTION__[38] = "void prepare_alternatives_functions()";
   int ndevices;
   int nloops;
   struct Func * ff;
   int n_params;
+  struct _IO_FILE * stdout.84;
   struct Func * * * TablePointerFunctions.83;
   struct Func * * * table.82;
   struct Func * D.30171;
@@ -1905,8 +1906,8 @@ void prepare_alternatives_functions() ()
   *D.30155 = 0B;
   nloops = 2;
   ndevices = 2;
-  D.30177 = create_target_functions_table (&table, nloops, ndevices);
-  retval.77 = D.30177;
+  D.30178 = create_target_functions_table (&table, nloops, ndevices);
+  retval.77 = D.30178;
   if (retval.77 != 0)
     goto <bb 3>;
   else
@@ -1948,6 +1949,8 @@ void prepare_alternatives_functions() ()
   __assert_fail ("TablePointerFunctions != __null", "vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu-two-loops.cpp", 286, &__PRETTY_FUNCTION__);
 
   <bb 7>:
+  stdout.84 = stdout;
+  __builtin_fwrite ("End of prepare_alternatives_functions.\n", 1, 39, stdout.84);
   return;
 
 }
@@ -1972,45 +1975,45 @@ Merging blocks 2 and 17
 Merging blocks 2 and 10
 int main() ()
 {
-  unsigned int number_of_threads.103;
-  bool D.30310;
-  long int .iend0.102;
-  int D.30309;
-  long int .istart0.101;
-  bool D.30306;
-  long int .iend0.100;
-  long int .istart0.99;
-  bool D.30303;
-  long int .iend0.98;
-  int D.30302;
-  long int .istart0.97;
-  bool D.30299;
-  long int .iend0.96;
-  long int .istart0.95;
+  unsigned int number_of_threads.104;
+  bool D.30311;
+  long int .iend0.103;
+  int D.30310;
+  long int .istart0.102;
+  bool D.30307;
+  long int .iend0.101;
+  long int .istart0.100;
+  bool D.30304;
+  long int .iend0.99;
+  int D.30303;
+  long int .istart0.98;
+  bool D.30300;
+  long int .iend0.97;
+  long int .istart0.96;
   int i;
   int i;
   int number_of_threads;
   int i;
-  int D.30194;
-  struct .omp_data_s.90 .omp_data_o.91;
+  int D.30195;
+  struct .omp_data_s.91 .omp_data_o.92;
+  int D.30205;
   int D.30204;
-  int D.30203;
 
   <bb 2>:
   prepare_alternatives_functions ();
   init_array ();
   number_of_threads = 4;
-  .omp_data_o.91.number_of_threads = number_of_threads;
-  number_of_threads.103 = (unsigned int) number_of_threads;
-  __builtin_GOMP_parallel_start (main._omp_fn.0, &.omp_data_o.91, number_of_threads.103);
-  main._omp_fn.0 (&.omp_data_o.91);
+  .omp_data_o.92.number_of_threads = number_of_threads;
+  number_of_threads.104 = (unsigned int) number_of_threads;
+  __builtin_GOMP_parallel_start (main._omp_fn.0, &.omp_data_o.92, number_of_threads.104);
+  main._omp_fn.0 (&.omp_data_o.92);
   __builtin_GOMP_parallel_end ();
-  number_of_threads = .omp_data_o.91.number_of_threads;
+  number_of_threads = .omp_data_o.92.number_of_threads;
   check_result ();
-  D.30194 = 0;
+  D.30195 = 0;
 
 <L0>:
-  return D.30194;
+  return D.30195;
 
 }
 
@@ -3257,85 +3260,85 @@ void __static_initialization_and_destruction_0(int, int) (int __initialize_p, in
 
 
 
-;; Function <built-in> (main._omp_fn.0, funcdef_no=1252, decl_uid=30196, cgraph_uid=496)
+;; Function <built-in> (main._omp_fn.0, funcdef_no=1252, decl_uid=30197, cgraph_uid=496)
 
-<built-in> (struct .omp_data_s.90 * .omp_data_i)
+<built-in> (struct .omp_data_s.91 * .omp_data_i)
 {
   int number_of_threads [value-expr: .omp_data_i->number_of_threads];
-  bool D.30344;
+  bool D.30345;
+  double D.30344;
   double D.30343;
   double D.30342;
-  double D.30341;
-  int D.30340;
-  long int .iend0.98;
+  int D.30341;
+  long int .iend0.99;
   int i;
-  long int .istart0.97;
-  bool D.30336;
-  long int .iend0.96;
-  long int .istart0.95;
-  long long int q_data_transfer_read.89;
-  long unsigned int D.30332;
-  long long int q_data_transfer_write.88;
-  long unsigned int D.30330;
-  long int num_threads_defined.87;
-  int D.30328;
-  bool D.30327;
+  long int .istart0.98;
+  bool D.30337;
+  long int .iend0.97;
+  long int .istart0.96;
+  long long int q_data_transfer_read.90;
+  long unsigned int D.30333;
+  long long int q_data_transfer_write.89;
+  long unsigned int D.30331;
+  long int num_threads_defined.88;
+  int D.30329;
+  bool D.30328;
+  double D.30327;
   double D.30326;
   double D.30325;
-  double D.30324;
-  int D.30323;
-  long int .iend0.102;
+  int D.30324;
+  long int .iend0.103;
   int i;
-  long int .istart0.101;
-  bool D.30319;
-  long int .iend0.100;
-  long int .istart0.99;
-  long long int q_data_transfer_read.86;
-  long unsigned int D.30315;
-  long long int q_data_transfer_write.85;
-  long unsigned int D.30313;
-  long int num_threads_defined.84;
-  int D.30311;
+  long int .istart0.102;
+  bool D.30320;
+  long int .iend0.101;
+  long int .istart0.100;
+  long long int q_data_transfer_read.87;
+  long unsigned int D.30316;
+  long long int q_data_transfer_write.86;
+  long unsigned int D.30314;
+  long int num_threads_defined.85;
+  int D.30312;
 
   <bb 16>:
 
   <bb 3>:
-  D.30311 = .omp_data_i->number_of_threads;
-  num_threads_defined.84 = (long int) D.30311;
-  num_threads_defined = num_threads_defined.84;
+  D.30312 = .omp_data_i->number_of_threads;
+  num_threads_defined.85 = (long int) D.30312;
+  num_threads_defined = num_threads_defined.85;
   current_loop_index = 0;
-  D.30313 = 524288;
-  q_data_transfer_write.85 = (long long int) D.30313;
-  q_data_transfer_write = q_data_transfer_write.85;
-  D.30315 = 262144;
-  q_data_transfer_read.86 = (long long int) D.30315;
-  q_data_transfer_read = q_data_transfer_read.86;
-  D.30319 = __builtin_GOMP_loop_runtime_start (0, 32768, 1, &.istart0.99, &.iend0.100);
-  if (D.30319 != 0)
+  D.30314 = 524288;
+  q_data_transfer_write.86 = (long long int) D.30314;
+  q_data_transfer_write = q_data_transfer_write.86;
+  D.30316 = 262144;
+  q_data_transfer_read.87 = (long long int) D.30316;
+  q_data_transfer_read = q_data_transfer_read.87;
+  D.30320 = __builtin_GOMP_loop_runtime_start (0, 32768, 1, &.istart0.100, &.iend0.101);
+  if (D.30320 != 0)
     goto <bb 14>;
   else
     goto <bb 5>;
 
   <bb 14>:
-  .istart0.101 = .istart0.99;
-  i = (int) .istart0.101;
-  .iend0.102 = .iend0.100;
-  D.30323 = (int) .iend0.102;
+  .istart0.102 = .istart0.100;
+  i = (int) .istart0.102;
+  .iend0.103 = .iend0.101;
+  D.30324 = (int) .iend0.103;
 
   <bb 4>:
-  D.30324 = h_a[i];
-  D.30325 = h_b[i];
-  D.30326 = D.30324 + D.30325;
-  h_c[i] = D.30326;
+  D.30325 = h_a[i];
+  D.30326 = h_b[i];
+  D.30327 = D.30325 + D.30326;
+  h_c[i] = D.30327;
   i = i + 1;
-  if (i < D.30323)
+  if (i < D.30324)
     goto <bb 4>;
   else
     goto <bb 15>;
 
   <bb 15>:
-  D.30327 = __builtin_GOMP_loop_runtime_next (&.istart0.99, &.iend0.100);
-  if (D.30327 != 0)
+  D.30328 = __builtin_GOMP_loop_runtime_next (&.istart0.100, &.iend0.101);
+  if (D.30328 != 0)
     goto <bb 14>;
   else
     goto <bb 5>;
@@ -3344,42 +3347,42 @@ void __static_initialization_and_destruction_0(int, int) (int __initialize_p, in
   __builtin_GOMP_loop_end ();
 
   <bb 6>:
-  D.30328 = .omp_data_i->number_of_threads;
-  num_threads_defined.87 = (long int) D.30328;
-  num_threads_defined = num_threads_defined.87;
+  D.30329 = .omp_data_i->number_of_threads;
+  num_threads_defined.88 = (long int) D.30329;
+  num_threads_defined = num_threads_defined.88;
   current_loop_index = 1;
-  D.30330 = 524288;
-  q_data_transfer_write.88 = (long long int) D.30330;
-  q_data_transfer_write = q_data_transfer_write.88;
-  D.30332 = 262144;
-  q_data_transfer_read.89 = (long long int) D.30332;
-  q_data_transfer_read = q_data_transfer_read.89;
-  D.30336 = __builtin_GOMP_loop_runtime_start (0, 32768, 1, &.istart0.95, &.iend0.96);
-  if (D.30336 != 0)
+  D.30331 = 524288;
+  q_data_transfer_write.89 = (long long int) D.30331;
+  q_data_transfer_write = q_data_transfer_write.89;
+  D.30333 = 262144;
+  q_data_transfer_read.90 = (long long int) D.30333;
+  q_data_transfer_read = q_data_transfer_read.90;
+  D.30337 = __builtin_GOMP_loop_runtime_start (0, 32768, 1, &.istart0.96, &.iend0.97);
+  if (D.30337 != 0)
     goto <bb 12>;
   else
     goto <bb 8>;
 
   <bb 12>:
-  .istart0.97 = .istart0.95;
-  i = (int) .istart0.97;
-  .iend0.98 = .iend0.96;
-  D.30340 = (int) .iend0.98;
+  .istart0.98 = .istart0.96;
+  i = (int) .istart0.98;
+  .iend0.99 = .iend0.97;
+  D.30341 = (int) .iend0.99;
 
   <bb 7>:
-  D.30341 = h_a[i];
-  D.30342 = h_b[i];
-  D.30343 = D.30341 + D.30342;
-  h_c[i] = D.30343;
+  D.30342 = h_a[i];
+  D.30343 = h_b[i];
+  D.30344 = D.30342 + D.30343;
+  h_c[i] = D.30344;
   i = i + 1;
-  if (i < D.30340)
+  if (i < D.30341)
     goto <bb 7>;
   else
     goto <bb 13>;
 
   <bb 13>:
-  D.30344 = __builtin_GOMP_loop_runtime_next (&.istart0.95, &.iend0.96);
-  if (D.30344 != 0)
+  D.30345 = __builtin_GOMP_loop_runtime_next (&.istart0.96, &.iend0.97);
+  if (D.30345 != 0)
     goto <bb 12>;
   else
     goto <bb 8>;
