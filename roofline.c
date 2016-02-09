@@ -598,6 +598,12 @@ bool RM_start_counters (void){
 				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 			}
 
+			TRACE("DEBUG: ptr_measure->current_eventset: %d", ptr_measure->current_eventset);
+			TRACE("DEBUG: kind_of_event_set[ptr_measure->current_eventset]: %d", kind_of_event_set[ptr_measure->current_eventset]);
+
+			TRACE("DEBUG: ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]]: %d", ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]]);
+			
+
 			TRACE("Adding[%X].\n", EventCode);
 			if ((retval = PAPI_add_event(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], EventCode )) != PAPI_OK){
 				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
