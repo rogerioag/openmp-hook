@@ -23,8 +23,6 @@ void release_all_team_threads(void){
 void HOOKOMP_init(){
 	PRINT_FUNC_NAME;
 
-	TRACE("Number of threads: %d.\n", num_threads);
-
 	sem_wait(&mutex_hookomp_init);
 
 	if(!is_hookomp_initialized){
@@ -595,7 +593,7 @@ bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size,
 	TRACE("Starting with %d threads.\n", omp_get_num_threads());
 
 	// Initializations.
-	HOOKOMP_loop_start(start, end, num_threads);
+	HOOKOMP_loop_start(start, end, omp_get_num_threads());
 	
 	// bool result = lib_GOMP_loop_dynamic_start(start, end, incr, chunk_size, istart, iend);
 	chunk_next_fn func_proxy;
@@ -628,7 +626,7 @@ bool GOMP_loop_guided_start (long start, long end, long incr, long chunk_size,
 	TRACE("[LIBGOMP] GOMP_loop_guided_start@GOMP_X.X.\n");
 
 	// Initializations.
-	HOOKOMP_loop_start(start, end, num_threads);
+	HOOKOMP_loop_start(start, end, omp_get_num_threads());
 	
 	// bool result = lib_GOMP_loop_guided_start(start, end, incr, chunk_size, istart, iend);
 	chunk_next_fn func_proxy;
@@ -658,7 +656,7 @@ bool GOMP_loop_runtime_start (long start, long end, long incr,
 	TRACE("[LIBGOMP] GOMP_loop_runtime_start@GOMP_X.X.\n");
 	
 	// Initializations.
-	HOOKOMP_loop_start(start, end, num_threads);
+	HOOKOMP_loop_start(start, end, omp_get_num_threads());
 	
 	// bool result = lib_GOMP_loop_runtime_start(start, end, incr, istart, iend);
 	chunk_next_fn func_proxy;
