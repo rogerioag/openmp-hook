@@ -241,7 +241,8 @@ bool HOOKOMP_call_function_ffi(Func* ff) {
   }
   else{
   	TRACE("Calling the target function.\n");
-  	ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values);	
+  	ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values);
+  	TRACE("The target function was called.\n");	
   }  
 
   return (retval == FFI_OK);

@@ -285,6 +285,7 @@ void prepare_alternatives_functions(){
     TablePointerFunctions = table;
     assert(TablePointerFunctions != NULL);
   }
+  fprintf(stdout, "End of prepare_alternatives_functions.\n");
 }
 
 /* ------------------------------------------------------------- */
