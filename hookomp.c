@@ -435,11 +435,12 @@ void HOOKOMP_loop_end_nowait(void){
 		/* Set flag to control initialization of hook. */
 	// 	is_hookomp_initialized = false;	
 	// }
-	if(registred_thread_executing_function_next == (long int) pthread_self()){
+	/*if(registred_thread_executing_function_next == (long int) pthread_self()){
 		TRACE("[HOOKOMP]: Thread [%lu] is unregistrying for the loop index %d.\n", (long int) pthread_self(), current_loop_index);
 		thread_was_registred_to_execute_alone = false;
 		registred_thread_executing_function_next = -1;
-	}
+	}*/
+	HOOKOMP_loop_end();
 }
 
 /* ------------------------------------------------------------- */
