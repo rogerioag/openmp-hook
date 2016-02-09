@@ -83,6 +83,13 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads){
 		decided_by_offloading = false;
 		made_the_offloading = false;
 
+		if(RM_measure_session_init()){
+			TRACE("Measure session initialized.\n");
+		}
+		else{
+			TRACE("Error in Measure session initialization.\n");
+		}
+
 		is_loop_initialized = true;
 	}
 	/* up semaphore. */
@@ -466,7 +473,7 @@ void HOOKOMP_loop_end(void){
 			is_loop_initialized = false;
 		}
 
-		TRACE("[HOOKOMP]: Waking up the %d blocked threads in loop end.\n", number_of_blocked_threads);
+		TRACE("[HOOKOMP]: Waking up the %d blocked threads in loop end.\n", number_of_blocked_threads_in_loop_end);
 		for (int i = 0; i < number_of_blocked_threads_in_loop_end; ++i) {
 			sem_post(&sem_blocks_threads_in_loop_end);
 		}

@@ -23,8 +23,6 @@ bool RM_library_init(void){
 
 	memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
 
-  	ptr_measure->current_eventset = 0;
-
   	TRACE("ptr_measure->values initialization.\n");
   	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
   		TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
@@ -34,13 +32,10 @@ bool RM_library_init(void){
 		}
 	}
 
-	RM_print_counters_values();
-
+	ptr_measure->current_eventset = 0;
 	ptr_measure->initial_time = (struct timeval){0};
 	ptr_measure->final_time = (struct timeval){0};
 
-	// ptr_measure->EventSetCore = PAPI_NULL;
-	// ptr_measure->EventSetUnCore = PAPI_NULL;
 	ptr_measure->EventSets = (int *) malloc(sizeof(int) * NUM_PAPI_EVENT_SETS);
 	ptr_measure->EventSets[COMP_CORE] = PAPI_NULL;
 	ptr_measure->EventSets[COMP_UNCORE] = PAPI_NULL;
@@ -50,8 +45,7 @@ bool RM_library_init(void){
   	ptr_measure->executed_loop_iterations = 0;
  	ptr_measure->chunk_size = 0;
 
-	// papi_eventsets_were_created = false;
-	// thread_was_registred_in_papi = false;
+ 	RM_print_counters_values();
 
 	TRACE("PAPI Library was initialized: %d\n", papi_library_initialized);
 	if(!papi_library_initialized){
@@ -73,6 +67,31 @@ bool RM_library_init(void){
 		TRACE("Trying to create event set.\n");
 		result = RM_create_event_sets();
 	}
+
+	return result;
+}
+
+/* ------------------------------------------------------------ */
+/* Session of measures to reinitialize for each loop            */
+bool RM_measure_session_init(void){
+	PRINT_FUNC_NAME;
+	bool result = true;
+
+	ptr_measure->current_eventset = 0;
+	ptr_measure->initial_time = (struct timeval){0};
+	ptr_measure->final_time = (struct timeval){0};
+
+	ptr_measure->EventSets[COMP_CORE] = PAPI_NULL;
+	ptr_measure->EventSets[COMP_UNCORE] = PAPI_NULL;
+
+	/* Aditional parameters. */
+	ptr_measure->total_of_iterations = 0;
+  	ptr_measure->executed_loop_iterations = 0;
+ 	ptr_measure->chunk_size = 0;
+
+ 	started_measuring = false;
+
+ 	RM_print_counters_values();
 
 	return result;
 }
