@@ -384,6 +384,7 @@ void HOOKOMP_parallel_start(void){
 	PRINT_FUNC_NAME;
 
 	sem_init(&mutex_hookomp_init, 0, 1);
+	sem_init(&mutex_hookomp_loop_init, 0, 1);
 
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 }
