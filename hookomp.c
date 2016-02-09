@@ -19,7 +19,8 @@ void release_all_team_threads(void){
 }
 
 /* ------------------------------------------------------------- */
-void HOOKOMP_initialization(long int start, long int end, long int num_threads){
+/* Function to execute in parallel region start.                 */
+void HOOKOMP_init(){
 	PRINT_FUNC_NAME;
 
 	TRACE("Number of threads: %d.\n", num_threads);
@@ -27,28 +28,38 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 	sem_wait(&mutex_hookomp_init);
 
 	if(!is_hookomp_initialized){
+		/* Initialize RM library. */
+		if(!RM_library_init()){
+			TRACE("Error calling RM_library_init in %s.\n", __FUNCTION__);
+		}
+
+		is_hookomp_initialized = true;
+	}
+	/* up semaphore. */
+	sem_post(&mutex_hookomp_init);
+}
+
+/* ------------------------------------------------------------- */
+/* Function to execute in loop start. 							 */
+void HOOKOMP_loop_start(long int start, long int end, long int num_threads){
+	PRINT_FUNC_NAME;
+
+	TRACE("Number of threads: %d.\n", num_threads);
+
+	sem_wait(&mutex_hookomp_loop_init);
+
+	if(!is_loop_initialized){
 		/* Initialization of semaphores of control. */
 		sem_init(&mutex_registry_thread_in_func_next, 0, 1);
-
-		/* Semaphore to registred thread wait for block the others. 
-		 * The idea is block all and the last blocked wake up the registred thread.
-		 * Must be initialized with (1 - (num_threads - 1)).
-		 * Ex. num_threads = 4
-		 * 1 thread will execute.
-		 * 3 threads will blocked and up the sem_block_registred_thread.
-		 * (1 - (num_threads - 1)) = (1 - (4 - 1)) = -2.
-		 * 3 threads up -> -2 ... 1 (thread execute).
-		*/
-		// sem_init(&sem_block_registred_thread, 0, (1 - (num_threads - 1)));
-
-		sem_init(&sem_block_registred_thread, 0, 0);
-
-		TRACE("sem_block_registred_thread: %d.\n", sem_block_registred_thread);
 
 		/* Initialization of block to other team threads. 1 thread will be executing. 
 		The initialization with 0 is proposital to block other threads.
 		*/
 		sem_init(&sem_blocks_other_team_threads, 0, 0);
+
+		sem_init(&sem_blocks_threads_in_loop_end, 0, 0);
+
+		sem_init(&mutex_loop_end, 0, 1);
 
 		/* Initialization of control iterations variables. */
 		loop_iterations_start = start;
@@ -63,6 +74,8 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		number_of_threads_in_team = num_threads;
 		number_of_blocked_threads = 0;
 
+		number_of_blocked_threads_in_loop_end = 0;
+
 		/* Initialization of thread and measures section. */
 		registred_thread_executing_function_next = -1;
 		is_executing_measures_section = true;
@@ -72,15 +85,10 @@ void HOOKOMP_initialization(long int start, long int end, long int num_threads){
 		decided_by_offloading = false;
 		made_the_offloading = false;
 
-		/* Initialize RM library. */
-		if(!RM_library_init()){
-			TRACE("Error calling RM_library_init in %s.\n", __FUNCTION__);
-		}
-
-		is_hookomp_initialized = true;
+		is_loop_initialized = true;
 	}
 	/* up semaphore. */
-	sem_post(&mutex_hookomp_init);
+	sem_post(&mutex_hookomp_loop_init);
 }
 
 /* ------------------------------------------------------------- */
@@ -393,6 +401,11 @@ void HOOKOMP_parallel_end(void){
 	sem_destroy(&sem_blocks_other_team_threads);
 
 	sem_destroy(&mutex_hookomp_init);
+
+	sem_destroy(&sem_blocks_threads_in_loop_end);
+
+	sem_destroy(&mutex_loop_end);
+
 	TRACE("[HOOKOMP] [After] Destroying the semaphores.\n");
 
 	/* Shutdown RM library. */
@@ -415,23 +428,50 @@ void HOOKOMP_loop_end_nowait(void){
 		/* Set flag to control initialization of hook. */
 	// 	is_hookomp_initialized = false;	
 	// }
-}
-
-/* ------------------------------------------------------------- */
-void HOOKOMP_loop_end(void){
-	PRINT_FUNC_NAME;
-	TRACE("[HOOKOMP]: Thread [%lu] is calling %s in current loop index %d.\n", (long int) pthread_self(), __FUNCTION__, current_loop_index);
-	
-	// if(is_hookomp_initialized){
-		/* Set flag to control initialization of hook. */
-	// 	is_hookomp_initialized = false;	
-	// }
 	if(registred_thread_executing_function_next == (long int) pthread_self()){
 		TRACE("[HOOKOMP]: Thread [%lu] is unregistrying for the loop index %d.\n", (long int) pthread_self(), current_loop_index);
 		thread_was_registred_to_execute_alone = false;
 		registred_thread_executing_function_next = -1;
 	}
+}
+
+/* ------------------------------------------------------------- */
+void HOOKOMP_loop_end(void){
+	PRINT_FUNC_NAME;
+
+	long int thread_id = (long int) pthread_self();
+
+	TRACE("[HOOKOMP]: Thread [%lu] is finishing on loop %d.\n", thread_id, current_loop_index);
 	
+	sem_wait(&mutex_loop_end);
+
+	if(number_of_blocked_threads_in_loop_end < (number_of_threads_in_team - 1)) {
+		number_of_blocked_threads_in_loop_end++;
+
+		sem_post(&mutex_loop_end);
+
+		TRACE("[HOOKOMP]: Number of blocked threads in loop end: %d.\n", number_of_blocked_threads_in_loop_end);
+		TRACE("[HOOKOMP]: Thread [%lu] will be blocked in loop end.\n", thread_id);
+
+		sem_wait(&sem_blocks_threads_in_loop_end);
+		TRACE("[HOOKOMP]: Thread [%lu] is waking up of block in loop end.\n", thread_id);
+	}
+	else{
+		if(is_loop_initialized){
+			/* Initialization of thread and measures section. */
+			TRACE("[HOOKOMP]: Thread [%lu] is closing the loop index %d.\n", (long int) pthread_self(), current_loop_index);
+			registred_thread_executing_function_next = -1;
+			thread_was_registred_to_execute_alone = false;
+		
+			is_loop_initialized = false;
+		}
+
+		TRACE("[HOOKOMP]: Waking up the %d blocked threads in loop end.\n", number_of_blocked_threads);
+		for (int i = 0; i < number_of_blocked_threads_in_loop_end; ++i) {
+			sem_post(&sem_blocks_threads_in_loop_end);
+		}
+		number_of_blocked_threads_in_loop_end = 0;
+	}	
 }
 
 /* ------------------------------------------------------------- */
@@ -555,7 +595,7 @@ bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size,
 	TRACE("Starting with %d threads.\n", omp_get_num_threads());
 
 	// Initializations.
-	HOOKOMP_initialization(start, end, omp_get_num_threads());
+	HOOKOMP_loop_start(start, end, num_threads);
 	
 	// bool result = lib_GOMP_loop_dynamic_start(start, end, incr, chunk_size, istart, iend);
 	chunk_next_fn func_proxy;
@@ -588,7 +628,7 @@ bool GOMP_loop_guided_start (long start, long end, long incr, long chunk_size,
 	TRACE("[LIBGOMP] GOMP_loop_guided_start@GOMP_X.X.\n");
 
 	// Initializations.
-	HOOKOMP_initialization(start, end, omp_get_num_threads());
+	HOOKOMP_loop_start(start, end, num_threads);
 	
 	// bool result = lib_GOMP_loop_guided_start(start, end, incr, chunk_size, istart, iend);
 	chunk_next_fn func_proxy;
@@ -618,7 +658,7 @@ bool GOMP_loop_runtime_start (long start, long end, long incr,
 	TRACE("[LIBGOMP] GOMP_loop_runtime_start@GOMP_X.X.\n");
 	
 	// Initializations.
-	HOOKOMP_initialization(start, end, omp_get_num_threads());
+	HOOKOMP_loop_start(start, end, num_threads);
 	
 	// bool result = lib_GOMP_loop_runtime_start(start, end, incr, istart, iend);
 	chunk_next_fn func_proxy;
@@ -894,7 +934,9 @@ void GOMP_parallel_loop_dynamic_start (void (*fn) (void *), void *data,
 	HOOKOMP_parallel_start();
 
 	// Initializations.
-	HOOKOMP_initialization(start, end, num_threads);
+	HOOKOMP_init();
+
+	HOOKOMP_loop_start(start, end, num_threads);
 
 	lib_GOMP_parallel_loop_dynamic_start(fn, data, num_threads, start, end, incr, chunk_size);
 }
@@ -915,7 +957,9 @@ void GOMP_parallel_loop_guided_start (void (*fn) (void *), void *data,
 	HOOKOMP_parallel_start();
 
 	// Initializations.
-	HOOKOMP_initialization(start, end, num_threads);
+	HOOKOMP_init();
+
+	HOOKOMP_loop_start(start, end, num_threads);
 
 	lib_GOMP_parallel_loop_guided_start(fn, data, num_threads, start, end, incr, chunk_size);
 }
@@ -936,7 +980,9 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	HOOKOMP_parallel_start();
 
 	// Initializations.
-	HOOKOMP_initialization(start, end, num_threads);
+	HOOKOMP_init();
+
+	HOOKOMP_loop_start(start, end, num_threads);
 	
 	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);
 }
