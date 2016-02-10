@@ -12,12 +12,12 @@ void release_all_team_threads(void){
 	PRINT_FUNC_NAME;
 
 	TRACE("[HOOKOMP]: Waking up the %d blocked threads.\n", number_of_blocked_threads);
-	/*for (int i = 0; i < number_of_blocked_threads; ++i) {
+	for (int i = 0; i < number_of_blocked_threads; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
-	}*/
-	sem_post_multiple(&sem_blocks_other_team_threads, number_of_blocked_threads);
+	}
+	// sem_post_multiple(&sem_blocks_other_team_threads, number_of_blocked_threads);
 	number_of_blocked_threads = 0;
-	
+	// sem_init(&sem_blocks_other_team_threads, 0, 0);	
 }
 
 /* ------------------------------------------------------------- */
@@ -368,16 +368,15 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					TRACE("After decision about offloading.\n");
 				}
 
+				/* Mark that is no more in section of measurements. */
+				is_executing_measures_section = false;
+				executed_loop_iterations = 0;
+
 				/* Release all blocked team threads. */
 				TRACE("[HOOKOMP]: Number of Blocked Threds: %ld.\n", number_of_blocked_threads);
 				if(number_of_blocked_threads > 0){
 					release_all_team_threads();	
 				}
-				
-				executed_loop_iterations = 0;
-
-				/* Mark that is no more in section of measurements. */
-				is_executing_measures_section = false;
 			}
 		}
 		else{ 
