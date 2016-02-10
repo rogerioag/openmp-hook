@@ -719,7 +719,7 @@ bool RM_registry_measures (void){
 	bool retval = false;
 
 	/* Stop and accumulate for >= second chunks. */
-	TRACE("[RM]: Verifying if started the measuring.\n");
+	TRACE("[RM]: Verifying if started the measuring: %d.\n", started_measuring);
 	if(started_measuring){
 		TRACE("call RM_stop_and_accumulate().\n");
 		if(RM_stop_and_accumulate()){
