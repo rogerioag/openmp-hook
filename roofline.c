@@ -712,6 +712,8 @@ bool RM_stop_and_accumulate(void){
 		}
 	}
 
+	TRACE("Intervals Count -> EventSet: %d quant_intervals: %d\n", ptr_measure->current_eventset, ptr_measure->quant_intervals[ptr_measure->current_eventset]);
+	
 	ptr_measure->quant_intervals[ptr_measure->current_eventset] = ptr_measure->quant_intervals[ptr_measure->current_eventset] + 1;
 
 	TRACE("Calling the printing of counter values.\n");
