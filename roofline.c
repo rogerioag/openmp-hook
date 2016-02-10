@@ -736,9 +736,11 @@ bool RM_stop_and_accumulate(void){
 		}
 	}
 
-	TRACE("Intervals Count -> EventSet: %d quant_intervals: %d\n", ptr_measure->current_eventset, ptr_measure->quant_intervals[ptr_measure->current_eventset]);
+	TRACE("Before Intervals Count -> EventSet: %d quant_intervals: %d\n", ptr_measure->current_eventset, ptr_measure->quant_intervals[ptr_measure->current_eventset]);
 	
 	ptr_measure->quant_intervals[ptr_measure->current_eventset] = ptr_measure->quant_intervals[ptr_measure->current_eventset] + 1;
+
+	TRACE("After Intervals Count -> EventSet: %d quant_intervals: %d\n", ptr_measure->current_eventset, ptr_measure->quant_intervals[ptr_measure->current_eventset]);
 
 	TRACE("Calling the printing of counter values.\n");
 	RM_print_counters_values();
