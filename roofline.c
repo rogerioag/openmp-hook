@@ -81,6 +81,10 @@ bool RM_measure_session_init(void){
 	ptr_measure->initial_time = (struct timeval){0};
 	ptr_measure->final_time = (struct timeval){0};
 
+	/* Reset the values. */
+	memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
+	memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
+
 	/* Aditional parameters. */
 	ptr_measure->total_of_iterations = 0;
   	ptr_measure->executed_loop_iterations = 0;
