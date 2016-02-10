@@ -455,6 +455,13 @@ void HOOKOMP_loop_end(void){
 			thread_was_registred_to_execute_alone = false;
 		
 			is_loop_initialized = false;
+
+			if(RM_measure_session_finish()){
+				TRACE("Measure session finished.\n");
+			}
+			else{
+				TRACE("Error in Measure session finishing.\n");
+			}
 		}
 
 		TRACE("[HOOKOMP]: Waking up the %d blocked threads in loop end.\n", number_of_blocked_threads_in_loop_end);
