@@ -85,6 +85,15 @@ bool RM_measure_session_init(void){
 	memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
 	memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
 
+	TRACE("ptr_measure->values initialization.\n");
+  	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
+  		TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
+		for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
+			ptr_measure->values[i * NUM_MAX_EVENTS + j] = 0;
+			TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i * NUM_MAX_EVENTS + j]);	
+		}
+	}
+
 	/* Aditional parameters. */
 	ptr_measure->total_of_iterations = 0;
   	ptr_measure->executed_loop_iterations = 0;
