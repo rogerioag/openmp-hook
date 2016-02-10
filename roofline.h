@@ -110,7 +110,10 @@ struct _papi_thread_record {
   long long q_data_transfer_read;
 };
 
+/* Control the measure session init. */
 sem_t mutex_measure_session_init;
+
+static bool is_measure_session_initialized = false;
 
 /* Registry for thread. */
 struct _papi_thread_record *ptr_measure = NULL;
