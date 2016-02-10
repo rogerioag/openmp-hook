@@ -996,7 +996,7 @@ bool RM_decision_about_offloading(long *better_device_index){
 	TRACE("Operational intensity: %10.6f\n", oi);
 
 	*better_device_index = RM_get_better_device_to_execution(oi);
-	TRACE("Execution is better on device [%d].\n", better_device_index);
+	TRACE("Execution is better on device [%d].\n", *better_device_index);
 	
 	return offload_decision;
 }
