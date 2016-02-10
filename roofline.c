@@ -68,6 +68,10 @@ bool RM_library_init(void){
 		result = RM_create_event_sets();
 	}
 
+	sem_init(&mutex_measure_session_init, 0, 1);
+
+	is_measure_session_initialized = false;
+
 	return result;
 }
 
@@ -78,31 +82,51 @@ bool RM_measure_session_init(void){
 	bool result = true;
 	int i, j;
 
-	ptr_measure->current_eventset = 0;
-	ptr_measure->initial_time = (struct timeval){0};
-	ptr_measure->final_time = (struct timeval){0};
+	sem_wait(&mutex_measure_session_init);
 
-	/* Reset the values. */
-	memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
-	memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
+	if (!is_measure_session_initialized){
+		ptr_measure->current_eventset = 0;
+		ptr_measure->initial_time = (struct timeval){0};
+		ptr_measure->final_time = (struct timeval){0};
 
-	TRACE("ptr_measure->values initialization.\n");
-  	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
-  		TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
-		for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
-			ptr_measure->values[i * NUM_MAX_EVENTS + j] = 0;
-			TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i * NUM_MAX_EVENTS + j]);	
+		/* Reset the values. */
+		memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
+		memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
+
+		TRACE("ptr_measure->values initialization.\n");
+  		for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
+  			TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
+			for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
+				ptr_measure->values[i * NUM_MAX_EVENTS + j] = 0;
+				TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i * NUM_MAX_EVENTS + j]);	
+			}
 		}
+
+		/* Aditional parameters. */
+		ptr_measure->total_of_iterations = 0;
+  		ptr_measure->executed_loop_iterations = 0;
+ 		ptr_measure->chunk_size = 0;
+
+ 		started_measuring = false;
+
+ 		RM_print_counters_values();
+
+ 		is_measure_session_initialized = true;
 	}
 
-	/* Aditional parameters. */
-	ptr_measure->total_of_iterations = 0;
-  	ptr_measure->executed_loop_iterations = 0;
- 	ptr_measure->chunk_size = 0;
+	sem_post(&mutex_measure_session_init);
 
- 	started_measuring = false;
+	return result;
+}
 
- 	RM_print_counters_values();
+/* ------------------------------------------------------------ */
+bool RM_measure_session_finish(void){
+	PRINT_FUNC_NAME;
+	bool result = true;
+
+	if (is_measure_session_initialized){
+ 		is_measure_session_initialized = false;
+	}
 
 	return result;
 }
