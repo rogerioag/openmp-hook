@@ -13,39 +13,39 @@ bool RM_library_init(void){
 	bool result = true;
 	int i, j;
 
-	// /*Create the structures to get measures. */
-	// ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
-	// ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS * NUM_MAX_EVENTS);
+	/*Create the structures to get measures. */
+	ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
+	ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS * NUM_MAX_EVENTS);
 
-	// ptr_measure->quant_intervals = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS);
+	ptr_measure->quant_intervals = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS);
 
-	// memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
+	memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
 
-	// memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
+	memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
 
- //  	TRACE("ptr_measure->values initialization.\n");
- //  	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
- //  		TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
-	// 	for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
-	// 		ptr_measure->values[i * NUM_MAX_EVENTS + j] = 0;
-	// 		TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i * NUM_MAX_EVENTS + j]);	
-	// 	}
-	// }
+   	TRACE("ptr_measure->values initialization.\n");
+   	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
+   		TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
+ 		for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
+	 		ptr_measure->values[i * NUM_MAX_EVENTS + j] = 0;
+	 		TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i * NUM_MAX_EVENTS + j]);	
+	 	}
+	}
 
-	// ptr_measure->current_eventset = 0;
-	// ptr_measure->initial_time = (struct timeval){0};
-	// ptr_measure->final_time = (struct timeval){0};
+	ptr_measure->current_eventset = 0;
+	ptr_measure->initial_time = (struct timeval){0};
+	ptr_measure->final_time = (struct timeval){0};
 
-	// ptr_measure->EventSets = (int *) malloc(sizeof(int) * NUM_PAPI_EVENT_SETS);
-	// ptr_measure->EventSets[COMP_CORE] = PAPI_NULL;
-	// ptr_measure->EventSets[COMP_UNCORE] = PAPI_NULL;
+	ptr_measure->EventSets = (int *) malloc(sizeof(int) * NUM_PAPI_EVENT_SETS);
+	ptr_measure->EventSets[COMP_CORE] = PAPI_NULL;
+	ptr_measure->EventSets[COMP_UNCORE] = PAPI_NULL;
 
-	// /* Aditional parameters. */
-	// ptr_measure->total_of_iterations = 0;
- //  	ptr_measure->executed_loop_iterations = 0;
- // 	ptr_measure->chunk_size = 0;
+	/* Aditional parameters. */
+	ptr_measure->total_of_iterations = 0;
+  	ptr_measure->executed_loop_iterations = 0;
+  	ptr_measure->chunk_size = 0;
 
- // 	RM_print_counters_values();
+  	RM_print_counters_values();
 
 	TRACE("PAPI Library was initialized: %d\n", papi_library_initialized);
 	if(!papi_library_initialized){
@@ -62,11 +62,11 @@ bool RM_library_init(void){
   	}
 
   	/* Event set was created. */
- //  	TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
-	// if(!papi_eventsets_were_created){
-	// 	TRACE("Trying to create event set.\n");
-	// 	result = RM_create_event_sets();
-	// }
+   	TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
+	if(!papi_eventsets_were_created){
+	 	TRACE("Trying to create event set.\n");
+	 	result = RM_create_event_sets();
+	}
 
 	sem_init(&mutex_measure_session_init, 0, 1);
 
@@ -84,48 +84,23 @@ bool RM_measure_session_init(void){
 
 	sem_wait(&mutex_measure_session_init);
 
+	TRACE("Session Initilized, is_measure_session_initialize:%d\n", is_measure_session_initialized);
+
 	if (!is_measure_session_initialized){
 
-		// ptr_measure->current_eventset = 0;
-		// ptr_measure->initial_time = (struct timeval){0};
-		// ptr_measure->final_time = (struct timeval){0};
-
-		// ptr_measure->quant_intervals = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS);
-
-		// /* Reset the values. */
-		// memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
-		// memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
-
-		// TRACE("ptr_measure->values initialization.\n");
-  // 		for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
-  // 			TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
-		// 	for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
-		// 		ptr_measure->values[i * NUM_MAX_EVENTS + j] = 0;
-		// 		TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i * NUM_MAX_EVENTS + j]);	
-		// 	}
-		// }
-
-		// /* Aditional parameters. */
-		// ptr_measure->total_of_iterations = 0;
-  // 		ptr_measure->executed_loop_iterations = 0;
- 	// 	ptr_measure->chunk_size = 0;
-
- 	// 	started_measuring = false;
-
- 	// 	RM_print_counters_values();
-
-		/*Create the structures to get measures. */
-		ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
-		ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS * NUM_MAX_EVENTS);
+		ptr_measure->current_eventset = 0;
+		ptr_measure->initial_time = (struct timeval){0};
+		ptr_measure->final_time = (struct timeval){0};
 
 		ptr_measure->quant_intervals = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS);
 
-		memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
+		/* Reset the values. */
+		// memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
+		// memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
 
-		memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
-
-  		TRACE("ptr_measure->values initialization.\n");
+		TRACE("ptr_measure->values initialization.\n");
   		for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
+  			ptr_measure->quant_intervals[i] = 0;
   			TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
 			for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
 				ptr_measure->values[i * NUM_MAX_EVENTS + j] = 0;
@@ -133,25 +108,12 @@ bool RM_measure_session_init(void){
 			}
 		}
 
-		ptr_measure->current_eventset = 0;
-		ptr_measure->initial_time = (struct timeval){0};
-		ptr_measure->final_time = (struct timeval){0};
-
-		ptr_measure->EventSets = (int *) malloc(sizeof(int) * NUM_PAPI_EVENT_SETS);
-		ptr_measure->EventSets[COMP_CORE] = PAPI_NULL;
-		ptr_measure->EventSets[COMP_UNCORE] = PAPI_NULL;
-
 		/* Aditional parameters. */
 		ptr_measure->total_of_iterations = 0;
   		ptr_measure->executed_loop_iterations = 0;
  		ptr_measure->chunk_size = 0;
 
- 		/* Event set was created. */
-  		TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
-		if(!papi_eventsets_were_created){
-			TRACE("Trying to create event set.\n");
-			result = RM_create_event_sets();
-		}
+ 		started_measuring = false;
 
  		RM_print_counters_values();
 
@@ -169,8 +131,6 @@ bool RM_measure_session_finish(void){
 	bool result = true;
 
 	if (is_measure_session_initialized){
-		// free(ptr_measure);
-
  		is_measure_session_initialized = false;
 	}
 
