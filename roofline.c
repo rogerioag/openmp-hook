@@ -169,11 +169,6 @@ bool RM_measure_session_finish(void){
 	bool result = true;
 
 	if (is_measure_session_initialized){
-
-		free(ptr_measure->values);
-
-		free(ptr_measure->quant_intervals);
-
 		free(ptr_measure);
 
  		is_measure_session_initialized = false;
