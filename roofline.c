@@ -169,7 +169,7 @@ bool RM_measure_session_finish(void){
 	bool result = true;
 
 	if (is_measure_session_initialized){
-		free(ptr_measure);
+		// free(ptr_measure);
 
  		is_measure_session_initialized = false;
 	}
