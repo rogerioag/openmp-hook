@@ -76,6 +76,7 @@ bool RM_library_init(void){
 bool RM_measure_session_init(void){
 	PRINT_FUNC_NAME;
 	bool result = true;
+	int i, j;
 
 	ptr_measure->current_eventset = 0;
 	ptr_measure->initial_time = (struct timeval){0};
