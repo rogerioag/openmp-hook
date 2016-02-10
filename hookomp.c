@@ -15,8 +15,9 @@ void release_all_team_threads(void){
 	/*for (int i = 0; i < number_of_blocked_threads; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
 	}*/
+	sem_post_multiple(&sem_blocks_other_team_threads, number_of_blocked_threads);
 	number_of_blocked_threads = 0;
-	sem_init(&sem_blocks_other_team_threads, 0, 0);
+	
 }
 
 /* ------------------------------------------------------------- */
