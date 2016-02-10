@@ -85,9 +85,12 @@ bool RM_measure_session_init(void){
 	sem_wait(&mutex_measure_session_init);
 
 	if (!is_measure_session_initialized){
+
 		ptr_measure->current_eventset = 0;
 		ptr_measure->initial_time = (struct timeval){0};
 		ptr_measure->final_time = (struct timeval){0};
+
+		ptr_measure->quant_intervals = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS);
 
 		/* Reset the values. */
 		memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
