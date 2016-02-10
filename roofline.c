@@ -972,7 +972,8 @@ int RM_get_better_device_to_execution(double oi){
 	TRACE("Operational intensity in GPU: %10.10f\n", oi_gpu);
 
 	int best_dev = 0;
-	double best_ap, calc_ap = 0.0;
+	double best_ap = 0.0;
+	double calc_ap = 0.0;
 	for(i = 0; i < NUM_DEVICES; i++){
 		if ((calc_ap = RM_attainable_performance(i, oi)) > best_ap){
 			best_ap = calc_ap;
