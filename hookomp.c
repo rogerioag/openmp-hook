@@ -42,6 +42,7 @@ void HOOKOMP_init(){
 void HOOKOMP_loop_start(long int start, long int end, long int num_threads){
 	PRINT_FUNC_NAME;
 
+	TRACE("Current loop index in loop start: %d.\n", current_loop_index);
 	TRACE("Number of threads: %d.\n", num_threads);
 
 	sem_wait(&mutex_hookomp_loop_init);
