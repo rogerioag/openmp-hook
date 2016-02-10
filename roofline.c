@@ -62,11 +62,11 @@ bool RM_library_init(void){
   	}
 
   	/* Event set was created. */
-  	TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
-	if(!papi_eventsets_were_created){
-		TRACE("Trying to create event set.\n");
-		result = RM_create_event_sets();
-	}
+ //  	TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
+	// if(!papi_eventsets_were_created){
+	// 	TRACE("Trying to create event set.\n");
+	// 	result = RM_create_event_sets();
+	// }
 
 	sem_init(&mutex_measure_session_init, 0, 1);
 
@@ -145,6 +145,13 @@ bool RM_measure_session_init(void){
 		ptr_measure->total_of_iterations = 0;
   		ptr_measure->executed_loop_iterations = 0;
  		ptr_measure->chunk_size = 0;
+
+ 		/* Event set was created. */
+  		TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
+		if(!papi_eventsets_were_created){
+			TRACE("Trying to create event set.\n");
+			result = RM_create_event_sets();
+		}
 
  		RM_print_counters_values();
 
