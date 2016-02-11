@@ -25,6 +25,9 @@
 #define omp_get_num_threads() 1
 #endif
 
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+
 /* Percentual of code to execute and get performance counters to decision about offloading. */
 #define PERC_OF_CODE_TO_EXECUTE 10
 

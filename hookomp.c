@@ -39,7 +39,7 @@ void HOOKOMP_init(){
 
 /* ------------------------------------------------------------- */
 /* Function to execute in loop start. 							 */
-void HOOKOMP_loop_start(long int start, long int end, long int num_threads){
+void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long int chunk_size){
 	PRINT_FUNC_NAME;
 
 	TRACE("Current loop index in loop start: %d.\n", current_loop_index);
@@ -64,7 +64,11 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads){
 		loop_iterations_start = start;
 		loop_iterations_end = end;
 		total_of_iterations = (loop_iterations_end - loop_iterations_start);
-		percentual_of_code = PERC_OF_CODE_TO_EXECUTE;
+		// percentual_of_code = PERC_OF_CODE_TO_EXECUTE;
+
+		double percentual_calculated = (RM_get_num_events_sets() * chunk_size / total_of_iterations);
+
+		percentual_of_code = MAX(PERC_OF_CODE_TO_EXECUTE, percentual_calculated);
 
 		/* Initialization of control iterations. */
 		executed_loop_iterations = 0;
@@ -316,6 +320,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		if(registred_thread_executing_function_next == (long int) pthread_self()){
 			/* Execute only percentual of code. */
 			TRACE("[HOOKOMP]: Testing the number of executed iterations: %ld.\n", executed_loop_iterations);
+			TRACE("[HOOKOMP]: Testing the number of executed iterations: %ld.\n", omp_get_chun);
 			if(executed_loop_iterations < (total_of_iterations / percentual_of_code)){
 				TRACE("[HOOKOMP]: [INSIDE] Calling next function inside of measures section.\n");
 				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
@@ -610,7 +615,7 @@ bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size,
 	TRACE("Starting with %d threads.\n", omp_get_num_threads());
 
 	// Initializations.
-	HOOKOMP_loop_start(start, end, omp_get_num_threads());
+	HOOKOMP_loop_start(start, end, omp_get_num_threads(), chunk_size);
 	
 	// bool result = lib_GOMP_loop_dynamic_start(start, end, incr, chunk_size, istart, iend);
 	chunk_next_fn func_proxy;
@@ -643,7 +648,7 @@ bool GOMP_loop_guided_start (long start, long end, long incr, long chunk_size,
 	TRACE("[LIBGOMP] GOMP_loop_guided_start@GOMP_X.X.\n");
 
 	// Initializations.
-	HOOKOMP_loop_start(start, end, omp_get_num_threads());
+	HOOKOMP_loop_start(start, end, omp_get_num_threads(), chunk_size);
 	
 	// bool result = lib_GOMP_loop_guided_start(start, end, incr, chunk_size, istart, iend);
 	chunk_next_fn func_proxy;
@@ -673,7 +678,7 @@ bool GOMP_loop_runtime_start (long start, long end, long incr,
 	TRACE("[LIBGOMP] GOMP_loop_runtime_start@GOMP_X.X.\n");
 	
 	// Initializations.
-	HOOKOMP_loop_start(start, end, omp_get_num_threads());
+	HOOKOMP_loop_start(start, end, omp_get_num_threads(), 1);
 	
 	// bool result = lib_GOMP_loop_runtime_start(start, end, incr, istart, iend);
 	chunk_next_fn func_proxy;
@@ -951,7 +956,7 @@ void GOMP_parallel_loop_dynamic_start (void (*fn) (void *), void *data,
 	// Initializations.
 	HOOKOMP_init();
 
-	HOOKOMP_loop_start(start, end, num_threads);
+	HOOKOMP_loop_start(start, end, num_threads, chunk_size);
 
 	lib_GOMP_parallel_loop_dynamic_start(fn, data, num_threads, start, end, incr, chunk_size);
 }
@@ -974,7 +979,7 @@ void GOMP_parallel_loop_guided_start (void (*fn) (void *), void *data,
 	// Initializations.
 	HOOKOMP_init();
 
-	HOOKOMP_loop_start(start, end, num_threads);
+	HOOKOMP_loop_start(start, end, num_threads, chunk_size);
 
 	lib_GOMP_parallel_loop_guided_start(fn, data, num_threads, start, end, incr, chunk_size);
 }
@@ -997,7 +1002,7 @@ void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
 	// Initializations.
 	HOOKOMP_init();
 
-	HOOKOMP_loop_start(start, end, num_threads);
+	HOOKOMP_loop_start(start, end, num_threads, 1);
 	
 	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr);
 }

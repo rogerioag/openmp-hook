@@ -296,7 +296,7 @@ void RM_print_counters_values(void) {
 	PRINT_FUNC_NAME;
 	int i;
 
-	TRACE("Final Values:\n");
+	TRACE("Printing Values:\n");
 	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
 		TRACE("%s;%s;%s;%s;%s;%s;\n", "measures", 
 				((event_names[i][0] != NULL) ? event_names[i][0] : "") , 
@@ -1112,3 +1112,12 @@ bool RM_library_shutdown(void){
 		
 	return (retval == PAPI_OK);
 }
+
+/* ------------------------------------------------------------ */
+int RM_get_num_events_sets(){
+	PRINT_FUNC_NAME;
+	
+	return NUM_EVENT_SETS;
+}
+
+/* ------------------------------------------------------------ */
