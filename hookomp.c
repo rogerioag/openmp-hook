@@ -66,9 +66,13 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 		total_of_iterations = (loop_iterations_end - loop_iterations_start);
 		// percentual_of_code = PERC_OF_CODE_TO_EXECUTE;
 
-		double percentual_calculated = (RM_get_num_events_sets() * chunk_size / total_of_iterations);
+		long int calculated_percentual = (RM_get_num_events_sets() * chunk_size) / total_of_iterations) * 100;
 
-		percentual_of_code = MAX(PERC_OF_CODE_TO_EXECUTE, percentual_calculated);
+		TRACE("Calculated percentual of code: %d, suggested percentual: %d. \n", calculated_percentual, PERC_OF_CODE_TO_EXECUTE);
+
+		percentual_of_code = MAX(PERC_OF_CODE_TO_EXECUTE, calculated_percentual);
+
+		TRACE("Percentual of code used: %d.\n", percentual_of_code);
 
 		/* Initialization of control iterations. */
 		executed_loop_iterations = 0;
