@@ -174,6 +174,8 @@ extern "C" {
 	void RM_print_counters_values(void);
 
 	void RM_set_aditional_parameters(long long, long long, long long, long long, long long);
+
+  int RM_get_num_events_sets();
 	
 #ifdef __cplusplus
 }
