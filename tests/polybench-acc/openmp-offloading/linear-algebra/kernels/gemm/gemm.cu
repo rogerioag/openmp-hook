@@ -239,49 +239,49 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   DATA_TYPE *B_gpu;
   DATA_TYPE *C_gpu;
 
-  polybench_start_instruments;
+  // polybench_start_instruments;
 
   cudaMalloc((void **)&A_gpu, sizeof(DATA_TYPE) * NI * NK);
   cudaMalloc((void **)&B_gpu, sizeof(DATA_TYPE) * NK * NJ);
   cudaMalloc((void **)&C_gpu, sizeof(DATA_TYPE) * NI * NJ);
 
-  polybench_stop_instruments;
-  printf("GPU cuda Malloc Time in seconds:\n");
-  polybench_print_instruments;
+  // polybench_stop_instruments;
+  // printf("GPU cuda Malloc Time in seconds:\n");
+  // polybench_print_instruments;
 
-  polybench_start_instruments;
+  // polybench_start_instruments;
 
   cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NK, cudaMemcpyHostToDevice);
   cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NK * NJ, cudaMemcpyHostToDevice);
   cudaMemcpy(C_gpu, C_inputToGpu, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
 
-  polybench_stop_instruments;
-  printf("GPU Data Transfers Time in seconds:\n");
-  polybench_print_instruments;
+  // polybench_stop_instruments;
+  // printf("GPU Data Transfers Time in seconds:\n");
+  // polybench_print_instruments;
 
   dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
   dim3 grid((size_t)(ceil(((float)NI) / ((float)block.x))),
             (size_t)(ceil(((float)NJ) / ((float)block.y))));
 
   /* Start timer. */
-  polybench_start_instruments;
+  // polybench_start_instruments;
 
   gemm_cuda_kernel<<<grid, block>>>(ni, nj, nk, alpha, beta, A_gpu, B_gpu, C_gpu);
   cudaThreadSynchronize();
 
   /* Stop and print timer. */
-  printf("GPU kernel Time in seconds:\n");
-  polybench_stop_instruments;
-  polybench_print_instruments;
+  // printf("GPU kernel Time in seconds:\n");
+  // olybench_stop_instruments;
+  // polybench_print_instruments;
 
 
-  polybench_start_instruments;
+  // polybench_start_instruments;
   cudaMemcpy(C_outputFromGpu, C_gpu, sizeof(DATA_TYPE) * NI * NJ,
              cudaMemcpyDeviceToHost);
 
-  printf("GPU copy result Time in seconds:\n");
-  polybench_stop_instruments;
-  polybench_print_instruments;
+  // printf("GPU copy result Time in seconds:\n");
+  // polybench_stop_instruments;
+  // polybench_print_instruments;
 
   cudaFree(A_gpu);
   cudaFree(B_gpu);
