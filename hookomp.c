@@ -72,7 +72,7 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 		TRACE("Chunk size: %d. \n", chunk_size);
 		TRACE("Total of iterations: %d. \n", total_of_iterations);
 
-		double calculated_percentual = ((num_event_sets * chunk_size) / total_of_iterations) * 100;
+		double calculated_percentual = (((num_event_sets * chunk_size) * 100) / total_of_iterations);
 
 		TRACE("Calculated percentual of code: %f, suggested percentual: %d. \n", calculated_percentual, (int) PERC_OF_CODE_TO_EXECUTE);
 
