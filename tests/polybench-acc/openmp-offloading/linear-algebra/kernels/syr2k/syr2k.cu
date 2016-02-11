@@ -151,6 +151,7 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   {
     /*    C := alpha*A*B' + alpha*B*A' + beta*C */
     current_loop_index = 0;
+    num_threads_defined = OPENMP_NUM_THREADS;
     // Copy to device A, B, C.
     q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
     // Copy back C.
@@ -166,6 +167,7 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
   {
     current_loop_index = 1;
+    num_threads_defined = OPENMP_NUM_THREADS;
     // Copy to device A, B, C.
     q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
     // Copy back C.
