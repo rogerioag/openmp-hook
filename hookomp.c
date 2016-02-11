@@ -324,7 +324,6 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		if(registred_thread_executing_function_next == (long int) pthread_self()){
 			/* Execute only percentual of code. */
 			TRACE("[HOOKOMP]: Testing the number of executed iterations: %ld.\n", executed_loop_iterations);
-			TRACE("[HOOKOMP]: Testing the number of executed iterations: %ld.\n", omp_get_chun);
 			if(executed_loop_iterations < (total_of_iterations / percentual_of_code)){
 				TRACE("[HOOKOMP]: [INSIDE] Calling next function inside of measures section.\n");
 				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
