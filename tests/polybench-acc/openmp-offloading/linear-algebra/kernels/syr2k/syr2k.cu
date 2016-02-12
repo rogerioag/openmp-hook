@@ -306,7 +306,7 @@ void syr2k_cuda_0(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
             (size_t)(ceil(((float)NI) / ((float)DIM_THREAD_BLOCK_Y))));
 
   /* Start timer. */
-  polybench_start_instruments;
+  // polybench_start_instruments;
 
   syr2k_cuda_kernel_1<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
   cudaThreadSynchronize();
@@ -315,9 +315,9 @@ void syr2k_cuda_0(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   // cudaThreadSynchronize();
 
   /* Stop and print timer. */
-  polybench_stop_instruments;
-  printf("GPU Time in seconds:\n");
-  polybench_print_instruments;
+  // polybench_stop_instruments;
+  // printf("GPU Time in seconds:\n");
+  // polybench_print_instruments;
 
   // cudaMemcpy(C_outputFromGpu, C_gpu, sizeof(DATA_TYPE) * NI * NI, cudaMemcpyDeviceToHost);
 
@@ -340,15 +340,15 @@ void syr2k_cuda_1(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
             (size_t)(ceil(((float)NI) / ((float)DIM_THREAD_BLOCK_Y))));
 
   /* Start timer. */
-  polybench_start_instruments;
+  // polybench_start_instruments;
 
   syr2k_cuda_kernel_2<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
   cudaThreadSynchronize();
 
   /* Stop and print timer. */
-  polybench_stop_instruments;
-  printf("GPU Time in seconds:\n");
-  polybench_print_instruments;
+  // polybench_stop_instruments;
+  // printf("GPU Time in seconds:\n");
+  // polybench_print_instruments;
 
   cudaMemcpy(C_outputFromGpu, C_gpu, sizeof(DATA_TYPE) * NI * NI,
              cudaMemcpyDeviceToHost);
