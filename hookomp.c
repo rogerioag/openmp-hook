@@ -305,7 +305,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 	/* Registry the thread which will be execute alone. down semaphore. */
 	if(!thread_was_registred_to_execute_alone){
-		HOOKOMP_registry_the_first_thread();	
+		HOOKOMP_registry_the_first_thread();
+		omp_set_schedule(omp_sched_dynamic, 32);
 	}
 
 	/* Is not getting measures execute directly. */
@@ -392,6 +393,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				/* Mark that is no more in section of measurements. */
 				is_executing_measures_section = false;
 				executed_loop_iterations = 0;
+
+				omp_set_schedule(omp_sched_dynamic, 64);
 
 				/* Release all blocked team threads. */
 				TRACE("[HOOKOMP]: Number of Blocked Threds: %ld.\n", number_of_blocked_threads);
