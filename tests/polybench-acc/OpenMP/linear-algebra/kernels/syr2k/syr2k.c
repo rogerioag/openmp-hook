@@ -142,7 +142,7 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
       for (j = 0; j < _PB_NI; j++)
         C[i][j] *= beta;
     //#pragma omp for private(j, k) schedule(runtime)
-      #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+    #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++)
       for (j = 0; j < _PB_NI; j++)
         for (k = 0; k < _PB_NJ; k++) {
