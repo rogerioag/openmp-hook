@@ -190,8 +190,9 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
                   C_outputFromOMP);
 
   /* Stop and print timer. */
-  printf("OpenMP Time in seconds:\n");
+  
   polybench_stop_instruments;
+  // printf("OpenMP Time in seconds:\n");
   polybench_print_instruments;
 }
 

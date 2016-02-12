@@ -381,6 +381,14 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					TRACE("After decision about offloading.\n");
 				}
 
+				/* Continue execution. */
+				if(!(decided_by_offloading && made_the_offloading)){
+					TRACE("[HOOKOMP]: [CONTINUE] Calling next function after offloading decision about.\n");
+					TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+					result = fn_proxy(istart, iend, extra);
+					TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+				}
+
 				/* Mark that is no more in section of measurements. */
 				is_executing_measures_section = false;
 				executed_loop_iterations = 0;
