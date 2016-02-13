@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <inttypes.h>
 #include <assert.h>
+#include <math.h>
 
 #include "debug.h"
 #include "roofline.h"
