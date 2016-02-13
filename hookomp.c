@@ -311,8 +311,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 	/* Registry the thread which will be execute alone. down semaphore. */
 	if(!thread_was_registred_to_execute_alone){
-		HOOKOMP_registry_the_first_thread();
 		omp_set_schedule(omp_sched_dynamic, chunk_size_measures);
+		HOOKOMP_registry_the_first_thread();
 	}
 
 	/* Is not getting measures execute directly. */
