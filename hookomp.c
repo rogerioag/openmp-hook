@@ -71,6 +71,13 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 		TRACE("Number of Events Sets: %d. \n", num_event_sets);
 		TRACE("Chunk size: %d. \n", chunk_size);
 		TRACE("Total of iterations: %d. \n", total_of_iterations);
+		TRACE("Number of threads defined: %d. \n", num_threads_defined);
+
+
+		chunk_size_execution = chunk_size;
+		chunk_size_measures = (chunk_size / num_event_sets) / num_threads_defined;
+
+		
 
 		double calculated_percentual = (((num_event_sets * chunk_size) * 100) / total_of_iterations);
 
@@ -87,8 +94,7 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 		number_of_threads_in_team = num_threads;
 		number_of_blocked_threads = 0;
 
-		chunk_size_execution = chunk_size;
-		chunk_size_measures = (chunk_size / num_event_sets) / num_threads_defined;
+		
 
 		number_of_blocked_threads_in_loop_end = 0;
 
