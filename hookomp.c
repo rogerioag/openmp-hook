@@ -87,6 +87,9 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 		number_of_threads_in_team = num_threads;
 		number_of_blocked_threads = 0;
 
+		chunk_size_execution = chunk_size;
+		chunk_size_measures = (chunk_size / num_event_sets) / num_threads_defined;
+
 		number_of_blocked_threads_in_loop_end = 0;
 
 		/* Initialization of thread and measures section. */
@@ -306,7 +309,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	/* Registry the thread which will be execute alone. down semaphore. */
 	if(!thread_was_registred_to_execute_alone){
 		HOOKOMP_registry_the_first_thread();
-		omp_set_schedule(omp_sched_dynamic, 2);
+		omp_set_schedule(omp_sched_dynamic, chunk_size_measures);
 	}
 
 	/* Is not getting measures execute directly. */
@@ -394,7 +397,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				is_executing_measures_section = false;
 				executed_loop_iterations = 0;
 
-				omp_set_schedule(omp_sched_dynamic, 64);
+				omp_set_schedule(omp_sched_dynamic, chunk_size_execution);
 
 				/* Release all blocked team threads. */
 				TRACE("[HOOKOMP]: Number of Blocked Threds: %ld.\n", number_of_blocked_threads);
