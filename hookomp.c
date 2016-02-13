@@ -311,8 +311,10 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 	/* Registry the thread which will be execute alone. down semaphore. */
 	if(!thread_was_registred_to_execute_alone){
-		omp_set_schedule(omp_sched_dynamic, chunk_size_measures);
+		long int max_loops_iterations_for_measures = ((total_of_iterations * percentual_of_code) / 100);
 		HOOKOMP_registry_the_first_thread();
+		TRACE("[HOOKOMP]: Thread [%lu] defining chunk size for measures: %d.\n", (long int) pthread_self(), chunk_size_measures);
+		omp_set_schedule(omp_sched_dynamic, chunk_size_measures);
 	}
 
 	/* Is not getting measures execute directly. */
@@ -336,9 +338,9 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		TRACE("[HOOKOMP]: Testing the registred thread id: %ld.\n", registred_thread_executing_function_next);
 		if(registred_thread_executing_function_next == (long int) pthread_self()){
 			/* Execute only percentual of code. */
-			TRACE("[HOOKOMP]: Testing the number of executed iterations: %ld.\n", executed_loop_iterations);
+			TRACE("[HOOKOMP]: Testing the number of executed iterations: %ld, max loops iterations for measures: %ld.\n", executed_loop_iterations, max_loops_iterations_for_measures);
 
-			if(executed_loop_iterations < ((total_of_iterations * percentual_of_code) / 100)){
+			if(executed_loop_iterations < max_loops_iterations_for_measures){
 				TRACE("[HOOKOMP]: [INSIDE] Calling next function inside of measures section.\n");
 				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 				result = fn_proxy(istart, iend, extra);
@@ -400,6 +402,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				is_executing_measures_section = false;
 				executed_loop_iterations = 0;
 
+				TRACE("[HOOKOMP]: Thread [%lu] defining chunk size for execution: %d.\n", (long int) pthread_self(), chunk_size_execution);
 				omp_set_schedule(omp_sched_dynamic, chunk_size_execution);
 
 				/* Release all blocked team threads. */
