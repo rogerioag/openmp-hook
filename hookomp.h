@@ -359,6 +359,10 @@ static long int percentual_of_code = PERC_OF_CODE_TO_EXECUTE;
 static long int number_of_threads_in_team = 0;
 static long int number_of_blocked_threads = 0;
 
+static long int chunk_size_execution = 0;
+
+static long int chunk_size_measures = 0;
+
 static long int number_of_blocked_threads_in_loop_end = 0;
 
 static bool is_executing_measures_section = true;
