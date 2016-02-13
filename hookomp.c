@@ -307,12 +307,17 @@ bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index
 bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void* extra) {	
 	PRINT_FUNC_NAME;
 	bool result = false;
+	long int max_loops_iterations_for_measures;
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
 	/* Registry the thread which will be execute alone. down semaphore. */
 	if(!thread_was_registred_to_execute_alone){
-		long int max_loops_iterations_for_measures = ((total_of_iterations * percentual_of_code) / 100);
+		/* Calculate the max iterations need to measures. */
+		max_loops_iterations_for_measures = ((total_of_iterations * percentual_of_code) / 100);
+
 		HOOKOMP_registry_the_first_thread();
+		
+		/* Define the chunk size for measures. */
 		TRACE("[HOOKOMP]: Thread [%lu] defining chunk size for measures: %d.\n", (long int) pthread_self(), chunk_size_measures);
 		omp_set_schedule(omp_sched_dynamic, chunk_size_measures);
 	}
