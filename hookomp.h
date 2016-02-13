@@ -351,6 +351,9 @@ static bool thread_was_registred_to_execute_alone = false;
 static long int loop_iterations_start = 0;
 static long int loop_iterations_end = 0;
 static long int total_of_iterations = 0;
+
+static long int max_loops_iterations_for_measures;
+
 /* To acumulate the iterations executed by thread to calculate the percentual of executed code. */
 static long int executed_loop_iterations = 0;
 
