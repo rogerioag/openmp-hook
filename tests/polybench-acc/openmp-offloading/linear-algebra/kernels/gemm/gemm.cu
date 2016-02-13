@@ -385,14 +385,14 @@ int main(int argc, char *argv[]) {
 
   memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
 
-  fprintf(stderr, "num_threads; %d; NI; %d; NJ; %d; NK; %d; ", OPENMP_NUM_THREADS, NI, NJ, NK);
+  fprintf(stdout, "num_threads; %d; NI; %d; NJ; %d; NK; %d; ", OPENMP_NUM_THREADS, NI, NJ, NK);
 
-  fprintf(stderr, "ORIG; ");
+  fprintf(stdout, "ORIG; ");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
   
-  fprintf(stderr, "\r\b; OMP; ");
+  fprintf(stdout, "\b; OMP; ");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
-  fprintf(stderr, "\r\b;\n");
+  fprintf(stdout, "\b;\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
