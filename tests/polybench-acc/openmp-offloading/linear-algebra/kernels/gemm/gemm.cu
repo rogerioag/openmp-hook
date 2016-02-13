@@ -391,7 +391,7 @@ int main(int argc, char *argv[]) {
 
   fprintf(stderr, "calling gemm_original:\n");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
-  fprintf(stdout, ",");
+  fprintf(stdout, "\b,");
   
   fprintf(stderr, "calling gemm_omp:\n");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
