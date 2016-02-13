@@ -389,11 +389,11 @@ int main(int argc, char *argv[]) {
 
   fprintf(stderr, "ORIG; ");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
-  fprintf(stderr, "\r\b;");
+  fprintf(stderr, "\b; ");
   
-  fprintf(stderr, "\b OMP; ");
+  fprintf(stderr, "\bOMP; ");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
-  fprintf(stderr, "\r\b;\n");
+  fprintf(stderr, "\b;\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
