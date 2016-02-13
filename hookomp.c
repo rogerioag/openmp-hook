@@ -319,6 +319,13 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		/* Define the chunk size for measures. */
 		TRACE("[HOOKOMP]: Thread [%lu] defining chunk size for measures: %d.\n", (long int) pthread_self(), chunk_size_measures);
 		omp_set_schedule(omp_sched_dynamic, chunk_size_measures);
+
+		/* omp_sched_static = 1, omp_sched_dynamic = 2, omp_sched_guided = 3, omp_sched_auto = 4 */
+		omp_sched_t sched_kind;
+		int cs;
+
+		omp_get_schedule(&sched_kind, &cs);
+		TRACE("[HOOKOMP]: Thread [%lu] current schedule: %d, current chunk_size: %d.\n", (long int) pthread_self(), sched_kind, cs);
 	}
 
 	/* Is not getting measures execute directly. */
