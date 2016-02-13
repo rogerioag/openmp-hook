@@ -834,7 +834,7 @@ bool RM_registry_measures (void){
 long long total_of_chunks() {
 	PRINT_FUNC_NAME;
 	long long total_chunks = (ptr_measure->total_of_iterations / ptr_measure->chunk_size);
-	TRACE("total of chunks: %ld.\n", total_chunks);
+	TRACE("total of iterations: %ld, chunk size: %d , total of chunks: %ld.\n", ptr_measure->total_of_iterations, ptr_measure->chunk_size, total_chunks);
 	return total_chunks;
 }
 
