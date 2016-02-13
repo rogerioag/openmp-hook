@@ -387,11 +387,11 @@ int main(int argc, char *argv[]) {
 
   fprintf(stdout, "num_threads, NI, NJ, NK, ORIG, OMP\n");
 
-  fprintf(stdout, "%d, %d, %d, %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
+  printf("%d, %d, %d, %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
 
   fprintf(stderr, "calling gemm_original:\n");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
-  fprintf(stdout, "\b,");
+  printf("\b,");
   
   fprintf(stderr, "calling gemm_omp:\n");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
