@@ -139,7 +139,7 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
   /* Stop and print timer. */
   polybench_stop_instruments;
-  printf("Original CPU Time in seconds:\n");
+  // printf("Original CPU Time in seconds:\n");
   polybench_print_instruments;
 }
 
