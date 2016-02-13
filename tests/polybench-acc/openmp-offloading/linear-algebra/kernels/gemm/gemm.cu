@@ -83,7 +83,7 @@ void compareResults(int ni, int nj, DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
   }
 
   // Print results
-  printf("Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f "
+  fprintf(stderr, "Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f "
          "Percent: %d\n",
          PERCENT_DIFF_ERROR_THRESHOLD, fail);
 }
@@ -203,7 +203,7 @@ void GPU_argv_init() {
   fprintf(stderr, "GPU init.\n");
 
   cudaGetDeviceProperties(&deviceProp, GPU_DEVICE);
-  printf("setting device %d with name %s\n", GPU_DEVICE, deviceProp.name);
+  fprintf(stderr, "setting device %d with name %s\n", GPU_DEVICE, deviceProp.name);
   cudaSetDevice(GPU_DEVICE);
 }
 
