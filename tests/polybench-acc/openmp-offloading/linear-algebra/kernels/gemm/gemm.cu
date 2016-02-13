@@ -392,7 +392,7 @@ int main(int argc, char *argv[]) {
   
   fprintf(stdout, "\b; OMP; ");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
-  fprintf(stdout, "\b;\n");
+  fprintf(stdout, "a\b;\nb");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
