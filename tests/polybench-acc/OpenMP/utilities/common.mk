@@ -1,7 +1,7 @@
 INCPATHS = -I$(UTIL_DIR)
 
 BENCHMARK = $(shell basename `pwd`)
-EXE = $(BENCHMARK)_omp
+EXE = $(BENCHMARK)_omp.exe
 SRC = $(BENCHMARK).c
 HEADERS = $(BENCHMARK).h
 
