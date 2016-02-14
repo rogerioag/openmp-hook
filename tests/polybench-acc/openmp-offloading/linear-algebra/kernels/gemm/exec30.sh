@@ -13,7 +13,7 @@ for size_of_data in LARGE_DATASET; do
 
         make POLYBENCH_OPTIONS="-DPOLYBENCH_TIME -D${size_of_data}" OMP_CONFIG="-DOPENMP_SCHEDULE_DYNAMIC -DOPENMP_CHUNK_SIZE=1 -DOPENMP_NUM_THREADS=${num_threads}"
 
-        for ((  i = 1 ;  i <= 30;  i++  ))
+        for ((  i = 1 ;  i <= 6;  i++  ))
         do
             echo "Execution ${i} of ${benchmark} with ${num_threads} threads."
             ./${benchmark}-offloading-gpu.exe >> data.csv
