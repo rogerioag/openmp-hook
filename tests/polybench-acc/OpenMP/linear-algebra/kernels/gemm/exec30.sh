@@ -16,8 +16,9 @@ for size_of_data in LARGE_DATASET; do
         for ((  i = 1 ;  i <= 30;  i++  ))
         do
             echo "Execution ${i} of ${benchmark} with ${num_threads} threads."
-            ./${benchmark}-offloading-gpu.exe >> data.csv
+            ./${benchmark}_omp >> ${benchmark}-data.csv
         done
     done
 done
 echo "End of process."
+
