@@ -509,10 +509,10 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					sem_post(&mutex_verify_number_of_blocked_threads);
 
 					TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
-					TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
+					TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
 
 					sem_wait(&sem_blocks_other_team_threads);
-					TRACE("[HOOKOMP]: Thread [%lu] is waking up of block.\n", thread_id);
+					TRACE("[HOOKOMP]: Thread [%lu] is waking up of block.\n", (long int) pthread_self());
 				}
 			}
 
