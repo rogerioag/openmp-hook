@@ -13,7 +13,7 @@ for size_of_data in LARGE_DATASET; do
         for omp_schedule in DYNAMIC; do
             for chunk_size in 32 64 128; do
                 make POLYBENCH_OPTIONS="-DPOLYBENCH_TIME -D${size_of_data}" OMP_CONFIG="-DOPENMP_SCHEDULE_${omp_schedule} -DOPENMP_CHUNK_SIZE=${chunk_size} -DOPENMP_NUM_THREADS=${num_threads}"
-       		mv ${benchmark}-offloading-gpu.exe ${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-offloading-gpu.exe
+       		      mv ${benchmark}-offloading-gpu.exe ${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-offloading-gpu.exe
 
        		for ((  i = 1 ;  i <= 10;  i++  ))
        		do
@@ -25,5 +25,4 @@ for size_of_data in LARGE_DATASET; do
     done
 done
 echo "End of process."
-
 
