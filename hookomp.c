@@ -82,7 +82,7 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 
 		TRACE("Calculated percentual of code: %f, suggested percentual: %d. \n", calculated_percentual, (int) PERC_OF_CODE_TO_EXECUTE);
 
-		percentual_of_code = MIN(PERC_OF_CODE_TO_EXECUTE, calculated_percentual);
+		percentual_of_code = MAX(PERC_OF_CODE_TO_EXECUTE, calculated_percentual);
 
 		TRACE("Percentual of code used: %d.\n", percentual_of_code);
 
