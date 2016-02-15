@@ -195,9 +195,9 @@ int main(int argc, char *argv[]) {
   /*Copy the original C to C of OMP.*/
   memcpy(C_outputFromOMP, C, sizeof(C_outputFromOMP));
 
-  fprintf(stdout, "num_threads, NI, NJ, NK, ORIG, OMP\n");
+  fprintf(stdout, "exp, num_threads, NI, NJ, NK, ORIG, OMP\n");
 
-  fprintf(stdout, "%d, %d, %d, %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
+  fprintf(stdout, "OMP, %d, %d, %d, %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
 
   fprintf(stderr, "Calling gemm_original.\n");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
