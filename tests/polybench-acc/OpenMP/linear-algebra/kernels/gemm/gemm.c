@@ -175,7 +175,7 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
 /* ------------------------------------------------------------- */
 int main(int argc, char *argv[]) {
-  /* Retrieve problem size. */
+ /* Retrieve problem size. */
   int ni = NI;
   int nj = NJ;
   int nk = NK;
