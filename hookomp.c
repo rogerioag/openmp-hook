@@ -125,60 +125,41 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 // 	/* Set the number of threads requested in application code. */
 // 	number_of_threads_in_team = num_threads_defined;
 
+// 	TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
+
 // 	long int thread_id = (long int) pthread_self();
 
 // 	TRACE("[HOOKOMP]: Thread [%lu] is trying to register.\n", (long int) thread_id);
 
-// 	/* Thread registry. */
 // 	sem_wait(&mutex_registry_thread_in_func_next);
-// 	if(registred_thread_executing_function_next == -1){
-// 		registred_thread_executing_function_next = thread_id;
-// 		TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
-// 		/* The registry was made. */
-// 	}
-// 	sem_post(&mutex_registry_thread_in_func_next);
-	
-// 	/* Single thread execution, don't wait. */
-// 	if (number_of_threads_in_team > 1){
-// 		if(registred_thread_executing_function_next == (long int) pthread_self()){
-// 			TRACE("[HOOKOMP]: Thread [%lu] was registred and now is waiting for the block of other threads.\n", (long int) registred_thread_executing_function_next);
-		
-// 			sem_wait(&sem_block_registred_thread);
 
+// 	if(number_of_blocked_threads < (number_of_threads_in_team - 1)) {
+// 		number_of_blocked_threads++;
+
+// 		sem_post(&mutex_registry_thread_in_func_next);
+
+// 		TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
+// 		TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
+
+// 		sem_wait(&sem_blocks_other_team_threads);
+// 		TRACE("[HOOKOMP]: Thread [%lu] is waking up of block.\n", thread_id);
+// 	}
+// 	else { // The last thread will registry and execute.
+// 		if(registred_thread_executing_function_next == -1){
+// 			registred_thread_executing_function_next = thread_id;
+// 			TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
+// 			/* The registry was made. */
 // 			thread_was_registred_to_execute_alone = true;
-
-// 			TRACE("[HOOKOMP]: Thread [%lu] is entering in controled execution.\n", (long int) registred_thread_executing_function_next);
 // 		}
-// 		else {  /* Block other threads. */
-// 			/* If it is executing in a section to measurements, the threads will be blocked. */		
-// 			/* Other team threads will be blocked. */
-// 			number_of_blocked_threads++;
-// 			TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
-// 			TRACE("[HOOKOMP]: Before Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
-
-// 			TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
-
-// 			TRACE("[HOOKOMP]: Number of threads omp_get_num_threads: %d.\n", omp_get_num_threads());
-
-// 			/* The last thread Wake up the registred thread. */
-// 			if(number_of_blocked_threads == number_of_threads_in_team - 1) {
-// 				sem_post(&sem_block_registred_thread);
-// 				TRACE("[HOOKOMP]: After Up the sem_block_registred_thread: %d.\n", sem_block_registred_thread);
-// 			}
-			
-// 			TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
-// 			sem_wait(&sem_blocks_other_team_threads);
-// 		}
+		
 // 	}
-// 	else {
-// 		thread_was_registred_to_execute_alone = true;
-// 	}	
+
 // }
+
 void HOOKOMP_registry_the_first_thread(void){
 	PRINT_FUNC_NAME;
 
-	/* Set the number of threads requested in application code. */
-	number_of_threads_in_team = num_threads_defined;
+	sem_wait(&mutex_registry_thread_in_func_next);
 
 	TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
 
@@ -186,29 +167,14 @@ void HOOKOMP_registry_the_first_thread(void){
 
 	TRACE("[HOOKOMP]: Thread [%lu] is trying to register.\n", (long int) thread_id);
 
-	sem_wait(&mutex_registry_thread_in_func_next);
-
-	if(number_of_blocked_threads < (number_of_threads_in_team - 1)) {
-		number_of_blocked_threads++;
-
-		sem_post(&mutex_registry_thread_in_func_next);
-
-		TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
-		TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", thread_id );
-
-		sem_wait(&sem_blocks_other_team_threads);
-		TRACE("[HOOKOMP]: Thread [%lu] is waking up of block.\n", thread_id);
-	}
-	else { // The last thread will registry and execute.
-		if(registred_thread_executing_function_next == -1){
-			registred_thread_executing_function_next = thread_id;
-			TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
-			/* The registry was made. */
-			thread_was_registred_to_execute_alone = true;
-		}
-		
+	if(registred_thread_executing_function_next == -1){
+		registred_thread_executing_function_next = thread_id;
+		TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
+		/* The registry was made. */
+		thread_was_registred_to_execute_alone = true;		
 	}
 
+	sem_post(&mutex_registry_thread_in_func_next);
 }
 /* ------------------------------------------------------------- */
 /* Proxy function to *_start */
@@ -304,6 +270,134 @@ bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index
 
 /* ------------------------------------------------------------- */
 /* Generic function to get next chunk. */
+// bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void* extra) {	
+// 	PRINT_FUNC_NAME;
+// 	bool result = false;
+// 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
+
+// 	/* Registry the thread which will be execute alone. down semaphore. */
+// 	if(!thread_was_registred_to_execute_alone){
+// 		/* Calculate the max iterations need to measures. */
+// 		max_loops_iterations_for_measures = ((total_of_iterations * percentual_of_code) / 100);
+
+// 		HOOKOMP_registry_the_first_thread();
+		
+// 		/* Define the chunk size for measures. */
+// 		// TRACE("[HOOKOMP]: Thread [%lu] defining chunk size for measures: %d.\n", (long int) pthread_self(), chunk_size_measures);
+// 		// omp_set_schedule(omp_sched_dynamic, chunk_size_measures);
+
+// 		/* omp_sched_static = 1, omp_sched_dynamic = 2, omp_sched_guided = 3, omp_sched_auto = 4 */
+// 		// omp_sched_t sched_kind;
+// 		// int cs;
+
+// 		// omp_get_schedule(&sched_kind, &cs);
+// 		// TRACE("[HOOKOMP]: Thread [%lu] current schedule: %d, current chunk_size: %d.\n", (long int) pthread_self(), sched_kind, cs);
+// 	}
+
+// 	/* Is not getting measures execute directly. */
+// 	if(!is_executing_measures_section){
+// 		TRACE("Verifying if was decided by offloading.\n");
+// 		TRACE("[HOOKOMP]: [OUTSIDE] Calling next function out of measures section.\n");
+		
+// 		/* if decided by offloading, no more work to do, so return false. */
+// 		if(!made_the_offloading){
+// 			TRACE("[HOOKOMP]: [WAKE UP] Calling next function out of measures section after wake up.\n");
+// 			TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+// 			result = fn_proxy(istart, iend, extra);
+// 			TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+// 		}
+// 		else{ /* Indicates have no more work to do. */
+// 			result = false;
+// 		}
+// 	}
+// 	else{
+// 		/* Verify if the thread is the thread registred to execute and get measures. */
+// 		TRACE("[HOOKOMP]: Testing the registred thread id: %ld.\n", registred_thread_executing_function_next);
+// 		if(registred_thread_executing_function_next == (long int) pthread_self()){
+// 			/* Execute only percentual of code. */
+// 			TRACE("[HOOKOMP]: Testing the number of executed iterations: %ld, max loops iterations for measures: %ld.\n", executed_loop_iterations, max_loops_iterations_for_measures);
+
+// 			if(executed_loop_iterations < max_loops_iterations_for_measures){
+// 				TRACE("[HOOKOMP]: [INSIDE] Calling next function inside of measures section.\n");
+// 				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+// 				result = fn_proxy(istart, iend, extra);
+// 				TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+// 				/* Update the number of iterations executed by this thread. */
+// 				TRACE("[HOOKOMP]: [Before]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
+// 				executed_loop_iterations += (*iend - *istart);
+// 				TRACE("[HOOKOMP]: [After]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
+
+// 				 Starting the registry on RM library. Is necessary partial measures each chunk. 
+// 				Switching to do not get measures considering control code. 
+// 				RM_registry_measures();	
+// 			}
+// 			else{ /* Decision about the offloading. */
+// 				TRACE("[HOOKOMP]: They were executed %ld iterations of %ld.\n", executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
+// 				TRACE("[HOOKOMP]: Trying to make decision about offloading.\n");
+
+// 				long better_device = 0;
+
+// 				// Get counters and decide about the migration.
+// 				TRACE("[HOOKOMP]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
+
+// 				TRACE("Calling RM_stop_and_accumulate.\n");
+// 				if(!RM_stop_and_accumulate()){
+// 					TRACE("[HOOKOMP]: Error calling RM_stop_and_accumulate.\n");
+// 				}
+// 				else{
+// 					TRACE("Current loop index: %d.\n", current_loop_index);
+// 					TRACE("Defining aditional parameters.\n");
+// 					// N: total of iterations, Number of executed iterations (percentual), last chunk_size.
+// 					RM_set_aditional_parameters(total_of_iterations, executed_loop_iterations, (*iend - *istart), q_data_transfer_write, q_data_transfer_read);
+// 					// A decisão de migrar é aqui.
+// 					TRACE("Getting decision about offloading.\n");
+// 					if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
+// 						/* Launch apropriated function. */
+// 						TRACE("RM decided by device [%d].\n", better_device);
+
+// 						TRACE("Trying to launch apropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
+
+// 						if((made_the_offloading = HOOKOMP_call_offloading_function(current_loop_index, better_device)) == 0){
+// 							TRACE("The function offloading was not done.\n");
+// 						}
+// 						else{
+// 							TRACE("The offloading was done launching of apropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
+// 						}
+// 					}
+// 					TRACE("After decision about offloading.\n");
+// 				}
+
+// 				/* Continue execution. */
+// 				if(!(decided_by_offloading && made_the_offloading)){
+// 					TRACE("[HOOKOMP]: [CONTINUE] Calling next function after offloading decision about.\n");
+// 					TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+// 					result = fn_proxy(istart, iend, extra);
+// 					TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+// 				}
+
+// 				/* Mark that is no more in section of measurements. */
+// 				is_executing_measures_section = false;
+// 				executed_loop_iterations = 0;
+
+// 				// TRACE("[HOOKOMP]: Thread [%lu] defining chunk size for execution: %d.\n", (long int) pthread_self(), chunk_size_execution);
+// 				// omp_set_schedule(omp_sched_dynamic, chunk_size_execution);
+
+// 				/* Release all blocked team threads. */
+// 				TRACE("[HOOKOMP]: Number of Blocked Threds: %ld.\n", number_of_blocked_threads);
+// 				if(number_of_blocked_threads > 0){
+// 					release_all_team_threads();	
+// 				}
+// 			}
+// 		}
+// 		else{ 
+// 			TRACE("Error: Some thread was not blocked. Execution not permited.\n");		
+// 		}
+// 	}
+
+// 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
+// 	return result;
+// }
+
 bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void* extra) {	
 	PRINT_FUNC_NAME;
 	bool result = false;
@@ -315,17 +409,6 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		max_loops_iterations_for_measures = ((total_of_iterations * percentual_of_code) / 100);
 
 		HOOKOMP_registry_the_first_thread();
-		
-		/* Define the chunk size for measures. */
-		// TRACE("[HOOKOMP]: Thread [%lu] defining chunk size for measures: %d.\n", (long int) pthread_self(), chunk_size_measures);
-		// omp_set_schedule(omp_sched_dynamic, chunk_size_measures);
-
-		/* omp_sched_static = 1, omp_sched_dynamic = 2, omp_sched_guided = 3, omp_sched_auto = 4 */
-		// omp_sched_t sched_kind;
-		// int cs;
-
-		// omp_get_schedule(&sched_kind, &cs);
-		// TRACE("[HOOKOMP]: Thread [%lu] current schedule: %d, current chunk_size: %d.\n", (long int) pthread_self(), sched_kind, cs);
 	}
 
 	/* Is not getting measures execute directly. */
@@ -412,9 +495,6 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				/* Mark that is no more in section of measurements. */
 				is_executing_measures_section = false;
 				executed_loop_iterations = 0;
-
-				// TRACE("[HOOKOMP]: Thread [%lu] defining chunk size for execution: %d.\n", (long int) pthread_self(), chunk_size_execution);
-				// omp_set_schedule(omp_sched_dynamic, chunk_size_execution);
 
 				/* Release all blocked team threads. */
 				TRACE("[HOOKOMP]: Number of Blocked Threds: %ld.\n", number_of_blocked_threads);
@@ -523,15 +603,6 @@ void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s in current loop index %d.\n", (long int) pthread_self(), __FUNCTION__, current_loop_index);
 	
-	// if(is_hookomp_initialized){
-		/* Set flag to control initialization of hook. */
-	// 	is_hookomp_initialized = false;	
-	// }
-	/*if(registred_thread_executing_function_next == (long int) pthread_self()){
-		TRACE("[HOOKOMP]: Thread [%lu] is unregistrying for the loop index %d.\n", (long int) pthread_self(), current_loop_index);
-		thread_was_registred_to_execute_alone = false;
-		registred_thread_executing_function_next = -1;
-	}*/
 	HOOKOMP_loop_end();
 }
 
