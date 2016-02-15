@@ -42,10 +42,10 @@ void HOOKOMP_init(){
 void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long int chunk_size){
 	PRINT_FUNC_NAME;
 
+	sem_wait(&mutex_hookomp_loop_init);
+
 	TRACE("Current loop index in loop start: %d.\n", current_loop_index);
 	TRACE("Number of threads: %d.\n", num_threads);
-
-	sem_wait(&mutex_hookomp_loop_init);
 
 	if(!is_loop_initialized){
 		/* Initialization of semaphores of control. */
@@ -161,7 +161,10 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 void HOOKOMP_registry_the_first_thread(void){
 	PRINT_FUNC_NAME;
 
+	/* Set the number of threads requested in application code. */
 	sem_wait(&mutex_registry_thread_in_func_next);
+
+	number_of_threads_in_team = num_threads_defined;
 
 	TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
 
