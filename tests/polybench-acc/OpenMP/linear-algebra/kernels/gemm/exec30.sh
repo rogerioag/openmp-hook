@@ -8,7 +8,7 @@ benchmark=`basename $PWD`
 echo "Executing $benchmark."
 
 for size_of_data in LARGE_DATASET; do
-    for num_threads in 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24; do
+    for num_threads in 16; do
         echo "Compiling ${benchmark} with dataset: ${size_of_data}, schedule: ${omp_schedule}, chunk: ${chunk_size}, threads: ${num_threads}."
         for omp_schedule in DYNAMIC; do
             for chunk_size in 1; do
