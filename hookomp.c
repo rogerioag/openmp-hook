@@ -518,7 +518,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				}
 			}
 
-			TRACE("[HOOKOMP]: Other thread in execution, verifying if made by offloading: %d\n" made_the_offloading);
+			TRACE("[HOOKOMP]: Other thread in execution, verifying if made by offloading: %d\n", made_the_offloading);
 
 			/* After the wakeup of blocked. */
 			if(!made_the_offloading){
