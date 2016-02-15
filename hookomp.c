@@ -499,6 +499,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		}
 		else { /* Others threads. */
 
+			TRACE("[HOOKOMP]: Other thread in execution, verifying if decided by offloading. \n");
+
 			/* If decide by offloading: block the other threads to wait. */
 			if(decided_by_offloading){
 				sem_wait(&mutex_verify_number_of_blocked_threads);
@@ -515,6 +517,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					TRACE("[HOOKOMP]: Thread [%lu] is waking up of block.\n", (long int) pthread_self());
 				}
 			}
+
+			TRACE("[HOOKOMP]: Other thread in execution, verifying if made by offloading: %d\n" made_the_offloading);
 
 			/* After the wakeup of blocked. */
 			if(!made_the_offloading){
