@@ -136,7 +136,7 @@ void jacobi2d_original(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A,N,N,n,n), DAT
 	
 	/* Stop and print timer. */
 	polybench_stop_instruments;
-	printf("CPU Time in seconds:\n");
+	// printf("CPU Time in seconds:\n");
 	polybench_print_instruments;
 }
 
