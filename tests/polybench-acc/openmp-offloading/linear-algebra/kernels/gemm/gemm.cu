@@ -389,8 +389,8 @@ int main(int argc, char *argv[]) {
 
   fprintf(stdout, "OMP+OFF, %d, %d, %d, %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
 
-  fprintf(stderr, "calling gemm_original:\n");
-  gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
+  // fprintf(stderr, "calling gemm_original:\n");
+  // gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
   fprintf(stdout, ", ");
   
   fprintf(stderr, "calling gemm_omp:\n");
