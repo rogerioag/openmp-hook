@@ -6,6 +6,9 @@ benchmark=`basename $PWD`
 
 # recupera o nome do diretorio, que é o nome do benchmark.
 echo "Executing $benchmark."
+
+mkdir output
+
 for size_of_data in LARGE_DATASET; do
     for num_threads in 1 2 4 8 10 12; do
         echo "Compiling ${benchmark} with dataset: ${size_of_data}, schedule: ${omp_schedule}, chunk: ${chunk_size}, threads: ${num_threads}."
@@ -17,7 +20,7 @@ for size_of_data in LARGE_DATASET; do
                 for ((  i = 1 ;  i <= 10;  i++  ))
                 do
                   echo "Execution ${i} of ${benchmark} with dataset: ${size_of_data}, schedule: ${omp_schedule}, chunk: ${chunk_size}, threads: ${num_threads}."
-                  ./${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-omp.exe >> data-${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-omp.csv
+                  ./${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-omp.exe >> output/data-${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-omp.csv 2>> output/data-${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-omp-stderr.csv
                 done
     	     done
         done
