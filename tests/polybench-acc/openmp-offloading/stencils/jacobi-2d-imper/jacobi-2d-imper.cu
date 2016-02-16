@@ -415,12 +415,18 @@ int main(int argc, char** argv)
   copy_array(n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(A_GPU));
   fprintf(stderr, "Copying B to B_GPU.\n");
 	copy_array(n, POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(B_GPU));
+  
+  fprintf(stdout, "exp, num_threads, N, ORIG, OMP\n");
+
+  fprintf(stdout, "OMP+OFF, %d, %d, ", OPENMP_NUM_THREADS, N);
 
   fprintf(stderr, "Calling Original.\n");
   jacobi2d_original(tsteps, n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B));
+  fprintf(stdout, ", ");
 
   fprintf(stderr, "Calling OMP.\n");
   jacobi_2d_imper_omp(tsteps, n, POLYBENCH_ARRAY(A_OMP), POLYBENCH_ARRAY(B_OMP));
+  fprintf(stdout, "\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(A_OMP), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(B_OMP));

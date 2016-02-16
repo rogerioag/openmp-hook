@@ -132,7 +132,7 @@ void syr2k_original(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 
   /* Stop and print timer. */
   polybench_stop_instruments;
-  printf("Original CPU Time in seconds:\n");
+  // printf("Original CPU Time in seconds:\n");
   polybench_print_instruments;
 }
 
@@ -162,10 +162,7 @@ static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
       for (j = 0; j < _PB_NI; j++){
         C[i][j] *= beta;
       }
-  }
   
-  #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
-  {
     current_loop_index = 1;
     num_threads_defined = OPENMP_NUM_THREADS;
     // Copy to device A, B, C.
@@ -197,7 +194,7 @@ void syr2k_omp(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 
   /* Stop and print timer. */
   polybench_stop_instruments;
-  printf("OpenMP Time in seconds:\n");
+  // printf("OpenMP Time in seconds:\n");
   polybench_print_instruments;
 }
 
@@ -492,11 +489,17 @@ int main(int argc, char *argv[]) {
   copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
   // compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
+  fprintf(stdout, "exp, num_threads, NI, NJ, ORIG, OMP\n");
+
+  fprintf(stdout, "OMP+OFF, %d, %d, %d, ", OPENMP_NUM_THREADS, NI, NJ);
+
   fprintf(stderr, "Calling Original.\n");
   syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
+  fprintf(stdout, ", ");
 
   fprintf(stderr, "Calling OMP.\n");
   syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
+  fprintf(stdout, "\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
