@@ -147,6 +147,8 @@ void jacobi_2d_imper_omp_kernel(int tsteps,
 {
   int t, i, j;
 
+  int tid;
+
   #pragma scop
   
  /* #pragma omp master
@@ -166,7 +168,8 @@ void jacobi_2d_imper_omp_kernel(int tsteps,
   
   #pragma omp parallel private(i,j,t)
   {
-    #pragma omp master
+    tid = omp_get_thread_num();
+    if(tid == 0)
     {
       for (t = 0; t < _PB_TSTEPS; t++)
       {
