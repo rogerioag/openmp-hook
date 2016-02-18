@@ -49,7 +49,7 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 
 setwd("/dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/openmp-offloading/linear-algebra/kernels/gemm/output-offloading/");
 
-pdf(filename="data-large_dataset-num_threads-1-a-12-dynamic-chunk_size-16-a-64-final.pdf", width=1920, height=1080, paper='letter', pointsize=12);
+# pdf(filename="data-large_dataset-num_threads-1-a-12-dynamic-chunk_size-16-a-64-final.pdf", width=1920, height=1080, paper='letter', pointsize=12);
 # data
 mydata1 = read.csv("/dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/openmp-offloading/linear-algebra/kernels/gemm/output-overhead/data-large_dataset-num_threads-1-a-12-dynamic-chunk_size-16-a-64-final.csv");
 
@@ -78,6 +78,8 @@ cdata1 <- ddply(mydata1, c("dataset", "schedule", "chunk_size", "exp", "num_thre
 )
 cdata1
 
+write.csv(cdata1, file = "cdata1.csv")
+
 cdata2 <- ddply(mydata2, c("dataset", "schedule", "chunk_size", "exp", "num_threads"), summarise,
                N    = length(num_threads),
                mean_orig = mean(ORIG),
@@ -88,6 +90,8 @@ cdata2 <- ddply(mydata2, c("dataset", "schedule", "chunk_size", "exp", "num_thre
                se_omp   = sd_omp / sqrt(N)
 )
 cdata2
+
+write.csv(cdata2, file = "cdata2.csv")
 
 #          dataset schedule chunk_size      exp num_threads  N mean_orig  mean_omp sd_orig     sd_omp se_orig     se_omp
 # 1  LARGE_DATASET  DYNAMIC         16  OMP+OFF           1 10        NA 79.818392      NA 0.54822371      NA 0.17336356
@@ -114,13 +118,12 @@ p1 <- ggplot(subset(df1, y==16), aes(x=x, y=t, fill=cat)) +
         #scale_fill_manual(name="Experiment", # Legend label, use darker colors
         #           breaks=c("OMP+OFF", "OMP"),
         #           labels=c("OMP+OFF", "OMP"), values=c("#494949", "#927080", "#B6B6B6")) +
-        ggtitle("No Offloading (force use CPU), chunk_size: 16") +
+        ggtitle("No Offloading (force use of CPU), chunk_size: 16\n") +
         scale_y_continuous(breaks=0:100*10) + 
         theme_bw() +
-        theme(legend.position=c(0.85,0.79), legend.title=element_blank())
+        theme(legend.position=c(0.89,0.70), legend.title=element_blank())
 
 (p1 = p1 + scale_fill_grey(start = 0.2, end = 0.9))
-
 
 # chunk size: 32
 p2 <- ggplot(subset(df1, y==32), aes(x=x, y=t, fill=cat)) + 
@@ -134,10 +137,10 @@ p2 <- ggplot(subset(df1, y==32), aes(x=x, y=t, fill=cat)) +
         #scale_fill_manual(name="Experiment", # Legend label, use darker colors
         #           breaks=c("OMP+OFF", "OMP"),
         #           labels=c("OMP+OFF", "OMP"), values=c("#494949", "#927080", "#B6B6B6")) +
-        ggtitle("No Offloading (force use CPU), chunk_size: 32") +
+        ggtitle("No Offloading (force use of CPU), chunk_size: 32\n") +
         scale_y_continuous(breaks=0:100*10) + 
         theme_bw() +
-        theme(legend.position=c(0.85,0.79), legend.title=element_blank())
+        theme(legend.position=c(0.89,0.70), legend.title=element_blank())
 
 (p2 = p2 + scale_fill_grey(start = 0.2, end = 0.9))
 
@@ -150,11 +153,11 @@ p3 <- ggplot(subset(df1, y==64), aes(x=x, y=t, fill=cat)) +
                   position=position_dodge(.9)) + 
     xlab("Number of Threads") +
     ylab("Time(s)") +
-    ggtitle("No Offloading (force use CPU), chunk_size: 64") +
+    ggtitle("No Offloading (force use of CPU), chunk_size: 64\n") +
     scale_y_continuous(breaks=0:100*10) +
     scale_colour_grey(start = 0, end = .9) +
     theme_bw() +
-    theme(legend.position=c(0.85,0.79), legend.title=element_blank())
+    theme(legend.position=c(0.89,0.70), legend.title=element_blank())
 
 (p3 = p3 + scale_fill_grey(start = 0.2, end = 0.9))
 
@@ -170,10 +173,10 @@ p4 <- ggplot(subset(df2, y==16), aes(x=x, y=t, fill=cat)) +
         #scale_fill_manual(name="Experiment", # Legend label, use darker colors
         #           breaks=c("OMP+OFF", "OMP"),
         #           labels=c("OMP+OFF", "OMP"), values=c("#494949", "#927080", "#B6B6B6")) +
-        ggtitle("Offloading to GPU, chunk_size: 16") +
+        ggtitle("Offloading to GPU, chunk_size: 16\n") +
         scale_y_continuous(breaks=0:100*10) + 
         theme_bw() +
-        theme(legend.position=c(0.85,0.79), legend.title=element_blank())
+        theme(legend.position=c(0.89,0.70), legend.title=element_blank())
 
 (p4 = p4 + scale_fill_grey(start = 0.2, end = 0.9))
 
@@ -190,10 +193,10 @@ p5 <- ggplot(subset(df2, y==32), aes(x=x, y=t, fill=cat)) +
         #scale_fill_manual(name="Experiment", # Legend label, use darker colors
         #           breaks=c("OMP+OFF", "OMP"),
         #           labels=c("OMP+OFF", "OMP"), values=c("#494949", "#927080", "#B6B6B6")) +
-        ggtitle("Offloading to GPU, chunk_size: 32") +
+        ggtitle("Offloading to GPU, chunk_size: 32\n") +
         scale_y_continuous(breaks=0:100*10) + 
         theme_bw() +
-        theme(legend.position=c(0.85,0.79), legend.title=element_blank())
+        theme(legend.position=c(0.89,0.70), legend.title=element_blank())
 
 (p5 = p5 + scale_fill_grey(start = 0.2, end = 0.9))
 
@@ -206,14 +209,11 @@ p6 <- ggplot(subset(df2, y==64), aes(x=x, y=t, fill=cat)) +
                   position=position_dodge(.9)) + 
     xlab("Number of Threads") +
     ylab("Time(s)") +
-    ggtitle("Offloading to GPU, chunk_size: 64") +
+    ggtitle("Offloading to GPU, chunk_size: 64\n") +
     scale_y_continuous(breaks=0:100*10) +
     scale_colour_grey(start = 0, end = .9) +
     theme_bw() +
-  legend(x = "top",inset = 0,
-         legend = c("Fabricated Metal", "Iron and Steel", "Paper","Beverages", "Tobacco"), 
-         col=plot_colors, lwd=5, cex=.5, horiz = TRUE)
-    # theme(legend.position=c(0.85,0.79), legend.title=element_blank())
+    theme(legend.position=c(0.89,0.70), legend.title=element_blank())
 
 (p6 = p6 + scale_fill_grey(start = 0.2, end = 0.9)) 
 

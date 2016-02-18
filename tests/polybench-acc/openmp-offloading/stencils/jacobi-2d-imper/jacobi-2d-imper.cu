@@ -31,270 +31,272 @@
 // Offloading support functions.
 #include <offload.h>
 
-//define the error threshold for the results "not matching"
+// define the error threshold for the results "not matching"
 #define PERCENT_DIFF_ERROR_THRESHOLD 0.05
 
 #define RUN_ON_CPU
 
-DATA_TYPE* Agpu;
-DATA_TYPE* Bgpu;
+DATA_TYPE *Agpu;
+DATA_TYPE *Bgpu;
 
 bool data_alloc_and_copy = false;
 
 /* ------------------------------------------------------------- */
 /* Arrays initialization. */
-void init_array(int n, DATA_TYPE POLYBENCH_2D(A,N,N,n,n), DATA_TYPE POLYBENCH_2D(B,N,N,n,n))
-{
-	int i, j;
+void init_array(int n, DATA_TYPE POLYBENCH_2D(A, N, N, n, n),
+                DATA_TYPE POLYBENCH_2D(B, N, N, n, n)) {
+  int i, j;
 
-	for (i = 0; i < n; i++)
-	{
-		for (j = 0; j < n; j++)
-		{
-			A[i][j] = ((DATA_TYPE) i*(j+2) + 10) / N;
-			B[i][j] = ((DATA_TYPE) (i-4)*(j-1) + 11) / N;
-		}
-	}
+  for (i = 0; i < n; i++) {
+    for (j = 0; j < n; j++) {
+      A[i][j] = ((DATA_TYPE)i * (j + 2) + 10) / N;
+      B[i][j] = ((DATA_TYPE)(i - 4) * (j - 1) + 11) / N;
+    }
+  }
 }
 
 /* ------------------------------------------------------------- */
-void compareResults(int n, DATA_TYPE POLYBENCH_2D(a,N,N,n,n), DATA_TYPE POLYBENCH_2D(a_outputFromGpu,N,N,n,n), DATA_TYPE POLYBENCH_2D(b,N,N,n,n), DATA_TYPE POLYBENCH_2D(b_outputFromGpu,N,N,n,n))
-{
-	int i, j, fail;
-	fail = 0;   
+void compareResults(int n, DATA_TYPE POLYBENCH_2D(a, N, N, n, n),
+                    DATA_TYPE POLYBENCH_2D(a_outputFromGpu, N, N, n, n),
+                    DATA_TYPE POLYBENCH_2D(b, N, N, n, n),
+                    DATA_TYPE POLYBENCH_2D(b_outputFromGpu, N, N, n, n)) {
+  int i, j, fail;
+  fail = 0;
 
-	// Compare output from CPU and GPU
-	for (i=0; i<n; i++) 
-	{
-		for (j=0; j<n; j++) 
-		{
-			if (percentDiff(a[i][j], a_outputFromGpu[i][j]) > PERCENT_DIFF_ERROR_THRESHOLD) 
-			{
-				fail++;
-			}
-        }
-	}
-  
-	for (i=0; i<n; i++) 
-	{
-       	for (j=0; j<n; j++) 
-		{
-        		if (percentDiff(b[i][j], b_outputFromGpu[i][j]) > PERCENT_DIFF_ERROR_THRESHOLD) 
-			{
-        			fail++;
-        		}
-       	}
-	}
+  // Compare output from CPU and GPU
+  for (i = 0; i < n; i++) {
+    for (j = 0; j < n; j++) {
+      if (percentDiff(a[i][j], a_outputFromGpu[i][j]) >
+          PERCENT_DIFF_ERROR_THRESHOLD) {
+        fail++;
+      }
+    }
+  }
 
-	// Print results
-	printf("Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f Percent: %d\n", PERCENT_DIFF_ERROR_THRESHOLD, fail);
+  for (i = 0; i < n; i++) {
+    for (j = 0; j < n; j++) {
+      if (percentDiff(b[i][j], b_outputFromGpu[i][j]) >
+          PERCENT_DIFF_ERROR_THRESHOLD) {
+        fail++;
+      }
+    }
+  }
+
+  // Print results
+  printf("Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f "
+         "Percent: %d\n",
+         PERCENT_DIFF_ERROR_THRESHOLD, fail);
 }
 
 /* ------------------------------------------------------------- */
 /* DCE code. Must scan the entire live-out data.
-   Can be used also to check the correctness of the output. */
-static
-void print_array(int n,
-		 DATA_TYPE POLYBENCH_2D(A,N,N,n,n))
-
-{
+         Can be used also to check the correctness of the output. */
+static void print_array(int n, DATA_TYPE POLYBENCH_2D(A, N, N, n, n)) {
   int i, j;
 
-  for (i = 0; i < n; i++)
+  for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) {
       fprintf(stderr, DATA_PRINTF_MODIFIER, A[i][j]);
-      if ((i * n + j) % 20 == 0) fprintf(stderr, "\n");
+      if ((i * n + j) % 20 == 0)
+        fprintf(stderr, "\n");
     }
+  }
   fprintf(stderr, "\n");
 }
 
 /* ------------------------------------------------------------- */
-void runJacobi2DCpu(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A,N,N,n,n), DATA_TYPE POLYBENCH_2D(B,N,N,n,n)) {
-	
-	for (int t = 0; t < _PB_TSTEPS; t++) {
-    	for (int i = 1; i < _PB_N - 1; i++) {
-			for (int j = 1; j < _PB_N - 1; j++) {
-	  			B[i][j] = 0.2f * (A[i][j] + A[i][(j-1)] + A[i][(1+j)] + A[(1+i)][j] + A[(i-1)][j]);
-			}
-		}
-		
-    	for (int i = 1; i < _PB_N-1; i++) {
-			for (int j = 1; j < _PB_N-1; j++) {
-	  			A[i][j] = B[i][j];
-			}
-		}
-	}
+void runJacobi2DCpu(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A, N, N, n, n),
+                    DATA_TYPE POLYBENCH_2D(B, N, N, n, n)) {
+  for (int t = 0; t < _PB_TSTEPS; t++) {
+    for (int i = 1; i < _PB_N - 1; i++) {
+      for (int j = 1; j < _PB_N - 1; j++) {
+        B[i][j] = 0.2f * (A[i][j] + A[i][(j - 1)] + A[i][(1 + j)] +
+                          A[(1 + i)][j] + A[(i - 1)][j]);
+      }
+    }
+
+    for (int i = 1; i < _PB_N - 1; i++) {
+      for (int j = 1; j < _PB_N - 1; j++) {
+        A[i][j] = B[i][j];
+      }
+    }
+  }
 }
 
 /* ------------------------------------------------------------- */
-void jacobi2d_original(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A,N,N,n,n), DATA_TYPE POLYBENCH_2D(B,N,N,n,n)){
+void jacobi2d_original(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A, N, N, n, n),
+                       DATA_TYPE POLYBENCH_2D(B, N, N, n, n)) {
+  /* Start timer. */
+  polybench_start_instruments;
 
-	/* Start timer. */
-	polybench_start_instruments;
+  runJacobi2DCpu(tsteps, n, A, B);
 
-	runJacobi2DCpu(tsteps, n, A, B);
-	
-	/* Stop and print timer. */
-	polybench_stop_instruments;
-	// printf("CPU Time in seconds:\n");
-	polybench_print_instruments;
+  /* Stop and print timer. */
+  polybench_stop_instruments;
+  // printf("CPU Time in seconds:\n");
+  polybench_print_instruments;
 }
 
 /* ------------------------------------------------------------- */
 /* Main computational kernel. The whole function will be timed,
-   including the call and return. */
-static
-void jacobi_2d_imper_omp_kernel(int tsteps,
-			    int n,
-			    DATA_TYPE POLYBENCH_2D(A,N,N,n,n),
-			    DATA_TYPE POLYBENCH_2D(B,N,N,n,n))
-{
+         including the call and return. */
+static void jacobi_2d_imper_omp_kernel(int tsteps, int n,
+                                       DATA_TYPE POLYBENCH_2D(A, N, N, n, n),
+                                       DATA_TYPE POLYBENCH_2D(B, N, N, n, n)) {
   int t, i, j;
 
-  #pragma scop
-  
-/*  #pragma omp parallel private(i,j,t) num_threads(OPENMP_NUM_THREADS)
+	#pragma scop
+
+	#pragma omp parallel private(i, j, t) num_threads(OPENMP_NUM_THREADS)
   {
-    #pragma omp master
+		#pragma omp master
     {
       for (t = 0; t < _PB_TSTEPS; t++) {
-        #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK) 
+				#pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
         for (i = 1; i < _PB_N - 1; i++)
           for (j = 1; j < _PB_N - 1; j++)
-            B[i][j] = 0.2 * (A[i][j] + A[i][j-1] + A[i][1+j] + A[1+i][j] + A[i-1][j]);
-	    
-	      #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK) 
-        for (i = 1; i < _PB_N-1; i++)
-          for (j = 1; j < _PB_N-1; j++)
+            B[i][j] = 0.2 * (A[i][j] + A[i][j - 1] + A[i][1 + j] + A[1 + i][j] +
+                             A[i - 1][j]);
+
+				#pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+        for (i = 1; i < _PB_N - 1; i++)
+          for (j = 1; j < _PB_N - 1; j++)
             A[i][j] = B[i][j];
       }
     }
-  } */
-
-  /* Errors with the old format: 
-  	 jacobi-2d-imper.c:145:17: error: work-sharing region may not be closely nested inside of work-sharing, critical, ordered, master or explicit task region
-     #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK) 
-                 ^
-     jacobi-2d-imper.c:150:17: error: work-sharing region may not be closely nested inside of work-sharing, critical, ordered, master or explicit task region
-     #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
-  */
-
-  #pragma omp master
-  {
-    for (t = 0; t < _PB_TSTEPS; t++) {
-    	current_loop_index = 0;
-  		// Copy to device A, B.
-  		q_data_transfer_write = (N * N * sizeof(DATA_TYPE)) + (N * N * sizeof(DATA_TYPE));
-  		// Copy back A.
-  		q_data_transfer_read = (0);
-
-      #pragma omp parallel for private(i,j) schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS)
-      for (i = 1; i < _PB_N - 1; i++)
-        for (j = 1; j < _PB_N - 1; j++)
-          B[i][j] = 0.2 * (A[i][j] + A[i][j-1] + A[i][1+j] + A[1+i][j] + A[i-1][j]);
-
-      current_loop_index = 1;
-  		// Copy to device A, B.
-  		q_data_transfer_write = (0);
-  		// Copy back A.
-  		q_data_transfer_read = (N * N * sizeof(DATA_TYPE));
-      #pragma omp parallel for private(i,j) schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS) 
-      for (i = 1; i < _PB_N-1; i++)
-        for (j = 1; j < _PB_N-1; j++)
-          A[i][j] = B[i][j];
-    }
   }
 
-  #pragma endscop
+/* Errors with the old format:
+         jacobi-2d-imper.c:145:17: error: work-sharing region may not be closely
+   nested inside of work-sharing, critical, ordered, master or explicit task
+   region
+         #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+                                                         ^
+         jacobi-2d-imper.c:150:17: error: work-sharing region may not be closely
+   nested inside of work-sharing, critical, ordered, master or explicit task
+   region
+         #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+*/
+
+/*	#pragma omp master
+        {
+                for (t = 0; t < _PB_TSTEPS; t++) {
+                        current_loop_index = 0;
+                        // Copy to device A, B.
+                        q_data_transfer_write = (N * N * sizeof(DATA_TYPE)) + (N
+   * N * sizeof(DATA_TYPE));
+                        // Copy back A.
+                        q_data_transfer_read = (0);
+
+                        #pragma omp parallel for private(i,j)
+   schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS)
+                        for (i = 1; i < _PB_N - 1; i++)
+                                for (j = 1; j < _PB_N - 1; j++)
+                                        B[i][j] = 0.2 * (A[i][j] + A[i][j-1] +
+   A[i][1+j] + A[1+i][j] + A[i-1][j]);
+
+                        current_loop_index = 1;
+                        // Copy to device A, B.
+                        q_data_transfer_write = (0);
+                        // Copy back A.
+                        q_data_transfer_read = (N * N * sizeof(DATA_TYPE));
+                        #pragma omp parallel for private(i,j)
+   schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS)
+                        for (i = 1; i < _PB_N-1; i++)
+                                for (j = 1; j < _PB_N-1; j++)
+                                        A[i][j] = B[i][j];
+                }
+        }*/
+
+#pragma endscop
 }
 
 /* ------------------------------------------------------------- */
-void jacobi_2d_imper_omp(int tsteps,
-			    int n,
-			    DATA_TYPE POLYBENCH_2D(A,N,N,n,n),
-			    DATA_TYPE POLYBENCH_2D(B,N,N,n,n)){
-	/* Start timer. */
+void jacobi_2d_imper_omp(int tsteps, int n,
+                         DATA_TYPE POLYBENCH_2D(A, N, N, n, n),
+                         DATA_TYPE POLYBENCH_2D(B, N, N, n, n)) {
+  /* Start timer. */
   polybench_start_instruments;
 
   /* Run kernel. */
-  jacobi_2d_imper_omp_kernel (tsteps, n, A, B);
+  jacobi_2d_imper_omp_kernel(tsteps, n, A, B);
 
   /* Stop and print timer. */
   polybench_stop_instruments;
   polybench_print_instruments;
-
 }
 
 /* ------------------------------------------------------------- */
-__global__ void jacobi_cuda_kernel_1(int n, DATA_TYPE* A, DATA_TYPE* B)
-{
-	int i = blockIdx.y * blockDim.y + threadIdx.y;
-	int j = blockIdx.x * blockDim.x + threadIdx.x;
+__global__ void jacobi_cuda_kernel_1(int n, DATA_TYPE *A, DATA_TYPE *B) {
+  int i = blockIdx.y * blockDim.y + threadIdx.y;
+  int j = blockIdx.x * blockDim.x + threadIdx.x;
 
-	if ((i >= 1) && (i < (_PB_N-1)) && (j >= 1) && (j < (_PB_N-1)))
-	{
-		B[i*N + j] = 0.2f * (A[i*N + j] + A[i*N + (j-1)] + A[i*N + (1 + j)] + A[(1 + i)*N + j] + A[(i-1)*N + j]);	
-	}
+  if ((i >= 1) && (i < (_PB_N - 1)) && (j >= 1) && (j < (_PB_N - 1))) {
+    B[i * N + j] =
+        0.2f * (A[i * N + j] + A[i * N + (j - 1)] + A[i * N + (1 + j)] +
+                A[(1 + i) * N + j] + A[(i - 1) * N + j]);
+  }
 }
 
 /* ------------------------------------------------------------- */
-__global__ void jacobi_cuda_kernel_2(int n, DATA_TYPE* A, DATA_TYPE* B)
-{
-	int i = blockIdx.y * blockDim.y + threadIdx.y;
-	int j = blockIdx.x * blockDim.x + threadIdx.x;
-	
-	if ((i >= 1) && (i < (_PB_N-1)) && (j >= 1) && (j < (_PB_N-1)))
-	{
-		A[i*N + j] = B[i*N + j];
-	}
+__global__ void jacobi_cuda_kernel_2(int n, DATA_TYPE *A, DATA_TYPE *B) {
+  int i = blockIdx.y * blockDim.y + threadIdx.y;
+  int j = blockIdx.x * blockDim.x + threadIdx.x;
+
+  if ((i >= 1) && (i < (_PB_N - 1)) && (j >= 1) && (j < (_PB_N - 1))) {
+    A[i * N + j] = B[i * N + j];
+  }
 }
 
 /* ------------------------------------------------------------- */
-void jacobi2d_cuda_1(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A,N,N,n,n), DATA_TYPE POLYBENCH_2D(B,N,N,n,n))
-{
-	
-	if(!data_alloc_and_copy) {
-		cudaMalloc(&Agpu, N * N * sizeof(DATA_TYPE));
-		cudaMalloc(&Bgpu, N * N * sizeof(DATA_TYPE));
-		cudaMemcpy(Agpu, A, N * N * sizeof(DATA_TYPE), cudaMemcpyHostToDevice);
-		cudaMemcpy(Bgpu, B, N * N * sizeof(DATA_TYPE), cudaMemcpyHostToDevice);
-		data_alloc_and_copy = true;
-	}
+void jacobi2d_cuda_1(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A, N, N, n, n),
+                     DATA_TYPE POLYBENCH_2D(B, N, N, n, n)) {
 
-	dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
-	dim3 grid((unsigned int)ceil( ((float)N) / ((float)block.x) ), (unsigned int)ceil( ((float)N) / ((float)block.y) ));
-	
-	jacobi_cuda_kernel_1<<<grid,block>>>(n, Agpu, Bgpu);
-	cudaThreadSynchronize();
+  if (!data_alloc_and_copy) {
+    cudaMalloc(&Agpu, N * N * sizeof(DATA_TYPE));
+    cudaMalloc(&Bgpu, N * N * sizeof(DATA_TYPE));
+    cudaMemcpy(Agpu, A, N * N * sizeof(DATA_TYPE), cudaMemcpyHostToDevice);
+    cudaMemcpy(Bgpu, B, N * N * sizeof(DATA_TYPE), cudaMemcpyHostToDevice);
+    data_alloc_and_copy = true;
+  }
 
-	cudaMemcpy(A, Agpu, sizeof(DATA_TYPE) * N * N, cudaMemcpyDeviceToHost);
-	cudaMemcpy(B, Bgpu, sizeof(DATA_TYPE) * N * N, cudaMemcpyDeviceToHost);
+  dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
+  dim3 grid((unsigned int)ceil(((float)N) / ((float)block.x)),
+            (unsigned int)ceil(((float)N) / ((float)block.y)));
+
+  jacobi_cuda_kernel_1<<<grid, block>>>(n, Agpu, Bgpu);
+  cudaThreadSynchronize();
+
+  cudaMemcpy(A, Agpu, sizeof(DATA_TYPE) * N * N, cudaMemcpyDeviceToHost);
+  cudaMemcpy(B, Bgpu, sizeof(DATA_TYPE) * N * N, cudaMemcpyDeviceToHost);
 }
 
 /* ------------------------------------------------------------- */
-void jacobi2d_cuda_2(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A,N,N,n,n), DATA_TYPE POLYBENCH_2D(B,N,N,n,n))
-{
+void jacobi2d_cuda_2(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A, N, N, n, n),
+                     DATA_TYPE POLYBENCH_2D(B, N, N, n, n)) {
 
-	if(!data_alloc_and_copy) {
-		cudaMalloc(&Agpu, N * N * sizeof(DATA_TYPE));
-		cudaMalloc(&Bgpu, N * N * sizeof(DATA_TYPE));
-		cudaMemcpy(Agpu, A, N * N * sizeof(DATA_TYPE), cudaMemcpyHostToDevice);
-		cudaMemcpy(Bgpu, B, N * N * sizeof(DATA_TYPE), cudaMemcpyHostToDevice);
-		data_alloc_and_copy = true;
-	}
+  if (!data_alloc_and_copy) {
+    cudaMalloc(&Agpu, N * N * sizeof(DATA_TYPE));
+    cudaMalloc(&Bgpu, N * N * sizeof(DATA_TYPE));
+    cudaMemcpy(Agpu, A, N * N * sizeof(DATA_TYPE), cudaMemcpyHostToDevice);
+    cudaMemcpy(Bgpu, B, N * N * sizeof(DATA_TYPE), cudaMemcpyHostToDevice);
+    data_alloc_and_copy = true;
+  }
 
-	dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
-	dim3 grid((unsigned int)ceil( ((float)N) / ((float)block.x) ), (unsigned int)ceil( ((float)N) / ((float)block.y) ));
-	
-	jacobi_cuda_kernel_2<<<grid,block>>>(n, Agpu, Bgpu);
-	cudaThreadSynchronize();
+  dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
+  dim3 grid((unsigned int)ceil(((float)N) / ((float)block.x)),
+            (unsigned int)ceil(((float)N) / ((float)block.y)));
 
-	cudaMemcpy(A, Agpu, sizeof(DATA_TYPE) * N * N, cudaMemcpyDeviceToHost);
-	cudaMemcpy(B, Bgpu, sizeof(DATA_TYPE) * N * N, cudaMemcpyDeviceToHost);
+  jacobi_cuda_kernel_2<<<grid, block>>>(n, Agpu, Bgpu);
+  cudaThreadSynchronize();
+
+  cudaMemcpy(A, Agpu, sizeof(DATA_TYPE) * N * N, cudaMemcpyDeviceToHost);
+  cudaMemcpy(B, Bgpu, sizeof(DATA_TYPE) * N * N, cudaMemcpyDeviceToHost);
 }
 
 /* ------------------------------------------------------------- */
-void copy_array(int n, DATA_TYPE POLYBENCH_2D(source, N, N, n, n), DATA_TYPE POLYBENCH_2D(dest, N, N, n, n)) {
+void copy_array(int n, DATA_TYPE POLYBENCH_2D(source, N, N, n, n),
+                DATA_TYPE POLYBENCH_2D(dest, N, N, n, n)) {
   int i, j;
 
   for (i = 0; i < n; i++) {
@@ -305,33 +307,32 @@ void copy_array(int n, DATA_TYPE POLYBENCH_2D(source, N, N, n, n), DATA_TYPE POL
 }
 
 /* ------------------------------------------------------------- */
-int main(int argc, char** argv)
-{
-	/* Retrieve problem size. */
-	int n = N;
-	int tsteps = TSTEPS;
+int main(int argc, char **argv) {
+  /* Retrieve problem size. */
+  int n = N;
+  int tsteps = TSTEPS;
 
-	POLYBENCH_2D_ARRAY_DECL(A,DATA_TYPE,N,N,n,n);
-	POLYBENCH_2D_ARRAY_DECL(B,DATA_TYPE,N,N,n,n);
+  POLYBENCH_2D_ARRAY_DECL(A, DATA_TYPE, N, N, n, n);
+  POLYBENCH_2D_ARRAY_DECL(B, DATA_TYPE, N, N, n, n);
 
-	POLYBENCH_2D_ARRAY_DECL(A_OMP,DATA_TYPE,N,N,n,n);
-	POLYBENCH_2D_ARRAY_DECL(B_OMP,DATA_TYPE,N,N,n,n);
+  POLYBENCH_2D_ARRAY_DECL(A_OMP, DATA_TYPE, N, N, n, n);
+  POLYBENCH_2D_ARRAY_DECL(B_OMP, DATA_TYPE, N, N, n, n);
 
-	POLYBENCH_2D_ARRAY_DECL(A_GPU,DATA_TYPE,N,N,n,n);
-	POLYBENCH_2D_ARRAY_DECL(B_GPU,DATA_TYPE,N,N,n,n);
+  POLYBENCH_2D_ARRAY_DECL(A_GPU, DATA_TYPE, N, N, n, n);
+  POLYBENCH_2D_ARRAY_DECL(B_GPU, DATA_TYPE, N, N, n, n);
 
-	// void jacobi2d_cuda_1(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A,N,N,n,n), 
-	//                      DATA_TYPE POLYBENCH_2D(B,N,N,n,n))
+  // void jacobi2d_cuda_1(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A,N,N,n,n),
+  //                      DATA_TYPE POLYBENCH_2D(B,N,N,n,n))
 
-	// Number of parameters to function.
+  // Number of parameters to function.
   int n_params = 4;
 
   // loop 0.
-  Func *ff_0 = (Func *) malloc(sizeof(Func));
+  Func *ff_0 = (Func *)malloc(sizeof(Func));
 
   // Number of arguments + 1, the lists need to have last element NULL.
-  ff_0->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
-  ff_0->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
+  ff_0->arg_types = (ffi_type **)malloc((n_params + 1) * sizeof(ffi_type *));
+  ff_0->arg_values = (void **)malloc((n_params + 1) * sizeof(void *));
 
   ff_0->f = &jacobi2d_cuda_1;
   memset(&ff_0->ret_value, 0, sizeof(ff_0->ret_value));
@@ -354,11 +355,11 @@ int main(int argc, char** argv)
   ff_0->arg_types[4] = NULL;
 
   // loop 1.
-  Func *ff_1 = (Func *) malloc(sizeof(Func));
+  Func *ff_1 = (Func *)malloc(sizeof(Func));
 
   // Number of arguments + 1, the lists need to have last element NULL.
-  ff_1->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
-  ff_1->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
+  ff_1->arg_types = (ffi_type **)malloc((n_params + 1) * sizeof(ffi_type *));
+  ff_1->arg_values = (void **)malloc((n_params + 1) * sizeof(void *));
 
   ff_1->f = &jacobi2d_cuda_2;
   memset(&ff_1->ret_value, 0, sizeof(ff_1->ret_value));
@@ -405,17 +406,17 @@ int main(int argc, char** argv)
   fprintf(stderr, "Calling init_array.\n");
   init_array(n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B));
 
-	/*Copy the original OMP.*/
+  /*Copy the original OMP.*/
   fprintf(stderr, "Copying A to A_OMP.\n");
   copy_array(n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(A_OMP));
   fprintf(stderr, "Copying B to B_OMP.\n");
-	copy_array(n, POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(B_OMP));
-  
+  copy_array(n, POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(B_OMP));
+
   fprintf(stderr, "Copying A to A_GPU.\n");
   copy_array(n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(A_GPU));
   fprintf(stderr, "Copying B to B_GPU.\n");
-	copy_array(n, POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(B_GPU));
-  
+  copy_array(n, POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(B_GPU));
+
   fprintf(stdout, "exp, num_threads, N, ORIG, OMP\n");
 
   fprintf(stdout, "OMP+OFF, %d, %d, ", OPENMP_NUM_THREADS, N);
@@ -425,32 +426,35 @@ int main(int argc, char** argv)
   fprintf(stdout, ", ");
 
   fprintf(stderr, "Calling OMP.\n");
-  jacobi_2d_imper_omp(tsteps, n, POLYBENCH_ARRAY(A_OMP), POLYBENCH_ARRAY(B_OMP));
+  jacobi_2d_imper_omp(tsteps, n, POLYBENCH_ARRAY(A_OMP),
+                      POLYBENCH_ARRAY(B_OMP));
   fprintf(stdout, "\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
-  compareResults(n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(A_OMP), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(B_OMP));
+  compareResults(n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(A_OMP),
+                 POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(B_OMP));
 
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
-  compareResults(n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(A_GPU), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(B_GPU));
+  compareResults(n, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(A_GPU),
+                 POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(B_GPU));
 
   polybench_prevent_dce(print_array(n, POLYBENCH_ARRAY(A)));
 
-	
-	POLYBENCH_FREE_ARRAY(A);
-	POLYBENCH_FREE_ARRAY(A_OMP);
-	POLYBENCH_FREE_ARRAY(A_GPU);
-	POLYBENCH_FREE_ARRAY(B);
-	POLYBENCH_FREE_ARRAY(B_OMP);
-	POLYBENCH_FREE_ARRAY(B_GPU);
+  POLYBENCH_FREE_ARRAY(A);
+  POLYBENCH_FREE_ARRAY(A_OMP);
+  POLYBENCH_FREE_ARRAY(A_GPU);
+  POLYBENCH_FREE_ARRAY(B);
+  POLYBENCH_FREE_ARRAY(B_OMP);
+  POLYBENCH_FREE_ARRAY(B_GPU);
 
-	cudaFree(Agpu);
-	cudaFree(Bgpu);
+  cudaFree(Agpu);
+  cudaFree(Bgpu);
 
-	return 0;
+  return 0;
 }
 
-// polybench.c uses the OpenMP to parallelize somethings. This call were intercepted by hookomp.
+// polybench.c uses the OpenMP to parallelize somethings. This call were
+// intercepted by hookomp.
 #undef _OPENMP
 
 #include <polybench.c>
