@@ -168,10 +168,9 @@ void jacobi_2d_imper_omp_kernel(int tsteps,
   
   #pragma omp parallel private(tid, i,j,t) num_threads(2)
   {
-    tid = omp_get_thread_num();
-    // if(tid == 0)
+    //#pragma omp master
     if (omp_get_thread_num() == 0)
-    //{
+    {
       fprintf(stderr, "Tid: %d\n", tid);
       for (t = 0; t < _PB_TSTEPS; t++)
       {
@@ -186,9 +185,9 @@ void jacobi_2d_imper_omp_kernel(int tsteps,
           fprintf(stderr, "Loop 2: Tid: %d, i:%d\n", tid, i);
           for (j = 1; j < _PB_N-1; j++)
             A[i][j] = B[i][j];
-	}
+	      }
       }
-    //}
+    }
   }
   #pragma endscop  
 
