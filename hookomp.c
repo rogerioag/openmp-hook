@@ -405,7 +405,7 @@ bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index
 bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void* extra) {	
 	PRINT_FUNC_NAME;
 	bool result = false;
-	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
+	// TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
 	/* Registry the thread which will be execute and get measures. */
 	if(!thread_was_registred_to_execute_measures){
@@ -428,6 +428,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		if(registred_thread_executing_function_next == (long int) pthread_self()){ /* Registred thread. */
 			
 			TRACE("[HOOKOMP]: Thread registred executing: %ld.\n", registred_thread_executing_function_next);
+			TRACE("[HOOKOMP]: They were executed %ld iterations of %ld.\n", executed_loop_iterations, max_loops_iterations_for_measures);
 			if(executed_loop_iterations < max_loops_iterations_for_measures){ /* No reached the percentual. */
 				TRACE("[HOOKOMP]: [INSIDE] Calling next function inside of measures section.\n");
 				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
@@ -491,7 +492,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				executed_loop_iterations = 0;
 
 				/* Release all blocked team threads. */
-				TRACE("[HOOKOMP]: Number of Blocked Threds: %ld.\n", number_of_blocked_threads);
+				TRACE("[HOOKOMP]: Number of Blocked Threads: %ld.\n", number_of_blocked_threads);
 				if(number_of_blocked_threads > 0){
 					release_all_team_threads();	
 				}
@@ -521,9 +522,9 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 			TRACE("[HOOKOMP]: Other thread in execution, verifying if made by offloading: %d\n", made_the_offloading);
 
-			/* After the wakeup of blocked. */
+			/* After the wakeup of blocked or while the offloading was not made. */
 			if(!made_the_offloading){
-	 			TRACE("[HOOKOMP]: [WAKE UP] Calling next function out of measures section after wake up.\n");
+	 			TRACE("[HOOKOMP]: [OTHERS/WAKE UP] Calling next function out of measures section after wake up.\n");
 	 			TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 	 			result = fn_proxy(istart, iend, extra);
 	 			TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
@@ -623,7 +624,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	// 			executed_loop_iterations = 0;
 
 	// 			/* Release all blocked team threads. */
-	// 			TRACE("[HOOKOMP]: Number of Blocked Threds: %ld.\n", number_of_blocked_threads);
+	// 			TRACE("[HOOKOMP]: Number of Blocked Threads: %ld.\n", number_of_blocked_threads);
 	// 			if(number_of_blocked_threads > 0){
 	// 				release_all_team_threads();	
 	// 			}
