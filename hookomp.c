@@ -175,7 +175,19 @@ void HOOKOMP_registry_the_first_thread(void){
 		registred_thread_executing_function_next = thread_id;
 		TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
 		/* The registry was made. */
-		thread_was_registred_to_execute_measures = true;		
+		thread_was_registred_to_execute_measures = true;
+
+		/* Thread was registered. */
+  		TRACE("Verifying if the thread was registered in PAPI: %d.\n", thread_was_registred_in_papi);
+  		if(!thread_was_registred_in_papi){
+  			TRACE("Trying to registry the thread in papi.\n");
+  			if((result = RM_register_papi_thread()) != true){
+  				TRACE("Thread [%lu] was not registered in PAPI [%lu]: %d.\n", registred_thread_executing_function_next, thread_was_registred_in_papi);
+  			}
+  			else{
+  				TRACE("Thread [%lu] was registered in PAPI [%lu]: %d.\n", registred_thread_executing_function_next, thread_was_registred_in_papi);	
+  			}
+  		}		
 	}
 
 	sem_post(&mutex_registry_thread_in_func_next);

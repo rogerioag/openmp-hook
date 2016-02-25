@@ -55,11 +55,11 @@ bool RM_library_init(void){
   	}
 
   	/* Thread was registered. */
-  	TRACE("Verifying if the thread was registered in PAPI: %d.\n", thread_was_registred_in_papi);
+  	/*TRACE("Verifying if the thread was registered in PAPI: %d.\n", thread_was_registred_in_papi);
   	if(!thread_was_registred_in_papi){
   		TRACE("Trying to registry the thread in papi.\n");
   		result = RM_register_papi_thread();
-  	}
+  	}*/
 
   	/* Event set was created. */
    	TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
