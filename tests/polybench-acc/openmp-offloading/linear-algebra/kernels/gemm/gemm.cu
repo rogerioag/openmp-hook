@@ -67,6 +67,18 @@ void init_array(int ni, int nj, int nk, DATA_TYPE *alpha, DATA_TYPE *beta,
 }
 
 /* ------------------------------------------------------------- */
+void copy_array(int ni, int nj, DATA_TYPE POLYBENCH_2D(C_source, NI, NJ, ni, nj), DATA_TYPE POLYBENCH_2D(C_dest, NI, NJ, ni, nj)) {
+  int i, j;
+
+  for (i = 0; i < ni; i++) {
+    for (j = 0; j < nj; j++) {
+      C_dest[i][j] = C_source[i][j];
+      // printf("%4.2f - %4.2f\n", C_dest[i][j], C_source[i][j]);
+    }
+  }
+}
+
+/* ------------------------------------------------------------- */
 void compareResults(int ni, int nj, DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
                     DATA_TYPE POLYBENCH_2D(C_output, NI, NJ, ni, nj)) {
   int i, j, fail;
@@ -381,9 +393,11 @@ int main(int argc, char *argv[]) {
              POLYBENCH_ARRAY(C));
 
   /*Copy the original C to C of OMP.*/
-  memcpy(C_outputFromOMP, C, sizeof(C_outputFromOMP));
+  // memcpy(C_outputFromOMP, C, sizeof(C_outputFromOMP));
+  copy_array(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
 
-  memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
+  // memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
+  copy_array(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
   fprintf(stdout, "exp, num_threads, NI, NJ, NK, ORIG, OMP\n");
 
