@@ -93,8 +93,6 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 		number_of_threads_in_team = num_threads;
 		number_of_blocked_threads = 0;
 
-		
-
 		number_of_blocked_threads_in_loop_end = 0;
 
 		/* Initialization of thread and measures section. */

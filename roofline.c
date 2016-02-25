@@ -132,6 +132,17 @@ bool RM_measure_session_finish(void){
 
 	if (is_measure_session_initialized){
  		is_measure_session_initialized = false;
+ 		
+ 		TRACE("Verifying the registered thread in PAPI: %d.\n", thread_was_registred_in_papi);
+  		if(thread_was_registred_in_papi){
+  			TRACE("Trying to unregister the thread in PAPI.\n");
+  			if((result = RM_unregister_papi_thread()) != true){
+  				TRACE("Thread [%lu] was not unregistered in PAPI.\n", thread_was_registred_in_papi);
+  			}
+  			else{
+  				TRACE("Thread [%lu] was unregistered in PAPI.\n");
+  			}
+  		}
 	}
 
 	return result;
@@ -185,6 +196,26 @@ bool RM_register_papi_thread(void){
 	}
 	else {
 		TRACE("Thread id is: %lu\n", tid);
+	}
+
+	return (retval == PAPI_OK);
+}
+
+/* ------------------------------------------------------------ */
+/* Register the thread in PAPI.												*/
+bool RM_unregister_papi_thread(void){
+	PRINT_FUNC_NAME;
+	bool result = true;
+	int retval;
+	unsigned long int tid = 0;
+	TRACE("[%s] [Before] PAPI_unregister_thread.\n", __FUNCTION__);
+
+	if((retval = PAPI_unregister_thread()) != PAPI_OK){
+        TRACE("PAPI_unregister_thread error: %d %s\n", retval, PAPI_strerror(retval));
+        RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	}
+	else {
+		thread_was_registred_in_papi = false;
 	}
 
 	return (retval == PAPI_OK);
