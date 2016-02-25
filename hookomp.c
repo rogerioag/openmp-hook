@@ -488,6 +488,10 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 							TRACE("The offloading was done launching of apropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
 						}
 					}
+					else {
+						TRACE("Is not possible decide about offloading.\n");
+					}
+					
 					TRACE("After decision about offloading.\n");
 				}
 

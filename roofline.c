@@ -1084,6 +1084,9 @@ bool RM_decision_about_offloading(long *better_device_index){
 	double oi = RM_get_operational_intensity();
 	TRACE("Operational intensity: %10.6f\n", oi);
 
+	// Verificar se todos os conjuntos de eventos foram coletados.
+	// retornar um false.
+
 	*better_device_index = RM_get_better_device_to_execution(oi);
 	TRACE("Execution is better on device [%d].\n", *better_device_index);
 	
