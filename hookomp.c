@@ -161,6 +161,8 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 void HOOKOMP_registry_the_first_thread(void){
 	PRINT_FUNC_NAME;
 
+	bool result = false;
+
 	/* Set the number of threads requested in application code. */
 	sem_wait(&mutex_registry_thread_in_func_next);
 
