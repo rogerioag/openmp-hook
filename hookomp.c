@@ -100,7 +100,7 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 		/* Initialization of thread and measures section. */
 		registred_thread_executing_function_next = -1;
 		is_executing_measures_section = true;
-		thread_was_registred_to_execute_alone = false;
+		thread_was_registred_to_execute_measures = false;
 		
 		/* Control of decision about offloding. */		
 		decided_by_offloading = false;
@@ -164,19 +164,18 @@ void HOOKOMP_registry_the_first_thread(void){
 	/* Set the number of threads requested in application code. */
 	sem_wait(&mutex_registry_thread_in_func_next);
 
-	number_of_threads_in_team = num_threads_defined;
-
-	TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
-
 	long int thread_id = (long int) pthread_self();
 
 	TRACE("[HOOKOMP]: Thread [%lu] is trying to register.\n", (long int) thread_id);
 
 	if(registred_thread_executing_function_next == -1){
+		number_of_threads_in_team = num_threads_defined;
+		TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
+
 		registred_thread_executing_function_next = thread_id;
 		TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
 		/* The registry was made. */
-		thread_was_registred_to_execute_alone = true;		
+		thread_was_registred_to_execute_measures = true;		
 	}
 
 	sem_post(&mutex_registry_thread_in_func_next);
@@ -408,8 +407,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	bool result = false;
 	TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
-	/* Registry the thread which will be execute alone. down semaphore. */
-	if(!thread_was_registred_to_execute_alone){
+	/* Registry the thread which will be execute and get measures. */
+	if(!thread_was_registred_to_execute_measures){
 		/* Calculate the max iterations need to measures. */
 		max_loops_iterations_for_measures = ((total_of_iterations * percentual_of_code) / 100);
 
@@ -419,7 +418,6 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	/* If is not getting measures execute directly. */
 	if(!is_executing_measures_section){ /* Call directly. */
 		TRACE("[HOOKOMP]: [OUTSIDE] Calling next function out of measures section.\n");
-		TRACE("[HOOKOMP]: [OUTSIDE] Calling next function out of measures section after wake up.\n");
 		TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 		result = fn_proxy(istart, iend, extra);
 		TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
@@ -429,6 +427,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		
 		if(registred_thread_executing_function_next == (long int) pthread_self()){ /* Registred thread. */
 			
+			TRACE("[HOOKOMP]: Thread registred executing: %ld.\n", registred_thread_executing_function_next);
 			if(executed_loop_iterations < max_loops_iterations_for_measures){ /* No reached the percentual. */
 				TRACE("[HOOKOMP]: [INSIDE] Calling next function inside of measures section.\n");
 				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
@@ -464,7 +463,6 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					// A decisão de migrar é aqui.
 					TRACE("Getting decision about offloading.\n");
 					if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
-						
 						/* Launch apropriated function. */
 						TRACE("RM decided by device [%d].\n", better_device);
 
@@ -706,7 +704,7 @@ void HOOKOMP_loop_end(void){
 			/* Initialization of thread and measures section. */
 			TRACE("[HOOKOMP]: Thread [%lu] is closing the loop index %d.\n", (long int) pthread_self(), current_loop_index);
 			registred_thread_executing_function_next = -1;
-			thread_was_registred_to_execute_alone = false;
+			thread_was_registred_to_execute_measures = false;
 		
 			is_loop_initialized = false;
 
