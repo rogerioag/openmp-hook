@@ -1075,7 +1075,7 @@ int RM_get_better_device_to_execution(double oi){
 }
 
 /* ------------------------------------------------------------ */
-bool check_all_eventsets_was_collected(void){
+bool RM_check_all_eventsets_was_collected(void){
 	PRINT_FUNC_NAME;
 	int i = 0;
 	int were_collected = 0;
@@ -1098,11 +1098,8 @@ bool RM_decision_about_offloading(long *better_device_index){
 	double oi = RM_get_operational_intensity();
 	TRACE("Operational intensity: %10.6f\n", oi);
 
-	// Verificar se todos os conjuntos de eventos foram coletados.
-	// retornar um false.
-
-	
-	if ((offload_decision = check_all_eventsets_was_collected()) == true){
+	/* Verify if have measures enough to calculate decision. */
+	if ((offload_decision = RM_check_all_eventsets_was_collected()) == true){
 		*better_device_index = RM_get_better_device_to_execution(oi);
 	}
 	else {
