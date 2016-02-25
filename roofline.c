@@ -1075,6 +1075,20 @@ int RM_get_better_device_to_execution(double oi){
 }
 
 /* ------------------------------------------------------------ */
+bool check_all_eventsets_was_collected(void){
+	PRINT_FUNC_NAME;
+	int i = 0;
+	int were_collected = 0;
+
+	for ( i = 0; i < NUM_EVENT_SETS; i++ ){
+		if(ptr_measure->quant_intervals[i] > 0){
+			were_collected++; 
+		}
+	}
+	return (were_collected == NUM_EVENT_SETS);
+}
+
+/* ------------------------------------------------------------ */
 /* Better Device to execution.									*/
 bool RM_decision_about_offloading(long *better_device_index){
 	PRINT_FUNC_NAME;
@@ -1087,7 +1101,15 @@ bool RM_decision_about_offloading(long *better_device_index){
 	// Verificar se todos os conjuntos de eventos foram coletados.
 	// retornar um false.
 
-	*better_device_index = RM_get_better_device_to_execution(oi);
+	
+	if ((offload_decision = check_all_eventsets_was_collected()) == true){
+		*better_device_index = RM_get_better_device_to_execution(oi);
+	}
+	else {
+		TRACE("Decision is not possible.\n");
+		*better_device_index = 0;
+	}
+
 	TRACE("Execution is better on device [%d].\n", *better_device_index);
 	
 	return offload_decision;
