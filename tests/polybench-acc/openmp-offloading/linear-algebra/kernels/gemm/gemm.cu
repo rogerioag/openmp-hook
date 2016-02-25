@@ -75,17 +75,17 @@ void compareResults(int ni, int nj, DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
   // Compare CPU and GPU outputs
   for (i = 0; i < ni; i++) {
     for (j = 0; j < nj; j++) {
-      if (percentDiff(C[i][j], C_output[i][j]) >
-          PERCENT_DIFF_ERROR_THRESHOLD) {
+      if (percentDiff(C[i][j], C_output[i][j]) > PERCENT_DIFF_ERROR_THRESHOLD) {
         fail++;
       }
     }
   }
 
   // Print results
-  fprintf(stderr, "Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f "
-         "Percent: %d\n",
-         PERCENT_DIFF_ERROR_THRESHOLD, fail);
+  fprintf(stderr,
+          "Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f "
+          "Percent: %d\n",
+          PERCENT_DIFF_ERROR_THRESHOLD, fail);
 }
 
 /* ------------------------------------------------------------- */
@@ -125,17 +125,14 @@ void gemm(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
 /* ------------------------------------------------------------- */
 void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
-          DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
-          DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
-          DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
-  
+                   DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
+                   DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
+                   DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
+
   /* Start timer. */
   polybench_start_instruments;
 
-  gemm(ni, nj, nk, alpha, beta, 
-        A, 
-        B,
-        C);
+  gemm(ni, nj, nk, alpha, beta, A, B, C);
 
   /* Stop and print timer. */
   polybench_stop_instruments;
@@ -147,9 +144,9 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 /* Main computational kernel. The whole function will be timed,
    including the call and return. */
 void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
-          DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
-          DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
-          DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
+                     DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
+                     DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
+                     DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
 
   int i, j, k;
 
@@ -159,21 +156,25 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   {
     /* C := alpha*A*B + beta*C */
     // #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE)
-  	current_loop_index = 0;
-  	num_threads_defined = OPENMP_NUM_THREADS;
-  	// Copy to device A, B, C.
-  	q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NK) + (sizeof(DATA_TYPE) * NK * NJ) + (sizeof(DATA_TYPE) * NI * NJ);
-  	// Copy back C.
-  	q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NJ);
+    current_loop_index = 0;
+    num_threads_defined = OPENMP_NUM_THREADS;
+    // Copy to device A, B, C.
+    q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NK) +
+                            (sizeof(DATA_TYPE) * NK * NJ) +
+                            (sizeof(DATA_TYPE) * NI * NJ);
+    // Copy back C.
+    q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NJ);
     #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
-    for (i = 0; i < _PB_NI; i++)
+    for (i = 0; i < _PB_NI; i++) {
       for (j = 0; j < _PB_NJ; j++) {
         C[i][j] *= beta;
-        for (k = 0; k < _PB_NK; ++k)
+        for (k = 0; k < _PB_NK; ++k) {
           C[i][j] += alpha * A[i][k] * B[k][j];
+        }
       }
+    }
   }
-  #pragma endscop
+#pragma endscop
 }
 /* ------------------------------------------------------------- */
 void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
@@ -184,13 +185,10 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   /* Start timer. */
   polybench_start_instruments;
 
-  gemm_omp_kernel(ni, nj, nk, alpha, beta, 
-                  A, 
-                  B,
-                  C_outputFromOMP);
+  gemm_omp_kernel(ni, nj, nk, alpha, beta, A, B, C_outputFromOMP);
 
   /* Stop and print timer. */
-  
+
   polybench_stop_instruments;
   // printf("OpenMP Time in seconds:\n");
   polybench_print_instruments;
@@ -203,14 +201,15 @@ void GPU_argv_init() {
   fprintf(stderr, "GPU init.\n");
 
   cudaGetDeviceProperties(&deviceProp, GPU_DEVICE);
-  fprintf(stderr, "setting device %d with name %s\n", GPU_DEVICE, deviceProp.name);
+  fprintf(stderr, "setting device %d with name %s\n", GPU_DEVICE,
+          deviceProp.name);
   cudaSetDevice(GPU_DEVICE);
 }
 
 /* ------------------------------------------------------------- */
 __global__ void gemm_cuda_kernel(int ni, int nj, int nk, DATA_TYPE alpha,
-                            DATA_TYPE beta, DATA_TYPE *a, DATA_TYPE *b,
-                            DATA_TYPE *c) {
+                                 DATA_TYPE beta, DATA_TYPE *a, DATA_TYPE *b,
+                                 DATA_TYPE *c) {
   int j = blockIdx.x * blockDim.x + threadIdx.x;
   int i = blockIdx.y * blockDim.y + threadIdx.y;
 
@@ -225,12 +224,12 @@ __global__ void gemm_cuda_kernel(int ni, int nj, int nk, DATA_TYPE alpha,
 
 /* ------------------------------------------------------------- */
 void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
-              DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
-              DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
-              DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
-              DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NJ, ni, nj),
-              DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NJ, ni, nj)) {
-  
+               DATA_TYPE POLYBENCH_2D(A, NI, NK, ni, nk),
+               DATA_TYPE POLYBENCH_2D(B, NK, NJ, nk, nj),
+               DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
+               DATA_TYPE POLYBENCH_2D(C_inputToGpu, NI, NJ, ni, nj),
+               DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NJ, ni, nj)) {
+
   fprintf(stderr, "Calling function gemm_cuda.\n");
 
   // GPU initialization.
@@ -254,7 +253,8 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
   cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NK, cudaMemcpyHostToDevice);
   cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NK * NJ, cudaMemcpyHostToDevice);
-  cudaMemcpy(C_gpu, C_inputToGpu, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
+  cudaMemcpy(C_gpu, C_inputToGpu, sizeof(DATA_TYPE) * NI * NJ,
+             cudaMemcpyHostToDevice);
 
   // polybench_stop_instruments;
   // printf("GPU Data Transfers Time in seconds:\n");
@@ -267,14 +267,14 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   /* Start timer. */
   // polybench_start_instruments;
 
-  gemm_cuda_kernel<<<grid, block>>>(ni, nj, nk, alpha, beta, A_gpu, B_gpu, C_gpu);
+  gemm_cuda_kernel<<<grid, block>>>(ni, nj, nk, alpha, beta, A_gpu, B_gpu,
+                                    C_gpu);
   cudaThreadSynchronize();
 
   /* Stop and print timer. */
   // printf("GPU kernel Time in seconds:\n");
   // olybench_stop_instruments;
   // polybench_print_instruments;
-
 
   // polybench_start_instruments;
   cudaMemcpy(C_outputFromGpu, C_gpu, sizeof(DATA_TYPE) * NI * NJ,
@@ -319,11 +319,11 @@ int main(int argc, char *argv[]) {
   int n_params = 10;
 
   // void handler_function_init_array_GPU(void)
-  Func *ff_0 = (Func *) malloc(sizeof(Func));
+  Func *ff_0 = (Func *)malloc(sizeof(Func));
 
   // Number of arguments + 1, the lists need to have last element NULL.
-  ff_0->arg_types = (ffi_type**) malloc ((n_params + 1) * sizeof(ffi_type*));
-  ff_0->arg_values = (void**) malloc ((n_params + 1) * sizeof(void*));
+  ff_0->arg_types = (ffi_type **)malloc((n_params + 1) * sizeof(ffi_type *));
+  ff_0->arg_values = (void **)malloc((n_params + 1) * sizeof(void *));
 
   ff_0->f = &gemm_cuda;
   memset(&ff_0->ret_value, 0, sizeof(ff_0->ret_value));
@@ -378,7 +378,7 @@ int main(int argc, char *argv[]) {
 
   fprintf(stderr, "Calling init_array.\n");
   init_array(ni, nj, nk, &alpha, &beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
-       POLYBENCH_ARRAY(C));
+             POLYBENCH_ARRAY(C));
 
   /*Copy the original C to C of OMP.*/
   memcpy(C_outputFromOMP, C, sizeof(C_outputFromOMP));
@@ -390,11 +390,13 @@ int main(int argc, char *argv[]) {
   fprintf(stdout, "OMP+OFF, %d, %d, %d, %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
 
   // fprintf(stderr, "calling gemm_original:\n");
-  // gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
+  // gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A),
+  // POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
   fprintf(stdout, ", ");
-  
+
   fprintf(stderr, "calling gemm_omp:\n");
-  gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
+  gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
+           POLYBENCH_ARRAY(C_outputFromOMP));
   fprintf(stdout, "\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
@@ -404,7 +406,9 @@ int main(int argc, char *argv[]) {
   // GPU_argv_init();
 
   // fprintf(stderr, "Calling gemm_cuda.\n");
-  // gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
+  // gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
+  // POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu),
+  // POLYBENCH_ARRAY(C_outputFromGpu));
 
   // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
   // call_function_ffi_call(table[0][0]);
@@ -423,7 +427,8 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-// polybench.c uses the OpenMP to parallelize somethings. This call were intercepted by hookomp.
+// polybench.c uses the OpenMP to parallelize somethings. This call were
+// intercepted by hookomp.
 #undef _OPENMP
 
 #include <polybench.c>
