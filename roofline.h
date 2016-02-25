@@ -167,6 +167,8 @@ extern "C" {
 
 	bool RM_register_papi_thread(void);
 
+  bool RM_unregister_papi_thread(void);
+
 	bool RM_create_event_sets(void);
 
   bool RM_destroy_event_sets(void);
