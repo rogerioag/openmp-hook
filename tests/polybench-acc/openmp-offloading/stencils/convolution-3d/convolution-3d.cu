@@ -78,7 +78,7 @@ void compareResults(int ni, int nj, int nk,
   for (i = 0; i < ni; i++)
     for (j = 0; j < nj; j++)
       for (k = 0; k < nk; k++) {
-        if (percentDiff(B_ori[i][j][k], B_omp[i][j][k]) >
+        if (percentDiff(B_ori[i][j][k], B_out[i][j][k]) >
             PERCENT_DIFF_ERROR_THRESHOLD) {
           fail++;
         }
@@ -271,7 +271,7 @@ void conv3d_cuda(int ni, int nj, int nk,
   int i;
   for (i = 1; i < _PB_NI - 1; ++i) // 0
   {
-    convolution3D_kernel<<<grid, block>>>(ni, nj, nk, A_gpu, B_gpu, i);
+    conv3d_cuda_kernel<<<grid, block>>>(ni, nj, nk, A_gpu, B_gpu, i);
   }
 
   cudaThreadSynchronize();
@@ -371,7 +371,7 @@ int main(int argc, char *argv[]) {
   fprintf(stdout, ", ");
 
   fprintf(stderr, "Calling conv3d_omp.\n");
-  conv3d_omp(ni, nj, nk, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B_OMP));
+  conv3d_omp(ni, nj, nk, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B_outputFromOMP));
   fprintf(stdout, "\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
