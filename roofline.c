@@ -1094,12 +1094,12 @@ bool RM_decision_about_offloading(long *better_device_index){
 	PRINT_FUNC_NAME;
 
 	bool offload_decision = true;
-
-	double oi = RM_get_operational_intensity();
-	TRACE("Operational intensity: %10.6f\n", oi);
+	double oi = 0.0;
 
 	/* Verify if have measures enough to calculate decision. */
 	if ((offload_decision = RM_check_all_eventsets_was_collected()) == true){
+		oi = RM_get_operational_intensity();
+		TRACE("Operational intensity: %10.6f\n", oi);
 		*better_device_index = RM_get_better_device_to_execution(oi);
 	}
 	else {
