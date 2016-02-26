@@ -160,6 +160,13 @@ static void conv3d_omp_kernel(int ni, int nj, int nk,
   #pragma scop
   #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
   {
+    current_loop_index = 0;
+    num_threads_defined = OPENMP_NUM_THREADS;
+    // Copy to device A, B.
+    q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ * NK) +
+                            (sizeof(DATA_TYPE) * NI * NJ * NK);
+    // Copy back B.
+    q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NJ * NK);
     #pragma omp for private(j, k) collapse(2) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 1; i < _PB_NI - 1; ++i)
       for (j = 1; j < _PB_NJ - 1; ++j)
