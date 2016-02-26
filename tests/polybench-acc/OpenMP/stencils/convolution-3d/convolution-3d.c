@@ -11,7 +11,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h>
-#include <sys/resource.h>
 
 /* Include polybench common header. */
 #include <polybench.h>
@@ -33,8 +32,8 @@ static void init_array(int ni, int nj, int nk,
                        DATA_TYPE POLYBENCH_3D(A, NI, NJ, NK, ni, nj, nk)) {
   int i, j, k;
 
-  fprintf(stderr, "init_array ni: %d, nj: %d, nk: %d.\n", ni, nj, nk);
-  fprintf(stderr, "NI: %d, NJ: %d, NK: %d.\n", NI, NJ, NK);
+  // fprintf(stderr, "init_array ni: %d, nj: %d, nk: %d.\n", ni, nj, nk);
+  // fprintf(stderr, "NI: %d, NJ: %d, NK: %d.\n", NI, NJ, NK);
 
   for (i = 0; i < ni; i++){
     for (j = 0; j < nj; j++){
@@ -44,7 +43,7 @@ static void init_array(int ni, int nj, int nk,
       }
   	}
   }
-  fprintf(stderr, "~init_array.\n");
+  // fprintf(stderr, "~init_array.\n");
 }
 
 /* ------------------------------------------------------------- */
@@ -89,7 +88,7 @@ void compareResults(int ni, int nj, int nk,
 }
 
 /* ------------------------------------------------------------- */
-static void kernel_conv2d(int ni, int nj, int nk,
+static void kernel_conv3d(int ni, int nj, int nk,
                           DATA_TYPE POLYBENCH_3D(A, NI, NJ, NK, ni, nj, nk),
                           DATA_TYPE POLYBENCH_3D(B, NI, NJ, NK, ni, nj, nk)) {
   int i, j, k;
@@ -108,14 +107,14 @@ static void kernel_conv2d(int ni, int nj, int nk,
 }
 
 /* ------------------------------------------------------------- */
-void conv2d_original(int ni, int nj, int nk,
+void conv3d_original(int ni, int nj, int nk,
                      DATA_TYPE POLYBENCH_3D(A, NI, NJ, NK, ni, nj, nk),
                      DATA_TYPE POLYBENCH_3D(B, NI, NJ, NK, ni, nj, nk)) {
 
   /* Start timer. */
   polybench_start_instruments;
 
-  kernel_conv2d(ni, nj, nk, A, B);
+  kernel_conv3d(ni, nj, nk, A, B);
 
   /* Stop and print timer. */
   polybench_stop_instruments;
@@ -126,7 +125,7 @@ void conv2d_original(int ni, int nj, int nk,
 /* ------------------------------------------------------------- */
 /* Main computational kernel. The whole function will be timed,
          including the call and return. */
-static void conv2d_omp_kernel(int ni, int nj, int nk,
+static void conv3d_omp_kernel(int ni, int nj, int nk,
                               DATA_TYPE POLYBENCH_3D(A, NI, NJ, NK, ni, nj, nk),
                               DATA_TYPE POLYBENCH_3D(B, NI, NJ, NK, ni, nj,
                                                      nk)) {
@@ -152,14 +151,14 @@ static void conv2d_omp_kernel(int ni, int nj, int nk,
 }
 
 /* ------------------------------------------------------------- */
-void conv2d_omp(int ni, int nj, int nk,
+void conv3d_omp(int ni, int nj, int nk,
                 DATA_TYPE POLYBENCH_3D(A, NI, NJ, NK, ni, nj, nk),
                 DATA_TYPE POLYBENCH_3D(B, NI, NJ, NK, ni, nj, nk)) {
 
   /* Start timer. */
   polybench_start_instruments;
 
-  conv2d_omp_kernel(ni, nj, nk, A, B);
+  conv3d_omp_kernel(ni, nj, nk, A, B);
 
   /* Stop and print timer. */
   polybench_stop_instruments;
@@ -174,24 +173,6 @@ int main(int argc, char **argv) {
   int nj = NJ;
   int nk = NK;
 
-  fprintf(stderr, "NI: %d, NJ: %d, NK: %d.\n", NI, NJ, NK);
-
-  /*const rlim_t kStackSize = (384 * 384 * 384) * 8 * 3;
-  struct rlimit rl;
-  int result;
-
-  result = getrlimit(RLIMIT_STACK, &rl);
-  if (result == 0) {
-  	fprintf(stderr, "current = %d\n", rl.rlim_cur);
-    if (rl.rlim_cur < kStackSize) {
-    	rl.rlim_cur = kStackSize;
-    	result = setrlimit(RLIMIT_STACK, &rl);
-        if (result != 0) {
-            fprintf(stderr, "setrlimit returned result = %d\n", result);
-        }
-    }
-  }*/
-
   /* Variable declaration/allocation. */
   POLYBENCH_3D_ARRAY_DECL(A, DATA_TYPE, NI, NJ, NK, ni, nj, nk);
   POLYBENCH_3D_ARRAY_DECL(B, DATA_TYPE, NI, NJ, NK, ni, nj, nk);
@@ -202,11 +183,11 @@ int main(int argc, char **argv) {
   fprintf(stderr, "Calling init_array.\n");
   init_array(ni, nj, nk, POLYBENCH_ARRAY(A));
 
-  fprintf(stderr, "Calling conv2d_original.\n");
-  conv2d_original(ni, nj, nk, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B));
+  fprintf(stderr, "Calling conv3d_original.\n");
+  conv3d_original(ni, nj, nk, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B));
 
-  fprintf(stderr, "Calling conv2d_omp.\n");
-  conv2d_omp(ni, nj, nk, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B_OMP));
+  fprintf(stderr, "Calling conv3d_omp.\n");
+  conv3d_omp(ni, nj, nk, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B_OMP));
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, nj, nk, POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(B_OMP));
