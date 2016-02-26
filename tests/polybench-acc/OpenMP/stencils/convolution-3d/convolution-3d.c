@@ -121,9 +121,9 @@ static void conv2d_omp_kernel(int ni, int nj, int nk,
                                                      nk)) {
   int i, j, k;
 #pragma scop
-#pragma omp parallel
+#pragma omp parallel num_threads(OPENMP_NUM_THREADS)
   {
-#pragma omp for private(j, k) collapse(2)
+#pragma omp for private(j, k) collapse(2) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 1; i < _PB_NI - 1; ++i)
       for (j = 1; j < _PB_NJ - 1; ++j)
         for (k = 1; k < _PB_NK - 1; ++k) {
