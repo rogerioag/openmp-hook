@@ -26,6 +26,9 @@
 // Macros to generate openmp schedule.
 #include <macros.h>
 
+// Offloading support functions.
+#include <offload.h>
+
 // define the error threshold for the results "not matching"
 #define PERCENT_DIFF_ERROR_THRESHOLD 0.5
 
