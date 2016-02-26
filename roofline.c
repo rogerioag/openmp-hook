@@ -1085,6 +1085,7 @@ bool RM_check_all_eventsets_was_collected(void){
 			were_collected++; 
 		}
 	}
+	TRACE("Number of collected events sets: %d of %d.\n", were_collected, NUM_EVENT_SETS);
 	return (were_collected == NUM_EVENT_SETS);
 }
 
