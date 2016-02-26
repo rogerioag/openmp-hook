@@ -173,6 +173,22 @@ void HOOKOMP_registry_the_first_thread(void){
 		TRACE("[HOOKOMP]: Number of threads in team: %d.\n", number_of_threads_in_team);
 
 		registred_thread_executing_function_next = thread_id;
+
+		pthread_t thId = pthread_self();
+    	pthread_attr_t thAttr;
+    	int policy = 0;
+    	int max_prio_for_policy = 0;
+
+    	pthread_attr_init(&thAttr);
+    	pthread_attr_getschedpolicy(&thAttr, &policy);
+    	max_prio_for_policy = sched_get_priority_max(policy);
+
+    	pthread_setschedprio(thId, max_prio_for_policy);
+    	pthread_attr_destroy(&thAttr);
+
+
+
+
 		TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
 		/* The registry was made. */
 		thread_was_registred_to_execute_measures = true;
@@ -220,7 +236,6 @@ bool HOOKOMP_proxy_function_start_next_runtime (long* istart, long* iend, void* 
 	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 	return result;
 }
-
 
 /* ------------------------------------------------------------- */
 /* Proxy function to *_next */
