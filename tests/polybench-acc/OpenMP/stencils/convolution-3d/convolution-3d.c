@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h>
+#include <sys/resource.h>
 
 /* Include polybench common header. */
 #include <polybench.h>
@@ -23,17 +24,27 @@
 /* Default data type is double, default size is 4096x4096. */
 #include "convolution-3d.h"
 
+ // define the error threshold for the results "not matching"
+#define PERCENT_DIFF_ERROR_THRESHOLD 0.05
+
 /* ------------------------------------------------------------- */
 /* Array initialization. */
 static void init_array(int ni, int nj, int nk,
                        DATA_TYPE POLYBENCH_3D(A, NI, NJ, NK, ni, nj, nk)) {
   int i, j, k;
 
-  for (i = 0; i < ni; i++)
-    for (j = 0; j < nj; j++)
-      for (k = 0; j < nk; k++) {
+  fprintf(stderr, "init_array ni: %d, nj: %d, nk: %d.\n", ni, nj, nk);
+  fprintf(stderr, "NI: %d, NJ: %d, NK: %d.\n", NI, NJ, NK);
+
+  for (i = 0; i < ni; i++){
+    for (j = 0; j < nj; j++){
+      for (k = 0; k < nk; k++) {
+      	// fprintf(stderr, "%d, %d, %d.\n", i, j, k);
         A[i][j][k] = i % 12 + 2 * (j % 7) + 3 * (k % 13);
       }
+  	}
+  }
+  fprintf(stderr, "~init_array.\n");
 }
 
 /* ------------------------------------------------------------- */
@@ -64,7 +75,7 @@ void compareResults(int ni, int nj, int nk,
 
   for (i = 0; i < ni; i++)
     for (j = 0; j < nj; j++)
-      for (k = 0; j < nk; k++) {
+      for (k = 0; k < nk; k++) {
         if (percentDiff(B_ori[i][j][k], B_omp[i][j][k]) >
             PERCENT_DIFF_ERROR_THRESHOLD) {
           fail++;
@@ -163,6 +174,24 @@ int main(int argc, char **argv) {
   int nj = NJ;
   int nk = NK;
 
+  fprintf(stderr, "NI: %d, NJ: %d, NK: %d.\n", NI, NJ, NK);
+
+  /*const rlim_t kStackSize = (384 * 384 * 384) * 8 * 3;
+  struct rlimit rl;
+  int result;
+
+  result = getrlimit(RLIMIT_STACK, &rl);
+  if (result == 0) {
+  	fprintf(stderr, "current = %d\n", rl.rlim_cur);
+    if (rl.rlim_cur < kStackSize) {
+    	rl.rlim_cur = kStackSize;
+    	result = setrlimit(RLIMIT_STACK, &rl);
+        if (result != 0) {
+            fprintf(stderr, "setrlimit returned result = %d\n", result);
+        }
+    }
+  }*/
+
   /* Variable declaration/allocation. */
   POLYBENCH_3D_ARRAY_DECL(A, DATA_TYPE, NI, NJ, NK, ni, nj, nk);
   POLYBENCH_3D_ARRAY_DECL(B, DATA_TYPE, NI, NJ, NK, ni, nj, nk);
@@ -170,10 +199,10 @@ int main(int argc, char **argv) {
   POLYBENCH_3D_ARRAY_DECL(B_OMP, DATA_TYPE, NI, NJ, NK, ni, nj, nk);
 
   /* Initialize array(s). */
+  fprintf(stderr, "Calling init_array.\n");
   init_array(ni, nj, nk, POLYBENCH_ARRAY(A));
 
   fprintf(stderr, "Calling conv2d_original.\n");
-
   conv2d_original(ni, nj, nk, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B));
 
   fprintf(stderr, "Calling conv2d_omp.\n");
