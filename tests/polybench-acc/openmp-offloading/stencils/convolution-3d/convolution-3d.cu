@@ -145,7 +145,7 @@ void conv3d_original(int ni, int nj, int nk,
 
   /* Stop and print timer. */
   polybench_stop_instruments;
-  printf("CPU Time in seconds:\n");
+  // printf("CPU Time in seconds:\n");
   polybench_print_instruments;
 }
 
@@ -196,7 +196,7 @@ void conv3d_omp(int ni, int nj, int nk,
 
   /* Stop and print timer. */
   polybench_stop_instruments;
-  printf("CPU-OMP Time in seconds:\n");
+  // printf("CPU-OMP Time in seconds:\n");
   polybench_print_instruments;
 }
 
