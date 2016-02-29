@@ -1025,7 +1025,7 @@ double RM_execution_time(double w, double p){
 	PRINT_FUNC_NAME;
 	double texec = 0.0;
 
-	TRACE("Calculating time execution to device %d with W %10.6f and performance P %10.6f\n", id_device, w, p);
+	TRACE("Calculating time execution with W %10.6f and performance P %10.6f\n", w, p);
 	// P = W / T -> T = W / P
 	texec = w / p;
 	
