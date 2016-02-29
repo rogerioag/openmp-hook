@@ -1029,7 +1029,7 @@ double RM_execution_time(double w, double p){
 	// P = W / T -> T = W / P
 	texec = w / p;
 	
-	TRACE("T_exec in device %d: %10.6f\n", id_device, texec);
+	TRACE("T_exec: %10.6f\n", texec);
 
 	return texec;
 }
