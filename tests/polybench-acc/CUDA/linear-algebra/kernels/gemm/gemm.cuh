@@ -19,43 +19,68 @@
 /* Do not define anything if the user manually defines the size. */
 # if !defined(NI) && !defined(NJ) && !defined(NK)
 /* Define the possible dataset sizes. */
-#  ifdef MINI_DATASET
+#ifdef TOY_DATASET
+#define NI 32
+#define NJ 32
+#define NK 32
+#endif
+
+#ifdef MINI_DATASET
+#define NI 64
+#define NJ 64
+#define NK 64
+#endif
+
+#ifdef TINY_DATASET
 #define NI 128
 #define NJ 128
 #define NK 128
-#  endif
+#endif
 
-#  ifdef SMALL_DATASET
+#ifdef SMALL_DATASET
 #define NI 256
 #define NJ 256
 #define NK 256
-#  endif
+#endif
 
-#  ifdef STANDARD_DATASET /* Default if unspecified. */
+#ifdef MEDIUM_DATASET
 #define NI 512
 #define NJ 512
 #define NK 512
-#  endif
+#endif
 
-#  ifdef LARGE_DATASET
+#ifdef STANDARD_DATASET /* Default if unspecified. */
 #define NI 1024
 #define NJ 1024
 #define NK 1024
-#  endif
+#endif
 
-#  ifdef EXTRALARGE_DATASET
+#ifdef LARGE_DATASET
 #define NI 2048
 #define NJ 2048
 #define NK 2048
-#  endif
-# endif /* !N */
+#endif
+
+#ifdef EXTRALARGE_DATASET
+#define NI 4096
+#define NJ 4096
+#define NK 4096
+#endif
+#endif /* !N */
+
+#ifdef HUGE_DATASET
+#define NI 8192
+#define NJ 8192
+#define NK 8192
+#endif
+#endif /* !N */
 
 # define _PB_NI POLYBENCH_LOOP_BOUND(NI,ni)
 # define _PB_NJ POLYBENCH_LOOP_BOUND(NJ,nj)
 # define _PB_NK POLYBENCH_LOOP_BOUND(NK,nk)
 
 # ifndef DATA_TYPE
-#  define DATA_TYPE float
+#  define DATA_TYPE double
 #  define DATA_PRINTF_MODIFIER "%0.2lf "
 # endif
 
