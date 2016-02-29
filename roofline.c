@@ -1020,6 +1020,21 @@ double RM_get_operational_intensity_in_GPU(void){
 }
 
 /* ------------------------------------------------------------ */
+/* Calc time of execution.                                      */
+double RM_execution_time(double w, double p){
+	PRINT_FUNC_NAME;
+	double texec = 0.0;
+
+	TRACE("Calculating time execution to device %d with W %10.6f and performance P %10.6f\n", id_device, w, p);
+	// P = W / T -> T = W / P
+	texec = w / p;
+	
+	TRACE("T_exec in device %d: %10.6f\n", id_device, texec);
+
+	return texec;
+}
+
+/* ------------------------------------------------------------ */
 /* Calc Attainable performance in device                        */
 double RM_attainable_performance(int id_device, double op_intensity){
 	PRINT_FUNC_NAME;
@@ -1041,6 +1056,8 @@ int RM_get_better_device_to_execution(double oi){
 	int i = 0;
 	double oi_dev = 0.0;
 
+	double texec = 0.0;
+
 	TRACE("Operational intensity in CPU: %10.10f\n", oi);
 
 	double oi_gpu = RM_get_operational_intensity_in_GPU();
@@ -1058,7 +1075,13 @@ int RM_get_better_device_to_execution(double oi){
 			oi_dev = oi_gpu;
 		}
 
-		if ((calc_ap = RM_attainable_performance(i, oi_dev)) > best_ap){
+		calc_ap = RM_attainable_performance(i, oi_dev);
+
+		texec = RM_execution_time(work(), calc_ap);
+
+		TRACE("Texec: %10.6f on device %d.\n", texec, i);
+
+		if (calc_ap > best_ap){
 			best_ap = calc_ap;
 			best_dev = i;
 			TRACE("High Attainable Performance: %10.6f on device %d.\n", best_ap, best_dev);
