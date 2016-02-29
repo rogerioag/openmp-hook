@@ -1019,15 +1019,43 @@ double RM_get_operational_intensity_in_GPU(void){
 	return I;
 }
 
+/* ------------------------------------------------------------*/
+/* Calc time computation.                                      */
+double RM_time_computation(double w, double p){
+	PRINT_FUNC_NAME;
+	TRACE("Calculating time computation with W %10.6f and performance P %10.6f\n", w, p);
+	double tcomp = 0.0;
+	// P = W / T -> T = W / P
+	tcomp = w / p;
+
+	TRACE("T_comp: %10.6f\n", tcomp);
+
+	return tcomp;
+}
+
+/* ------------------------------------------------------------ */
+/* Calc time data transfer.                                     */
+double RM_time_data_transfer(){
+	PRINT_FUNC_NAME;
+	TRACE("Calculating time data transfer.\n");
+
+	double t_data_transfer = 0.0;
+	t_data_transfer = (ptr_measure->q_data_transfer_write * T_WRITE_BYTE) + (ptr_measure->q_data_transfer_read * T_READ_BYTE);
+
+	TRACE("T_data_transfer: %10.6f\n", t_data_transfer);
+
+	return t_data_transfer;
+}
+
 /* ------------------------------------------------------------ */
 /* Calc time of execution.                                      */
-double RM_execution_time(double w, double p){
+double RM_execution_time(int id_device, double w, double p){
 	PRINT_FUNC_NAME;
 	double texec = 0.0;
 
-	TRACE("Calculating time execution with W %10.6f and performance P %10.6f\n", w, p);
-	// P = W / T -> T = W / P
-	texec = w / p;
+	TRACE("Calculating time execution of %d with W %10.6f and performance P %10.6f\n", id_device, w, p);
+	
+	texec = RM_time_computation(w, p) + RM_time_data_transfer()
 	
 	TRACE("T_exec: %10.6f\n", texec);
 
@@ -1077,7 +1105,7 @@ int RM_get_better_device_to_execution(double oi){
 
 		calc_ap = RM_attainable_performance(i, oi_dev);
 
-		texec = RM_execution_time(work(), calc_ap);
+		texec = RM_execution_time(i, work(), calc_ap);
 
 		TRACE("Texec: %10.6f on device %d.\n", texec, i);
 
