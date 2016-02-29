@@ -26,6 +26,13 @@
 /* Cache line size: 64 bytes. http://www.cpu-world.com/CPUs/Xeon/Intel-Xeon%20E5-2630.html */
 #define CACHE_LINE_SIZE 64
 
+/* Time of transfer 1 byte over PCI. */
+/* Host to Device. */
+#define T_WRITE_BYTE 1
+
+/* Device to Host. */
+#define T_READ_BYTE 1  
+
 /* One to preset, cpu and other to native and uncore. */
 #define NUM_PAPI_EVENT_SETS 2
 
