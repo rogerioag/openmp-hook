@@ -66,7 +66,6 @@
 #define NJ 4096
 #define NK 4096
 #endif
-#endif /* !N */
 
 #ifdef HUGE_DATASET
 #define NI 8192
