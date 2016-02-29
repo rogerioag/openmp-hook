@@ -9,7 +9,7 @@
 #define GEMM_H
 
 /* Default to STANDARD_DATASET. */
-#if !defined(MINI_DATASET) && !defined(SMALL_DATASET) && !defined(LARGE_DATASET) && !defined(EXTRALARGE_DATASET)
+#if !defined(TOY_DATASET) && !defined(MINI_DATASET) && !defined(TINY_DATASET) && !defined(SMALL_DATASET) && !defined(MEDIUM_DATASET) && !defined(LARGE_DATASET) && !defined(EXTRALARGE_DATASET) && !defined(HUGE_DATASET)
 #define STANDARD_DATASET
 #endif
 
