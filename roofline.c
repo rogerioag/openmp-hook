@@ -1035,12 +1035,15 @@ double RM_time_computation(double w, double p){
 
 /* ------------------------------------------------------------ */
 /* Calc time data transfer.                                     */
-double RM_time_data_transfer(){
+double RM_time_data_transfer(int id_device){
 	PRINT_FUNC_NAME;
 	TRACE("Calculating time data transfer.\n");
 
 	double t_data_transfer = 0.0;
-	t_data_transfer = (ptr_measure->q_data_transfer_write * T_WRITE_BYTE) + (ptr_measure->q_data_transfer_read * T_READ_BYTE);
+	
+	if(id_device > 0){
+		t_data_transfer = (ptr_measure->q_data_transfer_write * T_WRITE_BYTE) + (ptr_measure->q_data_transfer_read * T_READ_BYTE);
+	}
 
 	TRACE("T_data_transfer: %10.6f\n", t_data_transfer);
 
@@ -1055,7 +1058,7 @@ double RM_execution_time(int id_device, double w, double p){
 
 	TRACE("Calculating time execution of %d with W %10.6f and performance P %10.6f\n", id_device, w, p);
 	
-	texec = RM_time_computation(w, p) + RM_time_data_transfer();
+	texec = RM_time_computation(w, p) + RM_time_data_transfer(id_device);
 	
 	TRACE("T_exec: %10.6f\n", texec);
 
