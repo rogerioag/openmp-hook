@@ -1,7 +1,9 @@
-EXECUTABLE := gemm_cuda.exe
-CUFILES := gemm.cu
+BENCHMARK  := $(shell basename `pwd`)
+OBJFILE := ${BENCHMARK}-gpu.o
+EXECUTABLE := ${BENCHMARK}-gpu.exe
+CUFILES := ${BENCHMARK}.cu
 PATH_TO_UTILS := ../../../utilities
 CXX := g++-4.8
-OPT_LEVEL := -O3
-
+NVCC := nvcc
+OPT_LEVEL := -O2
 include ${PATH_TO_UTILS}/common.mk
