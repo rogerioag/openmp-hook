@@ -19,16 +19,34 @@
 /* Do not define anything if the user manually defines the size. */
 # if !defined(NI) && !defined(NJ) && !defined(NK)
 /* Define the possible dataset sizes. */
-#ifdef MINI_DATASET
+#ifdef TOY_DATASET
 #define NI 32
 #define NJ 32
 #define NK 32
 #endif
 
-#ifdef SMALL_DATASET
+#ifdef MINI_DATASET
+#define NI 64
+#define NJ 64
+#define NK 64
+#endif
+
+#ifdef TINY_DATASET
 #define NI 128
 #define NJ 128
 #define NK 128
+#endif
+
+#ifdef SMALL_DATASET
+#define NI 256
+#define NJ 256
+#define NK 256
+#endif
+
+#ifdef MEDIUM_DATASET
+#define NI 512
+#define NJ 512
+#define NK 512
 #endif
 
 #ifdef STANDARD_DATASET /* Default if unspecified. */
@@ -38,15 +56,22 @@
 #endif
 
 #ifdef LARGE_DATASET
-#define NI 2000
-#define NJ 2000
-#define NK 2000
+#define NI 2048
+#define NJ 2048
+#define NK 2048
 #endif
 
 #ifdef EXTRALARGE_DATASET
-#define NI 4000
-#define NJ 4000
-#define NK 4000
+#define NI 4096
+#define NJ 4096
+#define NK 4096
+#endif
+#endif /* !N */
+
+#ifdef HUGE_DATASET
+#define NI 8192
+#define NJ 8192
+#define NK 8192
 #endif
 #endif /* !N */
 
