@@ -1055,7 +1055,7 @@ double RM_execution_time(int id_device, double w, double p){
 
 	TRACE("Calculating time execution of %d with W %10.6f and performance P %10.6f\n", id_device, w, p);
 	
-	texec = RM_time_computation(w, p) + RM_time_data_transfer()
+	texec = RM_time_computation(w, p) + RM_time_data_transfer();
 	
 	TRACE("T_exec: %10.6f\n", texec);
 
