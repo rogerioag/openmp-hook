@@ -140,15 +140,15 @@ void gemmCuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
             (size_t)(ceil(((float)NJ) / ((float)block.y))));
 
   /* Start timer. */
-  polybench_start_instruments;
+  // polybench_start_instruments;
 
   gemm_kernel<<<grid, block>>>(ni, nj, nk, alpha, beta, A_gpu, B_gpu, C_gpu);
   cudaThreadSynchronize();
 
   /* Stop and print timer. */
-  printf("GPU Time in seconds:\n");
-  polybench_stop_instruments;
-  polybench_print_instruments;
+  // printf("GPU Time in seconds:\n");
+  // olybench_stop_instruments;
+  // polybench_print_instruments;
 
   cudaMemcpy(C_outputFromGpu, C_gpu, sizeof(DATA_TYPE) * NI * NJ,
              cudaMemcpyDeviceToHost);
@@ -200,8 +200,17 @@ int main(int argc, char *argv[]) {
   /* Start timer. */
   polybench_start_instruments;
 
+  /* Start timer. */
+  polybench_start_instruments;
+
   gemm(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
        POLYBENCH_ARRAY(C));
+
+  /* Stop and print timer. */
+  printf("GPU Time in seconds:\n");
+  polybench_stop_instruments;
+  polybench_print_instruments;
+
 
   /* Stop and print timer. */
   printf("CPU Time in seconds:\n");
