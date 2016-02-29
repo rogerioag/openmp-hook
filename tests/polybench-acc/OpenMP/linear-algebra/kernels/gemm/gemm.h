@@ -35,15 +35,15 @@
 #endif
 
 #ifdef LARGE_DATASET
-#define NI 2000	
-#define NJ 2000
-#define NK 2000
+#define NI 2048	
+#define NJ 2048
+#define NK 2048
 #endif
 
 #ifdef EXTRALARGE_DATASET
-#define NI 4000
-#define NJ 4000
-#define NK 4000
+#define NI 4096
+#define NJ 4096
+#define NK 4096
 #endif
 #endif /* !N */
 
