@@ -5,5 +5,5 @@ CUFILES := ${BENCHMARK}.cu
 PATH_TO_UTILS := ../../../utilities
 CXX := g++-4.8
 NVCC := nvcc
-OPT_LEVEL := -O2
+OPT_LEVEL := -O3
 include ${PATH_TO_UTILS}/common.mk
