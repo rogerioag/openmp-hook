@@ -1096,7 +1096,7 @@ int RM_get_better_device_to_execution(double oi){
 	TRACE("Operational intensity in GPU: %10.10f\n", oi_gpu);
 
 	int best_dev = 0;
-	double best_ap = 0.0;
+	double best_texec = DBL_MAX;
 	double calc_ap = 0.0;
 	for(i = 0; i < NUM_DEVICES; i++){
 		if(i == 0){
@@ -1112,7 +1112,8 @@ int RM_get_better_device_to_execution(double oi){
 
 		TRACE("Texec: %10.6f on device %d.\n", texec, i);
 
-		if (calc_ap > best_ap){
+		if (t_exec < best_texec){
+			best_texec = texec;
 			best_ap = calc_ap;
 			best_dev = i;
 			TRACE("High Attainable Performance: %10.6f on device %d.\n", best_ap, best_dev);
