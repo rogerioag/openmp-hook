@@ -1097,6 +1097,7 @@ int RM_get_better_device_to_execution(double oi){
 
 	int best_dev = 0;
 	double best_texec = DBL_MAX;
+	double best_ap = 0.0;
 	double calc_ap = 0.0;
 	for(i = 0; i < NUM_DEVICES; i++){
 		if(i == 0){
