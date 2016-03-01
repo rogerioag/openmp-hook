@@ -42,6 +42,7 @@ void init_array(int n, DATA_TYPE POLYBENCH_2D(A, N, N, n, n),
 
 void runJacobi2DCpu(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A, N, N, n, n),
                     DATA_TYPE POLYBENCH_2D(B, N, N, n, n)) {
+  
   for (int t = 0; t < _PB_TSTEPS; t++) {
     for (int i = 1; i < _PB_N - 1; i++) {
       for (int j = 1; j < _PB_N - 1; j++) {
@@ -170,6 +171,8 @@ int main(int argc, char **argv) {
   /* Retrieve problem size. */
   int n = N;
   int tsteps = TSTEPS;
+
+  fprintf(stderr, "n: %d, tsteps: %d.\n", n, tsteps);
 
   POLYBENCH_2D_ARRAY_DECL(a, DATA_TYPE, N, N, n, n);
   POLYBENCH_2D_ARRAY_DECL(b, DATA_TYPE, N, N, n, n);

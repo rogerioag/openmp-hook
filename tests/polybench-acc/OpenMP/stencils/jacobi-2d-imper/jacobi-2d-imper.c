@@ -110,7 +110,7 @@ void runJacobi2DCpu(int tsteps, int n, DATA_TYPE POLYBENCH_2D(A,N,N,n,n), DATA_T
   for (t = 0; t < _PB_TSTEPS; t++) {
     for (i = 1; i < _PB_N - 1; i++) {
       for (j = 1; j < _PB_N - 1; j++) {
-          B[i][j] = 0.2f * (A[i][j] + A[i][(j-1)] + A[i][(1+j)] + A[(1+i)][j] + A[(i-1)][j]);
+          B[i][j] = 0.2f * (A[i][j] + A[i][(j - 1)] + A[i][(1 + j)] + A[(1 + i)][j] + A[(i - 1)][j]);
       }
     }
     
@@ -196,6 +196,8 @@ int main(int argc, char** argv)
   /* Retrieve problem size. */
   int n = N;
   int tsteps = TSTEPS;
+
+  fprintf(stderr, "n: %d, tsteps: %d.\n", n, tsteps);
 
   /* Variable declaration/allocation. */
   POLYBENCH_2D_ARRAY_DECL(A, DATA_TYPE, N, N, n, n);
