@@ -23,6 +23,6 @@ TARGET_LANG = OPENMP
 CC = gcc-4.8
 
 # Compiler flags
-CFLAGS = -O2 -fopenmp
+CFLAGS = -O3 -fopenmp
 
 # POLYBENCH_OPTIONS := -DPOLYBENCH_TIME -DEXTRALARGE_DATASET
