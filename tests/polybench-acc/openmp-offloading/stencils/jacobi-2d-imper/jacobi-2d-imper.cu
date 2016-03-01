@@ -152,13 +152,13 @@ static void jacobi_2d_imper_omp_kernel(int tsteps, int n,
 		#pragma omp master
     {
       for (t = 0; t < _PB_TSTEPS; t++) {
-				#pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+				#pragma omp parallel for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
         for (i = 1; i < _PB_N - 1; i++)
           for (j = 1; j < _PB_N - 1; j++)
             B[i][j] = 0.2 * (A[i][j] + A[i][j - 1] + A[i][1 + j] + A[1 + i][j] +
                              A[i - 1][j]);
 
-				#pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+				#pragma omp parallel for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
         for (i = 1; i < _PB_N - 1; i++)
           for (j = 1; j < _PB_N - 1; j++)
             A[i][j] = B[i][j];
@@ -166,7 +166,9 @@ static void jacobi_2d_imper_omp_kernel(int tsteps, int n,
     }
   }
 
-/* Errors with the old format:
+/* 
+  I put the parallel in omp parallel for directive, to fix this error:
+  Errors with the old format:
          jacobi-2d-imper.c:145:17: error: work-sharing region may not be closely
    nested inside of work-sharing, critical, ordered, master or explicit task
    region
@@ -177,37 +179,6 @@ static void jacobi_2d_imper_omp_kernel(int tsteps, int n,
    region
          #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
 */
-
-/*	#pragma omp master
-        {
-                for (t = 0; t < _PB_TSTEPS; t++) {
-                        current_loop_index = 0;
-                        // Copy to device A, B.
-                        q_data_transfer_write = (N * N * sizeof(DATA_TYPE)) + (N
-   * N * sizeof(DATA_TYPE));
-                        // Copy back A.
-                        q_data_transfer_read = (0);
-
-                        #pragma omp parallel for private(i,j)
-   schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS)
-                        for (i = 1; i < _PB_N - 1; i++)
-                                for (j = 1; j < _PB_N - 1; j++)
-                                        B[i][j] = 0.2 * (A[i][j] + A[i][j-1] +
-   A[i][1+j] + A[1+i][j] + A[i-1][j]);
-
-                        current_loop_index = 1;
-                        // Copy to device A, B.
-                        q_data_transfer_write = (0);
-                        // Copy back A.
-                        q_data_transfer_read = (N * N * sizeof(DATA_TYPE));
-                        #pragma omp parallel for private(i,j)
-   schedule(OPENMP_SCHEDULE_WITH_CHUNK) num_threads(OPENMP_NUM_THREADS)
-                        for (i = 1; i < _PB_N-1; i++)
-                                for (j = 1; j < _PB_N-1; j++)
-                                        A[i][j] = B[i][j];
-                }
-        }*/
-
 #pragma endscop
 }
 
@@ -223,6 +194,7 @@ void jacobi_2d_imper_omp(int tsteps, int n,
 
   /* Stop and print timer. */
   polybench_stop_instruments;
+  printf("OMP Time in seconds:\n");
   polybench_print_instruments;
 }
 
