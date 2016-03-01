@@ -19,31 +19,31 @@
 /* Do not define anything if the user manually defines the size. */
 # if !defined(TSTEPS) && !defined(N)
 /* Define the possible dataset sizes. */
-#  ifdef MINI_DATASET
+#ifdef MINI_DATASET
 #define TSTEPS 20
 #define N 256
-#  endif
+#endif
 
-#  ifdef SMALL_DATASET
-#define TSTEPS 20
+#ifdef SMALL_DATASET
+#define TSTEPS 40
 #define N 512
-#  endif
+#endif
 
-#  ifdef STANDARD_DATASET /* Default if unspecified. */
-#define TSTEPS 20
+#ifdef STANDARD_DATASET /* Default if unspecified. */
+#define TSTEPS 100
 #define N 1024
-#  endif
+#endif
 
-#  ifdef LARGE_DATASET
-#define TSTEPS 20
+#ifdef LARGE_DATASET
+#define TSTEPS 500
 #define N 2048
-#  endif
+#endif
 
-#  ifdef EXTRALARGE_DATASET
-#define TSTEPS 20
+#ifdef EXTRALARGE_DATASET
+#define TSTEPS 1000
 #define N 4096
-#  endif
-# endif /* !N */
+#endif
+#endif /* !N */
 
 # define _PB_TSTEPS POLYBENCH_LOOP_BOUND(TSTEPS,tsteps)
 # define _PB_N POLYBENCH_LOOP_BOUND(N,n)
