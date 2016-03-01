@@ -1112,7 +1112,7 @@ int RM_get_better_device_to_execution(double oi){
 
 		TRACE("Texec: %10.6f on device %d.\n", texec, i);
 
-		if (t_exec < best_texec){
+		if (texec < best_texec){
 			best_texec = texec;
 			best_ap = calc_ap;
 			best_dev = i;
