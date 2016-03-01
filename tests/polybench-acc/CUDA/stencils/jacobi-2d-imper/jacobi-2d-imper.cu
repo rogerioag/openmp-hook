@@ -19,7 +19,7 @@
 
 #define POLYBENCH_TIME 1
 
-#include "jacobi2D.cuh"
+#include "jacobi-2d-imper.cuh"
 #include <polybench.h>
 #include <polybenchUtilFuncts.h>
 
