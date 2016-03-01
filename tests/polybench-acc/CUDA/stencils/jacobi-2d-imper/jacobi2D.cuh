@@ -25,22 +25,22 @@
 #  endif
 
 #  ifdef SMALL_DATASET
-#define TSTEPS 20
+#define TSTEPS 40
 #define N 512
 #  endif
 
 #  ifdef STANDARD_DATASET /* Default if unspecified. */
-#define TSTEPS 20
+#define TSTEPS 100
 #define N 1024
 #  endif
 
 #  ifdef LARGE_DATASET
-#define TSTEPS 20
+#define TSTEPS 500
 #define N 2048
 #  endif
 
 #  ifdef EXTRALARGE_DATASET
-#define TSTEPS 20
+#define TSTEPS 1000
 #define N 4096
 #  endif
 # endif /* !N */
