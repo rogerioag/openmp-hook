@@ -13,6 +13,7 @@
 #include <omp.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <float.h>
 
 #include "debug.h"
 #include "platform.h"
