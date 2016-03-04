@@ -4,15 +4,35 @@
 
 #define NUM_DEVICES 2
 
-typedef struct DEVICE_DESC_TYPE {
-  unsigned int id;
-  double flops;
-  double bandwidth;
-} DEVICE_DESC_TYPE;
+enum Device_Type { 
+    T_CPU,
+    T_GPU 
+}; 
 
-static DEVICE_DESC_TYPE devices[NUM_DEVICES] = {
-/* Xeon */	{ .id = 0, .flops =  110.4, .bandwidth =  51.2 },
-/* GPU0 */	{ .id = 1, .flops = 4291.2, .bandwidth = 288.0 }
+typedef struct Device_Descriptor {
+    enum Device_Type dev_type;
+    unsigned int id;
+        double theor_flops;
+        double theor_bandwidth;
+        double efect_flops;
+    union {
+    	struct {
+        double efect_bandwidth;
+      };
+    	struct {
+        double efect_bandwidth_pinned;
+        double efect_bandwidth_pageable;
+      };    	
+  	};
+} Device_Descriptor_Type;
+
+
+/* Theoretical values.
+   Xeon: 110.4 GFlops, Memory Bandwidth: 51.2 GB/s
+   k40c: 4291.2 GFlops, Memory Bandwidth: 288 GB/s */
+static Device_Descriptor_Type devices[NUM_DEVICES] = {
+/* Xeon */	{ .dev_type=T_CPU, .id = 0, .theor_flops =  110.4, .theor_bandwidth =  51.2, .efect_flops = 110.4, .efect_bandwidth =  51.2},
+/* GPU0 */	{ .dev_type=T_GPU, .id = 1, .theor_flops = 4291.2, .theor_bandwidth = 288.0, .efect_flops = 4291.2, .efect_bandwidth_pinned_memory = 288.0, .efect_bandwidth_pageable_memory = 288.0}
 };
 
 #endif /* PLATFORM_H */
