@@ -1042,7 +1042,8 @@ double RM_time_data_transfer(int id_device){
 	double t_data_transfer = 0.0;
 	
 	if(id_device > 0){
-		t_data_transfer = (ptr_measure->q_data_transfer_write * T_WRITE_BYTE) + (ptr_measure->q_data_transfer_read * T_READ_BYTE);
+		// t_data_transfer = (ptr_measure->q_data_transfer_write * T_WRITE_BYTE) + (ptr_measure->q_data_transfer_read * T_READ_BYTE);
+		t_data_transfer = devices[id_device].latency + (ptr_measure->q_data_transfer_write / devices[id_device].) + (ptr_measure->q_data_transfer_read * T_READ_BYTE);
 	}
 
 	TRACE("T_data_transfer: %10.6f\n", t_data_transfer);
