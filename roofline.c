@@ -826,7 +826,7 @@ bool RM_registry_measures (void){
  * chunk_size: last chunk_size.
  * q_data_transfer: number of bytes that will be transfered to device.
  */
- void RM_set_aditional_parameters(long long total_of_iterations, long long executed_loop_iterations, long long chunk_size, long long q_data_transfer_write, long long q_data_transfer_read) {
+ void RM_set_aditional_parameters(long long total_of_iterations, long long executed_loop_iterations, long long chunk_size, long long q_data_transfer_write, long long q_data_transfer_read, unsigned int type_of_data_allocation) {
  	PRINT_FUNC_NAME;
 
  	ptr_measure->total_of_iterations = total_of_iterations;
@@ -834,6 +834,7 @@ bool RM_registry_measures (void){
   	ptr_measure->chunk_size = chunk_size;
   	ptr_measure->q_data_transfer_write = q_data_transfer_write;
   	ptr_measure->q_data_transfer_read = q_data_transfer_read;
+  	ptr_measure->type_of_data_allocation = type_of_data_allocation;
 
   	TRACE("Total of iterations: %ld, executed_iterations: %lld, chunk_size: %lld, q_data_transfer_write: %lld, q_data_transfer_read: %lld.\n", ptr_measure->total_of_iterations, ptr_measure->executed_loop_iterations, ptr_measure->chunk_size, ptr_measure->q_data_transfer_write, ptr_measure->q_data_transfer_read);
  }
@@ -1037,13 +1038,15 @@ double RM_time_computation(double w, double p){
 /* Calc time data transfer.                                     */
 double RM_time_data_transfer(int id_device){
 	PRINT_FUNC_NAME;
-	TRACE("Calculating time data transfer.\n");
+	TRACE("Calculating time of data transfer.\n");
 
 	double t_data_transfer = 0.0;
 	
 	if(id_device > 0){
 		// t_data_transfer = (ptr_measure->q_data_transfer_write * T_WRITE_BYTE) + (ptr_measure->q_data_transfer_read * T_READ_BYTE);
-		t_data_transfer = devices[id_device].latency + (ptr_measure->q_data_transfer_write / devices[id_device].) + (ptr_measure->q_data_transfer_read * T_READ_BYTE);
+		t_data_transfer = devices[id_device].latency + 
+						(ptr_measure->q_data_transfer_write / devices[id_device].efect_bandwidth[MEMORY_WRITE][ptr_measure->type_of_data_allocation]) + 
+						(ptr_measure->q_data_transfer_read / devices[id_device].efect_bandwidth[MEMORY_READ][ptr_measure->type_of_data_allocation]);
 	}
 
 	TRACE("T_data_transfer: %10.6f\n", t_data_transfer);

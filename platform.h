@@ -12,12 +12,15 @@
 #define MEMORY_ALLOC_DEFAULT 0
 #define MEMORY_ALLOC_PAGEABLE 1
 #define MEMORY_ALLOC_PINNED 2
+#define MEMORY_ALLOC_UVA 3
 
 enum Device_Type { 
     T_CPU,
     T_GPU 
 };
 
+/* Bandwidth can be read or write (direction h2d ou d2h) and have types memory 
+	allocation (default (cpu), pageable and pinned (gpu)) */
 typedef struct Device_Descriptor {
     enum Device_Type dev_type;
     unsigned int id;
