@@ -39,7 +39,7 @@ typedef struct Device_Descriptor {
 ///* GPU0 */	{ .dev_type=T_GPU, .id = 1, .theor_flops = 4291.2, .theor_bandwidth = 288.0, .efect_flops = 4291.2, .efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_DEFAULT] = 288.0, .efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_DEFAULT] = 288.0, .efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_PAGEABLE] = 288.0, .efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_PAGEABLE] = 288.0, .efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_PINNED] = 288.0, .efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_PINNED] = 288.0, .latency = 0.0}
 //};
 
-static Device_Descriptor_Type devices[NUM_DEVICES];
+Device_Descriptor_Type devices[NUM_DEVICES];
 
 /* Xeon */	
 devices[0].dev_type=T_CPU;
