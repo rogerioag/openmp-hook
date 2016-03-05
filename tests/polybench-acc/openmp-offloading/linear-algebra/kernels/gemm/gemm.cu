@@ -176,6 +176,9 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
                             (sizeof(DATA_TYPE) * NI * NJ);
     // Copy back C.
     q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NJ);
+
+    // 0: MEMORY_ALLOC_DEFAULT, 1: MEMORY_ALLOC_PAGEABLE, 2: MEMORY_ALLOC_PINNED
+    type_of_data_allocation = MEMORY_ALLOC_PAGEABLE;
     #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++) {
       for (j = 0; j < _PB_NJ; j++) {
