@@ -402,6 +402,9 @@ extern "C" {
 	/* Read: get from device. Results, data that was modified. */
 	long long q_data_transfer_read;
 
+	/* Type of memory allocation: pageable or pinned for cuda. */
+	unsigned int type_of_data_allocation;
+
 	void foo(void);
 	// GOMP_loop_runtime_start@@GOMP_1.0
 

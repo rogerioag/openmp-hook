@@ -186,7 +186,7 @@ extern "C" {
 
 	void RM_print_counters_values(void);
 
-	void RM_set_aditional_parameters(long long, long long, long long, long long, long long);
+	void RM_set_aditional_parameters(long long, long long, long long, long long, long long, unsigned int);
 
   int RM_get_num_events_sets();
 	
