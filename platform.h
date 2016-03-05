@@ -34,19 +34,6 @@ typedef struct Device_Descriptor {
 /* Theoretical values.
    Xeon: 110.4 GFlops, Memory Bandwidth: 51.2 GB/s
    k40c: 4291.2 GFlops, Memory Bandwidth: 288 GB/s */
-// static Device_Descriptor_Type devices[NUM_DEVICES] = {
-// /* Xeon */	{ .dev_type=T_CPU, .id = 0, .theor_flops =  110.4, .theor_bandwidth =  51.2, .efect_flops = 110.4, 
-// 	.efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_DEFAULT] = 51.2, 
-// 	.efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_DEFAULT] = 51.2, 
-// 	.efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_PAGEABLE] = 0.0, 
-// 	.efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_PAGEABLE] = 0.0, 
-// 	.efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_PINNED] = 0.0, 
-// 	.efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_PINNED] = 0.0, 
-// 	.latency = 0.0},
-
-// /* GPU0 */	{ .dev_type=T_GPU, .id = 1, .theor_flops = 4291.2, .theor_bandwidth = 288.0, .efect_flops = 4291.2, .efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_DEFAULT] = 288.0, .efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_DEFAULT] = 288.0, .efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_PAGEABLE] = 288.0, .efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_PAGEABLE] = 288.0, .efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_PINNED] = 288.0, .efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_PINNED] = 288.0, .latency = 0.0}
-// };
-
 static Device_Descriptor_Type devices[NUM_DEVICES] = {
 /* Xeon */	{ 
 	.dev_type=T_CPU, .id = 0, .theor_flops =  110.4, .theor_bandwidth =  51.2, .efect_flops = 110.4, 
@@ -54,9 +41,9 @@ static Device_Descriptor_Type devices[NUM_DEVICES] = {
 	{ /*READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
 		{ 51.2, 0.0, 0.0 }, 
 	  /*WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED*/
-		{ 51.2, 0.0, 0.0} 
+		{ 51.2, 0.0, 0.0 } 
 	}, 
-	.latency = 0.0},
+	.latency = 1.0},
 
 /* GPU0 */	{ 
 	.dev_type=T_GPU, .id = 1, .theor_flops = 4291.2, .theor_bandwidth = 288.0, .efect_flops = 4291.2, 
@@ -64,40 +51,9 @@ static Device_Descriptor_Type devices[NUM_DEVICES] = {
 	{ /*READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
 		{ 288.0, 288.0, 288.0 }, 
 	  /*WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED*/
-		{ 288.0, 288.0, 288.0} 
+		{ 288.0, 288.0, 288.0 } 
 	},
-	.latency = 0.0}
+	.latency = 1.0}
 };
-
-// Device_Descriptor_Type devices[NUM_DEVICES];
-
-// /* Xeon */	
-// devices[0].dev_type=T_CPU;
-// devices[0].id = 0;
-// devices[0].theor_flops =  110.4;
-// devices[0].theor_bandwidth =  51.2;
-// devices[0].efect_flops = 110.4;
-// devices[0].efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_DEFAULT] = 51.2;
-// devices[0].efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_DEFAULT] = 51.2;
-// devices[0].efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_PAGEABLE] = 0.0;
-// devices[0].efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_PAGEABLE] = 0.0;
-// devices[0].efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_PINNED] = 0.0;
-// devices[0].efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_PINNED] = 0.0;
-// devices[0].latency = 0.0;
-
-
-// /* GPU0 */
-// devices[1].dev_type=T_GPU; 
-// devices[1].id = 1; 
-// devices[1].theor_flops = 4291.2; 
-// devices[1].theor_bandwidth = 288.0; 
-// devices[1].efect_flops = 4291.2; 
-// devices[1].efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_DEFAULT] = 288.0; 
-// devices[1].efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_DEFAULT] = 288.0; 
-// devices[1].efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_PAGEABLE] = 288.0; 
-// devices[1].efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_PAGEABLE] = 288.0; 
-// devices[1].efect_bandwidth[MEMORY_READ][MEMORY_ALLOC_PINNED] = 288.0; 
-// devices[1].efect_bandwidth[MEMORY_WRITE][MEMORY_ALLOC_PINNED] = 288.0; 
-// devices[1].latency = 0.0;
 
 #endif /* PLATFORM_H */
