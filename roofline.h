@@ -32,7 +32,11 @@
 #define T_WRITE_BYTE 1
 
 /* Device to Host. */
-#define T_READ_BYTE 1  
+#define T_READ_BYTE 1
+
+#define BYTES_TO_KB 9.76563e-4
+#define BYTES_TO_MB 9.5367e-7
+#define BYTES_TO_GB 9.3132e-10
 
 /* One to preset, cpu and other to native and uncore. */
 #define NUM_PAPI_EVENT_SETS 2

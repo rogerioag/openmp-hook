@@ -1050,9 +1050,14 @@ double RM_time_data_transfer(int id_device){
 		TRACE("q_data_transfer_read: %d\n", ptr_measure->q_data_transfer_read);
 		TRACE("read bandwidth[%d]: %10.6f\n", id_device, devices[id_device].efect_bandwidth[MEMORY_READ][ptr_measure->type_of_data_allocation]);
 
+		double data_transfer_write_in_GB = ptr_measure->q_data_transfer_write * BYTES_TO_GB;
+		double data_transfer_read_in_GB = ptr_measure->q_data_transfer_read * BYTES_TO_GB;
+
+		// t_data_transfer = latency + N bytes / (bytes/s)
+		// t_data_transfer = latency + N GB / (GB/s) -> s
 		t_data_transfer = devices[id_device].latency + 
-						(ptr_measure->q_data_transfer_write / devices[id_device].efect_bandwidth[MEMORY_WRITE][ptr_measure->type_of_data_allocation]) + 
-						(ptr_measure->q_data_transfer_read / devices[id_device].efect_bandwidth[MEMORY_READ][ptr_measure->type_of_data_allocation]);
+						(data_transfer_write_in_GB / devices[id_device].efect_bandwidth[MEMORY_WRITE][ptr_measure->type_of_data_allocation]) + 
+						(data_transfer_read_in_GB / devices[id_device].efect_bandwidth[MEMORY_READ][ptr_measure->type_of_data_allocation]);
 	}
 
 	TRACE("T_data_transfer: %10.6f\n", t_data_transfer);
