@@ -18,6 +18,8 @@
 #include <inttypes.h>
 #include <assert.h>
 
+#include "platform.h"
+
  typedef struct Func {
   void *f;
   int nargs;
@@ -43,6 +45,9 @@ extern long int num_threads_defined;
 long long q_data_transfer_write;
 /* Read: get from device. Results, data that was modified. */
 long long q_data_transfer_read;
+
+/*Type of allocation memory (pageable (malloc), pinned (CudaMallocHost))*/
+unsigned int type_of_data_allocation;
 
 /* ------------------------------------------------------------- */
 /* Creation of alternative functions table. */
