@@ -56,7 +56,7 @@ int main() {
   #pragma omp parallel
   {
     #pragma omp single
-    printf("Thread [%02d]: Inicio de uma possível regiao paralela, numero de threads = %d, processadores = %d\n", omp_get_thread_num(), omp_get_num_threads(), omp_get_num_procs());
+    printf("Thread [%02d]: Inicio de uma possivel regiao paralela, numero de threads = %d, processadores = %d\n", omp_get_thread_num(), omp_get_num_threads(), omp_get_num_procs());
     
     #pragma omp for schedule(runtime)
     /* Cálculo. */
