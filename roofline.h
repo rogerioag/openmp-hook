@@ -117,7 +117,8 @@ struct _papi_thread_record {
   /* Data OUT from device. */
   long long q_data_transfer_read;
 
-  unsined int type_of_data_allocation;
+  /*Type of allocation memory (pageable (malloc), pinned (CudaMallocHost))*/
+  unsigned int type_of_data_allocation;
 };
 
 /* Control the measure session init. */
