@@ -3,7 +3,7 @@
 /* ------------------------------------------------------------ */
 /* Info and Test function.										*/
 void info(void) {
-	puts("Hello, I'm a shared library.\n");
+	puts("Hello, I'm a roofline library.\n");
 }
 
 /* ------------------------------------------------------------ */

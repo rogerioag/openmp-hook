@@ -50,20 +50,22 @@ typedef struct Device_Descriptor {
 static Device_Descriptor_Type devices[NUM_DEVICES] = {
 /* Xeon */	{ 
 	.dev_type=T_CPU, .id = 0, .theor_flops =  110.4, .theor_bandwidth =  51.2, .efect_flops = 110.4, 
-	.efect_bandwidth{ /*READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
-						{ 51.2, 0.0, 0.0 }, 
-				   	  /*WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED*/
-						{ 51.2, 0.0, 0.0} 
-					}, 
+	/*.efect_bandwidth*/
+	{ /*READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+		{ 51.2, 0.0, 0.0 }, 
+	  /*WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED*/
+		{ 51.2, 0.0, 0.0} 
+	}, 
 	.latency = 0.0},
 
 /* GPU0 */	{ 
 	.dev_type=T_GPU, .id = 1, .theor_flops = 4291.2, .theor_bandwidth = 288.0, .efect_flops = 4291.2, 
-	.efect_bandwidth{ /*READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
-						{ 288.0, 288.0, 288.0 }, 
-				   	  /*WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED*/
-						{ 288.0, 288.0, 288.0} 
-					},
+	/*.efect_bandwidth*/
+	{ /*READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+		{ 288.0, 288.0, 288.0 }, 
+	  /*WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED*/
+		{ 288.0, 288.0, 288.0} 
+	},
 	.latency = 0.0}
 };
 
