@@ -21,7 +21,10 @@ enum Device_Type {
 
 /* Bandwidth can be read or write (direction h2d ou d2h) and have types memory 
 	allocation (default (cpu), pageable and pinned (gpu)) */
-typedef struct Device_Descriptor {
+
+typedef struct Device_Descriptor Device_Descriptor_Type;
+
+struct Device_Descriptor {
     enum Device_Type dev_type;
     unsigned int id;
     double theor_flops;
@@ -29,7 +32,7 @@ typedef struct Device_Descriptor {
     double efect_flops;
     double efect_bandwidth[2][3];
     double latency;
-} Device_Descriptor_Type;
+};
 
 /* Theoretical values.
    Xeon: 110.4 GFlops, Memory Bandwidth: 51.2 GB/s
