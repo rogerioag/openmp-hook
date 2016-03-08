@@ -1060,7 +1060,7 @@ double RM_time_data_transfer(int id_device){
 						(data_transfer_read_in_GB / devices[id_device].efect_bandwidth[MEMORY_READ][ptr_measure->type_of_data_allocation]);
 	}
 
-	TRACE("T_data_transfer: %10.6f\n", t_data_transfer);
+	TRACE("T_data_transfer(s): %10.6f\n", t_data_transfer);
 
 	return t_data_transfer;
 }
