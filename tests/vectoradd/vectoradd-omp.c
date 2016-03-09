@@ -59,14 +59,14 @@ int main() {
     printf("Thread [%02d]: Inicio de uma possivel regiao paralela, numero de threads = %d, processadores = %d\n", omp_get_thread_num(), omp_get_num_threads(), omp_get_num_procs());
     
     #pragma omp for schedule(runtime)
-    /* Cálculo. */
+    /* Calculo. */
     for (i = 0; i < N; i++) {
       // printf("Thread [%02d] executa a iteracao %07d do loop.\n", omp_get_thread_num(), i);
       h_c[i] = h_a[i] + h_b[i];
     }
   }
   /* Resultados. */
-  print_array();
+  // print_array();
   check_result();
   
   return 0;
