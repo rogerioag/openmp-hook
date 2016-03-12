@@ -1,0 +1,145 @@
+
+;; Function init_array (init_array, funcdef_no=2, decl_uid=2767, cgraph_uid=2)
+
+init_array ()
+{
+  struct _IO_FILE * stdout.0;
+  int i;
+
+  stdout.0 = stdout;
+  __builtin_fwrite ("Inicializando os arrays.\n", 1, 25, stdout.0);
+  i = 0;
+  goto <D.2771>;
+  <D.2770>:
+  h_a[i] = 5.0e-1;
+  h_b[i] = 5.0e-1;
+  i = i + 1;
+  <D.2771>:
+  if (i <= 1048575) goto <D.2770>; else goto <D.2772>;
+  <D.2772>:
+}
+
+
+
+;; Function print_array (print_array, funcdef_no=3, decl_uid=2773, cgraph_uid=3)
+
+print_array ()
+{
+  float D.2792;
+  double D.2793;
+  struct _IO_FILE * stdout.1;
+  int i;
+
+  i = 0;
+  goto <D.2777>;
+  <D.2776>:
+  D.2792 = h_c[i];
+  D.2793 = (double) D.2792;
+  stdout.1 = stdout;
+  fprintf (stdout.1, "h_c[%07d]: %f\n", i, D.2793);
+  i = i + 1;
+  <D.2777>:
+  if (i <= 1048575) goto <D.2776>; else goto <D.2778>;
+  <D.2778>:
+}
+
+
+
+;; Function check_result (check_result, funcdef_no=4, decl_uid=2779, cgraph_uid=4)
+
+check_result ()
+{
+  struct _IO_FILE * stdout.2;
+  float D.2796;
+  float D.2797;
+  double D.2798;
+  double D.2799;
+  struct _IO_FILE * stdout.3;
+  int i;
+  float sum;
+
+  sum = 0.0;
+  stdout.2 = stdout;
+  __builtin_fwrite ("Verificando o resultado.\n", 1, 25, stdout.2);
+  i = 0;
+  goto <D.2784>;
+  <D.2783>:
+  D.2796 = h_c[i];
+  sum = D.2796 + sum;
+  i = i + 1;
+  <D.2784>:
+  if (i <= 1048575) goto <D.2783>; else goto <D.2785>;
+  <D.2785>:
+  D.2797 = sum / 1.048576e+6;
+  D.2798 = (double) D.2797;
+  D.2799 = (double) sum;
+  stdout.3 = stdout;
+  fprintf (stdout.3, "Resultado Final: (%f, %f)\n", D.2799, D.2798);
+}
+
+
+
+;; Function main (main, funcdef_no=5, decl_uid=2786, cgraph_uid=5)
+
+main ()
+{
+  int D.2810;
+  int i;
+  int loop_index;
+
+  init_array ();
+  {
+    .omp_data_o.5.loop_index = loop_index;
+    #pragma omp parallel shared(loop_index) [child fn: main._omp_fn.0 (.omp_data_o.5)]
+      {
+        .omp_data_i = &.omp_data_o.5;
+        .omp_data_i->loop_index = 0;
+        {
+          int i;
+
+          #pragma omp for schedule(runtime) private(i)
+          for (i = 0; i <= 1048575; i = i + 1)
+          D.2801 = h_a[i];
+          D.2802 = h_b[i];
+          D.2803 = D.2801 + D.2802;
+          h_c[i] = D.2803;
+          #pragma omp continue (i, i)
+          #pragma omp return
+        }
+        .omp_data_i->loop_index = 1;
+        {
+          int i;
+
+          #pragma omp for schedule(runtime) private(i)
+          for (i = 0; i <= 1048575; i = i + 1)
+          D.2804 = h_a[i];
+          D.2805 = h_b[i];
+          D.2806 = D.2804 + D.2805;
+          h_c[i] = D.2806;
+          #pragma omp continue (i, i)
+          #pragma omp return
+        }
+        .omp_data_i->loop_index = 2;
+        {
+          int i;
+
+          #pragma omp for schedule(runtime) private(i)
+          for (i = 0; i <= 1048575; i = i + 1)
+          D.2807 = h_a[i];
+          D.2808 = h_b[i];
+          D.2809 = D.2807 + D.2808;
+          h_c[i] = D.2809;
+          #pragma omp continue (i, i)
+          #pragma omp return
+        }
+        #pragma omp return
+      }
+    loop_index = .omp_data_o.5.loop_index;
+  }
+  print_array ();
+  check_result ();
+  D.2810 = 0;
+  return D.2810;
+}
+
+
