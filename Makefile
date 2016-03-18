@@ -47,3 +47,7 @@ clean:
 info:
 	@echo "For compiling with DEBUG messages, use:"
 	@echo "make OPTIONS=\"-DVERBOSE -DDEBUG\""
+
+document:
+	@echo "Generating documentation using doxygen..."
+	doxygen ./doc/doxygen.config

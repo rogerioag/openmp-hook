@@ -1,6 +1,6 @@
 #include "roofline.h"
 
-/* ------------------------------------------------------------ */
+/**< ------------------------------------------------------------ */
 /* Info and Test function.										*/
 void info(void) {
 	puts("Hello, I'm a roofline library.\n");

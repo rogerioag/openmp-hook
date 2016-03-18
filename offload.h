@@ -50,7 +50,9 @@ long long q_data_transfer_read;
 unsigned int type_of_data_allocation;
 
 /* ------------------------------------------------------------- */
-/* Creation of alternative functions table. */
+/**
+ * Creation of alternative functions table.
+ */
 bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
 
   Func ***table;
@@ -98,7 +100,7 @@ bool create_target_functions_table(Func ****table_, int nrows, int ncolumns) {
 }
 
 /* ------------------------------------------------------------- */
-/* Call the target function. This function is only for standalone tests.
+/** Call the target function. This function is only for standalone tests.
  * other function is called in hookomp.c
 */
 void call_function_ffi_call(Func* ff) {

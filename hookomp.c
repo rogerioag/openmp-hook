@@ -8,7 +8,7 @@ void foo(void) {
 
 /* ------------------------------------------------------------- */
 /* Function to execute up semaphore num_threads -1 to wake up the threads of team.*/
-void release_all_team_threads(void){
+void HOOKOMP_release_all_team_threads(void){
 	PRINT_FUNC_NAME;
 
 	TRACE("[HOOKOMP]: Waking up the %d blocked threads.\n", number_of_blocked_threads);
@@ -416,7 +416,7 @@ bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index
 // 				/* Release all blocked team threads. */
 // 				TRACE("[HOOKOMP]: Number of Blocked Threds: %ld.\n", number_of_blocked_threads);
 // 				if(number_of_blocked_threads > 0){
-// 					release_all_team_threads();	
+// 					HOOKOMP_release_all_team_threads();	
 // 				}
 // 			}
 // 		}
@@ -525,7 +525,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				/* Release all blocked team threads. */
 				TRACE("[HOOKOMP]: Number of Blocked Threads: %ld.\n", number_of_blocked_threads);
 				if(number_of_blocked_threads > 0){
-					release_all_team_threads();	
+					HOOKOMP_release_all_team_threads();	
 				}
 			}
 
@@ -657,7 +657,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	// 			/* Release all blocked team threads. */
 	// 			TRACE("[HOOKOMP]: Number of Blocked Threads: %ld.\n", number_of_blocked_threads);
 	// 			if(number_of_blocked_threads > 0){
-	// 				release_all_team_threads();	
+	// 				HOOKOMP_release_all_team_threads();	
 	// 			}
 	// 		}
 	// 	}
