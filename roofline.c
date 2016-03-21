@@ -1055,8 +1055,11 @@ double RM_time_data_transfer(int id_device){
 
 		// t_data_transfer = latency + N bytes / (bytes/s)
 		// t_data_transfer = latency + N GB / (GB/s) -> s
-		t_data_transfer = devices[id_device].latency + 
+		// latency to write + time to write transfer.
+		// latency to read + time to read transfer.
+		t_data_transfer = devices[id_device].latency[MEMORY_WRITE][ptr_measure->type_of_data_allocation] + 
 						(data_transfer_write_in_GB / devices[id_device].efect_bandwidth[MEMORY_WRITE][ptr_measure->type_of_data_allocation]) + 
+						devices[id_device].latency[MEMORY_READ][ptr_measure->type_of_data_allocation] +
 						(data_transfer_read_in_GB / devices[id_device].efect_bandwidth[MEMORY_READ][ptr_measure->type_of_data_allocation]);
 	}
 
