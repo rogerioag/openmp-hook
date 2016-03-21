@@ -28,7 +28,7 @@ typedef struct Device_Descriptor {
     double theor_bandwidth;
     double efect_flops;
     double efect_bandwidth[2][3];
-    double latency;
+    double latency[2][3];
 } Device_Descriptor_Type;
 
 /* Theoretical values.
@@ -36,24 +36,36 @@ typedef struct Device_Descriptor {
    k40c: 4291.2 GFlops, Memory Bandwidth: 288 GB/s */
 static Device_Descriptor_Type devices[NUM_DEVICES] = {
 /* Xeon */	{ 
-	.dev_type=T_CPU, .id = 0, .theor_flops =  110.4, .theor_bandwidth =  51.2, .efect_flops = 110.4, 
-	/*.efect_bandwidth*/
-	{ /*READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
-		{ 51.2, 0.0, 0.0 }, 
-	  /*WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED*/
-		{ 51.2, 0.0, 0.0 } 
-	}, 
-	.latency = 1.0},
+				.dev_type = T_CPU, .id = 0, .theor_flops = 110.4, .theor_bandwidth = 51.2, .efect_flops = 110.4, 
+				/*.efect_bandwidth*/
+				{ /* READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 51.2, 51.2, 51.2 }, 
+				  /* WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 51.2, 51.2, 51.2 } 
+				},
+				/*.latency*/ 
+				{ /* READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 1.0, 1.0, 1.0 }, 
+				  /* WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 1.0, 1.0, 1.0 } 
+				},
+			},
 
 /* GPU0 */	{ 
-	.dev_type=T_GPU, .id = 1, .theor_flops = 4291.2, .theor_bandwidth = 288.0, .efect_flops = 4291.2, 
-	/*.efect_bandwidth*/
-	{ /*READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
-		{ 288.0, 288.0, 288.0 }, 
-	  /*WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED*/
-		{ 288.0, 288.0, 288.0 } 
-	},
-	.latency = 1.0}
+				.dev_type = T_GPU, .id = 1, .theor_flops = 4291.2, .theor_bandwidth = 288.0, .efect_flops = 4291.2, 
+				/*.efect_bandwidth*/
+				{ /* READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 288.0, 288.0, 288.0 }, 
+				  /* WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 288.0, 288.0, 288.0 } 
+				},
+				/*.latency*/ 
+				{ /* READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 1.0, 1.0, 1.0 }, 
+				  /* WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 1.0, 1.0, 1.0 } 
+				},
+			}
 };
 
 #endif /* PLATFORM_H */
