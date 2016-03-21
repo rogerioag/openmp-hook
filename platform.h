@@ -35,10 +35,25 @@ typedef struct Device_Descriptor {
    Xeon: 110.4 GFlops, Memory Bandwidth: 51.2 GB/s
    k40c: 4291.2 GFlops, Memory Bandwidth: 288 GB/s */
 
-/*	# Latency Values used in roofline library.
+/* Sumary of parameters values used in roofline library.
+   	** Bandwidth **
+   	---------------------------------------------------------------------------------------------------------------------
+        	mean(b_pageable_h2d$w)      mean(b_pageable_d2h$w)      mean(b_pinned_h2d$w)        mean(b_pinned_d2h$w)
+    ---------------------------------------------------------------------------------------------------------------------
+	MB/sec  3210.552                    3208.838                    10256.83                    10267.07
+	---------------------------------------------------------------------------------------------------------------------
+	GB/s    3.210552                    3.208838                    10.25683                    10.26707
+	---------------------------------------------------------------------------------------------------------------------
+
+
+	** Latency **
+	---------------------------------------------------------------------------------------------------------------------
         		mean(pageable_h2d$mean)     mean(pageable_d2h$mean)     mean(pinned_h2d$mean)       mean(pinned_d2h$mean)
+    ---------------------------------------------------------------------------------------------------------------------
 	ns      	6212.784                    9059.737                    7787.956                    8450.636
+	---------------------------------------------------------------------------------------------------------------------
 	sec       	6.212784e-6                 9.059737e-6                 7,787956e-6                 8,450636e-6
+	---------------------------------------------------------------------------------------------------------------------
 */
 static Device_Descriptor_Type devices[NUM_DEVICES] = {
 /* Xeon */	{ 
@@ -60,10 +75,10 @@ static Device_Descriptor_Type devices[NUM_DEVICES] = {
 /* GPU0 */	{ 
 				.dev_type = T_GPU, .id = 1, .theor_flops = 4291.2, .theor_bandwidth = 288.0, .efect_flops = 4291.2, 
 				/*.efect_bandwidth*/
-				{ /* READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
-					{ 288.0, 288.0, 288.0 }, 
-				  /* WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
-					{ 288.0, 288.0, 288.0 } 
+				{ /* READ (d2h) -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 3.208838, 3.208838, 10.26707 }, 
+				  /* WRITE (h2d) -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 3.210552, 3.210552, 10.25683 } 
 				},
 				/*.latency*/ 
 				{ /* READ (d2h) -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
