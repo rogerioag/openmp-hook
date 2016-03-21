@@ -1042,7 +1042,8 @@ double RM_time_data_transfer(int id_device){
 
 	double t_data_transfer = 0.0;
 	
-	if(id_device > 0){
+	/* If device is not a CPU, then calculate t_data_transfer. */
+	if(devices[id_device].dev_type != T_CPU){
 		// t_data_transfer = (ptr_measure->q_data_transfer_write * T_WRITE_BYTE) + (ptr_measure->q_data_transfer_read * T_READ_BYTE);
 		TRACE("devices[%d].latency: %10.6f\n", id_device, devices[id_device].latency);
 		TRACE("q_data_transfer_write: %d\n", ptr_measure->q_data_transfer_write);
