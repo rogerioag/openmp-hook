@@ -90,6 +90,3 @@ static Device_Descriptor_Type devices[NUM_DEVICES] = {
 };
 
 #endif /* PLATFORM_H */
-
-
-6.212784e-6                 9.059737e-6                 7,787956e-6                 8,450636e-6
