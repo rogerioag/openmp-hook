@@ -34,6 +34,12 @@ typedef struct Device_Descriptor {
 /* Theoretical values.
    Xeon: 110.4 GFlops, Memory Bandwidth: 51.2 GB/s
    k40c: 4291.2 GFlops, Memory Bandwidth: 288 GB/s */
+
+/*	# Latency Values used in roofline library.
+        		mean(pageable_h2d$mean)     mean(pageable_d2h$mean)     mean(pinned_h2d$mean)       mean(pinned_d2h$mean)
+	ns      	6212.784                    9059.737                    7787.956                    8450.636
+	sec       	6.212784e-6                 9.059737e-6                 7,787956e-6                 8,450636e-6
+*/
 static Device_Descriptor_Type devices[NUM_DEVICES] = {
 /* Xeon */	{ 
 				.dev_type = T_CPU, .id = 0, .theor_flops = 110.4, .theor_bandwidth = 51.2, .efect_flops = 110.4, 
@@ -60,12 +66,15 @@ static Device_Descriptor_Type devices[NUM_DEVICES] = {
 					{ 288.0, 288.0, 288.0 } 
 				},
 				/*.latency*/ 
-				{ /* READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
-					{ 1.0, 1.0, 1.0 }, 
-				  /* WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
-					{ 1.0, 1.0, 1.0 } 
+				{ /* READ (d2h) -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 9.059737e-6, 9.059737e-6, 8,450636e-6 }, 
+				  /* WRITE (h2d) -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
+					{ 6.212784e-6, 6.212784e-6, 7,787956e-6 } 
 				},
 			}
 };
 
 #endif /* PLATFORM_H */
+
+
+6.212784e-6                 9.059737e-6                 7,787956e-6                 8,450636e-6
