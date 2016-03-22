@@ -304,39 +304,19 @@ int main(int argc, char *argv[]) {
   POLYBENCH_2D_ARRAY_DECL(C_inputToGpu, DATA_TYPE, NI, NJ, ni, nj);
   POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NJ, ni, nj);
 
-  fprintf(stderr, "Calling init_array.\n");
-  init_array(ni, nj, nk, &alpha, &beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
+  // init_array(ni, nj, nk, &alpha, &beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
              POLYBENCH_ARRAY(C));
 
   /*Copy the original C to C of OMP.*/
-  copy_array(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
+  // copy_array(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
 
-  copy_array(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
-
-  fprintf(stdout, "exp, num_threads, NI, NJ, NK, ORIG, OMP\n");
-
-  // fprintf(stderr, "calling gemm_original:\n");
-  gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
-  fprintf(stdout, ", ");
-
-  fprintf(stderr, "calling gemm_omp:\n");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
            POLYBENCH_ARRAY(C_outputFromOMP));
-  fprintf(stdout, "\n");
-
-  fprintf(stderr, "Calling compareResults(original, omp).\n");
-  compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
-
-  fprintf(stderr, "Calling compareResults(original, cuda).\n");
-  compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
-
-  polybench_prevent_dce(print_array(ni, nj, POLYBENCH_ARRAY(C_outputFromGpu)));
 
   POLYBENCH_FREE_ARRAY(A);
   POLYBENCH_FREE_ARRAY(B);
   POLYBENCH_FREE_ARRAY(C);
   POLYBENCH_FREE_ARRAY(C_outputFromOMP);
-  POLYBENCH_FREE_ARRAY(C_outputFromGpu);
 
   return 0;
 }
