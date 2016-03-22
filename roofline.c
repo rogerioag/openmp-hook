@@ -687,13 +687,6 @@ bool RM_start_counters (void){
 	if ((retval = PAPI_reset(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]])) != PAPI_OK) {
 		TRACE("PAPI_reset() counters error.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-
-		// PAPI_ESYS A system or C library call failed inside PAPI, see the errno variable.
-		// PAPI_ENOEVST The EventSet specified does not exist. 
-		// if (retval == PAPI_ECNFLCT) {
-	    //  TRACE("[RM_start_counters] PAPI error %d (%s): It is likely that you selected too many counters to monitor.\n",
-		//      retval, PAPI_strerror(retval));
-	    // }
   	}
 
 	/* Gets the starting time in clock cycles */
@@ -725,6 +718,21 @@ bool RM_stop_and_accumulate(void){
 	PRINT_FUNC_NAME;
 	int retval = 0;
 	int j;
+
+	TRACE("ACCUM_DEBUG: %s;%s;%s;%s;%s;%s;\n", "measures", 
+				((event_names[ptr_measure->current_eventset][0] != NULL) ? event_names[ptr_measure->current_eventset][0] : "") , 
+				((event_names[ptr_measure->current_eventset][1] != NULL) ? event_names[ptr_measure->current_eventset][1] : ""), 
+				((event_names[ptr_measure->current_eventset][2] != NULL) ? event_names[ptr_measure->current_eventset][2] : ""), 
+				((event_names[ptr_measure->current_eventset][3] != NULL) ? event_names[ptr_measure->current_eventset][3] : ""), 
+				((event_names[ptr_measure->current_eventset][4] != NULL) ? event_names[ptr_measure->current_eventset][4] : ""));
+
+	TRACE("ACCUM_DEBUG: %lld;%lld;%lld;%lld;%lld;%lld;\n", 
+			ptr_measure->quant_intervals[ptr_measure->current_eventset], 
+			((event_names[ptr_measure->current_eventset][0] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 0] : NULL), 
+			((event_names[ptr_measure->current_eventset][1] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 1] : NULL),
+			((event_names[ptr_measure->current_eventset][2] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 2] : NULL),
+			((event_names[ptr_measure->current_eventset][3] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 3] : NULL),
+			((event_names[ptr_measure->current_eventset][4] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 4] : NULL));
 
   	TRACE("Trying accumulate counters.\n");
 	if ((retval = PAPI_accum(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], &ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 0])) != PAPI_OK){
