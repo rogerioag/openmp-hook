@@ -751,6 +751,21 @@ bool RM_stop_and_accumulate(void){
 		}
 	}
 
+	TRACE("ACCUM_DEBUG: %s;%s;%s;%s;%s;%s;\n", "measures", 
+				((event_names[ptr_measure->current_eventset][0] != NULL) ? event_names[ptr_measure->current_eventset][0] : "") , 
+				((event_names[ptr_measure->current_eventset][1] != NULL) ? event_names[ptr_measure->current_eventset][1] : ""), 
+				((event_names[ptr_measure->current_eventset][2] != NULL) ? event_names[ptr_measure->current_eventset][2] : ""), 
+				((event_names[ptr_measure->current_eventset][3] != NULL) ? event_names[ptr_measure->current_eventset][3] : ""), 
+				((event_names[ptr_measure->current_eventset][4] != NULL) ? event_names[ptr_measure->current_eventset][4] : ""));
+
+	TRACE("ACCUM_DEBUG: %lld;%lld;%lld;%lld;%lld;%lld;\n", 
+			ptr_measure->quant_intervals[ptr_measure->current_eventset], 
+			((event_names[ptr_measure->current_eventset][0] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 0] : NULL), 
+			((event_names[ptr_measure->current_eventset][1] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 1] : NULL),
+			((event_names[ptr_measure->current_eventset][2] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 2] : NULL),
+			((event_names[ptr_measure->current_eventset][3] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 3] : NULL),
+			((event_names[ptr_measure->current_eventset][4] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 4] : NULL));
+
 	/* Gets the ending time in clock cycles */
 	ptr_measure->end_cycles = PAPI_get_real_cyc();
 
