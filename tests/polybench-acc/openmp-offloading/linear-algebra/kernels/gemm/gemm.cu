@@ -180,9 +180,12 @@ void gemm_omp_kernel(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
     // 0: MEMORY_ALLOC_DEFAULT, 1: MEMORY_ALLOC_PAGEABLE, 2: MEMORY_ALLOC_PINNED
     type_of_data_allocation = MEMORY_ALLOC_PAGEABLE;
     #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+    current_loop_index = 2;
     for (i = 0; i < _PB_NI; i++) {
+      current_loop_index = 3;
       for (j = 0; j < _PB_NJ; j++) {
         C[i][j] *= beta;
+        current_loop_index = 4;
         for (k = 0; k < _PB_NK; ++k) {
           C[i][j] += alpha * A[i][k] * B[k][j];
         }
