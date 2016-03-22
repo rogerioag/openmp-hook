@@ -396,10 +396,8 @@ int main(int argc, char *argv[]) {
              POLYBENCH_ARRAY(C));
 
   /*Copy the original C to C of OMP.*/
-  // memcpy(C_outputFromOMP, C, sizeof(C_outputFromOMP));
   copy_array(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
 
-  // memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
   copy_array(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
   fprintf(stdout, "exp, num_threads, NI, NJ, NK, ORIG, OMP\n");
@@ -417,17 +415,6 @@ int main(int argc, char *argv[]) {
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
-
-  // fprintf(stderr, "GPU init.\n");
-  // GPU_argv_init();
-
-  // fprintf(stderr, "Calling gemm_cuda.\n");
-  // gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
-  // POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu),
-  // POLYBENCH_ARRAY(C_outputFromGpu));
-
-  // fprintf(stderr, "Calling gemm_cuda using Table of Pointers.\n");
-  // call_function_ffi_call(table[0][0]);
 
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
