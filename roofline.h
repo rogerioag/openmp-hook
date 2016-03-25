@@ -24,6 +24,13 @@
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
+/* Macro definition to control the force NO Offloadig. To overhead verification. */
+#if defined(FORCENOOFFLOAD)
+ #define DEV_OFFLOAD 0
+#else
+ #define DEV_OFFLOAD best_dev
+#endif
+
 /* Cache line size: 64 bytes. http://www.cpu-world.com/CPUs/Xeon/Intel-Xeon%20E5-2630.html */
 #define CACHE_LINE_SIZE 64
 
