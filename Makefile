@@ -47,6 +47,10 @@ clean:
 info:
 	@echo "For compiling with DEBUG messages, use:"
 	@echo "make OPTIONS=\"-DVERBOSE -DDEBUG\""
+	@echo "For compiling with FORCENOOFFLOAD, use:"
+	@echo "make OPTIONS=\"-DFORCENOOFFLOAD\""
+	@echo "For compiling with DEBUG messages and force no offloading, use:"
+	@echo "make OPTIONS=\"-DVERBOSE -DDEBUG -DFORCENOOFFLOAD\""
 
 document:
 	@echo "Generating documentation using doxygen..."
