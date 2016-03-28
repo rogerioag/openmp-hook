@@ -192,6 +192,9 @@ int main(int argc, char *argv[]) {
 
   GPU_argv_init();
 
+  fprintf(stdout, "exp, NI, NJ, NK, CUDA, ORIG\n");
+  fprintf(stdout, "CUDA, %d, %d, %d, ", NI, NJ, NK);
+
   /* Start timer. */
   polybench_start_instruments;
 
@@ -199,9 +202,11 @@ int main(int argc, char *argv[]) {
            POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
   /* Stop and print timer. */
-  printf("GPU Time in seconds:\n");
+  // printf("GPU Time in seconds:\n");
   polybench_stop_instruments;
   polybench_print_instruments;
+
+  fprintf(stdout, ", ");
 
 #ifdef RUN_ON_CPU
 
@@ -212,7 +217,7 @@ int main(int argc, char *argv[]) {
        POLYBENCH_ARRAY(C));
 
   /* Stop and print timer. */
-  printf("CPU Time in seconds:\n");
+  // printf("CPU Time in seconds:\n");
   polybench_stop_instruments;
   polybench_print_instruments;
 
@@ -231,5 +236,9 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
+
+// polybench.c uses the OpenMP to parallelize somethings. This call were
+// intercepted by hookomp.
+#undef _OPENMP
 
 #include <polybench.c>
