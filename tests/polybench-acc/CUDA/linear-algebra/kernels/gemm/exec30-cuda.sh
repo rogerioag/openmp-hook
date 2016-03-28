@@ -24,8 +24,10 @@ for size_of_data in TOY_DATASET MINI_DATASET TINY_DATASET SMALL_DATASET MEDIUM_D
 done
 echo "End of tests at `date +'%d/%m/%Y-%T'`"
 
-if [ -f "nohup.out" ]
+NOHUP_FILE="nohup.out"
+
+if [ -f "$NOHUP_FILE" ]
 then
 	echo "Copy nohup.out to ${OUTPUT}."
-	cp nohup.out ${OUTPUT}/
+	cp $NOHUP_FILE ${OUTPUT}
 fi
