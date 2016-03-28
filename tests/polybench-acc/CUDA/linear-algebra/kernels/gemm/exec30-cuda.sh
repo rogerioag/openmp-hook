@@ -4,25 +4,21 @@
 
 benchmark=`basename $PWD`
 
-# recupera o nome do diretorio, que é o nome do benchmark.
-echo "Executing $benchmark."
+experiment_date=`date +'%m-%d-%Y-%T'`
+OUTPUT=output/${experiment_date}
 
-mkdir output
+echo "Executing test for $benchmark, start at $experiment_date"
 
-for size_of_data in LARGE_DATASET; do
-	for num_threads in 1 2 4 8 10 12; do
-		echo "Compiling ${benchmark} with dataset: ${size_of_data}, schedule: ${omp_schedule}, chunk: ${chunk_size}, threads: ${num_threads}."
-		for omp_schedule in DYNAMIC; do
-			for chunk_size in 16 32 64; do
-				make POLYBENCH_OPTIONS="-DPOLYBENCH_TIME -D${size_of_data}" OMP_CONFIG="-DOPENMP_SCHEDULE_${omp_schedule} -DOPENMP_CHUNK_SIZE=${chunk_size} -DOPENMP_NUM_THREADS=${num_threads}"
-				mv ${benchmark}-offloading-gpu.exe ${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-offloading-gpu.exe
-          		for ((  i = 1 ;  i <= 10;  i++  ))
-				do
-            		echo "Execution ${i} of ${benchmark} with dataset: ${size_of_data}, schedule: ${omp_schedule}, chunk: ${chunk_size}, threads: ${num_threads}."
-					./${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-offloading-gpu.exe >> output/data-${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-offloading-gpu.csv 2>> output/data-${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-offloading-gpu-stderr.csv
-				done
-			done
+mkdir -p ${OUTPUT}
+
+for size_of_data in TOY_DATASET MINI_DATASET TINY_DATASET SMALL_DATASET MEDIUM_DATASET STANDARD_DATASET LARGE_DATASET EXTRALARGE_DATASET HUGE_DATASET; do
+	echo "Compiling ${benchmark} with dataset: ${size_of_data}"
+		make POLYBENCH_OPTIONS="-DPOLYBENCH_TIME -D${size_of_data}"
+		mv ${benchmark}-gpu.exe ${benchmark}-dataset-${size_of_data}-gpu.exe
+        for ((  i = 1 ;  i <= 10;  i++  ))
+		do
+        	echo "Execution ${i} of ${benchmark} with dataset: ${size_of_data} start at `date +'%m-%d-%Y-%T'`"
+			./${benchmark}-dataset-${size_of_data}-gpu.exe >> ${OUTPUT}/data-${benchmark}-dataset-${size_of_data}-gpu.csv 2>> ${OUTPUT}/data-${benchmark}-dataset-${size_of_data}-gpu-stderr.csv
 		done
-	done
 done
-echo "End of process."
+echo "End of tests at `date +'%m-%d-%Y-%T'`"

@@ -431,6 +431,7 @@ bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index
 
 bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void* extra) {	
 	PRINT_FUNC_NAME;
+
 	bool result = false;
 	// TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
 
