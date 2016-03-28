@@ -811,6 +811,37 @@ bool RM_stop_and_accumulate(void){
 
 /* ------------------------------------------------------------ */
 /* Record measures in intervals between start and stop.			*/
+// bool RM_registry_measures (void){
+// 	PRINT_FUNC_NAME;
+// 	bool retval = false;
+
+// 	/* Stop and accumulate for >= second chunks. */
+// 	TRACE("[RM]: Verifying if started the measuring: %d.\n", started_measuring);
+// 	if(started_measuring){
+// 		TRACE("call RM_stop_and_accumulate().\n");
+// 		if(RM_stop_and_accumulate()){
+// 			TRACE("[RM]: Stop and Accumulate.\n");
+// 			retval = true;
+// 		}
+// 		else{
+// 			TRACE("Error calling RM_stop_and_accumulate.\n");
+// 			retval = false;
+// 		}
+// 	}
+
+// 	/* Start for the next chunk. */
+// 	TRACE("call RM_start_counters().\n");
+// 	if(RM_start_counters()){
+// 		TRACE("[RM]: PAPI Counters Started.\n");
+// 		retval = true;
+// 	}
+// 	else {
+// 		TRACE("Error calling RM_start_counters.\n");
+// 		retval = false;
+// 	}
+
+// 	return retval;
+// }
 bool RM_registry_measures (void){
 	PRINT_FUNC_NAME;
 	bool retval = false;
