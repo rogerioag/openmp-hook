@@ -15,7 +15,7 @@ for size_of_data in TOY_DATASET MINI_DATASET TINY_DATASET SMALL_DATASET MEDIUM_D
 	echo "Compiling ${benchmark} with dataset: ${size_of_data}"
 	make POLYBENCH_OPTIONS="-DPOLYBENCH_TIME -D${size_of_data}"
 	mv ${benchmark}-gpu.exe ${benchmark}-dataset-${size_of_data}-gpu.exe
-    for ((  i = 1 ;  i <= 1;  i++  ))
+    for ((  i = 1 ;  i <= 10;  i++  ))
 	do
        	echo "Execution ${i} of ${benchmark} with dataset: ${size_of_data} start at `date +'%d/%m/%Y-%T'`"
        	echo "Execution = ${i}, benchmark = ${benchmark}, size_of_data = ${size_of_data}," >> ${OUTPUT}/data-${benchmark}-dataset-${size_of_data}-gpu.csv
