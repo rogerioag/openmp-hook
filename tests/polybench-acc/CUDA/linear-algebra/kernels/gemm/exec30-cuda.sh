@@ -18,6 +18,7 @@ for size_of_data in TOY_DATASET MINI_DATASET TINY_DATASET SMALL_DATASET MEDIUM_D
         for ((  i = 1 ;  i <= 10;  i++  ))
 		do
         	echo "Execution ${i} of ${benchmark} with dataset: ${size_of_data} start at `date +'%m-%d-%Y-%T'`"
+        	echo "Execution = ${i}, benchmark = ${benchmark}, size_of_data = ${size_of_data},"
 			./${benchmark}-dataset-${size_of_data}-gpu.exe >> ${OUTPUT}/data-${benchmark}-dataset-${size_of_data}-gpu.csv 2>> ${OUTPUT}/data-${benchmark}-dataset-${size_of_data}-gpu-stderr.csv
 		done
 done
