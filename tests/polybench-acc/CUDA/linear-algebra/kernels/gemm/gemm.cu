@@ -100,7 +100,7 @@ void compareResults(int ni, int nj, DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
 void GPU_argv_init() {
   cudaDeviceProp deviceProp;
   cudaGetDeviceProperties(&deviceProp, GPU_DEVICE);
-  printf("setting device %d with name %s\n", GPU_DEVICE, deviceProp.name);
+  fprintf(stderr,"setting device %d with name %s\n", GPU_DEVICE, deviceProp.name);
   cudaSetDevice(GPU_DEVICE);
 }
 
