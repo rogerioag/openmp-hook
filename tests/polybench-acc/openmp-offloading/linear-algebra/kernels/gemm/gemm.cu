@@ -402,15 +402,19 @@ int main(int argc, char *argv[]) {
   // memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
   copy_array(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  fprintf(stdout, "exp, num_threads, NI, NJ, NK, ORIG, OMP\n");
+  // fprintf(stdout, "exp, num_threads, NI, NJ, NK, ORIG, OMP\n");
 
-  fprintf(stdout, "OMP+OFF, %d, %d, %d, %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
+  // fprintf(stdout, "OMP+OFF, %d, %d, %d, %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
+  fprintf(stdout, "exp = OMP+OFF, num_threads = %d, NI = %d, NJ = %d , NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
 
   // fprintf(stderr, "calling gemm_original:\n");
+  fprintf(stdout, "ORIG = ");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
+  
   fprintf(stdout, ", ");
 
   fprintf(stderr, "calling gemm_omp:\n");
+  fprintf(stdout, "OMP = ");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
            POLYBENCH_ARRAY(C_outputFromOMP));
   fprintf(stdout, "\n");
