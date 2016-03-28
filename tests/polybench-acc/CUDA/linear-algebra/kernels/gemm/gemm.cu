@@ -193,8 +193,7 @@ int main(int argc, char *argv[]) {
 
   GPU_argv_init();
 
-  fprintf(stdout, "exp, NI, NJ, NK, CUDA, ORIG\n");
-  fprintf(stdout, "CUDA, %d, %d, %d, ", NI, NJ, NK);
+  fprintf(stdout, "exp = CUDA, NI = %d, NJ = %d, NK = %d, ");
 
   /* Start timer. */
   polybench_start_instruments;
@@ -204,6 +203,7 @@ int main(int argc, char *argv[]) {
 
   /* Stop and print timer. */
   // printf("GPU Time in seconds:\n");
+  fprintf(stdout, "CUDA = ");
   polybench_stop_instruments;
   polybench_print_instruments;
 
@@ -219,8 +219,11 @@ int main(int argc, char *argv[]) {
 
   /* Stop and print timer. */
   // printf("CPU Time in seconds:\n");
+  fprintf(stdout, "ORIG = ");
   polybench_stop_instruments;
   polybench_print_instruments;
+
+  fprintf(stdout, "\n");
 
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
