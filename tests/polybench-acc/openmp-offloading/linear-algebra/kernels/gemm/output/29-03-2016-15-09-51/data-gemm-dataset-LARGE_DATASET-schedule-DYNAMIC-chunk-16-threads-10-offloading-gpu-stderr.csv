@@ -6,12 +6,16 @@ Allocating the columns is OK.
 Declaring function in 0,1.
 Calling init_array.
 calling gemm_omp:
-[RM_papi_handle_error] roofline.c -> RM_destroy_event_sets [line 1260]: PAPI error -10: EventSet is currently counting
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0208947266, 0.0208941394, 1.0698100031, 6.0176812675, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
 [RM_papi_handle_error] roofline.c -> RM_library_shutdown [line 1288]: PAPI error -6: Internal error, please send mail to the developers
 Calling compareResults(original, omp).
 Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
 Calling compareResults(original, cuda).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
 Preparing alternatives functions.
 Creating table of target functions.
 Allocating the rows.
@@ -20,25 +24,16 @@ Allocating the columns is OK.
 Declaring function in 0,1.
 Calling init_array.
 calling gemm_omp:
-[RM_papi_handle_error] roofline.c -> RM_destroy_event_sets [line 1260]: PAPI error -10: EventSet is currently counting
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0194268059, 0.0194262547, 0.9946524641, 5.5949201108, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
 [RM_papi_handle_error] roofline.c -> RM_library_shutdown [line 1288]: PAPI error -6: Internal error, please send mail to the developers
 Calling compareResults(original, omp).
 Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
 Calling compareResults(original, cuda).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
-Preparing alternatives functions.
-Creating table of target functions.
-Allocating the rows.
-Allocating the columns.
-Allocating the columns is OK.
-Declaring function in 0,1.
-Calling init_array.
-calling gemm_omp:
-[RM_papi_handle_error] roofline.c -> RM_destroy_event_sets [line 1260]: PAPI error -10: EventSet is currently counting
-Calling compareResults(original, omp).
 Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
-Calling compareResults(original, cuda).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
 Preparing alternatives functions.
 Creating table of target functions.
 Allocating the rows.
@@ -47,51 +42,16 @@ Allocating the columns is OK.
 Declaring function in 0,1.
 Calling init_array.
 calling gemm_omp:
-[RM_papi_handle_error] roofline.c -> RM_destroy_event_sets [line 1260]: PAPI error -10: EventSet is currently counting
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0189289205, 0.0189283819, 0.9691607301, 5.4515291069, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
 [RM_papi_handle_error] roofline.c -> RM_library_shutdown [line 1288]: PAPI error -6: Internal error, please send mail to the developers
 Calling compareResults(original, omp).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 98256
 Calling compareResults(original, cuda).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
-Preparing alternatives functions.
-Creating table of target functions.
-Allocating the rows.
-Allocating the columns.
-Allocating the columns is OK.
-Declaring function in 0,1.
-Calling init_array.
-calling gemm_omp:
-[RM_papi_handle_error] roofline.c -> RM_destroy_event_sets [line 1260]: PAPI error -10: EventSet is currently counting
-Calling compareResults(original, omp).
 Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
-Calling compareResults(original, cuda).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
-Preparing alternatives functions.
-Creating table of target functions.
-Allocating the rows.
-Allocating the columns.
-Allocating the columns is OK.
-Declaring function in 0,1.
-Calling init_array.
-calling gemm_omp:
-[RM_papi_handle_error] roofline.c -> RM_destroy_event_sets [line 1260]: PAPI error -10: EventSet is currently counting
-Calling compareResults(original, omp).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
-Calling compareResults(original, cuda).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
-Preparing alternatives functions.
-Creating table of target functions.
-Allocating the rows.
-Allocating the columns.
-Allocating the columns is OK.
-Declaring function in 0,1.
-Calling init_array.
-calling gemm_omp:
-[RM_papi_handle_error] roofline.c -> RM_destroy_event_sets [line 1260]: PAPI error -10: EventSet is currently counting
-Calling compareResults(original, omp).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
-Calling compareResults(original, cuda).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
 Preparing alternatives functions.
 Creating table of target functions.
 Allocating the rows.
@@ -114,11 +74,15 @@ Allocating the columns is OK.
 Declaring function in 0,1.
 Calling init_array.
 calling gemm_omp:
-[RM_papi_handle_error] roofline.c -> RM_destroy_event_sets [line 1260]: PAPI error -10: EventSet is currently counting
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0186971303, 0.0186965996, 0.9572930706, 5.3847735223, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
 Calling compareResults(original, omp).
 Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
 Calling compareResults(original, cuda).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
 Preparing alternatives functions.
 Creating table of target functions.
 Allocating the rows.
@@ -127,9 +91,83 @@ Allocating the columns is OK.
 Declaring function in 0,1.
 Calling init_array.
 calling gemm_omp:
-[RM_papi_handle_error] roofline.c -> RM_destroy_event_sets [line 1260]: PAPI error -10: EventSet is currently counting
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0202430700, 0.0202425007, 1.0364451845, 5.8300041628, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
+[RM_papi_handle_error] roofline.c -> RM_library_shutdown [line 1288]: PAPI error -6: Internal error, please send mail to the developers
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 786048
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+calling gemm_omp:
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0165246416, 0.0165242217, 0.8460616512, 4.7590967880, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+calling gemm_omp:
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0169334236, 0.0169330016, 0.8669912904, 4.8768260086, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
+[RM_papi_handle_error] roofline.c -> RM_library_shutdown [line 1288]: PAPI error -6: Internal error, please send mail to the developers
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 32752
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+calling gemm_omp:
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0165731853, 0.0165727603, 0.8485470875, 4.7730773670, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+calling gemm_omp:
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0187371286, 0.0187365964, 0.9593409847, 5.3962930390, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
 [RM_papi_handle_error] roofline.c -> RM_library_shutdown [line 1288]: PAPI error -6: Internal error, please send mail to the developers
 Calling compareResults(original, omp).
 Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
 Calling compareResults(original, cuda).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
