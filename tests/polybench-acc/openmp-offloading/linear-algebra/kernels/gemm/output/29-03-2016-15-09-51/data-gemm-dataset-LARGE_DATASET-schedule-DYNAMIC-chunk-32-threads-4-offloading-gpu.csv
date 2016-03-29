@@ -1,0 +1,5 @@
+Execution = 1, benchmark = gemm, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 4
+exp = OMP+OFF, num_threads = 4, NI = 2048, NJ = 2048 , NK = 2048, ORIG = 148.739203
+, OMP = 25.368039
+
+Execution = 2, benchmark = gemm, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 4
