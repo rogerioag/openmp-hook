@@ -483,10 +483,10 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				TRACE("[HOOKOMP]: Thread [%lu] is getting the performance counters to decide.\n", (long int) pthread_self());
 
 				TRACE("Calling RM_stop_and_accumulate.\n");
-				if(!RM_stop_and_accumulate()){
-					TRACE("[HOOKOMP]: Error calling RM_stop_and_accumulate.\n");
-				}
-				else{
+				// if(!RM_stop_and_accumulate()){
+				//	TRACE("[HOOKOMP]: Error calling RM_stop_and_accumulate.\n");
+				//}
+				//else{
 					TRACE("Current loop index: %d.\n", current_loop_index);
 					TRACE("Defining aditional parameters.\n");
 					// N: total of iterations, Number of executed iterations (percentual), last chunk_size.
@@ -511,7 +511,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					}
 
 					TRACE("After decision about offloading.\n");
-				}
+				// }
 
 				/* Continue execution. */
 				if(!(decided_by_offloading && made_the_offloading)){
