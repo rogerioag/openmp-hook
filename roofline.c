@@ -862,17 +862,18 @@ bool RM_registry_measures (void){
 			retval = false;
 		}
 	}
-
-	/* Start for the next chunk. */
-	TRACE("call RM_start_counters().\n");
-	if(RM_start_counters()){
-		TRACE("[RM]: PAPI Counters Started.\n");
-		retval = true;
-	}
-	else {
-		TRACE("Error calling RM_start_counters.\n");
-		retval = false;
-	}
+	else{
+		/* Start for the next chunk. */
+		TRACE("call RM_start_counters().\n");
+		if(RM_start_counters()){
+			TRACE("[RM]: PAPI Counters Started.\n");
+			retval = true;
+		}
+		else {
+			TRACE("Error calling RM_start_counters.\n");
+			retval = false;
+		}	
+	}	
 
 	return retval;
 }
