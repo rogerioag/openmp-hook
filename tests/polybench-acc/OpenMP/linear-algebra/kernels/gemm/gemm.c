@@ -84,7 +84,8 @@ void compareResults(int ni, int nj, DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj),
   }
 
   // Print results
-  printf("Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f "
+  fprintf(stderr,
+         "Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f "
          "Percent: %d\n",
          PERCENT_DIFF_ERROR_THRESHOLD, fail);
 }
@@ -195,7 +196,7 @@ int main(int argc, char *argv[]) {
   /*Copy the original C to C of OMP.*/
   memcpy(C_outputFromOMP, C, sizeof(C_outputFromOMP));
 
-  fprintf(stdout, "exp = OMP, num_threads = %d, NI = %d, NJ = %d , NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
+  fprintf(stdout, "exp = OMP, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
 
   fprintf(stderr, "Calling gemm_original.\n");
   fprintf(stdout, "ORIG = ");

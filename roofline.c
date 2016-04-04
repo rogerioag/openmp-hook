@@ -806,6 +806,9 @@ bool RM_stop_and_accumulate(void){
 
 	ptr_measure->current_eventset = ((ptr_measure->current_eventset + 1) % NUM_EVENT_SETS);
 
+	// For test start and stop improvements.
+	started_measuring = false;
+
 	return (retval == PAPI_OK);
 }
 

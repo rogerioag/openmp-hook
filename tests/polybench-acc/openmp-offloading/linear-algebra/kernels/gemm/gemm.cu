@@ -405,7 +405,7 @@ int main(int argc, char *argv[]) {
   // fprintf(stdout, "exp, num_threads, NI, NJ, NK, ORIG, OMP\n");
 
   // fprintf(stdout, "OMP+OFF, %d, %d, %d, %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
-  fprintf(stdout, "exp = OMP+OFF, num_threads = %d, NI = %d, NJ = %d , NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
+  fprintf(stdout, "exp = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
 
   // fprintf(stderr, "calling gemm_original:\n");
   fprintf(stdout, "ORIG = ");

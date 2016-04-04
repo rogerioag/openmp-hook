@@ -121,7 +121,8 @@ p1 <- ggplot(subset(df1, y==16), aes(x=x, y=t, fill=cat)) +
         ggtitle("No Offloading (force use of CPU), chunk_size: 16\n") +
         scale_y_continuous(breaks=0:100*10) + 
         theme_bw() +
-        theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+        #theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+        theme(legend.position=c(0.9,0.9), legend.title=element_blank(), plot.title = element_text(size=25))
 
 (p1 = p1 + scale_fill_grey(start = 0.2, end = 0.9))
 
@@ -140,7 +141,8 @@ p2 <- ggplot(subset(df1, y==32), aes(x=x, y=t, fill=cat)) +
         ggtitle("No Offloading (force use of CPU), chunk_size: 32\n") +
         scale_y_continuous(breaks=0:100*10) + 
         theme_bw() +
-        theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+        #theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+        theme(legend.position=c(0.9,0.9), legend.title=element_blank(), plot.title = element_text(size=25))
 
 (p2 = p2 + scale_fill_grey(start = 0.2, end = 0.9))
 
@@ -157,7 +159,8 @@ p3 <- ggplot(subset(df1, y==64), aes(x=x, y=t, fill=cat)) +
     scale_y_continuous(breaks=0:100*10) +
     scale_colour_grey(start = 0, end = .9) +
     theme_bw() +
-    theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+    #theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+    theme(legend.position=c(0.9,0.9), legend.title=element_blank(), plot.title = element_text(size=25))
 
 (p3 = p3 + scale_fill_grey(start = 0.2, end = 0.9))
 
@@ -176,7 +179,8 @@ p4 <- ggplot(subset(df2, y==16), aes(x=x, y=t, fill=cat)) +
         ggtitle("Offloading to GPU, chunk_size: 16\n") +
         scale_y_continuous(breaks=0:100*10) + 
         theme_bw() +
-        theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+        #theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+        theme(legend.position=c(0.9,0.9), legend.title=element_blank(), plot.title = element_text(size=25))
 
 (p4 = p4 + scale_fill_grey(start = 0.2, end = 0.9))
 
@@ -196,7 +200,8 @@ p5 <- ggplot(subset(df2, y==32), aes(x=x, y=t, fill=cat)) +
         ggtitle("Offloading to GPU, chunk_size: 32\n") +
         scale_y_continuous(breaks=0:100*10) + 
         theme_bw() +
-        theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+        #theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+        theme(legend.position=c(0.9,0.9), legend.title=element_blank(), plot.title = element_text(size=25))
 
 (p5 = p5 + scale_fill_grey(start = 0.2, end = 0.9))
 
@@ -213,15 +218,41 @@ p6 <- ggplot(subset(df2, y==64), aes(x=x, y=t, fill=cat)) +
     scale_y_continuous(breaks=0:100*10) +
     scale_colour_grey(start = 0, end = .9) +
     theme_bw() +
-    theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+    #theme(legend.position=c(0.89,0.70), legend.title=element_blank())
+    theme(legend.position=c(0.9,0.9), legend.title=element_blank(), plot.title = element_text(size=25))
 
 (p6 = p6 + scale_fill_grey(start = 0.2, end = 0.9)) 
 
 
-multiplot(p1, p2, p3, p4, p5, p6, cols=2)
+# multiplot(p1, p2, p3, p4, p5, p6, cols=2)
+pdf(file="no-offloading-chunk-size-16.pdf",family="Helvetica", pointsize=18, width=15,height=10)
+multiplot(p1, cols=1)
+dev.off()
+
+pdf(file="no-offloading-chunk-size-32.pdf",family="Helvetica", pointsize=18, width=15,height=10)
+multiplot(p2, cols=1)
+dev.off()
+
+pdf(file="no-offloading-chunk-size-64.pdf",family="Helvetica", pointsize=18, width=15,height=10)
+multiplot(p3, cols=1)
+dev.off()
+
+pdf(file="offloading-chunk-size-16.pdf",family="Helvetica", pointsize=18, width=15,height=10)
+multiplot(p4, cols=1)
+dev.off()
+
+pdf(file="offloading-chunk-size-32.pdf",family="Helvetica", pointsize=18, width=15,height=10)
+multiplot(p5, cols=1)
+dev.off()
+
+pdf(file="offloading-chunk-size-64.pdf",family="Helvetica", pointsize=18, width=15,height=10)
+multiplot(p6, cols=1)
+dev.off()
+
+
 
 # dev.print(pdf,filename="data-large_dataset-num_threads-1-a-12-dynamic-chunk_size-16-a-64-final.pdf");
 
-dev.copy2pdf(file = "data-large_dataset-num_threads-1-a-12-dynamic-chunk_size-16-a-64-final.pdf");
+# dev.copy2pdf(file = "data-large_dataset-num_threads-1-a-12-dynamic-chunk_size-16-a-64-final.pdf");
 # dev.off ();
 

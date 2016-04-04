@@ -186,9 +186,6 @@ void HOOKOMP_registry_the_first_thread(void){
     	pthread_setschedprio(thId, max_prio_for_policy);
     	pthread_attr_destroy(&thAttr);
 
-
-
-
 		TRACE("[HOOKOMP]: Thread [%lu] was registred.\n", (long int) registred_thread_executing_function_next);
 		/* The registry was made. */
 		thread_was_registred_to_execute_measures = true;
@@ -433,9 +430,9 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 	PRINT_FUNC_NAME;
 
 	/* The first thing is stop the last chunk measure. */
-	/*if(registred_thread_executing_function_next == (long int) pthread_self()){
+	if(registred_thread_executing_function_next == (long int) pthread_self()){
 	 	RM_registry_measures();
-	}*/
+	}
 
 	bool result = false;
 	// TRACE("[HOOKOMP]: Thread [%lu] is calling %s.\n", (long int) pthread_self(), __FUNCTION__);
