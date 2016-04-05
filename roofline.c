@@ -344,6 +344,28 @@ void RM_print_counters_values(void) {
 			((event_names[i][4] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 4] : 0));
 	}
 
+	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
+		TRACE("%s,%s,%s,%s,%s,%s,", "measures", 
+				((event_names[i][0] != NULL) ? event_names[i][0] : "") , 
+				((event_names[i][1] != NULL) ? event_names[i][1] : ""), 
+				((event_names[i][2] != NULL) ? event_names[i][2] : ""), 
+				((event_names[i][3] != NULL) ? event_names[i][3] : ""), 
+				((event_names[i][4] != NULL) ? event_names[i][4] : ""));
+	}
+
+	TRACE("\n");
+
+	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
+		TRACE("%lld,%lld,%lld,%lld,%lld,%lld,", 
+			ptr_measure->quant_intervals[i], 
+			((event_names[i][0] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 0] : 0), 
+			((event_names[i][1] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 1] : 0),
+			((event_names[i][2] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 2] : 0),
+			((event_names[i][3] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 3] : 0),
+			((event_names[i][4] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 4] : 0));
+	}	
+	TRACE("\n");
+
 }
 
 /* ------------------------------------------------------------ */
@@ -720,20 +742,22 @@ bool RM_stop_and_accumulate(void){
 	int retval = 0;
 	int j;
 
-	TRACE("ACCUM_DEBUG: %s;%s;%s;%s;%s;%s;\n", "measures", 
+	/*TRACE("ACCUM_DEBUG: %s;%s;%s;%s;%s;%s;\n", "measures", 
 				((event_names[ptr_measure->current_eventset][0] != NULL) ? event_names[ptr_measure->current_eventset][0] : "") , 
 				((event_names[ptr_measure->current_eventset][1] != NULL) ? event_names[ptr_measure->current_eventset][1] : ""), 
 				((event_names[ptr_measure->current_eventset][2] != NULL) ? event_names[ptr_measure->current_eventset][2] : ""), 
 				((event_names[ptr_measure->current_eventset][3] != NULL) ? event_names[ptr_measure->current_eventset][3] : ""), 
 				((event_names[ptr_measure->current_eventset][4] != NULL) ? event_names[ptr_measure->current_eventset][4] : ""));
+	*/
 
-	TRACE("ACCUM_DEBUG: %lld;%lld;%lld;%lld;%lld;%lld;\n", 
+	/*TRACE("ACCUM_DEBUG: %lld;%lld;%lld;%lld;%lld;%lld;\n", 
 			ptr_measure->quant_intervals[ptr_measure->current_eventset], 
 			((event_names[ptr_measure->current_eventset][0] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 0] : 0), 
 			((event_names[ptr_measure->current_eventset][1] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 1] : 0),
 			((event_names[ptr_measure->current_eventset][2] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 2] : 0),
 			((event_names[ptr_measure->current_eventset][3] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 3] : 0),
 			((event_names[ptr_measure->current_eventset][4] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 4] : 0));
+	*/		
 
   	TRACE("Trying accumulate counters.\n");
 	if ((retval = PAPI_accum(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], &ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 0])) != PAPI_OK){
@@ -752,20 +776,23 @@ bool RM_stop_and_accumulate(void){
 		}
 	}
 
-	TRACE("ACCUM_DEBUG: %s;%s;%s;%s;%s;%s;\n", "measures", 
+	/*TRACE("ACCUM_DEBUG: %s;%s;%s;%s;%s;%s;\n", "measures", 
 				((event_names[ptr_measure->current_eventset][0] != NULL) ? event_names[ptr_measure->current_eventset][0] : "") , 
 				((event_names[ptr_measure->current_eventset][1] != NULL) ? event_names[ptr_measure->current_eventset][1] : ""), 
 				((event_names[ptr_measure->current_eventset][2] != NULL) ? event_names[ptr_measure->current_eventset][2] : ""), 
 				((event_names[ptr_measure->current_eventset][3] != NULL) ? event_names[ptr_measure->current_eventset][3] : ""), 
 				((event_names[ptr_measure->current_eventset][4] != NULL) ? event_names[ptr_measure->current_eventset][4] : ""));
+	*/
 
-	TRACE("ACCUM_DEBUG: %lld;%lld;%lld;%lld;%lld;%lld;\n", 
+	/*TRACE("ACCUM_DEBUG: %lld;%lld;%lld;%lld;%lld;%lld;\n", 
 			ptr_measure->quant_intervals[ptr_measure->current_eventset], 
 			((event_names[ptr_measure->current_eventset][0] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 0] : 0), 
 			((event_names[ptr_measure->current_eventset][1] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 1] : 0),
 			((event_names[ptr_measure->current_eventset][2] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 2] : 0),
 			((event_names[ptr_measure->current_eventset][3] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 3] : 0),
 			((event_names[ptr_measure->current_eventset][4] != NULL) ? ptr_measure->values[ptr_measure->current_eventset * NUM_MAX_EVENTS + 4] : 0));
+	*/
+
 
 	/* Gets the ending time in clock cycles */
 	ptr_measure->end_cycles = PAPI_get_real_cyc();
