@@ -337,12 +337,13 @@ void RM_print_counters_values(void) {
 		
 		TRACE("%lld;%lld;%lld;%lld;%lld;%lld;\n", 
 			ptr_measure->quant_intervals[i], 
-			((event_names[i][0] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 0] : NULL), 
-			((event_names[i][1] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 1] : NULL),
-			((event_names[i][2] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 2] : NULL),
-			((event_names[i][3] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 3] : NULL),
-			((event_names[i][4] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 4] : NULL));
+			((event_names[i][0] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 0] : 0), 
+			((event_names[i][1] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 1] : 0),
+			((event_names[i][2] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 2] : 0),
+			((event_names[i][3] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 3] : 0),
+			((event_names[i][4] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 4] : 0));
 	}
+
 }
 
 /* ------------------------------------------------------------ */
