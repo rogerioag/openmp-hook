@@ -196,6 +196,7 @@ extern "C" {
   bool RM_destroy_event_sets(void);
 
 	void RM_print_counters_values(void);
+  void RM_print_counters_values_csv(void);
 
 	void RM_set_aditional_parameters(long long, long long, long long, long long, long long, unsigned int);
 
