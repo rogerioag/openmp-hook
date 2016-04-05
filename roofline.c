@@ -343,7 +343,15 @@ void RM_print_counters_values(void) {
 			((event_names[i][3] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 3] : 0),
 			((event_names[i][4] != NULL) ? ptr_measure->values[i * NUM_MAX_EVENTS + 4] : 0));
 	}
+}
 
+/* ------------------------------------------------------------ */
+/* Print the counters and values in csv format.					*/
+void RM_print_counters_values_csv(void) {
+	PRINT_FUNC_NAME;
+	int i;
+
+	TRACE("Printing Values:\n");
 	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
 		fprintf(stderr, "%s,%s,%s,%s,%s,%s,", "measures", 
 				((event_names[i][0] != NULL) ? event_names[i][0] : "") , 
@@ -367,7 +375,6 @@ void RM_print_counters_values(void) {
 	fprintf(stderr, "\n");
 
 }
-
 /* ------------------------------------------------------------ */
 /* PAPI Status.													*/
 void RM_check_papi_status(int idx){
