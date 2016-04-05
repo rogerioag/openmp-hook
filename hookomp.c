@@ -491,6 +491,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					TRACE("Defining aditional parameters.\n");
 					// N: total of iterations, Number of executed iterations (percentual), last chunk_size.
 					RM_set_aditional_parameters(total_of_iterations, executed_loop_iterations, (*iend - *istart), q_data_transfer_write, q_data_transfer_read, type_of_data_allocation);
+
+					RM_print_counters_values_csv();
 					
 					TRACE("Getting decision about offloading.\n");
 					if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
