@@ -173,21 +173,11 @@ extern const unsigned int polybench_papi_eventlist[];
 #  define polybench_start_instruments polybench_timer_start();
 #  define polybench_stop_instruments polybench_timer_stop();
 #  define polybench_print_instruments polybench_timer_print();
-// rag
-#  define polybench_start_measures(ts) polybench_timer_start(ts);
-#  define polybench_stop_measures(te) polybench_timer_stop(te);
-#  define polybench_print_measures(ts,te) polybench_timer_print(ts,te);
-// rag
+
 extern double polybench_program_total_flops;
 extern void polybench_timer_start();
 extern void polybench_timer_stop();
 extern void polybench_timer_print();
-// rag
-extern uint64_t seq_start, seq_end, omp_start, omp_end, dev_start, dev_end;
-
-extern void polybench_timer_start(uint64_t *);
-extern void polybench_timer_stop(uint64_t *);
-extern void polybench_timer_print(uint64_t,uint64_t);
 // rag
 # endif
 
@@ -197,11 +187,6 @@ extern void polybench_timer_start();
 extern void polybench_timer_stop();
 extern void polybench_timer_print();
 
-// rag
-extern void polybench_timer_start(uint64_t *);
-extern void polybench_timer_stop(uint64_t *);
-extern void polybench_timer_print(uint64_t,uint64_t);
-// rag
 # endif
 
 # ifdef POLYBENCH_PAPI
