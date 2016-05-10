@@ -50,7 +50,7 @@ void hookomp_timing_stop(uint64_t *_stop){
 }
 
 void hookomp_timing_print(uint64_t tstart, uint64_t tstop){
-	printf ("%Ld\n", tstop - tstart);
+	printf ("%Ld", tstop - tstart);
 }
 
 void hookomp_timing_print_without_dev(uint64_t omp_start, uint64_t omp_stop,
@@ -63,7 +63,7 @@ void hookomp_timing_print_without_dev(uint64_t omp_start, uint64_t omp_stop,
 	uint64_t dev_time = dev_stop - dev_start;
 	uint64_t dt_time = (data_transfer_h2d_stop - data_transfer_h2d_start) + (data_transfer_d2h_stop - data_transfer_d2h_start);
 
-	printf ("%Ld\n", (total_time - dev_time - dt_time));
+	printf ("%Ld", (total_time - dev_time - dt_time));
 }
 
 #endif /* TIMING_H */
