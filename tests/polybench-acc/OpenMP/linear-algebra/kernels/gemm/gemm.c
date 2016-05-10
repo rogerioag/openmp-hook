@@ -11,6 +11,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h>
+#include <stdint.h>
+#include <time.h>
 
 /* Include polybench common header. */
 #include <polybench.h>
