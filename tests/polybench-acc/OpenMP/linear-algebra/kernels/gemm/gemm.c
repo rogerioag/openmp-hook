@@ -11,8 +11,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h>
-#include <stdint.h>
-#include <time.h>
 
 /* Include polybench common header. */
 #include <polybench.h>
@@ -21,24 +19,15 @@
 // Macros to generate openmp schedule.
 #include <macros.h>
 
+// Time measures implementation.
+#include <timing.h>
+
 /* Include benchmark-specific header. */
 /* Default data type is double, default size is 4000. */
 #include "gemm.h"
 
 // define the error threshold for the results "not matching"
 #define PERCENT_DIFF_ERROR_THRESHOLD 0.05
-
-/* stackoverflow clock_gettime tem precisão de nano 
-   e gettimeofday de microsegundos.
-*/
-uint64_t seq_start, seq_end, omp_start, omp_end, dev_start, dev_end;
-
-/*uint64_t get_time(){
- struct timespec spec;
- clock_gettime(CLOCK_MONOTONIC, &spec);
- return ((uint64_t)1e9) * spec.tv_sec + spec.tv_nsec;
-}*/
-
 
 /* Array initialization. */
 static
@@ -132,7 +121,7 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   /* Start timer. */
   // polybench_start_instruments;
   // seq_start = get_time();
-  polybench_start_measures(&seq_start);
+  HOOKOMP_TIMING_SEQ_START;
 
   gemm(ni, nj, nk, alpha, beta, 
         A, 
@@ -145,8 +134,8 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_print_instruments;
   // seq_end = get_time();
   // printf ("%Ld\n", seq_end - seq_start);
-  polybench_start_measures(&seq_end);
-  polybench_print_measures(seq_start, seq_end);
+  HOOKOMP_TIMING_SEQ_END;
+  HOOKOMP_TIMING_SEQ_PRINT;
 }
 
 /* ------------------------------------------------------------- */
@@ -183,7 +172,7 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   /* Start timer. */
   // polybench_start_instruments;
   // omp_start = get_time();
-  polybench_start_measures(&omp_start);
+  HOOKOMP_TIMING_OMP_START;
 
   gemm_omp_kernel(ni, nj, nk, alpha, beta, 
                   A, 
@@ -196,8 +185,8 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_print_instruments;
   // omp_end = get_time();
   // printf ("%Ld\n", omp_end - omp_start);
-  polybench_start_measures(&omp_end);
-  polybench_print_measures(omp_start, omp_end);
+  HOOKOMP_TIMING_OMP_END;
+  HOOKOMP_TIMING_OMP_PRINT;
 }
 
 /* ------------------------------------------------------------- */
