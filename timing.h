@@ -35,7 +35,7 @@ uint64_t get_time(){
 
 #define HOOKOMP_TIMING_DT_D2H_START hookomp_timing_start(&data_transfer_d2h_start)
 #define HOOKOMP_TIMING_DT_D2H_STOP hookomp_timing_stop(&data_transfer_d2h_stop)
-#define HOOKOMP_TIMING_DT_D2H_PRINT hookomp_timing_print(data_transfer_d2h_start,data_transfer_h2d_stop)
+#define HOOKOMP_TIMING_DT_D2H_PRINT hookomp_timing_print(data_transfer_d2h_start,data_transfer_d2h_stop)
 
 void hookomp_timing_start(uint64_t *_start){
 	*_start = get_time();
