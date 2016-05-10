@@ -26,6 +26,18 @@
 // define the error threshold for the results "not matching"
 #define PERCENT_DIFF_ERROR_THRESHOLD 0.05
 
+/* stackoverflow clock_gettime tem precisão de nano 
+   e gettimeofday de microsegundos.
+*/
+uint64_t seq_start, seq_end, omp_start, omp_end, dev_start, dev_end;
+
+uint64_t get_time(){
+ struct timespec spec;
+ clock_gettime(CLOCK_MONOTONIC, &spec);
+ return ((uint64_t)1e9) * spec.tv_sec + spec.tv_nsec;
+}
+
+
 /* Array initialization. */
 static
 void init_array(int ni, int nj, int nk,
@@ -116,7 +128,8 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
           DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
   
   /* Start timer. */
-  polybench_start_instruments;
+  // polybench_start_instruments;
+  seq_start = get_time();
 
   gemm(ni, nj, nk, alpha, beta, 
         A, 
@@ -124,9 +137,11 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
         C);
 
   /* Stop and print timer. */
-  polybench_stop_instruments;
-  // printf("Original CPU Time in seconds:\n");
-  polybench_print_instruments;
+  // polybench_stop_instruments;
+  // // printf("Original CPU Time in seconds:\n");
+  // polybench_print_instruments;
+  seq_end = get_time();
+  printf ("%Ld\n", seq_end - seq_start);
 }
 
 /* ------------------------------------------------------------- */
