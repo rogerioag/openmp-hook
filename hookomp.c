@@ -705,7 +705,7 @@ void HOOKOMP_parallel_end(void){
 	TRACE("[HOOKOMP] [After] Destroying the semaphores.\n");
 
 	/* Shutdown RM library. */
-	if(papi_library_initialized){
+	if(is_hookomp_initialized){
 		if(!RM_library_shutdown()){
 			TRACE("Error calling RM_library_shutdown() in %s.\n", __FUNCTION__);
 		}
