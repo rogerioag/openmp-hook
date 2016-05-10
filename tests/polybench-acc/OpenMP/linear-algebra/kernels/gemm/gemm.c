@@ -130,8 +130,8 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
           DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
   
   /* Start timer. */
-  // polybench_start_instruments;
-  seq_start = get_time();
+  polybench_start_instruments;
+  // seq_start = get_time();
 
   gemm(ni, nj, nk, alpha, beta, 
         A, 
@@ -139,11 +139,11 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
         C);
 
   /* Stop and print timer. */
-  // polybench_stop_instruments;
+  polybench_stop_instruments;
   // // printf("Original CPU Time in seconds:\n");
-  // polybench_print_instruments;
-  seq_end = get_time();
-  printf ("%Ld\n", seq_end - seq_start);
+  polybench_print_instruments;
+  // seq_end = get_time();
+  // printf ("%Ld\n", seq_end - seq_start);
 }
 
 /* ------------------------------------------------------------- */
