@@ -154,7 +154,7 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_stop_instruments;
   // // printf("Original CPU Time in seconds:\n");
   // polybench_print_instruments;
-  HOOKOMP_TIMING_SEQ_END;
+  HOOKOMP_TIMING_SEQ_STOP;
   HOOKOMP_TIMING_SEQ_PRINT;
 }
 
@@ -214,7 +214,7 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_stop_instruments;
   // // printf("OpenMP Time in seconds:\n");
   // polybench_print_instruments;
-  HOOKOMP_TIMING_OMP_END;
+  HOOKOMP_TIMING_OMP_STOP;
   HOOKOMP_TIMING_OMP_PRINT;
 }
 
