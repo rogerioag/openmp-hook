@@ -134,7 +134,7 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_print_instruments;
   // seq_end = get_time();
   // printf ("%Ld\n", seq_end - seq_start);
-  HOOKOMP_TIMING_SEQ_END;
+  HOOKOMP_TIMING_SEQ_STOP;
   HOOKOMP_TIMING_SEQ_PRINT;
 }
 
@@ -185,7 +185,7 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_print_instruments;
   // omp_end = get_time();
   // printf ("%Ld\n", omp_end - omp_start);
-  HOOKOMP_TIMING_OMP_END;
+  HOOKOMP_TIMING_OMP_STOP;
   HOOKOMP_TIMING_OMP_PRINT;
 }
 
