@@ -274,7 +274,7 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_print_instruments;
 
   // polybench_start_instruments;
-  HOOKOMP_TIMING_DEV_START;
+  HOOKOMP_TIMING_DT_H2D_START;
 
   cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NK, cudaMemcpyHostToDevice);
   cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NK * NJ, cudaMemcpyHostToDevice);
@@ -284,6 +284,7 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_stop_instruments;
   // printf("GPU Data Transfers Time in seconds:\n");
   // polybench_print_instruments;
+  HOOKOMP_TIMING_DT_H2D_STOP;
 
   dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
   dim3 grid((size_t)(ceil(((float)NI) / ((float)block.x))),
@@ -291,6 +292,7 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
   /* Start timer. */
   // polybench_start_instruments;
+  HOOKOMP_TIMING_DEV_START;
 
   gemm_cuda_kernel<<<grid, block>>>(ni, nj, nk, alpha, beta, A_gpu, B_gpu,
                                     C_gpu);
@@ -300,15 +302,18 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // printf("GPU kernel Time in seconds:\n");
   // olybench_stop_instruments;
   // polybench_print_instruments;
+  HOOKOMP_TIMING_DEV_STOP;
 
   // polybench_start_instruments;
+  HOOKOMP_TIMING_DT_D2H_START;
+
   cudaMemcpy(C_outputFromGpu, C_gpu, sizeof(DATA_TYPE) * NI * NJ,
              cudaMemcpyDeviceToHost);
 
   // printf("GPU copy result Time in seconds:\n");
   // polybench_stop_instruments;
   // polybench_print_instruments;
-  HOOKOMP_TIMING_DEV_STOP;
+  HOOKOMP_TIMING_DT_D2H_STOP;
   // HOOKOMP_TIMING_DEV_PRINT;
 
   cudaFree(A_gpu);
@@ -432,8 +437,18 @@ int main(int argc, char *argv[]) {
            POLYBENCH_ARRAY(C_outputFromOMP));
   HOOKOMP_TIMING_OMP_PRINT;
   fprintf(stdout, ", ");
+  
   fprintf(stdout, "CUDA = ");
   HOOKOMP_TIMING_DEV_PRINT;
+
+  fprintf(stdout, ", ");
+  fprintf(stdout, "DT_H2D = ");
+  HOOKOMP_TIMING_DT_H2D_PRINT;
+
+  fprintf(stdout, ", ");
+  fprintf(stdout, "DT_D2H = ");
+  HOOKOMP_TIMING_DT_D2H_PRINT;
+
   fprintf(stdout, "\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
