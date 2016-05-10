@@ -132,7 +132,7 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   /* Start timer. */
   // polybench_start_instruments;
   // seq_start = get_time();
-  polybench_start_instruments(&seq_start);
+  polybench_start_measures(&seq_start);
 
   gemm(ni, nj, nk, alpha, beta, 
         A, 
@@ -145,8 +145,8 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_print_instruments;
   // seq_end = get_time();
   // printf ("%Ld\n", seq_end - seq_start);
-  polybench_start_instruments(&seq_end);
-  polybench_print_instruments(seq_start, seq_end);
+  polybench_start_measures(&seq_end);
+  polybench_print_measures(seq_start, seq_end);
 }
 
 /* ------------------------------------------------------------- */
@@ -183,7 +183,7 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   /* Start timer. */
   // polybench_start_instruments;
   // omp_start = get_time();
-  polybench_start_instruments(&omp_start);
+  polybench_start_measures(&omp_start);
 
   gemm_omp_kernel(ni, nj, nk, alpha, beta, 
                   A, 
@@ -196,8 +196,8 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_print_instruments;
   // omp_end = get_time();
   // printf ("%Ld\n", omp_end - omp_start);
-  polybench_start_instruments(&omp_end);
-  polybench_print_instruments(omp_start, omp_end);
+  polybench_start_measures(&omp_end);
+  polybench_print_measures(omp_start, omp_end);
 }
 
 /* ------------------------------------------------------------- */
