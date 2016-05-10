@@ -182,7 +182,8 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
   /* Start timer. */
   // polybench_start_instruments;
-  omp_start = get_time();
+  // omp_start = get_time();
+  polybench_start_instruments(&omp_start);
 
   gemm_omp_kernel(ni, nj, nk, alpha, beta, 
                   A, 
@@ -193,8 +194,10 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_stop_instruments;
   // // printf("OpenMP Time in seconds:\n");
   // polybench_print_instruments;
-  omp_end = get_time();
-  printf ("%Ld\n", omp_end - omp_start);
+  // omp_end = get_time();
+  // printf ("%Ld\n", omp_end - omp_start);
+  polybench_start_instruments(&omp_end);
+  polybench_print_instruments(omp_start, omp_end);
 }
 
 /* ------------------------------------------------------------- */
