@@ -137,6 +137,8 @@ struct _papi_thread_record {
 /* Control the measure session init. */
 sem_t mutex_measure_session_init;
 
+static bool is_roofline_initialized = false;
+
 static bool is_measure_session_initialized = false;
 
 /* Registry for thread. */
