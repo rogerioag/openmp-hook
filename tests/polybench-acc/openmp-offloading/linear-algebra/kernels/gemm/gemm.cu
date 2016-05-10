@@ -26,6 +26,9 @@
 // Macros to generate openmp schedule.
 #include <macros.h>
 
+// Time measures implementation.
+#include <timing.h>
+
 // Offloading support functions.
 #include <offload.h>
 
@@ -142,14 +145,17 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
                    DATA_TYPE POLYBENCH_2D(C, NI, NJ, ni, nj)) {
 
   /* Start timer. */
-  polybench_start_instruments;
+  // polybench_start_instruments;
+  HOOKOMP_TIMING_SEQ_START;
 
   gemm(ni, nj, nk, alpha, beta, A, B, C);
 
   /* Stop and print timer. */
-  polybench_stop_instruments;
-  // printf("Original CPU Time in seconds:\n");
-  polybench_print_instruments;
+  // polybench_stop_instruments;
+  // // printf("Original CPU Time in seconds:\n");
+  // polybench_print_instruments;
+  HOOKOMP_TIMING_SEQ_END;
+  HOOKOMP_TIMING_SEQ_PRINT;
 }
 
 /* ------------------------------------------------------------- */
@@ -198,15 +204,18 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(C_outputFromOMP, NI, NJ, ni, nj)) {
 
   /* Start timer. */
-  polybench_start_instruments;
+  // polybench_start_instruments;
+  HOOKOMP_TIMING_OMP_START;
 
   gemm_omp_kernel(ni, nj, nk, alpha, beta, A, B, C_outputFromOMP);
 
   /* Stop and print timer. */
 
-  polybench_stop_instruments;
-  // printf("OpenMP Time in seconds:\n");
-  polybench_print_instruments;
+  // polybench_stop_instruments;
+  // // printf("OpenMP Time in seconds:\n");
+  // polybench_print_instruments;
+  HOOKOMP_TIMING_OMP_END;
+  HOOKOMP_TIMING_OMP_PRINT;
 }
 
 /*--------------------------------------------------------------*/
@@ -265,6 +274,7 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_print_instruments;
 
   // polybench_start_instruments;
+  HOOKOMP_TIMING_DEV_START;
 
   cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NK, cudaMemcpyHostToDevice);
   cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NK * NJ, cudaMemcpyHostToDevice);
@@ -298,6 +308,8 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // printf("GPU copy result Time in seconds:\n");
   // polybench_stop_instruments;
   // polybench_print_instruments;
+  HOOKOMP_TIMING_DEV_STOP;
+  HOOKOMP_TIMING_DEV_PRINT;
 
   cudaFree(A_gpu);
   cudaFree(B_gpu);
@@ -417,6 +429,10 @@ int main(int argc, char *argv[]) {
   fprintf(stdout, "OMP = ");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
            POLYBENCH_ARRAY(C_outputFromOMP));
+  fprintf(stdout, ", ");
+
+  fprintf(stdout, "CUDA = %Ld\n", (dev_end - dev_start));
+
   fprintf(stdout, "\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
