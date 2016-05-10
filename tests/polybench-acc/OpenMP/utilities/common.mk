@@ -1,4 +1,4 @@
-INCPATHS = -I$(UTIL_DIR)
+INCPATHS = -I$(UTIL_DIR) -I/home/goncalv/prova-de-conceito/testes-prova-conceito/openmp-hook
 
 BENCHMARK = $(shell basename `pwd`)
 EXE = $(BENCHMARK)-omp.exe
