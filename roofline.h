@@ -18,6 +18,8 @@
 #include "debug.h"
 #include "platform.h"
 
+#define RM_check_perf_event_paranoid() (system("cat /proc/sys/kernel/perf_event_paranoid"))
+
 #define RM_papi_handle_error(function_name, n_error, n_line) \
   fprintf(stderr, "[RM_papi_handle_error] %s -> %s [line %d]: PAPI error %d: %s\n", __FILE__, function_name, n_line, n_error, PAPI_strerror(n_error));
 

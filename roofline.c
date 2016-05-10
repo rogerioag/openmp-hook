@@ -13,6 +13,10 @@ bool RM_library_init(void){
 	bool result = true;
 	int i, j;
 
+	if(RM_check_perf_event_paranoid()){
+		TRACE(">>>>>> Insufficient permissions for uncore access.  Set /proc/sys/kernel/perf_event_paranoid to 0 or run as root.\n");
+	}
+
 	/*Create the structures to get measures. */
 	ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
 	ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS * NUM_MAX_EVENTS);
