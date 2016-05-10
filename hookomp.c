@@ -705,10 +705,12 @@ void HOOKOMP_parallel_end(void){
 	TRACE("[HOOKOMP] [After] Destroying the semaphores.\n");
 
 	/* Shutdown RM library. */
-	if(!RM_library_shutdown()){
-		TRACE("Error calling RM_library_shutdown() in %s.\n", __FUNCTION__);
+	if(papi_library_initialized){
+		if(!RM_library_shutdown()){
+			TRACE("Error calling RM_library_shutdown() in %s.\n", __FUNCTION__);
+		}
 	}
-
+	
 	/* Set flag to control initialization of hook. */
 	is_hookomp_initialized = false;
 
