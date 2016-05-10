@@ -155,7 +155,7 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // // printf("Original CPU Time in seconds:\n");
   // polybench_print_instruments;
   HOOKOMP_TIMING_SEQ_STOP;
-  HOOKOMP_TIMING_SEQ_PRINT;
+  // HOOKOMP_TIMING_SEQ_PRINT;
 }
 
 /* ------------------------------------------------------------- */
@@ -215,7 +215,7 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // // printf("OpenMP Time in seconds:\n");
   // polybench_print_instruments;
   HOOKOMP_TIMING_OMP_STOP;
-  HOOKOMP_TIMING_OMP_PRINT;
+  // HOOKOMP_TIMING_OMP_PRINT;
 }
 
 /*--------------------------------------------------------------*/
@@ -309,7 +309,7 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_stop_instruments;
   // polybench_print_instruments;
   HOOKOMP_TIMING_DEV_STOP;
-  HOOKOMP_TIMING_DEV_PRINT;
+  // HOOKOMP_TIMING_DEV_PRINT;
 
   cudaFree(A_gpu);
   cudaFree(B_gpu);
@@ -422,6 +422,7 @@ int main(int argc, char *argv[]) {
   // fprintf(stderr, "calling gemm_original:\n");
   fprintf(stdout, "ORIG = ");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
+  HOOKOMP_TIMING_SEQ_PRINT;
   
   fprintf(stdout, ", ");
 
@@ -429,10 +430,10 @@ int main(int argc, char *argv[]) {
   fprintf(stdout, "OMP = ");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
            POLYBENCH_ARRAY(C_outputFromOMP));
+  HOOKOMP_TIMING_OMP_PRINT;
   fprintf(stdout, ", ");
-
-  fprintf(stdout, "CUDA = %Ld\n", (dev_end - dev_start));
-
+  fprintf(stdout, "CUDA = ");
+  HOOKOMP_TIMING_DEV_PRINT;
   fprintf(stdout, "\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");

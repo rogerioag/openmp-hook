@@ -7,7 +7,7 @@
 /* stackoverflow clock_gettime tem precisão de nano 
    e gettimeofday de microsegundos.
 */
-uint64_t seq_start, seq_end, omp_start, omp_end, dev_start, dev_end;
+uint64_t seq_start, seq_stop, omp_start, omp_stop, dev_start, dev_stop;
 
 uint64_t get_time(){
  struct timespec spec;
@@ -16,27 +16,27 @@ uint64_t get_time(){
 }
 
 #define HOOKOMP_TIMING_SEQ_START hookomp_timing_start(&seq_start)
-#define HOOKOMP_TIMING_SEQ_STOP hookomp_timing_stop(&seq_end)
-#define HOOKOMP_TIMING_SEQ_PRINT hookomp_timing_print(seq_start,seq_end)
+#define HOOKOMP_TIMING_SEQ_STOP hookomp_timing_stop(&seq_stop)
+#define HOOKOMP_TIMING_SEQ_PRINT hookomp_timing_print(seq_start,seq_stop)
 
 #define HOOKOMP_TIMING_OMP_START hookomp_timing_start(&omp_start)
-#define HOOKOMP_TIMING_OMP_STOP hookomp_timing_stop(&omp_end)
-#define HOOKOMP_TIMING_OMP_PRINT hookomp_timing_print(omp_start,omp_end)
+#define HOOKOMP_TIMING_OMP_STOP hookomp_timing_stop(&omp_stop)
+#define HOOKOMP_TIMING_OMP_PRINT hookomp_timing_print(omp_start,omp_stop)
 
 #define HOOKOMP_TIMING_DEV_START hookomp_timing_start(&dev_start)
-#define HOOKOMP_TIMING_DEV_STOP hookomp_timing_stop(&dev_end)
-#define HOOKOMP_TIMING_DEV_PRINT hookomp_timing_print(dev_start,dev_end)
+#define HOOKOMP_TIMING_DEV_STOP hookomp_timing_stop(&dev_stop)
+#define HOOKOMP_TIMING_DEV_PRINT hookomp_timing_print(dev_start,dev_stop)
 
 void hookomp_timing_start(uint64_t *_start){
 	*_start = get_time();
 }
 
-void hookomp_timing_stop(uint64_t *_end){
-	*_end = get_time();
+void hookomp_timing_stop(uint64_t *_stop){
+	*_stop = get_time();
 }
 
-void hookomp_timing_print(uint64_t tstart, uint64_t tend){
-	printf ("%Ld\n", tend - tstart);
+void hookomp_timing_print(uint64_t tstart, uint64_t tstop){
+	printf ("%Ld\n", tstop - tstart);
 }
 
 #endif /* TIMING_H */
