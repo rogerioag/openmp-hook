@@ -31,7 +31,7 @@
 /* stackoverflow clock_gettime tem precisão de nano 
    e gettimeofday de microsegundos.
 */
-// uint64_t seq_start, seq_end, omp_start, omp_end, dev_start, dev_end;
+uint64_t seq_start, seq_end, omp_start, omp_end, dev_start, dev_end;
 
 /*uint64_t get_time(){
  struct timespec spec;

@@ -183,7 +183,7 @@ extern void polybench_timer_start();
 extern void polybench_timer_stop();
 extern void polybench_timer_print();
 // rag
-uint64_t seq_start, seq_end, omp_start, omp_end, dev_start, dev_end;
+extern uint64_t seq_start, seq_end, omp_start, omp_end, dev_start, dev_end;
 
 extern void polybench_timer_start(uint64_t *);
 extern void polybench_timer_stop(uint64_t *);
