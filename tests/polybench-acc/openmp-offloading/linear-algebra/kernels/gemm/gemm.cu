@@ -425,16 +425,19 @@ int main(int argc, char *argv[]) {
   fprintf(stdout, "exp = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
 
   // fprintf(stderr, "calling gemm_original:\n");
-  fprintf(stdout, "ORIG = ");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
+  fprintf(stdout, "ORIG = ");
   HOOKOMP_TIMING_SEQ_PRINT;
-  
   fprintf(stdout, ", ");
 
   fprintf(stderr, "calling gemm_omp:\n");
-  fprintf(stdout, "OMP = ");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
            POLYBENCH_ARRAY(C_outputFromOMP));
+  fprintf(stdout, "OMP+OFF = ");
+  HOOKOMP_TIMING_OMP_OFF_PRINT;
+  fprintf(stdout, ", ");
+
+  fprintf(stdout, "OMP = ");
   HOOKOMP_TIMING_OMP_PRINT;
   fprintf(stdout, ", ");
   

@@ -21,9 +21,13 @@ uint64_t get_time(){
 #define HOOKOMP_TIMING_SEQ_STOP hookomp_timing_stop(&seq_stop)
 #define HOOKOMP_TIMING_SEQ_PRINT hookomp_timing_print(seq_start,seq_stop)
 
+// Global time omp code, with the possibility of device offloading.
 #define HOOKOMP_TIMING_OMP_START hookomp_timing_start(&omp_start)
 #define HOOKOMP_TIMING_OMP_STOP hookomp_timing_stop(&omp_stop)
-#define HOOKOMP_TIMING_OMP_PRINT hookomp_timing_print(omp_start,omp_stop)
+#define HOOKOMP_TIMING_OMP_OFF_PRINT hookomp_timing_print(omp_start,omp_stop)
+
+// OMP code time execution without device times.
+#define HOOKOMP_TIMING_OMP_PRINT hookomp_timing_print_without_dev(omp_start,omp_stop,dev_start,dev_stop,data_transfer_h2d_start,data_transfer_h2d_stop,data_transfer_d2h_start,data_transfer_d2h_stop)
 
 #define HOOKOMP_TIMING_DEV_START hookomp_timing_start(&dev_start)
 #define HOOKOMP_TIMING_DEV_STOP hookomp_timing_stop(&dev_stop)
@@ -47,6 +51,19 @@ void hookomp_timing_stop(uint64_t *_stop){
 
 void hookomp_timing_print(uint64_t tstart, uint64_t tstop){
 	printf ("%Ld\n", tstop - tstart);
+}
+
+void hookomp_timing_print_without_dev(uint64_t omp_start, uint64_t omp_stop,
+	                                  uint64_t dev_start, uint64_t dev_stop,
+	                                  uint64_t data_transfer_h2d_start,
+	                                  uint64_t data_transfer_h2d_stop,
+	                                  uint64_t data_transfer_d2h_start,
+	                                  uint64_t data_transfer_d2h_stop) {
+	uint64_t total_time = omp_stop - omp_start;
+	uint64_t dev_time = dev_stop - dev_start;
+	uint64_t dt_time = (data_transfer_h2d_stop - data_transfer_h2d_start) + (data_transfer_d2h_stop - data_transfer_d2h_start);
+
+	printf ("%Ld\n", (total_time - dev_time - dt_time));
 }
 
 #endif /* TIMING_H */
