@@ -23,6 +23,10 @@ uint64_t get_time(){
 #define HOOKOMP_TIMING_OMP_END hookomp_timing_stop(&omp_end)
 #define HOOKOMP_TIMING_OMP_PRINT hookomp_timing_print(omp_start,omp_end)
 
+#define HOOKOMP_TIMING_DEV_START hookomp_timing_start(&dev_start)
+#define HOOKOMP_TIMING_DEV_END hookomp_timing_stop(&dev_end)
+#define HOOKOMP_TIMING_DEV_PRINT hookomp_timing_print(dev_start,dev_end)
+
 void hookomp_timing_start(uint64_t *_start){
 	*_start = get_time();
 }
