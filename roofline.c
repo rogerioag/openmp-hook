@@ -18,7 +18,7 @@ bool RM_library_init(void){
 		TRACE("Error: >>>>>> Insufficient permissions for uncore access.\n"); 
 		TRACE("Error: >>>>>> Set /proc/sys/kernel/perf_event_paranoid to 0 or run as root.\n");
 	}
-	
+
 	/*Create the structures to get measures. */
 	ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
 	ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS * NUM_MAX_EVENTS);
@@ -1300,6 +1300,20 @@ bool RM_destroy_event_sets(void){
 		}*/
 	for(i = 0; i < NUM_PAPI_EVENT_SETS; i++){
 		TRACE("Trying to destroy EventSet, ptr_measure->EventSets[%d].\n", i);
+
+		if ((retval = PAPI_stop(ptr_measure->EventSets[i], &discarded_values)) != PAPI_OK){
+			TRACE("PAPI_stop error: %d %s\n", retval, PAPI_strerror(retval));
+			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+		}
+
+		/* Remove all events in the eventset */
+		if ((retval = PAPI_cleanup_eventset(ptr_measure->EventSets[i])) != PAPI_OK){
+			TRACE("PAPI_cleanup_eventset error.\n");
+			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+			return false;
+		}
+
+		/* Free all memory and data structures, EventSet must be empty. */
 		if ((retval = PAPI_destroy_eventset(&ptr_measure->EventSets[i])) != PAPI_OK){
 			TRACE("PAPI_destroy_eventset error.\n");
 			RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
