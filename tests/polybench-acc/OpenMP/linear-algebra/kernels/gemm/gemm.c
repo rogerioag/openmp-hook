@@ -31,13 +31,13 @@
 /* stackoverflow clock_gettime tem precisão de nano 
    e gettimeofday de microsegundos.
 */
-uint64_t seq_start, seq_end, omp_start, omp_end, dev_start, dev_end;
+// uint64_t seq_start, seq_end, omp_start, omp_end, dev_start, dev_end;
 
-uint64_t get_time(){
+/*uint64_t get_time(){
  struct timespec spec;
  clock_gettime(CLOCK_MONOTONIC, &spec);
  return ((uint64_t)1e9) * spec.tv_sec + spec.tv_nsec;
-}
+}*/
 
 
 /* Array initialization. */
@@ -131,7 +131,8 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   
   /* Start timer. */
   // polybench_start_instruments;
-  seq_start = get_time();
+  // seq_start = get_time();
+  polybench_start_instruments(&seq_start);
 
   gemm(ni, nj, nk, alpha, beta, 
         A, 
@@ -142,8 +143,10 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // polybench_stop_instruments;
   // // printf("Original CPU Time in seconds:\n");
   // polybench_print_instruments;
-  seq_end = get_time();
-  printf ("%Ld\n", seq_end - seq_start);
+  // seq_end = get_time();
+  // printf ("%Ld\n", seq_end - seq_start);
+  polybench_start_instruments(&seq_end);
+  polybench_print_instruments(seq_start, seq_end);
 }
 
 /* ------------------------------------------------------------- */
