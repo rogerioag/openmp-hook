@@ -135,7 +135,7 @@ void gemm_original(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // seq_end = get_time();
   // printf ("%Ld\n", seq_end - seq_start);
   HOOKOMP_TIMING_SEQ_STOP;
-  HOOKOMP_TIMING_SEQ_PRINT;
+  // HOOKOMP_TIMING_SEQ_PRINT;
 }
 
 /* ------------------------------------------------------------- */
@@ -186,7 +186,7 @@ void gemm_omp(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // omp_end = get_time();
   // printf ("%Ld\n", omp_end - omp_start);
   HOOKOMP_TIMING_OMP_STOP;
-  HOOKOMP_TIMING_OMP_PRINT;
+  // HOOKOMP_TIMING_OMP_PRINT;
 }
 
 /* ------------------------------------------------------------- */
@@ -214,13 +214,16 @@ int main(int argc, char *argv[]) {
   fprintf(stdout, "exp = OMP, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
 
   fprintf(stderr, "Calling gemm_original.\n");
-  fprintf(stdout, "ORIG = ");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
+  fprintf(stdout, "ORIG = ");
+  HOOKOMP_TIMING_SEQ_PRINT;
   fprintf(stdout, ", ");
   
   fprintf(stderr, "Calling gemm_omp.\n");
-  fprintf(stdout, "OMP = ");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
+  fprintf(stdout, "OMP = ");
+  HOOKOMP_TIMING_OMP_PRINT;
+  
   fprintf(stdout, "\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
