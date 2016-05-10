@@ -78,6 +78,8 @@ bool RM_library_init(void){
 
 	is_measure_session_initialized = false;
 
+	is_roofline_initialized = (result == true);
+
 	return result;
 }
 
