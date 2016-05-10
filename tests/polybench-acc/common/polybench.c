@@ -374,6 +374,52 @@ void polybench_timer_print()
 #endif
 }
 
+// rag passar o ponteiro.
+void polybench_timer_start(uint64_t *ts)
+{
+  polybench_prepare_instruments ();
+#ifndef POLYBENCH_CYCLE_ACCURATE_TIMER
+  *ts = rtclock ();
+#else
+  *ts = rdtsc ();
+#endif
+}
+
+
+void polybench_timer_stop(uint64_t *te);
+{
+#ifndef POLYBENCH_CYCLE_ACCURATE_TIMER
+  *te = rtclock ();
+#else
+  *te = rdtsc ();
+#endif
+#ifdef POLYBENCH_LINUX_FIFO_SCHEDULER
+  polybench_linux_standard_scheduler ();
+#endif
+}
+
+void polybench_timer_print(uint64_t ts, uint64_t te)
+{
+#ifdef POLYBENCH_GFLOPS
+  if  (__polybench_program_total_flops == 0)
+  {
+    printf ("[PolyBench][WARNING] Program flops not defined, use polybench_set_program_flops(value)\n");
+    printf ("%0.6lf\n", te - ts);
+  }
+  else
+    printf ("%0.2lf\n",
+      (__polybench_program_total_flops /
+      (double)(te - ts)) / 1000000000);
+#else
+# ifndef POLYBENCH_CYCLE_ACCURATE_TIMER
+      printf ("%0.6f\n", te - ts);
+# else
+      printf ("%Ld\n", te - ts);
+# endif
+#endif
+}
+// rag
+
 
 
 static
