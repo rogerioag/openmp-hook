@@ -16,12 +16,12 @@ uint64_t get_time(){
 }
 
 #define HOOKOMP_TIMING_SEQ_START hookomp_timing_start(&seq_start)
-#define HOOKOMP_TIMING_SEQ_END hookomp_timing_start(&seq_end)
-#define HOOKOMP_TIMING_SEQ_PRINT hookomp_timing_start(seq_start,seq_end)
+#define HOOKOMP_TIMING_SEQ_END hookomp_timing_stop(&seq_end)
+#define HOOKOMP_TIMING_SEQ_PRINT hookomp_timing_print(seq_start,seq_end)
 
 #define HOOKOMP_TIMING_OMP_START hookomp_timing_start(&omp_start)
-#define HOOKOMP_TIMING_OMP_END hookomp_timing_start(&omp_end)
-#define HOOKOMP_TIMING_OMP_PRINT hookomp_timing_start(omp_start,omp_end)
+#define HOOKOMP_TIMING_OMP_END hookomp_timing_stop(&omp_end)
+#define HOOKOMP_TIMING_OMP_PRINT hookomp_timing_print(omp_start,omp_end)
 
 void hookomp_timing_start(uint64_t *_start){
 	*_start = get_time();
