@@ -282,30 +282,7 @@ int main(int argc, char *argv[]) {
             POLYBENCH_ARRAY(C_outputFromGpu));
 
   fprintf(stdout, "exp = CUDA, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 1, NI, NJ, NK);
-  fprintf(stdout, "ORIG = ");
-  HOOKOMP_TIMING_SEQ_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "OMP+OFF = ");
-  HOOKOMP_TIMING_OMP_OFF_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "OMP = ");
-  HOOKOMP_TIMING_OMP_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "CUDA_KERNEL1 = ");
-  HOOKOMP_TIMING_DEV_KERNEL1_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "CUDA_KERNEL2 = ");
-  HOOKOMP_TIMING_DEV_KERNEL2_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "CUDA_KERNEL3 = ");
-  HOOKOMP_TIMING_DEV_KERNEL3_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "DT_H2D = ");
-  HOOKOMP_TIMING_DT_H2D_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "DT_D2H = ");
-  HOOKOMP_TIMING_DT_D2H_PRINT;
-  fprintf(stdout, "\n");
+  HOOKOMP_PRINT_TIME_RESULTS;
 
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
   compareResults(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
