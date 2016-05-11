@@ -27,6 +27,9 @@
 // Macros to generate openmp schedule.
 #include <macros.h>
 
+// Time measures implementation.
+#include <timing.h>
+
 // Offloading support functions.
 #include <offload.h>
 
@@ -124,16 +127,17 @@ void syr2k_original(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
               DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
   
   /* Start timer. */
-  /* Start timer. */
-  polybench_start_instruments;
+  // polybench_start_instruments;
+  HOOKOMP_TIMING_SEQ_START;
 
   /* Run kernel. */
   syr2kCpu(ni, nj, alpha, beta, A, B, C);
 
   /* Stop and print timer. */
-  polybench_stop_instruments;
-  // printf("Original CPU Time in seconds:\n");
-  polybench_print_instruments;
+  // polybench_stop_instruments;
+  // // printf("Original CPU Time in seconds:\n");
+  // polybench_print_instruments;
+  HOOKOMP_TIMING_SEQ_STOP;
 }
 
 /* ------------------------------------------------------------- */
@@ -294,9 +298,14 @@ void syr2k_cuda_0(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   cudaMalloc((void **)&A_gpu, sizeof(DATA_TYPE) * NI * NJ);
   cudaMalloc((void **)&B_gpu, sizeof(DATA_TYPE) * NI * NJ);
   cudaMalloc((void **)&C_gpu, sizeof(DATA_TYPE) * NI * NI);
+
+  HOOKOMP_TIMING_DT_H2D_START;
+
   cudaMemcpy(A_gpu, A, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
   cudaMemcpy(B_gpu, B, sizeof(DATA_TYPE) * NI * NJ, cudaMemcpyHostToDevice);
   cudaMemcpy(C_gpu, C_inputToGpu, sizeof(DATA_TYPE) * NI * NI, cudaMemcpyHostToDevice);
+
+  HOOKOMP_TIMING_DT_H2D_STOP;
 
   dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
   dim3 grid((size_t)ceil(((float)NI) / ((float)DIM_THREAD_BLOCK_X)),
@@ -304,9 +313,12 @@ void syr2k_cuda_0(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 
   /* Start timer. */
   // polybench_start_instruments;
+  HOOKOMP_TIMING_DEV_START;
 
   syr2k_cuda_kernel_1<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
   cudaThreadSynchronize();
+
+  HOOKOMP_TIMING_DEV_STOP;
 
   // syr2k_cuda_kernel_2<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu); 
   // cudaThreadSynchronize();
@@ -347,8 +359,12 @@ void syr2k_cuda_1(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   // printf("GPU Time in seconds:\n");
   // polybench_print_instruments;
 
+  HOOKOMP_TIMING_DT_D2H_START;
+
   cudaMemcpy(C_outputFromGpu, C_gpu, sizeof(DATA_TYPE) * NI * NI,
              cudaMemcpyDeviceToHost);
+
+  HOOKOMP_TIMING_DT_D2H_STOP;
 
   cudaFree(A_gpu);
   cudaFree(B_gpu);
@@ -484,21 +500,35 @@ int main(int argc, char *argv[]) {
   // printf("%4.2f - %4.2f\n", *(C[0][0]), *(C_outputFromOMP[0][0]));
   // compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
 
-  fprintf(stderr, "Copying C to C_outputFromOMP.\n");
+  fprintf(stderr, "Copying C to C_outputFromGpu.\n");
   // memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
   copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
   // compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  fprintf(stdout, "exp, num_threads, NI, NJ, ORIG, OMP\n");
-
-  fprintf(stdout, "OMP+OFF, %d, %d, %d, ", OPENMP_NUM_THREADS, NI, NJ);
-
   fprintf(stderr, "Calling Original.\n");
   syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
-  fprintf(stdout, ", ");
 
   fprintf(stderr, "Calling OMP.\n");
   syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
+
+  fprintf(stdout, "exp = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, 0);
+  fprintf(stdout, "ORIG = ");
+  HOOKOMP_TIMING_SEQ_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "OMP+OFF = ");
+  HOOKOMP_TIMING_OMP_OFF_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "OMP = ");
+  HOOKOMP_TIMING_OMP_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "CUDA = ");
+  HOOKOMP_TIMING_DEV_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "DT_H2D = ");
+  HOOKOMP_TIMING_DT_H2D_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "DT_D2H = ");
+  HOOKOMP_TIMING_DT_D2H_PRINT;
   fprintf(stdout, "\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");

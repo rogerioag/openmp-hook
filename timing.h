@@ -7,7 +7,15 @@
 /* stackoverflow clock_gettime tem precisão de nano 
    e gettimeofday de microsegundos.
 */
-uint64_t seq_start, seq_stop, omp_start, omp_stop, dev_start, dev_stop;
+// Monitoring SEQUENTIAL version.
+uint64_t seq_start, seq_stop;
+// Monitoring OMP version.
+uint64_t omp_start, omp_stop;
+// Monitoring Device, CUDA version.
+uint64_t dev_kernel1_start, dev_kernel1_stop;
+uint64_t dev_kernel2_start, dev_kernel2_stop;
+uint64_t dev_kernel3_start, dev_kernel3_stop;
+// Monitoring Data Transfers.
 uint64_t data_transfer_h2d_start, data_transfer_h2d_stop;
 uint64_t data_transfer_d2h_start, data_transfer_d2h_stop;
 
@@ -27,11 +35,19 @@ uint64_t get_time(){
 #define HOOKOMP_TIMING_OMP_OFF_PRINT hookomp_timing_print(omp_start,omp_stop)
 
 // OMP code time execution without device times.
-#define HOOKOMP_TIMING_OMP_PRINT hookomp_timing_print_without_dev(omp_start,omp_stop,dev_start,dev_stop,data_transfer_h2d_start,data_transfer_h2d_stop,data_transfer_d2h_start,data_transfer_d2h_stop)
+#define HOOKOMP_TIMING_OMP_PRINT hookomp_timing_print_without_dev()
 
-#define HOOKOMP_TIMING_DEV_START hookomp_timing_start(&dev_start)
-#define HOOKOMP_TIMING_DEV_STOP hookomp_timing_stop(&dev_stop)
-#define HOOKOMP_TIMING_DEV_PRINT hookomp_timing_print(dev_start,dev_stop)
+#define HOOKOMP_TIMING_DEV_KERNEL1_START hookomp_timing_start(&dev_kernel1_start)
+#define HOOKOMP_TIMING_DEV_KERNEL1_STOP hookomp_timing_stop(&dev_kernel1_stop)
+#define HOOKOMP_TIMING_DEV_KERNEL1_PRINT hookomp_timing_print(dev_kernel1_start,dev_kernel1_stop)
+
+#define HOOKOMP_TIMING_DEV_KERNEL2_START hookomp_timing_start(&dev_kernel2_start)
+#define HOOKOMP_TIMING_DEV_KERNEL2_STOP hookomp_timing_stop(&dev_kernel2_stop)
+#define HOOKOMP_TIMING_DEV_KERNEL2_PRINT hookomp_timing_print(dev_kernel2_start,dev_kernel2_stop)
+
+#define HOOKOMP_TIMING_DEV_KERNEL3_START hookomp_timing_start(&dev_kernel3_start)
+#define HOOKOMP_TIMING_DEV_KERNEL3_STOP hookomp_timing_stop(&dev_kernel3_stop)
+#define HOOKOMP_TIMING_DEV_KERNEL3_PRINT hookomp_timing_print(dev_kernel3_start,dev_kernel3_stop)
 
 #define HOOKOMP_TIMING_DT_H2D_START hookomp_timing_start(&data_transfer_h2d_start)
 #define HOOKOMP_TIMING_DT_H2D_STOP hookomp_timing_stop(&data_transfer_h2d_stop)
@@ -40,6 +56,8 @@ uint64_t get_time(){
 #define HOOKOMP_TIMING_DT_D2H_START hookomp_timing_start(&data_transfer_d2h_start)
 #define HOOKOMP_TIMING_DT_D2H_STOP hookomp_timing_stop(&data_transfer_d2h_stop)
 #define HOOKOMP_TIMING_DT_D2H_PRINT hookomp_timing_print(data_transfer_d2h_start,data_transfer_d2h_stop)
+
+#define HOOKOMP_PRINT_TIME_RESULTS hookomp_print_time_results()
 
 void hookomp_timing_start(uint64_t *_start){
 	*_start = get_time();
@@ -53,17 +71,39 @@ void hookomp_timing_print(uint64_t tstart, uint64_t tstop){
 	printf ("%Ld", tstop - tstart);
 }
 
-void hookomp_timing_print_without_dev(uint64_t omp_start, uint64_t omp_stop,
-	                                  uint64_t dev_start, uint64_t dev_stop,
-	                                  uint64_t data_transfer_h2d_start,
-	                                  uint64_t data_transfer_h2d_stop,
-	                                  uint64_t data_transfer_d2h_start,
-	                                  uint64_t data_transfer_d2h_stop) {
+void hookomp_timing_print_without_dev() {
 	uint64_t total_time = omp_stop - omp_start;
-	uint64_t dev_time = dev_stop - dev_start;
+	uint64_t dev_time = (dev_kernel1_stop - dev_kernel1_start) + (dev_kernel2_stop - dev_kernel2_start) + (dev_kernel3_stop - dev_kernel3_start);
 	uint64_t dt_time = (data_transfer_h2d_stop - data_transfer_h2d_start) + (data_transfer_d2h_stop - data_transfer_d2h_start);
 
 	printf ("%Ld", (total_time - dev_time - dt_time));
+}
+
+void hookomp_print_time_results(){
+	fprintf(stdout, "ORIG = ");
+  	HOOKOMP_TIMING_SEQ_PRINT;
+  	fprintf(stdout, ", ");
+  	fprintf(stdout, "OMP+OFF = ");
+  	HOOKOMP_TIMING_OMP_OFF_PRINT;
+  	fprintf(stdout, ", ");
+  	fprintf(stdout, "OMP = ");
+  	HOOKOMP_TIMING_OMP_PRINT;
+  	fprintf(stdout, ", ");
+  	fprintf(stdout, "CUDA_KERNEL1 = ");
+  	HOOKOMP_TIMING_DEV_KERNEL1_PRINT;
+  	fprintf(stdout, ", ");
+  	fprintf(stdout, "CUDA_KERNEL2 = ");
+  	HOOKOMP_TIMING_DEV_KERNEL2_PRINT;
+  	fprintf(stdout, ", ");
+  	fprintf(stdout, "CUDA_KERNEL3 = ");
+  	HOOKOMP_TIMING_DEV_KERNEL3_PRINT;
+  	fprintf(stdout, ", ");
+  	fprintf(stdout, "DT_H2D = ");
+  	HOOKOMP_TIMING_DT_H2D_PRINT;
+  	fprintf(stdout, ", ");
+  	fprintf(stdout, "DT_D2H = ");
+  	HOOKOMP_TIMING_DT_D2H_PRINT;
+  	fprintf(stdout, "\n");
 }
 
 #endif /* TIMING_H */

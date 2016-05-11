@@ -292,7 +292,7 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
 
   /* Start timer. */
   // polybench_start_instruments;
-  HOOKOMP_TIMING_DEV_START;
+  HOOKOMP_TIMING_DEV_KERNEL1_START;
 
   gemm_cuda_kernel<<<grid, block>>>(ni, nj, nk, alpha, beta, A_gpu, B_gpu,
                                     C_gpu);
@@ -302,7 +302,7 @@ void gemm_cuda(int ni, int nj, int nk, DATA_TYPE alpha, DATA_TYPE beta,
   // printf("GPU kernel Time in seconds:\n");
   // olybench_stop_instruments;
   // polybench_print_instruments;
-  HOOKOMP_TIMING_DEV_STOP;
+  HOOKOMP_TIMING_DEV_KERNEL1_STOP;
 
   // polybench_start_instruments;
   HOOKOMP_TIMING_DT_D2H_START;
@@ -441,8 +441,14 @@ int main(int argc, char *argv[]) {
   fprintf(stdout, "OMP = ");
   HOOKOMP_TIMING_OMP_PRINT;
   fprintf(stdout, ", ");
-  fprintf(stdout, "CUDA = ");
-  HOOKOMP_TIMING_DEV_PRINT;
+  fprintf(stdout, "CUDA_KERNEL1 = ");
+  HOOKOMP_TIMING_DEV_KERNEL1_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "CUDA_KERNEL2 = ");
+  HOOKOMP_TIMING_DEV_KERNEL2_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "CUDA_KERNEL3 = ");
+  HOOKOMP_TIMING_DEV_KERNEL3_PRINT;
   fprintf(stdout, ", ");
   fprintf(stdout, "DT_H2D = ");
   HOOKOMP_TIMING_DT_H2D_PRINT;
