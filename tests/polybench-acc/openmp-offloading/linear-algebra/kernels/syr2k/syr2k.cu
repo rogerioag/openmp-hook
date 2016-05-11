@@ -192,14 +192,16 @@ void syr2k_omp(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                          DATA_TYPE POLYBENCH_2D(C_outputFromOMP, NI, NI, ni, ni)) {
 
   /* Start timer. */
-  polybench_start_instruments;
+  // polybench_start_instruments;
+  HOOKOMP_TIMING_OMP_START;
 
   syr2k_omp_kernel(ni, nj, alpha, beta, A, B, C_outputFromOMP);
 
   /* Stop and print timer. */
-  polybench_stop_instruments;
-  // printf("OpenMP Time in seconds:\n");
-  polybench_print_instruments;
+  // polybench_stop_instruments;
+  // // printf("OpenMP Time in seconds:\n");
+  // polybench_print_instruments;
+  HOOKOMP_TIMING_OMP_STOP;
 }
 
 /* ------------------------------------------------------------- */
@@ -253,7 +255,7 @@ __global__ void syr2k_cuda_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE bet
 
 /* It was separated in two kernels, because the loop index. */
 /* ------------------------------------------------------------- */
-__global__ void syr2k_cuda_kernel_1(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
+__global__ void syr2k_cuda_kernel_0(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                              DATA_TYPE *a, DATA_TYPE *b, DATA_TYPE *c) {
   int j = blockIdx.x * blockDim.x + threadIdx.x;
   int i = blockIdx.y * blockDim.y + threadIdx.y;
@@ -264,7 +266,7 @@ __global__ void syr2k_cuda_kernel_1(int ni, int nj, DATA_TYPE alpha, DATA_TYPE b
 }
 
 /* ------------------------------------------------------------- */
-__global__ void syr2k_cuda_kernel_2(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
+__global__ void syr2k_cuda_kernel_1(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                              DATA_TYPE *a, DATA_TYPE *b, DATA_TYPE *c) {
   int j = blockIdx.x * blockDim.x + threadIdx.x;
   int i = blockIdx.y * blockDim.y + threadIdx.y;
@@ -313,12 +315,12 @@ void syr2k_cuda_0(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 
   /* Start timer. */
   // polybench_start_instruments;
-  HOOKOMP_TIMING_DEV_START;
+  HOOKOMP_TIMING_DEV_KERNEL1_START;
 
-  syr2k_cuda_kernel_1<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
+  syr2k_cuda_kernel_0<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
   cudaThreadSynchronize();
 
-  HOOKOMP_TIMING_DEV_STOP;
+  HOOKOMP_TIMING_DEV_KERNEL1_STOP;
 
   // syr2k_cuda_kernel_2<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu); 
   // cudaThreadSynchronize();
@@ -351,13 +353,17 @@ void syr2k_cuda_1(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   /* Start timer. */
   // polybench_start_instruments;
 
-  syr2k_cuda_kernel_2<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
+  HOOKOMP_TIMING_DEV_KERNEL2_START;
+
+  syr2k_cuda_kernel_1<<<grid, block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
   cudaThreadSynchronize();
 
   /* Stop and print timer. */
   // polybench_stop_instruments;
   // printf("GPU Time in seconds:\n");
   // polybench_print_instruments;
+
+  HOOKOMP_TIMING_DEV_KERNEL2_STOP;
 
   HOOKOMP_TIMING_DT_D2H_START;
 
@@ -512,24 +518,7 @@ int main(int argc, char *argv[]) {
   syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
 
   fprintf(stdout, "exp = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, 0);
-  fprintf(stdout, "ORIG = ");
-  HOOKOMP_TIMING_SEQ_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "OMP+OFF = ");
-  HOOKOMP_TIMING_OMP_OFF_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "OMP = ");
-  HOOKOMP_TIMING_OMP_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "CUDA = ");
-  HOOKOMP_TIMING_DEV_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "DT_H2D = ");
-  HOOKOMP_TIMING_DT_H2D_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "DT_D2H = ");
-  HOOKOMP_TIMING_DT_D2H_PRINT;
-  fprintf(stdout, "\n");
+  HOOKOMP_PRINT_TIME_RESULTS;
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));

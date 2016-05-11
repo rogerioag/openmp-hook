@@ -236,24 +236,7 @@ int main(int argc, char** argv) {
   syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
 
   fprintf(stdout, "exp = OMP, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, 0);
-  fprintf(stdout, "ORIG = ");
-  HOOKOMP_TIMING_SEQ_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "OMP+OFF = ");
-  HOOKOMP_TIMING_OMP_OFF_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "OMP = ");
-  HOOKOMP_TIMING_OMP_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "CUDA = ");
-  HOOKOMP_TIMING_DEV_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "DT_H2D = ");
-  HOOKOMP_TIMING_DT_H2D_PRINT;
-  fprintf(stdout, ", ");
-  fprintf(stdout, "DT_D2H = ");
-  HOOKOMP_TIMING_DT_D2H_PRINT;
-  fprintf(stdout, "\n");
+  HOOKOMP_PRINT_TIME_RESULTS;
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
