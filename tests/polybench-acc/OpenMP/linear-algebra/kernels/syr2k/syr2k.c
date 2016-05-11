@@ -235,7 +235,7 @@ int main(int argc, char** argv) {
   fprintf(stderr, "Calling OMP.\n");
   syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
 
-  fprintf(stdout, "exp = OMP, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
+  fprintf(stdout, "exp = OMP, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, 0);
   fprintf(stdout, "ORIG = ");
   HOOKOMP_TIMING_SEQ_PRINT;
   fprintf(stdout, ", ");
