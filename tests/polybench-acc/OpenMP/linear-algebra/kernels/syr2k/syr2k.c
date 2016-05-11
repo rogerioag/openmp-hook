@@ -19,6 +19,9 @@
  // Macros to generate openmp schedule.
 #include <macros.h>
 
+// Time measures implementation.
+#include <timing.h>
+
 /* Include benchmark-specific header. */
 /* Default data type is double, default size is 4000. */
 #include "syr2k.h"
@@ -111,15 +114,18 @@ void syr2k_original(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   
   /* Start timer. */
   /* Start timer. */
-  polybench_start_instruments;
+  // polybench_start_instruments;
+  HOOKOMP_TIMING_SEQ_START;
 
   /* Run kernel. */
   syr2kCpu(ni, nj, alpha, beta, A, B, C);
 
   /* Stop and print timer. */
-  polybench_stop_instruments;
-  // printf("Original CPU Time in seconds:\n");
-  polybench_print_instruments;
+  // polybench_stop_instruments;
+  // // printf("Original CPU Time in seconds:\n");
+  // polybench_print_instruments;
+  HOOKOMP_TIMING_SEQ_STOP;
+  // HOOKOMP_TIMING_SEQ_PRINT;
 }
 
 /* ------------------------------------------------------------- */
@@ -160,14 +166,17 @@ void syr2k_omp(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                          DATA_TYPE POLYBENCH_2D(C_outputFromOMP, NI, NI, ni, ni)) {
 
   /* Start timer. */
-  polybench_start_instruments;
+  // polybench_start_instruments;
+  HOOKOMP_TIMING_OMP_START;
 
   syr2k_omp_kernel(ni, nj, alpha, beta, A, B, C_outputFromOMP);
 
   /* Stop and print timer. */
-  polybench_stop_instruments;
-  // printf("OpenMP Time in seconds:\n");
-  polybench_print_instruments;
+  // polybench_stop_instruments;
+  // // printf("OpenMP Time in seconds:\n");
+  // polybench_print_instruments;
+  HOOKOMP_TIMING_OMP_STOP;
+  // HOOKOMP_TIMING_OMP_PRINT;
 }
 
 /* ------------------------------------------------------------- */
@@ -225,6 +234,26 @@ int main(int argc, char** argv) {
 
   fprintf(stderr, "Calling OMP.\n");
   syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
+
+  fprintf(stdout, "exp = OMP, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
+  fprintf(stdout, "ORIG = ");
+  HOOKOMP_TIMING_SEQ_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "OMP+OFF = ");
+  HOOKOMP_TIMING_OMP_OFF_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "OMP = ");
+  HOOKOMP_TIMING_OMP_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "CUDA = ");
+  HOOKOMP_TIMING_DEV_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "DT_H2D = ");
+  HOOKOMP_TIMING_DT_H2D_PRINT;
+  fprintf(stdout, ", ");
+  fprintf(stdout, "DT_D2H = ");
+  HOOKOMP_TIMING_DT_D2H_PRINT;
+  fprintf(stdout, "\n");
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
   compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromOMP));
