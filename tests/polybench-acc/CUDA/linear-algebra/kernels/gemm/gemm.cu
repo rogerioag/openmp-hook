@@ -63,6 +63,17 @@ void init_array(int ni, int nj, int nk, DATA_TYPE *alpha, DATA_TYPE *beta,
   }
 }
 /* ------------------------------------------------------------- */
+void copy_array(int ni, int nj, DATA_TYPE POLYBENCH_2D(C_source, NI, NJ, ni, nj), DATA_TYPE POLYBENCH_2D(C_dest, NI, NJ, ni, nj)) {
+  int i, j;
+
+  for (i = 0; i < ni; i++) {
+    for (j = 0; j < nj; j++) {
+      C_dest[i][j] = C_source[i][j];
+      // printf("%4.2f - %4.2f\n", C_dest[i][j], C_source[i][j]);
+    }
+  }
+}
+/* ------------------------------------------------------------- */
 /* DCE code. Must scan the entire live-out data.
    Can be used also to check the correctness of the output. */
 static void print_array(int ni, int nj,
@@ -270,7 +281,7 @@ int main(int argc, char *argv[]) {
   gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
            POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  fprintf(stdout, "exp = CUDA, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
+  fprintf(stdout, "exp = CUDA, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 1, NI, NJ, NK);
   fprintf(stdout, "ORIG = ");
   HOOKOMP_TIMING_SEQ_PRINT;
   fprintf(stdout, ", ");
