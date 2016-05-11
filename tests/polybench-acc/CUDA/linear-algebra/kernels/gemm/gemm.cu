@@ -278,8 +278,9 @@ int main(int argc, char *argv[]) {
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
   fprintf(stderr, "calling gemm_cuda:\n");
-  gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B),
-           POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
+  gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), 
+            POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu),
+            POLYBENCH_ARRAY(C_outputFromGpu));
 
   fprintf(stdout, "exp = CUDA, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 1, NI, NJ, NK);
   fprintf(stdout, "ORIG = ");
@@ -309,7 +310,7 @@ int main(int argc, char *argv[]) {
   POLYBENCH_FREE_ARRAY(A);
   POLYBENCH_FREE_ARRAY(B);
   POLYBENCH_FREE_ARRAY(C);
-  POLYBENCH_FREE_ARRAY(C_outputFromOMP);
+  POLYBENCH_FREE_ARRAY(C_inputToGpu);
   POLYBENCH_FREE_ARRAY(C_outputFromGpu);
 
   return 0;
