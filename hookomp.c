@@ -100,7 +100,7 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 		is_executing_measures_section = true;
 		thread_was_registred_to_execute_measures = false;
 		
-		/* Control of decision about offloding. */		
+		/* Control of decision about offloading. */		
 		decided_by_offloading = false;
 		made_the_offloading = false;
 
@@ -463,15 +463,23 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				TRACE("[HOOKOMP]: [INSIDE] Calling next function inside of measures section.\n");
 				TRACE("[HOOKOMP]: [Before Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 				result = fn_proxy(istart, iend, extra);
-				TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
-				/* Update the number of iterations executed by this thread. */
-				TRACE("[HOOKOMP]: [Before]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
-				executed_loop_iterations += (*iend - *istart);
-				TRACE("[HOOKOMP]: [After]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
 
-				/* Starting the registry on RM library. Is necessary partial measures each chunk. 
-				Switching to do not get measures considering control code. */
-				RM_registry_measures();
+				// No more work to do.
+				if(!result){
+					TRACE("[HOOKOMP]: No more work to shared, the value returned by next function is %d.\n", result);
+					TRACE("[HOOKOMP]: The work was finished before the decision about offloading.\n");	
+				}
+				else {
+					TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
+					/* Update the number of iterations executed by this thread. */
+					TRACE("[HOOKOMP]: [Before]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
+					executed_loop_iterations += (*iend - *istart);
+					TRACE("[HOOKOMP]: [After]-> Update of executed iterations: %ld.\n", executed_loop_iterations);
+
+					/* Starting the registry on RM library. Is necessary partial measures each chunk. 
+					Switching to do not get measures considering control code. */
+					RM_registry_measures();
+				}				
 			}
 			else{ /* Offloading decision. */
 				TRACE("[HOOKOMP]: They were executed %ld iterations of %ld.\n", executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
