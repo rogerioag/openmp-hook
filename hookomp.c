@@ -1370,6 +1370,8 @@ void GOMP_loop_end_nowait (void){
 	HOOKOMP_loop_end_nowait();
 
 	lib_GOMP_loop_end_nowait();
+
+	TRACE("***End of loop nowait: %d\n", current_loop_index);
 }
 
 /* ------------------------------------------------------------- */
