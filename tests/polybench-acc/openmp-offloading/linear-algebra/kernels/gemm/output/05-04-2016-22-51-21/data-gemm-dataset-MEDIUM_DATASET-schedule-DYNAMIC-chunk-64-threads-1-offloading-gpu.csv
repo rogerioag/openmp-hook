@@ -1,0 +1,12 @@
+Execution = 1, benchmark = gemm, size_of_data = MEDIUM_DATASET, schedule = DYNAMIC, chunk_size = 64, num_threads = 1,
+exp = OMP+OFF, num_threads = 1, NI = 512, NJ = 512, NK = 512, ORIG = 0.475523
+, OMP = 5.187756
+
+Execution = 2, benchmark = gemm, size_of_data = MEDIUM_DATASET, schedule = DYNAMIC, chunk_size = 64, num_threads = 1,
+exp = OMP+OFF, num_threads = 1, NI = 512, NJ = 512, NK = 512, ORIG = 0.404852
+, OMP = 5.114238
+
+Execution = 3, benchmark = gemm, size_of_data = MEDIUM_DATASET, schedule = DYNAMIC, chunk_size = 64, num_threads = 1,
+exp = OMP+OFF, num_threads = 1, NI = 512, NJ = 512, NK = 512, ORIG = 0.426677
+, OMP = 5.133147
+
