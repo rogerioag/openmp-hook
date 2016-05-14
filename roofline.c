@@ -92,7 +92,7 @@ bool RM_measure_session_init(void){
 
 	sem_wait(&mutex_measure_session_init);
 
-	TRACE("Session Initilized, is_measure_session_initialize:%d\n", is_measure_session_initialized);
+	TRACE("Session Initilized, is_measure_session_initialize: %d.\n", is_measure_session_initialized);
 
 	if (!is_measure_session_initialized){
 
@@ -359,7 +359,7 @@ void RM_print_counters_values_csv(void) {
 	PRINT_FUNC_NAME;
 	int i;
 
-	TRACE("Printing Values:\n");
+	fprintf(stderr, "Printing Values CSV:\n");
 	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
 		fprintf(stderr, "%s,%s,%s,%s,%s,%s,", "measures", 
 				((event_names[i][0] != NULL) ? event_names[i][0] : "") , 
