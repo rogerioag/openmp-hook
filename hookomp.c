@@ -467,7 +467,8 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				// No more work to do.
 				if(!result){
 					TRACE("[HOOKOMP]: No more work to shared, the value returned by next function is %d.\n", result);
-					TRACE("[HOOKOMP]: The work was finished before the decision about offloading.\n");	
+					TRACE("[HOOKOMP]: The work was finished before the decision about offloading.\n");
+					fprintf(stderr, "WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 1,\n");	
 				}
 				else {
 					TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
