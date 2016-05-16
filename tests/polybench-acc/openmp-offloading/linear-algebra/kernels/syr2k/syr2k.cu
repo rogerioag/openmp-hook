@@ -517,10 +517,10 @@ int main(int argc, char *argv[]) {
   copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
   // compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  fprintf(stderr, "Calling Original.\n");
+  fprintf(stderr, "Calling Original version.\n");
   syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
-  fprintf(stderr, "Calling OMP.\n");
+  fprintf(stderr, "Calling OMP version.\n");
   syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
 
   fprintf(stdout, "exp = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, 0);
