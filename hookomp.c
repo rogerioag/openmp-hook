@@ -453,11 +453,11 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 		TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
 	}
 	else{ /* Measuring session. */
-		TRACE("[HOOKOMP]: Testing the registred thread id: %ld.\n", registred_thread_executing_function_next);
+		TRACE("[HOOKOMP]: Testing the registered thread id: %ld.\n", registred_thread_executing_function_next);
 		
-		if(registred_thread_executing_function_next == (long int) pthread_self()){ /* Registred thread. */
+		if(registred_thread_executing_function_next == (long int) pthread_self()){ /* Registered thread. */
 			
-			TRACE("[HOOKOMP]: Thread registred executing: %ld.\n", registred_thread_executing_function_next);
+			TRACE("[HOOKOMP]: Thread registered executing: %ld.\n", registred_thread_executing_function_next);
 			TRACE("[HOOKOMP]: They were executed %ld iterations of %ld.\n", executed_loop_iterations, max_loops_iterations_for_measures);
 			if(executed_loop_iterations < max_loops_iterations_for_measures){ /* No reached the percentual. */
 				TRACE("[HOOKOMP]: [INSIDE] Calling next function inside of measures section.\n");
@@ -466,9 +466,11 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 				// No more work to do.
 				if(!result){
-					TRACE("[HOOKOMP]: No more work to shared, the value returned by next function is %d.\n", result);
+					TRACE("[HOOKOMP]: No more shared work to do, the value returned by next function is %d.\n", result);
 					TRACE("[HOOKOMP]: The work was finished before the decision about offloading.\n");
-					fprintf(stderr, "WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 1,\n");	
+					// fprintf(stderr, "WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 1,\n");
+					/* The shared work finish before the decision. */
+					reach_offload_decision_point = false;
 				}
 				else {
 					TRACE("[HOOKOMP]: [After Call]-> Target GOMP_loop_*_next -- istart: %ld iend: %ld.\n", *istart, *iend);
@@ -485,6 +487,9 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 			else{ /* Offloading decision. */
 				TRACE("[HOOKOMP]: They were executed %ld iterations of %ld.\n", executed_loop_iterations, (loop_iterations_end - loop_iterations_start));
 				TRACE("[HOOKOMP]: Trying to make decision about offloading.\n");
+
+				/* Reach the offloading decision point.*/
+				reach_offload_decision_point = true;
 
 				long better_device = 0;
 
