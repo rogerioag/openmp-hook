@@ -1243,7 +1243,7 @@ int RM_get_better_device_to_execution(double oi){
 	TRACE("Chosen device: %d.\n", best_dev);
 
 	fprintf(stderr, "oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev \n");
-	fprintf(stderr, "%10.10f, %10.10f, %10.10f, %10.10f, %d\n", oi, oi_gpu, RM_attainable_performance(0, oi), RM_attainable_performance(1, oi), best_ap, best_dev);
+	fprintf(stderr, "%10.10f, %10.10f, %10.10f, %10.10f, %10.10f, %d\n", oi, oi_gpu, RM_attainable_performance(0, oi), RM_attainable_performance(1, oi), best_ap, best_dev);
 	
 	/* Using this define for compilation parameter: FORCENOOFFLOAD to force no offloading to overhead verification. 
 	   In this case, return 0. Otherwise return best_dev.

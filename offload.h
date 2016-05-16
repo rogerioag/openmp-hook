@@ -20,7 +20,7 @@
 
 #include "platform.h"
 
- typedef struct Func {
+typedef struct Func {
   void *f;
   int nargs;
   ffi_type** arg_types;

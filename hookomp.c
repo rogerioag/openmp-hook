@@ -497,7 +497,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				//}
 				//else{
 					TRACE("Current loop index: %d.\n", current_loop_index);
-					TRACE("Defining aditional parameters.\n");
+					TRACE("Defining additional parameters.\n");
 					// N: total of iterations, Number of executed iterations (percentual), last chunk_size.
 					RM_set_aditional_parameters(total_of_iterations, executed_loop_iterations, (*iend - *istart), q_data_transfer_write, q_data_transfer_read, type_of_data_allocation);
 
@@ -505,16 +505,16 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					
 					TRACE("Getting decision about offloading.\n");
 					if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
-						/* Launch apropriated function. */
+						/* Launch appropriated function. */
 						TRACE("RM decided by device [%d].\n", better_device);
 
-						TRACE("Trying to launch apropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
+						TRACE("Trying to launch appropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
 
 						if((made_the_offloading = HOOKOMP_call_offloading_function(current_loop_index, better_device)) == 0){
 							TRACE("The function offloading was not done.\n");
 						}
 						else{
-							TRACE("The offloading was done launching of apropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
+							TRACE("The offloading was done launching of appropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
 						}
 					}
 					else {
