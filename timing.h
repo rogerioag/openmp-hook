@@ -21,11 +21,11 @@ uint64_t data_transfer_d2h_start, data_transfer_d2h_stop;
 
 /* Flag to registry if the shared work finish before the offloading decision. 
   When the original next chunk function returns false (NO MORE WORK TO DO) before of the thread reach the decision point. */
-static bool reach_offload_decision_point = false;
+extern bool reach_offload_decision_point;
 
-static bool decided_by_offloading = false;
+extern bool decided_by_offloading;
 
-static bool made_the_offloading = false;
+extern bool made_the_offloading;
 
 uint64_t get_time(){
  struct timespec spec;
