@@ -403,13 +403,13 @@ extern "C" {
 	/* Type of memory allocation: pageable or pinned for cuda. */
 	unsigned int type_of_data_allocation;
 
-	static bool decided_by_offloading = false;
+	bool decided_by_offloading = false;
 
-	static bool made_the_offloading = false;
+	bool made_the_offloading = false;
 
 	/* Flag to registry if the shared work finish before the offloading decision. 
 	When the original next chunk function returns false (NO MORE WORK TO DO) before of the thread reach the decision point. */
-	static bool reach_offload_decision_point = false;
+	bool reach_offload_decision_point = false;
 
 	void foo(void);
 	// GOMP_loop_runtime_start@@GOMP_1.0
