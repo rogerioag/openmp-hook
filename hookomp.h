@@ -369,9 +369,9 @@ static long int number_of_blocked_threads_in_loop_end = 0;
 
 static bool is_executing_measures_section = true;
 
-// static bool decided_by_offloading = false;
+static bool decided_by_offloading = false;
 
-// static bool made_the_offloading = false;
+static bool made_the_offloading = false;
 
 static bool is_hookomp_initialized = false;
 
@@ -403,9 +403,9 @@ extern "C" {
 	/* Type of memory allocation: pageable or pinned for cuda. */
 	unsigned int type_of_data_allocation;
 
-	static bool decided_by_offloading = false;
+	// static bool decided_by_offloading = false;
 
-	static bool made_the_offloading = false;
+	// static bool made_the_offloading = false;
 
 	/* Flag to registry if the shared work finish before the offloading decision. 
 	When the original next chunk function returns false (NO MORE WORK TO DO) before of the thread reach the decision point. */
