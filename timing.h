@@ -111,10 +111,10 @@ void hookomp_print_time_results(){
   	fprintf(stdout, ", ");
   	fprintf(stdout, "DT_D2H = ");
   	HOOKOMP_TIMING_DT_D2H_PRINT;
-    fprintf(stdout, "WORK_FINISHED_BEFORE_OFFLOAD_DECISION = %d", ((!reach_offload_decision_point)?(1):(0)));
-    fprintf(stdout, "REACH_OFFLOAD_DECISION_POINT = %d", reach_offload_decision_point);
-    fprintf(stdout, "DECIDED_BY_OFFLOADING = %d", decided_by_offloading);
-    fprintf(stdout, "MADE_THE_OFFLOADING = %d", made_the_offloading);
+    fprintf(stdout, ", WORK_FINISHED_BEFORE_OFFLOAD_DECISION = %d", ((!reach_offload_decision_point)?(1):(0)));
+    fprintf(stdout, ", REACH_OFFLOAD_DECISION_POINT = %d", reach_offload_decision_point);
+    fprintf(stdout, ", DECIDED_BY_OFFLOADING = %d", decided_by_offloading);
+    fprintf(stdout, ", MADE_THE_OFFLOADING = %d", made_the_offloading);
   	fprintf(stdout, "\n");
 }
 
