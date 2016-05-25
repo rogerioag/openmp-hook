@@ -2,6 +2,7 @@
 #ifndef TIMING_H
 #define TIMING_H
 #include <stdint.h>
+#include <inttypes.h>
 #include <time.h>
 
 /* stackoverflow clock_gettime tem precisão de nano 
