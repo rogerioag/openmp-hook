@@ -1,0 +1,3398 @@
+
+;; Function int __gthread_active_p() (_ZL18__gthread_active_pv, funcdef_no=229, decl_uid=7495, cgraph_uid=80)
+
+int __gthread_active_p() ()
+{
+  static void * const __gthread_active_ptr = __gthrw___pthread_key_create;
+  bool D.30090;
+  int D.30089;
+
+  <bb 2>:
+  D.30090 = __gthrw___pthread_key_create != 0B;
+  D.30089 = (int) D.30090;
+
+<L0>:
+  return D.30089;
+
+}
+
+
+
+;; Function _Atomic_word __gnu_cxx::__exchange_and_add_single(_Atomic_word*, int) (_ZN9__gnu_cxxL25__exchange_and_add_singleEPii, funcdef_no=260, decl_uid=7606, cgraph_uid=111)
+
+_Atomic_word __gnu_cxx::__exchange_and_add_single(_Atomic_word*, int) (_Atomic_word * __mem, int __val)
+{
+  _Atomic_word __result;
+  _Atomic_word D.30098;
+  int D.30097;
+  int D.30096;
+
+  <bb 2>:
+  __result = *__mem;
+  D.30096 = *__mem;
+  D.30097 = D.30096 + __val;
+  *__mem = D.30097;
+  D.30098 = __result;
+
+<L0>:
+  return D.30098;
+
+}
+
+
+
+;; Function std::basic_streambuf<_CharT, _Traits>* std::basic_ios<_CharT, _Traits>::rdbuf() const [with _CharT = char; _Traits = std::char_traits<char>] (_ZNKSt9basic_iosIcSt11char_traitsIcEE5rdbufEv, funcdef_no=1201, decl_uid=19027, cgraph_uid=372)
+
+std::basic_streambuf<_CharT, _Traits>* std::basic_ios<_CharT, _Traits>::rdbuf() const [with _CharT = char; _Traits = std::char_traits<char>] (const struct basic_ios * const this)
+{
+  struct basic_streambuf * D.29829;
+
+  <bb 2>:
+  D.29829 = this->_M_streambuf;
+
+<L0>:
+  return D.29829;
+
+}
+
+
+
+;; Function _CharT* std::basic_string<_CharT, _Traits, _Alloc>::_M_data() const [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNKSs7_M_dataEv, funcdef_no=1215, decl_uid=11114, cgraph_uid=386)
+
+_CharT* std::basic_string<_CharT, _Traits, _Alloc>::_M_data() const [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (const struct basic_string * const this)
+{
+  char * D.30038;
+
+  <bb 2>:
+  D.30038 = this->_M_dataplus._M_p;
+
+<L0>:
+  return D.30038;
+
+}
+
+
+
+;; Function const _CharT* std::basic_string<_CharT, _Traits, _Alloc>::c_str() const [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNKSs5c_strEv, funcdef_no=1179, decl_uid=11654, cgraph_uid=350)
+
+const _CharT* std::basic_string<_CharT, _Traits, _Alloc>::c_str() const [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (const struct basic_string * const this)
+{
+  const char * D.30037;
+  const char * D.30035;
+
+  <bb 2>:
+  D.30037 = std::basic_string<char>::_M_data (this);
+  D.30035 = D.30037;
+
+<L0>:
+  return D.30035;
+
+}
+
+
+
+;; Function std::basic_string<_CharT, _Traits, _Alloc>::_Rep* std::basic_string<_CharT, _Traits, _Alloc>::_M_rep() const [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNKSs6_M_repEv, funcdef_no=1212, decl_uid=11119, cgraph_uid=383)
+
+std::basic_string<_CharT, _Traits, _Alloc>::_Rep* std::basic_string<_CharT, _Traits, _Alloc>::_M_rep() const [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (const struct basic_string * const this)
+{
+  char * D.30067;
+  char * D.30065;
+  struct _Rep * D.30064;
+
+  <bb 2>:
+  D.30067 = std::basic_string<char>::_M_data (this);
+  D.30065 = D.30067;
+  D.30064 = D.30065 + 18446744073709551592;
+
+<L0>:
+  return D.30064;
+
+}
+
+
+
+;; Function std::ios_base::iostate std::basic_ios<_CharT, _Traits>::rdstate() const [with _CharT = char; _Traits = std::char_traits<char>; std::ios_base::iostate = std::_Ios_Iostate] (_ZNKSt9basic_iosIcSt11char_traitsIcEE7rdstateEv, funcdef_no=1216, decl_uid=18992, cgraph_uid=387)
+
+std::ios_base::iostate std::basic_ios<_CharT, _Traits>::rdstate() const [with _CharT = char; _Traits = std::char_traits<char>; std::ios_base::iostate = std::_Ios_Iostate] (const struct basic_ios * const this)
+{
+  iostate D.29723;
+
+  <bb 2>:
+  D.29723 = this->D.19077._M_streambuf_state;
+
+<L0>:
+  return D.29723;
+
+}
+
+
+
+;; Function static std::basic_string<_CharT, _Traits, _Alloc>::_Rep& std::basic_string<_CharT, _Traits, _Alloc>::_Rep::_S_empty_rep() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNSs4_Rep12_S_empty_repEv, funcdef_no=1225, decl_uid=11889, cgraph_uid=396)
+
+static std::basic_string<_CharT, _Traits, _Alloc>::_Rep& std::basic_string<_CharT, _Traits, _Alloc>::_Rep::_S_empty_rep() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] ()
+{
+  void * __p;
+  struct _Rep & D.29972;
+
+  <bb 2>:
+  __p = &_S_empty_rep_storage;
+  D.29972 = __p;
+
+<L0>:
+  return D.29972;
+
+}
+
+
+
+;; Function static std::basic_string<_CharT, _Traits, _Alloc>::_Rep& std::basic_string<_CharT, _Traits, _Alloc>::_S_empty_rep() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNSs12_S_empty_repEv, funcdef_no=1232, decl_uid=11193, cgraph_uid=403)
+
+static std::basic_string<_CharT, _Traits, _Alloc>::_Rep& std::basic_string<_CharT, _Traits, _Alloc>::_S_empty_rep() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] ()
+{
+  struct _Rep & D.29971;
+  struct _Rep & D.29969;
+
+  <bb 2>:
+  D.29971 = std::basic_string<char>::_Rep::_S_empty_rep ();
+  D.29969 = D.29971;
+
+<L0>:
+  return D.29969;
+
+}
+
+
+
+;; Function _CharT* std::basic_string<_CharT, _Traits, _Alloc>::_Rep::_M_refdata() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNSs4_Rep10_M_refdataEv, funcdef_no=1233, decl_uid=11901, cgraph_uid=404)
+
+_CharT* std::basic_string<_CharT, _Traits, _Alloc>::_Rep::_M_refdata() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (struct _Rep * const this)
+{
+  void * D.30031;
+  char * D.30030;
+
+  <bb 2>:
+  D.30030 = this + 24;
+
+<L0>:
+  return D.30030;
+
+}
+
+
+
+;; Function void std::basic_string<_CharT, _Traits, _Alloc>::_Rep::_M_set_sharable() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNSs4_Rep15_M_set_sharableEv, funcdef_no=1242, decl_uid=11896, cgraph_uid=413)
+
+void std::basic_string<_CharT, _Traits, _Alloc>::_Rep::_M_set_sharable() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (struct _Rep * const this)
+{
+  <bb 2>:
+  this->D.11923._M_refcount = 0;
+  return;
+
+}
+
+
+
+;; Function std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::egptr() const [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::char_type = char] (_ZNKSt15basic_streambufIcSt11char_traitsIcEE5egptrEv, funcdef_no=1245, decl_uid=14749, cgraph_uid=416)
+
+std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::egptr() const [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::char_type = char] (const struct basic_streambuf * const this)
+{
+  char_type * D.29965;
+
+  <bb 2>:
+  D.29965 = this->_M_in_end;
+
+<L0>:
+  return D.29965;
+
+}
+
+
+
+;; Function std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::gptr() const [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::char_type = char] (_ZNKSt15basic_streambufIcSt11char_traitsIcEE4gptrEv, funcdef_no=1246, decl_uid=14747, cgraph_uid=417)
+
+std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::gptr() const [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::char_type = char] (const struct basic_streambuf * const this)
+{
+  char_type * D.29761;
+
+  <bb 2>:
+  D.29761 = this->_M_in_cur;
+
+<L0>:
+  return D.29761;
+
+}
+
+
+
+;; Function void std::basic_streambuf<_CharT, _Traits>::gbump(int) [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt15basic_streambufIcSt11char_traitsIcEE5gbumpEi, funcdef_no=1247, decl_uid=14751, cgraph_uid=418)
+
+void std::basic_streambuf<_CharT, _Traits>::gbump(int) [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_streambuf * const this, int __n)
+{
+  char_type * D.29769;
+  sizetype D.29768;
+  char_type * D.29767;
+
+  <bb 2>:
+  D.29767 = this->_M_in_cur;
+  D.29768 = (sizetype) __n;
+  D.29769 = D.29767 + D.29768;
+  this->_M_in_cur = D.29769;
+  return;
+
+}
+
+
+
+;; Function std::basic_istream<_CharT, _Traits>::basic_istream() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSiC2Ev, funcdef_no=1189, decl_uid=20556, cgraph_uid=360)
+
+std::basic_istream<_CharT, _Traits>::basic_istream() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_istream * const this, const void * * __vtt_parm)
+{
+  struct basic_ios * D.29694;
+  struct basic_ios * D.29691;
+  long int D.29689;
+  int (*__vtbl_ptr_type) () * D.29688;
+  int (*__vtbl_ptr_type) () * D.29687;
+  sizetype iftmp.38;
+  int (*__vtbl_ptr_type) () * iftmp.37;
+  struct basic_ios * D.29679;
+  long int D.29677;
+  int (*__vtbl_ptr_type) () * D.29676;
+  int (*__vtbl_ptr_type) () * D.29675;
+  sizetype iftmp.36;
+  int (*__vtbl_ptr_type) () * iftmp.35;
+  struct basic_ios * D.29666;
+
+  <bb 2>:
+
+  <bb 3>:
+  iftmp.35 = *__vtt_parm;
+
+  <bb 4>:
+  this->_vptr.basic_istream = iftmp.35;
+
+  <bb 5>:
+  D.29675 = this->_vptr.basic_istream;
+  D.29676 = D.29675 + 18446744073709551592;
+  D.29677 = MEM[(long int *)D.29676];
+  iftmp.36 = (sizetype) D.29677;
+
+  <bb 6>:
+  D.29679 = this + iftmp.36;
+
+  <bb 7>:
+  iftmp.37 = MEM[(const void * *)__vtt_parm + 8B];
+
+  <bb 8>:
+  D.29679->D.19077._vptr.ios_base = iftmp.37;
+  this->_M_gcount = 0;
+
+  <bb 9>:
+  D.29687 = this->_vptr.basic_istream;
+  D.29688 = D.29687 + 18446744073709551592;
+  D.29689 = MEM[(long int *)D.29688];
+  iftmp.38 = (sizetype) D.29689;
+
+  <bb 10>:
+  D.29691 = this + iftmp.38;
+  std::basic_ios<char>::init (D.29691, 0B);
+
+  <bb 11>:
+  return;
+
+<L15>:
+
+  <bb 13>:
+  resx 1
+
+}
+
+
+
+;; Function std::basic_ios<_CharT, _Traits>::basic_ios() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt9basic_iosIcSt11char_traitsIcEEC2Ev, funcdef_no=1182, decl_uid=19060, cgraph_uid=353)
+
+std::basic_ios<_CharT, _Traits>::basic_ios() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_ios * const this)
+{
+  struct ios_base * D.29663;
+  struct ios_base * D.29662;
+
+  <bb 2>:
+  D.29662 = &this->D.19077;
+  std::ios_base::ios_base (D.29662);
+  this->D.19077._vptr.ios_base = &MEM[(void *)&_ZTVSt9basic_iosIcSt11char_traitsIcEE + 16B];
+  this->_M_tie = 0B;
+  this->_M_fill = 0;
+  this->_M_fill_init = 0;
+  this->_M_streambuf = 0B;
+  this->_M_ctype = 0B;
+  this->_M_num_put = 0B;
+  this->_M_num_get = 0B;
+  return;
+
+}
+
+
+
+;; Function std::basic_streambuf<_CharT, _Traits>::~basic_streambuf() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt15basic_streambufIcSt11char_traitsIcEED2Ev, funcdef_no=1218, decl_uid=14840, cgraph_uid=389)
+
+std::basic_streambuf<_CharT, _Traits>::~basic_streambuf() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_streambuf * const this)
+{
+  int D.29771;
+  struct locale * D.29770;
+
+  <bb 2>:
+  this->_vptr.basic_streambuf = &MEM[(void *)&_ZTVSt15basic_streambufIcSt11char_traitsIcEE + 16B];
+  D.29770 = &this->_M_buf_locale;
+  std::locale::~locale (D.29770);
+
+<L0>:
+  D.29771 = 0;
+  if (D.29771 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  operator delete (this);
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function std::basic_streambuf<_CharT, _Traits>::~basic_streambuf() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt15basic_streambufIcSt11char_traitsIcEED0Ev, funcdef_no=1220, decl_uid=14834, cgraph_uid=391)
+
+std::basic_streambuf<_CharT, _Traits>::~basic_streambuf() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_streambuf * const this)
+{
+  <bb 2>:
+  std::basic_streambuf<char>::~basic_streambuf (this);
+
+<L0>:
+  operator delete (this);
+  return;
+
+}
+
+
+
+;; Function std::basic_filebuf<_CharT, _Traits>::~basic_filebuf() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt13basic_filebufIcSt11char_traitsIcEED2Ev, funcdef_no=1196, decl_uid=23295, cgraph_uid=367)
+
+std::basic_filebuf<_CharT, _Traits>::~basic_filebuf() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_filebuf * const this)
+{
+  int D.29732;
+  struct basic_streambuf * D.29731;
+  struct __file_type * D.29730;
+
+  <bb 2>:
+  this->D.23298._vptr.basic_streambuf = &MEM[(void *)&_ZTVSt13basic_filebufIcSt11char_traitsIcEE + 16B];
+  std::basic_filebuf<char>::close (this);
+
+  <bb 3>:
+  D.29730 = &this->_M_file;
+  std::__basic_file<char>::~__basic_file (D.29730);
+
+  <bb 4>:
+  D.29731 = &this->D.23298;
+  std::basic_streambuf<char>::~basic_streambuf (D.29731);
+
+<L0>:
+  D.29732 = 0;
+  if (D.29732 != 0)
+    goto <bb 6>;
+  else
+    goto <bb 7>;
+
+  <bb 6>:
+  operator delete (this);
+
+  <bb 7>:
+  return;
+
+<L4>:
+  D.29730 = &this->_M_file;
+  std::__basic_file<char>::~__basic_file (D.29730);
+  resx 2
+
+<L5>:
+  D.29731 = &this->D.23298;
+  std::basic_streambuf<char>::~basic_streambuf (D.29731);
+  resx 1
+
+}
+
+
+
+;; Function std::basic_filebuf<_CharT, _Traits>::~basic_filebuf() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt13basic_filebufIcSt11char_traitsIcEED0Ev, funcdef_no=1198, decl_uid=23289, cgraph_uid=369)
+
+std::basic_filebuf<_CharT, _Traits>::~basic_filebuf() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_filebuf * const this)
+{
+  <bb 2>:
+  std::basic_filebuf<char>::~basic_filebuf (this);
+
+<L0>:
+  operator delete (this);
+  return;
+
+}
+
+
+
+;; Function std::basic_ios<_CharT, _Traits>::~basic_ios() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt9basic_iosIcSt11char_traitsIcEED2Ev, funcdef_no=1185, decl_uid=19074, cgraph_uid=356)
+
+std::basic_ios<_CharT, _Traits>::~basic_ios() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_ios * const this)
+{
+  int D.29803;
+  struct ios_base * D.29802;
+
+  <bb 2>:
+  this->D.19077._vptr.ios_base = &MEM[(void *)&_ZTVSt9basic_iosIcSt11char_traitsIcEE + 16B];
+  D.29802 = &this->D.19077;
+  std::ios_base::~ios_base (D.29802);
+
+<L0>:
+  D.29803 = 0;
+  if (D.29803 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  operator delete (this);
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function std::basic_ios<_CharT, _Traits>::~basic_ios() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt9basic_iosIcSt11char_traitsIcEED0Ev, funcdef_no=1187, decl_uid=19068, cgraph_uid=358)
+
+std::basic_ios<_CharT, _Traits>::~basic_ios() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_ios * const this)
+{
+  <bb 2>:
+  std::basic_ios<char>::~basic_ios (this);
+
+<L0>:
+  operator delete (this);
+  return;
+
+}
+
+
+
+;; Function std::basic_istream<_CharT, _Traits>::~basic_istream() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSiD2Ev, funcdef_no=1192, decl_uid=20578, cgraph_uid=363)
+
+std::basic_istream<_CharT, _Traits>::~basic_istream() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_istream * const this, const void * * __vtt_parm)
+{
+  int D.29798;
+  struct basic_ios * D.29796;
+  int D.29793;
+  int (*__vtbl_ptr_type) () * iftmp.48;
+  struct basic_ios * D.29788;
+  long int D.29786;
+  int (*__vtbl_ptr_type) () * D.29785;
+  int (*__vtbl_ptr_type) () * D.29784;
+  sizetype iftmp.47;
+  int (*__vtbl_ptr_type) () * iftmp.46;
+
+  <bb 2>:
+
+  <bb 3>:
+  iftmp.46 = *__vtt_parm;
+
+  <bb 4>:
+  this->_vptr.basic_istream = iftmp.46;
+
+  <bb 5>:
+  D.29784 = this->_vptr.basic_istream;
+  D.29785 = D.29784 + 18446744073709551592;
+  D.29786 = MEM[(long int *)D.29785];
+  iftmp.47 = (sizetype) D.29786;
+
+  <bb 6>:
+  D.29788 = this + iftmp.47;
+
+  <bb 7>:
+  iftmp.48 = MEM[(const void * *)__vtt_parm + 8B];
+
+  <bb 8>:
+  D.29788->D.19077._vptr.ios_base = iftmp.48;
+  this->_M_gcount = 0;
+  D.29793 = 0;
+  if (D.29793 != 0)
+    goto <bb 9>;
+  else
+    goto <bb 10> (<L12>);
+
+  <bb 9>:
+  D.29796 = &this->D.20585;
+  std::basic_ios<char>::~basic_ios (D.29796);
+
+<L12>:
+  D.29798 = 0;
+  if (D.29798 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 12>;
+
+  <bb 11>:
+  operator delete (this);
+
+  <bb 12>:
+  return;
+
+}
+
+
+
+;; Function std::basic_ifstream<_CharT, _Traits>::~basic_ifstream() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev, funcdef_no=1152, decl_uid=23381, cgraph_uid=323)
+
+std::basic_ifstream<_CharT, _Traits>::~basic_ifstream() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_ifstream * const this)
+{
+  int D.30128;
+  struct basic_ios * D.30126;
+  int D.30123;
+  struct basic_istream * D.30122;
+  const void * * iftmp.75;
+  struct __filebuf_type * D.30117;
+  int (*__vtbl_ptr_type) () * iftmp.74;
+  struct basic_ios * D.30112;
+  long int D.30110;
+  int (*__vtbl_ptr_type) () * D.30109;
+  int (*__vtbl_ptr_type) () * D.30108;
+  sizetype iftmp.73;
+  const void * * D.30103;
+  int (*__vtbl_ptr_type) () * iftmp.72;
+
+  <bb 2>:
+
+  <bb 3>:
+  iftmp.72 = &MEM[(void *)&_ZTVSt14basic_ifstreamIcSt11char_traitsIcEE + 24B];
+  this->D.23389._vptr.basic_istream = iftmp.72;
+
+  <bb 4>:
+  iftmp.73 = 256;
+
+  <bb 5>:
+  D.30112 = this + iftmp.73;
+
+  <bb 6>:
+  iftmp.74 = &MEM[(void *)&_ZTVSt14basic_ifstreamIcSt11char_traitsIcEE + 64B];
+  D.30112->D.19077._vptr.ios_base = iftmp.74;
+  D.30117 = &this->_M_filebuf;
+  std::basic_filebuf<char>::~basic_filebuf (D.30117);
+
+  <bb 7>:
+  iftmp.75 = &MEM[(void *)&_ZTTSt14basic_ifstreamIcSt11char_traitsIcEE + 8B];
+  D.30122 = &this->D.23389;
+  std::basic_istream<char>::~basic_istream (D.30122, iftmp.75);
+
+  <bb 8>:
+  D.30123 = 2;
+  if (D.30123 != 0)
+    goto <bb 9>;
+  else
+    goto <bb 10> (<L15>);
+
+  <bb 9>:
+  D.30126 = &this->D.23392;
+  std::basic_ios<char>::~basic_ios (D.30126);
+
+<L15>:
+  D.30128 = 0;
+  if (D.30128 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 12>;
+
+  <bb 11>:
+  operator delete (this);
+
+  <bb 12>:
+  return;
+
+<L19>:
+  iftmp.75 = &MEM[(void *)&_ZTTSt14basic_ifstreamIcSt11char_traitsIcEE + 8B];
+  D.30122 = &this->D.23389;
+  std::basic_istream<char>::~basic_istream (D.30122, iftmp.75);
+  resx 2
+
+<L23>:
+  D.30123 = 2;
+  if (D.30123 != 0)
+    goto <bb 15>;
+  else
+    goto <bb 16>;
+
+  <bb 15>:
+  D.30126 = &this->D.23392;
+  std::basic_ios<char>::~basic_ios (D.30126);
+
+  <bb 16>:
+  resx 1
+
+}
+
+
+
+;; Function std::basic_ifstream<_CharT, _Traits>::~basic_ifstream() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt14basic_ifstreamIcSt11char_traitsIcEED0Ev, funcdef_no=1153, decl_uid=23377, cgraph_uid=324)
+
+std::basic_ifstream<_CharT, _Traits>::~basic_ifstream() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_ifstream * const this)
+{
+  <bb 2>:
+  std::basic_ifstream<char>::~basic_ifstream (this);
+
+<L0>:
+  operator delete (this);
+  return;
+
+}
+
+
+
+;; Function std::basic_istream<_CharT, _Traits>::~basic_istream() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSiD1Ev, funcdef_no=1193, decl_uid=20574, cgraph_uid=364)
+
+std::basic_istream<_CharT, _Traits>::~basic_istream() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_istream * const this)
+{
+  int D.30236;
+  struct basic_ios * D.30234;
+  int D.30231;
+  int (*__vtbl_ptr_type) () * iftmp.95;
+  struct basic_ios * D.30226;
+  long int D.30224;
+  int (*__vtbl_ptr_type) () * D.30223;
+  int (*__vtbl_ptr_type) () * D.30222;
+  sizetype iftmp.94;
+  const void * * D.30217;
+  int (*__vtbl_ptr_type) () * iftmp.93;
+
+  <bb 2>:
+
+  <bb 3>:
+  iftmp.93 = &MEM[(void *)&_ZTVSi + 24B];
+  this->_vptr.basic_istream = iftmp.93;
+
+  <bb 4>:
+  iftmp.94 = 16;
+
+  <bb 5>:
+  D.30226 = this + iftmp.94;
+
+  <bb 6>:
+  iftmp.95 = &MEM[(void *)&_ZTVSi + 64B];
+  D.30226->D.19077._vptr.ios_base = iftmp.95;
+  this->_M_gcount = 0;
+  D.30231 = 2;
+  if (D.30231 != 0)
+    goto <bb 7>;
+  else
+    goto <bb 8> (<L12>);
+
+  <bb 7>:
+  D.30234 = &this->D.20585;
+  std::basic_ios<char>::~basic_ios (D.30234);
+
+<L12>:
+  D.30236 = 0;
+  if (D.30236 != 0)
+    goto <bb 9>;
+  else
+    goto <bb 10>;
+
+  <bb 9>:
+  operator delete (this);
+
+  <bb 10>:
+  return;
+
+}
+
+
+
+;; Function std::basic_istream<_CharT, _Traits>::~basic_istream() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSiD0Ev, funcdef_no=1194, decl_uid=20570, cgraph_uid=365)
+
+std::basic_istream<_CharT, _Traits>::~basic_istream() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_istream * const this)
+{
+  <bb 2>:
+  std::basic_istream<char>::~basic_istream (this);
+
+<L0>:
+  operator delete (this);
+  return;
+
+}
+
+
+
+;; Function bool std::basic_filebuf<_CharT, _Traits>::is_open() const [with _CharT = char; _Traits = std::char_traits<char>] (_ZNKSt13basic_filebufIcSt11char_traitsIcEE7is_openEv, funcdef_no=1200, decl_uid=23220, cgraph_uid=371)
+
+bool std::basic_filebuf<_CharT, _Traits>::is_open() const [with _CharT = char; _Traits = std::char_traits<char>] (const struct basic_filebuf * const this)
+{
+  void * D.29812;
+  const struct __file_type * D.29811;
+  bool D.29810;
+
+  <bb 2>:
+  D.29811 = &this->_M_file;
+  D.29810 = std::__basic_file<char>::is_open (D.29811);
+
+<L0>:
+  return D.29810;
+
+}
+
+
+
+;; Function bool std::basic_ifstream<_CharT, _Traits>::is_open() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv, funcdef_no=1154, decl_uid=23347, cgraph_uid=325)
+
+bool std::basic_ifstream<_CharT, _Traits>::is_open() [with _CharT = char; _Traits = std::char_traits<char>] (struct basic_ifstream * const this)
+{
+  struct __filebuf_type * D.29808;
+  bool D.29807;
+
+  <bb 2>:
+  D.29808 = &this->_M_filebuf;
+  D.29807 = std::basic_filebuf<char>::is_open (D.29808);
+
+<L0>:
+  return D.29807;
+
+}
+
+
+
+;; Function _Atomic_word __gnu_cxx::__exchange_and_add(volatile _Atomic_word*, int) (_ZN9__gnu_cxxL18__exchange_and_addEPVii, funcdef_no=258, decl_uid=7598, cgraph_uid=109)
+
+_Atomic_word __gnu_cxx::__exchange_and_add(volatile _Atomic_word*, int) (volatile _Atomic_word * __mem, int __val)
+{
+  unsigned int D.30094;
+  unsigned int __val.71;
+  _Atomic_word D.30092;
+
+  <bb 2>:
+  __val.71 = (unsigned int) __val;
+  D.30094 = __atomic_fetch_add_4 (__mem, __val.71, 4);
+  D.30092 = (_Atomic_word) D.30094;
+
+<L0>:
+  return D.30092;
+
+}
+
+
+
+;; Function _Atomic_word __gnu_cxx::__exchange_and_add_dispatch(_Atomic_word*, int) (_ZN9__gnu_cxxL27__exchange_and_add_dispatchEPii, funcdef_no=262, decl_uid=7615, cgraph_uid=113)
+
+_Atomic_word __gnu_cxx::__exchange_and_add_dispatch(_Atomic_word*, int) (_Atomic_word * __mem, int __val)
+{
+  _Atomic_word D.30087;
+  int D.30084;
+  bool retval.70;
+
+  <bb 2>:
+  D.30084 = __gthread_active_p ();
+  retval.70 = D.30084 != 0;
+  if (retval.70 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  D.30087 = __gnu_cxx::__exchange_and_add (__mem, __val);
+  goto <bb 5> (<L2>);
+
+  <bb 4>:
+  D.30087 = __gnu_cxx::__exchange_and_add_single (__mem, __val);
+
+<L2>:
+  return D.30087;
+
+}
+
+
+
+;; Function void std::basic_string<_CharT, _Traits, _Alloc>::_Rep::_M_dispose(const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNSs4_Rep10_M_disposeERKSaIcE, funcdef_no=1214, decl_uid=11911, cgraph_uid=385)
+
+void std::basic_string<_CharT, _Traits, _Alloc>::_Rep::_M_dispose(const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (struct _Rep * const this, const struct allocator & __a)
+{
+  struct _Rep & D.30082;
+  int D.30077;
+  _Atomic_word * D.30076;
+  bool retval.69;
+  long int D.30072;
+  long int D.30071;
+  bool D.30070;
+  struct _Rep & D.30069;
+  bool retval.68;
+
+  <bb 2>:
+  D.30082 = std::basic_string<char>::_Rep::_S_empty_rep ();
+  D.30069 = D.30082;
+  D.30070 = D.30069 != this;
+  D.30071 = (long int) D.30070;
+  D.30072 = __builtin_expect (D.30071, 0);
+  retval.68 = D.30072 != 0;
+  if (retval.68 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 3>:
+  D.30076 = &this->D.11923._M_refcount;
+  D.30077 = __gnu_cxx::__exchange_and_add_dispatch (D.30076, -1);
+  retval.69 = D.30077 <= 0;
+  if (retval.69 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  std::basic_string<char>::_Rep::_M_destroy (this, __a);
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function static void std::char_traits<char>::assign(std::char_traits<char>::char_type&, const char_type&) (_ZNSt11char_traitsIcE6assignERcRKc, funcdef_no=191, decl_uid=6304, cgraph_uid=14)
+
+static void std::char_traits<char>::assign(std::char_traits<char>::char_type&, const char_type&) (char_type & __c1, const char_type & __c2)
+{
+  char D.29977;
+
+  <bb 2>:
+  D.29977 = *__c2;
+  *__c1 = D.29977;
+  return;
+
+}
+
+
+
+;; Function void std::basic_string<_CharT, _Traits, _Alloc>::_Rep::_M_set_length_and_sharable(std::basic_string<_CharT, _Traits, _Alloc>::size_type) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int] (_ZNSs4_Rep26_M_set_length_and_sharableEm, funcdef_no=1238, decl_uid=11898, cgraph_uid=409)
+
+void std::basic_string<_CharT, _Traits, _Alloc>::_Rep::_M_set_length_and_sharable(std::basic_string<_CharT, _Traits, _Alloc>::size_type) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int] (struct _Rep * const this, size_type __n)
+{
+  struct _Rep & D.30029;
+  char * D.30027;
+  char * D.30026;
+  long int D.30023;
+  long int D.30022;
+  bool D.30021;
+  struct _Rep & D.30020;
+  bool retval.67;
+
+  <bb 2>:
+  D.30029 = std::basic_string<char>::_Rep::_S_empty_rep ();
+  D.30020 = D.30029;
+  D.30021 = D.30020 != this;
+  D.30022 = (long int) D.30021;
+  D.30023 = __builtin_expect (D.30022, 0);
+  retval.67 = D.30023 != 0;
+  if (retval.67 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  std::basic_string<char>::_Rep::_M_set_sharable (this);
+  this->D.11923._M_length = __n;
+  D.30026 = std::basic_string<char>::_Rep::_M_refdata (this);
+  D.30027 = D.30026 + __n;
+  std::char_traits<char>::assign (D.30027, &_S_terminal);
+
+  <bb 4>:
+  return;
+
+}
+
+
+
+;; Function static std::size_t std::char_traits<char>::length(const char_type*) (_ZNSt11char_traitsIcE6lengthEPKc, funcdef_no=195, decl_uid=6316, cgraph_uid=18)
+
+static std::size_t std::char_traits<char>::length(const char_type*) (const char_type * __s)
+{
+  size_t D.30052;
+
+  <bb 2>:
+  D.30052 = __builtin_strlen (__s);
+
+<L0>:
+  return D.30052;
+
+}
+
+
+
+;; Function static std::char_traits<char>::char_type* std::char_traits<char>::copy(std::char_traits<char>::char_type*, const char_type*, std::size_t) (_ZNSt11char_traitsIcE4copyEPcPKcm, funcdef_no=198, decl_uid=6328, cgraph_uid=21)
+
+static std::char_traits<char>::char_type* std::char_traits<char>::copy(std::char_traits<char>::char_type*, const char_type*, std::size_t) (char_type * __s1, const char_type * __s2, size_t __n)
+{
+  char_type * D.29978;
+
+  <bb 2>:
+  D.29978 = __builtin_memcpy (__s1, __s2, __n);
+
+<L0>:
+  return D.29978;
+
+}
+
+
+
+;; Function static void std::basic_string<_CharT, _Traits, _Alloc>::_M_copy(_CharT*, const _CharT*, std::basic_string<_CharT, _Traits, _Alloc>::size_type) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int] (_ZNSs7_M_copyEPcPKcm, funcdef_no=1237, decl_uid=11143, cgraph_uid=408)
+
+static void std::basic_string<_CharT, _Traits, _Alloc>::_M_copy(_CharT*, const _CharT*, std::basic_string<_CharT, _Traits, _Alloc>::size_type) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int] (char * __d, const char * __s, size_type __n)
+{
+  <bb 2>:
+  if (__n == 1)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  std::char_traits<char>::assign (__d, __s);
+  goto <bb 5>;
+
+  <bb 4>:
+  std::char_traits<char>::copy (__d, __s, __n);
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function static std::char_traits<char>::char_type std::char_traits<char>::to_char_type(const int_type&) (_ZNSt11char_traitsIcE12to_char_typeERKi, funcdef_no=200, decl_uid=6334, cgraph_uid=23)
+
+static std::char_traits<char>::char_type std::char_traits<char>::to_char_type(const int_type&) (const int_type & __c)
+{
+  int D.29986;
+  char_type D.29985;
+
+  <bb 2>:
+  D.29986 = *__c;
+  D.29985 = (char_type) D.29986;
+
+<L0>:
+  return D.29985;
+
+}
+
+
+
+;; Function static std::char_traits<char>::int_type std::char_traits<char>::to_int_type(const char_type&) (_ZNSt11char_traitsIcE11to_int_typeERKc, funcdef_no=201, decl_uid=6336, cgraph_uid=24)
+
+static std::char_traits<char>::int_type std::char_traits<char>::to_int_type(const char_type&) (const char_type & __c)
+{
+  unsigned char D.29765;
+  char D.29764;
+  int_type D.29763;
+
+  <bb 2>:
+  D.29764 = *__c;
+  D.29765 = (unsigned char) D.29764;
+  D.29763 = (int_type) D.29765;
+
+<L0>:
+  return D.29763;
+
+}
+
+
+
+;; Function std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sgetc() [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::int_type = int] (_ZNSt15basic_streambufIcSt11char_traitsIcEE5sgetcEv, funcdef_no=1244, decl_uid=14725, cgraph_uid=415)
+
+std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sgetc() [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::int_type = int] (struct basic_streambuf * const this)
+{
+  int_type D.29964;
+  char_type * D.29963;
+  char_type * D.29962;
+  char_type * D.29961;
+  int_type __ret;
+  int_type D.29959;
+  int (*__vtbl_ptr_type) () D.29958;
+  int (*__vtbl_ptr_type) () * D.29957;
+  int (*__vtbl_ptr_type) () * D.29956;
+  char_type * D.29954;
+  long int D.29951;
+  long int D.29950;
+  bool D.29949;
+  char_type * D.29948;
+  char_type * D.29947;
+  bool retval.65;
+
+  <bb 2>:
+  D.29961 = std::basic_streambuf<char>::gptr (this);
+  D.29947 = D.29961;
+  D.29962 = std::basic_streambuf<char>::egptr (this);
+  D.29948 = D.29962;
+  D.29949 = D.29947 < D.29948;
+  D.29950 = (long int) D.29949;
+  D.29951 = __builtin_expect (D.29950, 1);
+  retval.65 = D.29951 != 0;
+  if (retval.65 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  D.29963 = std::basic_streambuf<char>::gptr (this);
+  D.29954 = D.29963;
+  __ret = std::char_traits<char>::to_int_type (D.29954);
+  goto <bb 5>;
+
+  <bb 4>:
+  D.29956 = this->_vptr.basic_streambuf;
+  D.29957 = D.29956 + 72;
+  D.29958 = *D.29957;
+  D.29964 = OBJ_TYPE_REF(D.29958;this->9) (this);
+  __ret = D.29964;
+
+  <bb 5>:
+  D.29959 = __ret;
+
+<L3>:
+  return D.29959;
+
+}
+
+
+
+;; Function std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::int_type = int] (_ZNSt15basic_streambufIcSt11char_traitsIcEE6sbumpcEv, funcdef_no=1241, decl_uid=14723, cgraph_uid=412)
+
+std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::int_type = int] (struct basic_streambuf * const this)
+{
+  int_type D.30014;
+  char_type * D.30013;
+  char_type * D.30012;
+  char_type * D.30011;
+  int_type __ret;
+  int_type D.30009;
+  int (*__vtbl_ptr_type) () D.30008;
+  int (*__vtbl_ptr_type) () * D.30007;
+  int (*__vtbl_ptr_type) () * D.30006;
+  char_type * D.30004;
+  long int D.30001;
+  long int D.30000;
+  bool D.29999;
+  char_type * D.29998;
+  char_type * D.29997;
+  bool retval.66;
+
+  <bb 2>:
+  D.30011 = std::basic_streambuf<char>::gptr (this);
+  D.29997 = D.30011;
+  D.30012 = std::basic_streambuf<char>::egptr (this);
+  D.29998 = D.30012;
+  D.29999 = D.29997 < D.29998;
+  D.30000 = (long int) D.29999;
+  D.30001 = __builtin_expect (D.30000, 1);
+  retval.66 = D.30001 != 0;
+  if (retval.66 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  D.30013 = std::basic_streambuf<char>::gptr (this);
+  D.30004 = D.30013;
+  __ret = std::char_traits<char>::to_int_type (D.30004);
+  std::basic_streambuf<char>::gbump (this, 1);
+  goto <bb 5>;
+
+  <bb 4>:
+  D.30006 = this->_vptr.basic_streambuf;
+  D.30007 = D.30006 + 80;
+  D.30008 = *D.30007;
+  D.30014 = OBJ_TYPE_REF(D.30008;this->10) (this);
+  __ret = D.30014;
+
+  <bb 5>:
+  D.30009 = __ret;
+
+<L3>:
+  return D.30009;
+
+}
+
+
+
+;; Function static bool std::char_traits<char>::eq_int_type(const int_type&, const int_type&) (_ZNSt11char_traitsIcE11eq_int_typeERKiS2_, funcdef_no=202, decl_uid=6339, cgraph_uid=25)
+
+static bool std::char_traits<char>::eq_int_type(const int_type&, const int_type&) (const int_type & __c1, const int_type & __c2)
+{
+  int D.29759;
+  int D.29758;
+  bool D.29757;
+
+  <bb 2>:
+  D.29758 = *__c1;
+  D.29759 = *__c2;
+  D.29757 = D.29758 == D.29759;
+
+<L0>:
+  return D.29757;
+
+}
+
+
+
+;; Function static std::char_traits<char>::int_type std::char_traits<char>::eof() (_ZNSt11char_traitsIcE3eofEv, funcdef_no=203, decl_uid=6340, cgraph_uid=26)
+
+static std::char_traits<char>::int_type std::char_traits<char>::eof() ()
+{
+  int_type D.29755;
+
+  <bb 2>:
+  D.29755 = -1;
+
+<L0>:
+  return D.29755;
+
+}
+
+
+
+;; Function std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::uflow() [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::int_type = int] (_ZNSt15basic_streambufIcSt11char_traitsIcEE5uflowEv, funcdef_no=1248, decl_uid=14798, cgraph_uid=419)
+
+std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::uflow() [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::int_type = int] (struct basic_streambuf * const this)
+{
+  char_type * D.29752;
+  int D.29751;
+  const bool __testeof;
+  int_type __ret;
+  int_type D.29749;
+  int __ret.45;
+  char_type * D.29746;
+  bool D.29743;
+  int D.29742;
+  int (*__vtbl_ptr_type) () D.29741;
+  int (*__vtbl_ptr_type) () * D.29740;
+  int (*__vtbl_ptr_type) () * D.29739;
+  const int_type D.29436;
+  int __ret.44;
+
+  <bb 2>:
+  __ret.44 = std::char_traits<char>::eof ();
+  __ret = __ret.44;
+  D.29739 = this->_vptr.basic_streambuf;
+  D.29740 = D.29739 + 72;
+  D.29741 = *D.29740;
+  D.29751 = OBJ_TYPE_REF(D.29741;this->9) (this);
+
+  <bb 3>:
+  D.29742 = D.29751;
+  D.29436 = D.29742;
+  __testeof = std::char_traits<char>::eq_int_type (&D.29436, &__ret);
+  D.29436 = {CLOBBER};
+  D.29743 = ~__testeof;
+  if (D.29743 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 7>;
+
+  <bb 4>:
+  D.29752 = std::basic_streambuf<char>::gptr (this);
+
+  <bb 5>:
+  D.29746 = D.29752;
+  __ret.45 = std::char_traits<char>::to_int_type (D.29746);
+  __ret = __ret.45;
+  std::basic_streambuf<char>::gbump (this, 1);
+
+  <bb 6>:
+
+  <bb 7>:
+  D.29749 = __ret;
+  __ret = {CLOBBER};
+
+<L4>:
+  return D.29749;
+
+<L5>:
+  __ret = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::underflow() [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::int_type = int] (_ZNSt15basic_streambufIcSt11char_traitsIcEE9underflowEv, funcdef_no=1249, decl_uid=14796, cgraph_uid=420)
+
+std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::underflow() [with _CharT = char; _Traits = std::char_traits<char>; std::basic_streambuf<_CharT, _Traits>::int_type = int] (struct basic_streambuf * const this)
+{
+  int_type D.29775;
+
+  <bb 2>:
+  D.29775 = std::char_traits<char>::eof ();
+
+<L0>:
+  return D.29775;
+
+}
+
+
+
+;; Function std::_Ios_Openmode std::operator|(std::_Ios_Openmode, std::_Ios_Openmode) (_ZStorSt13_Ios_OpenmodeS_, funcdef_no=595, decl_uid=13749, cgraph_uid=142)
+
+std::_Ios_Openmode std::operator|(std::_Ios_Openmode, std::_Ios_Openmode) (_Ios_Openmode __a, _Ios_Openmode __b)
+{
+  int D.29718;
+  int __b.41;
+  int __a.40;
+  _Ios_Openmode D.29715;
+
+  <bb 2>:
+  __a.40 = (int) __a;
+  __b.41 = (int) __b;
+  D.29718 = __a.40 | __b.41;
+  D.29715 = (_Ios_Openmode) D.29718;
+
+<L0>:
+  return D.29715;
+
+}
+
+
+
+;; Function std::_Ios_Iostate std::operator|(std::_Ios_Iostate, std::_Ios_Iostate) (_ZStorSt12_Ios_IostateS_, funcdef_no=602, decl_uid=13782, cgraph_uid=149)
+
+std::_Ios_Iostate std::operator|(std::_Ios_Iostate, std::_Ios_Iostate) (_Ios_Iostate __a, _Ios_Iostate __b)
+{
+  int D.29728;
+  int __b.43;
+  int __a.42;
+  _Ios_Iostate D.29725;
+
+  <bb 2>:
+  __a.42 = (int) __a;
+  __b.43 = (int) __b;
+  D.29728 = __a.42 | __b.43;
+  D.29725 = (_Ios_Iostate) D.29728;
+
+<L0>:
+  return D.29725;
+
+}
+
+
+
+;; Function void std::basic_ios<_CharT, _Traits>::setstate(std::ios_base::iostate) [with _CharT = char; _Traits = std::char_traits<char>; std::ios_base::iostate = std::_Ios_Iostate] (_ZNSt9basic_iosIcSt11char_traitsIcEE8setstateESt12_Ios_Iostate, funcdef_no=1180, decl_uid=18997, cgraph_uid=351)
+
+void std::basic_ios<_CharT, _Traits>::setstate(std::ios_base::iostate) [with _CharT = char; _Traits = std::char_traits<char>; std::ios_base::iostate = std::_Ios_Iostate] (struct basic_ios * const this, iostate __state)
+{
+  _Ios_Iostate D.29722;
+  _Ios_Iostate D.29721;
+  _Ios_Iostate D.29720;
+
+  <bb 2>:
+  D.29722 = std::basic_ios<char>::rdstate (this);
+  D.29720 = D.29722;
+  D.29721 = std::operator| (D.29720, __state);
+  std::basic_ios<char>::clear (this, D.29721);
+  return;
+
+}
+
+
+
+;; Function void std::basic_ifstream<_CharT, _Traits>::open(const char*, std::ios_base::openmode) [with _CharT = char; _Traits = std::char_traits<char>; std::ios_base::openmode = std::_Ios_Openmode] (_ZNSt14basic_ifstreamIcSt11char_traitsIcEE4openEPKcSt13_Ios_Openmode, funcdef_no=1199, decl_uid=23351, cgraph_uid=370)
+
+void std::basic_ifstream<_CharT, _Traits>::open(const char*, std::ios_base::openmode) [with _CharT = char; _Traits = std::char_traits<char>; std::ios_base::openmode = std::_Ios_Openmode] (struct basic_ifstream * const this, const char * __s, openmode __mode)
+{
+  struct __filebuf_type * D.29714;
+  struct basic_ios * D.29713;
+  sizetype D.29712;
+  long int D.29711;
+  int (*__vtbl_ptr_type) () * D.29710;
+  int (*__vtbl_ptr_type) () * D.29709;
+  struct basic_ios * D.29707;
+  sizetype D.29706;
+  long int D.29705;
+  int (*__vtbl_ptr_type) () * D.29704;
+  int (*__vtbl_ptr_type) () * D.29703;
+  struct __filebuf_type * D.29700;
+  struct __filebuf_type * D.29699;
+  _Ios_Openmode D.29698;
+  bool retval.39;
+
+  <bb 2>:
+  D.29698 = std::operator| (__mode, 8);
+  D.29699 = &this->_M_filebuf;
+  D.29714 = std::basic_filebuf<char>::open (D.29699, __s, D.29698);
+  D.29700 = D.29714;
+  retval.39 = D.29700 == 0B;
+  if (retval.39 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  D.29703 = this->D.23389._vptr.basic_istream;
+  D.29704 = D.29703 + 18446744073709551592;
+  D.29705 = MEM[(long int *)D.29704];
+  D.29706 = (sizetype) D.29705;
+  D.29707 = this + D.29706;
+  std::basic_ios<char>::setstate (D.29707, 4);
+  goto <bb 5>;
+
+  <bb 4>:
+  D.29709 = this->D.23389._vptr.basic_istream;
+  D.29710 = D.29709 + 18446744073709551592;
+  D.29711 = MEM[(long int *)D.29710];
+  D.29712 = (sizetype) D.29711;
+  D.29713 = this + D.29712;
+  std::basic_ios<char>::clear (D.29713, 0);
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function std::basic_ifstream<_CharT, _Traits>::basic_ifstream(const char*, std::ios_base::openmode) [with _CharT = char; _Traits = std::char_traits<char>; std::ios_base::openmode = std::_Ios_Openmode] (_ZNSt14basic_ifstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode, funcdef_no=1149, decl_uid=23357, cgraph_uid=320)
+
+std::basic_ifstream<_CharT, _Traits>::basic_ifstream(const char*, std::ios_base::openmode) [with _CharT = char; _Traits = std::char_traits<char>; std::ios_base::openmode = std::_Ios_Openmode] (struct basic_ifstream * const this, const char * __s, openmode __mode)
+{
+  struct basic_ios * D.29657;
+  struct basic_istream * D.29654;
+  const void * * iftmp.34;
+  struct __filebuf_type * D.29649;
+  struct basic_ios * D.29648;
+  long int D.29646;
+  int (*__vtbl_ptr_type) () * D.29645;
+  int (*__vtbl_ptr_type) () * D.29644;
+  sizetype iftmp.33;
+  struct basic_streambuf * D.29640;
+  struct __filebuf_type * D.29639;
+  int (*__vtbl_ptr_type) () * iftmp.32;
+  struct basic_ios * D.29634;
+  long int D.29632;
+  int (*__vtbl_ptr_type) () * D.29631;
+  int (*__vtbl_ptr_type) () * D.29630;
+  sizetype iftmp.31;
+  const void * * D.29625;
+  int (*__vtbl_ptr_type) () * iftmp.30;
+  struct basic_istream * D.29621;
+  const void * * iftmp.29;
+  struct basic_ios * D.29615;
+
+  <bb 2>:
+
+  <bb 3>:
+  D.29615 = &this->D.23392;
+  std::basic_ios<char>::basic_ios (D.29615);
+
+  <bb 4>:
+  iftmp.29 = &MEM[(void *)&_ZTTSt14basic_ifstreamIcSt11char_traitsIcEE + 8B];
+  D.29621 = &this->D.23389;
+  std::basic_istream<char>::basic_istream (D.29621, iftmp.29);
+
+  <bb 5>:
+
+  <bb 6>:
+  iftmp.30 = &MEM[(void *)&_ZTVSt14basic_ifstreamIcSt11char_traitsIcEE + 24B];
+  this->D.23389._vptr.basic_istream = iftmp.30;
+
+  <bb 7>:
+  iftmp.31 = 256;
+
+  <bb 8>:
+  D.29634 = this + iftmp.31;
+
+  <bb 9>:
+  iftmp.32 = &MEM[(void *)&_ZTVSt14basic_ifstreamIcSt11char_traitsIcEE + 64B];
+  D.29634->D.19077._vptr.ios_base = iftmp.32;
+  D.29639 = &this->_M_filebuf;
+  std::basic_filebuf<char>::basic_filebuf (D.29639);
+
+  <bb 10>:
+  D.29640 = &this->_M_filebuf.D.23298;
+
+  <bb 11>:
+  iftmp.33 = 256;
+  D.29648 = this + iftmp.33;
+  std::basic_ios<char>::init (D.29648, D.29640);
+
+  <bb 12>:
+  std::basic_ifstream<char>::open (this, __s, __mode);
+
+  <bb 13>:
+  return;
+
+<L18>:
+  D.29649 = &this->_M_filebuf;
+  std::basic_filebuf<char>::~basic_filebuf (D.29649);
+  resx 3
+
+<L19>:
+
+  <bb 16>:
+  iftmp.34 = &MEM[(void *)&_ZTTSt14basic_ifstreamIcSt11char_traitsIcEE + 8B];
+  D.29654 = &this->D.23389;
+  std::basic_istream<char>::~basic_istream (D.29654, iftmp.34);
+  resx 2
+
+<L23>:
+
+  <bb 18>:
+  D.29657 = &this->D.23392;
+  std::basic_ios<char>::~basic_ios (D.29657);
+
+  <bb 19>:
+  resx 1
+
+}
+
+
+
+;; Function std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*) [with _Traits = std::char_traits<char>] (_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc, funcdef_no=1146, decl_uid=19844, cgraph_uid=317)
+
+std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*) [with _Traits = std::char_traits<char>] (struct basic_ostream & __out, const char * __s)
+{
+  struct basic_ostream & D.30050;
+  long int D.30049;
+  long unsigned int D.30048;
+  struct basic_ios * D.30046;
+  sizetype D.30045;
+  long int D.30044;
+  int (*__vtbl_ptr_type) () * D.30043;
+  int (*__vtbl_ptr_type) () * D.30042;
+
+  <bb 2>:
+  if (__s == 0B)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  D.30042 = __out->_vptr.basic_ostream;
+  D.30043 = D.30042 + 18446744073709551592;
+  D.30044 = MEM[(long int *)D.30043];
+  D.30045 = (sizetype) D.30044;
+  D.30046 = __out + D.30045;
+  std::basic_ios<char>::setstate (D.30046, 1);
+  goto <bb 5>;
+
+  <bb 4>:
+  D.30048 = std::char_traits<char>::length (__s);
+  D.30049 = (long int) D.30048;
+  std::__ostream_insert<char, std::char_traits<char> > (__out, __s, D.30049);
+
+  <bb 5>:
+  D.30050 = __out;
+
+<L3>:
+  return D.30050;
+
+}
+
+
+
+;; Function bool create_target_functions_table(Func****, int, int) (_Z29create_target_functions_tablePPPP4Funcii, funcdef_no=1137, decl_uid=28742, cgraph_uid=308)
+
+bool create_target_functions_table(Func****, int, int) (struct Func * * * * table_, int nrows, int ncolumns)
+{
+  int j;
+  int i;
+  bool result;
+  struct Func * * * table;
+  bool D.29488;
+  struct _IO_FILE * stderr.4;
+  struct _IO_FILE * stderr.3;
+  struct _IO_FILE * stderr.2;
+  struct Func * D.29482;
+  struct Func * * D.29481;
+  long unsigned int D.29480;
+  long unsigned int D.29479;
+  struct Func * * D.29478;
+  struct Func * * * D.29477;
+  long unsigned int D.29476;
+  long unsigned int D.29475;
+  void * D.29474;
+  struct Func * * D.29473;
+  long unsigned int D.29472;
+  long unsigned int D.29471;
+  struct Func * * D.29470;
+  struct Func * * * D.29469;
+  long unsigned int D.29468;
+  long unsigned int D.29467;
+  struct Func * * D.29464;
+  struct Func * * * D.29463;
+  long unsigned int D.29462;
+  long unsigned int D.29461;
+  void * D.29460;
+  long unsigned int D.29459;
+  long unsigned int D.29458;
+  struct Func * * * D.29457;
+  long unsigned int D.29456;
+  long unsigned int D.29455;
+  struct _IO_FILE * stderr.1;
+  long unsigned int D.29451;
+  long unsigned int D.29450;
+  struct _IO_FILE * stderr.0;
+
+  <bb 2>:
+  result = 1;
+  stderr.0 = stderr;
+  __builtin_fwrite ("Allocating the rows.\n", 1, 21, stderr.0);
+  D.29450 = (long unsigned int) nrows;
+  D.29451 = D.29450 * 8;
+  table = malloc (D.29451);
+  if (table != 0B)
+    goto <bb 3>;
+  else
+    goto <bb 11>;
+
+  <bb 3>:
+  stderr.1 = stderr;
+  __builtin_fwrite ("Allocating the columns.\n", 1, 24, stderr.1);
+  i = 0;
+  goto <bb 10>;
+
+  <bb 4>:
+  D.29455 = (long unsigned int) i;
+  D.29456 = D.29455 * 8;
+  D.29457 = table + D.29456;
+  D.29458 = (long unsigned int) ncolumns;
+  D.29459 = D.29458 * 8;
+  D.29460 = malloc (D.29459);
+  *D.29457 = D.29460;
+  D.29461 = (long unsigned int) i;
+  D.29462 = D.29461 * 8;
+  D.29463 = table + D.29462;
+  D.29464 = *D.29463;
+  if (D.29464 != 0B)
+    goto <bb 5>;
+  else
+    goto <bb 8>;
+
+  <bb 5>:
+  j = 0;
+  goto <bb 7>;
+
+  <bb 6>:
+  D.29467 = (long unsigned int) i;
+  D.29468 = D.29467 * 8;
+  D.29469 = table + D.29468;
+  D.29470 = *D.29469;
+  D.29471 = (long unsigned int) j;
+  D.29472 = D.29471 * 8;
+  D.29473 = D.29470 + D.29472;
+  D.29474 = malloc (48);
+  *D.29473 = D.29474;
+  D.29475 = (long unsigned int) i;
+  D.29476 = D.29475 * 8;
+  D.29477 = table + D.29476;
+  D.29478 = *D.29477;
+  D.29479 = (long unsigned int) j;
+  D.29480 = D.29479 * 8;
+  D.29481 = D.29478 + D.29480;
+  D.29482 = *D.29481;
+  D.29482->f = 0B;
+  j = j + 1;
+
+  <bb 7>:
+  if (j < ncolumns)
+    goto <bb 6>;
+  else
+    goto <bb 9>;
+
+  <bb 8>:
+  stderr.2 = stderr;
+  __builtin_fwrite ("Error in table of target functions allocation (columns).\n", 1, 57, stderr.2);
+  result = 0;
+
+  <bb 9>:
+  i = i + 1;
+
+  <bb 10>:
+  if (i < nrows)
+    goto <bb 4>;
+  else
+    goto <bb 12>;
+
+  <bb 11>:
+  stderr.3 = stderr;
+  __builtin_fwrite ("Error in table of target functions allocation (rows).\n", 1, 54, stderr.3);
+  result = 0;
+
+  <bb 12>:
+  stderr.4 = stderr;
+  __builtin_fwrite ("Allocating the columns is OK.\n", 1, 30, stderr.4);
+  *table_ = table;
+  D.29488 = result;
+
+<L12>:
+  return D.29488;
+
+}
+
+
+
+;; Function void call_function_ffi_call(Func*) (_Z22call_function_ffi_callP4Func, funcdef_no=1138, decl_uid=28757, cgraph_uid=309)
+
+void call_function_ffi_call(Func*) (struct Func * ff)
+{
+  ffi_status D.29504;
+  struct ffi_cif cif;
+  void (*<T6ef>) (void) D.29503;
+  void * D.29502;
+  void * D.29501;
+  void * * D.29500;
+  struct _IO_FILE * stderr.7;
+  ffi_status D.29496;
+  unsigned int D.29495;
+  int D.29494;
+  struct ffi_type * D.29493;
+  struct ffi_type * * D.29492;
+  bool retval.6;
+  struct _IO_FILE * stderr.5;
+
+  <bb 2>:
+  stderr.5 = stderr;
+  __builtin_fwrite (" In call_function_ffi_call.\n", 1, 28, stderr.5);
+
+  <bb 3>:
+  D.29492 = ff->arg_types;
+  D.29493 = ff->ret_type;
+  D.29494 = ff->nargs;
+  D.29495 = (unsigned int) D.29494;
+  D.29504 = ffi_prep_cif (&cif, 2, D.29495, D.29493, D.29492);
+
+  <bb 4>:
+  D.29496 = D.29504;
+  retval.6 = D.29496 != 0;
+  if (retval.6 != 0)
+    goto <bb 5>;
+  else
+    goto <bb 7>;
+
+  <bb 5>:
+  stderr.7 = stderr;
+  __builtin_fwrite ("Error ffi_prep_cif.\n", 1, 20, stderr.7);
+
+  <bb 6>:
+  exit (1);
+
+  <bb 7>:
+  D.29500 = ff->arg_values;
+  D.29501 = ff->ret_value;
+  D.29502 = ff->f;
+  D.29503 = (void (*<T6ef>) (void)) D.29502;
+  ffi_call (&cif, D.29503, D.29501, D.29500);
+
+  <bb 8>:
+  cif = {CLOBBER};
+  return;
+
+<L2>:
+  cif = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function void init_array() (_Z10init_arrayv, funcdef_no=1139, decl_uid=28760, cgraph_uid=310)
+
+void init_array() ()
+{
+  int i;
+
+  <bb 2>:
+  i = 0;
+  goto <bb 4>;
+
+  <bb 3>:
+  h_a[i] = 5.0e-1;
+  h_b[i] = 5.0e-1;
+  i = i + 1;
+
+  <bb 4>:
+  if (i <= 32767)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function void print_array() (_Z11print_arrayv, funcdef_no=1140, decl_uid=28767, cgraph_uid=311)
+
+void print_array() ()
+{
+  int i;
+  struct _IO_FILE * stdout.9;
+  int D.29510;
+  double D.29509;
+  struct _IO_FILE * stdout.8;
+  int D.29507;
+
+  <bb 2>:
+  D.29507 = omp_get_thread_num ();
+  stdout.8 = stdout;
+  fprintf (stdout.8, "Thread [%02d]: Imprimindo o array de resultados:\n", D.29507);
+  i = 0;
+  goto <bb 4>;
+
+  <bb 3>:
+  D.29509 = h_c[i];
+  D.29510 = omp_get_thread_num ();
+  stdout.9 = stdout;
+  fprintf (stdout.9, "Thread [%02d]: h_c[%07d]: %f\n", D.29510, i, D.29509);
+  i = i + 1;
+
+  <bb 4>:
+  if (i <= 32767)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function void check_result() (_Z12check_resultv, funcdef_no=1141, decl_uid=28774, cgraph_uid=312)
+
+void check_result() ()
+{
+  double sum;
+  int i;
+  struct _IO_FILE * stdout.11;
+  int D.29516;
+  double D.29515;
+  double D.29514;
+  struct _IO_FILE * stdout.10;
+  int D.29512;
+
+  <bb 2>:
+  sum = 0.0;
+  D.29512 = omp_get_thread_num ();
+  stdout.10 = stdout;
+  fprintf (stdout.10, "Thread [%02d]: Verificando o resultado.\n", D.29512);
+  i = 0;
+  goto <bb 4>;
+
+  <bb 3>:
+  D.29514 = h_c[i];
+  sum = D.29514 + sum;
+  i = i + 1;
+
+  <bb 4>:
+  if (i <= 32767)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  D.29515 = sum / 3.2768e+4;
+  D.29516 = omp_get_thread_num ();
+  stdout.11 = stdout;
+  fprintf (stdout.11, "Thread [%02d]: Resultado Final: (%f, %f)\n", D.29516, sum, D.29515);
+  return;
+
+}
+
+
+
+;; Function void checkCudaErrors(CUresult) (_Z15checkCudaErrors14cudaError_enum, funcdef_no=1142, decl_uid=28783, cgraph_uid=313)
+
+void checkCudaErrors(CUresult) (CUresult err)
+{
+  static const char __PRETTY_FUNCTION__[31] = "void checkCudaErrors(CUresult)";
+
+  <bb 2>:
+  if (err != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  __assert_fail ("err == CUDA_SUCCESS", "vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu-two-loops.cpp", 161, &__PRETTY_FUNCTION__);
+
+  <bb 4>:
+  return;
+
+}
+
+
+
+;; Function void prepare_alternatives_functions() (_Z30prepare_alternatives_functionsv, funcdef_no=1144, decl_uid=29064, cgraph_uid=315)
+
+void prepare_alternatives_functions() ()
+{
+  bool D.30178;
+  static const char __PRETTY_FUNCTION__[38] = "void prepare_alternatives_functions()";
+  int ndevices;
+  int nloops;
+  struct Func * ff;
+  int n_params;
+  struct _IO_FILE * stdout.84;
+  struct Func * * * TablePointerFunctions.83;
+  struct Func * * * table.82;
+  struct Func * D.30171;
+  struct Func * * D.30170;
+  struct Func * * D.30169;
+  struct Func * * * D.30168;
+  struct Func * * * table.81;
+  struct Func * D.30166;
+  struct Func * * D.30165;
+  struct Func * * D.30164;
+  struct Func * * * table.80;
+  struct _IO_FILE * stderr.79;
+  struct Func * * * table.78;
+  bool retval.77;
+  struct ffi_type * * D.30155;
+  struct ffi_type * * D.30154;
+  struct ffi_type * * D.30153;
+  void * * D.30152;
+  void * * D.30151;
+  void * * D.30150;
+  void * * D.30149;
+  void * D.30148;
+  long unsigned int D.30147;
+  long unsigned int D.30146;
+  int D.30145;
+  void * D.30144;
+  long unsigned int D.30143;
+  long unsigned int D.30142;
+  int D.30141;
+  struct _IO_FILE * stdout.76;
+
+  <bb 2>:
+  stdout.76 = stdout;
+  __builtin_fwrite ("In prepare_alternatives_functions.\n", 1, 35, stdout.76);
+  n_params = 1;
+  ff = malloc (48);
+  D.30141 = n_params + 1;
+  D.30142 = (long unsigned int) D.30141;
+  D.30143 = D.30142 * 8;
+  D.30144 = malloc (D.30143);
+  ff->arg_types = D.30144;
+  D.30145 = n_params + 1;
+  D.30146 = (long unsigned int) D.30145;
+  D.30147 = D.30146 * 8;
+  D.30148 = malloc (D.30147);
+  ff->arg_values = D.30148;
+  ff->f = func_GPU;
+  D.30149 = &ff->ret_value;
+  memset (D.30149, 0, 8);
+  ff->ret_type = &ffi_type_void;
+  ff->nargs = n_params;
+  D.30150 = ff->arg_values;
+  *D.30150 = &ffi_type_void;
+  D.30151 = ff->arg_values;
+  D.30152 = D.30151 + 8;
+  *D.30152 = 0B;
+  D.30153 = ff->arg_types;
+  *D.30153 = &ffi_type_void;
+  D.30154 = ff->arg_types;
+  D.30155 = D.30154 + 8;
+  *D.30155 = 0B;
+  nloops = 2;
+  ndevices = 2;
+  D.30178 = create_target_functions_table (&table, nloops, ndevices);
+  retval.77 = D.30178;
+  if (retval.77 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 7>;
+
+  <bb 3>:
+  table.78 = table;
+  if (table.78 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  __assert_fail ("table != __null", "vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu-two-loops.cpp", 279, &__PRETTY_FUNCTION__);
+
+  <bb 5>:
+  stderr.79 = stderr;
+  __builtin_fwrite ("Declaring function in 0,1.\n", 1, 27, stderr.79);
+  table.80 = table;
+  D.30164 = *table.80;
+  D.30165 = D.30164 + 8;
+  D.30166 = *D.30165;
+  *D.30166 = MEM[(const struct Func &)ff];
+  table.81 = table;
+  D.30168 = table.81 + 8;
+  D.30169 = *D.30168;
+  D.30170 = D.30169 + 8;
+  D.30171 = *D.30170;
+  *D.30171 = MEM[(const struct Func &)ff];
+  table.82 = table;
+  TablePointerFunctions = table.82;
+  TablePointerFunctions.83 = TablePointerFunctions;
+  if (TablePointerFunctions.83 == 0B)
+    goto <bb 6>;
+  else
+    goto <bb 7>;
+
+  <bb 6>:
+  __assert_fail ("TablePointerFunctions != __null", "vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu-two-loops.cpp", 286, &__PRETTY_FUNCTION__);
+
+  <bb 7>:
+  stdout.84 = stdout;
+  __builtin_fwrite ("End of prepare_alternatives_functions.\n", 1, 39, stdout.84);
+  return;
+
+}
+
+
+
+;; Function int main() (main, funcdef_no=1145, decl_uid=29074, cgraph_uid=316)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 6: gimple_omp_for
+    bb 7: GIMPLE_OMP_CONTINUE
+    bb 8: GIMPLE_OMP_RETURN
+    bb 3: gimple_omp_for
+    bb 4: GIMPLE_OMP_CONTINUE
+    bb 5: GIMPLE_OMP_RETURN
+bb 9: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 17
+Merging blocks 2 and 10
+int main() ()
+{
+  unsigned int number_of_threads.104;
+  bool D.30311;
+  long int .iend0.103;
+  int D.30310;
+  long int .istart0.102;
+  bool D.30307;
+  long int .iend0.101;
+  long int .istart0.100;
+  bool D.30304;
+  long int .iend0.99;
+  int D.30303;
+  long int .istart0.98;
+  bool D.30300;
+  long int .iend0.97;
+  long int .istart0.96;
+  int i;
+  int i;
+  int number_of_threads;
+  int i;
+  int D.30195;
+  struct .omp_data_s.91 .omp_data_o.92;
+  int D.30205;
+  int D.30204;
+
+  <bb 2>:
+  prepare_alternatives_functions ();
+  init_array ();
+  number_of_threads = 4;
+  .omp_data_o.92.number_of_threads = number_of_threads;
+  number_of_threads.104 = (unsigned int) number_of_threads;
+  __builtin_GOMP_parallel_start (main._omp_fn.0, &.omp_data_o.92, number_of_threads.104);
+  main._omp_fn.0 (&.omp_data_o.92);
+  __builtin_GOMP_parallel_end ();
+  number_of_threads = .omp_data_o.92.number_of_threads;
+  check_result ();
+  D.30195 = 0;
+
+<L0>:
+  return D.30195;
+
+}
+
+
+
+;; Function std::iterator<std::input_iterator_tag, char, long int, char*, char&>::iterator() (_ZNSt8iteratorISt18input_iterator_tagclPcRcEC2Ev, funcdef_no=1157, decl_uid=29104, cgraph_uid=327)
+
+std::iterator<std::input_iterator_tag, char, long int, char*, char&>::iterator() (struct iterator * const this)
+{
+  <bb 2>:
+  return;
+
+}
+
+
+
+;; Function std::istreambuf_iterator<_CharT, _Traits>::istreambuf_iterator(std::istreambuf_iterator<_CharT, _Traits>::istream_type&) [with _CharT = char; _Traits = std::char_traits<char>; std::istreambuf_iterator<_CharT, _Traits>::istream_type = std::basic_istream<char>] (_ZNSt19istreambuf_iteratorIcSt11char_traitsIcEEC2ERSi, funcdef_no=1159, decl_uid=29017, cgraph_uid=330)
+
+std::istreambuf_iterator<_CharT, _Traits>::istreambuf_iterator(std::istreambuf_iterator<_CharT, _Traits>::istream_type&) [with _CharT = char; _Traits = std::char_traits<char>; std::istreambuf_iterator<_CharT, _Traits>::istream_type = std::basic_istream<char>] (struct istreambuf_iterator * const this, struct istream_type & __s)
+{
+  struct basic_streambuf * D.29826;
+  void * D.29825;
+  int D.29824;
+  struct basic_streambuf * D.29823;
+  struct basic_ios * D.29822;
+  sizetype D.29821;
+  long int D.29820;
+  int (*__vtbl_ptr_type) () * D.29819;
+  int (*__vtbl_ptr_type) () * D.29818;
+
+  <bb 2>:
+  std::iterator<std::input_iterator_tag, char, long int, char*, char&>::iterator (this);
+  D.29818 = __s->_vptr.basic_istream;
+  D.29819 = D.29818 + 18446744073709551592;
+  D.29820 = MEM[(long int *)D.29819];
+  D.29821 = (sizetype) D.29820;
+  D.29822 = __s + D.29821;
+  D.29826 = std::basic_ios<char>::rdbuf (D.29822);
+
+  <bb 3>:
+  D.29823 = D.29826;
+  this->_M_sbuf = D.29823;
+  D.29824 = std::char_traits<char>::eof ();
+  this->_M_c = D.29824;
+  return;
+
+<L0>:
+  eh_dispatch 1
+
+  <bb 5>:
+  resx 1
+
+<L1>:
+  D.29825 = __builtin_eh_pointer (1);
+  __cxa_call_unexpected (D.29825);
+
+}
+
+
+
+;; Function std::istreambuf_iterator<_CharT, _Traits>::istreambuf_iterator() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt19istreambuf_iteratorIcSt11char_traitsIcEEC2Ev, funcdef_no=1162, decl_uid=29022, cgraph_uid=333)
+
+std::istreambuf_iterator<_CharT, _Traits>::istreambuf_iterator() [with _CharT = char; _Traits = std::char_traits<char>] (struct istreambuf_iterator * const this)
+{
+  void * D.29817;
+  int D.29816;
+
+  <bb 2>:
+  std::iterator<std::input_iterator_tag, char, long int, char*, char&>::iterator (this);
+  this->_M_sbuf = 0B;
+  D.29816 = std::char_traits<char>::eof ();
+  this->_M_c = D.29816;
+  return;
+
+}
+
+
+
+;; Function __gnu_cxx::new_allocator<_Tp>::new_allocator() [with _Tp = char] (_ZN9__gnu_cxx13new_allocatorIcEC2Ev, funcdef_no=1203, decl_uid=7956, cgraph_uid=374)
+
+__gnu_cxx::new_allocator<_Tp>::new_allocator() [with _Tp = char] (struct new_allocator * const this)
+{
+  void * D.29815;
+
+  <bb 2>:
+  return;
+
+}
+
+
+
+;; Function std::allocator< <template-parameter-1-1> >::allocator() [with _Tp = char] (_ZNSaIcEC2Ev, funcdef_no=1165, decl_uid=8019, cgraph_uid=336)
+
+std::allocator< <template-parameter-1-1> >::allocator() [with _Tp = char] (struct allocator * const this)
+{
+  void * D.29814;
+
+  <bb 2>:
+  __gnu_cxx::new_allocator<char>::new_allocator (this);
+  return;
+
+}
+
+
+
+;; Function __gnu_cxx::new_allocator<_Tp>::~new_allocator() [with _Tp = char] (_ZN9__gnu_cxx13new_allocatorIcED2Ev, funcdef_no=1206, decl_uid=7961, cgraph_uid=377)
+
+__gnu_cxx::new_allocator<_Tp>::~new_allocator() [with _Tp = char] (struct new_allocator * const this)
+{
+  void * D.30055;
+
+<L0>:
+  return;
+
+}
+
+
+
+;; Function std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = char] (_ZNSaIcED2Ev, funcdef_no=1168, decl_uid=8024, cgraph_uid=339)
+
+std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = char] (struct allocator * const this)
+{
+  void * D.30054;
+
+  <bb 2>:
+  __gnu_cxx::new_allocator<char>::~new_allocator (this);
+
+<L0>:
+  return;
+
+}
+
+
+
+;; Function std::basic_string<char>::_Alloc_hider::~_Alloc_hider() (_ZNSs12_Alloc_hiderD2Ev, funcdef_no=1172, decl_uid=29164, cgraph_uid=342)
+
+std::basic_string<char>::_Alloc_hider::~_Alloc_hider() (struct _Alloc_hider * const this)
+{
+  <bb 2>:
+  std::allocator<char>::~allocator (this);
+
+<L0>:
+  return;
+
+}
+
+
+
+;; Function __gnu_cxx::new_allocator<_Tp>::new_allocator(const __gnu_cxx::new_allocator<_Tp>&) [with _Tp = char] (_ZN9__gnu_cxx13new_allocatorIcEC2ERKS1_, funcdef_no=1228, decl_uid=7951, cgraph_uid=399)
+
+__gnu_cxx::new_allocator<_Tp>::new_allocator(const __gnu_cxx::new_allocator<_Tp>&) [with _Tp = char] (struct new_allocator * const this, const struct new_allocator & D.7953)
+{
+  void * D.30034;
+
+  <bb 2>:
+  return;
+
+}
+
+
+
+;; Function std::allocator< <template-parameter-1-1> >::allocator(const std::allocator< <template-parameter-1-1> >&) [with _Tp = char] (_ZNSaIcEC2ERKS_, funcdef_no=1223, decl_uid=8014, cgraph_uid=394)
+
+std::allocator< <template-parameter-1-1> >::allocator(const std::allocator< <template-parameter-1-1> >&) [with _Tp = char] (struct allocator * const this, const struct allocator & __a)
+{
+  void * D.30033;
+
+  <bb 2>:
+  __gnu_cxx::new_allocator<char>::new_allocator (this, __a);
+  return;
+
+}
+
+
+
+;; Function std::basic_string<_CharT, _Traits, _Alloc>::allocator_type std::basic_string<_CharT, _Traits, _Alloc>::get_allocator() const [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::allocator_type = std::allocator<char>] (_ZNKSs13get_allocatorEv, funcdef_no=1213, decl_uid=11658, cgraph_uid=384)
+
+std::basic_string<_CharT, _Traits, _Alloc>::allocator_type std::basic_string<_CharT, _Traits, _Alloc>::get_allocator() const [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::allocator_type = std::allocator<char>] (const struct basic_string * const this)
+{
+  struct _Alloc_hider * D.30062;
+
+  <bb 2>:
+  D.30062 = &this->_M_dataplus;
+  std::allocator<char>::allocator (<retval>, D.30062);
+
+<L0>:
+  return <retval>;
+
+}
+
+
+
+;; Function std::basic_string<_CharT, _Traits, _Alloc>::~basic_string() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNSsD2Ev, funcdef_no=1177, decl_uid=11876, cgraph_uid=348)
+
+std::basic_string<_CharT, _Traits, _Alloc>::~basic_string() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (struct basic_string * const this)
+{
+  struct _Rep * D.30058;
+  struct _Alloc_hider * D.30057;
+  struct _Rep * D.30056;
+  struct allocator_type D.29189;
+
+  <bb 2>:
+  D.29189 = std::basic_string<char>::get_allocator (this); [return slot optimization]
+
+  <bb 3>:
+  D.30058 = std::basic_string<char>::_M_rep (this);
+
+  <bb 4>:
+  D.30056 = D.30058;
+  std::basic_string<char>::_Rep::_M_dispose (D.30056, &D.29189);
+
+  <bb 5>:
+  std::allocator<char>::~allocator (&D.29189);
+  D.29189 = {CLOBBER};
+  D.30057 = &this->_M_dataplus;
+  std::basic_string<char>::_Alloc_hider::~_Alloc_hider (D.30057);
+
+<L0>:
+  return;
+
+<L1>:
+  std::allocator<char>::~allocator (&D.29189);
+  D.29189 = {CLOBBER};
+  resx 2
+
+<L2>:
+  D.30057 = &this->_M_dataplus;
+  std::basic_string<char>::_Alloc_hider::~_Alloc_hider (D.30057);
+  resx 1
+
+}
+
+
+
+;; Function std::basic_string<_CharT, _Traits, _Alloc>::_Alloc_hider::_Alloc_hider(_CharT*, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNSs12_Alloc_hiderC2EPcRKSaIcE, funcdef_no=1210, decl_uid=11109, cgraph_uid=381)
+
+std::basic_string<_CharT, _Traits, _Alloc>::_Alloc_hider::_Alloc_hider(_CharT*, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (struct _Alloc_hider * const this, char * __dat, const struct allocator & __a)
+{
+  <bb 2>:
+  std::allocator<char>::allocator (this, __a);
+  this->_M_p = __dat;
+  return;
+
+}
+
+
+
+;; Function bool std::operator==(const std::allocator<_CharT>&, const std::allocator<_CharT>&) [with _Tp = char] (_ZSteqIcEbRKSaIT_ES3_, funcdef_no=1230, decl_uid=29379, cgraph_uid=401)
+
+bool std::operator==(const std::allocator<_CharT>&, const std::allocator<_CharT>&) [with _Tp = char] (const struct allocator & D.29380, const struct allocator & D.29381)
+{
+  bool D.29967;
+
+  <bb 2>:
+  D.29967 = 1;
+
+<L0>:
+  return D.29967;
+
+}
+
+
+
+;; Function std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>] (_ZNSt19istreambuf_iteratorIcSt11char_traitsIcEEppEv, funcdef_no=1236, decl_uid=28996, cgraph_uid=407)
+
+std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>] (struct istreambuf_iterator * const this)
+{
+  struct istreambuf_iterator & D.29994;
+  int D.29992;
+  struct streambuf_type * D.29991;
+  struct streambuf_type * D.29988;
+
+  <bb 2>:
+  D.29988 = this->_M_sbuf;
+  if (D.29988 != 0B)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  D.29991 = this->_M_sbuf;
+  std::basic_streambuf<char>::sbumpc (D.29991);
+  D.29992 = std::char_traits<char>::eof ();
+  this->_M_c = D.29992;
+
+  <bb 4>:
+  D.29994 = this;
+
+<L3>:
+  return D.29994;
+
+}
+
+
+
+;; Function std::istreambuf_iterator<_CharT, _Traits>::int_type std::istreambuf_iterator<_CharT, _Traits>::_M_get() const [with _CharT = char; _Traits = std::char_traits<char>; std::istreambuf_iterator<_CharT, _Traits>::int_type = int] (_ZNKSt19istreambuf_iteratorIcSt11char_traitsIcEE6_M_getEv, funcdef_no=1240, decl_uid=29004, cgraph_uid=411)
+
+std::istreambuf_iterator<_CharT, _Traits>::int_type std::istreambuf_iterator<_CharT, _Traits>::_M_get() const [with _CharT = char; _Traits = std::char_traits<char>; std::istreambuf_iterator<_CharT, _Traits>::int_type = int] (const struct istreambuf_iterator * const this)
+{
+  int D.29943;
+  int_type __ret;
+  const int_type __eof;
+  int_type D.29941;
+  int __ret.64;
+  bool D.29935;
+  int __ret.63;
+  struct streambuf_type * D.29933;
+  bool retval.62;
+  int __ret.61;
+  bool D.29927;
+  int_type * D.29926;
+  bool retval.60;
+  struct streambuf_type * D.29922;
+  int __eof.59;
+  int __eof.58;
+
+  <bb 2>:
+  __eof.58 = std::char_traits<char>::eof ();
+  __eof = __eof.58;
+  __eof.59 = __eof;
+  __ret = __eof.59;
+  D.29922 = this->_M_sbuf;
+  if (D.29922 != 0B)
+    goto <bb 3>;
+  else
+    goto <bb 10>;
+
+  <bb 3>:
+  D.29926 = &this->_M_c;
+  D.29927 = std::char_traits<char>::eq_int_type (D.29926, &__eof);
+  retval.60 = ~D.29927;
+  if (retval.60 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  __ret.61 = this->_M_c;
+  __ret = __ret.61;
+  goto <bb 9>;
+
+  <bb 5>:
+  D.29933 = this->_M_sbuf;
+  D.29943 = std::basic_streambuf<char>::sgetc (D.29933);
+
+  <bb 6>:
+  __ret.63 = D.29943;
+  __ret = __ret.63;
+  D.29935 = std::char_traits<char>::eq_int_type (&__ret, &__eof);
+  retval.62 = ~D.29935;
+  if (retval.62 != 0)
+    goto <bb 7>;
+  else
+    goto <bb 8>;
+
+  <bb 7>:
+  __ret.64 = __ret;
+  this->_M_c = __ret.64;
+  goto <bb 9>;
+
+  <bb 8>:
+  this->_M_sbuf = 0B;
+
+  <bb 9>:
+
+  <bb 10>:
+  D.29941 = __ret;
+  __eof = {CLOBBER};
+  __ret = {CLOBBER};
+
+<L10>:
+  return D.29941;
+
+<L11>:
+  __eof = {CLOBBER};
+  __ret = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function std::istreambuf_iterator<_CharT, _Traits>::char_type std::istreambuf_iterator<_CharT, _Traits>::operator*() const [with _CharT = char; _Traits = std::char_traits<char>; std::istreambuf_iterator<_CharT, _Traits>::char_type = char] (_ZNKSt19istreambuf_iteratorIcSt11char_traitsIcEEdeEv, funcdef_no=1235, decl_uid=28994, cgraph_uid=406)
+
+std::istreambuf_iterator<_CharT, _Traits>::char_type std::istreambuf_iterator<_CharT, _Traits>::operator*() const [with _CharT = char; _Traits = std::char_traits<char>; std::istreambuf_iterator<_CharT, _Traits>::char_type = char] (const struct istreambuf_iterator * const this)
+{
+  int D.29983;
+  int D.29981;
+  const int_type D.29414;
+  char_type D.29980;
+
+  <bb 2>:
+  D.29983 = std::istreambuf_iterator<char, std::char_traits<char> >::_M_get (this);
+  D.29981 = D.29983;
+  D.29414 = D.29981;
+  D.29980 = std::char_traits<char>::to_char_type (&D.29414);
+  D.29414 = {CLOBBER};
+
+<L1>:
+  return D.29980;
+
+}
+
+
+
+;; Function bool std::istreambuf_iterator<_CharT, _Traits>::_M_at_eof() const [with _CharT = char; _Traits = std::char_traits<char>] (_ZNKSt19istreambuf_iteratorIcSt11char_traitsIcEE9_M_at_eofEv, funcdef_no=1243, decl_uid=29006, cgraph_uid=414)
+
+bool std::istreambuf_iterator<_CharT, _Traits>::_M_at_eof() const [with _CharT = char; _Traits = std::char_traits<char>] (const struct istreambuf_iterator * const this)
+{
+  int D.29916;
+  const int_type __eof;
+  int D.29914;
+  const int_type D.29427;
+  bool D.29913;
+  int __eof.57;
+
+  <bb 2>:
+  __eof.57 = std::char_traits<char>::eof ();
+  __eof = __eof.57;
+  D.29916 = std::istreambuf_iterator<char, std::char_traits<char> >::_M_get (this);
+
+  <bb 3>:
+  D.29914 = D.29916;
+  D.29427 = D.29914;
+  D.29913 = std::char_traits<char>::eq_int_type (&D.29427, &__eof);
+  D.29427 = {CLOBBER};
+  __eof = {CLOBBER};
+
+<L2>:
+  return D.29913;
+
+<L3>:
+  __eof = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function bool std::istreambuf_iterator<_CharT, _Traits>::equal(const std::istreambuf_iterator<_CharT, _Traits>&) const [with _CharT = char; _Traits = std::char_traits<char>] (_ZNKSt19istreambuf_iteratorIcSt11char_traitsIcEE5equalERKS2_, funcdef_no=1239, decl_uid=29001, cgraph_uid=410)
+
+bool std::istreambuf_iterator<_CharT, _Traits>::equal(const std::istreambuf_iterator<_CharT, _Traits>&) const [with _CharT = char; _Traits = std::char_traits<char>] (const struct istreambuf_iterator * const this, const struct istreambuf_iterator & __b)
+{
+  bool D.29911;
+  bool D.29910;
+  bool D.29908;
+  bool D.29907;
+  bool D.29906;
+
+  <bb 2>:
+  D.29910 = std::istreambuf_iterator<char, std::char_traits<char> >::_M_at_eof (this);
+  D.29907 = D.29910;
+  D.29911 = std::istreambuf_iterator<char, std::char_traits<char> >::_M_at_eof (__b);
+  D.29908 = D.29911;
+  D.29906 = D.29907 == D.29908;
+
+<L0>:
+  return D.29906;
+
+}
+
+
+
+;; Function bool std::operator==(const std::istreambuf_iterator<_CharT, _Traits>&, const std::istreambuf_iterator<_CharT, _Traits>&) [with _CharT = char; _Traits = std::char_traits<char>] (_ZSteqIcSt11char_traitsIcEEbRKSt19istreambuf_iteratorIT_T0_ES7_, funcdef_no=1231, decl_uid=29385, cgraph_uid=402)
+
+bool std::operator==(const std::istreambuf_iterator<_CharT, _Traits>&, const std::istreambuf_iterator<_CharT, _Traits>&) [with _CharT = char; _Traits = std::char_traits<char>] (const struct istreambuf_iterator & __a, const struct istreambuf_iterator & __b)
+{
+  bool D.29905;
+  bool D.29903;
+
+  <bb 2>:
+  D.29905 = std::istreambuf_iterator<char, std::char_traits<char> >::equal (__a, __b);
+  D.29903 = D.29905;
+
+<L0>:
+  return D.29903;
+
+}
+
+
+
+;; Function bool std::operator!=(const std::istreambuf_iterator<_CharT, _Traits>&, const std::istreambuf_iterator<_CharT, _Traits>&) [with _CharT = char; _Traits = std::char_traits<char>] (_ZStneIcSt11char_traitsIcEEbRKSt19istreambuf_iteratorIT_T0_ES7_, funcdef_no=1234, decl_uid=29390, cgraph_uid=405)
+
+bool std::operator!=(const std::istreambuf_iterator<_CharT, _Traits>&, const std::istreambuf_iterator<_CharT, _Traits>&) [with _CharT = char; _Traits = std::char_traits<char>] (const struct istreambuf_iterator & __a, const struct istreambuf_iterator & __b)
+{
+  bool D.30018;
+  bool D.30016;
+  bool D.30015;
+
+  <bb 2>:
+  D.30018 = std::istreambuf_iterator<char, std::char_traits<char> >::equal (__a, __b);
+  D.30016 = D.30018;
+  D.30015 = ~D.30016;
+
+<L0>:
+  return D.30015;
+
+}
+
+
+
+;; Function static _CharT* std::basic_string<_CharT, _Traits, _Alloc>::_S_construct(_InIterator, _InIterator, const _Alloc&, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNSs12_S_constructISt19istreambuf_iteratorIcSt11char_traitsIcEEEEPcT_S5_RKSaIcESt18input_iterator_tag, funcdef_no=1226, decl_uid=29335, cgraph_uid=397)
+
+static _CharT* std::basic_string<_CharT, _Traits, _Alloc>::_S_construct(_InIterator, _InIterator, const _Alloc&, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (struct istreambuf_iterator __beg, struct istreambuf_iterator __end, const struct allocator & __a, struct input_iterator_tag D.29339)
+{
+  bool D.29897;
+  char D.29896;
+  struct _Rep * D.29895;
+  struct _Rep * D.29894;
+  bool D.29893;
+  char D.29892;
+  struct _Rep & D.29891;
+  bool D.29887;
+  struct _Rep * __another;
+  struct _Rep * __r;
+  size_type __len;
+  char __buf[128];
+  void * D.29885;
+  bool retval.56;
+  char D.29883;
+  char * D.29882;
+  long unsigned int __len.55;
+  char * D.29880;
+  char * D.29878;
+  char * D.29877;
+  long unsigned int D.29876;
+  long unsigned int D.29873;
+  char * D.29872;
+  long unsigned int D.29870;
+  bool D.29868;
+  bool iftmp.54;
+  bool retval.53;
+  char D.29863;
+  long unsigned int __len.52;
+  struct _Rep & D.29861;
+  char * D.29860;
+  bool D.29856;
+  bool cleanup.51;
+  struct allocator D.29375;
+  bool D.29851;
+  bool iftmp.50;
+  bool retval.49;
+
+  <bb 2>:
+  cleanup.51 = 0;
+  D.29887 = std::operator==<char, std::char_traits<char> > (&__beg, &__end);
+
+  <bb 3>:
+  D.29851 = D.29887;
+  if (D.29851 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 6>;
+
+  <bb 4>:
+  std::allocator<char>::allocator (&D.29375);
+  cleanup.51 = 1;
+  D.29856 = std::operator==<char> (__a, &D.29375);
+  if (D.29856 != 0)
+    goto <bb 5>;
+  else
+    goto <bb 6>;
+
+  <bb 5>:
+  iftmp.50 = 1;
+  goto <bb 7>;
+
+  <bb 6>:
+  iftmp.50 = 0;
+
+  <bb 7>:
+  retval.49 = iftmp.50;
+  if (cleanup.51 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 9>;
+
+  <bb 8>:
+  std::allocator<char>::~allocator (&D.29375);
+  D.29375 = {CLOBBER};
+
+  <bb 9>:
+  if (retval.49 != 0)
+    goto <bb 10>;
+  else
+    goto <bb 12>;
+
+  <bb 10>:
+  D.29891 = std::basic_string<char>::_S_empty_rep ();
+
+  <bb 11>:
+  D.29861 = D.29891;
+  D.29860 = std::basic_string<char>::_Rep::_M_refdata (D.29861);
+  goto <bb 34>;
+
+  <bb 12>:
+  __len = 0;
+  goto <bb 15>;
+
+  <bb 13>:
+  __len.52 = __len;
+  __len = __len.52 + 1;
+  D.29892 = std::istreambuf_iterator<char, std::char_traits<char> >::operator* (&__beg);
+
+  <bb 14>:
+  D.29863 = D.29892;
+  __buf[__len.52] = D.29863;
+  std::istreambuf_iterator<char, std::char_traits<char> >::operator++ (&__beg);
+
+  <bb 15>:
+  D.29893 = std::operator!=<char, std::char_traits<char> > (&__beg, &__end);
+
+  <bb 16>:
+  D.29868 = D.29893;
+  if (D.29868 != 0)
+    goto <bb 17>;
+  else
+    goto <bb 19>;
+
+  <bb 17>:
+  D.29870 = 128;
+  if (D.29870 > __len)
+    goto <bb 18>;
+  else
+    goto <bb 19>;
+
+  <bb 18>:
+  iftmp.54 = 1;
+  goto <bb 20>;
+
+  <bb 19>:
+  iftmp.54 = 0;
+
+  <bb 20>:
+  retval.53 = iftmp.54;
+  if (retval.53 != 0)
+    goto <bb 13>;
+  else
+    goto <bb 21>;
+
+  <bb 21>:
+  D.29894 = std::basic_string<char>::_Rep::_S_create (__len, 0, __a);
+
+  <bb 22>:
+  __r = D.29894;
+  D.29872 = std::basic_string<char>::_Rep::_M_refdata (__r);
+  std::basic_string<char>::_M_copy (D.29872, &__buf, __len);
+
+  <bb 23>:
+  goto <bb 30>;
+
+  <bb 24>:
+  D.29873 = __r->D.11923._M_capacity;
+  if (D.29873 == __len)
+    goto <bb 25>;
+  else
+    goto <bb 28>;
+
+  <bb 25>:
+  D.29876 = __len + 1;
+  D.29895 = std::basic_string<char>::_Rep::_S_create (D.29876, __len, __a);
+
+  <bb 26>:
+  __another = D.29895;
+  D.29877 = std::basic_string<char>::_Rep::_M_refdata (__r);
+  D.29878 = std::basic_string<char>::_Rep::_M_refdata (__another);
+  std::basic_string<char>::_M_copy (D.29878, D.29877, __len);
+
+  <bb 27>:
+  std::basic_string<char>::_Rep::_M_destroy (__r, __a);
+  __r = __another;
+
+  <bb 28>:
+  D.29880 = std::basic_string<char>::_Rep::_M_refdata (__r);
+  __len.55 = __len;
+  __len = __len.55 + 1;
+  D.29882 = D.29880 + __len.55;
+  D.29896 = std::istreambuf_iterator<char, std::char_traits<char> >::operator* (&__beg);
+
+  <bb 29>:
+  D.29883 = D.29896;
+  *D.29882 = D.29883;
+  std::istreambuf_iterator<char, std::char_traits<char> >::operator++ (&__beg);
+
+  <bb 30>:
+  D.29897 = std::operator!=<char, std::char_traits<char> > (&__beg, &__end);
+
+  <bb 31>:
+  retval.56 = D.29897;
+  if (retval.56 != 0)
+    goto <bb 24>;
+  else
+    goto <bb 32>;
+
+  <bb 32>:
+  std::basic_string<char>::_Rep::_M_set_length_and_sharable (__r, __len);
+
+  <bb 33>:
+  D.29860 = std::basic_string<char>::_Rep::_M_refdata (__r);
+
+  <bb 34>:
+  __buf = {CLOBBER};
+
+<L22>:
+  return D.29860;
+
+<L23>:
+  if (cleanup.51 != 0)
+    goto <bb 37>;
+  else
+    goto <bb 38>;
+
+  <bb 37>:
+  std::allocator<char>::~allocator (&D.29375);
+  D.29375 = {CLOBBER};
+
+  <bb 38>:
+  resx 2
+
+<L26>:
+  __cxa_end_catch ();
+  resx 5
+
+<L27>:
+  eh_dispatch 4
+
+<L28>:
+  D.29885 = __builtin_eh_pointer (4);
+  __cxa_begin_catch (D.29885);
+  std::basic_string<char>::_Rep::_M_destroy (__r, __a);
+  __cxa_rethrow ();
+
+<L29>:
+  __buf = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function static _CharT* std::basic_string<_CharT, _Traits, _Alloc>::_S_construct_aux(_InIterator, _InIterator, const _Alloc&, std::__false_type) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNSs16_S_construct_auxISt19istreambuf_iteratorIcSt11char_traitsIcEEEEPcT_S5_RKSaIcESt12__false_type, funcdef_no=1221, decl_uid=29266, cgraph_uid=392)
+
+static _CharT* std::basic_string<_CharT, _Traits, _Alloc>::_S_construct_aux(_InIterator, _InIterator, const _Alloc&, std::__false_type) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (struct istreambuf_iterator __beg, struct istreambuf_iterator __end, const struct allocator & __a, struct __false_type D.29270)
+{
+  char * D.29844;
+  struct input_iterator_tag D.29842;
+  struct _Tag D.29319;
+  char * D.29841;
+
+  <bb 2>:
+  D.29844 = std::basic_string<char>::_S_construct<std::istreambuf_iterator<char, std::char_traits<char> > > (__beg, __end, __a, D.29842);
+
+  <bb 3>:
+  D.29841 = D.29844;
+  D.29319 = {CLOBBER};
+
+<L1>:
+  return D.29841;
+
+<L2>:
+  D.29319 = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function static _CharT* std::basic_string<_CharT, _Traits, _Alloc>::_S_construct(_InIterator, _InIterator, const _Alloc&) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNSs12_S_constructISt19istreambuf_iteratorIcSt11char_traitsIcEEEEPcT_S5_RKSaIcE, funcdef_no=1208, decl_uid=29134, cgraph_uid=379)
+
+static _CharT* std::basic_string<_CharT, _Traits, _Alloc>::_S_construct(_InIterator, _InIterator, const _Alloc&) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (struct istreambuf_iterator __beg, struct istreambuf_iterator __end, const struct allocator & __a)
+{
+  char * D.29838;
+  struct __false_type D.29836;
+  struct _Integral D.29250;
+  char * D.29835;
+
+  <bb 2>:
+  D.29838 = std::basic_string<char>::_S_construct_aux<std::istreambuf_iterator<char, std::char_traits<char> > > (__beg, __end, __a, D.29836);
+
+  <bb 3>:
+  D.29835 = D.29838;
+  D.29250 = {CLOBBER};
+
+<L1>:
+  return D.29835;
+
+<L2>:
+  D.29250 = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function std::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (_ZNSsC2ISt19istreambuf_iteratorIcSt11char_traitsIcEEEET_S4_RKSaIcE, funcdef_no=1174, decl_uid=29047, cgraph_uid=345)
+
+std::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>] (struct basic_string * const this, struct istreambuf_iterator __beg, struct istreambuf_iterator __end, const struct allocator & __a)
+{
+  char * D.29834;
+  struct _Alloc_hider * D.29833;
+  struct _Alloc_hider * D.29832;
+  char * D.29831;
+
+  <bb 2>:
+  D.29834 = std::basic_string<char>::_S_construct<std::istreambuf_iterator<char, std::char_traits<char> > > (__beg, __end, __a);
+  D.29831 = D.29834;
+  D.29832 = &this->_M_dataplus;
+  std::basic_string<char>::_Alloc_hider::_Alloc_hider (D.29832, D.29831, __a);
+  return;
+
+}
+
+
+
+;; Function void func_GPU() (_Z8func_GPUv, funcdef_no=1143, decl_uid=28786, cgraph_uid=314)
+
+void func_GPU() ()
+{
+  cudaError_enum D.29609;
+  cudaError_enum D.29608;
+  cudaError_enum D.29607;
+  cudaError_enum D.29606;
+  cudaError_enum D.29605;
+  cudaError_enum D.29604;
+  cudaError_enum D.29603;
+  cudaError_enum D.29602;
+  cudaError_enum D.29601;
+  cudaError_enum D.29600;
+  cudaError_enum D.29599;
+  cudaError_enum D.29598;
+  cudaError_enum D.29597;
+  cudaError_enum D.29596;
+  const char * D.29595;
+  cudaError_enum D.29594;
+  bool D.29590;
+  struct basic_ostream & D.29589;
+  struct basic_ostream & D.29588;
+  struct basic_ostream & D.29587;
+  struct basic_ostream & D.29586;
+  struct basic_ostream & D.29585;
+  cudaError_enum D.29584;
+  struct basic_ostream & D.29583;
+  struct basic_ostream & D.29582;
+  cudaError_enum D.29581;
+  cudaError_enum D.29580;
+  cudaError_enum D.29579;
+  cudaError_enum D.29578;
+  void * KernelParams[3];
+  unsigned int gridSizeZ;
+  unsigned int gridSizeY;
+  unsigned int gridSizeX;
+  unsigned int blockSizeZ;
+  unsigned int blockSizeY;
+  unsigned int blockSizeX;
+  CUdeviceptr devBufferC;
+  CUdeviceptr devBufferB;
+  CUdeviceptr devBufferA;
+  struct string str;
+  struct ifstream t;
+  int devMinor;
+  int devMajor;
+  char name[128];
+  int devCount;
+  struct CUlinkState_st * linker;
+  struct CUfunc_st * function;
+  struct CUctx_st * context;
+  struct CUmod_st * cudaModule;
+  CUdevice device;
+  cudaError_enum D.29577;
+  struct CUctx_st * context.28;
+  cudaError_enum D.29575;
+  struct CUmod_st * cudaModule.27;
+  cudaError_enum D.29573;
+  long long unsigned int devBufferC.26;
+  cudaError_enum D.29571;
+  long long unsigned int devBufferB.25;
+  cudaError_enum D.29569;
+  long long unsigned int devBufferA.24;
+  cudaError_enum D.29567;
+  long long unsigned int devBufferC.23;
+  long unsigned int D.29565;
+  cudaError_enum D.29564;
+  struct CUfunc_st * function.22;
+  cudaError_enum D.29562;
+  long long unsigned int devBufferB.21;
+  long unsigned int D.29560;
+  cudaError_enum D.29559;
+  long long unsigned int devBufferA.20;
+  long unsigned int D.29557;
+  cudaError_enum D.29556;
+  long unsigned int D.29555;
+  cudaError_enum D.29554;
+  long unsigned int D.29553;
+  cudaError_enum D.29552;
+  long unsigned int D.29551;
+  cudaError_enum D.29550;
+  struct CUmod_st * cudaModule.19;
+  cudaError_enum D.29548;
+  const char * D.29547;
+  cudaError_enum D.29546;
+  int device.18;
+  struct istreambuf_iterator D.29035;
+  struct istreambuf_iterator D.29036;
+  struct allocator D.29053;
+  bool D.29541;
+  bool retval.17;
+  struct basic_ostream & D.29539;
+  int devMajor.16;
+  struct basic_ostream & D.29534;
+  struct basic_ostream & D.29533;
+  struct basic_ostream & D.29532;
+  struct basic_ostream & D.29531;
+  int devMajor.15;
+  int devMinor.14;
+  cudaError_enum D.29528;
+  int device.13;
+  struct basic_ostream & D.29526;
+  struct basic_ostream & D.29525;
+  cudaError_enum D.29524;
+  int device.12;
+  cudaError_enum D.29522;
+  cudaError_enum D.29521;
+  cudaError_enum D.29520;
+
+  <bb 2>:
+  D.29578 = cuInit (0);
+
+  <bb 3>:
+  D.29520 = D.29578;
+  checkCudaErrors (D.29520);
+  D.29579 = cuDeviceGetCount (&devCount);
+
+  <bb 4>:
+  D.29521 = D.29579;
+  checkCudaErrors (D.29521);
+  D.29580 = cuDeviceGet (&device, 0);
+
+  <bb 5>:
+  D.29522 = D.29580;
+  checkCudaErrors (D.29522);
+  device.12 = device;
+  D.29581 = cuDeviceGetName (&name, 128, device.12);
+
+  <bb 6>:
+  D.29524 = D.29581;
+  checkCudaErrors (D.29524);
+  D.29582 = std::operator<< <std::char_traits<char> > (&cout, "Using CUDA Device [0]: ");
+
+  <bb 7>:
+  D.29525 = D.29582;
+  D.29583 = std::operator<< <std::char_traits<char> > (D.29525, &name);
+
+  <bb 8>:
+  D.29526 = D.29583;
+  std::operator<< <std::char_traits<char> > (D.29526, "\n");
+
+  <bb 9>:
+  device.13 = device;
+  D.29584 = cuDeviceComputeCapability (&devMajor, &devMinor, device.13);
+
+  <bb 10>:
+  D.29528 = D.29584;
+  checkCudaErrors (D.29528);
+  devMinor.14 = devMinor;
+  devMajor.15 = devMajor;
+  D.29585 = std::operator<< <std::char_traits<char> > (&cout, "Device Compute Capability: ");
+
+  <bb 11>:
+  D.29531 = D.29585;
+  D.29586 = std::basic_ostream<char>::operator<< (D.29531, devMajor.15);
+
+  <bb 12>:
+  D.29532 = D.29586;
+  D.29587 = std::operator<< <std::char_traits<char> > (D.29532, ".");
+
+  <bb 13>:
+  D.29533 = D.29587;
+  D.29588 = std::basic_ostream<char>::operator<< (D.29533, devMinor.14);
+
+  <bb 14>:
+  D.29534 = D.29588;
+  std::operator<< <std::char_traits<char> > (D.29534, "\n");
+
+  <bb 15>:
+  devMajor.16 = devMajor;
+  if (devMajor.16 <= 1)
+    goto <bb 16>;
+  else
+    goto <bb 18>;
+
+  <bb 16>:
+  std::operator<< <std::char_traits<char> > (&cerr, "ERROR: Device 0 is not SM 2.0 or greater\n");
+
+  <bb 17>:
+
+  <bb 18>:
+  D.29589 = std::operator<< <std::char_traits<char> > (&cout, "Carregando vectoradd-kernel.ptx. ");
+
+  <bb 19>:
+  D.29539 = D.29589;
+  std::operator<< <std::char_traits<char> > (D.29539, "\n");
+
+  <bb 20>:
+  std::basic_ifstream<char>::basic_ifstream (&t, "vectoradd-kernel.ptx", 8);
+
+  <bb 21>:
+  D.29590 = std::basic_ifstream<char>::is_open (&t);
+
+  <bb 22>:
+  D.29541 = D.29590;
+  retval.17 = ~D.29541;
+  if (retval.17 != 0)
+    goto <bb 23>;
+  else
+    goto <bb 25>;
+
+  <bb 23>:
+  std::operator<< <std::char_traits<char> > (&cerr, "vectoradd-kernel.ptx not found\n");
+
+  <bb 24>:
+
+  <bb 25>:
+  std::allocator<char>::allocator (&D.29053);
+  std::istreambuf_iterator<char, std::char_traits<char> >::istreambuf_iterator (&D.29036);
+  std::istreambuf_iterator<char, std::char_traits<char> >::istreambuf_iterator (&D.29035, &t.D.23389);
+  std::basic_string<char>::basic_string<std::istreambuf_iterator<char, std::char_traits<char> > > (&str, D.29035, D.29036, &D.29053);
+
+  <bb 26>:
+  D.29035 = {CLOBBER};
+  D.29036 = {CLOBBER};
+  std::allocator<char>::~allocator (&D.29053);
+  D.29053 = {CLOBBER};
+  device.18 = device;
+  D.29594 = cuCtxCreate_v2 (&context, 0, device.18);
+
+  <bb 27>:
+  D.29546 = D.29594;
+  checkCudaErrors (D.29546);
+  D.29595 = std::basic_string<char>::c_str (&str);
+
+  <bb 28>:
+  D.29547 = D.29595;
+  D.29596 = cuModuleLoadDataEx (&cudaModule, D.29547, 0, 0B, 0B);
+
+  <bb 29>:
+  D.29548 = D.29596;
+  checkCudaErrors (D.29548);
+  cudaModule.19 = cudaModule;
+  D.29597 = cuModuleGetFunction (&function, cudaModule.19, "vectoradd_kernel");
+
+  <bb 30>:
+  D.29550 = D.29597;
+  checkCudaErrors (D.29550);
+  D.29551 = 262144;
+  D.29598 = cuMemAlloc_v2 (&devBufferA, D.29551);
+
+  <bb 31>:
+  D.29552 = D.29598;
+  checkCudaErrors (D.29552);
+  D.29553 = 262144;
+  D.29599 = cuMemAlloc_v2 (&devBufferB, D.29553);
+
+  <bb 32>:
+  D.29554 = D.29599;
+  checkCudaErrors (D.29554);
+  D.29555 = 262144;
+  D.29600 = cuMemAlloc_v2 (&devBufferC, D.29555);
+
+  <bb 33>:
+  D.29556 = D.29600;
+  checkCudaErrors (D.29556);
+  D.29557 = 262144;
+  devBufferA.20 = devBufferA;
+  D.29601 = cuMemcpyHtoD_v2 (devBufferA.20, &h_a[0], D.29557);
+
+  <bb 34>:
+  D.29559 = D.29601;
+  checkCudaErrors (D.29559);
+  D.29560 = 262144;
+  devBufferB.21 = devBufferB;
+  D.29602 = cuMemcpyHtoD_v2 (devBufferB.21, &h_b[0], D.29560);
+
+  <bb 35>:
+  D.29562 = D.29602;
+  checkCudaErrors (D.29562);
+  blockSizeX = 1024;
+  blockSizeY = 1;
+  blockSizeZ = 1;
+  gridSizeX = 32768 / blockSizeX;
+  gridSizeY = 1;
+  gridSizeZ = 1;
+  KernelParams[0] = &devBufferA;
+  KernelParams[1] = &devBufferB;
+  KernelParams[2] = &devBufferC;
+  std::operator<< <std::char_traits<char> > (&cout, "Launching kernel\n");
+
+  <bb 36>:
+  function.22 = function;
+  D.29603 = cuLaunchKernel (function.22, gridSizeX, gridSizeY, gridSizeZ, blockSizeX, blockSizeY, blockSizeZ, 0, 0B, &KernelParams, 0B);
+
+  <bb 37>:
+  D.29564 = D.29603;
+  checkCudaErrors (D.29564);
+  D.29565 = 262144;
+  devBufferC.23 = devBufferC;
+  D.29604 = cuMemcpyDtoH_v2 (&h_c[0], devBufferC.23, D.29565);
+
+  <bb 38>:
+  D.29567 = D.29604;
+  checkCudaErrors (D.29567);
+  devBufferA.24 = devBufferA;
+  D.29605 = cuMemFree_v2 (devBufferA.24);
+
+  <bb 39>:
+  D.29569 = D.29605;
+  checkCudaErrors (D.29569);
+  devBufferB.25 = devBufferB;
+  D.29606 = cuMemFree_v2 (devBufferB.25);
+
+  <bb 40>:
+  D.29571 = D.29606;
+  checkCudaErrors (D.29571);
+  devBufferC.26 = devBufferC;
+  D.29607 = cuMemFree_v2 (devBufferC.26);
+
+  <bb 41>:
+  D.29573 = D.29607;
+  checkCudaErrors (D.29573);
+  cudaModule.27 = cudaModule;
+  D.29608 = cuModuleUnload (cudaModule.27);
+
+  <bb 42>:
+  D.29575 = D.29608;
+  checkCudaErrors (D.29575);
+  context.28 = context;
+  D.29609 = cuCtxDestroy_v2 (context.28);
+
+  <bb 43>:
+  D.29577 = D.29609;
+  checkCudaErrors (D.29577);
+  cudaDeviceReset ();
+
+  <bb 44>:
+  std::basic_string<char>::~basic_string (&str);
+
+  <bb 45>:
+  std::basic_ifstream<char>::~basic_ifstream (&t);
+
+  <bb 46>:
+  device = {CLOBBER};
+  cudaModule = {CLOBBER};
+  context = {CLOBBER};
+  function = {CLOBBER};
+  devCount = {CLOBBER};
+  name = {CLOBBER};
+  devMajor = {CLOBBER};
+  devMinor = {CLOBBER};
+  t = {CLOBBER};
+  str = {CLOBBER};
+  devBufferA = {CLOBBER};
+  devBufferB = {CLOBBER};
+  devBufferC = {CLOBBER};
+  KernelParams = {CLOBBER};
+  return;
+
+<L6>:
+  D.29035 = {CLOBBER};
+  resx 5
+
+<L7>:
+  D.29036 = {CLOBBER};
+  resx 4
+
+<L8>:
+  std::allocator<char>::~allocator (&D.29053);
+  D.29053 = {CLOBBER};
+  resx 3
+
+<L9>:
+  std::basic_string<char>::~basic_string (&str);
+  resx 12
+
+<L10>:
+  std::basic_ifstream<char>::~basic_ifstream (&t);
+  resx 2
+
+<L11>:
+  device = {CLOBBER};
+  cudaModule = {CLOBBER};
+  context = {CLOBBER};
+  function = {CLOBBER};
+  devCount = {CLOBBER};
+  name = {CLOBBER};
+  devMajor = {CLOBBER};
+  devMinor = {CLOBBER};
+  t = {CLOBBER};
+  str = {CLOBBER};
+  devBufferA = {CLOBBER};
+  devBufferB = {CLOBBER};
+  devBufferC = {CLOBBER};
+  KernelParams = {CLOBBER};
+  resx 1
+
+}
+
+
+
+;; Function void __static_initialization_and_destruction_0(int, int) (_Z41__static_initialization_and_destruction_0ii, funcdef_no=1250, decl_uid=29438, cgraph_uid=421)
+
+void __static_initialization_and_destruction_0(int, int) (int __initialize_p, int __priority)
+{
+  <bb 2>:
+  if (__initialize_p == 1)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 3>:
+  if (__priority == 65535)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  std::ios_base::Init::Init (&__ioinit);
+  __cxa_atexit (__comp_dtor , &__ioinit, &__dso_handle);
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function (static initializers for vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu-two-loops.cpp) (_GLOBAL__sub_I_h_a, funcdef_no=1251, decl_uid=29444, cgraph_uid=422)
+
+(static initializers for vectoradd-omp-parallel-for-combined-schedule-runtime-offloading-gpu-two-loops.cpp) ()
+{
+  <bb 2>:
+  __static_initialization_and_destruction_0 (1, 65535);
+  return;
+
+}
+
+
+
+;; Function <built-in> (main._omp_fn.0, funcdef_no=1252, decl_uid=30197, cgraph_uid=496)
+
+<built-in> (struct .omp_data_s.91 * .omp_data_i)
+{
+  int number_of_threads [value-expr: .omp_data_i->number_of_threads];
+  bool D.30345;
+  double D.30344;
+  double D.30343;
+  double D.30342;
+  int D.30341;
+  long int .iend0.99;
+  int i;
+  long int .istart0.98;
+  bool D.30337;
+  long int .iend0.97;
+  long int .istart0.96;
+  long long int q_data_transfer_read.90;
+  long unsigned int D.30333;
+  long long int q_data_transfer_write.89;
+  long unsigned int D.30331;
+  long int num_threads_defined.88;
+  int D.30329;
+  bool D.30328;
+  double D.30327;
+  double D.30326;
+  double D.30325;
+  int D.30324;
+  long int .iend0.103;
+  int i;
+  long int .istart0.102;
+  bool D.30320;
+  long int .iend0.101;
+  long int .istart0.100;
+  long long int q_data_transfer_read.87;
+  long unsigned int D.30316;
+  long long int q_data_transfer_write.86;
+  long unsigned int D.30314;
+  long int num_threads_defined.85;
+  int D.30312;
+
+  <bb 16>:
+
+  <bb 3>:
+  D.30312 = .omp_data_i->number_of_threads;
+  num_threads_defined.85 = (long int) D.30312;
+  num_threads_defined = num_threads_defined.85;
+  current_loop_index = 0;
+  D.30314 = 524288;
+  q_data_transfer_write.86 = (long long int) D.30314;
+  q_data_transfer_write = q_data_transfer_write.86;
+  D.30316 = 262144;
+  q_data_transfer_read.87 = (long long int) D.30316;
+  q_data_transfer_read = q_data_transfer_read.87;
+  D.30320 = __builtin_GOMP_loop_runtime_start (0, 32768, 1, &.istart0.100, &.iend0.101);
+  if (D.30320 != 0)
+    goto <bb 14>;
+  else
+    goto <bb 5>;
+
+  <bb 14>:
+  .istart0.102 = .istart0.100;
+  i = (int) .istart0.102;
+  .iend0.103 = .iend0.101;
+  D.30324 = (int) .iend0.103;
+
+  <bb 4>:
+  D.30325 = h_a[i];
+  D.30326 = h_b[i];
+  D.30327 = D.30325 + D.30326;
+  h_c[i] = D.30327;
+  i = i + 1;
+  if (i < D.30324)
+    goto <bb 4>;
+  else
+    goto <bb 15>;
+
+  <bb 15>:
+  D.30328 = __builtin_GOMP_loop_runtime_next (&.istart0.100, &.iend0.101);
+  if (D.30328 != 0)
+    goto <bb 14>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  __builtin_GOMP_loop_end ();
+
+  <bb 6>:
+  D.30329 = .omp_data_i->number_of_threads;
+  num_threads_defined.88 = (long int) D.30329;
+  num_threads_defined = num_threads_defined.88;
+  current_loop_index = 1;
+  D.30331 = 524288;
+  q_data_transfer_write.89 = (long long int) D.30331;
+  q_data_transfer_write = q_data_transfer_write.89;
+  D.30333 = 262144;
+  q_data_transfer_read.90 = (long long int) D.30333;
+  q_data_transfer_read = q_data_transfer_read.90;
+  D.30337 = __builtin_GOMP_loop_runtime_start (0, 32768, 1, &.istart0.96, &.iend0.97);
+  if (D.30337 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 8>;
+
+  <bb 12>:
+  .istart0.98 = .istart0.96;
+  i = (int) .istart0.98;
+  .iend0.99 = .iend0.97;
+  D.30341 = (int) .iend0.99;
+
+  <bb 7>:
+  D.30342 = h_a[i];
+  D.30343 = h_b[i];
+  D.30344 = D.30342 + D.30343;
+  h_c[i] = D.30344;
+  i = i + 1;
+  if (i < D.30341)
+    goto <bb 7>;
+  else
+    goto <bb 13>;
+
+  <bb 13>:
+  D.30345 = __builtin_GOMP_loop_runtime_next (&.istart0.96, &.iend0.97);
+  if (D.30345 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  __builtin_GOMP_loop_end_nowait ();
+
+  <bb 9>:
+  return;
+
+}
+
+
