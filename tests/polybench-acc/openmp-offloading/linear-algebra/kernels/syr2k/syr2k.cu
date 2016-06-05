@@ -492,8 +492,9 @@ int main(int argc, char *argv[]) {
     // Set up the library Functions table.
     assert(table != NULL);
 
-    fprintf(stderr, "Declaring function in 0,0.\n");
+    fprintf(stderr, "Declaring function in 0,1.\n");
     table[0][1][0] = *ff_0;
+    fprintf(stderr, "Declaring function in 1,1.\n");
     table[1][1][0] = *ff_1;
 
     TablePointerFunctions = table;
@@ -517,13 +518,13 @@ int main(int argc, char *argv[]) {
   copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
   // compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  fprintf(stderr, "Calling Original version.\n");
+  fprintf(stderr, "Calling syr2k_original:\n");
   syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
-  fprintf(stderr, "Calling OMP version.\n");
+  fprintf(stderr, "Calling syr2k_omp:\n");
   syr2k_omp(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
 
-  fprintf(stdout, "exp = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, 0);
+  fprintf(stdout, "version = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, 0);
   HOOKOMP_PRINT_TIME_RESULTS;
 
   fprintf(stderr, "Calling compareResults(original, omp).\n");
