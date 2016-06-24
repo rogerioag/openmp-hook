@@ -1,6 +1,10 @@
 BENCHMARK  := $(shell basename `pwd`)
-OBJFILE := ${BENCHMARK}-gpu.o
-EXECUTABLE := ${BENCHMARK}-gpu.exe
+# position of directory (openmp, openmp-offloading, cuda...)
+NUM_FIELD := 9
+# retrieve openmp, openmp-offloading, cuda...
+BENCHMARK_TYPE := $(shell pwd | cut -d'/' -f${NUM_FIELD} | tr '[:upper:]' '[:lower:]')
+OBJFILE := ${BENCHMARK}-${BENCHMARK_TYPE}.o
+EXECUTABLE := ${BENCHMARK}-${BENCHMARK_TYPE}.exe
 CUFILES := ${BENCHMARK}.cu
 PATH_TO_UTILS := ../../../utilities
 INCLUDE_DIR := -I/home/goncalv/prova-de-conceito/testes-prova-conceito/openmp-hook
