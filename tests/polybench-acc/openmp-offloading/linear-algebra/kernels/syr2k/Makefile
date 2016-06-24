@@ -1,4 +1,5 @@
 BENCHMARK  := $(shell basename `pwd`)
+# position of diretory (openmp, openmp-offloading, cuda...)
 NUM_FIELD := 9
 # retrieve openmp, openmp-offloading, cuda...
 BENCHMARK_TYPE := $(shell pwd | cut -d'/' -f${NUM_FIELD} | tr '[:upper:]' '[:lower:]')
