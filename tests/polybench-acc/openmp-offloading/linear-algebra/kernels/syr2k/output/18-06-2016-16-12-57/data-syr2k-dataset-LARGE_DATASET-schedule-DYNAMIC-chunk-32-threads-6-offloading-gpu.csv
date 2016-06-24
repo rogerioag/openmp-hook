@@ -1,0 +1,48 @@
+exp = chunk_size_evaluation, execution = 1, benchmark = syr2k, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 6,
+0
+version = OMP+OFF, num_threads = 6, NI = 2048, NJ = 2048, NK = 0, ORIG = 34385043820, OMP_OFF = 7534804839, OMP = 2200250825, CUDA_KERNEL1 = 0, CUDA_KERNEL2 = 5334545214, CUDA_KERNEL3 = 0, DT_H2D = 0, DT_D2H = 8800, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 1703104
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+exp = chunk_size_evaluation, execution = 2, benchmark = syr2k, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 6,
+0
+version = OMP+OFF, num_threads = 6, NI = 2048, NJ = 2048, NK = 0, ORIG = 34169098737, OMP_OFF = 7640799857, OMP = 2120337941, CUDA_KERNEL1 = 0, CUDA_KERNEL2 = 5520436353, CUDA_KERNEL3 = 0, DT_H2D = 0, DT_D2H = 25563, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 1310080
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+exp = chunk_size_evaluation, execution = 3, benchmark = syr2k, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 6,
+0
+version = OMP+OFF, num_threads = 6, NI = 2048, NJ = 2048, NK = 0, ORIG = 34358765354, OMP_OFF = 7164709420, OMP = 2311934597, CUDA_KERNEL1 = 0, CUDA_KERNEL2 = 4852765115, CUDA_KERNEL3 = 0, DT_H2D = 0, DT_D2H = 9708, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 1113568
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+exp = chunk_size_evaluation, execution = 4, benchmark = syr2k, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 6,
+0
+version = OMP+OFF, num_threads = 6, NI = 2048, NJ = 2048, NK = 0, ORIG = 34366314836, OMP_OFF = 7679853161, OMP = 2122847505, CUDA_KERNEL1 = 0, CUDA_KERNEL2 = 5556999091, CUDA_KERNEL3 = 0, DT_H2D = 0, DT_D2H = 6565, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 1310080
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+exp = chunk_size_evaluation, execution = 5, benchmark = syr2k, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 6,
+0
+version = OMP+OFF, num_threads = 6, NI = 2048, NJ = 2048, NK = 0, ORIG = 34378046559, OMP_OFF = 7203640838, OMP = 2332627100, CUDA_KERNEL1 = 0, CUDA_KERNEL2 = 4870992296, CUDA_KERNEL3 = 0, DT_H2D = 0, DT_D2H = 21442, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 1113568
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+exp = chunk_size_evaluation, execution = 6, benchmark = syr2k, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 6,
+0
+version = OMP+OFF, num_threads = 6, NI = 2048, NJ = 2048, NK = 0, ORIG = 34356072041, OMP_OFF = 6976232107, OMP = 2294939984, CUDA_KERNEL1 = 0, CUDA_KERNEL2 = 4681270681, CUDA_KERNEL3 = 0, DT_H2D = 0, DT_D2H = 21442, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 1113568
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+exp = chunk_size_evaluation, execution = 7, benchmark = syr2k, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 6,
+0
+exp = chunk_size_evaluation, execution = 8, benchmark = syr2k, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 6,
+0
+setting device 0 with name Tesla K40c
+version = OMP+OFF, num_threads = 6, NI = 2048, NJ = 2048, NK = 0, ORIG = 34206810890, OMP_OFF = 10544583030, OMP = 7070852926, CUDA_KERNEL1 = 456149, CUDA_KERNEL2 = 3409905750, CUDA_KERNEL3 = 0, DT_H2D = 34464159, DT_D2H = 28904046, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 1310080
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+exp = chunk_size_evaluation, execution = 9, benchmark = syr2k, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 6,
+0
+version = OMP+OFF, num_threads = 6, NI = 2048, NJ = 2048, NK = 0, ORIG = 34419908361, OMP_OFF = 8704074348, OMP = 3801384123, CUDA_KERNEL1 = 0, CUDA_KERNEL2 = 4902679190, CUDA_KERNEL3 = 0, DT_H2D = 0, DT_D2H = 11035, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 65504
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+exp = chunk_size_evaluation, execution = 10, benchmark = syr2k, size_of_data = LARGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 6,
+0
+version = OMP+OFF, num_threads = 6, NI = 2048, NJ = 2048, NK = 0, ORIG = 34509016096, OMP_OFF = 8607080878, OMP = 3806957373, CUDA_KERNEL1 = 0, CUDA_KERNEL2 = 4800101993, CUDA_KERNEL3 = 0, DT_H2D = 0, DT_D2H = 21512, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 65504
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
