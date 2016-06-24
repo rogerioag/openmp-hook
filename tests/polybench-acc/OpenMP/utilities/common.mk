@@ -1,7 +1,7 @@
 INCPATHS = -I$(UTIL_DIR) -I/home/goncalv/prova-de-conceito/testes-prova-conceito/openmp-hook
 
 BENCHMARK = $(shell basename `pwd`)
-# position of diretory (openmp, openmp-offloading, cuda...)
+# position of directory (openmp, openmp-offloading, cuda...)
 NUM_FIELD = 9
 # retrieve openmp, openmp-offloading, cuda...
 BENCHMARK_TYPE = $(shell pwd | cut -d'/' -f${NUM_FIELD} | tr '[:upper:]' '[:lower:]')
