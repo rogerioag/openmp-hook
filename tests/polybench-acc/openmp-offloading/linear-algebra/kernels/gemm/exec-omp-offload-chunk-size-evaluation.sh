@@ -7,7 +7,12 @@ benchmark=`basename $PWD`
 experiment_date=`date +'%d-%m-%Y-%H-%M-%S'`
 OUTPUT=output/${experiment_date}
 
-PREFIX_BENCHMARK=offloading-gpu
+# position of directory (openmp, openmp-offloading, cuda...)
+NUM_FIELD=9
+# retrieve openmp, openmp-offloading, cuda...
+BENCHMARK_TYPE=`pwd | cut -d'/' -f${NUM_FIELD} | tr '[:upper:]' '[:lower:]'`
+
+PREFIX_BENCHMARK=${BENCHMARK_TYPE}
 
 EXPERIMENT=chunk_size_evaluation
 
