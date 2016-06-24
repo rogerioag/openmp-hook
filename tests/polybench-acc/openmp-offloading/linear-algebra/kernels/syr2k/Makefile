@@ -1,6 +1,7 @@
 BENCHMARK  := $(shell basename `pwd`)
+NUM_FIELD := 9
 # retrieve openmp, openmp-offloading, cuda...
-BENCHMARK_TYPE := $(shell `pwd` | cut -d'/' -f11 | tr '[:upper:]' '[:lower:]')
+BENCHMARK_TYPE := $(shell pwd | cut -d'/' -f${NUM_FIELD} | tr '[:upper:]' '[:lower:]')
 OBJFILE := ${BENCHMARK}-${BENCHMARK_TYPE}.o
 EXECUTABLE := ${BENCHMARK}-${BENCHMARK_TYPE}.exe
 CUFILES := ${BENCHMARK}.cu
