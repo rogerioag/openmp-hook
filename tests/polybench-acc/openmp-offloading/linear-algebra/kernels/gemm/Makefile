@@ -1,6 +1,8 @@
 BENCHMARK  := $(shell basename `pwd`)
-OBJFILE := ${BENCHMARK}-offloading-gpu.o
-EXECUTABLE := ${BENCHMARK}-offloading-gpu.exe
+# retrieve openmp, openmp-offloading, cuda...
+BENCHMARK_TYPE := $(shell `pwd` | cut -d'/' -f11 | tr '[:upper:]' '[:lower:]')
+OBJFILE := ${BENCHMARK}-${BENCHMARK_TYPE}.o
+EXECUTABLE := ${BENCHMARK}-${BENCHMARK_TYPE}.exe
 CUFILES := ${BENCHMARK}.cu
 PATH_TO_UTILS := ../../../utilities
 CXX := g++-4.8
