@@ -1,0 +1,218 @@
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,60647,71049,0,0,0,2,550780,493376,9676,21,0,1,273860,245336,5929,8,0,1,277183,248326,8292,7567,0,1,285881,255892,66962,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0105936440, 0.0079545152, 0.5423945730, 3.0509694730, 2.2909003824, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,47794068,2467715,0,0,0,2,1753980306,1639820208,21040429,253,0,1,873332650,873376686,77187455,682,0,1,869695106,803724376,77987265,13774,0,1,872192341,782005328,826881498,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0340732350, 0.0340702908, 1.7445496337, 9.8130916896, 9.8122437433, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Calling compareResults(original, cuda).
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,48434181,2146041,0,0,0,2,1761635372,1580278986,21820300,279,0,1,889386320,797398004,76345211,735,0,1,893739777,801299798,76908595,13564,0,1,893334187,800935720,829948894,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0344194698, 0.0344164765, 1.7622768520, 9.9128072924, 9.9119452242, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Calling compareResults(original, cuda).
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,96798,69947,0,0,0,2,1737847496,1558105458,22301776,309,0,1,869334708,779420720,76123845,711,0,1,869597387,779656202,77144844,13091,0,1,869509273,779577682,830301611,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0394406953, 0.0394367667, 2.0193636018, 11.3589202603, 11.3577888180, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Calling compareResults(original, cuda).
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,58412,72744,0,0,0,2,569597,510302,10059,13,0,1,268652,240396,5801,8,0,1,277751,248872,8272,7609,0,1,278299,249288,66878,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0108155785, 0.0080764289, 0.5537576203, 3.1148866142, 2.3260115160, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,90363251,2030643,0,0,0,2,1815951595,1721174104,21980340,265,0,1,875331478,875362852,77217139,683,0,1,920163312,828308026,76611553,18518,0,1,915711325,820997580,828569828,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0308246988, 0.0308222941, 1.5782245801, 8.8775132629, 8.8768207034, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Calling compareResults(original, cuda).
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,85406800,2242182,0,0,0,2,1790197631,1580389460,17961214,181,0,1,900406779,795132260,77151318,618,0,1,896511877,779182248,78316546,13599,0,1,897279458,779815166,826556022,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0311726314, 0.0311701661, 1.5960387285, 8.9777178479, 8.9770078408, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Calling compareResults(original, cuda).
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,118520,83973,0,0,0,2,1775799625,1684125326,23359052,334,0,1,885221542,850364216,76233370,760,0,1,891867725,799637644,77226880,13927,0,1,891770330,799550258,829736742,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0392394438, 0.0392355526, 2.0090595250, 11.3009598282, 11.2998391403, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Calling compareResults(original, cuda).
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,98199,72195,0,0,0,2,1738536881,1558720332,23544625,316,0,1,869334642,779420798,76341362,731,0,1,869368885,779449346,77449312,13879,0,1,869545597,779608310,827991591,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0390592526, 0.0390553889, 1.9998337344, 11.2490647558, 11.2479519961, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Calling compareResults(original, cuda).
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,58505,67581,0,0,0,2,542522,485758,9831,16,0,1,275095,246246,5864,8,0,1,291529,261196,8260,7539,0,1,301257,269724,66906,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0108238036, 0.0080818716, 0.5541787460, 3.1172554460, 2.3275790092, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,41284318,2051612,0,0,0,2,1763605859,1649471954,21953474,237,0,1,885820767,885861756,76659225,700,0,1,878369968,770250312,77702881,13720,0,1,878976807,764075364,830073522,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0348688808, 0.0348658093, 1.7852866972, 10.0422376717, 10.0413530785, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Calling compareResults(original, cuda).
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,46361118,2371254,0,0,0,2,1778152163,1684482332,24615903,275,0,1,891833738,799591546,75726100,668,0,1,886025116,794383772,77174774,13093,0,1,884365647,792894986,827138575,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0343014026, 0.0342984197, 1.7562318115, 9.8788039395, 9.8779448664, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Calling compareResults(original, cuda).
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,103990,79037,0,0,0,2,1790475168,1605310278,25403890,257,0,1,895512284,802902568,75372531,729,0,1,895656743,803031398,76629684,13837,0,1,895618341,802997182,830207575,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0393672496, 0.0393633352, 2.0156031803, 11.3377678895, 11.3366405293, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Calling compareResults(original, cuda).
