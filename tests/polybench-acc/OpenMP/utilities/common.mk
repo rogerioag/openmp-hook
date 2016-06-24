@@ -2,7 +2,7 @@ INCPATHS = -I$(UTIL_DIR) -I/home/goncalv/prova-de-conceito/testes-prova-conceito
 
 BENCHMARK = $(shell basename `pwd`)
 # retrieve openmp, openmp-offloading, cuda...
-BENCHMARK_TYPE = $(shell `pwd` | cut -d'/' -f11 | tr '[:upper:]' '[:lower:]')
+BENCHMARK_TYPE = $(shell `pwd | cut -d'/' -f11 | tr '[:upper:]' '[:lower:]'`)
 EXE = ${BENCHMARK}-${BENCHMARK_TYPE}.exe
 
 SRC = $(BENCHMARK).c
