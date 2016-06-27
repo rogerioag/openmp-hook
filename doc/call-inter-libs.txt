@@ -1,0 +1,152 @@
+void HOOKOMP_release_all_team_threads(void)
+
+void HOOKOMP_init()
+	RM_library_init()
+
+void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long int chunk_size)
+	RM_measure_session_init()
+
+void HOOKOMP_registry_the_first_thread(void)
+
+bool HOOKOMP_proxy_function_start_next (long* istart, long* iend, void* extra)
+	params->func_start_next(params->_0, params->_1, params->_2, params->_3, istart, iend)
+
+bool HOOKOMP_proxy_function_start_next_runtime (long* istart, long* iend, void* extra)
+	params->func_start_next_runtime (params->_0, params->_1, params->_2, istart, iend)
+
+bool HOOKOMP_proxy_function_next (long* istart, long* iend, void* extra)
+	bool result = params->func_next(istart, iend)
+
+bool HOOKOMP_call_function_ffi(Func* ff)
+	ffi_prep_cif(&cif, FFI_DEFAULT_ABI, ff->nargs, ff->ret_type, ff->arg_types)
+	ffi_call(&cif, FFI_FN(ff->f), ff->ret_value, ff->arg_values)
+
+bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index)
+	HOOKOMP_call_function_ffi(TablePointerFunctions[loop_index][device_index])
+
+bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void* extra)	
+	HOOKOMP_registry_the_first_thread()
+	fn_proxy(istart, iend, extra)
+	RM_registry_measures()
+	RM_stop_and_accumulate()
+	RM_set_aditional_parameters(total_of_iterations, executed_loop_iterations, (*iend - *istart), q_data_transfer_write, q_data_transfer_read, type_of_data_allocation)
+	RM_decision_about_offloading(&better_device)
+	HOOKOMP_call_offloading_function(current_loop_index, better_device)
+	HOOKOMP_release_all_team_threads()
+
+void HOOKOMP_parallel_start(void)
+
+void HOOKOMP_parallel_end(void)
+	RM_library_shutdown()
+
+void HOOKOMP_loop_end(void)
+	RM_measure_session_finish()
+
+void HOOKOMP_loop_end_nowait(void)
+	HOOKOMP_loop_end()
+
+bool GOMP_loop_dynamic_start (long start, long end, long incr, long chunk_size,
+			 long *istart, long *iend)
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_dynamic_start, "GOMP_loop_dynamic_start")
+	HOOKOMP_loop_start(start, end, omp_get_num_threads(), chunk_size)
+	
+	p.func_start_next = lib_GOMP_loop_dynamic_start
+	p.func_type = FUN_START_NEXT;
+	func_proxy = &HOOKOMP_proxy_function_start_next
+
+	HOOKOMP_generic_next(istart, iend, func_proxy, &p)
+
+bool GOMP_loop_guided_start (long start, long end, long incr, long chunk_size,
+			long *istart, long *iend)
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_guided_start, "GOMP_loop_guided_start")
+	HOOKOMP_loop_start(start, end, omp_get_num_threads(), chunk_size)
+	p.func_start_next = lib_GOMP_loop_guided_start
+	p.func_type = FUN_START_NEXT
+	func_proxy = &HOOKOMP_proxy_function_start_next
+	HOOKOMP_generic_next(istart, iend, func_proxy, &p)
+
+bool GOMP_loop_runtime_start (long start, long end, long incr,
+			 long *istart, long *iend)
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_runtime_start, "GOMP_loop_runtime_start")
+	HOOKOMP_loop_start(start, end, omp_get_num_threads(), 1)
+	p.func_start_next_runtime = lib_GOMP_loop_runtime_start
+	p.func_type = FUN_START_NEXT_RUNTIME
+	func_proxy = &HOOKOMP_proxy_function_start_next_runtime
+	HOOKOMP_generic_next(istart, iend, func_proxy, &p)
+
+bool GOMP_loop_static_next (long *istart, long *iend)
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_static_next, "GOMP_loop_static_next")
+	p.func_next = lib_GOMP_loop_static_next
+	p.func_type = FUN_NEXT
+	func_proxy = &HOOKOMP_proxy_function_next
+	HOOKOMP_generic_next(istart, iend, func_proxy, &p)
+	
+bool GOMP_loop_dynamic_next (long *istart, long *iend)
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_dynamic_next, "GOMP_loop_dynamic_next")
+	p.func_next = lib_GOMP_loop_dynamic_next
+	p.func_type = FUN_NEXT
+	func_proxy = &HOOKOMP_proxy_function_next
+	HOOKOMP_generic_next(istart, iend, func_proxy, &p)
+	
+bool GOMP_loop_guided_next (long *istart, long *iend)
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_guided_next, "GOMP_loop_guided_next")
+	p.func_next = lib_GOMP_loop_guided_next
+	p.func_type = FUN_NEXT
+	func_proxy = &HOOKOMP_proxy_function_next
+	HOOKOMP_generic_next(istart, iend, func_proxy, &p)
+
+bool GOMP_loop_runtime_next (long *istart, long *iend)
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_runtime_next, "GOMP_loop_runtime_next")
+	p.func_next = lib_GOMP_loop_runtime_next
+	p.func_type = FUN_NEXT
+	func_proxy = &HOOKOMP_proxy_function_next
+	HOOKOMP_generic_next(istart, iend, func_proxy, &p)
+
+void GOMP_parallel_loop_dynamic_start (void (*fn) (void *), void *data,
+				  unsigned num_threads, long start, long end,
+				  long incr, long chunk_size)
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_dynamic_start, "GOMP_parallel_loop_dynamic_start")
+	HOOKOMP_parallel_start()
+	HOOKOMP_init()
+	HOOKOMP_loop_start(start, end, num_threads, chunk_size)
+	lib_GOMP_parallel_loop_dynamic_start(fn, data, num_threads, start, end, incr, chunk_size)
+
+void GOMP_parallel_loop_guided_start (void (*fn) (void *), void *data,
+				 unsigned num_threads, long start, long end,
+				 long incr, long chunk_size)
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_guided_start, "GOMP_parallel_loop_guided_start")
+	HOOKOMP_parallel_start()
+	HOOKOMP_init()
+	HOOKOMP_loop_start(start, end, num_threads, chunk_size)
+	lib_GOMP_parallel_loop_guided_start(fn, data, num_threads, start, end, incr, chunk_size)
+
+void GOMP_parallel_loop_runtime_start (void (*fn) (void *), void *data,
+				  unsigned num_threads, long start, long end,
+				  long incr)
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_loop_runtime_start, "GOMP_parallel_loop_runtime_start")
+	HOOKOMP_parallel_start()
+	HOOKOMP_init()
+	HOOKOMP_loop_start(start, end, num_threads, 1)
+	lib_GOMP_parallel_loop_runtime_start(fn, data, num_threads, start, end, incr)
+
+void GOMP_loop_end (void)
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_end, "GOMP_loop_end")
+	HOOKOMP_loop_end()
+	lib_GOMP_loop_end()
+
+void GOMP_loop_end_nowait (void)
+	PRINT_FUNC_NAME
+	GET_RUNTIME_FUNCTION(lib_GOMP_loop_end_nowait, "GOMP_loop_end_nowait")
+	HOOKOMP_loop_end_nowait()
+	lib_GOMP_loop_end_nowait()
+
+void GOMP_parallel_start (void (*fn) (void *), void *data, unsigned num_threads)
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_start, "GOMP_parallel_start");
+	HOOKOMP_parallel_start()
+	HOOKOMP_init()
+	lib_GOMP_parallel_start(fn, data, num_threads)
+
+void GOMP_parallel_end (void)
+	GET_RUNTIME_FUNCTION(lib_GOMP_parallel_end, "GOMP_parallel_end")
+	HOOKOMP_parallel_end()
+	lib_GOMP_parallel_end()

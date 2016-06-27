@@ -1,0 +1,18 @@
+set flag = 0
+break RM_start_counters
+command
+  silent
+  set flag = 1
+  continue
+end
+
+break RM_stop_and_accumulate
+command
+  silent
+  set flag = 0
+end
+
+break something if !flag
+
+break something if !flag
+break something if !flag
