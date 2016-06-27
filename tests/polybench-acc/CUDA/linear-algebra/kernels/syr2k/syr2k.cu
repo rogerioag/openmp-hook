@@ -25,7 +25,7 @@
 // Time measures implementation.
 #include <timing.h>
 
-//define the error threshold for the results "not matching"
+// define the error threshold for the results "not matching"
 #define PERCENT_DIFF_ERROR_THRESHOLD 0.05
 
 #define GPU_DEVICE 0
@@ -41,28 +41,25 @@ void init_arrays(int ni, int nj,
 		DATA_TYPE POLYBENCH_2D(B,NI,NJ,ni,nj),
 		DATA_TYPE POLYBENCH_2D(C,NI,NI,ni,ni))
 {
-	int i, j;
+  int i, j;
 
-	*alpha = 32412;
-	*beta = 2123;
+  *alpha = 32412;
+  *beta = 2123;
 
-	for (i = 0; i < ni; i++)
-	{
-		for (j = 0; j < nj; j++) 
-		{
-			A[i][j] = ((DATA_TYPE) i*j) / ni;
-			B[i][j] = ((DATA_TYPE) i*j) / ni;
-		}
-	}
+  for (i = 0; i < ni; i++) {
+    for (j = 0; j < nj; j++) {
+      A[i][j] = ((DATA_TYPE)i * j) / ni;
+      B[i][j] = ((DATA_TYPE)i * j) / ni;
+    }
+  }
 
-	for (i = 0; i < ni; i++)
-	{
-		for (j = 0; j < ni; j++)
-		{
-			C[i][j] = ((DATA_TYPE) i*j) / ni;
-		}
-	}
+  for (i = 0; i < ni; i++) {
+    for (j = 0; j < ni; j++) {
+      C[i][j] = ((DATA_TYPE)i * j) / ni;
+    }
+  }
 }
+
 /* ------------------------------------------------------------- */
 void copy_array(int ni, int nj, DATA_TYPE POLYBENCH_2D(C_source, NI, NJ, ni, nj), DATA_TYPE POLYBENCH_2D(C_dest, NI, NJ, ni, nj)) {
   int i, j;
@@ -79,84 +76,57 @@ void copy_array(int ni, int nj, DATA_TYPE POLYBENCH_2D(C_source, NI, NJ, ni, nj)
 /* DCE code. Must scan the entire live-out data.
    Can be used also to check the correctness of the output. */
 static
-void print_array(int ni, DATA_TYPE POLYBENCH_2D(C,NI,NI,ni,ni))
-{
+void print_array(int ni, DATA_TYPE POLYBENCH_2D(C,NI,NI,ni,ni)) {
   int i, j;
 
   for (i = 0; i < ni; i++)
     for (j = 0; j < ni; j++) {
-	fprintf (stderr, DATA_PRINTF_MODIFIER, C[i][j]);
-	if ((i * ni + j) % 20 == 0) fprintf (stderr, "\n");
+      fprintf(stderr, DATA_PRINTF_MODIFIER, C[i][j]);
+      if ((i * ni + j) % 20 == 0) fprintf(stderr, "\n");
     }
-  fprintf (stderr, "\n");
-}
-
-/* ------------------------------------------------------------- */
-void compareResults(int ni, DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni), DATA_TYPE POLYBENCH_2D(C_outputFromGpu, NI, NI, ni, ni))
-{
-	int i,j,fail;
-	fail = 0;
-
-	// Compare C with D
-	for (i=0; i<ni; i++)
-	{
-		for (j=0; j<ni; j++)
-		{
-			if (percentDiff(C[i][j], C_outputFromGpu[i][j]) > PERCENT_DIFF_ERROR_THRESHOLD)
-			{ 
-				fail++;
-			}
-		}
-	}
-	
-	// print results
-	printf("Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f Percent: %d\n", PERCENT_DIFF_ERROR_THRESHOLD, fail);
+  fprintf(stderr, "\n");
 }
 
 /* ------------------------------------------------------------- */
 /* Original Version. */
 void syr2kCpu(int ni, int nj,
-		  DATA_TYPE alpha,
-		  DATA_TYPE beta,
-		  DATA_TYPE POLYBENCH_2D(A,NI,NJ,ni,nj),
-		  DATA_TYPE POLYBENCH_2D(B,NI,NJ,ni,nj),
-		  DATA_TYPE POLYBENCH_2D(C,NI,NI,ni,ni))
-{
-	int i, j, k;
+		DATA_TYPE alpha,
+		DATA_TYPE beta,
+		DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
+		DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
+		DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
+  int i, j, k;
 
-	/*    C := alpha*A*B' + alpha*B*A' + beta*C */
-	for (i = 0; i < _PB_NI; i++)
-	{
-		for (j = 0; j < _PB_NI; j++)
-		{
-			C[i][j] *= beta;
-		}
-	}
-	
-	for (i = 0; i < _PB_NI; i++)
-	{
-		for (j = 0; j < _PB_NI; j++)
-		{
-			for (k = 0; k < _PB_NJ; k++)
-			{
-				C[i][j] += alpha * A[i][k] * B[j][k];
-				C[i][j] += alpha * B[i][k] * A[j][k];
-			}
-		}
-	}
+  /*    C := alpha*A*B' + alpha*B*A' + beta*C */
+  for (i = 0; i < _PB_NI; i++) {
+    for (j = 0; j < _PB_NI; j++) {
+      C[i][j] *= beta;
+    }
+  }
+
+  for (i = 0; i < _PB_NI; i++) {
+    for (j = 0; j < _PB_NI; j++) {
+      for (k = 0; k < _PB_NJ; k++) {
+        C[i][j] += alpha * A[i][k] * B[j][k];
+        C[i][j] += alpha * B[i][k] * A[j][k];
+      }
+    }
+  }
 }
+
 /* ------------------------------------------------------------- */
 void syr2k_original(int ni, int nj,
-		  DATA_TYPE alpha,
-		  DATA_TYPE beta,
-		  DATA_TYPE POLYBENCH_2D(A,NI,NJ,ni,nj),
-		  DATA_TYPE POLYBENCH_2D(B,NI,NJ,ni,nj),
-		  DATA_TYPE POLYBENCH_2D(C,NI,NI,ni,ni)) {
+			DATA_TYPE alpha,
+			DATA_TYPE beta,
+			DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
+			DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
+			DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
 
   /* Start timer. */
   // polybench_start_instruments;
   HOOKOMP_TIMING_SEQ_START;
 
+  /* Run kernel. */
   syr2kCpu(ni, nj, alpha, beta, A, B, C);
 
   /* Stop and print timer. */
@@ -168,30 +138,64 @@ void syr2k_original(int ni, int nj,
 }
 
 /* ------------------------------------------------------------- */
-void GPU_argv_init()
-{
+void GPU_argv_init() {
 	cudaDeviceProp deviceProp;
 	cudaGetDeviceProperties(&deviceProp, GPU_DEVICE);
-	printf("setting device %d with name %s\n",GPU_DEVICE,deviceProp.name);
-	cudaSetDevice( GPU_DEVICE );
+	printf("setting device %d with name %s\n", GPU_DEVICE, deviceProp.name);
+	cudaSetDevice(GPU_DEVICE);
 }
 
 /* ------------------------------------------------------------- */
-__global__ void syr2k_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta, DATA_TYPE *a, DATA_TYPE *b, DATA_TYPE *c)
-{
-	int j = blockIdx.x * blockDim.x + threadIdx.x;
-	int i = blockIdx.y * blockDim.y + threadIdx.y;
+void compareResults(int ni,
+			DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni),
+			DATA_TYPE POLYBENCH_2D(C_outputFromGpu,
+			NI, NI, ni, ni)) {
+  int i, j, fail;
+  fail = 0;
 
-	if ((i < NI) && (j < NI))
-	{
-		c[i * NI + j] *= beta;
-		
-		int k;
-		for(k = 0; k < NJ; k++)
-		{
-			c[i * NI + j] += alpha * a[i * NJ + k] * b[j * NJ + k] + alpha * b[i * NJ + k] * a[j * NJ + k];
-		}
-	}
+  // Compare C with D
+  for (i = 0; i < ni; i++) {
+    for (j = 0; j < ni; j++) {
+      if (percentDiff(C[i][j], C_outputFromGpu[i][j]) > 
+        PERCENT_DIFF_ERROR_THRESHOLD) {
+        fail++;
+      }
+    }
+  }
+
+  // print results
+  fprintf(stderr,
+          "Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f Percent: %d\n", PERCENT_DIFF_ERROR_THRESHOLD, fail);
+}
+/* ------------------------------------------------------------- */
+__global__ void syr2k_cuda_kernel(int ni, int nj,
+				  DATA_TYPE alpha,
+				  DATA_TYPE beta,
+				  DATA_TYPE *a,
+				  DATA_TYPE *b,
+				  DATA_TYPE *c) {
+  int j = blockIdx.x * blockDim.x + threadIdx.x;
+  int i = blockIdx.y * blockDim.y + threadIdx.y;
+
+  if ((i < NI) && (j < NI)) {
+    c[i * NI + j] *= beta;
+
+    int k;
+    for (k = 0; k < NJ; k++) {
+      c[i * NI + j] += alpha * a[i * NJ + k] * b[j * NJ + k] +
+                     alpha * b[i * NJ + k] * a[j * NJ + k];
+    }
+  }
+}
+/* ------------------------------------------------------------- */
+__global__ void syr2k_cuda_kernel_0(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
+                             DATA_TYPE *a, DATA_TYPE *b, DATA_TYPE *c) {
+  int j = blockIdx.x * blockDim.x + threadIdx.x;
+  int i = blockIdx.y * blockDim.y + threadIdx.y;
+
+  if ((i < NI) && (j < NI)) {
+    c[i * NI + j] *= beta;
+  }
 }
 
 /* ------------------------------------------------------------- */
@@ -224,7 +228,7 @@ void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   	// polybench_start_instruments;
   	HOOKOMP_TIMING_DEV_START;
 
-	syr2k_kernel<<<grid,block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
+	syr2k_cuda_kernel<<<grid,block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
 	cudaThreadSynchronize();
 
 	/* Stop and print timer. */
@@ -267,16 +271,16 @@ int main(int argc, char *argv[])
 	fprintf(stderr, "Copying C to C_outputFromGpu.\n");
   	copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  	fprintf(stderr, "Calling Original.\n");
+  	fprintf(stderr, "Calling syr2k_original:\n");
   	syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
-  	fprintf(stderr, "calling gemm_cuda:\n");
+  	fprintf(stderr, "Calling syr2k_cuda:\n");
 	GPU_argv_init();
 	syr2k_cuda(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
 
-	fprintf(stdout, "exp = CUDA, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 1, NI, NJ, 0);
+	fprintf(stdout, "version = CUDA, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 1, NI, NJ, 0);
 	HOOKOMP_PRINT_TIME_RESULTS;
-	
+
 	fprintf(stderr, "Calling compareResults(original, cuda).\n");
   	compareResults(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
@@ -288,7 +292,7 @@ int main(int argc, char *argv[])
 	POLYBENCH_FREE_ARRAY(C_inputToGpu);
 	POLYBENCH_FREE_ARRAY(C_outputFromGpu);
 
-  	return 0;
+  return 0;
 }
 
 // polybench.c uses the OpenMP to parallelize somethings. This call were
