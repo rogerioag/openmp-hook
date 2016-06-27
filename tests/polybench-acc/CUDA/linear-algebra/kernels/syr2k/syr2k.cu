@@ -263,18 +263,18 @@ int main(int argc, char *argv[])
 	POLYBENCH_2D_ARRAY_DECL(B,DATA_TYPE,NI,NJ,ni,nj);
 	POLYBENCH_2D_ARRAY_DECL(C,DATA_TYPE,NI,NI,ni,ni);
 	POLYBENCH_2D_ARRAY_DECL(C_inputToGpu, DATA_TYPE, NI, NI, ni, ni);
-  	POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NI, ni, ni);
+  POLYBENCH_2D_ARRAY_DECL(C_outputFromGpu, DATA_TYPE, NI, NI, ni, ni);
 
-  	fprintf(stderr, "Calling init_array.\n");
+  fprintf(stderr, "Calling init_array.\n");
 	init_arrays(ni, nj, &alpha, &beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
 	fprintf(stderr, "Copying C to C_outputFromGpu.\n");
-  	copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
+  copy_array(ni, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
-  	fprintf(stderr, "Calling syr2k_original:\n");
-  	syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
+  fprintf(stderr, "Calling syr2k_original:\n");
+  syr2k_original(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
 
-  	fprintf(stderr, "Calling syr2k_cuda:\n");
+  fprintf(stderr, "Calling syr2k_cuda:\n");
 	GPU_argv_init();
 	syr2k_cuda(ni, nj, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_inputToGpu), POLYBENCH_ARRAY(C_outputFromGpu));
 
