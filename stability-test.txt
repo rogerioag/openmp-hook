@@ -1,0 +1,25 @@
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,7383591,13413482,0,0,0,1,11613024139,10152987780,271107684,2437512,0,1,10343379704,9209815134,437938165,3251428,0,1,10352313043,9216331488,441238219,3372614,0,1,10973982100,9586690880,3595067286,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0243388654, 0.0243381743, 1.2461499065, 7.0095932240, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
+, OMP = 27.693887
+
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 3406208
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+goncalv@pilipili2:~/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/openmp-offloading/linear-algebra/kernels/gemm$ ./gemm-offloading-gpu.exe
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+exp = OMP+OFF, num_threads = 1, NI = 2048, NJ = 2048, NK = 2048, ORIG = 120.739265
+calling gemm_omp:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,7234362,13070667,0,0,0,1,11209532595,9883555786,269289685,3037571,0,1,11241595202,9910251520,437903793,3644332,0,1,11222028315,9893350168,441469875,3642393,0,1,11244717917,9913518654,3600095058,0,0,
