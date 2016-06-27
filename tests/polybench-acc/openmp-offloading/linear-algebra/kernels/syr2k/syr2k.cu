@@ -46,10 +46,14 @@ DATA_TYPE *B_gpu;
 DATA_TYPE *C_gpu;
 
 /* ------------------------------------------------------------- */
-void init_arrays(int ni, int nj, DATA_TYPE *alpha, DATA_TYPE *beta,
-                 DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
-                 DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
-                 DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
+/* Arrays initialization. */
+void init_arrays(int ni, int nj,
+		DATA_TYPE *alpha,
+		DATA_TYPE *beta,
+		DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
+		DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
+		DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni))
+{
   int i, j;
 
   *alpha = 32412;
@@ -84,23 +88,26 @@ void copy_array(int ni, DATA_TYPE POLYBENCH_2D(C_source, NI, NI, ni, ni), DATA_T
 /* ------------------------------------------------------------- */
 /* DCE code. Must scan the entire live-out data.
    Can be used also to check the correctness of the output. */
-static void print_array(int ni, DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
+static
+void print_array(int ni, DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
   int i, j;
 
   for (i = 0; i < ni; i++)
     for (j = 0; j < ni; j++) {
       fprintf(stderr, DATA_PRINTF_MODIFIER, C[i][j]);
-      if ((i * ni + j) % 20 == 0)
-        fprintf(stderr, "\n");
+      if ((i * ni + j) % 20 == 0) fprintf(stderr, "\n");
     }
   fprintf(stderr, "\n");
 }
 
 /* ------------------------------------------------------------- */
-void syr2kCpu(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
-              DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
-              DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
-              DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
+/* Original Version. */
+void syr2kCpu(int ni, int nj,
+		DATA_TYPE alpha,
+		DATA_TYPE beta,
+		DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
+		DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
+		DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
   int i, j, k;
 
   /*    C := alpha*A*B' + alpha*B*A' + beta*C */
@@ -121,11 +128,13 @@ void syr2kCpu(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 }
 
 /* ------------------------------------------------------------- */
-void syr2k_original(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
-              DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
-              DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
-              DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
-  
+void syr2k_original(int ni, int nj,
+			DATA_TYPE alpha,
+			DATA_TYPE beta,
+			DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
+			DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
+			DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
+
   /* Start timer. */
   // polybench_start_instruments;
   HOOKOMP_TIMING_SEQ_START;
@@ -138,81 +147,22 @@ void syr2k_original(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   // // printf("Original CPU Time in seconds:\n");
   // polybench_print_instruments;
   HOOKOMP_TIMING_SEQ_STOP;
+  // HOOKOMP_TIMING_SEQ_PRINT;
 }
 
 /* ------------------------------------------------------------- */
-/* Main computational kernel. The whole function will be timed,
-   including the call and return. */
-static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
-                         DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
-                         DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
-                         DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
-  int i, j, k;
-
-  #pragma scop
-  // #pragma omp parallel
-  #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
-  {
-    /*    C := alpha*A*B' + alpha*B*A' + beta*C */
-    current_loop_index = 0;
-    num_threads_defined = OPENMP_NUM_THREADS;
-    // Copy to device A, B, C.
-    q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
-    // Copy back C.
-    q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NI);
-
-    // 0: MEMORY_ALLOC_DEFAULT, 1: MEMORY_ALLOC_PAGEABLE, 2: MEMORY_ALLOC_PINNED
-    type_of_data_allocation = MEMORY_ALLOC_PAGEABLE;
-
-    #pragma omp for private(j) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
-    for (i = 0; i < _PB_NI; i++)
-      for (j = 0; j < _PB_NI; j++){
-        C[i][j] *= beta;
-      }
-  
-    current_loop_index = 1;
-    num_threads_defined = OPENMP_NUM_THREADS;
-    // Copy to device A, B, C.
-    q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
-    // Copy back C.
-    q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NI);
-
-    // 0: MEMORY_ALLOC_DEFAULT, 1: MEMORY_ALLOC_PAGEABLE, 2: MEMORY_ALLOC_PINNED
-    type_of_data_allocation = MEMORY_ALLOC_PAGEABLE;
-
-    #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
-    for (i = 0; i < _PB_NI; i++)
-      for (j = 0; j < _PB_NI; j++)
-        for (k = 0; k < _PB_NJ; k++) {
-          C[i][j] += alpha * A[i][k] * B[j][k];
-          C[i][j] += alpha * B[i][k] * A[j][k];
-        }
-  }
-  #pragma endscop
+void GPU_argv_init() {
+	cudaDeviceProp deviceProp;
+	cudaGetDeviceProperties(&deviceProp, GPU_DEVICE);
+	printf("setting device %d with name %s\n", GPU_DEVICE, deviceProp.name);
+	cudaSetDevice(GPU_DEVICE);
 }
 
 /* ------------------------------------------------------------- */
-void syr2k_omp(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
-                         DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
-                         DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
-                         DATA_TYPE POLYBENCH_2D(C_outputFromOMP, NI, NI, ni, ni)) {
-
-  /* Start timer. */
-  // polybench_start_instruments;
-  HOOKOMP_TIMING_OMP_START;
-
-  syr2k_omp_kernel(ni, nj, alpha, beta, A, B, C_outputFromOMP);
-
-  /* Stop and print timer. */
-  // polybench_stop_instruments;
-  // // printf("OpenMP Time in seconds:\n");
-  // polybench_print_instruments;
-  HOOKOMP_TIMING_OMP_STOP;
-}
-
-/* ------------------------------------------------------------- */
-void compareResults(int ni, DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni),
-                    DATA_TYPE POLYBENCH_2D(C_output, NI, NI, ni, ni)) {
+void compareResults(int ni,
+			DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni),
+			DATA_TYPE POLYBENCH_2D(C_output,
+			NI, NI, ni, ni)) {
   int i, j, fail;
   fail = 0;
 
@@ -221,7 +171,7 @@ void compareResults(int ni, DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni),
     for (j = 0; j < ni; j++) {
       // printf("%4.2f - %4.2f\n", C[i][j], C_output[i][j]);
       if (percentDiff(C[i][j], C_output[i][j]) >
-          PERCENT_DIFF_ERROR_THRESHOLD) {
+        PERCENT_DIFF_ERROR_THRESHOLD) {
         fail++;
       }
     }
@@ -233,19 +183,14 @@ void compareResults(int ni, DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni),
           "Percent: %d\n",
           PERCENT_DIFF_ERROR_THRESHOLD, fail);
 }
-
-/* ------------------------------------------------------------- */
-void GPU_argv_init() {
-  cudaDeviceProp deviceProp;
-  cudaGetDeviceProperties(&deviceProp, GPU_DEVICE);
-  printf("setting device %d with name %s\n", GPU_DEVICE, deviceProp.name);
-  cudaSetDevice(GPU_DEVICE);
-}
-
 /* ------------------------------------------------------------- */
 /* Original of Benchmarks, join the loops. */
-__global__ void syr2k_cuda_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
-                             DATA_TYPE *a, DATA_TYPE *b, DATA_TYPE *c) {
+__global__ void syr2k_cuda_kernel(int ni, int nj,
+				  DATA_TYPE alpha,
+				  DATA_TYPE beta,
+				  DATA_TYPE *a,
+				  DATA_TYPE *b,
+				  DATA_TYPE *c) {
   int j = blockIdx.x * blockDim.x + threadIdx.x;
   int i = blockIdx.y * blockDim.y + threadIdx.y;
 
@@ -255,12 +200,10 @@ __global__ void syr2k_cuda_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE bet
     int k;
     for (k = 0; k < NJ; k++) {
       c[i * NI + j] += alpha * a[i * NJ + k] * b[j * NJ + k] +
-                       alpha * b[i * NJ + k] * a[j * NJ + k];
+                     alpha * b[i * NJ + k] * a[j * NJ + k];
     }
   }
 }
-
-/* It was separated in two kernels, because the loop index. */
 /* ------------------------------------------------------------- */
 __global__ void syr2k_cuda_kernel_0(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
                              DATA_TYPE *a, DATA_TYPE *b, DATA_TYPE *c) {
@@ -382,6 +325,76 @@ void syr2k_cuda_1(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   cudaFree(A_gpu);
   cudaFree(B_gpu);
   cudaFree(C_gpu);
+}
+
+/* ------------------------------------------------------------- */
+/* Main computational kernel. The whole function will be timed,
+   including the call and return. */
+static void syr2k_omp_kernel(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
+                         DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
+                         DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
+                         DATA_TYPE POLYBENCH_2D(C, NI, NI, ni, ni)) {
+  int i, j, k;
+
+  #pragma scop
+  // #pragma omp parallel
+  #pragma omp parallel num_threads(OPENMP_NUM_THREADS)
+  {
+    /*    C := alpha*A*B' + alpha*B*A' + beta*C */
+    current_loop_index = 0;
+    num_threads_defined = OPENMP_NUM_THREADS;
+    // Copy to device A, B, C.
+    q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
+    // Copy back C.
+    q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NI);
+
+    // 0: MEMORY_ALLOC_DEFAULT, 1: MEMORY_ALLOC_PAGEABLE, 2: MEMORY_ALLOC_PINNED
+    type_of_data_allocation = MEMORY_ALLOC_PAGEABLE;
+
+    #pragma omp for private(j) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+    for (i = 0; i < _PB_NI; i++)
+      for (j = 0; j < _PB_NI; j++){
+        C[i][j] *= beta;
+      }
+  
+    current_loop_index = 1;
+    num_threads_defined = OPENMP_NUM_THREADS;
+    // Copy to device A, B, C.
+    q_data_transfer_write = (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NJ) + (sizeof(DATA_TYPE) * NI * NI);
+    // Copy back C.
+    q_data_transfer_read = (sizeof(DATA_TYPE) * NI * NI);
+
+    // 0: MEMORY_ALLOC_DEFAULT, 1: MEMORY_ALLOC_PAGEABLE, 2: MEMORY_ALLOC_PINNED
+    type_of_data_allocation = MEMORY_ALLOC_PAGEABLE;
+
+    #pragma omp for private(j, k) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+    for (i = 0; i < _PB_NI; i++)
+      for (j = 0; j < _PB_NI; j++)
+        for (k = 0; k < _PB_NJ; k++) {
+          C[i][j] += alpha * A[i][k] * B[j][k];
+          C[i][j] += alpha * B[i][k] * A[j][k];
+        }
+  }
+  #pragma endscop
+}
+
+/* ------------------------------------------------------------- */
+void syr2k_omp(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
+                         DATA_TYPE POLYBENCH_2D(A, NI, NJ, ni, nj),
+                         DATA_TYPE POLYBENCH_2D(B, NI, NJ, ni, nj),
+                         DATA_TYPE POLYBENCH_2D(C_outputFromOMP, NI, NI, ni, ni)) {
+
+  /* Start timer. */
+  // polybench_start_instruments;
+  HOOKOMP_TIMING_OMP_START;
+
+  syr2k_omp_kernel(ni, nj, alpha, beta, A, B, C_outputFromOMP);
+
+  /* Stop and print timer. */
+  // polybench_stop_instruments;
+  // // printf("OpenMP Time in seconds:\n");
+  // polybench_print_instruments;
+  HOOKOMP_TIMING_OMP_STOP;
 }
 
 /* ------------------------------------------------------------- */
@@ -551,7 +564,8 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-// polybench.c uses the OpenMP to parallelize somethings. This call were intercepted by hookomp.
+// polybench.c uses the OpenMP to parallelize somethings. This call were
+// intercepted by hookomp.
 #undef _OPENMP
 
 #include <polybench.c>
