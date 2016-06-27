@@ -226,7 +226,7 @@ void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
 	
 	/* Start timer. */
   	// polybench_start_instruments;
-  	HOOKOMP_TIMING_DEV_START;
+  	HOOKOMP_TIMING_DEV_KERNEL1_START;
 
 	syr2k_cuda_kernel<<<grid,block>>>(ni, nj, alpha, beta, A_gpu, B_gpu, C_gpu);
 	cudaThreadSynchronize();
@@ -236,7 +236,7 @@ void syr2k_cuda(int ni, int nj, DATA_TYPE alpha, DATA_TYPE beta,
   	// polybench_stop_instruments;
  	// polybench_print_instruments;
 
- 	HOOKOMP_TIMING_DEV_STOP;
+ 	HOOKOMP_TIMING_DEV_KERNEL1_STOP;
 
  	HOOKOMP_TIMING_DT_D2H_START;
 		
