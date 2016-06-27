@@ -281,7 +281,7 @@ int main(int argc, char *argv[]) {
             POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_inputToGpu),
             POLYBENCH_ARRAY(C_outputFromGpu));
 
-  fprintf(stdout, "exp = CUDA, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 1, NI, NJ, NK);
+  fprintf(stdout, "version = CUDA, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 1, NI, NJ, NK);
   HOOKOMP_PRINT_TIME_RESULTS;
 
   fprintf(stderr, "Calling compareResults(original, cuda).\n");
