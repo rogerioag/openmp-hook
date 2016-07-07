@@ -105,7 +105,7 @@ cdata1 <- ddply(data_cuda, c("size_of_data", "schedule", "chunk_size", "exp", "n
                 se_omp   = sd_omp / sqrt(N)
 )
 cdata1
-
+View(cdata1)
 
 write.csv(cdata1, file = "cdata1.csv")
 

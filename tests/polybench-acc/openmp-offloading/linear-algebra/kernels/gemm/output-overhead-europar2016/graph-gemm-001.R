@@ -52,7 +52,9 @@ setwd("/dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/open
 
 pdf(filename="/home/rogerio/data-large_dataset-num_threads-1-a-12-dynamic-chunk_size-16-a-64-final.pdf", width=1200, height=800);
 # data
-mydata1 = read.csv("/dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/openmp-offloading/linear-algebra/kernels/gemm/output/data-large_dataset-num_threads-1-a-12-dynamic-chunk_size-16-a-64-final.csv");
+# mydata1 = read.csv("/dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/openmp-offloading/linear-algebra/kernels/gemm/output/data-large_dataset-num_threads-1-a-12-dynamic-chunk_size-16-a-64-final.csv");
+mydata1 = read.csv("/dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/openmp-offloading/linear-algebra/kernels/gemm/output-overhead-europar2016/data-large_dataset-num_threads-1-a-12-dynamic-chunk_size-16-a-64-final.csv");
+
 
 mydata1
 
