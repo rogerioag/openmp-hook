@@ -1,0 +1,290 @@
+Experiment 'chunk_size_evaluation', execution 1 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 128, threads: 1 start at 25/06/2016-04:21:33
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,25,154,0,0,0,1,974336,843726,19012,6,0,1,966849,836940,24514,8,0,1,959483,830700,32954,31824,0,1,958964,830544,266864,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0272559401, 0.0146792721, 1.3955041344, 7.8497107560, 4.2276303700, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,87461,19027,0,0,0,1,3515832504,3047847270,31282738,447,0,1,3515900978,3047932446,311331248,2612,0,1,3531502613,3012069710,313818008,56097,0,1,3546993786,2975684868,3310527501,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0393974905, 0.0393935578, 2.0171515122, 11.3464772561, 11.3453446499, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 2620160
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Experiment 'chunk_size_evaluation', execution 2 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 128, threads: 1 start at 25/06/2016-04:22:23
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,7,906,0,0,0,1,1341039,1161316,22677,1,0,1,1348538,1168518,20444,8,0,1,1353665,1172886,32928,31721,0,1,1346679,1166776,266916,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0274189704, 0.0147277586, 1.4038512869, 7.8966634890, 4.2415944798, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,105516,26429,0,0,0,1,3615683493,3241705844,43006710,384,0,1,3604828986,3231973056,304731385,2672,0,1,3621087778,3246552582,308192784,56764,0,1,3624625262,3249723932,3319029972,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0395283056, 0.0395243569, 2.0238492455, 11.3841520059, 11.3830147866, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 2620160
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Experiment 'chunk_size_evaluation', execution 3 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 128, threads: 1 start at 25/06/2016-04:23:16
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,12,163,0,0,0,1,971147,869648,19098,4,0,1,969153,868114,24007,9,0,1,957712,857272,32944,31554,0,1,950904,851656,267130,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0274400516, 0.0147393063, 1.4049306423, 7.9027348629, 4.2449202280, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,86792,20469,0,0,0,1,3510336737,3147258166,31528451,425,0,1,3510758542,3147632670,310109612,2648,0,1,3510338177,3147259726,312774320,56004,0,1,3537742177,3033481932,3320295844,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0396356975, 0.0396317288, 2.0293477118, 11.4150808790, 11.4139379082, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 2620160
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Experiment 'chunk_size_evaluation', execution 4 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 128, threads: 1 start at 25/06/2016-04:24:06
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,14,88,0,0,0,1,954893,826852,18641,6,0,1,950861,823212,24724,10,0,1,963387,834210,32921,31759,0,1,959919,831090,267264,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0273681727, 0.0147219539, 1.4012504424, 7.8820337384, 4.2399227238, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,86730,20525,0,0,0,1,3519570340,3155534824,31511556,444,0,1,3519157560,3155164714,310589963,2592,0,1,3519497475,3155468654,313359446,55814,0,1,3519844713,3155781096,3316644780,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0395287814, 0.0395248298, 2.0238736058, 11.3842890328, 11.3831509684, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 2620160
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Experiment 'chunk_size_evaluation', execution 5 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 128, threads: 1 start at 25/06/2016-04:24:57
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,9,2097,0,0,0,1,1310376,1174524,22663,7,0,1,1307826,1172522,20470,9,0,1,1330037,1192048,32918,31529,0,1,1335579,1197482,266786,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0274045352, 0.0147202736, 1.4031122010, 7.8925061304, 4.2394388081, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,118925,81154,0,0,0,1,3950983405,3542306846,55114954,519,0,1,4002130365,3588147862,293743046,2693,0,1,4002753482,3588710216,303078058,60061,0,1,4003485260,3589365650,3313904757,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0397086791, 0.0397046882, 2.0330843712, 11.4360995878, 11.4349501920, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 2620160
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Experiment 'chunk_size_evaluation', execution 6 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 128, threads: 1 start at 25/06/2016-04:25:51
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,159,461,0,0,0,1,1311921,1176058,22720,6,0,1,1319382,1182428,20457,8,0,1,1323442,1186328,32937,31753,0,1,1332179,1193738,267014,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0273782787, 0.0147185087, 1.4017678673, 7.8849442538, 4.2389304979, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,106817,26058,0,0,0,1,3591208929,3113514846,41393350,534,0,1,3617516481,3136332966,304629400,2824,0,1,3612261800,3116362080,308924868,55959,0,1,3655783077,3067340224,3312312757,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0395074853, 0.0395035328, 2.0227832464, 11.3781557612, 11.3770174359, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 2620160
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Experiment 'chunk_size_evaluation', execution 7 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 128, threads: 1 start at 25/06/2016-04:26:43
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,7,2824,0,0,0,1,1307266,1171482,22541,1,0,1,1307205,1171326,20376,9,0,1,1327884,1190306,32885,31670,0,1,1353102,1179516,267272,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0275450000, 0.0147731735, 1.4103040017, 7.9329600095, 4.2546739634, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,161784,27642,0,0,0,1,3642010046,3287079146,44222962,461,0,1,3645843448,3268736094,303877841,2606,0,1,3646383545,3269221384,307912631,57011,0,1,3646216537,3269072846,3318452841,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0395147646, 0.0395108179, 2.0231559454, 11.3802521930, 11.3791155550, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 2620160
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Experiment 'chunk_size_evaluation', execution 8 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 128, threads: 1 start at 25/06/2016-04:27:36
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,8,1382,0,0,0,1,1304104,1169038,22606,6,0,1,1310392,1174732,20232,9,0,1,1341310,1202084,32864,31417,0,1,1326860,1189318,267158,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0275694380, 0.0147772750, 1.4115552268, 7.9399981507, 4.2558551989, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,86077,76013,0,0,0,1,4015620443,3600251460,58296680,523,0,1,4067772603,3545255714,293161330,2957,0,1,4069773173,3528730816,302869548,58972,0,1,4070045230,3528755412,3322947729,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0396725178, 0.0396685449, 2.0312329110, 11.4256851244, 11.4245409429, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 2620160
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Experiment 'chunk_size_evaluation', execution 9 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 128, threads: 1 start at 25/06/2016-04:28:29
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,3,2769,0,0,0,1,1308661,1173276,22824,4,0,1,1318136,1181232,20361,8,0,1,1325518,1188018,32853,31704,0,1,1337062,1198496,266942,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0274263294, 0.0147305457, 1.4042280657, 7.8987828694, 4.2423971662, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,171486,29491,0,0,0,1,3644890544,3270200232,44061093,474,0,1,3651157280,3168760348,304088562,2596,0,1,3650877963,3168471514,308330090,56004,0,1,3651647525,3169382866,3311607945,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0394049604, 0.0394010276, 2.0175339737, 11.3486286021, 11.3474959359, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 2620160
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Experiment 'chunk_size_evaluation', execution 10 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 128, threads: 1 start at 25/06/2016-04:29:22
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,55,188,0,0,0,1,953026,853840,18701,5,0,1,940635,842582,24801,10,0,1,947197,847938,32918,31641,0,1,947384,848328,266952,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0272809771, 0.0146887667, 1.3967860296, 7.8569214167, 4.2303647959, 1
+Calling function syr2k_cuda_0.
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,82363,71545,0,0,0,1,3911846750,3507218754,52886953,537,0,1,3914720275,3509792858,299126153,2743,0,1,3912557121,3507848656,305002241,58211,0,1,3971665937,3560844586,3313356874,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0393963068, 0.0393923777, 2.0170909079, 11.3461363568, 11.3450047856, 1
+Calling function syr2k_cuda_1.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 2620160
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
