@@ -1,0 +1,960 @@
+Experiment 'chunk_size_evaluation', execution 1 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 8 start at 01/07/2016-19:26:44
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Experiment 'chunk_size_evaluation', execution 2 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 8 start at 01/07/2016-19:27:21
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Experiment 'chunk_size_evaluation', execution 3 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 8 start at 01/07/2016-19:27:59
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Experiment 'chunk_size_evaluation', execution 4 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 8 start at 01/07/2016-19:28:36
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Experiment 'chunk_size_evaluation', execution 5 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 8 start at 01/07/2016-19:29:13
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Experiment 'chunk_size_evaluation', execution 6 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 8 start at 01/07/2016-19:29:50
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Experiment 'chunk_size_evaluation', execution 7 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 8 start at 01/07/2016-19:30:28
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Experiment 'chunk_size_evaluation', execution 8 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 8 start at 01/07/2016-19:31:05
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Experiment 'chunk_size_evaluation', execution 9 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 8 start at 01/07/2016-19:31:42
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
+Experiment 'chunk_size_evaluation', execution 10 of syr2k with dataset: LARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 8 start at 01/07/2016-19:32:19
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Declaring function in 1,1.
+Calling init_array.
+Copying C to C_outputFromOMP.
+Copying C to C_outputFromGpu.
+Calling syr2k_original:
+Calling syr2k_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 707]: PAPI error -7: Event does not exist
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 718]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 740]: PAPI error -1: Invalid argument
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 4190209
