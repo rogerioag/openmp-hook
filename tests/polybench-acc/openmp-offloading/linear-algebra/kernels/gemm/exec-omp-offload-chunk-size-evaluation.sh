@@ -21,7 +21,7 @@ echo "Executing test for $benchmark, start at `date +'%d/%m/%Y-%T'`"
 mkdir -p ${OUTPUT}
 
 # for size_of_data in TOY_DATASET MINI_DATASET TINY_DATASET SMALL_DATASET MEDIUM_DATASET STANDARD_DATASET LARGE_DATASET EXTRALARGE_DATASET; do
-for size_of_data in LARGE_DATASET; do
+for size_of_data in EXTRALARGE_DATASET; do
 	for num_threads in 24 22 20 18 16 14 12 10 8 6 4 2 1; do
 		echo "Compiling ${benchmark} with dataset: ${size_of_data}, schedule: ${omp_schedule}, chunk: ${chunk_size}, threads: ${num_threads}."
 		for omp_schedule in DYNAMIC; do
