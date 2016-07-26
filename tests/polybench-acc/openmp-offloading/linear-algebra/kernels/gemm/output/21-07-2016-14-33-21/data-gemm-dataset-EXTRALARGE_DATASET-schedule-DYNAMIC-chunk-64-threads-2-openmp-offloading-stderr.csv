@@ -1,20 +1,22 @@
-Experiment 'chunk_size_evaluation', execution 1 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 22/07/2016-09:55:32
-./exec-omp-offload-chunk-size-evaluation.sh: line 36: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-64-threads-2-openmp-offloading.exe: No such file or directory
-Experiment 'chunk_size_evaluation', execution 2 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 22/07/2016-09:55:32
-./exec-omp-offload-chunk-size-evaluation.sh: line 36: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-64-threads-2-openmp-offloading.exe: No such file or directory
-Experiment 'chunk_size_evaluation', execution 3 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 22/07/2016-09:55:32
-./exec-omp-offload-chunk-size-evaluation.sh: line 36: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-64-threads-2-openmp-offloading.exe: No such file or directory
-Experiment 'chunk_size_evaluation', execution 4 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 22/07/2016-09:55:32
-./exec-omp-offload-chunk-size-evaluation.sh: line 36: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-64-threads-2-openmp-offloading.exe: No such file or directory
-Experiment 'chunk_size_evaluation', execution 5 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 22/07/2016-09:55:32
-./exec-omp-offload-chunk-size-evaluation.sh: line 36: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-64-threads-2-openmp-offloading.exe: No such file or directory
-Experiment 'chunk_size_evaluation', execution 6 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 22/07/2016-09:55:32
-./exec-omp-offload-chunk-size-evaluation.sh: line 36: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-64-threads-2-openmp-offloading.exe: No such file or directory
-Experiment 'chunk_size_evaluation', execution 7 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 22/07/2016-09:55:32
-./exec-omp-offload-chunk-size-evaluation.sh: line 36: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-64-threads-2-openmp-offloading.exe: No such file or directory
-Experiment 'chunk_size_evaluation', execution 8 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 22/07/2016-09:55:32
-./exec-omp-offload-chunk-size-evaluation.sh: line 36: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-64-threads-2-openmp-offloading.exe: No such file or directory
-Experiment 'chunk_size_evaluation', execution 9 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 22/07/2016-09:55:32
-./exec-omp-offload-chunk-size-evaluation.sh: line 36: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-64-threads-2-openmp-offloading.exe: No such file or directory
-Experiment 'chunk_size_evaluation', execution 10 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 22/07/2016-09:55:32
-./exec-omp-offload-chunk-size-evaluation.sh: line 36: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-64-threads-2-openmp-offloading.exe: No such file or directory
+Experiment 'chunk_size_evaluation', execution 1 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 24/07/2016-15:41:57
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original:
+Calling gemm_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,1567822,4571478,0,0,0,2,124740569118,107129306856,2735631095,20005668,0,1,63050131082,53828948914,2288670616,11994451,0,1,63024632445,53457442506,2305776810,17472861,0,1,62247900672,52760441656,16750709706,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0219459820, 0.0219457408, 1.1236342783, 6.3204428153, 6.3203733522, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
