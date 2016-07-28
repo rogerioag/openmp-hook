@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# recupera o nome do diretorio, que é o nome do benchmark.
-
+# retrieve the dir name, that is the benchmark name.
 benchmark=`basename $PWD`
 
 experiment_date=`date +'%d-%m-%Y-%H-%M-%S'`
@@ -28,7 +27,7 @@ echo "Executing test for $benchmark, start at `date +'%d/%m/%Y-%T'`"
 
 mkdir -p ${OUTPUT}
 
-# for size_of_data in TOY_DATASET MINI_DATASET TINY_DATASET SMALL_DATASET MEDIUM_DATASET STANDARD_DATASET LARGE_DATASET EXTRALARGE_DATASET; do
+# TOY_DATASET: 32, MINI_DATASET: 64, TINY_DATASET: 128, SMALL_DATASET: 256, MEDIUM_DATASET: 512, STANDARD_DATASET: 1024, LARGE_DATASET: 2048, EXTRALARGE_DATASET: 4096, HUGE_DATASET: 8192
 for size_of_data in EXTRALARGE_DATASET; do
 	for num_threads in 24 22 20 18 16 14 12 10 8 6 4 2 1; do
 		echo "Compiling ${benchmark} with dataset: ${size_of_data}, schedule: ${omp_schedule}, chunk: ${chunk_size}, threads: ${num_threads}."
