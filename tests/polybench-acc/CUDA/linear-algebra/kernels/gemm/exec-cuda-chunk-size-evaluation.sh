@@ -21,7 +21,7 @@ echo "Executing test for $benchmark, start at `date +'%d/%m/%Y-%T'`"
 mkdir -p ${OUTPUT}
 
 # for size_of_data in TOY_DATASET MINI_DATASET TINY_DATASET SMALL_DATASET MEDIUM_DATASET STANDARD_DATASET LARGE_DATASET EXTRALARGE_DATASET; do
-for size_of_data in LARGE_DATASET; do
+for size_of_data in EXTRALARGE_DATASET; do
 	for num_threads in 1; do		
 		for omp_schedule in NONE; do
 			for chunk_size in 0; do
