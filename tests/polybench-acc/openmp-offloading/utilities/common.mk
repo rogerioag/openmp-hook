@@ -1,6 +1,9 @@
-INCLUDE_DIR := -I/home/goncalv/prova-de-conceito/testes-prova-conceito/openmp-hook -I/home/goncalv/cuda/include -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -I/home/goncalv/cuda/samples/common/inc
+OPENMP_HOOK_PATH=/home/${USER}/prova-de-conceito/testes-prova-conceito/openmp-hook
+CUDA_HOME=/home/${USER}/cuda
 
-LIBS_DIR := -L/home/goncalv/prova-de-conceito/testes-prova-conceito/openmp-hook -L/home/goncalv/cuda/lib64 -L/home/goncalv/cuda/samples/common/lib -L . -L ../../../../../../
+INCLUDE_DIR := -I${OPENMP_HOOK_PATH} -I${CUDA_HOME}/include -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-linux-gnu/ -I/usr/include/c++/4.8/ -I${CUDA_HOME}/samples/common/inc
+
+LIBS_DIR := -L${OPENMP_HOOK_PATH} -L${CUDA_HOME}/lib64 -L${CUDA_HOME}/samples/common/lib -L . -L ../../../../../../
 LIBRARIES:= -lhookomp -lroofline -fopenmp -lgomp -lffi -ldl -lcuda -lcudart
 
 all:

@@ -35,6 +35,8 @@ void HOOKOMP_init(){
 	}
 	/* up semaphore. */
 	sem_post(&mutex_hookomp_init);
+
+	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 }
 
 /* ------------------------------------------------------------- */
