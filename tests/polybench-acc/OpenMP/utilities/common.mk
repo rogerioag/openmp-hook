@@ -1,4 +1,7 @@
-INCPATHS = -I$(UTIL_DIR) -I/home/goncalv/prova-de-conceito/testes-prova-conceito/openmp-hook
+# Includes macros.h and timing.h.
+HOOKOMP_PATH=/home/${USER}/prova-de-conceito/testes-prova-conceito/openmp-hook
+
+INCPATHS = -I$(UTIL_DIR) -I${HOOKOMP_PATH}
 
 BENCHMARK = $(shell basename `pwd`)
 # position of directory (openmp, openmp-offloading, cuda...)
@@ -37,7 +40,6 @@ info:
 	@echo "make POLYBENCH_OPTIONS=\"-DPOLYBENCH_TIME -DEXTRALARGE_DATASET\" OMP_CONFIG=\"-DOPENMP_SCHEDULE_DYNAMIC -DOPENMP_CHUNK_SIZE=64 -DOPENMP_NUM_THREADS=24\""
 	@echo "make POLYBENCH_OPTIONS=\"-DPOLYBENCH_TIME -DEXTRALARGE_DATASET\" OMP_CONFIG=\"-DOPENMP_SCHEDULE_GUIDED -DOPENMP_CHUNK_SIZE=64 -DOPENMP_NUM_THREADS=24\""
 	@echo "TOY_DATASET: 32, MINI_DATASET: 64, TINY_DATASET: 128, SMALL_DATASET: 256, MEDIUM_DATASET: 512, STANDARD_DATASET: 1024, LARGE_DATASET: 2048, EXTRALARGE_DATASET: 4096, HUGE_DATASET: 8192"
-
 
 $(DEPS): $(SRC) $(HEADERS)
 	$(CC) $(INCPATHS) $(DEP_FLAG) $(SRC) > $(DEPS)

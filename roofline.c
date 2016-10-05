@@ -80,6 +80,8 @@ bool RM_library_init(void){
 
 	is_roofline_initialized = (result == true);
 
+	TRACE("[RM]: Leaving the %s with papi_eventsets_were_created: %d.\n", __FUNCTION__, papi_eventsets_were_created);
+
 	return result;
 }
 
@@ -239,16 +241,32 @@ bool RM_initialization_of_papi_libray_mode(){
 	// TRACE("pthread_key_create: %lld.\n", papi_thread_info_key);
 
 	TRACE("[Before]: Calling PAPI_library_init().\n");
-	if ((retval = PAPI_library_init(PAPI_VER_CURRENT)) != PAPI_VER_CURRENT){
+	if (((retval = PAPI_library_init(PAPI_VER_CURRENT)) != PAPI_VER_CURRENT) && (retval > 0)){
 		TRACE("PAPI_library_init error: %d %s\n", retval, PAPI_strerror(retval));
 		TRACE("PAPI library version mismatch.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+		switch (retval){
+		case PAPI_EINVAL :
+			TRACE("Error: papi.h is different from the version used to compile the PAPI library.\n");
+			break;
+		case PAPI_ENOMEM :
+			TRACE("Error: Insufficient memory to complete the operation.\n");
+			break;
+		case PAPI_ESBSTR :
+			TRACE("Error: This substrate does not support the underlying hardware.\n");
+			break;
+		case PAPI_ESYS :
+			TRACE("Error: A system or C library call failed inside PAPI, see the errno variable.\n");
+			break;
+		default :
+			TRACE("Error: Unknown Error.\n");
+		}
 	}
 
 	while ((retval = PAPI_is_initialized()) != PAPI_LOW_LEVEL_INITED){
 		TRACE("Waiting PAPI initialization.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	}
+	} 
 
 	/*switch (retval){
 		case PAPI_NOT_INITED :
@@ -388,16 +406,79 @@ void RM_print_counters_values_csv(void) {
 void RM_check_papi_status(int idx){
 	PRINT_FUNC_NAME;
 	int retval;
+	int status_tmp;
 
 	int status = 0;
 	TRACE("Checking the Status of EventSet[%d].\n", idx);
 	if((retval = PAPI_state(ptr_measure->EventSets[idx], &status)) != PAPI_OK){
-		switch (retval){
+		TRACE("PAPI_state error: %d %s\n", retval, PAPI_strerror(retval));
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);	
+	}
+	/* State is a sum of states. Print the greater and discount it value. */
+	// #define PAPI_STOPPED      0x01  /**< EventSet stopped */
+	// #define PAPI_RUNNING      0x02  /**< EventSet running */
+	// #define PAPI_PAUSED       0x04  /**< EventSet temp. disabled by the library */
+	// #define PAPI_NOT_INIT     0x08  /**< EventSet defined, but not initialized */
+	// #define PAPI_OVERFLOWING  0x10  /**< EventSet has overflowing enabled */
+	// #define PAPI_PROFILING    0x20  /**< EventSet has profiling enabled */
+	// #define PAPI_MULTIPLEXING 0x40  /**< EventSet has multiplexing enabled */
+	// #define PAPI_ATTACHED	  0x80  /**< EventSet is attached to another thread/process */
+	// #define PAPI_CPU_ATTACHED 0x100 /**< EventSet is attached to a specific cpu (not counting thread of execution) */
+	TRACE("State is now %d.\n", status);
+	status_tmp =  status;
+
+	if(status_tmp >= PAPI_CPU_ATTACHED){
+		TRACE("State: %3d - %s.\n", PAPI_CPU_ATTACHED, "PAPI_CPU_ATTACHED");
+		status_tmp = status_tmp - PAPI_CPU_ATTACHED;
+	}
+
+	if(status_tmp >= PAPI_ATTACHED){
+		TRACE("State: %3d - %s.\n", PAPI_ATTACHED, "PAPI_ATTACHED");
+		status_tmp = status_tmp - PAPI_ATTACHED;
+	}
+
+	if(status_tmp >= PAPI_MULTIPLEXING){
+		TRACE("State: %3d - %s.\n", PAPI_MULTIPLEXING, "PAPI_MULTIPLEXING");
+		status_tmp = status_tmp - PAPI_MULTIPLEXING;
+	}
+
+	if(status_tmp >= PAPI_PROFILING){
+		TRACE("State: %3d - %s.\n", PAPI_PROFILING, "PAPI_PROFILING");
+		status_tmp = status_tmp - PAPI_PROFILING;
+	}
+
+	if(status_tmp >= PAPI_OVERFLOWING){
+		TRACE("State: %3d - %s.\n", PAPI_OVERFLOWING, "PAPI_OVERFLOWING");
+		status_tmp = status_tmp - PAPI_OVERFLOWING;
+	}
+
+	if(status_tmp >= PAPI_NOT_INIT){
+		TRACE("State: %3d - %s.\n", PAPI_NOT_INIT, "PAPI_NOT_INIT");
+		status_tmp = status_tmp - PAPI_NOT_INIT;
+	}
+	
+	if(status_tmp >= PAPI_PAUSED){
+		TRACE("State: %3d - %s.\n", PAPI_PAUSED, "PAPI_PAUSED");
+		status_tmp = status_tmp - PAPI_PAUSED;
+	}
+
+	if(status_tmp >= PAPI_RUNNING){
+		TRACE("State: %3d - %s.\n", PAPI_RUNNING, "PAPI_RUNNING");
+		status_tmp = status_tmp - PAPI_RUNNING;
+	}
+
+	if(status_tmp >= PAPI_STOPPED){
+		TRACE("State: %3d - %s.\n", PAPI_STOPPED, "PAPI_STOPPED");
+		status_tmp = status_tmp - PAPI_STOPPED;
+	}
+	
+/*
+	switch (status){
 			case PAPI_STOPPED :
 				TRACE("EventSet is stopped.\n");
 				break;
 			case PAPI_RUNNING :
-				TRACE("EventSet is running.\n");
+	 			TRACE("EventSet is running.\n");
 				break;
 			case PAPI_PAUSED :
 				TRACE("EventSet temporarily disabled by the library.\n"); 
@@ -405,24 +486,25 @@ void RM_check_papi_status(int idx){
 			case PAPI_NOT_INIT :
 				TRACE("EventSet defined, but not initialized.\n");
 				break;
-    		case PAPI_OVERFLOWING :
+			case PAPI_OVERFLOWING :
 				TRACE("EventSet has overflowing enabled.\n");
-    			break;
-		    case PAPI_PROFILING :
+				break;
+			case PAPI_PROFILING :
 				TRACE("EventSet has profiling enabled.\n");
-		    	break;
-		    case PAPI_MULTIPLEXING :
+				break;
+			case PAPI_MULTIPLEXING :
 				TRACE("EventSet has multiplexing enabled.\n");
-		    	break;
-		//    case PAPI_ACCUMULATING :
-		//		TRACE("reserved for future use.\n");
-		//    	break;
-		//    case PAPI_HWPROFILING :
-		//		TRACE("reserved for future use.\n");
-		//    	break;
-		    defaul: TRACE("Undefined retval.\n");
-		} 
-	}
+				break;
+			//    case PAPI_ACCUMULATING :
+			//		TRACE("reserved for future use.\n");
+			//    	break;
+			//    case PAPI_HWPROFILING :
+			//		TRACE("reserved for future use.\n");
+			//    	break;
+			defaul: TRACE("Undefined retval.\n");
+		}
+	*/
+	
 	// TRACE("Checking the Status of EventSetUnCore.\n");
 	// if((retval = PAPI_state(ptr_measure->EventSetUnCore, &status)) != PAPI_OK){
 	// 	switch (retval){
