@@ -676,6 +676,7 @@ bool RM_create_event_sets(void){
    	gran_opt_uncore.eventset = ptr_measure->EventSets[COMP_UNCORE];
    	gran_opt_uncore.granularity = PAPI_GRN_SYS;
 
+   	TRACE("Setting granularity options.\n");
    	if ((retval_2 = PAPI_set_opt(PAPI_GRANUL, (PAPI_option_t*) &gran_opt_uncore)) != PAPI_OK){
    		TRACE("Trying to PAPI_GRN_SYS: %d %s\n", retval_2, PAPI_strerror(retval_2));
    	}
@@ -768,6 +769,7 @@ bool RM_start_counters (void){
   	}
 
   	/* Event set was created. */
+  	TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
 	if(!papi_eventsets_were_created){
 		TRACE("Trying to create event set.\n");
 		result = RM_create_event_sets();
