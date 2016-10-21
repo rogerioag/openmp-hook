@@ -2,6 +2,8 @@
 #ifndef TIMING_H
 #define TIMING_H
 #include <stdint.h>
+#include <inttypes.h>
+#include <stdio.h>
 #include <stdbool.h>
 #include <time.h>
 
@@ -9,24 +11,31 @@
    e gettimeofday de microsegundos.
 */
 // Monitoring SEQUENTIAL version.
-uint64_t seq_start, seq_stop;
+uint64_t seq_start = 0;
+uint64_t seq_stop = 0;
 // Monitoring OMP version.
-uint64_t omp_start, omp_stop;
+uint64_t omp_start = 0;
+uint64_t omp_stop = 0;
 // Monitoring Device, CUDA version.
-uint64_t dev_kernel1_start, dev_kernel1_stop;
-uint64_t dev_kernel2_start, dev_kernel2_stop;
-uint64_t dev_kernel3_start, dev_kernel3_stop;
+uint64_t dev_kernel1_start = 0;
+uint64_t dev_kernel1_stop = 0;
+uint64_t dev_kernel2_start = 0;
+uint64_t dev_kernel2_stop = 0;
+uint64_t dev_kernel3_start = 0;
+uint64_t dev_kernel3_stop = 0;
 // Monitoring Data Transfers.
-uint64_t data_transfer_h2d_start, data_transfer_h2d_stop;
-uint64_t data_transfer_d2h_start, data_transfer_d2h_stop;
+uint64_t data_transfer_h2d_start = 0;
+uint64_t data_transfer_h2d_stop = 0;
+uint64_t data_transfer_d2h_start = 0;
+uint64_t data_transfer_d2h_stop = 0;
 
 /* Flag to registry if the shared work finish before the offloading decision. 
   When the original next chunk function returns false (NO MORE WORK TO DO) before of the thread reach the decision point. */
-bool reach_offload_decision_point;
+bool reach_offload_decision_point = false;
 
-bool decided_by_offloading;
+bool decided_by_offloading = false;
 
-bool made_the_offloading;
+bool made_the_offloading = false;
 
 uint64_t get_time(){
  struct timespec spec;
@@ -77,7 +86,8 @@ void hookomp_timing_stop(uint64_t *_stop){
 }
 
 void hookomp_timing_print(uint64_t tstart, uint64_t tstop){
-	printf ("%Ld", tstop - tstart);
+	// printf ("%llu", tstop - tstart);
+  printf("%"PRIu64, tstop - tstart);
 }
 
 void hookomp_timing_print_without_dev() {
@@ -85,7 +95,8 @@ void hookomp_timing_print_without_dev() {
 	uint64_t dev_time = (dev_kernel1_stop - dev_kernel1_start) + (dev_kernel2_stop - dev_kernel2_start) + (dev_kernel3_stop - dev_kernel3_start);
 	uint64_t dt_time = (data_transfer_h2d_stop - data_transfer_h2d_start) + (data_transfer_d2h_stop - data_transfer_d2h_start);
 
-	printf ("%Ld", (total_time - dev_time - dt_time));
+	// printf ("%llu", (total_time - dev_time - dt_time));
+  printf("%"PRIu64, (total_time > 0) ? (total_time - dev_time - dt_time) : total_time);
 }
 
 void hookomp_print_time_results(){
