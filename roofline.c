@@ -14,73 +14,71 @@ bool RM_library_init(void){
 	int retval = 0;
 	int i, j;
 
-	if((retval = RM_check_perf_event_paranoid()) != 0){
-		TRACE("Error: >>>>>> Insufficient permissions for uncore access.\n"); 
-		TRACE("Error: >>>>>> Set /proc/sys/kernel/perf_event_paranoid to 0 or run as root.\n");
+	if(!is_roofline_initialized){
+		
+		if((retval = RM_check_perf_event_paranoid()) != 0){
+			TRACE("Error: >>>>>> Insufficient permissions for uncore access.\n"); 
+			TRACE("Error: >>>>>> Set /proc/sys/kernel/perf_event_paranoid to 0 or run as root.\n");
+		}
+
+		/* Create the structures to get measures. */
+		ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
+		ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS * NUM_MAX_EVENTS);
+
+		ptr_measure->quant_intervals = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS);
+
+		memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
+
+		memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
+
+	   	TRACE("ptr_measure->values initialization.\n");
+	   	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
+	   		TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
+	 		for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
+		 		ptr_measure->values[i * NUM_MAX_EVENTS + j] = 0;
+		 		TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i * NUM_MAX_EVENTS + j]);	
+		 	}
+		}
+
+		ptr_measure->current_eventset = 0;
+		ptr_measure->initial_time = (struct timeval){0};
+		ptr_measure->final_time = (struct timeval){0};
+
+		ptr_measure->EventSets = (int *) malloc(sizeof(int) * NUM_PAPI_EVENT_SETS);
+		ptr_measure->EventSets[COMP_CORE] = PAPI_NULL;
+		ptr_measure->EventSets[COMP_UNCORE] = PAPI_NULL;
+
+		/* Aditional parameters. */
+		ptr_measure->total_of_iterations = 0;
+	  	ptr_measure->executed_loop_iterations = 0;
+	  	ptr_measure->chunk_size = 0;
+
+	  	RM_print_counters_values();
+
+		TRACE("PAPI Library was initialized: %d\n", papi_library_initialized);
+		if(!papi_library_initialized){
+	  		TRACE("[Before] Value of papi_library_initialized: %d\n",papi_library_initialized);
+	  		result = RM_initialization_of_papi_libray_mode();
+	  		TRACE("[After] Value of result: %d, papi_library_initialized: %d\n", result, papi_library_initialized);
+	  	}
+
+	  	/* Event set was created. */
+	   	TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
+		if(!papi_eventsets_were_created){
+		 	TRACE("Trying to create event set.\n");
+		 	result = RM_create_event_sets();
+		}
+
+		sem_init(&mutex_measure_session_init, 0, 1);
+
+		is_measure_session_initialized = false;
+
+		is_roofline_initialized = (result == true);
 	}
 
-	/*Create the structures to get measures. */
-	ptr_measure = (struct _papi_thread_record *) malloc(sizeof(struct _papi_thread_record));
-	ptr_measure->values = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS * NUM_MAX_EVENTS);
+	TRACE("[RM]: Leaving the %s with papi_eventsets_were_created: %d.\n", __FUNCTION__, papi_eventsets_were_created);
 
-	ptr_measure->quant_intervals = (long long *) malloc(sizeof(long long) * NUM_EVENT_SETS);
-
-	memset(ptr_measure->quant_intervals, 0, NUM_EVENT_SETS * sizeof(*ptr_measure->quant_intervals));
-
-	memset(ptr_measure->values, 0, NUM_EVENT_SETS * NUM_MAX_EVENTS * sizeof(*ptr_measure->values));
-
-   	TRACE("ptr_measure->values initialization.\n");
-   	for ( i = 0; i < NUM_EVENT_SETS; i++ ) {
-   		TRACE("# intervals [%d]: %ld\n", i, ptr_measure->quant_intervals[i]);
- 		for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
-	 		ptr_measure->values[i * NUM_MAX_EVENTS + j] = 0;
-	 		TRACE("ptr_measure->values[%d][%d]: %ld.\n", i, j, ptr_measure->values[i * NUM_MAX_EVENTS + j]);	
-	 	}
-	}
-
-	ptr_measure->current_eventset = 0;
-	ptr_measure->initial_time = (struct timeval){0};
-	ptr_measure->final_time = (struct timeval){0};
-
-	ptr_measure->EventSets = (int *) malloc(sizeof(int) * NUM_PAPI_EVENT_SETS);
-	ptr_measure->EventSets[COMP_CORE] = PAPI_NULL;
-	ptr_measure->EventSets[COMP_UNCORE] = PAPI_NULL;
-
-	/* Aditional parameters. */
-	ptr_measure->total_of_iterations = 0;
-  	ptr_measure->executed_loop_iterations = 0;
-  	ptr_measure->chunk_size = 0;
-
-  	RM_print_counters_values();
-
-	TRACE("PAPI Library was initialized: %d\n", papi_library_initialized);
-	if(!papi_library_initialized){
-  		TRACE("[Before] Value of papi_library_initialized: %d\n",papi_library_initialized);
-  		result = RM_initialization_of_papi_libray_mode();
-  		TRACE("[After] Value of result: %d, papi_library_initialized: %d\n", result, papi_library_initialized);
-  	}
-
-  	/* Thread was registered. */
-  	/*TRACE("Verifying if the thread was registered in PAPI: %d.\n", thread_was_registred_in_papi);
-  	if(!thread_was_registred_in_papi){
-  		TRACE("Trying to registry the thread in papi.\n");
-  		result = RM_register_papi_thread();
-  	}*/
-
-  	/* Event set was created. */
-   	TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
-	if(!papi_eventsets_were_created){
-	 	TRACE("Trying to create event set.\n");
-	 	result = RM_create_event_sets();
-	}
-
-	sem_init(&mutex_measure_session_init, 0, 1);
-
-	is_measure_session_initialized = false;
-
-	is_roofline_initialized = (result == true);
-
-	return result;
+	return is_roofline_initialized;
 }
 
 /* ------------------------------------------------------------ */
@@ -239,16 +237,32 @@ bool RM_initialization_of_papi_libray_mode(){
 	// TRACE("pthread_key_create: %lld.\n", papi_thread_info_key);
 
 	TRACE("[Before]: Calling PAPI_library_init().\n");
-	if ((retval = PAPI_library_init(PAPI_VER_CURRENT)) != PAPI_VER_CURRENT){
+	if (((retval = PAPI_library_init(PAPI_VER_CURRENT)) != PAPI_VER_CURRENT) && (retval > 0)){
 		TRACE("PAPI_library_init error: %d %s\n", retval, PAPI_strerror(retval));
 		TRACE("PAPI library version mismatch.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+		switch (retval){
+		case PAPI_EINVAL :
+			TRACE("Error: papi.h is different from the version used to compile the PAPI library.\n");
+			break;
+		case PAPI_ENOMEM :
+			TRACE("Error: Insufficient memory to complete the operation.\n");
+			break;
+		case PAPI_ESBSTR :
+			TRACE("Error: This substrate does not support the underlying hardware.\n");
+			break;
+		case PAPI_ESYS :
+			TRACE("Error: A system or C library call failed inside PAPI, see the errno variable.\n");
+			break;
+		default :
+			TRACE("Error: Unknown Error.\n");
+		}
 	}
 
 	while ((retval = PAPI_is_initialized()) != PAPI_LOW_LEVEL_INITED){
 		TRACE("Waiting PAPI initialization.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	}
+	} 
 
 	/*switch (retval){
 		case PAPI_NOT_INITED :
@@ -388,16 +402,79 @@ void RM_print_counters_values_csv(void) {
 void RM_check_papi_status(int idx){
 	PRINT_FUNC_NAME;
 	int retval;
+	int status_tmp;
 
 	int status = 0;
 	TRACE("Checking the Status of EventSet[%d].\n", idx);
 	if((retval = PAPI_state(ptr_measure->EventSets[idx], &status)) != PAPI_OK){
-		switch (retval){
+		TRACE("PAPI_state error: %d %s\n", retval, PAPI_strerror(retval));
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);	
+	}
+	/* State is a sum of states. Print the greater and discount it value. */
+	// #define PAPI_STOPPED      0x01  /**< EventSet stopped */
+	// #define PAPI_RUNNING      0x02  /**< EventSet running */
+	// #define PAPI_PAUSED       0x04  /**< EventSet temp. disabled by the library */
+	// #define PAPI_NOT_INIT     0x08  /**< EventSet defined, but not initialized */
+	// #define PAPI_OVERFLOWING  0x10  /**< EventSet has overflowing enabled */
+	// #define PAPI_PROFILING    0x20  /**< EventSet has profiling enabled */
+	// #define PAPI_MULTIPLEXING 0x40  /**< EventSet has multiplexing enabled */
+	// #define PAPI_ATTACHED	  0x80  /**< EventSet is attached to another thread/process */
+	// #define PAPI_CPU_ATTACHED 0x100 /**< EventSet is attached to a specific cpu (not counting thread of execution) */
+	TRACE("State is now %d.\n", status);
+	status_tmp =  status;
+
+	if(status_tmp >= PAPI_CPU_ATTACHED){
+		TRACE("State: %3d - %s.\n", PAPI_CPU_ATTACHED, "PAPI_CPU_ATTACHED");
+		status_tmp = status_tmp - PAPI_CPU_ATTACHED;
+	}
+
+	if(status_tmp >= PAPI_ATTACHED){
+		TRACE("State: %3d - %s.\n", PAPI_ATTACHED, "PAPI_ATTACHED");
+		status_tmp = status_tmp - PAPI_ATTACHED;
+	}
+
+	if(status_tmp >= PAPI_MULTIPLEXING){
+		TRACE("State: %3d - %s.\n", PAPI_MULTIPLEXING, "PAPI_MULTIPLEXING");
+		status_tmp = status_tmp - PAPI_MULTIPLEXING;
+	}
+
+	if(status_tmp >= PAPI_PROFILING){
+		TRACE("State: %3d - %s.\n", PAPI_PROFILING, "PAPI_PROFILING");
+		status_tmp = status_tmp - PAPI_PROFILING;
+	}
+
+	if(status_tmp >= PAPI_OVERFLOWING){
+		TRACE("State: %3d - %s.\n", PAPI_OVERFLOWING, "PAPI_OVERFLOWING");
+		status_tmp = status_tmp - PAPI_OVERFLOWING;
+	}
+
+	if(status_tmp >= PAPI_NOT_INIT){
+		TRACE("State: %3d - %s.\n", PAPI_NOT_INIT, "PAPI_NOT_INIT");
+		status_tmp = status_tmp - PAPI_NOT_INIT;
+	}
+	
+	if(status_tmp >= PAPI_PAUSED){
+		TRACE("State: %3d - %s.\n", PAPI_PAUSED, "PAPI_PAUSED");
+		status_tmp = status_tmp - PAPI_PAUSED;
+	}
+
+	if(status_tmp >= PAPI_RUNNING){
+		TRACE("State: %3d - %s.\n", PAPI_RUNNING, "PAPI_RUNNING");
+		status_tmp = status_tmp - PAPI_RUNNING;
+	}
+
+	if(status_tmp >= PAPI_STOPPED){
+		TRACE("State: %3d - %s.\n", PAPI_STOPPED, "PAPI_STOPPED");
+		status_tmp = status_tmp - PAPI_STOPPED;
+	}
+	
+/*
+	switch (status){
 			case PAPI_STOPPED :
 				TRACE("EventSet is stopped.\n");
 				break;
 			case PAPI_RUNNING :
-				TRACE("EventSet is running.\n");
+	 			TRACE("EventSet is running.\n");
 				break;
 			case PAPI_PAUSED :
 				TRACE("EventSet temporarily disabled by the library.\n"); 
@@ -405,24 +482,25 @@ void RM_check_papi_status(int idx){
 			case PAPI_NOT_INIT :
 				TRACE("EventSet defined, but not initialized.\n");
 				break;
-    		case PAPI_OVERFLOWING :
+			case PAPI_OVERFLOWING :
 				TRACE("EventSet has overflowing enabled.\n");
-    			break;
-		    case PAPI_PROFILING :
+				break;
+			case PAPI_PROFILING :
 				TRACE("EventSet has profiling enabled.\n");
-		    	break;
-		    case PAPI_MULTIPLEXING :
+				break;
+			case PAPI_MULTIPLEXING :
 				TRACE("EventSet has multiplexing enabled.\n");
-		    	break;
-		//    case PAPI_ACCUMULATING :
-		//		TRACE("reserved for future use.\n");
-		//    	break;
-		//    case PAPI_HWPROFILING :
-		//		TRACE("reserved for future use.\n");
-		//    	break;
-		    defaul: TRACE("Undefined retval.\n");
-		} 
-	}
+				break;
+			//    case PAPI_ACCUMULATING :
+			//		TRACE("reserved for future use.\n");
+			//    	break;
+			//    case PAPI_HWPROFILING :
+			//		TRACE("reserved for future use.\n");
+			//    	break;
+			defaul: TRACE("Undefined retval.\n");
+		}
+	*/
+	
 	// TRACE("Checking the Status of EventSetUnCore.\n");
 	// if((retval = PAPI_state(ptr_measure->EventSetUnCore, &status)) != PAPI_OK){
 	// 	switch (retval){
@@ -469,7 +547,31 @@ bool RM_create_event_sets(void){
 
 	int native = 0x0;
 
-	TRACE("Trying to create PAPI Event Sets.\n");
+	const PAPI_hw_info_t *hwinfo = NULL;
+	const PAPI_component_info_t* cmpinfo;
+
+	TRACE("Checking Hardware.\n");
+	/* Get hardware info */
+   if((hwinfo = PAPI_get_hardware_info()) == NULL) {
+        TRACE("PAPI_get_hardware_info error.\n");
+   }
+   else{
+   		TRACE("Vendor: %d(%s), Family: %d, CPUIDModel: %d, Model: %d(%s)\n", hwinfo->vendor, hwinfo->vendor_string, hwinfo->cpuid_family, hwinfo->cpuid_model, hwinfo->model, hwinfo->model_string);
+   		TRACE("CPUIDModel -> [26, 30, 31]: Nehalem, [46]: Nehalem EX, [37, 44]: Westmere, [47]: Westmere EX, [62]: Ivy Trail, [45]: SandyBridge EP, [42]: SandyBridge, [58]: IvyBridge, [63]: Haswell EP, [87]: Knights Landing.\n");
+   }
+
+   TRACE("Checking CPU component.\n");
+   if ((cmpinfo = PAPI_get_component_info(0)) == NULL){
+   		TRACE("PAPI_get_component_info error.\n");
+   }
+   else{
+   		TRACE("Name:   %-23s %s -- Enabled: %s.\n", cmpinfo->name, cmpinfo->description, (!cmpinfo->disabled)? "Yes" : "No");
+   		if(cmpinfo->disabled){
+   			TRACE("   \\-> Disabled: %s\n",cmpinfo->disabled_reason);	
+   		}
+   }
+   
+   TRACE("Trying to create PAPI Event Sets.\n");
 
 	TRACE("Trying to create ptr_measure->EventSets[COMP_CORE].\n");
 	/* Create an EventSet */
@@ -537,11 +639,11 @@ bool RM_create_event_sets(void){
    //          retval);
    // }
 
-  	TRACE("Trying to create ptr_measure->EventSets[COMP_UNCORE].\n");
-
+  	TRACE("Checking Uncore component.\n");
   	/* Find the uncore PMU */
   	if ((uncore_cidx = PAPI_get_component_index("perf_event_uncore")) < 0){
   		TRACE("perf_event_uncore component not found: %d %s\n", uncore_cidx, PAPI_strerror(uncore_cidx));
+  		RM_papi_handle_error(__FUNCTION__, uncore_cidx, __LINE__);
    	}
 
    	/* Check if component disabled */
@@ -549,12 +651,15 @@ bool RM_create_event_sets(void){
    		TRACE("Uncore component %d not found.\n", uncore_cidx);	
    	}
    	else{
-   		if (cmp_info->disabled) {
-    	  TRACE("Uncore component disabled.\n");
-   		}	
-   	}
+   		TRACE("Name:   %-23s %s -- Enabled: %s.\n", cmp_info->name, cmp_info->description, (!cmp_info->disabled)? "Yes" : "No");
+   		if(cmp_info->disabled){
+   			TRACE("Uncore component disabled.\n");
+   			TRACE("   \\-> Disabled: %s\n",cmpinfo->disabled_reason);	
+   		}
+   }
 
    	/* Create an eventset */
+   TRACE("Trying to create ptr_measure->EventSets[COMP_UNCORE].\n");
    	if ((retval_2 = PAPI_create_eventset(&ptr_measure->EventSets[COMP_UNCORE])) != PAPI_OK){
     	TRACE("PAPI_create_eventset error: %d %s\n", retval_2, PAPI_strerror(retval_2));
     	RM_papi_handle_error(__FUNCTION__, retval_2, __LINE__);
@@ -574,6 +679,7 @@ bool RM_create_event_sets(void){
    	cpu_opt_uncore.eventset = ptr_measure->EventSets[COMP_UNCORE];
    	cpu_opt_uncore.cpu_num = 0;
 
+   	TRACE("Attaching uncore component to CPU.\n");
    	if ((retval_2 = PAPI_set_opt(PAPI_CPU_ATTACH, (PAPI_option_t*) &cpu_opt_uncore)) != PAPI_OK){
    		TRACE("Trying to PAPI_CPU_ATTACH; need to run as root: %d %s\n", retval_2, PAPI_strerror(retval_2));
    	}
@@ -594,6 +700,7 @@ bool RM_create_event_sets(void){
    	gran_opt_uncore.eventset = ptr_measure->EventSets[COMP_UNCORE];
    	gran_opt_uncore.granularity = PAPI_GRN_SYS;
 
+   	TRACE("Setting granularity options.\n");
    	if ((retval_2 = PAPI_set_opt(PAPI_GRANUL, (PAPI_option_t*) &gran_opt_uncore)) != PAPI_OK){
    		TRACE("Trying to PAPI_GRN_SYS: %d %s\n", retval_2, PAPI_strerror(retval_2));
    	}
@@ -606,6 +713,7 @@ bool RM_create_event_sets(void){
    	domain_opt_uncore.eventset = ptr_measure->EventSets[COMP_UNCORE];
    	domain_opt_uncore.domain = PAPI_DOM_ALL;
 
+   	TRACE("Setting domain options.\n");
    	if ((retval_2 = PAPI_set_opt(PAPI_DOMAIN,(PAPI_option_t*) &domain_opt_uncore)) != PAPI_OK){
    		TRACE("Trying to PAPI_DOM_ALL; need to run as root %d %s\n", retval_2, PAPI_strerror(retval_2));
    	}
@@ -686,6 +794,7 @@ bool RM_start_counters (void){
   	}
 
   	/* Event set was created. */
+  	TRACE("Verifying if eventset was created: %d.\n", papi_eventsets_were_created);
 	if(!papi_eventsets_were_created){
 		TRACE("Trying to create event set.\n");
 		result = RM_create_event_sets();

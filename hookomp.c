@@ -11,7 +11,7 @@ void foo(void) {
 void HOOKOMP_release_all_team_threads(void){
 	PRINT_FUNC_NAME;
 
-	TRACE("[HOOKOMP]: Waking up the %d blocked threads.\n", number_of_blocked_threads);
+	TRACE("[HOOKOMP]: Waking up the %ld blocked threads.\n", number_of_blocked_threads);
 	for (int i = 0; i < number_of_blocked_threads; ++i) {
 		sem_post(&sem_blocks_other_team_threads);
 	}
@@ -22,19 +22,22 @@ void HOOKOMP_release_all_team_threads(void){
 /* Function to execute in parallel region start.                 */
 void HOOKOMP_init(){
 	PRINT_FUNC_NAME;
+	bool result = false;
 
 	sem_wait(&mutex_hookomp_init);
 
 	if(!is_hookomp_initialized){
 		/* Initialize RM library. */
-		if(!RM_library_init()){
+		if((result = RM_library_init()) == false){
 			TRACE("Error calling RM_library_init in %s.\n", __FUNCTION__);
 		}
 
-		is_hookomp_initialized = true;
+		is_hookomp_initialized = (result == true);
 	}
 	/* up semaphore. */
 	sem_post(&mutex_hookomp_init);
+
+	TRACE("[HOOKOMP]: Leaving the %s.\n", __FUNCTION__);
 }
 
 /* ------------------------------------------------------------- */
@@ -44,7 +47,7 @@ void HOOKOMP_loop_start(long int start, long int end, long int num_threads, long
 
 	sem_wait(&mutex_hookomp_loop_init);
 
-	TRACE("Current loop index in loop start: %d.\n", current_loop_index);
+	TRACE("Current loop index in loop start: %ld.\n", current_loop_index);
 	TRACE("Number of threads: %d.\n", num_threads);
 
 	if(!is_loop_initialized){
@@ -276,18 +279,18 @@ bool HOOKOMP_call_offloading_function(long int loop_index, long int device_index
 	PRINT_FUNC_NAME;
 	bool retval = false;
 
-	TRACE("Verifying if function for loop index: %d, device index: %d is defined. \n", loop_index, device_index);
+	TRACE("Verifying if function for loop index: %ld, device index: %ld is defined. \n", loop_index, device_index);
 	if(TablePointerFunctions == NULL){
       TRACE("TablePointerFunctions is not defined. (TablePointerFunctions is NULL).\n");
       return retval;
     }
 
 	TRACE("TablePointerFunctions: %p.\n", TablePointerFunctions);
-	TRACE("TablePointerFunctions[%d][%d]: %p.\n", loop_index, device_index, (Func *) TablePointerFunctions[loop_index][device_index]);
-	TRACE("(TablePointerFunctions[%d][%d])->f: %p.\n", loop_index, device_index, (TablePointerFunctions[loop_index][device_index])->f);
+	TRACE("TablePointerFunctions[%ld][%ld]: %p.\n", loop_index, device_index, (Func *) TablePointerFunctions[loop_index][device_index]);
+	TRACE("(TablePointerFunctions[%ld][%ld])->f: %p.\n", loop_index, device_index, (TablePointerFunctions[loop_index][device_index])->f);
 	
 	if((TablePointerFunctions != NULL) && (TablePointerFunctions[loop_index][device_index] != NULL) && ((TablePointerFunctions[loop_index][device_index])->f != NULL)){
-		TRACE("Offloading function for loop index: %d, device index: %d.\n", loop_index, device_index);
+		TRACE("Offloading function for loop index: %ld, device index: %ld.\n", loop_index, device_index);
 		retval = HOOKOMP_call_function_ffi(TablePointerFunctions[loop_index][device_index]);
 	}
 	else{
@@ -501,7 +504,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 				//	TRACE("[HOOKOMP]: Error calling RM_stop_and_accumulate.\n");
 				//}
 				//else{
-					TRACE("Current loop index: %d.\n", current_loop_index);
+					TRACE("Current loop index: %ld.\n", current_loop_index);
 					TRACE("Defining additional parameters.\n");
 					// N: total of iterations, Number of executed iterations (percentual), last chunk_size.
 					RM_set_aditional_parameters(total_of_iterations, executed_loop_iterations, (*iend - *istart), q_data_transfer_write, q_data_transfer_read, type_of_data_allocation);
@@ -511,15 +514,15 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 					TRACE("Getting decision about offloading.\n");
 					if((decided_by_offloading = RM_decision_about_offloading(&better_device)) != 0){
 						/* Launch appropriated function. */
-						TRACE("RM decided by device [%d].\n", better_device);
+						TRACE("The RM decided by device [%ld].\n", better_device);
 
-						TRACE("Trying to launch appropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
+						TRACE("Trying to launch appropriated function to loop %ld on device: %ld.\n", current_loop_index, better_device);
 
 						if((made_the_offloading = HOOKOMP_call_offloading_function(current_loop_index, better_device)) == 0){
 							TRACE("The function offloading was not done.\n");
 						}
 						else{
-							TRACE("The offloading was done launching of appropriated function to loop %d on device: %d.\n", current_loop_index, better_device);
+							TRACE("The offloading was done launching of appropriated function to loop %lu on device: %ld.\n", current_loop_index, better_device);
 						}
 					}
 					else {
@@ -562,7 +565,7 @@ bool HOOKOMP_generic_next(long* istart, long* iend, chunk_next_fn fn_proxy, void
 
 					sem_post(&mutex_verify_number_of_blocked_threads);
 
-					TRACE("[HOOKOMP]: Number of blocked threads: %d.\n", number_of_blocked_threads);
+					TRACE("[HOOKOMP]: Number of blocked threads: %ld.\n", number_of_blocked_threads);
 					TRACE("[HOOKOMP]: Thread [%lu] will be blocked.\n", (long int) pthread_self());
 
 					sem_wait(&sem_blocks_other_team_threads);
@@ -738,7 +741,7 @@ void HOOKOMP_loop_end(void){
 
 	long int thread_id = (long int) pthread_self();
 
-	TRACE("[HOOKOMP]: Thread [%lu] is finishing on loop %d.\n", thread_id, current_loop_index);
+	TRACE("[HOOKOMP]: Thread [%lu] is finishing on loop %ld.\n", thread_id, current_loop_index);
 	
 	sem_wait(&mutex_loop_end);
 
@@ -747,7 +750,7 @@ void HOOKOMP_loop_end(void){
 
 		sem_post(&mutex_loop_end);
 
-		TRACE("[HOOKOMP]: Number of blocked threads in loop end: %d.\n", number_of_blocked_threads_in_loop_end);
+		TRACE("[HOOKOMP]: Number of blocked threads in loop end: %ld.\n", number_of_blocked_threads_in_loop_end);
 		TRACE("[HOOKOMP]: Thread [%lu] will be blocked in loop end.\n", thread_id);
 
 		sem_wait(&sem_blocks_threads_in_loop_end);
@@ -756,7 +759,7 @@ void HOOKOMP_loop_end(void){
 	else{
 		if(is_loop_initialized){
 			/* Initialization of thread and measures section. */
-			TRACE("[HOOKOMP]: Thread [%lu] is closing the loop index %d.\n", (long int) pthread_self(), current_loop_index);
+			TRACE("[HOOKOMP]: Thread [%lu] is closing the loop index %ld.\n", (long int) pthread_self(), current_loop_index);
 			registred_thread_executing_function_next = -1;
 			thread_was_registred_to_execute_measures = false;
 		
@@ -770,7 +773,7 @@ void HOOKOMP_loop_end(void){
 			}
 		}
 
-		TRACE("[HOOKOMP]: Waking up the %d blocked threads in loop end.\n", number_of_blocked_threads_in_loop_end);
+		TRACE("[HOOKOMP]: Waking up the %ld blocked threads in loop end.\n", number_of_blocked_threads_in_loop_end);
 		for (int i = 0; i < number_of_blocked_threads_in_loop_end; ++i) {
 			sem_post(&sem_blocks_threads_in_loop_end);
 		}
@@ -781,7 +784,7 @@ void HOOKOMP_loop_end(void){
 /* ------------------------------------------------------------- */
 void HOOKOMP_loop_end_nowait(void){
 	PRINT_FUNC_NAME;
-	TRACE("[HOOKOMP]: Thread [%lu] is calling %s in current loop index %d.\n", (long int) pthread_self(), __FUNCTION__, current_loop_index);
+	TRACE("[HOOKOMP]: Thread [%lu] is calling %s in current loop index %ld.\n", (long int) pthread_self(), __FUNCTION__, current_loop_index);
 	
 	HOOKOMP_loop_end();
 }
@@ -1368,7 +1371,7 @@ void GOMP_loop_end (void){
 
 	lib_GOMP_loop_end();
 
-	TRACE("***End of loop: %d\n", current_loop_index);
+	TRACE("***End of loop: %ld\n", current_loop_index);
 }
 /* ------------------------------------------------------------- */
 void GOMP_loop_end_nowait (void){
@@ -1385,7 +1388,7 @@ void GOMP_loop_end_nowait (void){
 
 	lib_GOMP_loop_end_nowait();
 
-	TRACE("***End of loop nowait: %d\n", current_loop_index);
+	TRACE("***End of loop nowait: %lu\n", (unsigned long int) current_loop_index);
 }
 
 /* ------------------------------------------------------------- */

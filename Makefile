@@ -1,6 +1,9 @@
 CC=gcc-4.8
 CXX=g++-4.8
 LIB_HOOKOMP_PATH=$(PWD)
+PAPI_DIR = /home/${USER}/papi/usr/local
+INCLUDE += -I$(PAPI_DIR)/include -I$(PAPI_DIR)/src/testlib
+LIBS += -L$(PAPI_DIR)/lib -L ${LIB_HOOKOMP_PATH} -Wl,-rpath,$(PAPI_DIR)/src/libpfm4/lib
 
 all: clean info setenv libroofline libhookomp deploy-lib
 
@@ -10,20 +13,20 @@ setenv:
 
 # Step 1: Compiling with Position Independent Code
 roofline.o: roofline.c
-	${CXX} $(OPTIONS) -c -Wno-write-strings -fpic roofline.c
+	${CXX} $(OPTIONS) $(INCLUDE) -c -Wno-write-strings -fpic roofline.c
 
 # Step 2: Creating a shared library from an object file
 libroofline: roofline.o
-	${CXX} -L ${LIB_HOOKOMP_PATH} -shared -o libroofline.so roofline.o -ldl -lpapi -pthread -fopenmp
+	${CXX} $(INCLUDE) $(LIBS) -shared -o libroofline.so roofline.o -ldl -lpapi -pthread -fopenmp
 
 
 # Step 1: Compiling with Position Independent Code
 hookomp.o: hookomp.c
-	${CXX} $(OPTIONS) -c -Wno-write-strings -fpic hookomp.c
+	${CXX} $(OPTIONS) $(INCLUDE) -c -Wno-write-strings -fpic hookomp.c
 
 # Step 2: Creating a shared library from an object file
 libhookomp: hookomp.o
-	${CXX} -L ${LIB_HOOKOMP_PATH} -shared -o libhookomp.so hookomp.o -ldl -fpermissive -lffi -lroofline -lm
+	${CXX} $(INCLUDE) $(LIBS) -shared -o libhookomp.so hookomp.o -ldl -fpermissive -lffi -lroofline -lm
 
 # Step 3: Linking with a shared library
 # As you can see, that was actually pretty easy. We have a shared library. 
@@ -39,7 +42,7 @@ deploy-lib:
 
 	cp libhookomp.so ../polly-openmp/vectoradd/
 	cp libroofline.so ../polly-openmp/vectoradd/
-	
+
 clean:
 	@echo "Cleaning..."
 	rm -rf *.o *.so
