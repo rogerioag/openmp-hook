@@ -1,4 +1,3 @@
-
 #ifndef DEBUG_H
 #define DEBUG_H
 #include <time.h>
@@ -14,8 +13,8 @@ void timestamp()
 }
 
 #if defined(DEBUG) && DEBUG > 0
- #define TRACE(fmt, args...)	do{fprintf(stderr, "[TRACE]: [%10s:%07d] Thread [%lu] in %s(): " fmt, \
-    __FILE__, __LINE__, (long int) pthread_self(), __func__, ##args); } while(0)
+ #define TRACE(fmt, args...)	do{fprintf(stderr, "[TRACE]: [%10s:%010d] Thread [%lu] in %s(): " fmt, \
+    __FILE__, __LINE__, (unsigned long int) pthread_self(), __func__, ##args); } while(0)
 
 #else
  #define TRACE(fmt, args...) do{ } while (0)
@@ -24,7 +23,7 @@ void timestamp()
 // #define VERBOSE 1
 // Use make OPTIONS=-DVERBOSE
 #if defined(VERBOSE) && VERBOSE > 0
-#define PRINT_FUNC_NAME fprintf(stderr, "TRACE-FUNC-NAME: [%10s:%07d] Thread [%lu] is calling [%s()]\n",__FILE__, __LINE__, (long int) pthread_self(), __FUNCTION__)
+#define PRINT_FUNC_NAME fprintf(stderr, "TRACE-FUNC-NAME: [%10s:%010d] Thread [%lu] is calling [%s()]\n",__FILE__, __LINE__, (unsigned long int) pthread_self(), __FUNCTION__)
 #else
 #define PRINT_FUNC_NAME (void) 0
 #endif

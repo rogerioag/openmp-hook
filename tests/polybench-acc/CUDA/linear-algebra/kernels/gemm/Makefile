@@ -7,8 +7,8 @@ OBJFILE := ${BENCHMARK}-${BENCHMARK_TYPE}.o
 EXECUTABLE := ${BENCHMARK}-${BENCHMARK_TYPE}.exe
 CUFILES := ${BENCHMARK}.cu
 PATH_TO_UTILS := ../../../utilities
-INCLUDE_DIR := -I/home/goncalv/prova-de-conceito/testes-prova-conceito/openmp-hook
+INCLUDE_DIR := -I/home/${USER}/prova-de-conceito/testes-prova-conceito/openmp-hook
 CXX := g++-4.8
-NVCC := nvcc
+NVCC := nvcc -D_FORCE_INLINES
 OPT_LEVEL := -O3
 include ${PATH_TO_UTILS}/common.mk

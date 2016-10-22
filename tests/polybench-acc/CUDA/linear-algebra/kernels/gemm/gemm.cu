@@ -273,8 +273,10 @@ int main(int argc, char *argv[]) {
   // memcpy(C_inputToGpu, C, sizeof(C_inputToGpu));
   copy_array(ni, nj, POLYBENCH_ARRAY(C), POLYBENCH_ARRAY(C_outputFromGpu));
 
+#ifdef RUN_ORIG_VERSION
   fprintf(stderr, "calling gemm_original:\n");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
+#endif
 
   fprintf(stderr, "calling gemm_cuda:\n");
   gemm_cuda(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), 

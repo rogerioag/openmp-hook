@@ -213,9 +213,11 @@ int main(int argc, char *argv[]) {
 
   // fprintf(stdout, "exp = OMP, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", OPENMP_NUM_THREADS, NI, NJ, NK);
 
+#ifdef RUN_ORIG_VERSION
   fprintf(stderr, "Calling gemm_original.\n");
   gemm_original(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C));
-    
+#endif
+
   fprintf(stderr, "Calling gemm_omp.\n");
   gemm_omp(ni, nj, nk, alpha, beta, POLYBENCH_ARRAY(A), POLYBENCH_ARRAY(B), POLYBENCH_ARRAY(C_outputFromOMP));
   
