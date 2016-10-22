@@ -344,7 +344,7 @@ typedef struct Func {
 	int (*lib_GOACC_get_thread_num) (void);*/
 
 /* Registry the thread which can execute the next function. */
-static long int registred_thread_executing_function_next = -1;
+static unsigned long int registred_thread_executing_function_next = -1;
 
 /* Flag to control the thread registry. */
 static bool thread_was_registred_to_execute_measures = false;
@@ -390,7 +390,7 @@ extern "C" {
 	Func ***TablePointerFunctions;
 	
 	/* Current loop index. To identify the loop in execution. */
-	long int current_loop_index;
+	unsigned long int current_loop_index;
 
 	long int num_threads_defined;
 
