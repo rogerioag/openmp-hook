@@ -1,0 +1,3116 @@
+{
+  "id" : "hppca-pacgpu-server01",
+  "class" : "system",
+  "claimed" : true,
+  "handle" : "DMI:0001",
+  "description" : "Desktop Computer",
+  "product" : "X9DR3-F (1234567890)",
+  "vendor" : "Supermicro",
+  "version" : "1234567890",
+  "serial" : "1234567890",
+  "width" : 64,
+  "configuration" : {
+    "boot" : "normal",
+    "chassis" : "desktop",
+    "family" : "To be filled by O.E.M.",
+    "sku" : "1234567890",
+    "uuid" : "00000000-0000-0000-0000-0025909368DE"
+  },
+  "capabilities" : {
+    "smbios-2.7" : "SMBIOS version 2.7",
+    "dmi-2.7" : "DMI version 2.7",
+    "vsyscall64" : "64-bit processes",
+    "vsyscall32" : "32-bit processes"
+  },
+  "children" : [
+    {
+      "id" : "core",
+      "class" : "bus",
+      "claimed" : true,
+      "handle" : "DMI:0002",
+      "description" : "Motherboard",
+      "product" : "X9DR3-F",
+      "vendor" : "Supermicro",
+      "physid" : "0",
+      "version" : "1234567890",
+      "serial" : "VM26S64472",
+      "slot" : "To be filled by O.E.M.",
+      "children" : [
+        {
+          "id" : "firmware",
+          "class" : "memory",
+          "claimed" : true,
+          "description" : "BIOS",
+          "vendor" : "American Megatrends Inc.",
+          "physid" : "0",
+          "version" : "4.6.5",
+          "date" : "02/08/2012",
+          "units" : "bytes",
+          "size" : 65536,
+          "capacity" : 8323072,
+          "capabilities" : {
+            "pci" : "PCI bus",
+            "upgrade" : "BIOS EEPROM can be upgraded",
+            "shadowing" : "BIOS shadowing",
+            "cdboot" : "Booting from CD-ROM/DVD",
+            "bootselect" : "Selectable boot path",
+            "socketedrom" : "BIOS ROM is socketed",
+            "edd" : "Enhanced Disk Drive extensions",
+            "int13floppy1200" : "5.25\" 1.2MB floppy",
+            "int13floppy720" : "3.5\" 720KB floppy",
+            "int13floppy2880" : "3.5\" 2.88MB floppy",
+            "int5printscreen" : "Print Screen key",
+            "int9keyboard" : "i8042 keyboard controller",
+            "int14serial" : "INT14 serial line control",
+            "int17printer" : "INT17 printer control",
+            "acpi" : "ACPI",
+            "usb" : "USB legacy emulation",
+            "biosbootspecification" : "BIOS boot specification",
+            "netboot" : "Function-key initiated network service boot",
+            "uefi" : "UEFI specification is supported"
+          }
+        },
+        {
+          "id" : "cpu:0",
+          "class" : "processor",
+          "claimed" : true,
+          "handle" : "DMI:0004",
+          "description" : "CPU",
+          "product" : "Intel(R) Xeon(R) CPU E5-2630 0 @ 2.30GHz",
+          "vendor" : "Intel Corp.",
+          "physid" : "4",
+          "businfo" : "cpu@0",
+          "version" : "Intel(R) Xeon(R) CPU E5-2630 0 @ 2.30GHz",
+          "slot" : "SOCKET 0",
+          "units" : "Hz",
+          "size" : 1200000000,
+          "capacity" : 4000000000,
+          "width" : 64,
+          "clock" : 100000000,
+          "configuration" : {
+            "cores" : "6",
+            "enabledcores" : "6",
+            "threads" : "12"
+          },
+          "capabilities" : {
+            "x86-64" : "64bits extensions (x86-64)",
+            "fpu" : "mathematical co-processor",
+            "fpu_exception" : "FPU exceptions reporting",
+            "wp" : true,
+            "vme" : "virtual mode extensions",
+            "de" : "debugging extensions",
+            "pse" : "page size extensions",
+            "tsc" : "time stamp counter",
+            "msr" : "model-specific registers",
+            "pae" : "4GB+ memory addressing (Physical Address Extension)",
+            "mce" : "machine check exceptions",
+            "cx8" : "compare and exchange 8-byte",
+            "apic" : "on-chip advanced programmable interrupt controller (APIC)",
+            "sep" : "fast system calls",
+            "mtrr" : "memory type range registers",
+            "pge" : "page global enable",
+            "mca" : "machine check architecture",
+            "cmov" : "conditional move instruction",
+            "pat" : "page attribute table",
+            "pse36" : "36-bit page size extensions",
+            "clflush" : true,
+            "dts" : "debug trace and EMON store MSRs",
+            "acpi" : "thermal control (ACPI)",
+            "mmx" : "multimedia extensions (MMX)",
+            "fxsr" : "fast floating point save/restore",
+            "sse" : "streaming SIMD extensions (SSE)",
+            "sse2" : "streaming SIMD extensions (SSE2)",
+            "ss" : "self-snoop",
+            "ht" : "HyperThreading",
+            "tm" : "thermal interrupt and status",
+            "pbe" : "pending break event",
+            "syscall" : "fast system calls",
+            "nx" : "no-execute bit (NX)",
+            "pdpe1gb" : true,
+            "rdtscp" : true,
+            "constant_tsc" : true,
+            "arch_perfmon" : true,
+            "pebs" : true,
+            "bts" : true,
+            "rep_good" : true,
+            "nopl" : true,
+            "xtopology" : true,
+            "nonstop_tsc" : true,
+            "aperfmperf" : true,
+            "pni" : true,
+            "pclmulqdq" : true,
+            "dtes64" : true,
+            "monitor" : true,
+            "ds_cpl" : true,
+            "vmx" : true,
+            "smx" : true,
+            "est" : true,
+            "tm2" : true,
+            "ssse3" : true,
+            "cx16" : true,
+            "xtpr" : true,
+            "pdcm" : true,
+            "dca" : true,
+            "sse4_1" : true,
+            "sse4_2" : true,
+            "x2apic" : true,
+            "popcnt" : true,
+            "aes" : true,
+            "xsave" : true,
+            "avx" : true,
+            "lahf_lm" : true,
+            "ida" : true,
+            "arat" : true,
+            "epb" : true,
+            "xsaveopt" : true,
+            "pln" : true,
+            "pts" : true,
+            "tpr_shadow" : true,
+            "vnmi" : true,
+            "flexpriority" : true,
+            "ept" : true,
+            "vpid" : true,
+            "cpufreq" : "CPU Frequency scaling"
+          },
+          "children" : [
+            {
+              "id" : "cache:0",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0005",
+              "description" : "L1 cache",
+              "physid" : "5",
+              "slot" : "CPU Internal L1",
+              "units" : "bytes",
+              "size" : 393216,
+              "capacity" : 393216,
+              "capabilities" : {
+                "internal" : "Internal",
+                "write-back" : "Write-back"
+              }
+            },
+            {
+              "id" : "cache:1",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0006",
+              "description" : "L2 cache",
+              "physid" : "6",
+              "slot" : "CPU Internal L2",
+              "units" : "bytes",
+              "size" : 1572864,
+              "capacity" : 1572864,
+              "capabilities" : {
+                "internal" : "Internal",
+                "write-back" : "Write-back",
+                "unified" : "Unified cache"
+              }
+            },
+            {
+              "id" : "cache:2",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0007",
+              "description" : "L3 cache",
+              "physid" : "7",
+              "slot" : "CPU Internal L3",
+              "units" : "bytes",
+              "size" : 15728640,
+              "capacity" : 15728640,
+              "capabilities" : {
+                "internal" : "Internal",
+                "write-back" : "Write-back",
+                "unified" : "Unified cache"
+              }
+            }
+          ]
+        },
+        {
+          "id" : "cpu:1",
+          "class" : "processor",
+          "claimed" : true,
+          "handle" : "DMI:0008",
+          "description" : "CPU",
+          "product" : "Intel(R) Xeon(R) CPU E5-2630 0 @ 2.30GHz",
+          "vendor" : "Intel Corp.",
+          "physid" : "6",
+          "businfo" : "cpu@1",
+          "version" : "Intel(R) Xeon(R) CPU E5-2630 0 @ 2.30GHz",
+          "slot" : "SOCKET 1",
+          "units" : "Hz",
+          "size" : 1200000000,
+          "capacity" : 4000000000,
+          "width" : 64,
+          "clock" : 100000000,
+          "configuration" : {
+            "cores" : "6",
+            "enabledcores" : "6",
+            "threads" : "12"
+          },
+          "capabilities" : {
+            "x86-64" : "64bits extensions (x86-64)",
+            "fpu" : "mathematical co-processor",
+            "fpu_exception" : "FPU exceptions reporting",
+            "wp" : true,
+            "vme" : "virtual mode extensions",
+            "de" : "debugging extensions",
+            "pse" : "page size extensions",
+            "tsc" : "time stamp counter",
+            "msr" : "model-specific registers",
+            "pae" : "4GB+ memory addressing (Physical Address Extension)",
+            "mce" : "machine check exceptions",
+            "cx8" : "compare and exchange 8-byte",
+            "apic" : "on-chip advanced programmable interrupt controller (APIC)",
+            "sep" : "fast system calls",
+            "mtrr" : "memory type range registers",
+            "pge" : "page global enable",
+            "mca" : "machine check architecture",
+            "cmov" : "conditional move instruction",
+            "pat" : "page attribute table",
+            "pse36" : "36-bit page size extensions",
+            "clflush" : true,
+            "dts" : "debug trace and EMON store MSRs",
+            "acpi" : "thermal control (ACPI)",
+            "mmx" : "multimedia extensions (MMX)",
+            "fxsr" : "fast floating point save/restore",
+            "sse" : "streaming SIMD extensions (SSE)",
+            "sse2" : "streaming SIMD extensions (SSE2)",
+            "ss" : "self-snoop",
+            "ht" : "HyperThreading",
+            "tm" : "thermal interrupt and status",
+            "pbe" : "pending break event",
+            "syscall" : "fast system calls",
+            "nx" : "no-execute bit (NX)",
+            "pdpe1gb" : true,
+            "rdtscp" : true,
+            "constant_tsc" : true,
+            "arch_perfmon" : true,
+            "pebs" : true,
+            "bts" : true,
+            "rep_good" : true,
+            "nopl" : true,
+            "xtopology" : true,
+            "nonstop_tsc" : true,
+            "aperfmperf" : true,
+            "pni" : true,
+            "pclmulqdq" : true,
+            "dtes64" : true,
+            "monitor" : true,
+            "ds_cpl" : true,
+            "vmx" : true,
+            "smx" : true,
+            "est" : true,
+            "tm2" : true,
+            "ssse3" : true,
+            "cx16" : true,
+            "xtpr" : true,
+            "pdcm" : true,
+            "dca" : true,
+            "sse4_1" : true,
+            "sse4_2" : true,
+            "x2apic" : true,
+            "popcnt" : true,
+            "aes" : true,
+            "xsave" : true,
+            "avx" : true,
+            "lahf_lm" : true,
+            "ida" : true,
+            "arat" : true,
+            "epb" : true,
+            "xsaveopt" : true,
+            "pln" : true,
+            "pts" : true,
+            "tpr_shadow" : true,
+            "vnmi" : true,
+            "flexpriority" : true,
+            "ept" : true,
+            "vpid" : true,
+            "cpufreq" : "CPU Frequency scaling"
+          },
+          "children" : [
+            {
+              "id" : "cache:0",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0009",
+              "description" : "L1 cache",
+              "physid" : "9",
+              "slot" : "CPU Internal L1",
+              "units" : "bytes",
+              "size" : 393216,
+              "capacity" : 393216,
+              "capabilities" : {
+                "internal" : "Internal",
+                "write-back" : "Write-back"
+              }
+            },
+            {
+              "id" : "cache:1",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:000A",
+              "description" : "L2 cache",
+              "physid" : "a",
+              "slot" : "CPU Internal L2",
+              "units" : "bytes",
+              "size" : 1572864,
+              "capacity" : 1572864,
+              "capabilities" : {
+                "internal" : "Internal",
+                "write-back" : "Write-back",
+                "unified" : "Unified cache"
+              }
+            },
+            {
+              "id" : "cache:2",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:000B",
+              "description" : "L3 cache",
+              "physid" : "b",
+              "slot" : "CPU Internal L3",
+              "units" : "bytes",
+              "size" : 15728640,
+              "capacity" : 15728640,
+              "capabilities" : {
+                "internal" : "Internal",
+                "write-back" : "Write-back",
+                "unified" : "Unified cache"
+              }
+            }
+          ]
+        },
+        {
+          "id" : "memory:0",
+          "class" : "memory",
+          "claimed" : true,
+          "handle" : "DMI:002D",
+          "description" : "System Memory",
+          "physid" : "2d",
+          "slot" : "System board or motherboard",
+          "children" : [
+            {
+              "id" : "bank:0",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:002F",
+              "description" : "DIMM DDR3 1333 MHz (0,8 ns)",
+              "product" : "9965516-057.A",
+              "vendor" : "Kingston",
+              "physid" : "0",
+              "serial" : "703DF820",
+              "slot" : "P1_DIMMA1",
+              "units" : "bytes",
+              "size" : 8589934592,
+              "width" : 64,
+              "clock" : 1333000000
+            },
+            {
+              "id" : "bank:1",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0031",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm1_PartNum",
+              "vendor" : "Dimm1_Manufacturer",
+              "physid" : "1",
+              "serial" : "Dimm1_SerNum",
+              "slot" : "P1_DIMMA2",
+              "width" : 64
+            },
+            {
+              "id" : "bank:2",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0033",
+              "description" : "DIMM DDR3 1333 MHz (0,8 ns)",
+              "product" : "9965516-057.A",
+              "vendor" : "Kingston",
+              "physid" : "2",
+              "serial" : "6E3D7420",
+              "slot" : "P1_DIMMB1",
+              "units" : "bytes",
+              "size" : 8589934592,
+              "width" : 64,
+              "clock" : 1333000000
+            },
+            {
+              "id" : "bank:3",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0035",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm4_PartNum",
+              "vendor" : "Dimm4_Manufacturer",
+              "physid" : "3",
+              "serial" : "Dimm4_SerNum",
+              "slot" : "P1_DIMMB2",
+              "width" : 64
+            },
+            {
+              "id" : "bank:4",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0037",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm6_PartNum",
+              "vendor" : "Dimm6_Manufacturer",
+              "physid" : "4",
+              "serial" : "Dimm6_SerNum",
+              "slot" : "P1_DIMMC1",
+              "width" : 64
+            },
+            {
+              "id" : "bank:5",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0039",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm7_PartNum",
+              "vendor" : "Dimm7_Manufacturer",
+              "physid" : "5",
+              "serial" : "Dimm7_SerNum",
+              "slot" : "P1_DIMMC2",
+              "width" : 64
+            },
+            {
+              "id" : "bank:6",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:003B",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm9_PartNum",
+              "vendor" : "Dimm9_Manufacturer",
+              "physid" : "6",
+              "serial" : "Dimm9_SerNum",
+              "slot" : "P1_DIMMD1",
+              "width" : 64
+            },
+            {
+              "id" : "bank:7",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:003D",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm10_PartNum",
+              "vendor" : "Dimm10_Manufacturer",
+              "physid" : "7",
+              "serial" : "Dimm10_SerNum",
+              "slot" : "P1_DIMMD2",
+              "width" : 64
+            }
+          ]
+        },
+        {
+          "id" : "memory:1",
+          "class" : "memory",
+          "claimed" : true,
+          "handle" : "DMI:003F",
+          "description" : "System Memory",
+          "physid" : "3f",
+          "slot" : "System board or motherboard",
+          "children" : [
+            {
+              "id" : "bank:0",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0041",
+              "description" : "DIMM DDR3 1333 MHz (0,8 ns)",
+              "product" : "9965516-057.A",
+              "vendor" : "Kingston",
+              "physid" : "0",
+              "serial" : "6D3DE220",
+              "slot" : "P2_DIMME1",
+              "units" : "bytes",
+              "size" : 8589934592,
+              "width" : 64,
+              "clock" : 1333000000
+            },
+            {
+              "id" : "bank:1",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0043",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm1_PartNum",
+              "vendor" : "Dimm1_Manufacturer",
+              "physid" : "1",
+              "serial" : "Dimm1_SerNum",
+              "slot" : "P2_DIMME2",
+              "width" : 64
+            },
+            {
+              "id" : "bank:2",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0045",
+              "description" : "DIMM DDR3 1333 MHz (0,8 ns)",
+              "product" : "9965516-057.A",
+              "vendor" : "Kingston",
+              "physid" : "2",
+              "serial" : "6E3DD420",
+              "slot" : "P2_DIMMF1",
+              "units" : "bytes",
+              "size" : 8589934592,
+              "width" : 64,
+              "clock" : 1333000000
+            },
+            {
+              "id" : "bank:3",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0047",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm4_PartNum",
+              "vendor" : "Dimm4_Manufacturer",
+              "physid" : "3",
+              "serial" : "Dimm4_SerNum",
+              "slot" : "P2_DIMMF2",
+              "width" : 64
+            },
+            {
+              "id" : "bank:4",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:0049",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm6_PartNum",
+              "vendor" : "Dimm6_Manufacturer",
+              "physid" : "4",
+              "serial" : "Dimm6_SerNum",
+              "slot" : "P2_DIMMG1",
+              "width" : 64
+            },
+            {
+              "id" : "bank:5",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:004B",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm7_PartNum",
+              "vendor" : "Dimm7_Manufacturer",
+              "physid" : "5",
+              "serial" : "Dimm7_SerNum",
+              "slot" : "P2_DIMMG2",
+              "width" : 64
+            },
+            {
+              "id" : "bank:6",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:004D",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm9_PartNum",
+              "vendor" : "Dimm9_Manufacturer",
+              "physid" : "6",
+              "serial" : "Dimm9_SerNum",
+              "slot" : "P2_DIMMH1",
+              "width" : 64
+            },
+            {
+              "id" : "bank:7",
+              "class" : "memory",
+              "claimed" : true,
+              "handle" : "DMI:004F",
+              "description" : "DIMM Synchronous [empty]",
+              "product" : "Dimm10_PartNum",
+              "vendor" : "Dimm10_Manufacturer",
+              "physid" : "7",
+              "serial" : "Dimm10_SerNum",
+              "slot" : "P2_DIMMH2",
+              "width" : 64
+            }
+          ]
+        },
+        {
+          "id" : "memory:2",
+          "class" : "memory",
+          "physid" : "7"
+        },
+        {
+          "id" : "memory:3",
+          "class" : "memory",
+          "physid" : "9"
+        },
+        {
+          "id" : "pci:0",
+          "class" : "bridge",
+          "claimed" : true,
+          "handle" : "PCIBUS:0000:00",
+          "description" : "Host bridge",
+          "product" : "Xeon E5/Core i7 DMI2",
+          "vendor" : "Intel Corporation",
+          "physid" : "100",
+          "businfo" : "pci@0000:00:00.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "children" : [
+            {
+              "id" : "pci:0",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:01",
+              "description" : "PCI bridge",
+              "product" : "Xeon E5/Core i7 IIO PCI Express Root Port 1a",
+              "vendor" : "Intel Corporation",
+              "physid" : "1",
+              "businfo" : "pci@0000:00:01.0",
+              "version" : "07",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "pcieport"
+              },
+              "capabilities" : {
+                "pci" : true,
+                "msi" : "Message Signalled Interrupts",
+                "pciexpress" : "PCI Express",
+                "pm" : "Power Management",
+                "normal_decode" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "pci:1",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:02",
+              "description" : "PCI bridge",
+              "product" : "Xeon E5/Core i7 IIO PCI Express Root Port 1b",
+              "vendor" : "Intel Corporation",
+              "physid" : "1.1",
+              "businfo" : "pci@0000:00:01.1",
+              "version" : "07",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "pcieport"
+              },
+              "capabilities" : {
+                "pci" : true,
+                "msi" : "Message Signalled Interrupts",
+                "pciexpress" : "PCI Express",
+                "pm" : "Power Management",
+                "normal_decode" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              },
+              "children" : [
+                {
+                  "id" : "network:0",
+                  "class" : "network",
+                  "claimed" : true,
+                  "handle" : "PCI:0000:02:00.0",
+                  "description" : "Ethernet interface",
+                  "product" : "I350 Gigabit Network Connection",
+                  "vendor" : "Intel Corporation",
+                  "physid" : "0",
+                  "businfo" : "pci@0000:02:00.0",
+                  "logicalname" : "eth0",
+                  "version" : "01",
+                  "serial" : "00:25:90:93:68:de",
+                  "units" : "bit/s",
+                  "size" : 1000000000,
+                  "capacity" : 1000000000,
+                  "width" : 32,
+                  "clock" : 33000000,
+                  "configuration" : {
+                    "autonegotiation" : "on",
+                    "broadcast" : "yes",
+                    "driver" : "igb",
+                    "driverversion" : "3.0.6-k2",
+                    "duplex" : "full",
+                    "firmware" : "1.6-1",
+                    "ip" : "10.30.11.61",
+                    "latency" : "0",
+                    "link" : "yes",
+                    "multicast" : "yes",
+                    "port" : "twisted pair",
+                    "speed" : "1Gbit/s"
+                  },
+                  "capabilities" : {
+                    "pm" : "Power Management",
+                    "msi" : "Message Signalled Interrupts",
+                    "msix" : "MSI-X",
+                    "pciexpress" : "PCI Express",
+                    "bus_master" : "bus mastering",
+                    "cap_list" : "PCI capabilities listing",
+                    "ethernet" : true,
+                    "physical" : "Physical interface",
+                    "tp" : "twisted pair",
+                    "10bt" : "10Mbit/s",
+                    "10bt-fd" : "10Mbit/s (full duplex)",
+                    "100bt" : "100Mbit/s",
+                    "100bt-fd" : "100Mbit/s (full duplex)",
+                    "1000bt-fd" : "1Gbit/s (full duplex)",
+                    "autonegotiation" : "Auto-negotiation"
+                  }
+                },
+                {
+                  "id" : "network:1",
+                  "class" : "network",
+                  "disabled" : true,
+                  "claimed" : true,
+                  "handle" : "PCI:0000:02:00.1",
+                  "description" : "Ethernet interface",
+                  "product" : "I350 Gigabit Network Connection",
+                  "vendor" : "Intel Corporation",
+                  "physid" : "0.1",
+                  "businfo" : "pci@0000:02:00.1",
+                  "logicalname" : "eth1",
+                  "version" : "01",
+                  "serial" : "00:25:90:93:68:df",
+                  "units" : "bit/s",
+                  "capacity" : 1000000000,
+                  "width" : 32,
+                  "clock" : 33000000,
+                  "configuration" : {
+                    "autonegotiation" : "on",
+                    "broadcast" : "yes",
+                    "driver" : "igb",
+                    "driverversion" : "3.0.6-k2",
+                    "firmware" : "1.6-1",
+                    "latency" : "0",
+                    "link" : "no",
+                    "multicast" : "yes",
+                    "port" : "twisted pair"
+                  },
+                  "capabilities" : {
+                    "pm" : "Power Management",
+                    "msi" : "Message Signalled Interrupts",
+                    "msix" : "MSI-X",
+                    "pciexpress" : "PCI Express",
+                    "bus_master" : "bus mastering",
+                    "cap_list" : "PCI capabilities listing",
+                    "ethernet" : true,
+                    "physical" : "Physical interface",
+                    "tp" : "twisted pair",
+                    "10bt" : "10Mbit/s",
+                    "10bt-fd" : "10Mbit/s (full duplex)",
+                    "100bt" : "100Mbit/s",
+                    "100bt-fd" : "100Mbit/s (full duplex)",
+                    "1000bt-fd" : "1Gbit/s (full duplex)",
+                    "autonegotiation" : "Auto-negotiation"
+                  }
+                }
+              ]
+            },
+            {
+              "id" : "pci:2",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:04",
+              "description" : "PCI bridge",
+              "product" : "Xeon E5/Core i7 IIO PCI Express Root Port 2a",
+              "vendor" : "Intel Corporation",
+              "physid" : "2",
+              "businfo" : "pci@0000:00:02.0",
+              "version" : "07",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "pcieport"
+              },
+              "capabilities" : {
+                "pci" : true,
+                "msi" : "Message Signalled Interrupts",
+                "pciexpress" : "PCI Express",
+                "pm" : "Power Management",
+                "normal_decode" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "pci:3",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:05",
+              "description" : "PCI bridge",
+              "product" : "Xeon E5/Core i7 IIO PCI Express Root Port 3a in PCI Express Mode",
+              "vendor" : "Intel Corporation",
+              "physid" : "3",
+              "businfo" : "pci@0000:00:03.0",
+              "version" : "07",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "pcieport"
+              },
+              "capabilities" : {
+                "pci" : true,
+                "msi" : "Message Signalled Interrupts",
+                "pciexpress" : "PCI Express",
+                "pm" : "Power Management",
+                "normal_decode" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "pci:4",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:06",
+              "description" : "PCI bridge",
+              "product" : "Xeon E5/Core i7 IIO PCI Express Root Port 3c",
+              "vendor" : "Intel Corporation",
+              "physid" : "3.2",
+              "businfo" : "pci@0000:00:03.2",
+              "version" : "07",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "pcieport"
+              },
+              "capabilities" : {
+                "pci" : true,
+                "msi" : "Message Signalled Interrupts",
+                "pciexpress" : "PCI Express",
+                "pm" : "Power Management",
+                "normal_decode" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "generic:0",
+              "class" : "generic",
+              "handle" : "PCI:0000:00:05.0",
+              "description" : "System peripheral",
+              "product" : "Xeon E5/Core i7 Address Map, VTd_Misc, System Management",
+              "vendor" : "Intel Corporation",
+              "physid" : "5",
+              "businfo" : "pci@0000:00:05.0",
+              "version" : "07",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pciexpress" : "PCI Express",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "generic:1",
+              "class" : "generic",
+              "handle" : "PCI:0000:00:05.2",
+              "description" : "System peripheral",
+              "product" : "Xeon E5/Core i7 Control Status and Global Errors",
+              "vendor" : "Intel Corporation",
+              "physid" : "5.2",
+              "businfo" : "pci@0000:00:05.2",
+              "version" : "07",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pciexpress" : "PCI Express",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "generic:2",
+              "class" : "generic",
+              "handle" : "PCI:0000:00:05.4",
+              "description" : "PIC",
+              "product" : "Xeon E5/Core i7 I/O APIC",
+              "vendor" : "Intel Corporation",
+              "physid" : "5.4",
+              "businfo" : "pci@0000:00:05.4",
+              "version" : "07",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "io_x_-apic" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "pci:5",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:07",
+              "description" : "PCI bridge",
+              "product" : "C600/X79 series chipset PCI Express Virtual Root Port",
+              "vendor" : "Intel Corporation",
+              "physid" : "11",
+              "businfo" : "pci@0000:00:11.0",
+              "version" : "06",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "pcieport"
+              },
+              "capabilities" : {
+                "pci" : true,
+                "pciexpress" : "PCI Express",
+                "pm" : "Power Management",
+                "msi" : "Message Signalled Interrupts",
+                "normal_decode" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              },
+              "children" : [
+                {
+                  "id" : "storage",
+                  "class" : "storage",
+                  "claimed" : true,
+                  "handle" : "PCI:0000:07:00.0",
+                  "description" : "Serial Attached SCSI controller",
+                  "product" : "C602 chipset 4-Port SATA Storage Control Unit",
+                  "vendor" : "Intel Corporation",
+                  "physid" : "0",
+                  "businfo" : "pci@0000:07:00.0",
+                  "version" : "06",
+                  "width" : 64,
+                  "clock" : 33000000,
+                  "configuration" : {
+                    "driver" : "isci",
+                    "latency" : "0"
+                  },
+                  "capabilities" : {
+                    "storage" : true,
+                    "pm" : "Power Management",
+                    "pciexpress" : "PCI Express",
+                    "msix" : "MSI-X",
+                    "bus_master" : "bus mastering",
+                    "cap_list" : "PCI capabilities listing"
+                  }
+                }
+              ]
+            },
+            {
+              "id" : "communication:0",
+              "class" : "communication",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:16.0",
+              "description" : "Communication controller",
+              "product" : "C600/X79 series chipset MEI Controller #1",
+              "vendor" : "Intel Corporation",
+              "physid" : "16",
+              "businfo" : "pci@0000:00:16.0",
+              "version" : "05",
+              "width" : 64,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "mei",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "msi" : "Message Signalled Interrupts",
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "communication:1",
+              "class" : "communication",
+              "handle" : "PCI:0000:00:16.1",
+              "description" : "Communication controller",
+              "product" : "C600/X79 series chipset MEI Controller #2",
+              "vendor" : "Intel Corporation",
+              "physid" : "16.1",
+              "businfo" : "pci@0000:00:16.1",
+              "version" : "05",
+              "width" : 64,
+              "clock" : 33000000,
+              "configuration" : {
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "msi" : "Message Signalled Interrupts",
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "usb:0",
+              "class" : "bus",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:1a.0",
+              "description" : "USB controller",
+              "product" : "C600/X79 series chipset USB2 Enhanced Host Controller #2",
+              "vendor" : "Intel Corporation",
+              "physid" : "1a",
+              "businfo" : "pci@0000:00:1a.0",
+              "version" : "06",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "ehci_hcd",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "debug" : "Debug port",
+                "ehci" : "Enhanced Host Controller Interface (USB2)",
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "usb:1",
+              "class" : "bus",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:1d.0",
+              "description" : "USB controller",
+              "product" : "C600/X79 series chipset USB2 Enhanced Host Controller #1",
+              "vendor" : "Intel Corporation",
+              "physid" : "1d",
+              "businfo" : "pci@0000:00:1d.0",
+              "version" : "06",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "ehci_hcd",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "debug" : "Debug port",
+                "ehci" : "Enhanced Host Controller Interface (USB2)",
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "pci:6",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:08",
+              "description" : "PCI bridge",
+              "product" : "82801 PCI Bridge",
+              "vendor" : "Intel Corporation",
+              "physid" : "1e",
+              "businfo" : "pci@0000:00:1e.0",
+              "version" : "a6",
+              "width" : 32,
+              "clock" : 33000000,
+              "capabilities" : {
+                "pci" : true,
+                "subtractive_decode" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              },
+              "children" : [
+                {
+                  "id" : "display",
+                  "class" : "display",
+                  "handle" : "PCI:0000:08:03.0",
+                  "description" : "VGA compatible controller",
+                  "product" : "MGA G200eW WPCM450",
+                  "vendor" : "Matrox Electronics Systems Ltd.",
+                  "physid" : "3",
+                  "businfo" : "pci@0000:08:03.0",
+                  "version" : "0a",
+                  "width" : 32,
+                  "clock" : 33000000,
+                  "configuration" : {
+                    "latency" : "64",
+                    "maxlatency" : "32",
+                    "mingnt" : "16"
+                  },
+                  "capabilities" : {
+                    "pm" : "Power Management",
+                    "vga_controller" : true,
+                    "cap_list" : "PCI capabilities listing"
+                  }
+                }
+              ]
+            },
+            {
+              "id" : "isa",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:1f.0",
+              "description" : "ISA bridge",
+              "product" : "C600/X79 series chipset LPC Controller",
+              "vendor" : "Intel Corporation",
+              "physid" : "1f",
+              "businfo" : "pci@0000:00:1f.0",
+              "version" : "06",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "isa" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "storage",
+              "class" : "storage",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:1f.2",
+              "description" : "SATA controller",
+              "product" : "C600/X79 series chipset 6-Port SATA AHCI Controller",
+              "vendor" : "Intel Corporation",
+              "physid" : "1f.2",
+              "businfo" : "pci@0000:00:1f.2",
+              "logicalname" : ["scsi1", "scsi5"],
+              "version" : "06",
+              "width" : 32,
+              "clock" : 66000000,
+              "configuration" : {
+                "driver" : "ahci",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "storage" : true,
+                "msi" : "Message Signalled Interrupts",
+                "pm" : "Power Management",
+                "ahci_1.0" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing",
+                "emulated" : "Emulated device"
+              },
+              "children" : [
+                {
+                  "id" : "disk",
+                  "class" : "disk",
+                  "claimed" : true,
+                  "handle" : "GUID:bae2925d-2c4f-437b-b570-4298726fa2bc",
+                  "description" : "ATA Disk",
+                  "product" : "ST2000DM001-1CH1",
+                  "vendor" : "Seagate",
+                  "physid" : "0",
+                  "businfo" : "scsi@1:0.0.0",
+                  "logicalname" : "/dev/sda",
+                  "dev" : "8:0",
+                  "version" : "CC43",
+                  "serial" : "Z1E173M8",
+                  "units" : "bytes",
+                  "size" : 2000398934016,
+                  "configuration" : {
+                    "ansiversion" : "5",
+                    "guid" : "bae2925d-2c4f-437b-b570-4298726fa2bc",
+                    "sectorsize" : "4096"
+                  },
+                  "capabilities" : {
+                    "gpt-1.00" : "GUID Partition Table version 1.00",
+                    "partitioned" : "Partitioned disk",
+                    "partitioned:gpt" : "GUID partition table"
+                  },
+                  "children" : [
+                    {
+                      "id" : "volume:0",
+                      "class" : "volume",
+                      "claimed" : true,
+                      "handle" : "GUID:b2d6db6d-bef8-4d8e-b1e5-a1c885ebe780",
+                      "description" : "EXT4 volume",
+                      "vendor" : "Linux",
+                      "physid" : "1",
+                      "businfo" : "scsi@1:0.0.0,1",
+                      "logicalname" : ["/dev/sda1", "/boot"],
+                      "dev" : "8:1",
+                      "version" : "1.0",
+                      "serial" : "51055977-7d0c-474d-a9bb-cfa22451b611",
+                      "size" : 499998720,
+                      "capacity" : 499999744,
+                      "configuration" : {
+                        "created" : "2013-01-24 11:16:20",
+                        "filesystem" : "ext4",
+                        "lastmountpoint" : "/boot",
+                        "modified" : "2016-06-20 11:33:37",
+                        "mount.fstype" : "ext4",
+                        "mount.options" : "rw,relatime,user_xattr,acl,barrier=1,stripe=4,data=ordered",
+                        "mounted" : "2016-06-20 11:33:37",
+                        "state" : "mounted"
+                      },
+                      "capabilities" : {
+                        "boot" : "Contains boot code",
+                        "journaled" : true,
+                        "extended_attributes" : "Extended Attributes",
+                        "huge_files" : "16TB+ files",
+                        "dir_nlink" : "directories with 65000+ subdirs",
+                        "recover" : "needs recovery",
+                        "extents" : "extent-based allocation",
+                        "ext4" : true,
+                        "ext2" : "EXT2/EXT3",
+                        "initialized" : "initialized volume"
+                      }
+                    },
+                    {
+                      "id" : "volume:1",
+                      "class" : "volume",
+                      "claimed" : true,
+                      "handle" : "GUID:1735ec8a-b964-4eb8-ac40-e5dde78c4a60",
+                      "description" : "LVM Physical Volume",
+                      "vendor" : "Linux",
+                      "physid" : "2",
+                      "businfo" : "scsi@1:0.0.0,2",
+                      "logicalname" : "/dev/sda2",
+                      "dev" : "8:2",
+                      "serial" : "NhLMgR-XeGO-Cb9K-VMnK-S0kZ-nNNo-v3PjvD",
+                      "size" : 1999898891264,
+                      "capabilities" : {
+                        "multi" : "Multi-volumes",
+                        "lvm2" : true
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id" : "cdrom",
+                  "class" : "disk",
+                  "claimed" : true,
+                  "handle" : "SCSI:05:00:00:00",
+                  "description" : "DVD-RAM writer",
+                  "product" : "DVD RW AD-7280S",
+                  "vendor" : "Optiarc",
+                  "physid" : "1",
+                  "businfo" : "scsi@5:0.0.0",
+                  "logicalname" : ["/dev/cdrom", "/dev/cdrw", "/dev/dvd", "/dev/dvdrw", "/dev/sr0"],
+                  "dev" : "11:0",
+                  "version" : "1.01",
+                  "configuration" : {
+                    "ansiversion" : "5",
+                    "status" : "nodisc"
+                  },
+                  "capabilities" : {
+                    "removable" : "support is removable",
+                    "audio" : "Audio CD playback",
+                    "cd-r" : "CD-R burning",
+                    "cd-rw" : "CD-RW burning",
+                    "dvd" : "DVD playback",
+                    "dvd-r" : "DVD-R burning",
+                    "dvd-ram" : "DVD-RAM burning"
+                  }
+                }
+              ]
+            },
+            {
+              "id" : "serial",
+              "class" : "bus",
+              "handle" : "PCI:0000:00:1f.3",
+              "description" : "SMBus",
+              "product" : "C600/X79 series chipset SMBus Host Controller",
+              "vendor" : "Intel Corporation",
+              "physid" : "1f.3",
+              "businfo" : "pci@0000:00:1f.3",
+              "version" : "06",
+              "width" : 64,
+              "clock" : 33000000,
+              "configuration" : {
+                "latency" : "0"
+              }
+            }
+          ]
+        },
+        {
+          "id" : "generic:0",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:08.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "a",
+          "businfo" : "pci@0000:7f:08.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:1",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:08.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link Reut 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "b",
+          "businfo" : "pci@0000:7f:08.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:2",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:08.4",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link Reut 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "c",
+          "businfo" : "pci@0000:7f:08.4",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:3",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:09.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "d",
+          "businfo" : "pci@0000:7f:09.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:4",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:09.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link Reut 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "e",
+          "businfo" : "pci@0000:7f:09.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:5",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:09.4",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link Reut 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "f",
+          "businfo" : "pci@0000:7f:09.4",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:6",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0a.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Power Control Unit 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "10",
+          "businfo" : "pci@0000:7f:0a.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:7",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0a.1",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Power Control Unit 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "11",
+          "businfo" : "pci@0000:7f:0a.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:8",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0a.2",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Power Control Unit 2",
+          "vendor" : "Intel Corporation",
+          "physid" : "12",
+          "businfo" : "pci@0000:7f:0a.2",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:9",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0a.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Power Control Unit 3",
+          "vendor" : "Intel Corporation",
+          "physid" : "13",
+          "businfo" : "pci@0000:7f:0a.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:10",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0b.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Interrupt Control Registers",
+          "vendor" : "Intel Corporation",
+          "physid" : "14",
+          "businfo" : "pci@0000:7f:0b.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:11",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0b.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Semaphore and Scratchpad Configuration Registers",
+          "vendor" : "Intel Corporation",
+          "physid" : "15",
+          "businfo" : "pci@0000:7f:0b.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:12",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0c.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "16",
+          "businfo" : "pci@0000:7f:0c.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:13",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0c.1",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "17",
+          "businfo" : "pci@0000:7f:0c.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:14",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0c.2",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "18",
+          "businfo" : "pci@0000:7f:0c.2",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:15",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0c.6",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller System Address Decoder 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "19",
+          "businfo" : "pci@0000:7f:0c.6",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:16",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0c.7",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 System Address Decoder",
+          "vendor" : "Intel Corporation",
+          "physid" : "1a",
+          "businfo" : "pci@0000:7f:0c.7",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:17",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0d.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "1b",
+          "businfo" : "pci@0000:7f:0d.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:18",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0d.1",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "1c",
+          "businfo" : "pci@0000:7f:0d.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:19",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0d.2",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "1d",
+          "businfo" : "pci@0000:7f:0d.2",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:20",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0d.6",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller System Address Decoder 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "1e",
+          "businfo" : "pci@0000:7f:0d.6",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:21",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0e.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Processor Home Agent",
+          "vendor" : "Intel Corporation",
+          "physid" : "1f",
+          "businfo" : "pci@0000:7f:0e.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:22",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0e.1",
+          "description" : "Performance counters",
+          "product" : "Xeon E5/Core i7 Processor Home Agent Performance Monitoring",
+          "vendor" : "Intel Corporation",
+          "physid" : "20",
+          "businfo" : "pci@0000:7f:0e.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:23",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0f.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Registers",
+          "vendor" : "Intel Corporation",
+          "physid" : "21",
+          "businfo" : "pci@0000:7f:0f.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:24",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0f.1",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller RAS Registers",
+          "vendor" : "Intel Corporation",
+          "physid" : "22",
+          "businfo" : "pci@0000:7f:0f.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:25",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0f.2",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Target Address Decoder 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "23",
+          "businfo" : "pci@0000:7f:0f.2",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:26",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0f.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Target Address Decoder 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "24",
+          "businfo" : "pci@0000:7f:0f.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:27",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0f.4",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Target Address Decoder 2",
+          "vendor" : "Intel Corporation",
+          "physid" : "25",
+          "businfo" : "pci@0000:7f:0f.4",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:28",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0f.5",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Target Address Decoder 3",
+          "vendor" : "Intel Corporation",
+          "physid" : "26",
+          "businfo" : "pci@0000:7f:0f.5",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:29",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:0f.6",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Target Address Decoder 4",
+          "vendor" : "Intel Corporation",
+          "physid" : "27",
+          "businfo" : "pci@0000:7f:0f.6",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express"
+          }
+        },
+        {
+          "id" : "generic:30",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:10.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Channel 0-3 Thermal Control 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "28",
+          "businfo" : "pci@0000:7f:10.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:31",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:10.1",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Channel 0-3 Thermal Control 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "29",
+          "businfo" : "pci@0000:7f:10.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:32",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:10.2",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller ERROR Registers 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "2a",
+          "businfo" : "pci@0000:7f:10.2",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:33",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:10.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller ERROR Registers 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "2b",
+          "businfo" : "pci@0000:7f:10.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:34",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:10.4",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Channel 0-3 Thermal Control 2",
+          "vendor" : "Intel Corporation",
+          "physid" : "2c",
+          "businfo" : "pci@0000:7f:10.4",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:35",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:10.5",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Channel 0-3 Thermal Control 3",
+          "vendor" : "Intel Corporation",
+          "physid" : "2e",
+          "businfo" : "pci@0000:7f:10.5",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:36",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:10.6",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller ERROR Registers 2",
+          "vendor" : "Intel Corporation",
+          "physid" : "2f",
+          "businfo" : "pci@0000:7f:10.6",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:37",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:10.7",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller ERROR Registers 3",
+          "vendor" : "Intel Corporation",
+          "physid" : "30",
+          "businfo" : "pci@0000:7f:10.7",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:38",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:11.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 DDRIO",
+          "vendor" : "Intel Corporation",
+          "physid" : "31",
+          "businfo" : "pci@0000:7f:11.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express"
+          }
+        },
+        {
+          "id" : "generic:39",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:13.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 R2PCIe",
+          "vendor" : "Intel Corporation",
+          "physid" : "32",
+          "businfo" : "pci@0000:7f:13.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:40",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:13.1",
+          "description" : "Performance counters",
+          "product" : "Xeon E5/Core i7 Ring to PCI Express Performance Monitor",
+          "vendor" : "Intel Corporation",
+          "physid" : "33",
+          "businfo" : "pci@0000:7f:13.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:41",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:13.4",
+          "description" : "Performance counters",
+          "product" : "Xeon E5/Core i7 QuickPath Interconnect Agent Ring Registers",
+          "vendor" : "Intel Corporation",
+          "physid" : "34",
+          "businfo" : "pci@0000:7f:13.4",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:42",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:13.5",
+          "description" : "Performance counters",
+          "product" : "Xeon E5/Core i7 Ring to QuickPath Interconnect Link 0 Performance Monitor",
+          "vendor" : "Intel Corporation",
+          "physid" : "35",
+          "businfo" : "pci@0000:7f:13.5",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:43",
+          "class" : "generic",
+          "handle" : "PCI:0000:7f:13.6",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Ring to QuickPath Interconnect Link 1 Performance Monitor",
+          "vendor" : "Intel Corporation",
+          "physid" : "36",
+          "businfo" : "pci@0000:7f:13.6",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "pci:1",
+          "class" : "bridge",
+          "claimed" : true,
+          "handle" : "PCIBUS:0000:81",
+          "description" : "PCI bridge",
+          "product" : "Xeon E5/Core i7 DMI2 in PCI Express Mode",
+          "vendor" : "Intel Corporation",
+          "physid" : "101",
+          "businfo" : "pci@0000:80:00.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "driver" : "pcieport"
+          },
+          "capabilities" : {
+            "pci" : true,
+            "msi" : "Message Signalled Interrupts",
+            "pciexpress" : "PCI Express",
+            "pm" : "Power Management",
+            "normal_decode" : true,
+            "bus_master" : "bus mastering",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "pci:2",
+          "class" : "bridge",
+          "claimed" : true,
+          "handle" : "PCIBUS:0000:82",
+          "description" : "PCI bridge",
+          "product" : "Xeon E5/Core i7 IIO PCI Express Root Port 1a",
+          "vendor" : "Intel Corporation",
+          "physid" : "1",
+          "businfo" : "pci@0000:80:01.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "driver" : "pcieport"
+          },
+          "capabilities" : {
+            "pci" : true,
+            "msi" : "Message Signalled Interrupts",
+            "pciexpress" : "PCI Express",
+            "pm" : "Power Management",
+            "normal_decode" : true,
+            "bus_master" : "bus mastering",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "pci:3",
+          "class" : "bridge",
+          "claimed" : true,
+          "handle" : "PCIBUS:0000:83",
+          "description" : "PCI bridge",
+          "product" : "Xeon E5/Core i7 IIO PCI Express Root Port 2a",
+          "vendor" : "Intel Corporation",
+          "physid" : "2",
+          "businfo" : "pci@0000:80:02.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "driver" : "pcieport"
+          },
+          "capabilities" : {
+            "pci" : true,
+            "msi" : "Message Signalled Interrupts",
+            "pciexpress" : "PCI Express",
+            "pm" : "Power Management",
+            "normal_decode" : true,
+            "bus_master" : "bus mastering",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "pci:4",
+          "class" : "bridge",
+          "claimed" : true,
+          "handle" : "PCIBUS:0000:84",
+          "description" : "PCI bridge",
+          "product" : "Xeon E5/Core i7 IIO PCI Express Root Port 3a in PCI Express Mode",
+          "vendor" : "Intel Corporation",
+          "physid" : "3",
+          "businfo" : "pci@0000:80:03.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "driver" : "pcieport"
+          },
+          "capabilities" : {
+            "pci" : true,
+            "msi" : "Message Signalled Interrupts",
+            "pciexpress" : "PCI Express",
+            "pm" : "Power Management",
+            "normal_decode" : true,
+            "bus_master" : "bus mastering",
+            "cap_list" : "PCI capabilities listing"
+          },
+          "children" : [
+            {
+              "id" : "display",
+              "class" : "display",
+              "claimed" : true,
+              "handle" : "PCI:0000:84:00.0",
+              "description" : "VGA compatible controller",
+              "product" : "GK104 [GeForce GTX 680]",
+              "vendor" : "NVIDIA Corporation",
+              "physid" : "0",
+              "businfo" : "pci@0000:84:00.0",
+              "version" : "a1",
+              "width" : 64,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "nvidia",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "msi" : "Message Signalled Interrupts",
+                "pciexpress" : "PCI Express",
+                "vga_controller" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing",
+                "rom" : "extension ROM"
+              }
+            },
+            {
+              "id" : "multimedia",
+              "class" : "multimedia",
+              "claimed" : true,
+              "handle" : "PCI:0000:84:00.1",
+              "description" : "Audio device",
+              "product" : "GK104 HDMI Audio Controller",
+              "vendor" : "NVIDIA Corporation",
+              "physid" : "0.1",
+              "businfo" : "pci@0000:84:00.1",
+              "version" : "a1",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "HDA Intel",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "msi" : "Message Signalled Interrupts",
+                "pciexpress" : "PCI Express",
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            }
+          ]
+        },
+        {
+          "id" : "generic:44",
+          "class" : "generic",
+          "handle" : "PCI:0000:80:05.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Address Map, VTd_Misc, System Management",
+          "vendor" : "Intel Corporation",
+          "physid" : "5",
+          "businfo" : "pci@0000:80:05.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:45",
+          "class" : "generic",
+          "handle" : "PCI:0000:80:05.2",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Control Status and Global Errors",
+          "vendor" : "Intel Corporation",
+          "physid" : "5.2",
+          "businfo" : "pci@0000:80:05.2",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:46",
+          "class" : "generic",
+          "handle" : "PCI:0000:80:05.4",
+          "description" : "PIC",
+          "product" : "Xeon E5/Core i7 I/O APIC",
+          "vendor" : "Intel Corporation",
+          "physid" : "5.4",
+          "businfo" : "pci@0000:80:05.4",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pm" : "Power Management",
+            "io_x_-apic" : true,
+            "bus_master" : "bus mastering",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:47",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:08.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "8",
+          "businfo" : "pci@0000:ff:08.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:48",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:08.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link Reut 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "37",
+          "businfo" : "pci@0000:ff:08.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:49",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:08.4",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link Reut 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "38",
+          "businfo" : "pci@0000:ff:08.4",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:50",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:09.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "39",
+          "businfo" : "pci@0000:ff:09.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:51",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:09.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link Reut 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "3a",
+          "businfo" : "pci@0000:ff:09.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:52",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:09.4",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 QPI Link Reut 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "3b",
+          "businfo" : "pci@0000:ff:09.4",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:53",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0a.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Power Control Unit 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "3c",
+          "businfo" : "pci@0000:ff:0a.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:54",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0a.1",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Power Control Unit 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "3d",
+          "businfo" : "pci@0000:ff:0a.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:55",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0a.2",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Power Control Unit 2",
+          "vendor" : "Intel Corporation",
+          "physid" : "3e",
+          "businfo" : "pci@0000:ff:0a.2",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:56",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0a.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Power Control Unit 3",
+          "vendor" : "Intel Corporation",
+          "physid" : "40",
+          "businfo" : "pci@0000:ff:0a.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:57",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0b.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Interrupt Control Registers",
+          "vendor" : "Intel Corporation",
+          "physid" : "41",
+          "businfo" : "pci@0000:ff:0b.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:58",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0b.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Semaphore and Scratchpad Configuration Registers",
+          "vendor" : "Intel Corporation",
+          "physid" : "42",
+          "businfo" : "pci@0000:ff:0b.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:59",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0c.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "43",
+          "businfo" : "pci@0000:ff:0c.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:60",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0c.1",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "44",
+          "businfo" : "pci@0000:ff:0c.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:61",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0c.2",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "45",
+          "businfo" : "pci@0000:ff:0c.2",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:62",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0c.6",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller System Address Decoder 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "46",
+          "businfo" : "pci@0000:ff:0c.6",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:63",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0c.7",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 System Address Decoder",
+          "vendor" : "Intel Corporation",
+          "physid" : "47",
+          "businfo" : "pci@0000:ff:0c.7",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:64",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0d.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "48",
+          "businfo" : "pci@0000:ff:0d.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:65",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0d.1",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "49",
+          "businfo" : "pci@0000:ff:0d.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:66",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0d.2",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Unicast Register 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "4a",
+          "businfo" : "pci@0000:ff:0d.2",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:67",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0d.6",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller System Address Decoder 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "4b",
+          "businfo" : "pci@0000:ff:0d.6",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:68",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0e.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Processor Home Agent",
+          "vendor" : "Intel Corporation",
+          "physid" : "4c",
+          "businfo" : "pci@0000:ff:0e.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:69",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0e.1",
+          "description" : "Performance counters",
+          "product" : "Xeon E5/Core i7 Processor Home Agent Performance Monitoring",
+          "vendor" : "Intel Corporation",
+          "physid" : "4d",
+          "businfo" : "pci@0000:ff:0e.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:70",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0f.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Registers",
+          "vendor" : "Intel Corporation",
+          "physid" : "4e",
+          "businfo" : "pci@0000:ff:0f.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:71",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0f.1",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller RAS Registers",
+          "vendor" : "Intel Corporation",
+          "physid" : "4f",
+          "businfo" : "pci@0000:ff:0f.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:72",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0f.2",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Target Address Decoder 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "50",
+          "businfo" : "pci@0000:ff:0f.2",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:73",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0f.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Target Address Decoder 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "51",
+          "businfo" : "pci@0000:ff:0f.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:74",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0f.4",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Target Address Decoder 2",
+          "vendor" : "Intel Corporation",
+          "physid" : "52",
+          "businfo" : "pci@0000:ff:0f.4",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:75",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0f.5",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Target Address Decoder 3",
+          "vendor" : "Intel Corporation",
+          "physid" : "53",
+          "businfo" : "pci@0000:ff:0f.5",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:76",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:0f.6",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Target Address Decoder 4",
+          "vendor" : "Intel Corporation",
+          "physid" : "54",
+          "businfo" : "pci@0000:ff:0f.6",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express"
+          }
+        },
+        {
+          "id" : "generic:77",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:10.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Channel 0-3 Thermal Control 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "55",
+          "businfo" : "pci@0000:ff:10.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:78",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:10.1",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Channel 0-3 Thermal Control 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "56",
+          "businfo" : "pci@0000:ff:10.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:79",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:10.2",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller ERROR Registers 0",
+          "vendor" : "Intel Corporation",
+          "physid" : "57",
+          "businfo" : "pci@0000:ff:10.2",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:80",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:10.3",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller ERROR Registers 1",
+          "vendor" : "Intel Corporation",
+          "physid" : "58",
+          "businfo" : "pci@0000:ff:10.3",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:81",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:10.4",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Channel 0-3 Thermal Control 2",
+          "vendor" : "Intel Corporation",
+          "physid" : "59",
+          "businfo" : "pci@0000:ff:10.4",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:82",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:10.5",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller Channel 0-3 Thermal Control 3",
+          "vendor" : "Intel Corporation",
+          "physid" : "5a",
+          "businfo" : "pci@0000:ff:10.5",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:83",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:10.6",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller ERROR Registers 2",
+          "vendor" : "Intel Corporation",
+          "physid" : "5b",
+          "businfo" : "pci@0000:ff:10.6",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:84",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:10.7",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Integrated Memory Controller ERROR Registers 3",
+          "vendor" : "Intel Corporation",
+          "physid" : "5c",
+          "businfo" : "pci@0000:ff:10.7",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express",
+            "cap_list" : "PCI capabilities listing"
+          }
+        },
+        {
+          "id" : "generic:85",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:11.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 DDRIO",
+          "vendor" : "Intel Corporation",
+          "physid" : "5d",
+          "businfo" : "pci@0000:ff:11.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          },
+          "capabilities" : {
+            "pciexpress" : "PCI Express"
+          }
+        },
+        {
+          "id" : "generic:86",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:13.0",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 R2PCIe",
+          "vendor" : "Intel Corporation",
+          "physid" : "5e",
+          "businfo" : "pci@0000:ff:13.0",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:87",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:13.1",
+          "description" : "Performance counters",
+          "product" : "Xeon E5/Core i7 Ring to PCI Express Performance Monitor",
+          "vendor" : "Intel Corporation",
+          "physid" : "5f",
+          "businfo" : "pci@0000:ff:13.1",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:88",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:13.4",
+          "description" : "Performance counters",
+          "product" : "Xeon E5/Core i7 QuickPath Interconnect Agent Ring Registers",
+          "vendor" : "Intel Corporation",
+          "physid" : "60",
+          "businfo" : "pci@0000:ff:13.4",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:89",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:13.5",
+          "description" : "Performance counters",
+          "product" : "Xeon E5/Core i7 Ring to QuickPath Interconnect Link 0 Performance Monitor",
+          "vendor" : "Intel Corporation",
+          "physid" : "61",
+          "businfo" : "pci@0000:ff:13.5",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        },
+        {
+          "id" : "generic:90",
+          "class" : "generic",
+          "handle" : "PCI:0000:ff:13.6",
+          "description" : "System peripheral",
+          "product" : "Xeon E5/Core i7 Ring to QuickPath Interconnect Link 1 Performance Monitor",
+          "vendor" : "Intel Corporation",
+          "physid" : "62",
+          "businfo" : "pci@0000:ff:13.6",
+          "version" : "07",
+          "width" : 32,
+          "clock" : 33000000,
+          "configuration" : {
+            "latency" : "0"
+          }
+        }
+      ]
+    },
+    {
+      "id" : "power",
+      "class" : "power",
+      "description" : "To Be Filled By O.E.M.",
+      "product" : "To Be Filled By O.E.M.",
+      "vendor" : "To Be Filled By O.E.M.",
+      "physid" : "1",
+      "version" : "To Be Filled By O.E.M.",
+      "serial" : "To Be Filled By O.E.M.",
+      "units" : "mWh",
+      "capacity" : 32768
+    }
+  ]
+}

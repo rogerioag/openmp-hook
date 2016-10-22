@@ -1,0 +1,46 @@
+Available components and hardware information.
+--------------------------------------------------------------------------------
+PAPI Version             : 5.4.3.0
+Vendor string and code   : GenuineIntel (1)
+Model string and code    : Intel(R) Xeon(R) CPU E5-2630 0 @ 2.30GHz (45)
+CPU Revision             : 7.000000
+CPUID Info               : Family: 6  Model: 45  Stepping: 7
+CPU Max Megahertz        : 2301
+CPU Min Megahertz        : 1200
+Hdw Threads per core     : 2
+Cores per Socket         : 6
+Sockets                  : 2
+NUMA Nodes               : 2
+CPUs per Node            : 12
+Total CPUs               : 24
+Running in a VM          : no
+Number Hardware Counters : 11
+Max Multiplex Counters   : 192
+--------------------------------------------------------------------------------
+
+Compiled-in components:
+Name:   perf_event              Linux perf_event CPU counters
+Name:   perf_event_uncore       Linux perf_event CPU uncore and northbridge
+Name:   rapl                    Linux RAPL energy measurements
+   \-> Disabled: Can't open fd for cpu0: No such file or directory
+Name:   cuda                    The CUDA component uses CuPTI for NVIDIA GPU hardware events
+
+Active components:
+Name:   perf_event              Linux perf_event CPU counters
+                                Native: 171, Preset: 50, Counters: 11
+                                PMU's supported: ix86arch, perf, snb_ep, perf_raw
+
+Name:   perf_event_uncore       Linux perf_event CPU uncore and northbridge
+                                Native: 465, Preset: 0, Counters: 81
+                                PMU's supported: snbep_unc_cbo0, snbep_unc_cbo1, snbep_unc_cbo2, snbep_unc_cbo3, snbep_unc_cbo4
+                                                 snbep_unc_cbo5, snbep_unc_cbo6, snbep_unc_cbo7, snbep_unc_ha, snbep_unc_imc0, snbep_unc_imc1
+                                                 snbep_unc_imc2, snbep_unc_imc3, snbep_unc_pcu, snbep_unc_qpi0, snbep_unc_qpi1, snbep_unc_ubo
+                                                 snbep_unc_r2pcie, snbep_unc_r3qpi0, snbep_unc_r3qpi1
+
+Name:   cuda                    The CUDA component uses CuPTI for NVIDIA GPU hardware events
+                                Native: 111, Preset: 0, Counters: 111
+                                PMU's supported: 
+
+
+--------------------------------------------------------------------------------
+component.c                             PASSED
