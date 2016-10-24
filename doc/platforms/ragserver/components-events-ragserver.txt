@@ -1,0 +1,38 @@
+Available components and hardware information.
+--------------------------------------------------------------------------------
+PAPI Version             : 5.4.3.0
+Vendor string and code   : GenuineIntel (1)
+Model string and code    : Intel(R) Core(TM) i7 CPU         870  @ 2.93GHz (30)
+CPU Revision             : 5.000000
+CPUID Info               : Family: 6  Model: 30  Stepping: 5
+CPU Max Megahertz        : 2934
+CPU Min Megahertz        : 1199
+Hdw Threads per core     : 2
+Cores per Socket         : 4
+Sockets                  : 1
+NUMA Nodes               : 1
+CPUs per Node            : 8
+Total CPUs               : 8
+Running in a VM          : no
+Number Hardware Counters : 7
+Max Multiplex Counters   : 192
+--------------------------------------------------------------------------------
+
+Compiled-in components:
+Name:   perf_event              Linux perf_event CPU counters
+Name:   perf_event_uncore       Linux perf_event CPU uncore and northbridge
+Name:   rapl                    Linux RAPL energy measurements
+   \-> Disabled: CPU model not supported
+
+Active components:
+Name:   perf_event              Linux perf_event CPU counters
+                                Native: 179, Preset: 65, Counters: 7
+                                PMU's supported: nhm, ix86arch, perf, perf_raw
+
+Name:   perf_event_uncore       Linux perf_event CPU uncore and northbridge
+                                Native: 42, Preset: 0, Counters: 9
+                                PMU's supported: nhm_unc
+
+
+--------------------------------------------------------------------------------
+component.c                             PASSED

@@ -1,0 +1,2355 @@
+Available native events and hardware information.
+--------------------------------------------------------------------------------
+PAPI Version             : 5.4.3.0
+Vendor string and code   : GenuineIntel (1)
+Model string and code    : Intel(R) Xeon(R) CPU E5-2630 0 @ 2.30GHz (45)
+CPU Revision             : 7.000000
+CPUID Info               : Family: 6  Model: 45  Stepping: 7
+CPU Max Megahertz        : 2301
+CPU Min Megahertz        : 1200
+Hdw Threads per core     : 2
+Cores per Socket         : 6
+Sockets                  : 2
+NUMA Nodes               : 2
+CPUs per Node            : 12
+Total CPUs               : 24
+Running in a VM          : no
+Number Hardware Counters : 11
+Max Multiplex Counters   : 192
+--------------------------------------------------------------------------------
+
+===============================================================================
+ Native Events in Component: perf_event
+===============================================================================
+| ix86arch::UNHALTED_CORE_CYCLES                                               |
+|            count core clock cycles whenever the clock signal on the specific |
+|            core is running (not halted)                                      |
+--------------------------------------------------------------------------------
+| ix86arch::INSTRUCTION_RETIRED                                                |
+|            count the number of instructions at retirement. For instructions t|
+|            hat consists of multiple micro-ops, this event counts the retireme|
+|            nt of the last micro-op of the instruction                        |
+--------------------------------------------------------------------------------
+| ix86arch::UNHALTED_REFERENCE_CYCLES                                          |
+|            count reference clock cycles while the clock signal on the specifi|
+|            c core is running. The reference clock operates at a fixed frequen|
+|            cy, irrespective of core frequency changes due to performance stat|
+|            e transitions                                                     |
+--------------------------------------------------------------------------------
+| ix86arch::LLC_REFERENCES                                                     |
+|            count each request originating from the core to reference a cache |
+|            line in the last level cache. The count may include speculation, b|
+|            ut excludes cache line fills due to hardware prefetch             |
+--------------------------------------------------------------------------------
+| ix86arch::LLC_MISSES                                                         |
+|            count each cache miss condition for references to the last level c|
+|            ache. The event count may include speculation, but excludes cache |
+|            line fills due to hardware prefetch                               |
+--------------------------------------------------------------------------------
+| ix86arch::BRANCH_INSTRUCTIONS_RETIRED                                        |
+|            count branch instructions at retirement. Specifically, this event |
+|            counts the retirement of the last micro-op of a branch instruction|
+|                                                                              |
+--------------------------------------------------------------------------------
+| ix86arch::MISPREDICTED_BRANCH_RETIRED                                        |
+|            count mispredicted branch instructions at retirement. Specifically|
+|            , this event counts at retirement of the last micro-op of a branch|
+|             instruction in the architectural path of the execution and experi|
+|            enced misprediction in the branch prediction hardware             |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CPU_CYCLES                                           <NA>|
+|            PERF_COUNT_HW_CPU_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::CYCLES                                                             <NA>|
+|            PERF_COUNT_HW_CPU_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::CPU-CYCLES                                                         <NA>|
+|            PERF_COUNT_HW_CPU_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_INSTRUCTIONS                                         <NA>|
+|            PERF_COUNT_HW_INSTRUCTIONS                                        |
+--------------------------------------------------------------------------------
+| perf::INSTRUCTIONS                                                       <NA>|
+|            PERF_COUNT_HW_INSTRUCTIONS                                        |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_REFERENCES                                     <NA>|
+|            PERF_COUNT_HW_CACHE_REFERENCES                                    |
+--------------------------------------------------------------------------------
+| perf::CACHE-REFERENCES                                                   <NA>|
+|            PERF_COUNT_HW_CACHE_REFERENCES                                    |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_MISSES                                         <NA>|
+|            PERF_COUNT_HW_CACHE_MISSES                                        |
+--------------------------------------------------------------------------------
+| perf::CACHE-MISSES                                                       <NA>|
+|            PERF_COUNT_HW_CACHE_MISSES                                        |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                  <NA>|
+|            PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                 |
+--------------------------------------------------------------------------------
+| perf::BRANCH-INSTRUCTIONS                                                <NA>|
+|            PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                 |
+--------------------------------------------------------------------------------
+| perf::BRANCHES                                                           <NA>|
+|            PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                 |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_BRANCH_MISSES                                        <NA>|
+|            PERF_COUNT_HW_BRANCH_MISSES                                       |
+--------------------------------------------------------------------------------
+| perf::BRANCH-MISSES                                                      <NA>|
+|            PERF_COUNT_HW_BRANCH_MISSES                                       |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_BUS_CYCLES                                           <NA>|
+|            PERF_COUNT_HW_BUS_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::BUS-CYCLES                                                         <NA>|
+|            PERF_COUNT_HW_BUS_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                              <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                             |
+--------------------------------------------------------------------------------
+| perf::STALLED-CYCLES-FRONTEND                                            <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                             |
+--------------------------------------------------------------------------------
+| perf::IDLE-CYCLES-FRONTEND                                               <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                             |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_STALLED_CYCLES_BACKEND                               <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_BACKEND                              |
+--------------------------------------------------------------------------------
+| perf::STALLED-CYCLES-BACKEND                                             <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_BACKEND                              |
+--------------------------------------------------------------------------------
+| perf::IDLE-CYCLES-BACKEND                                                <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_BACKEND                              |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_REF_CPU_CYCLES                                       <NA>|
+|            PERF_COUNT_HW_REF_CPU_CYCLES                                      |
+--------------------------------------------------------------------------------
+| perf::REF-CYCLES                                                         <NA>|
+|            PERF_COUNT_HW_REF_CPU_CYCLES                                      |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_CPU_CLOCK                                            <NA>|
+|            PERF_COUNT_SW_CPU_CLOCK                                           |
+--------------------------------------------------------------------------------
+| perf::CPU-CLOCK                                                          <NA>|
+|            PERF_COUNT_SW_CPU_CLOCK                                           |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_TASK_CLOCK                                           <NA>|
+|            PERF_COUNT_SW_TASK_CLOCK                                          |
+--------------------------------------------------------------------------------
+| perf::TASK-CLOCK                                                         <NA>|
+|            PERF_COUNT_SW_TASK_CLOCK                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_PAGE_FAULTS                                          <NA>|
+|            PERF_COUNT_SW_PAGE_FAULTS                                         |
+--------------------------------------------------------------------------------
+| perf::PAGE-FAULTS                                                        <NA>|
+|            PERF_COUNT_SW_PAGE_FAULTS                                         |
+--------------------------------------------------------------------------------
+| perf::FAULTS                                                             <NA>|
+|            PERF_COUNT_SW_PAGE_FAULTS                                         |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_CONTEXT_SWITCHES                                     <NA>|
+|            PERF_COUNT_SW_CONTEXT_SWITCHES                                    |
+--------------------------------------------------------------------------------
+| perf::CONTEXT-SWITCHES                                                   <NA>|
+|            PERF_COUNT_SW_CONTEXT_SWITCHES                                    |
+--------------------------------------------------------------------------------
+| perf::CS                                                                 <NA>|
+|            PERF_COUNT_SW_CONTEXT_SWITCHES                                    |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_CPU_MIGRATIONS                                       <NA>|
+|            PERF_COUNT_SW_CPU_MIGRATIONS                                      |
+--------------------------------------------------------------------------------
+| perf::CPU-MIGRATIONS                                                     <NA>|
+|            PERF_COUNT_SW_CPU_MIGRATIONS                                      |
+--------------------------------------------------------------------------------
+| perf::MIGRATIONS                                                         <NA>|
+|            PERF_COUNT_SW_CPU_MIGRATIONS                                      |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_PAGE_FAULTS_MIN                                      <NA>|
+|            PERF_COUNT_SW_PAGE_FAULTS_MIN                                     |
+--------------------------------------------------------------------------------
+| perf::MINOR-FAULTS                                                       <NA>|
+|            PERF_COUNT_SW_PAGE_FAULTS_MIN                                     |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_PAGE_FAULTS_MAJ                                      <NA>|
+|            PERF_COUNT_SW_PAGE_FAULTS_MAJ                                     |
+--------------------------------------------------------------------------------
+| perf::MAJOR-FAULTS                                                       <NA>|
+|            PERF_COUNT_SW_PAGE_FAULTS_MAJ                                     |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_L1D                                            <NA>|
+|            L1 data cache                                                     |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-LOADS                                                    <NA>|
+|            L1 cache load accesses                                            |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-LOAD-MISSES                                              <NA>|
+|            L1 cache load misses                                              |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-STORES                                                   <NA>|
+|            L1 cache store accesses                                           |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-STORE-MISSES                                             <NA>|
+|            L1 cache store misses                                             |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-PREFETCHES                                               <NA>|
+|            L1 cache prefetch accesses                                        |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-PREFETCH-MISSES                                          <NA>|
+|            L1 cache prefetch misses                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_L1I                                            <NA>|
+|            L1 instruction cache                                              |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-LOADS                                                    <NA>|
+|            L1I cache load accesses                                           |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-LOAD-MISSES                                              <NA>|
+|            L1I cache load misses                                             |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-PREFETCHES                                               <NA>|
+|            L1I cache prefetch accesses                                       |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-PREFETCH-MISSES                                          <NA>|
+|            L1I cache prefetch misses                                         |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_LL                                             <NA>|
+|            Last level cache                                                  |
+--------------------------------------------------------------------------------
+| perf::LLC-LOADS                                                          <NA>|
+|            Last level cache load accesses                                    |
+--------------------------------------------------------------------------------
+| perf::LLC-LOAD-MISSES                                                    <NA>|
+|            Last level cache load misses                                      |
+--------------------------------------------------------------------------------
+| perf::LLC-STORES                                                         <NA>|
+|            Last level cache store accesses                                   |
+--------------------------------------------------------------------------------
+| perf::LLC-STORE-MISSES                                                   <NA>|
+|            Last level cache store misses                                     |
+--------------------------------------------------------------------------------
+| perf::LLC-PREFETCHES                                                     <NA>|
+|            Last level cache prefetch accesses                                |
+--------------------------------------------------------------------------------
+| perf::LLC-PREFETCH-MISSES                                                <NA>|
+|            Last level cache prefetch misses                                  |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_DTLB                                           <NA>|
+|            Data Translation Lookaside Buffer                                 |
+--------------------------------------------------------------------------------
+| perf::DTLB-LOADS                                                         <NA>|
+|            Data TLB load accesses                                            |
+--------------------------------------------------------------------------------
+| perf::DTLB-LOAD-MISSES                                                   <NA>|
+|            Data TLB load misses                                              |
+--------------------------------------------------------------------------------
+| perf::DTLB-STORES                                                        <NA>|
+|            Data TLB store accesses                                           |
+--------------------------------------------------------------------------------
+| perf::DTLB-STORE-MISSES                                                  <NA>|
+|            Data TLB store misses                                             |
+--------------------------------------------------------------------------------
+| perf::DTLB-PREFETCHES                                                    <NA>|
+|            Data TLB prefetch accesses                                        |
+--------------------------------------------------------------------------------
+| perf::DTLB-PREFETCH-MISSES                                               <NA>|
+|            Data TLB prefetch misses                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_ITLB                                           <NA>|
+|            Instruction Translation Lookaside Buffer                          |
+--------------------------------------------------------------------------------
+| perf::ITLB-LOADS                                                         <NA>|
+|            Instruction TLB load accesses                                     |
+--------------------------------------------------------------------------------
+| perf::ITLB-LOAD-MISSES                                                   <NA>|
+|            Instruction TLB load misses                                       |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_BPU                                            <NA>|
+|            Branch Prediction Unit                                            |
+--------------------------------------------------------------------------------
+| perf::BRANCH-LOADS                                                       <NA>|
+|            Branch  load accesses                                             |
+--------------------------------------------------------------------------------
+| perf::BRANCH-LOAD-MISSES                                                 <NA>|
+|            Branch  load misses                                               |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_NODE                                           <NA>|
+|            Node memory access                                                |
+--------------------------------------------------------------------------------
+| perf::NODE-LOADS                                                         <NA>|
+|            Node  load accesses                                               |
+--------------------------------------------------------------------------------
+| perf::NODE-LOAD-MISSES                                                   <NA>|
+|            Node  load misses                                                 |
+--------------------------------------------------------------------------------
+| perf::NODE-STORES                                                        <NA>|
+|            Node  store accesses                                              |
+--------------------------------------------------------------------------------
+| perf::NODE-STORE-MISSES                                                  <NA>|
+|            Node  store misses                                                |
+--------------------------------------------------------------------------------
+| perf::NODE-PREFETCHES                                                    <NA>|
+|            Node  prefetch accesses                                           |
+--------------------------------------------------------------------------------
+| perf::NODE-PREFETCH-MISSES                                               <NA>|
+|            Node  prefetch misses                                             |
+--------------------------------------------------------------------------------
+| AGU_BYPASS_CANCEL                                                        <NA>|
+|            Number of executed load operations with all the following traits: |
+|            1. addressing of the format [base + offset], 2. the offset is betw|
+|            een 1 and 2047, 3. the address specified in the base register is i|
+|            n one page and the address [base+offset] is in another page       |
+--------------------------------------------------------------------------------
+| ARITH                                                                    <NA>|
+|            Counts arithmetic multiply operations                             |
+--------------------------------------------------------------------------------
+| BACLEARS                                                                 <NA>|
+|            Branch re-steered                                                 |
+--------------------------------------------------------------------------------
+| BR_INST_EXEC                                                             <NA>|
+|            Branch instructions executed                                      |
+--------------------------------------------------------------------------------
+| BR_INST_RETIRED                                                          <NA>|
+|            Retired branch instructions                                       |
+--------------------------------------------------------------------------------
+| BR_MISP_EXEC                                                             <NA>|
+|            Mispredicted branches executed                                    |
+--------------------------------------------------------------------------------
+| BR_MISP_RETIRED                                                          <NA>|
+|            Mispredicted retired branches                                     |
+--------------------------------------------------------------------------------
+| BRANCH_INSTRUCTIONS_RETIRED                                              <NA>|
+|            Count branch instructions at retirement. Specifically, this event |
+|            counts the retirement of the last micro-op of a branch instruction|
+|                                                                              |
+--------------------------------------------------------------------------------
+| MISPREDICTED_BRANCH_RETIRED                                              <NA>|
+|            Count mispredicted branch instructions at retirement. Specifically|
+|            , this event counts at retirement of the last micro-op of a branch|
+|             instruction in the architectural path of the execution and experi|
+|            enced misprediction in the branch prediction hardware             |
+--------------------------------------------------------------------------------
+| LOCK_CYCLES                                                              <NA>|
+|            Locked cycles in L1D and L2                                       |
+--------------------------------------------------------------------------------
+| CPL_CYCLES                                                               <NA>|
+|            Unhalted core cycles at a specific ring level                     |
+--------------------------------------------------------------------------------
+| CPU_CLK_UNHALTED                                                         <NA>|
+|            Cycles when processor is not in halted state                      |
+--------------------------------------------------------------------------------
+| DSB2MITE_SWITCHES                                                        <NA>|
+|            Number of DSB to MITE switches                                    |
+--------------------------------------------------------------------------------
+| DSB_FILL                                                                 <NA>|
+|            DSB fills                                                         |
+--------------------------------------------------------------------------------
+| DTLB_LOAD_MISSES                                                         <NA>|
+|            Data TLB load misses                                              |
+--------------------------------------------------------------------------------
+| DTLB_STORE_MISSES                                                        <NA>|
+|            Data TLB store misses                                             |
+--------------------------------------------------------------------------------
+| FP_ASSIST                                                                <NA>|
+|            X87 Floating point assists                                        |
+--------------------------------------------------------------------------------
+| FP_COMP_OPS_EXE                                                          <NA>|
+|            Counts number of floating point events                            |
+--------------------------------------------------------------------------------
+| HW_PRE_REQ                                                               <NA>|
+|            Hardware prefetch requests                                        |
+--------------------------------------------------------------------------------
+| ICACHE                                                                   <NA>|
+|            Instruction Cache accesses                                        |
+--------------------------------------------------------------------------------
+| IDQ                                                                      <NA>|
+|            IDQ operations                                                    |
+--------------------------------------------------------------------------------
+| IDQ_UOPS_NOT_DELIVERED                                                   <NA>|
+|            Uops not delivered                                                |
+--------------------------------------------------------------------------------
+| ILD_STALL                                                                <NA>|
+|            Instruction Length Decoder stalls                                 |
+--------------------------------------------------------------------------------
+| INSTS_WRITTEN_TO_IQ                                                      <NA>|
+|            Instructions written to IQ                                        |
+--------------------------------------------------------------------------------
+| INST_RETIRED                                                             <NA>|
+|            Instructions retired                                              |
+--------------------------------------------------------------------------------
+| INSTRUCTION_RETIRED                                                      <NA>|
+|            Number of instructions at retirement                              |
+--------------------------------------------------------------------------------
+| INSTRUCTIONS_RETIRED                                                     <NA>|
+|            This is an alias for INSTRUCTION_RETIRED                          |
+--------------------------------------------------------------------------------
+| INT_MISC                                                                 <NA>|
+|            Miscellaneous internals                                           |
+--------------------------------------------------------------------------------
+| ITLB                                                                     <NA>|
+|            Instruction TLB                                                   |
+--------------------------------------------------------------------------------
+| ITLB_MISSES                                                              <NA>|
+|            Instruction TLB misses                                            |
+--------------------------------------------------------------------------------
+| L1D                                                                      <NA>|
+|            L1D cache                                                         |
+--------------------------------------------------------------------------------
+| L1D_BLOCKS                                                               <NA>|
+|            L1D is blocking                                                   |
+--------------------------------------------------------------------------------
+| L1D_PEND_MISS                                                            <NA>|
+|            L1D pending misses                                                |
+--------------------------------------------------------------------------------
+| L2_L1D_WB_RQSTS                                                          <NA>|
+|            Writeback requests from L1D to L2                                 |
+--------------------------------------------------------------------------------
+| L2_LINES_IN                                                              <NA>|
+|            L2 lines allocated                                                |
+--------------------------------------------------------------------------------
+| L2_LINES_OUT                                                             <NA>|
+|            L2 lines evicted                                                  |
+--------------------------------------------------------------------------------
+| L2_RQSTS                                                                 <NA>|
+|            L2 requests                                                       |
+--------------------------------------------------------------------------------
+| L2_STORE_LOCK_RQSTS                                                      <NA>|
+|            L2 store lock requests                                            |
+--------------------------------------------------------------------------------
+| L2_TRANS                                                                 <NA>|
+|            L2 transactions                                                   |
+--------------------------------------------------------------------------------
+| LAST_LEVEL_CACHE_MISSES                                                  <NA>|
+|            This is an alias for L3_LAT_CACHE:MISS                            |
+--------------------------------------------------------------------------------
+| LLC_MISSES                                                               <NA>|
+|            Alias for LAST_LEVEL_CACHE_MISSES                                 |
+--------------------------------------------------------------------------------
+| LAST_LEVEL_CACHE_REFERENCES                                              <NA>|
+|            This is an alias for L3_LAT_CACHE:REFERENCE                       |
+--------------------------------------------------------------------------------
+| LLC_REFERENCES                                                           <NA>|
+|            Alias for LAST_LEVEL_CACHE_REFERENCES                             |
+--------------------------------------------------------------------------------
+| LD_BLOCKS                                                                <NA>|
+|            Blocking loads                                                    |
+--------------------------------------------------------------------------------
+| LD_BLOCKS_PARTIAL                                                        <NA>|
+|            Partial load blocks                                               |
+--------------------------------------------------------------------------------
+| LOAD_HIT_PRE                                                             <NA>|
+|            Load dispatches that hit fill buffer                              |
+--------------------------------------------------------------------------------
+| L3_LAT_CACHE                                                             <NA>|
+|            Core-originated cacheable demand requests to L3                   |
+--------------------------------------------------------------------------------
+| MACHINE_CLEARS                                                           <NA>|
+|            Machine clear asserted                                            |
+--------------------------------------------------------------------------------
+| MEM_LOAD_UOPS_LLC_HIT_RETIRED                                            <NA>|
+|            L3 hit loads uops retired                                         |
+--------------------------------------------------------------------------------
+| MEM_LOAD_LLC_HIT_RETIRED                                                 <NA>|
+|            L3 hit loads uops retired (deprecated use MEM_LOAD_UOPS_LLC_HIT_RE|
+|            TIRED)                                                            |
+--------------------------------------------------------------------------------
+| MEM_LOAD_UOPS_MISC_RETIRED                                               <NA>|
+|            Loads and some non simd split loads uops retired                  |
+--------------------------------------------------------------------------------
+| MEM_LOAD_MISC_RETIRED                                                    <NA>|
+|            Loads and some non simd split loads uops retired (deprecated use M|
+|            EM_LOAD_UOPS_MISC_RETIRED)                                        |
+--------------------------------------------------------------------------------
+| MEM_LOAD_UOPS_RETIRED                                                    <NA>|
+|            Memory loads uops retired                                         |
+--------------------------------------------------------------------------------
+| MEM_LOAD_RETIRED                                                         <NA>|
+|            Memory loads uops retired (deprecated use MEM_LOAD_UOPS_RETIRED)  |
+--------------------------------------------------------------------------------
+| MEM_TRANS_RETIRED                                                        <NA>|
+|            Memory transactions retired                                       |
+--------------------------------------------------------------------------------
+| MEM_UOPS_RETIRED                                                         <NA>|
+|            Memory uops retired                                               |
+--------------------------------------------------------------------------------
+| MEM_UOP_RETIRED                                                          <NA>|
+|            Memory uops retired (deprecated use MEM_UOPS_RETIRED)             |
+--------------------------------------------------------------------------------
+| MISALIGN_MEM_REF                                                         <NA>|
+|            Misaligned memory references                                      |
+--------------------------------------------------------------------------------
+| OFFCORE_REQUESTS                                                         <NA>|
+|            Offcore requests                                                  |
+--------------------------------------------------------------------------------
+| OFFCORE_REQUESTS_BUFFER                                                  <NA>|
+|            Offcore requests buffer                                           |
+--------------------------------------------------------------------------------
+| OFFCORE_REQUESTS_OUTSTANDING                                             <NA>|
+|            Outstanding offcore requests                                      |
+--------------------------------------------------------------------------------
+| OTHER_ASSISTS                                                            <NA>|
+|            Count hardware assists                                            |
+--------------------------------------------------------------------------------
+| PARTIAL_RAT_STALLS                                                       <NA>|
+|            Partial Register Allocation Table stalls                          |
+--------------------------------------------------------------------------------
+| RESOURCE_STALLS                                                          <NA>|
+|            Resource related stall cycles                                     |
+--------------------------------------------------------------------------------
+| RESOURCE_STALLS2                                                         <NA>|
+|            Resource related stall cycles                                     |
+--------------------------------------------------------------------------------
+| ROB_MISC_EVENTS                                                          <NA>|
+|            Reorder buffer events                                             |
+--------------------------------------------------------------------------------
+| RS_EVENTS                                                                <NA>|
+|            Reservation station events                                        |
+--------------------------------------------------------------------------------
+| SIMD_FP_256                                                              <NA>|
+|            Counts 256-bit packed floating point instructions                 |
+--------------------------------------------------------------------------------
+| SQ_MISC                                                                  <NA>|
+|            SuperQ events                                                     |
+--------------------------------------------------------------------------------
+| TLB_FLUSH                                                                <NA>|
+|            TLB flushes                                                       |
+--------------------------------------------------------------------------------
+| UNHALTED_CORE_CYCLES                                                     <NA>|
+|            Count core clock cycles whenever the clock signal on the specific |
+|            core is running (not halted)                                      |
+--------------------------------------------------------------------------------
+| UNHALTED_REFERENCE_CYCLES                                                <NA>|
+|            Unhalted reference cycles                                         |
+--------------------------------------------------------------------------------
+| UOPS_EXECUTED                                                            <NA>|
+|            Uops executed                                                     |
+--------------------------------------------------------------------------------
+| UOPS_DISPATCHED_PORT                                                     <NA>|
+|            Uops dispatch to specific ports                                   |
+--------------------------------------------------------------------------------
+| UOPS_ISSUED                                                              <NA>|
+|            Uops issued                                                       |
+--------------------------------------------------------------------------------
+| UOPS_RETIRED                                                             <NA>|
+|            Uops retired                                                      |
+--------------------------------------------------------------------------------
+| CYCLE_ACTIVITY                                                           <NA>|
+|            Stalled cycles                                                    |
+--------------------------------------------------------------------------------
+| EPT                                                                      <NA>|
+|            Extended page table                                               |
+--------------------------------------------------------------------------------
+| LSD                                                                      <NA>|
+|            Loop stream detector                                              |
+--------------------------------------------------------------------------------
+| PAGE_WALKS                                                               <NA>|
+|            page walker                                                       |
+--------------------------------------------------------------------------------
+| MEM_LOAD_UOPS_LLC_MISS_RETIRED                                           <NA>|
+|            Load uops retired which miss the L3 cache                         |
+--------------------------------------------------------------------------------
+| OFFCORE_RESPONSE_0                                                       <NA>|
+|            Offcore response event (must provide at least one request type and|
+|             either any_response or any combination of supplier + snoop)      |
+--------------------------------------------------------------------------------
+| OFFCORE_RESPONSE_1                                                       <NA>|
+|            Offcore response event (must provide at least one request type and|
+|             either any_response or any combination of supplier + snoop)      |
+--------------------------------------------------------------------------------
+| perf_raw::r0000                                                          <NA>|
+|            perf_events raw event syntax: r[0-9a-fA-F]+                       |
+===============================================================================
+ Native Events in Component: perf_event_uncore
+===============================================================================
+| snbep_unc_cbo0::UNC_C_CLOCKTICKS                                         <NA>|
+|            C-box Uncore clockticks                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_COUNTER0_OCCUPANCY                                 <NA>|
+|            Counter 0 occupancy. Counts the occupancy related information by f|
+|            iltering CB0 occupancy count captured in counter 0.               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_ISMQ_DRD_MISS_OCC                                  <NA>|
+|            TBD                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_LLC_LOOKUP                                         <NA>|
+|            Cache lookups. Counts number of times the LLC is accessed from L2 |
+|            for code, data, prefetches (Must set filter mask bit 0 and select |
+|            )                                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_LLC_VICTIMS                                        <NA>|
+|            Lines victimized                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_MISC                                               <NA>|
+|            Miscellaneous C-Box events                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RING_AD_USED                                       <NA>|
+|            Address ring in use. Counts number of cycles ring is being used at|
+|             this ring stop                                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RING_AK_USED                                       <NA>|
+|            Acknowledgment ring in use. Counts number of cycles ring is being |
+|            used at this ring stop                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RING_BL_USED                                       <NA>|
+|            Bus or Data ring in use. Counts number of cycles ring is being use|
+|            d at this ring stop                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RING_BOUNCES                                       <NA>|
+|            Number of LLC responses that bounced in the ring                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RING_IV_USED                                       <NA>|
+|            Invalidate ring in use. Counts number of cycles ring is being used|
+|             at this ring stop                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RING_SRC_THRTL                                     <NA>|
+|            TDB                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RXR_EXT_STARVED                                    <NA>|
+|            Ingress arbiter blocking cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RXR_INSERTS                                        <NA>|
+|            Ingress Allocations                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RXR_IPQ_RETRY                                      <NA>|
+|            Probe Queue Retries                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RXR_IRQ_RETRY                                      <NA>|
+|            Ingress Request Queue Rejects                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RXR_ISMQ_RETRY                                     <NA>|
+|            ISMQ Retries                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_RXR_OCCUPANCY                                      <NA>|
+|            Ingress Occupancy                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_TOR_INSERTS                                        <NA>|
+|            TOR Inserts                                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_TOR_OCCUPANCY                                      <NA>|
+|            TOR Occupancy                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_TXR_ADS_USED                                       <NA>|
+|            Egress events                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo0::UNC_C_TXR_INSERTS                                        <NA>|
+|            Egress allocations                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_CLOCKTICKS                                         <NA>|
+|            C-box Uncore clockticks                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_COUNTER0_OCCUPANCY                                 <NA>|
+|            Counter 0 occupancy. Counts the occupancy related information by f|
+|            iltering CB0 occupancy count captured in counter 0.               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_ISMQ_DRD_MISS_OCC                                  <NA>|
+|            TBD                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_LLC_LOOKUP                                         <NA>|
+|            Cache lookups. Counts number of times the LLC is accessed from L2 |
+|            for code, data, prefetches (Must set filter mask bit 0 and select |
+|            )                                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_LLC_VICTIMS                                        <NA>|
+|            Lines victimized                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_MISC                                               <NA>|
+|            Miscellaneous C-Box events                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RING_AD_USED                                       <NA>|
+|            Address ring in use. Counts number of cycles ring is being used at|
+|             this ring stop                                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RING_AK_USED                                       <NA>|
+|            Acknowledgment ring in use. Counts number of cycles ring is being |
+|            used at this ring stop                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RING_BL_USED                                       <NA>|
+|            Bus or Data ring in use. Counts number of cycles ring is being use|
+|            d at this ring stop                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RING_BOUNCES                                       <NA>|
+|            Number of LLC responses that bounced in the ring                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RING_IV_USED                                       <NA>|
+|            Invalidate ring in use. Counts number of cycles ring is being used|
+|             at this ring stop                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RING_SRC_THRTL                                     <NA>|
+|            TDB                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RXR_EXT_STARVED                                    <NA>|
+|            Ingress arbiter blocking cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RXR_INSERTS                                        <NA>|
+|            Ingress Allocations                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RXR_IPQ_RETRY                                      <NA>|
+|            Probe Queue Retries                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RXR_IRQ_RETRY                                      <NA>|
+|            Ingress Request Queue Rejects                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RXR_ISMQ_RETRY                                     <NA>|
+|            ISMQ Retries                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_RXR_OCCUPANCY                                      <NA>|
+|            Ingress Occupancy                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_TOR_INSERTS                                        <NA>|
+|            TOR Inserts                                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_TOR_OCCUPANCY                                      <NA>|
+|            TOR Occupancy                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_TXR_ADS_USED                                       <NA>|
+|            Egress events                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo1::UNC_C_TXR_INSERTS                                        <NA>|
+|            Egress allocations                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_CLOCKTICKS                                         <NA>|
+|            C-box Uncore clockticks                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_COUNTER0_OCCUPANCY                                 <NA>|
+|            Counter 0 occupancy. Counts the occupancy related information by f|
+|            iltering CB0 occupancy count captured in counter 0.               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_ISMQ_DRD_MISS_OCC                                  <NA>|
+|            TBD                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_LLC_LOOKUP                                         <NA>|
+|            Cache lookups. Counts number of times the LLC is accessed from L2 |
+|            for code, data, prefetches (Must set filter mask bit 0 and select |
+|            )                                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_LLC_VICTIMS                                        <NA>|
+|            Lines victimized                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_MISC                                               <NA>|
+|            Miscellaneous C-Box events                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RING_AD_USED                                       <NA>|
+|            Address ring in use. Counts number of cycles ring is being used at|
+|             this ring stop                                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RING_AK_USED                                       <NA>|
+|            Acknowledgment ring in use. Counts number of cycles ring is being |
+|            used at this ring stop                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RING_BL_USED                                       <NA>|
+|            Bus or Data ring in use. Counts number of cycles ring is being use|
+|            d at this ring stop                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RING_BOUNCES                                       <NA>|
+|            Number of LLC responses that bounced in the ring                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RING_IV_USED                                       <NA>|
+|            Invalidate ring in use. Counts number of cycles ring is being used|
+|             at this ring stop                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RING_SRC_THRTL                                     <NA>|
+|            TDB                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RXR_EXT_STARVED                                    <NA>|
+|            Ingress arbiter blocking cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RXR_INSERTS                                        <NA>|
+|            Ingress Allocations                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RXR_IPQ_RETRY                                      <NA>|
+|            Probe Queue Retries                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RXR_IRQ_RETRY                                      <NA>|
+|            Ingress Request Queue Rejects                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RXR_ISMQ_RETRY                                     <NA>|
+|            ISMQ Retries                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_RXR_OCCUPANCY                                      <NA>|
+|            Ingress Occupancy                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_TOR_INSERTS                                        <NA>|
+|            TOR Inserts                                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_TOR_OCCUPANCY                                      <NA>|
+|            TOR Occupancy                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_TXR_ADS_USED                                       <NA>|
+|            Egress events                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo2::UNC_C_TXR_INSERTS                                        <NA>|
+|            Egress allocations                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_CLOCKTICKS                                         <NA>|
+|            C-box Uncore clockticks                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_COUNTER0_OCCUPANCY                                 <NA>|
+|            Counter 0 occupancy. Counts the occupancy related information by f|
+|            iltering CB0 occupancy count captured in counter 0.               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_ISMQ_DRD_MISS_OCC                                  <NA>|
+|            TBD                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_LLC_LOOKUP                                         <NA>|
+|            Cache lookups. Counts number of times the LLC is accessed from L2 |
+|            for code, data, prefetches (Must set filter mask bit 0 and select |
+|            )                                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_LLC_VICTIMS                                        <NA>|
+|            Lines victimized                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_MISC                                               <NA>|
+|            Miscellaneous C-Box events                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RING_AD_USED                                       <NA>|
+|            Address ring in use. Counts number of cycles ring is being used at|
+|             this ring stop                                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RING_AK_USED                                       <NA>|
+|            Acknowledgment ring in use. Counts number of cycles ring is being |
+|            used at this ring stop                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RING_BL_USED                                       <NA>|
+|            Bus or Data ring in use. Counts number of cycles ring is being use|
+|            d at this ring stop                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RING_BOUNCES                                       <NA>|
+|            Number of LLC responses that bounced in the ring                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RING_IV_USED                                       <NA>|
+|            Invalidate ring in use. Counts number of cycles ring is being used|
+|             at this ring stop                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RING_SRC_THRTL                                     <NA>|
+|            TDB                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RXR_EXT_STARVED                                    <NA>|
+|            Ingress arbiter blocking cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RXR_INSERTS                                        <NA>|
+|            Ingress Allocations                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RXR_IPQ_RETRY                                      <NA>|
+|            Probe Queue Retries                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RXR_IRQ_RETRY                                      <NA>|
+|            Ingress Request Queue Rejects                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RXR_ISMQ_RETRY                                     <NA>|
+|            ISMQ Retries                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_RXR_OCCUPANCY                                      <NA>|
+|            Ingress Occupancy                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_TOR_INSERTS                                        <NA>|
+|            TOR Inserts                                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_TOR_OCCUPANCY                                      <NA>|
+|            TOR Occupancy                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_TXR_ADS_USED                                       <NA>|
+|            Egress events                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo3::UNC_C_TXR_INSERTS                                        <NA>|
+|            Egress allocations                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_CLOCKTICKS                                         <NA>|
+|            C-box Uncore clockticks                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_COUNTER0_OCCUPANCY                                 <NA>|
+|            Counter 0 occupancy. Counts the occupancy related information by f|
+|            iltering CB0 occupancy count captured in counter 0.               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_ISMQ_DRD_MISS_OCC                                  <NA>|
+|            TBD                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_LLC_LOOKUP                                         <NA>|
+|            Cache lookups. Counts number of times the LLC is accessed from L2 |
+|            for code, data, prefetches (Must set filter mask bit 0 and select |
+|            )                                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_LLC_VICTIMS                                        <NA>|
+|            Lines victimized                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_MISC                                               <NA>|
+|            Miscellaneous C-Box events                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RING_AD_USED                                       <NA>|
+|            Address ring in use. Counts number of cycles ring is being used at|
+|             this ring stop                                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RING_AK_USED                                       <NA>|
+|            Acknowledgment ring in use. Counts number of cycles ring is being |
+|            used at this ring stop                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RING_BL_USED                                       <NA>|
+|            Bus or Data ring in use. Counts number of cycles ring is being use|
+|            d at this ring stop                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RING_BOUNCES                                       <NA>|
+|            Number of LLC responses that bounced in the ring                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RING_IV_USED                                       <NA>|
+|            Invalidate ring in use. Counts number of cycles ring is being used|
+|             at this ring stop                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RING_SRC_THRTL                                     <NA>|
+|            TDB                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RXR_EXT_STARVED                                    <NA>|
+|            Ingress arbiter blocking cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RXR_INSERTS                                        <NA>|
+|            Ingress Allocations                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RXR_IPQ_RETRY                                      <NA>|
+|            Probe Queue Retries                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RXR_IRQ_RETRY                                      <NA>|
+|            Ingress Request Queue Rejects                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RXR_ISMQ_RETRY                                     <NA>|
+|            ISMQ Retries                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_RXR_OCCUPANCY                                      <NA>|
+|            Ingress Occupancy                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_TOR_INSERTS                                        <NA>|
+|            TOR Inserts                                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_TOR_OCCUPANCY                                      <NA>|
+|            TOR Occupancy                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_TXR_ADS_USED                                       <NA>|
+|            Egress events                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo4::UNC_C_TXR_INSERTS                                        <NA>|
+|            Egress allocations                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_CLOCKTICKS                                         <NA>|
+|            C-box Uncore clockticks                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_COUNTER0_OCCUPANCY                                 <NA>|
+|            Counter 0 occupancy. Counts the occupancy related information by f|
+|            iltering CB0 occupancy count captured in counter 0.               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_ISMQ_DRD_MISS_OCC                                  <NA>|
+|            TBD                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_LLC_LOOKUP                                         <NA>|
+|            Cache lookups. Counts number of times the LLC is accessed from L2 |
+|            for code, data, prefetches (Must set filter mask bit 0 and select |
+|            )                                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_LLC_VICTIMS                                        <NA>|
+|            Lines victimized                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_MISC                                               <NA>|
+|            Miscellaneous C-Box events                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RING_AD_USED                                       <NA>|
+|            Address ring in use. Counts number of cycles ring is being used at|
+|             this ring stop                                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RING_AK_USED                                       <NA>|
+|            Acknowledgment ring in use. Counts number of cycles ring is being |
+|            used at this ring stop                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RING_BL_USED                                       <NA>|
+|            Bus or Data ring in use. Counts number of cycles ring is being use|
+|            d at this ring stop                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RING_BOUNCES                                       <NA>|
+|            Number of LLC responses that bounced in the ring                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RING_IV_USED                                       <NA>|
+|            Invalidate ring in use. Counts number of cycles ring is being used|
+|             at this ring stop                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RING_SRC_THRTL                                     <NA>|
+|            TDB                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RXR_EXT_STARVED                                    <NA>|
+|            Ingress arbiter blocking cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RXR_INSERTS                                        <NA>|
+|            Ingress Allocations                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RXR_IPQ_RETRY                                      <NA>|
+|            Probe Queue Retries                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RXR_IRQ_RETRY                                      <NA>|
+|            Ingress Request Queue Rejects                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RXR_ISMQ_RETRY                                     <NA>|
+|            ISMQ Retries                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_RXR_OCCUPANCY                                      <NA>|
+|            Ingress Occupancy                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_TOR_INSERTS                                        <NA>|
+|            TOR Inserts                                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_TOR_OCCUPANCY                                      <NA>|
+|            TOR Occupancy                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_TXR_ADS_USED                                       <NA>|
+|            Egress events                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo5::UNC_C_TXR_INSERTS                                        <NA>|
+|            Egress allocations                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_CLOCKTICKS                                         <NA>|
+|            C-box Uncore clockticks                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_COUNTER0_OCCUPANCY                                 <NA>|
+|            Counter 0 occupancy. Counts the occupancy related information by f|
+|            iltering CB0 occupancy count captured in counter 0.               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_ISMQ_DRD_MISS_OCC                                  <NA>|
+|            TBD                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_LLC_LOOKUP                                         <NA>|
+|            Cache lookups. Counts number of times the LLC is accessed from L2 |
+|            for code, data, prefetches (Must set filter mask bit 0 and select |
+|            )                                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_LLC_VICTIMS                                        <NA>|
+|            Lines victimized                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_MISC                                               <NA>|
+|            Miscellaneous C-Box events                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RING_AD_USED                                       <NA>|
+|            Address ring in use. Counts number of cycles ring is being used at|
+|             this ring stop                                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RING_AK_USED                                       <NA>|
+|            Acknowledgment ring in use. Counts number of cycles ring is being |
+|            used at this ring stop                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RING_BL_USED                                       <NA>|
+|            Bus or Data ring in use. Counts number of cycles ring is being use|
+|            d at this ring stop                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RING_BOUNCES                                       <NA>|
+|            Number of LLC responses that bounced in the ring                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RING_IV_USED                                       <NA>|
+|            Invalidate ring in use. Counts number of cycles ring is being used|
+|             at this ring stop                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RING_SRC_THRTL                                     <NA>|
+|            TDB                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RXR_EXT_STARVED                                    <NA>|
+|            Ingress arbiter blocking cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RXR_INSERTS                                        <NA>|
+|            Ingress Allocations                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RXR_IPQ_RETRY                                      <NA>|
+|            Probe Queue Retries                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RXR_IRQ_RETRY                                      <NA>|
+|            Ingress Request Queue Rejects                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RXR_ISMQ_RETRY                                     <NA>|
+|            ISMQ Retries                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_RXR_OCCUPANCY                                      <NA>|
+|            Ingress Occupancy                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_TOR_INSERTS                                        <NA>|
+|            TOR Inserts                                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_TOR_OCCUPANCY                                      <NA>|
+|            TOR Occupancy                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_TXR_ADS_USED                                       <NA>|
+|            Egress events                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo6::UNC_C_TXR_INSERTS                                        <NA>|
+|            Egress allocations                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_CLOCKTICKS                                         <NA>|
+|            C-box Uncore clockticks                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_COUNTER0_OCCUPANCY                                 <NA>|
+|            Counter 0 occupancy. Counts the occupancy related information by f|
+|            iltering CB0 occupancy count captured in counter 0.               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_ISMQ_DRD_MISS_OCC                                  <NA>|
+|            TBD                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_LLC_LOOKUP                                         <NA>|
+|            Cache lookups. Counts number of times the LLC is accessed from L2 |
+|            for code, data, prefetches (Must set filter mask bit 0 and select |
+|            )                                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_LLC_VICTIMS                                        <NA>|
+|            Lines victimized                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_MISC                                               <NA>|
+|            Miscellaneous C-Box events                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RING_AD_USED                                       <NA>|
+|            Address ring in use. Counts number of cycles ring is being used at|
+|             this ring stop                                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RING_AK_USED                                       <NA>|
+|            Acknowledgment ring in use. Counts number of cycles ring is being |
+|            used at this ring stop                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RING_BL_USED                                       <NA>|
+|            Bus or Data ring in use. Counts number of cycles ring is being use|
+|            d at this ring stop                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RING_BOUNCES                                       <NA>|
+|            Number of LLC responses that bounced in the ring                  |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RING_IV_USED                                       <NA>|
+|            Invalidate ring in use. Counts number of cycles ring is being used|
+|             at this ring stop                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RING_SRC_THRTL                                     <NA>|
+|            TDB                                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RXR_EXT_STARVED                                    <NA>|
+|            Ingress arbiter blocking cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RXR_INSERTS                                        <NA>|
+|            Ingress Allocations                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RXR_IPQ_RETRY                                      <NA>|
+|            Probe Queue Retries                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RXR_IRQ_RETRY                                      <NA>|
+|            Ingress Request Queue Rejects                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RXR_ISMQ_RETRY                                     <NA>|
+|            ISMQ Retries                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_RXR_OCCUPANCY                                      <NA>|
+|            Ingress Occupancy                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_TOR_INSERTS                                        <NA>|
+|            TOR Inserts                                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_TOR_OCCUPANCY                                      <NA>|
+|            TOR Occupancy                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_TXR_ADS_USED                                       <NA>|
+|            Egress events                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_cbo7::UNC_C_TXR_INSERTS                                        <NA>|
+|            Egress allocations                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_CLOCKTICKS                                           <NA>|
+|            HA Uncore clockticks                                              |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_CONFLICT_CYCLES                                      <NA>|
+|            Conflict Checks                                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_DIRECT2CORE_COUNT                                    <NA>|
+|            Direct2Core Messages Sent                                         |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_DIRECT2CORE_CYCLES_DISABLED                          <NA>|
+|            Cycles when Direct2Core was Disabled                              |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_DIRECT2CORE_TXN_OVERRIDE                             <NA>|
+|            Number of Reads that had Direct2Core Overridden                   |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_DIRECTORY_LOOKUP                                     <NA>|
+|            Directory Lookups                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_DIRECTORY_UPDATE                                     <NA>|
+|            Directory Updates                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_IGR_NO_CREDIT_CYCLES                                 <NA>|
+|            Cycles without QPI Ingress Credits                                |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_IMC_RETRY                                            <NA>|
+|            Retry Events                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_IMC_WRITES                                           <NA>|
+|            HA to iMC Full Line Writes Issued                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_REQUESTS                                             <NA>|
+|            Read and Write Requests                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_RPQ_CYCLES_NO_REG_CREDITS                            <NA>|
+|            iMC RPQ Credits Empty - Regular                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_TAD_REQUESTS_G0                                      <NA>|
+|            HA Requests to a TAD Region - Group 0                             |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_TAD_REQUESTS_G1                                      <NA>|
+|            HA Requests to a TAD Region - Group 1                             |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_TRACKER_INSERTS                                      <NA>|
+|            Tracker Allocations                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_TXR_AD                                               <NA>|
+|            Outbound NDR Ring Transactions                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_TXR_AD_CYCLES_FULL                                   <NA>|
+|            AD Egress Full                                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_TXR_AK_CYCLES_FULL                                   <NA>|
+|            AK Egress Full                                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_TXR_AK_NDR                                           <NA>|
+|            Outbound NDR Ring Transactions                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_TXR_BL                                               <NA>|
+|            Outbound DRS Ring Transactions to Cache                           |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_TXR_BL_CYCLES_FULL                                   <NA>|
+|            BL Egress Full                                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_ha::UNC_H_WPQ_CYCLES_NO_REG_CREDITS                            <NA>|
+|            HA iMC CHN0 WPQ Credits Empty - Regular                           |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_CLOCKTICKS                                         <NA>|
+|            IMC Uncore clockticks                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_ACT_COUNT                                          <NA>|
+|            DRAM Activate Count                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_CAS_COUNT                                          <NA>|
+|            DRAM RD_CAS and WR_CAS Commands.                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_DRAM_PRE_ALL                                       <NA>|
+|            DRAM Precharge All Commands                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_DRAM_REFRESH                                       <NA>|
+|            Number of DRAM Refreshes Issued                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_ECC_CORRECTABLE_ERRORS                             <NA>|
+|            ECC Correctable Errors                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_MAJOR_MODES                                        <NA>|
+|            Cycles in a Major Mode                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_POWER_CHANNEL_DLLOFF                               <NA>|
+|            Channel DLLOFF Cycles                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_POWER_CHANNEL_PPD                                  <NA>|
+|            Channel PPD Cycles                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_POWER_CKE_CYCLES                                   <NA>|
+|            CKE_ON_CYCLES by Rank                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_POWER_CRITICAL_THROTTLE_CYCLES                     <NA>|
+|            Critical Throttle Cycles                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_POWER_SELF_REFRESH                                 <NA>|
+|            Clock-Enabled Self-Refresh                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_POWER_THROTTLE_CYCLES                              <NA>|
+|            Throttle Cycles for Rank 0                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_PREEMPTION                                         <NA>|
+|            Read Preemption Count                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_PRE_COUNT                                          <NA>|
+|            DRAM Precharge commands.                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_RPQ_CYCLES_FULL                                    <NA>|
+|            Read Pending Queue Full Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_RPQ_CYCLES_NE                                      <NA>|
+|            Read Pending Queue Not Empty                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_RPQ_INSERTS                                        <NA>|
+|            Read Pending Queue Allocations                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_RPQ_OCCUPANCY                                      <NA>|
+|            Read Pending Queue Occupancy                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_WPQ_CYCLES_FULL                                    <NA>|
+|            Write Pending Queue Full Cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_WPQ_CYCLES_NE                                      <NA>|
+|            Write Pending Queue Not Empty                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_WPQ_INSERTS                                        <NA>|
+|            Write Pending Queue Allocations                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_WPQ_OCCUPANCY                                      <NA>|
+|            Write Pending Queue Occupancy                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_WPQ_READ_HIT                                       <NA>|
+|            Write Pending Queue CAM Match                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc0::UNC_M_WPQ_WRITE_HIT                                      <NA>|
+|            Write Pending Queue CAM Match                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_CLOCKTICKS                                         <NA>|
+|            IMC Uncore clockticks                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_ACT_COUNT                                          <NA>|
+|            DRAM Activate Count                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_CAS_COUNT                                          <NA>|
+|            DRAM RD_CAS and WR_CAS Commands.                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_DRAM_PRE_ALL                                       <NA>|
+|            DRAM Precharge All Commands                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_DRAM_REFRESH                                       <NA>|
+|            Number of DRAM Refreshes Issued                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_ECC_CORRECTABLE_ERRORS                             <NA>|
+|            ECC Correctable Errors                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_MAJOR_MODES                                        <NA>|
+|            Cycles in a Major Mode                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_POWER_CHANNEL_DLLOFF                               <NA>|
+|            Channel DLLOFF Cycles                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_POWER_CHANNEL_PPD                                  <NA>|
+|            Channel PPD Cycles                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_POWER_CKE_CYCLES                                   <NA>|
+|            CKE_ON_CYCLES by Rank                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_POWER_CRITICAL_THROTTLE_CYCLES                     <NA>|
+|            Critical Throttle Cycles                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_POWER_SELF_REFRESH                                 <NA>|
+|            Clock-Enabled Self-Refresh                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_POWER_THROTTLE_CYCLES                              <NA>|
+|            Throttle Cycles for Rank 0                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_PREEMPTION                                         <NA>|
+|            Read Preemption Count                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_PRE_COUNT                                          <NA>|
+|            DRAM Precharge commands.                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_RPQ_CYCLES_FULL                                    <NA>|
+|            Read Pending Queue Full Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_RPQ_CYCLES_NE                                      <NA>|
+|            Read Pending Queue Not Empty                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_RPQ_INSERTS                                        <NA>|
+|            Read Pending Queue Allocations                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_RPQ_OCCUPANCY                                      <NA>|
+|            Read Pending Queue Occupancy                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_WPQ_CYCLES_FULL                                    <NA>|
+|            Write Pending Queue Full Cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_WPQ_CYCLES_NE                                      <NA>|
+|            Write Pending Queue Not Empty                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_WPQ_INSERTS                                        <NA>|
+|            Write Pending Queue Allocations                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_WPQ_OCCUPANCY                                      <NA>|
+|            Write Pending Queue Occupancy                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_WPQ_READ_HIT                                       <NA>|
+|            Write Pending Queue CAM Match                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc1::UNC_M_WPQ_WRITE_HIT                                      <NA>|
+|            Write Pending Queue CAM Match                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_CLOCKTICKS                                         <NA>|
+|            IMC Uncore clockticks                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_ACT_COUNT                                          <NA>|
+|            DRAM Activate Count                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_CAS_COUNT                                          <NA>|
+|            DRAM RD_CAS and WR_CAS Commands.                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_DRAM_PRE_ALL                                       <NA>|
+|            DRAM Precharge All Commands                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_DRAM_REFRESH                                       <NA>|
+|            Number of DRAM Refreshes Issued                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_ECC_CORRECTABLE_ERRORS                             <NA>|
+|            ECC Correctable Errors                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_MAJOR_MODES                                        <NA>|
+|            Cycles in a Major Mode                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_POWER_CHANNEL_DLLOFF                               <NA>|
+|            Channel DLLOFF Cycles                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_POWER_CHANNEL_PPD                                  <NA>|
+|            Channel PPD Cycles                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_POWER_CKE_CYCLES                                   <NA>|
+|            CKE_ON_CYCLES by Rank                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_POWER_CRITICAL_THROTTLE_CYCLES                     <NA>|
+|            Critical Throttle Cycles                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_POWER_SELF_REFRESH                                 <NA>|
+|            Clock-Enabled Self-Refresh                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_POWER_THROTTLE_CYCLES                              <NA>|
+|            Throttle Cycles for Rank 0                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_PREEMPTION                                         <NA>|
+|            Read Preemption Count                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_PRE_COUNT                                          <NA>|
+|            DRAM Precharge commands.                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_RPQ_CYCLES_FULL                                    <NA>|
+|            Read Pending Queue Full Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_RPQ_CYCLES_NE                                      <NA>|
+|            Read Pending Queue Not Empty                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_RPQ_INSERTS                                        <NA>|
+|            Read Pending Queue Allocations                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_RPQ_OCCUPANCY                                      <NA>|
+|            Read Pending Queue Occupancy                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_WPQ_CYCLES_FULL                                    <NA>|
+|            Write Pending Queue Full Cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_WPQ_CYCLES_NE                                      <NA>|
+|            Write Pending Queue Not Empty                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_WPQ_INSERTS                                        <NA>|
+|            Write Pending Queue Allocations                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_WPQ_OCCUPANCY                                      <NA>|
+|            Write Pending Queue Occupancy                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_WPQ_READ_HIT                                       <NA>|
+|            Write Pending Queue CAM Match                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc2::UNC_M_WPQ_WRITE_HIT                                      <NA>|
+|            Write Pending Queue CAM Match                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_CLOCKTICKS                                         <NA>|
+|            IMC Uncore clockticks                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_ACT_COUNT                                          <NA>|
+|            DRAM Activate Count                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_CAS_COUNT                                          <NA>|
+|            DRAM RD_CAS and WR_CAS Commands.                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_DRAM_PRE_ALL                                       <NA>|
+|            DRAM Precharge All Commands                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_DRAM_REFRESH                                       <NA>|
+|            Number of DRAM Refreshes Issued                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_ECC_CORRECTABLE_ERRORS                             <NA>|
+|            ECC Correctable Errors                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_MAJOR_MODES                                        <NA>|
+|            Cycles in a Major Mode                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_POWER_CHANNEL_DLLOFF                               <NA>|
+|            Channel DLLOFF Cycles                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_POWER_CHANNEL_PPD                                  <NA>|
+|            Channel PPD Cycles                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_POWER_CKE_CYCLES                                   <NA>|
+|            CKE_ON_CYCLES by Rank                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_POWER_CRITICAL_THROTTLE_CYCLES                     <NA>|
+|            Critical Throttle Cycles                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_POWER_SELF_REFRESH                                 <NA>|
+|            Clock-Enabled Self-Refresh                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_POWER_THROTTLE_CYCLES                              <NA>|
+|            Throttle Cycles for Rank 0                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_PREEMPTION                                         <NA>|
+|            Read Preemption Count                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_PRE_COUNT                                          <NA>|
+|            DRAM Precharge commands.                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_RPQ_CYCLES_FULL                                    <NA>|
+|            Read Pending Queue Full Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_RPQ_CYCLES_NE                                      <NA>|
+|            Read Pending Queue Not Empty                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_RPQ_INSERTS                                        <NA>|
+|            Read Pending Queue Allocations                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_RPQ_OCCUPANCY                                      <NA>|
+|            Read Pending Queue Occupancy                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_WPQ_CYCLES_FULL                                    <NA>|
+|            Write Pending Queue Full Cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_WPQ_CYCLES_NE                                      <NA>|
+|            Write Pending Queue Not Empty                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_WPQ_INSERTS                                        <NA>|
+|            Write Pending Queue Allocations                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_WPQ_OCCUPANCY                                      <NA>|
+|            Write Pending Queue Occupancy                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_WPQ_READ_HIT                                       <NA>|
+|            Write Pending Queue CAM Match                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_imc3::UNC_M_WPQ_WRITE_HIT                                      <NA>|
+|            Write Pending Queue CAM Match                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_CLOCKTICKS                                          <NA>|
+|            PCU Uncore clockticks                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_CORE0_TRANSITION_CYCLES                             <NA>|
+|            Core C State Transition Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_CORE1_TRANSITION_CYCLES                             <NA>|
+|            Core C State Transition Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_CORE2_TRANSITION_CYCLES                             <NA>|
+|            Core C State Transition Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_CORE3_TRANSITION_CYCLES                             <NA>|
+|            Core C State Transition Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_CORE4_TRANSITION_CYCLES                             <NA>|
+|            Core C State Transition Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_CORE5_TRANSITION_CYCLES                             <NA>|
+|            Core C State Transition Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_CORE6_TRANSITION_CYCLES                             <NA>|
+|            Core C State Transition Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_CORE7_TRANSITION_CYCLES                             <NA>|
+|            Core C State Transition Cycles                                    |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_DEMOTIONS_CORE0                                     <NA>|
+|            Core C State Demotions                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_DEMOTIONS_CORE1                                     <NA>|
+|            Core C State Demotions                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_DEMOTIONS_CORE2                                     <NA>|
+|            Core C State Demotions                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_DEMOTIONS_CORE3                                     <NA>|
+|            Core C State Demotions                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_DEMOTIONS_CORE4                                     <NA>|
+|            Core C State Demotions                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_DEMOTIONS_CORE5                                     <NA>|
+|            Core C State Demotions                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_DEMOTIONS_CORE6                                     <NA>|
+|            Core C State Demotions                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_DEMOTIONS_CORE7                                     <NA>|
+|            Core C State Demotions                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_FREQ_BAND0_CYCLES                                   <NA>|
+|            Frequency Residency                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_FREQ_BAND1_CYCLES                                   <NA>|
+|            Frequency Residency                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_FREQ_BAND2_CYCLES                                   <NA>|
+|            Frequency Residency                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_FREQ_BAND3_CYCLES                                   <NA>|
+|            Frequency Residency                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_FREQ_MAX_CURRENT_CYCLES                             <NA>|
+|            Current Strongest Upper Limit Cycles                              |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_FREQ_MAX_LIMIT_THERMAL_CYCLES                       <NA>|
+|            Thermal Strongest Upper Limit Cycles                              |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_FREQ_MAX_OS_CYCLES                                  <NA>|
+|            OS Strongest Upper Limit Cycles                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_FREQ_MAX_POWER_CYCLES                               <NA>|
+|            Power Strongest Upper Limit Cycles                                |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_FREQ_MIN_IO_P_CYCLES                                <NA>|
+|            IO P Limit Strongest Lower Limit Cycles                           |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_FREQ_MIN_PERF_P_CYCLES                              <NA>|
+|            Perf P Limit Strongest Lower Limit Cycles                         |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_FREQ_TRANS_CYCLES                                   <NA>|
+|            Cycles spent changing Frequency                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_MEMORY_PHASE_SHEDDING_CYCLES                        <NA>|
+|            Memory Phase Shedding Cycles                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_POWER_STATE_OCCUPANCY                               <NA>|
+|            Number of cores in C0                                             |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_PROCHOT_EXTERNAL_CYCLES                             <NA>|
+|            External Prochot                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_PROCHOT_INTERNAL_CYCLES                             <NA>|
+|            Internal Prochot                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_TOTAL_TRANSITION_CYCLES                             <NA>|
+|            Total Core C State Transition Cycles                              |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_VOLT_TRANS_CYCLES_CHANGE                            <NA>|
+|            Cycles Changing Voltage                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_VOLT_TRANS_CYCLES_DECREASE                          <NA>|
+|            Cycles Decreasing Voltage                                         |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_VOLT_TRANS_CYCLES_INCREASE                          <NA>|
+|            Cycles Increasing Voltage                                         |
+--------------------------------------------------------------------------------
+| snbep_unc_pcu::UNC_P_VR_HOT_CYCLES                                       <NA>|
+|            VR Hot                                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_CLOCKTICKS                                         <NA>|
+|            Number of qfclks                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_CTO_COUNT                                          <NA>|
+|            Count of CTO Events                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_DIRECT2CORE                                        <NA>|
+|            Direct 2 Core Spawning                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_L1_POWER_CYCLES                                    <NA>|
+|            Cycles in L1                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL0P_POWER_CYCLES                                 <NA>|
+|            Cycles in L0p                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL0_POWER_CYCLES                                  <NA>|
+|            Cycles in L0                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_BYPASSED                                       <NA>|
+|            Rx Flit Buffer Bypassed                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_CREDITS_CONSUMED_VN0                           <NA>|
+|            VN0 Credit Consumed                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_CREDITS_CONSUMED_VNA                           <NA>|
+|            VNA Credit Consumed                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_CYCLES_NE                                      <NA>|
+|            RxQ Cycles Not Empty                                              |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_FLITS_G0                                       <NA>|
+|            Flits Received - Group 0                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_FLITS_G1                                       <NA>|
+|            Flits Received - Group 1                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_FLITS_G2                                       <NA>|
+|            Flits Received - Group 2                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_INSERTS                                        <NA>|
+|            Rx Flit Buffer Allocations                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_INSERTS_DRS                                    <NA>|
+|            Rx Flit Buffer Allocations - DRS                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_INSERTS_HOM                                    <NA>|
+|            Rx Flit Buffer Allocations - HOM                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_INSERTS_NCB                                    <NA>|
+|            Rx Flit Buffer Allocations - NCB                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_INSERTS_NCS                                    <NA>|
+|            Rx Flit Buffer Allocations - NCS                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_INSERTS_NDR                                    <NA>|
+|            Rx Flit Buffer Allocations - NDR                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_INSERTS_SNP                                    <NA>|
+|            Rx Flit Buffer Allocations - SNP                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_OCCUPANCY                                      <NA>|
+|            RxQ Occupancy - All Packets                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_OCCUPANCY_DRS                                  <NA>|
+|            RxQ Occupancy - DRS                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_OCCUPANCY_HOM                                  <NA>|
+|            RxQ Occupancy - HOM                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_OCCUPANCY_NCB                                  <NA>|
+|            RxQ Occupancy - NCB                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_OCCUPANCY_NCS                                  <NA>|
+|            RxQ Occupancy - NCS                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_OCCUPANCY_NDR                                  <NA>|
+|            RxQ Occupancy - NDR                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_RXL_OCCUPANCY_SNP                                  <NA>|
+|            RxQ Occupancy - SNP                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_TXL0P_POWER_CYCLES                                 <NA>|
+|            Cycles in L0p                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_TXL0_POWER_CYCLES                                  <NA>|
+|            Cycles in L0                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_TXL_BYPASSED                                       <NA>|
+|            Tx Flit Buffer Bypassed                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_TXL_CYCLES_NE                                      <NA>|
+|            Tx Flit Buffer Cycles not Empty                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_TXL_FLITS_G0                                       <NA>|
+|            Flits Transferred - Group 0                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_TXL_FLITS_G1                                       <NA>|
+|            Flits Transferred - Group 1                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_TXL_FLITS_G2                                       <NA>|
+|            Flits Transferred - Group 2                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_TXL_INSERTS                                        <NA>|
+|            Tx Flit Buffer Allocations                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_TXL_OCCUPANCY                                      <NA>|
+|            Tx Flit Buffer Occupancy                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_VNA_CREDIT_RETURNS                                 <NA>|
+|            VNA Credits Returned                                              |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi0::UNC_Q_VNA_CREDIT_RETURN_OCCUPANCY                        <NA>|
+|            VNA Credits Pending Return - Occupancy                            |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_CLOCKTICKS                                         <NA>|
+|            Number of qfclks                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_CTO_COUNT                                          <NA>|
+|            Count of CTO Events                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_DIRECT2CORE                                        <NA>|
+|            Direct 2 Core Spawning                                            |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_L1_POWER_CYCLES                                    <NA>|
+|            Cycles in L1                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL0P_POWER_CYCLES                                 <NA>|
+|            Cycles in L0p                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL0_POWER_CYCLES                                  <NA>|
+|            Cycles in L0                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_BYPASSED                                       <NA>|
+|            Rx Flit Buffer Bypassed                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_CREDITS_CONSUMED_VN0                           <NA>|
+|            VN0 Credit Consumed                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_CREDITS_CONSUMED_VNA                           <NA>|
+|            VNA Credit Consumed                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_CYCLES_NE                                      <NA>|
+|            RxQ Cycles Not Empty                                              |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_FLITS_G0                                       <NA>|
+|            Flits Received - Group 0                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_FLITS_G1                                       <NA>|
+|            Flits Received - Group 1                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_FLITS_G2                                       <NA>|
+|            Flits Received - Group 2                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_INSERTS                                        <NA>|
+|            Rx Flit Buffer Allocations                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_INSERTS_DRS                                    <NA>|
+|            Rx Flit Buffer Allocations - DRS                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_INSERTS_HOM                                    <NA>|
+|            Rx Flit Buffer Allocations - HOM                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_INSERTS_NCB                                    <NA>|
+|            Rx Flit Buffer Allocations - NCB                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_INSERTS_NCS                                    <NA>|
+|            Rx Flit Buffer Allocations - NCS                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_INSERTS_NDR                                    <NA>|
+|            Rx Flit Buffer Allocations - NDR                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_INSERTS_SNP                                    <NA>|
+|            Rx Flit Buffer Allocations - SNP                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_OCCUPANCY                                      <NA>|
+|            RxQ Occupancy - All Packets                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_OCCUPANCY_DRS                                  <NA>|
+|            RxQ Occupancy - DRS                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_OCCUPANCY_HOM                                  <NA>|
+|            RxQ Occupancy - HOM                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_OCCUPANCY_NCB                                  <NA>|
+|            RxQ Occupancy - NCB                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_OCCUPANCY_NCS                                  <NA>|
+|            RxQ Occupancy - NCS                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_OCCUPANCY_NDR                                  <NA>|
+|            RxQ Occupancy - NDR                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_RXL_OCCUPANCY_SNP                                  <NA>|
+|            RxQ Occupancy - SNP                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_TXL0P_POWER_CYCLES                                 <NA>|
+|            Cycles in L0p                                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_TXL0_POWER_CYCLES                                  <NA>|
+|            Cycles in L0                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_TXL_BYPASSED                                       <NA>|
+|            Tx Flit Buffer Bypassed                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_TXL_CYCLES_NE                                      <NA>|
+|            Tx Flit Buffer Cycles not Empty                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_TXL_FLITS_G0                                       <NA>|
+|            Flits Transferred - Group 0                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_TXL_FLITS_G1                                       <NA>|
+|            Flits Transferred - Group 1                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_TXL_FLITS_G2                                       <NA>|
+|            Flits Transferred - Group 2                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_TXL_INSERTS                                        <NA>|
+|            Tx Flit Buffer Allocations                                        |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_TXL_OCCUPANCY                                      <NA>|
+|            Tx Flit Buffer Occupancy                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_VNA_CREDIT_RETURNS                                 <NA>|
+|            VNA Credits Returned                                              |
+--------------------------------------------------------------------------------
+| snbep_unc_qpi1::UNC_Q_VNA_CREDIT_RETURN_OCCUPANCY                        <NA>|
+|            VNA Credits Pending Return - Occupancy                            |
+--------------------------------------------------------------------------------
+| snbep_unc_ubo::UNC_U_EVENT_MSG                                           <NA>|
+|            VLW Received                                                      |
+--------------------------------------------------------------------------------
+| snbep_unc_ubo::UNC_U_LOCK_CYCLES                                         <NA>|
+|            IDI Lock/SplitLock Cycles                                         |
+--------------------------------------------------------------------------------
+| snbep_unc_r2pcie::UNC_R2_CLOCKTICKS                                      <NA>|
+|            Number of uclks in domain                                         |
+--------------------------------------------------------------------------------
+| snbep_unc_r2pcie::UNC_R2_RING_AD_USED                                    <NA>|
+|            R2 AD Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r2pcie::UNC_R2_RING_AK_USED                                    <NA>|
+|            R2 AK Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r2pcie::UNC_R2_RING_BL_USED                                    <NA>|
+|            R2 BL Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r2pcie::UNC_R2_RING_IV_USED                                    <NA>|
+|            R2 IV Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r2pcie::UNC_R2_RXR_AK_BOUNCES                                  <NA>|
+|            AK Ingress Bounced                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_r2pcie::UNC_R2_RXR_CYCLES_NE                                   <NA>|
+|            Ingress Cycles Not Empty                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_r2pcie::UNC_R2_TXR_CYCLES_FULL                                 <NA>|
+|            Egress Cycles Full                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_r2pcie::UNC_R2_TXR_CYCLES_NE                                   <NA>|
+|            Egress Cycles Not Empty                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_r2pcie::UNC_R2_TXR_INSERTS                                     <NA>|
+|            Egress allocations                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_CLOCKTICKS                                      <NA>|
+|            Number of uclks in domain                                         |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_IIO_CREDITS_ACQUIRED                            <NA>|
+|            to IIO BL Credit Acquired                                         |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_IIO_CREDITS_REJECT                              <NA>|
+|            to IIO BL Credit Rejected                                         |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_IIO_CREDITS_USED                                <NA>|
+|            to IIO BL Credit In Use                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_RING_AD_USED                                    <NA>|
+|            R3 AD Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_RING_AK_USED                                    <NA>|
+|            R3 AK Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_RING_BL_USED                                    <NA>|
+|            R3 BL Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_RING_IV_USED                                    <NA>|
+|            R3 IV Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_RXR_BYPASSED                                    <NA>|
+|            Ingress Bypassed                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_RXR_CYCLES_NE                                   <NA>|
+|            Ingress Cycles Not Empty                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_RXR_INSERTS                                     <NA>|
+|            Ingress Allocations                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_RXR_OCCUPANCY                                   <NA>|
+|            Ingress Occupancy Accumulator                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_TXR_CYCLES_FULL                                 <NA>|
+|            Egress cycles full                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_TXR_INSERTS                                     <NA>|
+|            Egress allocations                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_TXR_NACK                                        <NA>|
+|            Egress Nack                                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_VN0_CREDITS_REJECT                              <NA>|
+|            VN0 Credit Acquisition Failed on DRS                              |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_VN0_CREDITS_USED                                <NA>|
+|            VN0 Credit Used                                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_VNA_CREDITS_ACQUIRED                            <NA>|
+|            VNA credit Acquisitions                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_VNA_CREDITS_REJECT                              <NA>|
+|            VNA Credit Reject                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_VNA_CREDIT_CYCLES_OUT                           <NA>|
+|            Cycles with no VNA credits available                              |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi0::UNC_R3_VNA_CREDIT_CYCLES_USED                          <NA>|
+|            Cycles with 1 or more VNA credits in use                          |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_CLOCKTICKS                                      <NA>|
+|            Number of uclks in domain                                         |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_IIO_CREDITS_ACQUIRED                            <NA>|
+|            to IIO BL Credit Acquired                                         |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_IIO_CREDITS_REJECT                              <NA>|
+|            to IIO BL Credit Rejected                                         |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_IIO_CREDITS_USED                                <NA>|
+|            to IIO BL Credit In Use                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_RING_AD_USED                                    <NA>|
+|            R3 AD Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_RING_AK_USED                                    <NA>|
+|            R3 AK Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_RING_BL_USED                                    <NA>|
+|            R3 BL Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_RING_IV_USED                                    <NA>|
+|            R3 IV Ring in Use                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_RXR_BYPASSED                                    <NA>|
+|            Ingress Bypassed                                                  |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_RXR_CYCLES_NE                                   <NA>|
+|            Ingress Cycles Not Empty                                          |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_RXR_INSERTS                                     <NA>|
+|            Ingress Allocations                                               |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_RXR_OCCUPANCY                                   <NA>|
+|            Ingress Occupancy Accumulator                                     |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_TXR_CYCLES_FULL                                 <NA>|
+|            Egress cycles full                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_TXR_INSERTS                                     <NA>|
+|            Egress allocations                                                |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_TXR_NACK                                        <NA>|
+|            Egress Nack                                                       |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_VN0_CREDITS_REJECT                              <NA>|
+|            VN0 Credit Acquisition Failed on DRS                              |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_VN0_CREDITS_USED                                <NA>|
+|            VN0 Credit Used                                                   |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_VNA_CREDITS_ACQUIRED                            <NA>|
+|            VNA credit Acquisitions                                           |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_VNA_CREDITS_REJECT                              <NA>|
+|            VNA Credit Reject                                                 |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_VNA_CREDIT_CYCLES_OUT                           <NA>|
+|            Cycles with no VNA credits available                              |
+--------------------------------------------------------------------------------
+| snbep_unc_r3qpi1::UNC_R3_VNA_CREDIT_CYCLES_USED                          <NA>|
+|            Cycles with 1 or more VNA credits in use                          |
+===============================================================================
+ Native Events in Component: cuda
+===============================================================================
+| cuda:::device:0:tex0_cache_sector_queries                                    |
+|            tex0 cache sector queries                                         |
+--------------------------------------------------------------------------------
+| cuda:::device:0:tex1_cache_sector_queries                                    |
+|            tex1 cache sector queries                                         |
+--------------------------------------------------------------------------------
+| cuda:::device:0:tex2_cache_sector_queries                                    |
+|            tex2 cache sector queries                                         |
+--------------------------------------------------------------------------------
+| cuda:::device:0:tex3_cache_sector_queries                                    |
+|            tex3 cache sector queries                                         |
+--------------------------------------------------------------------------------
+| cuda:::device:0:tex0_cache_sector_misses                                     |
+|            tex0 cache sector misses                                          |
+--------------------------------------------------------------------------------
+| cuda:::device:0:tex1_cache_sector_misses                                     |
+|            tex1 cache sector misses                                          |
+--------------------------------------------------------------------------------
+| cuda:::device:0:tex2_cache_sector_misses                                     |
+|            tex2 cache sector misses                                          |
+--------------------------------------------------------------------------------
+| cuda:::device:0:tex3_cache_sector_misses                                     |
+|            tex3 cache sector misses                                          |
+--------------------------------------------------------------------------------
+| cuda:::device:0:elapsed_cycles_sm                                            |
+|            elapsed_cycles_sm                                                 |
+--------------------------------------------------------------------------------
+| cuda:::device:0:fb_subp0_read_sectors                                        |
+|            fb subp0 read sectors                                             |
+--------------------------------------------------------------------------------
+| cuda:::device:0:fb_subp1_read_sectors                                        |
+|            fb subp1 read sectors                                             |
+--------------------------------------------------------------------------------
+| cuda:::device:0:fb_subp0_write_sectors                                       |
+|            fb subp0 write sectors                                            |
+--------------------------------------------------------------------------------
+| cuda:::device:0:fb_subp1_write_sectors                                       |
+|            fb subp1 write sectors                                            |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp0_write_sector_misses                                 |
+|            l2 subp0 write sector misses                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp1_write_sector_misses                                 |
+|            l2 subp1 write sector misses                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp2_write_sector_misses                                 |
+|            l2 subp2 write sector misses                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp3_write_sector_misses                                 |
+|            l2 subp3 write sector misses                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp0_read_sector_misses                                  |
+|            l2 subp0 read sector misses                                       |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp1_read_sector_misses                                  |
+|            l2 subp1 read sector misses                                       |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp2_read_sector_misses                                  |
+|            l2 subp2 read sector misses                                       |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp3_read_sector_misses                                  |
+|            l2 subp3 read sector misses                                       |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp0_write_l1_sector_queries                             |
+|            l2 subp0 write sector queries                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp1_write_l1_sector_queries                             |
+|            l2 subp1 write sector queries                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp2_write_l1_sector_queries                             |
+|            l2 subp2 write sector queries                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp3_write_l1_sector_queries                             |
+|            l2 subp3 write sector queries                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp0_read_l1_sector_queries                              |
+|            l2 subp0 read sector queries                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp1_read_l1_sector_queries                              |
+|            l2 subp1 read sector queries                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp2_read_l1_sector_queries                              |
+|            l2 subp2 read sector queries                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp3_read_l1_sector_queries                              |
+|            l2 subp3 read sector queries                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp0_read_l1_hit_sectors                                 |
+|            l2 subp0 read l1 hit sectors                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp1_read_l1_hit_sectors                                 |
+|            l2 subp1 read l1 hit sectors                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp2_read_l1_hit_sectors                                 |
+|            l2 subp2 read l1 hit sectors                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp3_read_l1_hit_sectors                                 |
+|            l2 subp3 read l1 hit sectors                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp0_read_tex_sector_queries                             |
+|            l2 subp0 read tex sector queries                                  |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp1_read_tex_sector_queries                             |
+|            l2 subp1 read tex sector queries                                  |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp2_read_tex_sector_queries                             |
+|            l2 subp2 read tex sector queries                                  |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp3_read_tex_sector_queries                             |
+|            l2 subp3 read tex sector queries                                  |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp0_read_tex_hit_sectors                                |
+|            l2 subp0 read tex hit sectors                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp1_read_tex_hit_sectors                                |
+|            l2 subp1 read tex hit sectors                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp2_read_tex_hit_sectors                                |
+|            l2 subp2 read tex hit sectors                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp3_read_tex_hit_sectors                                |
+|            l2 subp3 read tex hit sectors                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp0_read_sysmem_sector_queries                          |
+|            l2_subp0_read_sysmem_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp1_read_sysmem_sector_queries                          |
+|            l2_subp1_read_sysmem_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp2_read_sysmem_sector_queries                          |
+|            l2_subp2_read_sysmem_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp3_read_sysmem_sector_queries                          |
+|            l2_subp3_read_sysmem_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp0_write_sysmem_sector_queries                         |
+|            l2_subp0_write_sysmem_sector_queries                              |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp1_write_sysmem_sector_queries                         |
+|            l2_subp1_write_sysmem_sector_queries                              |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp2_write_sysmem_sector_queries                         |
+|            l2_subp2_write_sysmem_sector_queries                              |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp3_write_sysmem_sector_queries                         |
+|            l2_subp3_write_sysmem_sector_queries                              |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp0_total_read_sector_queries                           |
+|            l2_subp0_total_read_sector_queries                                |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp1_total_read_sector_queries                           |
+|            l2_subp1_total_read_sector_queries                                |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp2_total_read_sector_queries                           |
+|            l2_subp2_total_read_sector_queries                                |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp3_total_read_sector_queries                           |
+|            l2_subp3_total_read_sector_queries                                |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp0_total_write_sector_queries                          |
+|            l2_subp0_total_write_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp1_total_write_sector_queries                          |
+|            l2_subp1_total_write_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp2_total_write_sector_queries                          |
+|            l2_subp2_total_write_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l2_subp3_total_write_sector_queries                          |
+|            l2_subp3_total_write_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gld_inst_8bit                                                |
+|            gld_inst_8bit                                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gld_inst_16bit                                               |
+|            gld_inst_16bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gld_inst_32bit                                               |
+|            gld_inst_32bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gld_inst_64bit                                               |
+|            gld_inst_64bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gld_inst_128bit                                              |
+|            gld_inst_128bit                                                   |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gst_inst_8bit                                                |
+|            gst_inst_8bit                                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gst_inst_16bit                                               |
+|            gst_inst_16bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gst_inst_32bit                                               |
+|            gst_inst_32bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gst_inst_64bit                                               |
+|            gst_inst_64bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gst_inst_128bit                                              |
+|            gst_inst_128bit                                                   |
+--------------------------------------------------------------------------------
+| cuda:::device:0:prof_trigger_00                                              |
+|            prof trigger 00                                                   |
+--------------------------------------------------------------------------------
+| cuda:::device:0:prof_trigger_01                                              |
+|            prof trigger 01                                                   |
+--------------------------------------------------------------------------------
+| cuda:::device:0:prof_trigger_02                                              |
+|            prof trigger 02                                                   |
+--------------------------------------------------------------------------------
+| cuda:::device:0:prof_trigger_03                                              |
+|            prof trigger 03                                                   |
+--------------------------------------------------------------------------------
+| cuda:::device:0:prof_trigger_04                                              |
+|            prof trigger 04                                                   |
+--------------------------------------------------------------------------------
+| cuda:::device:0:prof_trigger_05                                              |
+|            prof trigger 05                                                   |
+--------------------------------------------------------------------------------
+| cuda:::device:0:prof_trigger_06                                              |
+|            prof trigger 06                                                   |
+--------------------------------------------------------------------------------
+| cuda:::device:0:prof_trigger_07                                              |
+|            prof trigger 07                                                   |
+--------------------------------------------------------------------------------
+| cuda:::device:0:warps_launched                                               |
+|            warps launched                                                    |
+--------------------------------------------------------------------------------
+| cuda:::device:0:threads_launched                                             |
+|            threads launched                                                  |
+--------------------------------------------------------------------------------
+| cuda:::device:0:inst_issued1                                                 |
+|            instructions issued 1                                             |
+--------------------------------------------------------------------------------
+| cuda:::device:0:inst_issued2                                                 |
+|            instructions issued 2                                             |
+--------------------------------------------------------------------------------
+| cuda:::device:0:inst_executed                                                |
+|            instructions executed                                             |
+--------------------------------------------------------------------------------
+| cuda:::device:0:shared_load                                                  |
+|            shared load                                                       |
+--------------------------------------------------------------------------------
+| cuda:::device:0:shared_store                                                 |
+|            shared store                                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:local_load                                                   |
+|            local load                                                        |
+--------------------------------------------------------------------------------
+| cuda:::device:0:local_store                                                  |
+|            local store                                                       |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gld_request                                                  |
+|            gld request                                                       |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gst_request                                                  |
+|            gst request                                                       |
+--------------------------------------------------------------------------------
+| cuda:::device:0:atom_count                                                   |
+|            atom_count                                                        |
+--------------------------------------------------------------------------------
+| cuda:::device:0:gred_count                                                   |
+|            gred_count                                                        |
+--------------------------------------------------------------------------------
+| cuda:::device:0:branch                                                       |
+|            branch                                                            |
+--------------------------------------------------------------------------------
+| cuda:::device:0:divergent_branch                                             |
+|            divergent branch                                                  |
+--------------------------------------------------------------------------------
+| cuda:::device:0:active_cycles                                                |
+|            active cycles                                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:active_warps                                                 |
+|            active warps                                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:sm_cta_launched                                              |
+|            sm cta launched                                                   |
+--------------------------------------------------------------------------------
+| cuda:::device:0:local_load_transactions                                      |
+|            local_load_transactions                                           |
+--------------------------------------------------------------------------------
+| cuda:::device:0:local_store_transactions                                     |
+|            local_store_transactions                                          |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l1_shared_load_transactions                                  |
+|            l1_shared_load_transactions                                       |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l1_shared_store_transactions                                 |
+|            l1_shared_store_transactions                                      |
+--------------------------------------------------------------------------------
+| cuda:::device:0:__l1_global_load_transactions                                |
+|            __l1_global_load_transactions                                     |
+--------------------------------------------------------------------------------
+| cuda:::device:0:__l1_global_store_transactions                               |
+|            __l1_global_store_transactions                                    |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l1_local_load_hit                                            |
+|            l1 local load hit                                                 |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l1_local_load_miss                                           |
+|            l1 local load miss                                                |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l1_local_store_hit                                           |
+|            l1 local store hit                                                |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l1_local_store_miss                                          |
+|            l1 local store miss                                               |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l1_global_load_hit                                           |
+|            l1 global load hit                                                |
+--------------------------------------------------------------------------------
+| cuda:::device:0:l1_global_load_miss                                          |
+|            l1 global load miss                                               |
+--------------------------------------------------------------------------------
+| cuda:::device:0:uncached_global_load_transaction                             |
+|            uncached global load transaction                                  |
+--------------------------------------------------------------------------------
+| cuda:::device:0:global_store_transaction                                     |
+|            global store transaction                                          |
+--------------------------------------------------------------------------------
+| cuda:::device:0:shared_load_replay                                           |
+|            shared load replay                                                |
+--------------------------------------------------------------------------------
+| cuda:::device:0:shared_store_replay                                          |
+|            shared store replay                                               |
+--------------------------------------------------------------------------------
+| cuda:::device:0:global_ld_mem_divergence_replays                             |
+|            global_ld_mem_divergence_replays                                  |
+--------------------------------------------------------------------------------
+| cuda:::device:0:global_st_mem_divergence_replays                             |
+|            global_st_mem_divergence_replays                                  |
+--------------------------------------------------------------------------------
+
+Total events reported: 747
+native_avail.c                       PASSED
