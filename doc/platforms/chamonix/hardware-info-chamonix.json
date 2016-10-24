@@ -1,0 +1,1082 @@
+{
+  "id" : "chamonix",
+  "class" : "system",
+  "claimed" : true,
+  "description" : "Computer",
+  "width" : 64,
+  "capabilities" : {
+    "smbios-2.7" : "SMBIOS version 2.7",
+    "vsyscall32" : "32-bit processes"
+  },
+  "children" : [
+    {
+      "id" : "core",
+      "class" : "bus",
+      "claimed" : true,
+      "description" : "Motherboard",
+      "physid" : "0",
+      "children" : [
+        {
+          "id" : "memory",
+          "class" : "memory",
+          "claimed" : true,
+          "description" : "System memory",
+          "physid" : "0",
+          "units" : "bytes",
+          "size" : 16739209216
+        },
+        {
+          "id" : "cpu",
+          "class" : "processor",
+          "claimed" : true,
+          "product" : "Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz",
+          "vendor" : "Intel Corp.",
+          "physid" : "1",
+          "businfo" : "cpu@0",
+          "units" : "Hz",
+          "size" : 3593687000,
+          "capacity" : 3600000000,
+          "width" : 64,
+          "capabilities" : {
+            "fpu" : "mathematical co-processor",
+            "fpu_exception" : "FPU exceptions reporting",
+            "wp" : true,
+            "vme" : "virtual mode extensions",
+            "de" : "debugging extensions",
+            "pse" : "page size extensions",
+            "tsc" : "time stamp counter",
+            "msr" : "model-specific registers",
+            "pae" : "4GB+ memory addressing (Physical Address Extension)",
+            "mce" : "machine check exceptions",
+            "cx8" : "compare and exchange 8-byte",
+            "apic" : "on-chip advanced programmable interrupt controller (APIC)",
+            "sep" : "fast system calls",
+            "mtrr" : "memory type range registers",
+            "pge" : "page global enable",
+            "mca" : "machine check architecture",
+            "cmov" : "conditional move instruction",
+            "pat" : "page attribute table",
+            "pse36" : "36-bit page size extensions",
+            "clflush" : true,
+            "dts" : "debug trace and EMON store MSRs",
+            "acpi" : "thermal control (ACPI)",
+            "mmx" : "multimedia extensions (MMX)",
+            "fxsr" : "fast floating point save/restore",
+            "sse" : "streaming SIMD extensions (SSE)",
+            "sse2" : "streaming SIMD extensions (SSE2)",
+            "ss" : "self-snoop",
+            "ht" : "HyperThreading",
+            "tm" : "thermal interrupt and status",
+            "pbe" : "pending break event",
+            "syscall" : "fast system calls",
+            "nx" : "no-execute bit (NX)",
+            "pdpe1gb" : true,
+            "rdtscp" : true,
+            "x86-64" : "64bits extensions (x86-64)",
+            "constant_tsc" : true,
+            "arch_perfmon" : true,
+            "pebs" : true,
+            "bts" : true,
+            "rep_good" : true,
+            "nopl" : true,
+            "xtopology" : true,
+            "nonstop_tsc" : true,
+            "aperfmperf" : true,
+            "eagerfpu" : true,
+            "pni" : true,
+            "pclmulqdq" : true,
+            "dtes64" : true,
+            "monitor" : true,
+            "ds_cpl" : true,
+            "vmx" : true,
+            "est" : true,
+            "tm2" : true,
+            "ssse3" : true,
+            "sdbg" : true,
+            "fma" : true,
+            "cx16" : true,
+            "xtpr" : true,
+            "pdcm" : true,
+            "pcid" : true,
+            "sse4_1" : true,
+            "sse4_2" : true,
+            "x2apic" : true,
+            "movbe" : true,
+            "popcnt" : true,
+            "tsc_deadline_timer" : true,
+            "aes" : true,
+            "xsave" : true,
+            "avx" : true,
+            "f16c" : true,
+            "rdrand" : true,
+            "lahf_lm" : true,
+            "abm" : true,
+            "epb" : true,
+            "tpr_shadow" : true,
+            "vnmi" : true,
+            "flexpriority" : true,
+            "ept" : true,
+            "vpid" : true,
+            "fsgsbase" : true,
+            "tsc_adjust" : true,
+            "bmi1" : true,
+            "avx2" : true,
+            "smep" : true,
+            "bmi2" : true,
+            "erms" : true,
+            "invpcid" : true,
+            "xsaveopt" : true,
+            "dtherm" : true,
+            "ida" : true,
+            "arat" : true,
+            "pln" : true,
+            "pts" : true,
+            "cpufreq" : "CPU Frequency scaling"
+          }
+        },
+        {
+          "id" : "pci",
+          "class" : "bridge",
+          "claimed" : true,
+          "handle" : "PCIBUS:0000:00",
+          "description" : "Host bridge",
+          "product" : "Xeon E3-1200 v3/4th Gen Core Processor DRAM Controller",
+          "vendor" : "Intel Corporation",
+          "physid" : "100",
+          "businfo" : "pci@0000:00:00.0",
+          "version" : "06",
+          "width" : 32,
+          "clock" : 33000000,
+          "children" : [
+            {
+              "id" : "pci:0",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:01",
+              "description" : "PCI bridge",
+              "product" : "Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller",
+              "vendor" : "Intel Corporation",
+              "physid" : "1",
+              "businfo" : "pci@0000:00:01.0",
+              "version" : "06",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "pcieport"
+              },
+              "capabilities" : {
+                "pci" : true,
+                "pm" : "Power Management",
+                "msi" : "Message Signalled Interrupts",
+                "pciexpress" : "PCI Express",
+                "normal_decode" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              },
+              "children" : [
+                {
+                  "id" : "display",
+                  "class" : "display",
+                  "claimed" : true,
+                  "handle" : "PCI:0000:01:00.0",
+                  "description" : "3D controller",
+                  "product" : "NVIDIA Corporation",
+                  "vendor" : "NVIDIA Corporation",
+                  "physid" : "0",
+                  "businfo" : "pci@0000:01:00.0",
+                  "version" : "a2",
+                  "width" : 64,
+                  "clock" : 33000000,
+                  "configuration" : {
+                    "driver" : "nouveau",
+                    "latency" : "0"
+                  },
+                  "capabilities" : {
+                    "pm" : "Power Management",
+                    "msi" : "Message Signalled Interrupts",
+                    "pciexpress" : "PCI Express",
+                    "bus_master" : "bus mastering",
+                    "cap_list" : "PCI capabilities listing",
+                    "rom" : "extension ROM"
+                  }
+                }
+              ]
+            },
+            {
+              "id" : "display",
+              "class" : "display",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:02.0",
+              "description" : "VGA compatible controller",
+              "product" : "4th Gen Core Processor Integrated Graphics Controller",
+              "vendor" : "Intel Corporation",
+              "physid" : "2",
+              "businfo" : "pci@0000:00:02.0",
+              "version" : "06",
+              "width" : 64,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "i915",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "msi" : "Message Signalled Interrupts",
+                "pm" : "Power Management",
+                "vga_controller" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing",
+                "rom" : "extension ROM"
+              }
+            },
+            {
+              "id" : "multimedia:0",
+              "class" : "multimedia",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:03.0",
+              "description" : "Audio device",
+              "product" : "Xeon E3-1200 v3/4th Gen Core Processor HD Audio Controller",
+              "vendor" : "Intel Corporation",
+              "physid" : "3",
+              "businfo" : "pci@0000:00:03.0",
+              "version" : "06",
+              "width" : 64,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "snd_hda_intel",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "msi" : "Message Signalled Interrupts",
+                "pciexpress" : "PCI Express",
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "usb:0",
+              "class" : "bus",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:14.0",
+              "description" : "USB controller",
+              "product" : "8 Series/C220 Series Chipset Family USB xHCI",
+              "vendor" : "Intel Corporation",
+              "physid" : "14",
+              "businfo" : "pci@0000:00:14.0",
+              "version" : "05",
+              "width" : 64,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "xhci_hcd",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "msi" : "Message Signalled Interrupts",
+                "xhci" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              },
+              "children" : [
+                {
+                  "id" : "usbhost:0",
+                  "class" : "bus",
+                  "claimed" : true,
+                  "handle" : "USB:4:1",
+                  "product" : "xHCI Host Controller",
+                  "vendor" : "Linux 4.5.0-0.bpo.1-amd64 xhci-hcd",
+                  "physid" : "0",
+                  "businfo" : "usb@4",
+                  "logicalname" : "usb4",
+                  "version" : "4.05",
+                  "configuration" : {
+                    "driver" : "hub",
+                    "slots" : "6",
+                    "speed" : "5000Mbit/s"
+                  },
+                  "capabilities" : {
+                    "usb-3.00" : true
+                  }
+                },
+                {
+                  "id" : "usbhost:1",
+                  "class" : "bus",
+                  "claimed" : true,
+                  "handle" : "USB:3:1",
+                  "product" : "xHCI Host Controller",
+                  "vendor" : "Linux 4.5.0-0.bpo.1-amd64 xhci-hcd",
+                  "physid" : "1",
+                  "businfo" : "usb@3",
+                  "logicalname" : "usb3",
+                  "version" : "4.05",
+                  "configuration" : {
+                    "driver" : "hub",
+                    "slots" : "14",
+                    "speed" : "480Mbit/s"
+                  },
+                  "capabilities" : {
+                    "usb-2.00" : "USB 2.0"
+                  },
+                  "children" : [
+                    {
+                      "id" : "usb:0",
+                      "class" : "input",
+                      "claimed" : true,
+                      "handle" : "USB:3:2",
+                      "description" : "Human interface device",
+                      "product" : "Atmel maXTouch Digitizer",
+                      "vendor" : "Atmel",
+                      "physid" : "5",
+                      "businfo" : "usb@3:5",
+                      "version" : "10.99",
+                      "configuration" : {
+                        "driver" : "usbhid",
+                        "maxpower" : "100mA",
+                        "speed" : "12Mbit/s"
+                      },
+                      "capabilities" : {
+                        "usb-2.00" : "USB 2.0"
+                      }
+                    },
+                    {
+                      "id" : "usb:1",
+                      "class" : "multimedia",
+                      "claimed" : true,
+                      "handle" : "USB:3:3",
+                      "description" : "Video",
+                      "product" : "Lenovo EasyCamera",
+                      "vendor" : "Generic",
+                      "physid" : "6",
+                      "businfo" : "usb@3:6",
+                      "version" : "6.23",
+                      "serial" : "200901010001",
+                      "configuration" : {
+                        "driver" : "uvcvideo",
+                        "maxpower" : "500mA",
+                        "speed" : "480Mbit/s"
+                      },
+                      "capabilities" : {
+                        "usb-2.00" : "USB 2.0"
+                      }
+                    },
+                    {
+                      "id" : "usb:2",
+                      "class" : "communication",
+                      "claimed" : true,
+                      "handle" : "USB:3:4",
+                      "description" : "Bluetooth wireless interface",
+                      "vendor" : "Intel Corp.",
+                      "physid" : "7",
+                      "businfo" : "usb@3:7",
+                      "version" : "0.01",
+                      "configuration" : {
+                        "driver" : "btusb",
+                        "maxpower" : "100mA",
+                        "speed" : "12Mbit/s"
+                      },
+                      "capabilities" : {
+                        "bluetooth" : "Bluetooth wireless radio",
+                        "usb-2.00" : "USB 2.0"
+                      }
+                    },
+                    {
+                      "id" : "usb:3",
+                      "class" : "input",
+                      "claimed" : true,
+                      "handle" : "USB:3:12",
+                      "description" : "Keyboard",
+                      "product" : "Wireless Dongle",
+                      "vendor" : "G-Tech",
+                      "physid" : "9",
+                      "businfo" : "usb@3:9",
+                      "version" : "0.01",
+                      "configuration" : {
+                        "driver" : "usbhid",
+                        "maxpower" : "98mA",
+                        "speed" : "1Mbit/s"
+                      },
+                      "capabilities" : {
+                        "usb-2.00" : "USB 2.0"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id" : "communication",
+              "class" : "communication",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:16.0",
+              "description" : "Communication controller",
+              "product" : "8 Series/C220 Series Chipset Family MEI Controller #1",
+              "vendor" : "Intel Corporation",
+              "physid" : "16",
+              "businfo" : "pci@0000:00:16.0",
+              "version" : "04",
+              "width" : 64,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "mei_me",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "msi" : "Message Signalled Interrupts",
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "usb:1",
+              "class" : "bus",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:1a.0",
+              "description" : "USB controller",
+              "product" : "8 Series/C220 Series Chipset Family USB EHCI #2",
+              "vendor" : "Intel Corporation",
+              "physid" : "1a",
+              "businfo" : "pci@0000:00:1a.0",
+              "version" : "05",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "ehci-pci",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "debug" : "Debug port",
+                "ehci" : "Enhanced Host Controller Interface (USB2)",
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              },
+              "children" : [
+                {
+                  "id" : "usbhost",
+                  "class" : "bus",
+                  "claimed" : true,
+                  "handle" : "USB:1:1",
+                  "product" : "EHCI Host Controller",
+                  "vendor" : "Linux 4.5.0-0.bpo.1-amd64 ehci_hcd",
+                  "physid" : "1",
+                  "businfo" : "usb@1",
+                  "logicalname" : "usb1",
+                  "version" : "4.05",
+                  "configuration" : {
+                    "driver" : "hub",
+                    "slots" : "2",
+                    "speed" : "480Mbit/s"
+                  },
+                  "capabilities" : {
+                    "usb-2.00" : "USB 2.0"
+                  },
+                  "children" : [
+                    {
+                      "id" : "usb",
+                      "class" : "bus",
+                      "claimed" : true,
+                      "handle" : "USB:1:2",
+                      "description" : "USB hub",
+                      "vendor" : "Intel Corp.",
+                      "physid" : "1",
+                      "businfo" : "usb@1:1",
+                      "version" : "0.05",
+                      "configuration" : {
+                        "driver" : "hub",
+                        "slots" : "6",
+                        "speed" : "480Mbit/s"
+                      },
+                      "capabilities" : {
+                        "usb-2.00" : "USB 2.0"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id" : "multimedia:1",
+              "class" : "multimedia",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:1b.0",
+              "description" : "Audio device",
+              "product" : "8 Series/C220 Series Chipset High Definition Audio Controller",
+              "vendor" : "Intel Corporation",
+              "physid" : "1b",
+              "businfo" : "pci@0000:00:1b.0",
+              "version" : "05",
+              "width" : 64,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "snd_hda_intel",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "msi" : "Message Signalled Interrupts",
+                "pciexpress" : "PCI Express",
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "pci:1",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:07",
+              "description" : "PCI bridge",
+              "product" : "8 Series/C220 Series Chipset Family PCI Express Root Port #1",
+              "vendor" : "Intel Corporation",
+              "physid" : "1c",
+              "businfo" : "pci@0000:00:1c.0",
+              "version" : "d5",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "pcieport"
+              },
+              "capabilities" : {
+                "pci" : true,
+                "pciexpress" : "PCI Express",
+                "msi" : "Message Signalled Interrupts",
+                "pm" : "Power Management",
+                "normal_decode" : true,
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "pci:2",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:08",
+              "description" : "PCI bridge",
+              "product" : "8 Series/C220 Series Chipset Family PCI Express Root Port #2",
+              "vendor" : "Intel Corporation",
+              "physid" : "1c.1",
+              "businfo" : "pci@0000:00:1c.1",
+              "version" : "d5",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "pcieport"
+              },
+              "capabilities" : {
+                "pci" : true,
+                "pciexpress" : "PCI Express",
+                "msi" : "Message Signalled Interrupts",
+                "pm" : "Power Management",
+                "normal_decode" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              },
+              "children" : [
+                {
+                  "id" : "network",
+                  "class" : "network",
+                  "claimed" : true,
+                  "handle" : "PCI:0000:08:00.0",
+                  "description" : "Wireless interface",
+                  "product" : "Wireless 7260",
+                  "vendor" : "Intel Corporation",
+                  "physid" : "0",
+                  "businfo" : "pci@0000:08:00.0",
+                  "logicalname" : "wlan0",
+                  "version" : "83",
+                  "serial" : "a4:c4:94:5f:89:71",
+                  "width" : 64,
+                  "clock" : 33000000,
+                  "configuration" : {
+                    "broadcast" : "yes",
+                    "driver" : "iwlwifi",
+                    "driverversion" : "4.5.0-0.bpo.1-amd64",
+                    "firmware" : "17.352738.0",
+                    "ip" : "192.168.0.104",
+                    "latency" : "0",
+                    "link" : "yes",
+                    "multicast" : "yes",
+                    "wireless" : "IEEE 802.11abgn"
+                  },
+                  "capabilities" : {
+                    "pm" : "Power Management",
+                    "msi" : "Message Signalled Interrupts",
+                    "pciexpress" : "PCI Express",
+                    "bus_master" : "bus mastering",
+                    "cap_list" : "PCI capabilities listing",
+                    "ethernet" : true,
+                    "physical" : "Physical interface",
+                    "wireless" : "Wireless-LAN"
+                  }
+                }
+              ]
+            },
+            {
+              "id" : "pci:3",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:09",
+              "description" : "PCI bridge",
+              "product" : "8 Series/C220 Series Chipset Family PCI Express Root Port #3",
+              "vendor" : "Intel Corporation",
+              "physid" : "1c.2",
+              "businfo" : "pci@0000:00:1c.2",
+              "version" : "d5",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "pcieport"
+              },
+              "capabilities" : {
+                "pci" : true,
+                "pciexpress" : "PCI Express",
+                "msi" : "Message Signalled Interrupts",
+                "pm" : "Power Management",
+                "normal_decode" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              },
+              "children" : [
+                {
+                  "id" : "network",
+                  "class" : "network",
+                  "claimed" : true,
+                  "handle" : "PCI:0000:09:00.0",
+                  "description" : "Ethernet interface",
+                  "product" : "RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller",
+                  "vendor" : "Realtek Semiconductor Co., Ltd.",
+                  "physid" : "0",
+                  "businfo" : "pci@0000:09:00.0",
+                  "logicalname" : "eth0",
+                  "version" : "10",
+                  "serial" : "f0:76:1c:fa:af:0b",
+                  "units" : "bit/s",
+                  "size" : 10000000,
+                  "capacity" : 1000000000,
+                  "width" : 64,
+                  "clock" : 33000000,
+                  "configuration" : {
+                    "autonegotiation" : "on",
+                    "broadcast" : "yes",
+                    "driver" : "r8169",
+                    "driverversion" : "2.3LK-NAPI",
+                    "duplex" : "half",
+                    "firmware" : "rtl8168g-3_0.0.1 04/23/13",
+                    "latency" : "0",
+                    "link" : "no",
+                    "multicast" : "yes",
+                    "port" : "MII",
+                    "speed" : "10Mbit/s"
+                  },
+                  "capabilities" : {
+                    "pm" : "Power Management",
+                    "msi" : "Message Signalled Interrupts",
+                    "pciexpress" : "PCI Express",
+                    "msix" : "MSI-X",
+                    "vpd" : "Vital Product Data",
+                    "bus_master" : "bus mastering",
+                    "cap_list" : "PCI capabilities listing",
+                    "ethernet" : true,
+                    "physical" : "Physical interface",
+                    "tp" : "twisted pair",
+                    "mii" : "Media Independent Interface",
+                    "10bt" : "10Mbit/s",
+                    "10bt-fd" : "10Mbit/s (full duplex)",
+                    "100bt" : "100Mbit/s",
+                    "100bt-fd" : "100Mbit/s (full duplex)",
+                    "1000bt" : "1Gbit/s",
+                    "1000bt-fd" : "1Gbit/s (full duplex)",
+                    "autonegotiation" : "Auto-negotiation"
+                  }
+                }
+              ]
+            },
+            {
+              "id" : "pci:4",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCIBUS:0000:0a",
+              "description" : "PCI bridge",
+              "product" : "8 Series/C220 Series Chipset Family PCI Express Root Port #5",
+              "vendor" : "Intel Corporation",
+              "physid" : "1c.4",
+              "businfo" : "pci@0000:00:1c.4",
+              "version" : "d5",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "pcieport"
+              },
+              "capabilities" : {
+                "pci" : true,
+                "pciexpress" : "PCI Express",
+                "msi" : "Message Signalled Interrupts",
+                "pm" : "Power Management",
+                "normal_decode" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              },
+              "children" : [
+                {
+                  "id" : "generic",
+                  "class" : "generic",
+                  "claimed" : true,
+                  "handle" : "PCI:0000:0a:00.0",
+                  "description" : "Unassigned class",
+                  "product" : "RTS5249 PCI Express Card Reader",
+                  "vendor" : "Realtek Semiconductor Co., Ltd.",
+                  "physid" : "0",
+                  "businfo" : "pci@0000:0a:00.0",
+                  "version" : "01",
+                  "width" : 32,
+                  "clock" : 33000000,
+                  "configuration" : {
+                    "driver" : "rtsx_pci",
+                    "latency" : "0"
+                  },
+                  "capabilities" : {
+                    "pm" : "Power Management",
+                    "msi" : "Message Signalled Interrupts",
+                    "pciexpress" : "PCI Express",
+                    "bus_master" : "bus mastering",
+                    "cap_list" : "PCI capabilities listing"
+                  }
+                }
+              ]
+            },
+            {
+              "id" : "usb:2",
+              "class" : "bus",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:1d.0",
+              "description" : "USB controller",
+              "product" : "8 Series/C220 Series Chipset Family USB EHCI #1",
+              "vendor" : "Intel Corporation",
+              "physid" : "1d",
+              "businfo" : "pci@0000:00:1d.0",
+              "version" : "05",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "ehci-pci",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "pm" : "Power Management",
+                "debug" : "Debug port",
+                "ehci" : "Enhanced Host Controller Interface (USB2)",
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              },
+              "children" : [
+                {
+                  "id" : "usbhost",
+                  "class" : "bus",
+                  "claimed" : true,
+                  "handle" : "USB:2:1",
+                  "product" : "EHCI Host Controller",
+                  "vendor" : "Linux 4.5.0-0.bpo.1-amd64 ehci_hcd",
+                  "physid" : "1",
+                  "businfo" : "usb@2",
+                  "logicalname" : "usb2",
+                  "version" : "4.05",
+                  "configuration" : {
+                    "driver" : "hub",
+                    "slots" : "2",
+                    "speed" : "480Mbit/s"
+                  },
+                  "capabilities" : {
+                    "usb-2.00" : "USB 2.0"
+                  },
+                  "children" : [
+                    {
+                      "id" : "usb",
+                      "class" : "bus",
+                      "claimed" : true,
+                      "handle" : "USB:2:2",
+                      "description" : "USB hub",
+                      "vendor" : "Intel Corp.",
+                      "physid" : "1",
+                      "businfo" : "usb@2:1",
+                      "version" : "0.05",
+                      "configuration" : {
+                        "driver" : "hub",
+                        "slots" : "8",
+                        "speed" : "480Mbit/s"
+                      },
+                      "capabilities" : {
+                        "usb-2.00" : "USB 2.0"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id" : "isa",
+              "class" : "bridge",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:1f.0",
+              "description" : "ISA bridge",
+              "product" : "HM87 Express LPC Controller",
+              "vendor" : "Intel Corporation",
+              "physid" : "1f",
+              "businfo" : "pci@0000:00:1f.0",
+              "version" : "05",
+              "width" : 32,
+              "clock" : 33000000,
+              "configuration" : {
+                "driver" : "lpc_ich",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "isa" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "storage",
+              "class" : "storage",
+              "claimed" : true,
+              "handle" : "PCI:0000:00:1f.2",
+              "description" : "SATA controller",
+              "product" : "8 Series/C220 Series Chipset Family 6-port SATA Controller 1 [AHCI mode]",
+              "vendor" : "Intel Corporation",
+              "physid" : "1f.2",
+              "businfo" : "pci@0000:00:1f.2",
+              "version" : "05",
+              "width" : 32,
+              "clock" : 66000000,
+              "configuration" : {
+                "driver" : "ahci",
+                "latency" : "0"
+              },
+              "capabilities" : {
+                "storage" : true,
+                "msi" : "Message Signalled Interrupts",
+                "pm" : "Power Management",
+                "ahci_1.0" : true,
+                "bus_master" : "bus mastering",
+                "cap_list" : "PCI capabilities listing"
+              }
+            },
+            {
+              "id" : "serial",
+              "class" : "bus",
+              "handle" : "PCI:0000:00:1f.3",
+              "description" : "SMBus",
+              "product" : "8 Series/C220 Series Chipset Family SMBus Controller",
+              "vendor" : "Intel Corporation",
+              "physid" : "1f.3",
+              "businfo" : "pci@0000:00:1f.3",
+              "version" : "05",
+              "width" : 64,
+              "clock" : 33000000,
+              "configuration" : {
+                "latency" : "0"
+              }
+            }
+          ]
+        },
+        {
+          "id" : "scsi",
+          "class" : "storage",
+          "claimed" : true,
+          "physid" : "2",
+          "logicalname" : "scsi4",
+          "capabilities" : {
+            "emulated" : "Emulated device"
+          },
+          "children" : [
+            {
+              "id" : "disk",
+              "class" : "disk",
+              "claimed" : true,
+              "handle" : "GUID:bec0dc88-6dbb-4c6a-877a-d5b49014d3f2",
+              "description" : "ATA Disk",
+              "product" : "SAMSUNG MZ7TE512",
+              "physid" : "0.0.0",
+              "businfo" : "scsi@4:0.0.0",
+              "logicalname" : "/dev/sda",
+              "dev" : "8:0",
+              "version" : "6L0Q",
+              "serial" : "S1NYNSAG800030",
+              "units" : "bytes",
+              "size" : 512110190592,
+              "configuration" : {
+                "ansiversion" : "5",
+                "guid" : "bec0dc88-6dbb-4c6a-877a-d5b49014d3f2",
+                "logicalsectorsize" : "512",
+                "sectorsize" : "512"
+              },
+              "capabilities" : {
+                "gpt-1.00" : "GUID Partition Table version 1.00",
+                "partitioned" : "Partitioned disk",
+                "partitioned:gpt" : "GUID partition table"
+              },
+              "children" : [
+                {
+                  "id" : "volume:0",
+                  "class" : "volume",
+                  "claimed" : true,
+                  "handle" : "GUID:3ccfce18-35ba-4670-b1bd-f3417168b39b",
+                  "description" : "Windows FAT volume",
+                  "vendor" : "MSDOS5.0",
+                  "physid" : "1",
+                  "businfo" : "scsi@4:0.0.0,1",
+                  "logicalname" : ["/dev/sda1", "/boot/efi"],
+                  "dev" : "8:1",
+                  "version" : "FAT32",
+                  "serial" : "d440-b7d8",
+                  "size" : 267912192,
+                  "capacity" : 272629248,
+                  "configuration" : {
+                    "FATs" : "2",
+                    "filesystem" : "fat",
+                    "label" : "SYSTEM_DRV",
+                    "mount.fstype" : "vfat",
+                    "mount.options" : "rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=utf8,shortname=mixed,errors=remount-ro",
+                    "name" : "EFI system partition",
+                    "state" : "mounted"
+                  },
+                  "capabilities" : {
+                    "boot" : "Contains boot code",
+                    "fat" : "Windows FAT",
+                    "initialized" : "initialized volume"
+                  }
+                },
+                {
+                  "id" : "volume:1",
+                  "class" : "volume",
+                  "claimed" : true,
+                  "handle" : "GUID:9557fa66-86d5-4731-8eef-ce2c892b0e64",
+                  "description" : "EFI partition",
+                  "physid" : "2",
+                  "businfo" : "scsi@4:0.0.0,2",
+                  "logicalname" : ["/dev/sda2", "/boot"],
+                  "dev" : "8:2",
+                  "serial" : "9557fa66-86d5-4731-8eef-ce2c892b0e64",
+                  "capacity" : 1000340992,
+                  "configuration" : {
+                    "mount.fstype" : "jfs",
+                    "mount.options" : "rw,relatime",
+                    "state" : "mounted"
+                  }
+                },
+                {
+                  "id" : "volume:2",
+                  "class" : "volume",
+                  "claimed" : true,
+                  "handle" : "GUID:5cf73d93-3c34-4d9f-a9b3-f54c060fb288",
+                  "description" : "EFI partition",
+                  "physid" : "3",
+                  "businfo" : "scsi@4:0.0.0,3",
+                  "logicalname" : ["/dev/sda3", "/"],
+                  "dev" : "8:3",
+                  "serial" : "5cf73d93-3c34-4d9f-a9b3-f54c060fb288",
+                  "capacity" : 50000297472,
+                  "configuration" : {
+                    "mount.fstype" : "xfs",
+                    "mount.options" : "rw,relatime,attr2,inode64,noquota",
+                    "state" : "mounted"
+                  }
+                },
+                {
+                  "id" : "volume:3",
+                  "class" : "volume",
+                  "claimed" : true,
+                  "handle" : "GUID:b85eb3c8-9330-4495-80b2-60dce31cc953",
+                  "description" : "Linux swap volume",
+                  "vendor" : "Linux",
+                  "physid" : "4",
+                  "businfo" : "scsi@4:0.0.0,4",
+                  "logicalname" : "/dev/sda4",
+                  "dev" : "8:4",
+                  "version" : "1",
+                  "serial" : "ec072e73-659c-461d-83ca-1db6c37be49e",
+                  "size" : 15996314880,
+                  "capacity" : 16000220672,
+                  "configuration" : {
+                    "filesystem" : "swap",
+                    "pagesize" : "4095"
+                  },
+                  "capabilities" : {
+                    "nofs" : "No filesystem",
+                    "swap" : "Linux swap",
+                    "initialized" : "initialized volume"
+                  }
+                },
+                {
+                  "id" : "volume:4",
+                  "class" : "volume",
+                  "claimed" : true,
+                  "handle" : "GUID:69c1cc4d-b0ac-40ac-968f-40931c00942d",
+                  "description" : "EFI partition",
+                  "physid" : "5",
+                  "businfo" : "scsi@4:0.0.0,5",
+                  "logicalname" : ["/dev/sda5", "/home"],
+                  "dev" : "8:5",
+                  "serial" : "69c1cc4d-b0ac-40ac-968f-40931c00942d",
+                  "capacity" : 19999489536,
+                  "configuration" : {
+                    "mount.fstype" : "xfs",
+                    "mount.options" : "rw,relatime,attr2,inode64,noquota",
+                    "state" : "mounted"
+                  }
+                },
+                {
+                  "id" : "volume:5",
+                  "class" : "volume",
+                  "claimed" : true,
+                  "handle" : "GUID:6f68435b-5b31-4802-ae04-6e5fd2b9e7b0",
+                  "description" : "EFI partition",
+                  "physid" : "6",
+                  "businfo" : "scsi@4:0.0.0,6",
+                  "logicalname" : ["/dev/sda6", "/dados"],
+                  "dev" : "8:6",
+                  "serial" : "6f68435b-5b31-4802-ae04-6e5fd2b9e7b0",
+                  "capacity" : 423787232768,
+                  "configuration" : {
+                    "mount.fstype" : "xfs",
+                    "mount.options" : "rw,relatime,attr2,inode64,noquota",
+                    "state" : "mounted"
+                  }
+                },
+                {
+                  "id" : "volume:6",
+                  "class" : "volume",
+                  "claimed" : true,
+                  "handle" : "GUID:a3b1355c-c011-44ce-a616-d25d0010f5fe",
+                  "description" : "Windows FAT volume",
+                  "vendor" : "MSDOS5.0",
+                  "physid" : "7",
+                  "businfo" : "scsi@4:0.0.0,7",
+                  "logicalname" : "/dev/sda7",
+                  "dev" : "8:7",
+                  "version" : "FAT32",
+                  "serial" : "1645-f8fa",
+                  "size" : 1019159552,
+                  "capacity" : 1048575488,
+                  "configuration" : {
+                    "FATs" : "2",
+                    "filesystem" : "fat",
+                    "label" : "LRS_ESP",
+                    "name" : "Basic data partition"
+                  },
+                  "capabilities" : {
+                    "precious" : "This partition is required for the platform to function",
+                    "readonly" : "Read-only partition",
+                    "hidden" : "Hidden partition",
+                    "nomount" : "No automatic mount",
+                    "fat" : "Windows FAT",
+                    "initialized" : "initialized volume"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+Available components and hardware information.
+--------------------------------------------------------------------------------
+PAPI Version             : 5.4.3.0
+Vendor string and code   : GenuineIntel (1)
+Model string and code    : Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz (60)
+CPU Revision             : 3.000000
+CPUID Info               : Family: 6  Model: 60  Stepping: 3
+CPU Max Megahertz        : 3600
+CPU Min Megahertz        : 800
+Hdw Threads per core     : 2
+Cores per Socket         : 4
+Sockets                  : 1
+NUMA Nodes               : 1
+CPUs per Node            : 8
+Total CPUs               : 8
+Running in a VM          : no
+Number Hardware Counters : 0
+Max Multiplex Counters   : 192
+--------------------------------------------------------------------------------
+
+Compiled-in components:
+Name:   perf_event              Linux perf_event CPU counters
+   \-> Disabled: sys_perf_event_open() failed, perf_event support for this platform may be broken
+Name:   perf_event_uncore       Linux perf_event CPU uncore and northbridge
+   \-> Disabled: Insufficient permissions for uncore access.  Set /proc/sys/kernel/perf_event_paranoid to 0 or run as root.
+Name:   rapl                    Linux RAPL energy measurements
+   \-> Disabled: Can't open fd for cpu0: No such file or directory
+Name:   cuda                    The CUDA component uses CuPTI for NVIDIA GPU hardware events
+   \-> Disabled: CUDA library libcuda.so not found.
+
+Active components:
+
+--------------------------------------------------------------------------------
+component.c                             PASSED

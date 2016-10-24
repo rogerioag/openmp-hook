@@ -20,7 +20,7 @@ sudo lshw -json > ${hostname}/hardware-info-${hostname}.json
 
 cat /proc/cpuinfo > ${hostname}/cpuinfo-${hostname}.txt
 cat /proc/meminfo > ${hostname}/meminfo-${hostname}.txt
-/usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery > ${hostname}/gpuinfo-${hostname}.txt
+#/usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery > ${hostname}/gpuinfo-${hostname}.txt
 
 # zip hardware_info_${hostname}.zip hardware_info_${hostname}.html cpuinfo.txt meminfo.txt gpuinfo.txt
 
