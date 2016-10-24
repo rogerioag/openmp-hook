@@ -1,0 +1,711 @@
+Available native events and hardware information.
+--------------------------------------------------------------------------------
+PAPI Version             : 5.4.3.0
+Vendor string and code   : GenuineIntel (1)
+Model string and code    : Intel(R) Core(TM) i7 CPU         870  @ 2.93GHz (30)
+CPU Revision             : 5.000000
+CPUID Info               : Family: 6  Model: 30  Stepping: 5
+CPU Max Megahertz        : 2934
+CPU Min Megahertz        : 1199
+Hdw Threads per core     : 2
+Cores per Socket         : 4
+Sockets                  : 1
+NUMA Nodes               : 1
+CPUs per Node            : 8
+Total CPUs               : 8
+Running in a VM          : no
+Number Hardware Counters : 7
+Max Multiplex Counters   : 192
+--------------------------------------------------------------------------------
+
+===============================================================================
+ Native Events in Component: perf_event
+===============================================================================
+| UNHALTED_CORE_CYCLES                                                         |
+|            Count core clock cycles whenever the clock signal on the specific |
+|            core is running (not halted)                                      |
+--------------------------------------------------------------------------------
+| INSTRUCTION_RETIRED                                                          |
+|            Count the number of instructions at retirement                    |
+--------------------------------------------------------------------------------
+| INSTRUCTIONS_RETIRED                                                         |
+|            This is an alias for INSTRUCTION_RETIRED                          |
+--------------------------------------------------------------------------------
+| UNHALTED_REFERENCE_CYCLES                                                    |
+|            Unhalted reference cycles                                         |
+--------------------------------------------------------------------------------
+| LLC_REFERENCES                                                               |
+|            Count each request originating equiv the core to reference a cache|
+|             line in the last level cache. The count may include speculation, |
+|            but excludes cache line fills due to hardware prefetch. Alias to L|
+|            2_RQSTS:SELF_DEMAND_MESI                                          |
+--------------------------------------------------------------------------------
+| LAST_LEVEL_CACHE_REFERENCES                                                  |
+|            This is an alias for LLC_REFERENCES                               |
+--------------------------------------------------------------------------------
+| LLC_MISSES                                                                   |
+|            Count each cache miss condition for references to the last level c|
+|            ache. The event count may include speculation, but excludes cache |
+|            line fills due to hardware prefetch. Alias to event L2_RQSTS:SELF_|
+|            DEMAND_I_STATE                                                    |
+--------------------------------------------------------------------------------
+| LAST_LEVEL_CACHE_MISSES                                                      |
+|            This is an equiv for LLC_MISSES                                   |
+--------------------------------------------------------------------------------
+| BRANCH_INSTRUCTIONS_RETIRED                                                  |
+|            Count branch instructions at retirement. Specifically, this event |
+|            counts the retirement of the last micro-op of a branch instruction|
+|            .                                                                 |
+--------------------------------------------------------------------------------
+| ARITH                                                                        |
+|            Counts arithmetic multiply and divide operations                  |
+--------------------------------------------------------------------------------
+| BACLEAR                                                                      |
+|            Branch address calculator                                         |
+--------------------------------------------------------------------------------
+| BACLEAR_FORCE_IQ                                                             |
+|            Instruction queue forced BACLEAR                                  |
+--------------------------------------------------------------------------------
+| BOGUS_BR                                                                     |
+|            Counts the number of bogus branches.                              |
+--------------------------------------------------------------------------------
+| BPU_CLEARS                                                                   |
+|            Branch prediction Unit clears                                     |
+--------------------------------------------------------------------------------
+| BPU_MISSED_CALL_RET                                                          |
+|            Branch prediction unit missed call or return                      |
+--------------------------------------------------------------------------------
+| BR_INST_DECODED                                                              |
+|            Branch instructions decoded                                       |
+--------------------------------------------------------------------------------
+| BR_INST_EXEC                                                                 |
+|            Branch instructions executed                                      |
+--------------------------------------------------------------------------------
+| BR_INST_RETIRED                                                              |
+|            Retired branch instructions                                       |
+--------------------------------------------------------------------------------
+| BR_MISP_EXEC                                                                 |
+|            Mispredicted branches executed                                    |
+--------------------------------------------------------------------------------
+| BR_MISP_RETIRED                                                              |
+|            Count Mispredicted Branch Activity                                |
+--------------------------------------------------------------------------------
+| CACHE_LOCK_CYCLES                                                            |
+|            Cache lock cycles                                                 |
+--------------------------------------------------------------------------------
+| CPU_CLK_UNHALTED                                                             |
+|            Cycles when processor is not in halted state                      |
+--------------------------------------------------------------------------------
+| DTLB_LOAD_MISSES                                                             |
+|            Data TLB load misses                                              |
+--------------------------------------------------------------------------------
+| DTLB_MISSES                                                                  |
+|            Data TLB misses                                                   |
+--------------------------------------------------------------------------------
+| EPT                                                                          |
+|            Extended Page Directory                                           |
+--------------------------------------------------------------------------------
+| ES_REG_RENAMES                                                               |
+|            ES segment renames                                                |
+--------------------------------------------------------------------------------
+| FP_ASSIST                                                                    |
+|            Floating point assists                                            |
+--------------------------------------------------------------------------------
+| FP_COMP_OPS_EXE                                                              |
+|            Floating point computational micro-ops                            |
+--------------------------------------------------------------------------------
+| FP_MMX_TRANS                                                                 |
+|            Floating Point to and from MMX transitions                        |
+--------------------------------------------------------------------------------
+| IFU_IVC                                                                      |
+|            Instruction Fetch unit victim cache                               |
+--------------------------------------------------------------------------------
+| ILD_STALL                                                                    |
+|            Instruction Length Decoder stalls                                 |
+--------------------------------------------------------------------------------
+| INST_DECODED                                                                 |
+|            Instructions decoded                                              |
+--------------------------------------------------------------------------------
+| INST_QUEUE_WRITES                                                            |
+|            Instructions written to instruction queue.                        |
+--------------------------------------------------------------------------------
+| INST_QUEUE_WRITE_CYCLES                                                      |
+|            Cycles instructions are written to the instruction queue          |
+--------------------------------------------------------------------------------
+| INST_RETIRED                                                                 |
+|            Instructions retired                                              |
+--------------------------------------------------------------------------------
+| IO_TRANSACTIONS                                                              |
+|            I/O transactions                                                  |
+--------------------------------------------------------------------------------
+| ITLB_FLUSH                                                                   |
+|            Counts the number of ITLB flushes                                 |
+--------------------------------------------------------------------------------
+| ITLB_MISSES                                                                  |
+|            Instruction TLB misses                                            |
+--------------------------------------------------------------------------------
+| ITLB_MISS_RETIRED                                                            |
+|            Retired instructions that missed the ITLB (Precise Event)         |
+--------------------------------------------------------------------------------
+| L1D                                                                          |
+|            L1D cache                                                         |
+--------------------------------------------------------------------------------
+| L1D_ALL_REF                                                                  |
+|            L1D references                                                    |
+--------------------------------------------------------------------------------
+| L1D_CACHE_LD                                                                 |
+|            L1D  cacheable loads. WARNING: event may overcount loads          |
+--------------------------------------------------------------------------------
+| L1D_CACHE_LOCK                                                               |
+|            L1 data cache load lock                                           |
+--------------------------------------------------------------------------------
+| L1D_CACHE_LOCK_FB_HIT                                                        |
+|            L1D load lock accepted in fill buffer                             |
+--------------------------------------------------------------------------------
+| L1D_CACHE_PREFETCH_LOCK_FB_HIT                                               |
+|            L1D prefetch load lock accepted in fill buffer                    |
+--------------------------------------------------------------------------------
+| L1D_CACHE_ST                                                                 |
+|            L1 data cache stores                                              |
+--------------------------------------------------------------------------------
+| L1D_PREFETCH                                                                 |
+|            L1D hardware prefetch                                             |
+--------------------------------------------------------------------------------
+| L1D_WB_L2                                                                    |
+|            L1 writebacks to L2                                               |
+--------------------------------------------------------------------------------
+| L1I                                                                          |
+|            L1I instruction fetches                                           |
+--------------------------------------------------------------------------------
+| L1I_OPPORTUNISTIC_HITS                                                       |
+|            Opportunistic hits in streaming                                   |
+--------------------------------------------------------------------------------
+| L2_DATA_RQSTS                                                                |
+|            L2 data requests                                                  |
+--------------------------------------------------------------------------------
+| L2_HW_PREFETCH                                                               |
+|            L2 HW prefetches                                                  |
+--------------------------------------------------------------------------------
+| L2_LINES_IN                                                                  |
+|            L2 lines allocated                                                |
+--------------------------------------------------------------------------------
+| L2_LINES_OUT                                                                 |
+|            L2 lines evicted                                                  |
+--------------------------------------------------------------------------------
+| L2_RQSTS                                                                     |
+|            L2 requests                                                       |
+--------------------------------------------------------------------------------
+| L2_TRANSACTIONS                                                              |
+|            L2 transactions                                                   |
+--------------------------------------------------------------------------------
+| L2_WRITE                                                                     |
+|            L2 demand lock/store RFO                                          |
+--------------------------------------------------------------------------------
+| LARGE_ITLB                                                                   |
+|            Large instruction TLB                                             |
+--------------------------------------------------------------------------------
+| LOAD_DISPATCH                                                                |
+|            Loads dispatched                                                  |
+--------------------------------------------------------------------------------
+| LOAD_HIT_PRE                                                                 |
+|            Load operations conflicting with software prefetches              |
+--------------------------------------------------------------------------------
+| LONGEST_LAT_CACHE                                                            |
+|            Longest latency cache reference                                   |
+--------------------------------------------------------------------------------
+| LSD                                                                          |
+|            Loop stream detector                                              |
+--------------------------------------------------------------------------------
+| MACHINE_CLEARS                                                               |
+|            Machine Clear                                                     |
+--------------------------------------------------------------------------------
+| MACRO_INSTS                                                                  |
+|            Macro-fused instructions                                          |
+--------------------------------------------------------------------------------
+| MEMORY_DISAMBIGUATION                                                        |
+|            Memory Disambiguation Activity                                    |
+--------------------------------------------------------------------------------
+| MEM_INST_RETIRED                                                             |
+|            Memory instructions retired                                       |
+--------------------------------------------------------------------------------
+| MEM_LOAD_RETIRED                                                             |
+|            Retired loads                                                     |
+--------------------------------------------------------------------------------
+| MEM_STORE_RETIRED                                                            |
+|            Retired stores                                                    |
+--------------------------------------------------------------------------------
+| MEM_UNCORE_RETIRED                                                           |
+|            Load instructions retired which hit offcore                       |
+--------------------------------------------------------------------------------
+| OFFCORE_REQUESTS                                                             |
+|            Offcore memory requests                                           |
+--------------------------------------------------------------------------------
+| OFFCORE_REQUESTS_SQ_FULL                                                     |
+|            Counts cycles the Offcore Request buffer or Super Queue is full.  |
+--------------------------------------------------------------------------------
+| PARTIAL_ADDRESS_ALIAS                                                        |
+|            False dependencies due to partial address forming                 |
+--------------------------------------------------------------------------------
+| PIC_ACCESSES                                                                 |
+|            Programmable interrupt controller                                 |
+--------------------------------------------------------------------------------
+| RAT_STALLS                                                                   |
+|            Register allocation table stalls                                  |
+--------------------------------------------------------------------------------
+| RESOURCE_STALLS                                                              |
+|            Processor stalls                                                  |
+--------------------------------------------------------------------------------
+| SEG_RENAME_STALLS                                                            |
+|            Segment rename stall cycles                                       |
+--------------------------------------------------------------------------------
+| SEGMENT_REG_LOADS                                                            |
+|            Counts number of segment register loads                           |
+--------------------------------------------------------------------------------
+| SIMD_INT_128                                                                 |
+|            128 bit SIMD integer operations                                   |
+--------------------------------------------------------------------------------
+| SIMD_INT_64                                                                  |
+|            64 bit SIMD integer operations                                    |
+--------------------------------------------------------------------------------
+| SNOOP_RESPONSE                                                               |
+|            Snoop                                                             |
+--------------------------------------------------------------------------------
+| SQ_FULL_STALL_CYCLES                                                         |
+|            Counts cycles the Offcore Request buffer or Super Queue is full an|
+|            d request(s) are outstanding.                                     |
+--------------------------------------------------------------------------------
+| SQ_MISC                                                                      |
+|            Super Queue Activity Related to L2 Cache Access                   |
+--------------------------------------------------------------------------------
+| SSE_MEM_EXEC                                                                 |
+|            Streaming SIMD executed                                           |
+--------------------------------------------------------------------------------
+| SSEX_UOPS_RETIRED                                                            |
+|            SIMD micro-ops retired                                            |
+--------------------------------------------------------------------------------
+| STORE_BLOCKS                                                                 |
+|            Delayed loads                                                     |
+--------------------------------------------------------------------------------
+| TWO_UOP_INSTS_DECODED                                                        |
+|            Two micro-ops instructions decoded                                |
+--------------------------------------------------------------------------------
+| UOPS_DECODED_DEC0                                                            |
+|            Micro-ops decoded by decoder 0                                    |
+--------------------------------------------------------------------------------
+| UOPS_DECODED                                                                 |
+|            Micro-ops decoded                                                 |
+--------------------------------------------------------------------------------
+| UOPS_EXECUTED                                                                |
+|            Micro-ops executed                                                |
+--------------------------------------------------------------------------------
+| UOPS_ISSUED                                                                  |
+|            Micro-ops issued                                                  |
+--------------------------------------------------------------------------------
+| UOPS_RETIRED                                                                 |
+|            Micro-ops retired                                                 |
+--------------------------------------------------------------------------------
+| UOP_UNFUSION                                                                 |
+|            Micro-ops unfusions due to FP exceptions                          |
+--------------------------------------------------------------------------------
+| OFFCORE_RESPONSE_0                                                           |
+|            Offcore response 0 (must provide at least one request and one resp|
+|            onse umasks)                                                      |
+--------------------------------------------------------------------------------
+| ix86arch::UNHALTED_CORE_CYCLES                                               |
+|            count core clock cycles whenever the clock signal on the specific |
+|            core is running (not halted)                                      |
+--------------------------------------------------------------------------------
+| ix86arch::INSTRUCTION_RETIRED                                                |
+|            count the number of instructions at retirement. For instructions t|
+|            hat consists of multiple micro-ops, this event counts the retireme|
+|            nt of the last micro-op of the instruction                        |
+--------------------------------------------------------------------------------
+| ix86arch::LLC_REFERENCES                                                     |
+|            count each request originating from the core to reference a cache |
+|            line in the last level cache. The count may include speculation, b|
+|            ut excludes cache line fills due to hardware prefetch             |
+--------------------------------------------------------------------------------
+| ix86arch::LLC_MISSES                                                         |
+|            count each cache miss condition for references to the last level c|
+|            ache. The event count may include speculation, but excludes cache |
+|            line fills due to hardware prefetch                               |
+--------------------------------------------------------------------------------
+| ix86arch::BRANCH_INSTRUCTIONS_RETIRED                                        |
+|            count branch instructions at retirement. Specifically, this event |
+|            counts the retirement of the last micro-op of a branch instruction|
+|                                                                              |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CPU_CYCLES                                               |
+|            PERF_COUNT_HW_CPU_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::CYCLES                                                                 |
+|            PERF_COUNT_HW_CPU_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::CPU-CYCLES                                                             |
+|            PERF_COUNT_HW_CPU_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_INSTRUCTIONS                                             |
+|            PERF_COUNT_HW_INSTRUCTIONS                                        |
+--------------------------------------------------------------------------------
+| perf::INSTRUCTIONS                                                           |
+|            PERF_COUNT_HW_INSTRUCTIONS                                        |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_REFERENCES                                         |
+|            PERF_COUNT_HW_CACHE_REFERENCES                                    |
+--------------------------------------------------------------------------------
+| perf::CACHE-REFERENCES                                                       |
+|            PERF_COUNT_HW_CACHE_REFERENCES                                    |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_MISSES                                             |
+|            PERF_COUNT_HW_CACHE_MISSES                                        |
+--------------------------------------------------------------------------------
+| perf::CACHE-MISSES                                                           |
+|            PERF_COUNT_HW_CACHE_MISSES                                        |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                      |
+|            PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                 |
+--------------------------------------------------------------------------------
+| perf::BRANCH-INSTRUCTIONS                                                    |
+|            PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                 |
+--------------------------------------------------------------------------------
+| perf::BRANCHES                                                               |
+|            PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                 |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_BRANCH_MISSES                                            |
+|            PERF_COUNT_HW_BRANCH_MISSES                                       |
+--------------------------------------------------------------------------------
+| perf::BRANCH-MISSES                                                          |
+|            PERF_COUNT_HW_BRANCH_MISSES                                       |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_BUS_CYCLES                                           <NA>|
+|            PERF_COUNT_HW_BUS_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::BUS-CYCLES                                                         <NA>|
+|            PERF_COUNT_HW_BUS_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                                  |
+|            PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                             |
+--------------------------------------------------------------------------------
+| perf::STALLED-CYCLES-FRONTEND                                                |
+|            PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                             |
+--------------------------------------------------------------------------------
+| perf::IDLE-CYCLES-FRONTEND                                                   |
+|            PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                             |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_STALLED_CYCLES_BACKEND                                   |
+|            PERF_COUNT_HW_STALLED_CYCLES_BACKEND                              |
+--------------------------------------------------------------------------------
+| perf::STALLED-CYCLES-BACKEND                                                 |
+|            PERF_COUNT_HW_STALLED_CYCLES_BACKEND                              |
+--------------------------------------------------------------------------------
+| perf::IDLE-CYCLES-BACKEND                                                    |
+|            PERF_COUNT_HW_STALLED_CYCLES_BACKEND                              |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_REF_CPU_CYCLES                                           |
+|            PERF_COUNT_HW_REF_CPU_CYCLES                                      |
+--------------------------------------------------------------------------------
+| perf::REF-CYCLES                                                             |
+|            PERF_COUNT_HW_REF_CPU_CYCLES                                      |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_CPU_CLOCK                                                |
+|            PERF_COUNT_SW_CPU_CLOCK                                           |
+--------------------------------------------------------------------------------
+| perf::CPU-CLOCK                                                              |
+|            PERF_COUNT_SW_CPU_CLOCK                                           |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_TASK_CLOCK                                               |
+|            PERF_COUNT_SW_TASK_CLOCK                                          |
+--------------------------------------------------------------------------------
+| perf::TASK-CLOCK                                                             |
+|            PERF_COUNT_SW_TASK_CLOCK                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_PAGE_FAULTS                                              |
+|            PERF_COUNT_SW_PAGE_FAULTS                                         |
+--------------------------------------------------------------------------------
+| perf::PAGE-FAULTS                                                            |
+|            PERF_COUNT_SW_PAGE_FAULTS                                         |
+--------------------------------------------------------------------------------
+| perf::FAULTS                                                                 |
+|            PERF_COUNT_SW_PAGE_FAULTS                                         |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_CONTEXT_SWITCHES                                         |
+|            PERF_COUNT_SW_CONTEXT_SWITCHES                                    |
+--------------------------------------------------------------------------------
+| perf::CONTEXT-SWITCHES                                                       |
+|            PERF_COUNT_SW_CONTEXT_SWITCHES                                    |
+--------------------------------------------------------------------------------
+| perf::CS                                                                     |
+|            PERF_COUNT_SW_CONTEXT_SWITCHES                                    |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_CPU_MIGRATIONS                                           |
+|            PERF_COUNT_SW_CPU_MIGRATIONS                                      |
+--------------------------------------------------------------------------------
+| perf::CPU-MIGRATIONS                                                         |
+|            PERF_COUNT_SW_CPU_MIGRATIONS                                      |
+--------------------------------------------------------------------------------
+| perf::MIGRATIONS                                                             |
+|            PERF_COUNT_SW_CPU_MIGRATIONS                                      |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_PAGE_FAULTS_MIN                                          |
+|            PERF_COUNT_SW_PAGE_FAULTS_MIN                                     |
+--------------------------------------------------------------------------------
+| perf::MINOR-FAULTS                                                           |
+|            PERF_COUNT_SW_PAGE_FAULTS_MIN                                     |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_PAGE_FAULTS_MAJ                                          |
+|            PERF_COUNT_SW_PAGE_FAULTS_MAJ                                     |
+--------------------------------------------------------------------------------
+| perf::MAJOR-FAULTS                                                           |
+|            PERF_COUNT_SW_PAGE_FAULTS_MAJ                                     |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_L1D                                                |
+|            L1 data cache                                                     |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-LOADS                                                        |
+|            L1 cache load accesses                                            |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-LOAD-MISSES                                                  |
+|            L1 cache load misses                                              |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-STORES                                                       |
+|            L1 cache store accesses                                           |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-STORE-MISSES                                                 |
+|            L1 cache store misses                                             |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-PREFETCHES                                                   |
+|            L1 cache prefetch accesses                                        |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-PREFETCH-MISSES                                              |
+|            L1 cache prefetch misses                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_L1I                                                |
+|            L1 instruction cache                                              |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-LOADS                                                        |
+|            L1I cache load accesses                                           |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-LOAD-MISSES                                                  |
+|            L1I cache load misses                                             |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-PREFETCHES                                               <NA>|
+|            L1I cache prefetch accesses                                       |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-PREFETCH-MISSES                                          <NA>|
+|            L1I cache prefetch misses                                         |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_LL                                                 |
+|            Last level cache                                                  |
+--------------------------------------------------------------------------------
+| perf::LLC-LOADS                                                              |
+|            Last level cache load accesses                                    |
+--------------------------------------------------------------------------------
+| perf::LLC-LOAD-MISSES                                                        |
+|            Last level cache load misses                                      |
+--------------------------------------------------------------------------------
+| perf::LLC-STORES                                                             |
+|            Last level cache store accesses                                   |
+--------------------------------------------------------------------------------
+| perf::LLC-STORE-MISSES                                                       |
+|            Last level cache store misses                                     |
+--------------------------------------------------------------------------------
+| perf::LLC-PREFETCHES                                                         |
+|            Last level cache prefetch accesses                                |
+--------------------------------------------------------------------------------
+| perf::LLC-PREFETCH-MISSES                                                    |
+|            Last level cache prefetch misses                                  |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_DTLB                                               |
+|            Data Translation Lookaside Buffer                                 |
+--------------------------------------------------------------------------------
+| perf::DTLB-LOADS                                                             |
+|            Data TLB load accesses                                            |
+--------------------------------------------------------------------------------
+| perf::DTLB-LOAD-MISSES                                                       |
+|            Data TLB load misses                                              |
+--------------------------------------------------------------------------------
+| perf::DTLB-STORES                                                            |
+|            Data TLB store accesses                                           |
+--------------------------------------------------------------------------------
+| perf::DTLB-STORE-MISSES                                                      |
+|            Data TLB store misses                                             |
+--------------------------------------------------------------------------------
+| perf::DTLB-PREFETCHES                                                    <NA>|
+|            Data TLB prefetch accesses                                        |
+--------------------------------------------------------------------------------
+| perf::DTLB-PREFETCH-MISSES                                               <NA>|
+|            Data TLB prefetch misses                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_ITLB                                               |
+|            Instruction Translation Lookaside Buffer                          |
+--------------------------------------------------------------------------------
+| perf::ITLB-LOADS                                                             |
+|            Instruction TLB load accesses                                     |
+--------------------------------------------------------------------------------
+| perf::ITLB-LOAD-MISSES                                                       |
+|            Instruction TLB load misses                                       |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_BPU                                                |
+|            Branch Prediction Unit                                            |
+--------------------------------------------------------------------------------
+| perf::BRANCH-LOADS                                                           |
+|            Branch  load accesses                                             |
+--------------------------------------------------------------------------------
+| perf::BRANCH-LOAD-MISSES                                                     |
+|            Branch  load misses                                               |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_NODE                                               |
+|            Node memory access                                                |
+--------------------------------------------------------------------------------
+| perf::NODE-LOADS                                                             |
+|            Node  load accesses                                               |
+--------------------------------------------------------------------------------
+| perf::NODE-LOAD-MISSES                                                       |
+|            Node  load misses                                                 |
+--------------------------------------------------------------------------------
+| perf::NODE-STORES                                                            |
+|            Node  store accesses                                              |
+--------------------------------------------------------------------------------
+| perf::NODE-STORE-MISSES                                                      |
+|            Node  store misses                                                |
+--------------------------------------------------------------------------------
+| perf::NODE-PREFETCHES                                                        |
+|            Node  prefetch accesses                                           |
+--------------------------------------------------------------------------------
+| perf::NODE-PREFETCH-MISSES                                                   |
+|            Node  prefetch misses                                             |
+--------------------------------------------------------------------------------
+| perf_raw::r0000                                                              |
+|            perf_events raw event syntax: r[0-9a-fA-F]+                       |
+===============================================================================
+ Native Events in Component: perf_event_uncore
+===============================================================================
+| nhm_unc::UNC_CLK_UNHALTED                                                    |
+|            Uncore clockticks.                                                |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_DRAM_OPEN                                                       |
+|            DRAM open commands issued for read or write                       |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_DRAM_PAGE_CLOSE                                                 |
+|            DRAM page close due to idle timer expiration                      |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_DRAM_PAGE_MISS                                                  |
+|            DRAM Channel 0 page miss                                          |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_DRAM_PRE_ALL                                                    |
+|            DRAM Channel 0 precharge all commands                             |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_DRAM_READ_CAS                                                   |
+|            DRAM Channel 0 read CAS commands                                  |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_DRAM_REFRESH                                                    |
+|            DRAM Channel 0 refresh commands                                   |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_DRAM_WRITE_CAS                                                  |
+|            DRAM Channel 0 write CAS commands                                 |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_GQ_ALLOC                                                        |
+|            GQ read tracker requests                                          |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_GQ_CYCLES_FULL                                                  |
+|            Cycles GQ read tracker is full.                                   |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_GQ_CYCLES_NOT_EMPTY                                             |
+|            Cycles GQ read tracker is busy                                    |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_GQ_DATA_FROM                                                    |
+|            Cycles GQ data is imported                                        |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_GQ_DATA_TO                                                      |
+|            Cycles GQ data is exported                                        |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_LLC_HITS                                                        |
+|            Number of LLC read hits                                           |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_LLC_LINES_IN                                                    |
+|            LLC lines allocated in M state                                    |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_LLC_LINES_OUT                                                   |
+|            LLC lines victimized in M state                                   |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_LLC_MISS                                                        |
+|            Number of LLC read misses                                         |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QHL_ADDRESS_CONFLICTS                                           |
+|            QHL 2 way address conflicts                                       |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QHL_CONFLICT_CYCLES                                             |
+|            QHL IOH Tracker conflict cycles                                   |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QHL_CYCLES_FULL                                                 |
+|            Cycles QHL  Remote Tracker is full                                |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QHL_CYCLES_NOT_EMPTY                                            |
+|            Cycles QHL Tracker is not empty                                   |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QHL_FRC_ACK_CNFLTS                                              |
+|            QHL FrcAckCnflts sent to local home                               |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QHL_OCCUPANCY                                                   |
+|            Cycles QHL Tracker Allocate to Deallocate Read Occupancy          |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QHL_REQUESTS                                                    |
+|            Quickpath Home Logic local read requests                          |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QHL_TO_QMC_BYPASS                                               |
+|            Number of requests to QMC that bypass QHL                         |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QMC_BUSY                                                        |
+|            Cycles QMC busy with a read request                               |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QMC_CANCEL                                                      |
+|            QMC cancels                                                       |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QMC_CRITICAL_PRIORITY_READS                                     |
+|            QMC critical priority read requests                               |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QMC_HIGH_PRIORITY_READS                                         |
+|            QMC high priority read requests                                   |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QMC_ISOC_FULL                                                   |
+|            Cycles DRAM full with isochronous (ISOC) read requests            |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_IMC_ISOC_OCCUPANCY                                              |
+|            IMC isochronous (ISOC) Read Occupancy                             |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QMC_NORMAL_FULL                                                 |
+|            Cycles DRAM full with normal read requests                        |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QMC_NORMAL_READS                                                |
+|            QMC normal read requests                                          |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QMC_OCCUPANCY                                                   |
+|            QMC Occupancy                                                     |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QMC_PRIORITY_UPDATES                                            |
+|            QMC priority updates                                              |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QMC_WRITES                                                      |
+|            QMC cache line writes                                             |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QPI_RX_NO_PPT_CREDIT                                            |
+|            Link 0 snoop stalls due to no PPT entry                           |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QPI_TX_HEADER                                                   |
+|            Cycles link 0 outbound header busy                                |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QPI_TX_STALLED_MULTI_FLIT                                       |
+|            Cycles QPI outbound stalls                                        |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_QPI_TX_STALLED_SINGLE_FLIT                                      |
+|            Cycles QPI outbound link stalls                                   |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_SNP_RESP_TO_LOCAL_HOME                                          |
+|            Local home snoop response                                         |
+--------------------------------------------------------------------------------
+| nhm_unc::UNC_SNP_RESP_TO_REMOTE_HOME                                         |
+|            Remote home snoop response                                        |
+--------------------------------------------------------------------------------
+
+Total events reported: 221
+native_avail.c                       PASSED

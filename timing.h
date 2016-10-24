@@ -86,8 +86,8 @@ void hookomp_timing_stop(uint64_t *_stop){
 }
 
 void hookomp_timing_print(uint64_t tstart, uint64_t tstop){
-	// printf ("%llu", tstop - tstart);
-  printf("%"PRIu64, tstop - tstart);
+   printf ("%llu", tstop - tstart);
+  // printf("%"PRIu64, tstop - tstart);
 }
 
 void hookomp_timing_print_without_dev() {
@@ -96,7 +96,7 @@ void hookomp_timing_print_without_dev() {
 	uint64_t dt_time = (data_transfer_h2d_stop - data_transfer_h2d_start) + (data_transfer_d2h_stop - data_transfer_d2h_start);
 
 	// printf ("%llu", (total_time - dev_time - dt_time));
-  printf("%"PRIu64, (total_time > 0) ? (total_time - dev_time - dt_time) : total_time);
+  printf("%llu", (total_time > 0) ? (total_time - dev_time - dt_time) : total_time);
 }
 
 void hookomp_print_time_results(){
