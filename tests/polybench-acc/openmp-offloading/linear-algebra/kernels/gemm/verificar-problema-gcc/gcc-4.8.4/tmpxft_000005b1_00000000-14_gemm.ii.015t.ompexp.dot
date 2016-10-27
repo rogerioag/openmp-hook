@@ -1,0 +1,2376 @@
+digraph "tmpxft_000005b1_00000000-14_gemm.ii.015t.ompexp" {
+overlap=false;
+subgraph "void __nv_save_fatbinhandle_for_managed_rt(void**)" {
+	color="black";
+	label="void __nv_save_fatbinhandle_for_managed_rt(void**)";
+	fn_0_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_0_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|__nv_fatbinhandle_for_managed_rt\ =\ in;\l\
+|return;\l\
+}"];
+
+	fn_0_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_0_basic_block_0:s -> fn_0_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_0_basic_block_2:s -> fn_0_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_0_basic_block_0:s -> fn_0_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void ____nv_dummy_param_ref(void*)" {
+	color="black";
+	label="void ____nv_dummy_param_ref(void*)";
+	fn_3228_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3228_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|__ref\ =\ param;\l\
+|return;\l\
+}"];
+
+	fn_3228_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3228_basic_block_0:s -> fn_3228_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3228_basic_block_2:s -> fn_3228_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3228_basic_block_0:s -> fn_3228_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void print_array(int, int, double (*)[4096])" {
+	color="black";
+	label="void print_array(int, int, double (*)[4096])";
+	fn_3211_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3211_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 9\>;\l\
+}"];
+
+	fn_3211_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|if\ (i\ \<\ ni)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 10\>;\l\
+}"];
+
+	fn_3211_basic_block_10 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 10\>:\l\
+|stderr.67\ =\ stderr;\l\
+|__builtin_fputc\ (10,\ stderr.67);\l\
+|return;\l\
+}"];
+
+	fn_3211_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|j\ =\ 0;\l\
+goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_3211_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|if\ (j\ \<\ nj)\l\
+\ \ goto\ \<bb\ 4\>;\l\
+else\l\
+\ \ goto\ \<bb\ 8\>;\l\
+}"];
+
+	fn_3211_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_3211_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.67196\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67197\ =\ D.67196\ *\ 32768;\l\
+|D.67198\ =\ C\ +\ D.67197;\l\
+|D.67199\ =\ *D.67198[j];\l\
+|stderr.67\ =\ stderr;\l\
+|fprintf\ (stderr.67,\ \"%0.2lf\ \",\ D.67199);\l\
+|D.67201\ =\ i\ *\ ni;\l\
+|D.67202\ =\ D.67201\ +\ j;\l\
+|D.67203\ =\ D.67202\ %\ 20;\l\
+|if\ (D.67203\ ==\ 0)\l\
+\ \ goto\ \<bb\ 5\>;\l\
+else\l\
+\ \ goto\ \<bb\ 6\>;\l\
+}"];
+
+	fn_3211_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|stderr.67\ =\ stderr;\l\
+|__builtin_fputc\ (10,\ stderr.67);\l\
+}"];
+
+	fn_3211_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|j\ =\ j\ +\ 1;\l\
+}"];
+
+	fn_3211_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3211_basic_block_0:s -> fn_3211_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3211_basic_block_2:s -> fn_3211_basic_block_9:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3211_basic_block_3:s -> fn_3211_basic_block_7:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3211_basic_block_4:s -> fn_3211_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3211_basic_block_4:s -> fn_3211_basic_block_6:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3211_basic_block_5:s -> fn_3211_basic_block_6:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3211_basic_block_6:s -> fn_3211_basic_block_7:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3211_basic_block_7:s -> fn_3211_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3211_basic_block_7:s -> fn_3211_basic_block_8:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3211_basic_block_8:s -> fn_3211_basic_block_9:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3211_basic_block_9:s -> fn_3211_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3211_basic_block_9:s -> fn_3211_basic_block_10:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3211_basic_block_10:s -> fn_3211_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3211_basic_block_0:s -> fn_3211_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "double rtclock()" {
+	color="black";
+	label="double rtclock()";
+	fn_3219_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3219_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|stat\ =\ gettimeofday\ (&Tp,\ 0B);\l\
+|if\ (stat\ !=\ 0)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 4\>;\l\
+}"];
+
+	fn_3219_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|printf\ (\"Error\ return\ from\ gettimeofday:\ %d\",\ stat);\l\
+}"];
+
+	fn_3219_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.67222\ =\ Tp.tv_sec;\l\
+|D.67223\ =\ (double)\ D.67222;\l\
+|D.67224\ =\ Tp.tv_usec;\l\
+|D.67225\ =\ (double)\ D.67224;\l\
+|D.67226\ =\ D.67225\ *\ 9.99999999999999954748111825886258685613938723690807819366e-7;\l\
+|D.67221\ =\ D.67223\ +\ D.67226;\l\
+|Tp\ =\ \{CLOBBER\};\l\
+|return\ D.67221;\l\
+}"];
+
+	fn_3219_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|\<L5\>:\l\
+|Tp\ =\ \{CLOBBER\};\l\
+|resx\ 1\l\
+}"];
+
+	fn_3219_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3219_basic_block_0:s -> fn_3219_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3219_basic_block_2:s -> fn_3219_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3219_basic_block_2:s -> fn_3219_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3219_basic_block_3:s -> fn_3219_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3219_basic_block_3:s -> fn_3219_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3219_basic_block_4:s -> fn_3219_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3219_basic_block_0:s -> fn_3219_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void* xmalloc(size_t)" {
+	color="black";
+	label="void* xmalloc(size_t)";
+	fn_3225_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3225_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|newA\ =\ 0B;\l\
+|ret\ =\ posix_memalign\ (&newA,\ 32,\ num);\l\
+|newA.72\ =\ newA;\l\
+|if\ (newA.72\ ==\ 0B)\l\
+\ \ goto\ \<bb\ 4\>;\l\
+else\l\
+\ \ goto\ \<bb\ 3\>;\l\
+}"];
+
+	fn_3225_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|if\ (ret\ !=\ 0)\l\
+\ \ goto\ \<bb\ 4\>;\l\
+else\l\
+\ \ goto\ \<bb\ 6\>;\l\
+}"];
+
+	fn_3225_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|D.67244\ =\ newA;\l\
+|newA\ =\ \{CLOBBER\};\l\
+|return\ D.67244;\l\
+}"];
+
+	fn_3225_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|stderr.73\ =\ stderr;\l\
+|__builtin_fwrite\ (\"[PolyBench]\ posix_memalign:\ cannot\ allocate\ memory\",\ 1,\ 50,\ stderr.73);\l\
+}"];
+
+	fn_3225_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|exit\ (1);\l\
+}"];
+
+	fn_3225_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|\<L5\>:\l\
+|newA\ =\ \{CLOBBER\};\l\
+|resx\ 1\l\
+}"];
+
+	fn_3225_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3225_basic_block_0:s -> fn_3225_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3225_basic_block_2:s -> fn_3225_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3225_basic_block_2:s -> fn_3225_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3225_basic_block_3:s -> fn_3225_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3225_basic_block_3:s -> fn_3225_basic_block_6:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3225_basic_block_4:s -> fn_3225_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3225_basic_block_4:s -> fn_3225_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3225_basic_block_6:s -> fn_3225_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3225_basic_block_0:s -> fn_3225_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError]" {
+	color="black";
+	label="cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError]";
+	fn_3255_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3255_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|D.67291\ =\ cudaLaunch\ (func);\l\
+|D.67289\ =\ D.67291;\l\
+|return\ D.67289;\l\
+}"];
+
+	fn_3255_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3255_basic_block_0:s -> fn_3255_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3255_basic_block_2:s -> fn_3255_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3255_basic_block_0:s -> fn_3255_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void __cudaUnregisterBinaryUtil()" {
+	color="black";
+	label="void __cudaUnregisterBinaryUtil()";
+	fn_3229_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3229_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|____nv_dummy_param_ref\ (&__cudaFatCubinHandle);\l\
+|__cudaFatCubinHandle.84\ =\ __cudaFatCubinHandle;\l\
+|__cudaUnregisterFatBinary\ (__cudaFatCubinHandle.84);\l\
+|return;\l\
+}"];
+
+	fn_3229_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3229_basic_block_0:s -> fn_3229_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3229_basic_block_2:s -> fn_3229_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3229_basic_block_0:s -> fn_3229_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void __nv_cudaEntityRegisterCallback(void**)" {
+	color="black";
+	label="void __nv_cudaEntityRegisterCallback(void**)";
+	fn_3253_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3253_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|__ref\ =\ __T26;\l\
+|__nv_save_fatbinhandle_for_managed_rt\ (__T26);\l\
+|__cudaRegisterFunction\ (__T26,\ gemm_cuda_kernel,\ \"_Z16gemm_cuda_kerneliiiddPdS_S_\",\ \"_Z16gemm_cuda_kerneliiiddPdS_S_\",\ -1,\ 0B,\ 0B,\ 0B,\ 0B,\ 0B);\l\
+|return;\l\
+}"];
+
+	fn_3253_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3253_basic_block_0:s -> fn_3253_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3253_basic_block_2:s -> fn_3253_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3253_basic_block_0:s -> fn_3253_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "dim3::dim3(unsigned int, unsigned int, unsigned int)" {
+	color="black";
+	label="dim3::dim3(unsigned int, unsigned int, unsigned int)";
+	fn_3_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|this-\>x\ =\ vx;\l\
+|this-\>y\ =\ vy;\l\
+|this-\>z\ =\ vz;\l\
+|return;\l\
+}"];
+
+	fn_3_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3_basic_block_0:s -> fn_3_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3_basic_block_2:s -> fn_3_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3_basic_block_0:s -> fn_3_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "float std::ceil(float)" {
+	color="black";
+	label="float std::ceil(float)";
+	fn_139_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_139_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|D.67119\ =\ __builtin_ceilf\ (__x);\l\
+|return\ D.67119;\l\
+}"];
+
+	fn_139_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_139_basic_block_0:s -> fn_139_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_139_basic_block_2:s -> fn_139_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_139_basic_block_0:s -> fn_139_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "float absVal(float)" {
+	color="black";
+	label="float absVal(float)";
+	fn_3194_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3194_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|if\ (a\ \<\ 0.0)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 4\>;\l\
+}"];
+
+	fn_3194_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.66867\ =\ a;\l\
+}"];
+
+	fn_3194_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|D.66867\ =\ -a;\l\
+goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_3194_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|return\ D.66867;\l\
+}"];
+
+	fn_3194_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3194_basic_block_0:s -> fn_3194_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3194_basic_block_2:s -> fn_3194_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3194_basic_block_2:s -> fn_3194_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3194_basic_block_3:s -> fn_3194_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3194_basic_block_4:s -> fn_3194_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3194_basic_block_5:s -> fn_3194_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3194_basic_block_0:s -> fn_3194_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "float percentDiff(double, double)" {
+	color="black";
+	label="float percentDiff(double, double)";
+	fn_3195_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3195_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|D.66873\ =\ (float)\ val1;\l\
+|D.66874\ =\ absVal\ (D.66873);\l\
+|D.66875\ =\ (double)\ D.66874;\l\
+|if\ (D.66875\ \<\ 1.00000000000000002081668171172168513294309377670288085938e-2)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_3195_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|D.66877\ =\ (float)\ val2;\l\
+|D.66878\ =\ absVal\ (D.66877);\l\
+|D.66879\ =\ (double)\ D.66878;\l\
+|if\ (D.66879\ \<\ 1.00000000000000002081668171172168513294309377670288085938e-2)\l\
+\ \ goto\ \<bb\ 4\>;\l\
+else\l\
+\ \ goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_3195_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|iftmp.1\ =\ 0;\l\
+}"];
+
+	fn_3195_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|iftmp.1\ =\ 1;\l\
+goto\ \<bb\ 6\>;\l\
+}"];
+
+	fn_3195_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|retval.0\ =\ iftmp.1;\l\
+|if\ (retval.0\ !=\ 0)\l\
+\ \ goto\ \<bb\ 7\>;\l\
+else\l\
+\ \ goto\ \<bb\ 8\>;\l\
+}"];
+
+	fn_3195_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|D.66884\ =\ val1\ -\ val2;\l\
+|D.66885\ =\ (float)\ D.66884;\l\
+|D.66886\ =\ absVal\ (D.66885);\l\
+|D.66887\ =\ val1\ +\ 9.99999993922529029077850282192230224609375e-9;\l\
+|D.66888\ =\ (float)\ D.66887;\l\
+|D.66889\ =\ absVal\ (D.66888);\l\
+|D.66890\ =\ D.66886\ /\ D.66889;\l\
+|D.66891\ =\ absVal\ (D.66890);\l\
+|D.66883\ =\ D.66891\ *\ 1.0e+2;\l\
+}"];
+
+	fn_3195_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|D.66883\ =\ 0.0;\l\
+goto\ \<bb\ 9\>;\l\
+}"];
+
+	fn_3195_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|return\ D.66883;\l\
+}"];
+
+	fn_3195_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3195_basic_block_0:s -> fn_3195_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3195_basic_block_2:s -> fn_3195_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3195_basic_block_2:s -> fn_3195_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3195_basic_block_3:s -> fn_3195_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3195_basic_block_3:s -> fn_3195_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3195_basic_block_4:s -> fn_3195_basic_block_6:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3195_basic_block_5:s -> fn_3195_basic_block_6:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3195_basic_block_6:s -> fn_3195_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3195_basic_block_6:s -> fn_3195_basic_block_8:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3195_basic_block_7:s -> fn_3195_basic_block_9:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3195_basic_block_8:s -> fn_3195_basic_block_9:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3195_basic_block_9:s -> fn_3195_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3195_basic_block_0:s -> fn_3195_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "uint64_t get_time()" {
+	color="black";
+	label="uint64_t get_time()";
+	fn_3200_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3200_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|clock_gettime\ (1,\ &spec);\l\
+|D.66894\ =\ spec.tv_sec;\l\
+|D.66895\ =\ (long\ unsigned\ int)\ D.66894;\l\
+|D.66896\ =\ D.66895\ *\ 1000000000;\l\
+|D.66897\ =\ spec.tv_nsec;\l\
+|D.66898\ =\ (long\ unsigned\ int)\ D.66897;\l\
+|D.66893\ =\ D.66896\ +\ D.66898;\l\
+|spec\ =\ \{CLOBBER\};\l\
+|return\ D.66893;\l\
+}"];
+
+	fn_3200_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3200_basic_block_0:s -> fn_3200_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3200_basic_block_2:s -> fn_3200_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3200_basic_block_0:s -> fn_3200_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void hookomp_timing_start(uint64_t*)" {
+	color="black";
+	label="void hookomp_timing_start(uint64_t*)";
+	fn_3201_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3201_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|D.66901\ =\ get_time\ ();\l\
+|*_start\ =\ D.66901;\l\
+|return;\l\
+}"];
+
+	fn_3201_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3201_basic_block_0:s -> fn_3201_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3201_basic_block_2:s -> fn_3201_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3201_basic_block_0:s -> fn_3201_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void hookomp_timing_stop(uint64_t*)" {
+	color="black";
+	label="void hookomp_timing_stop(uint64_t*)";
+	fn_3202_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3202_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|D.66902\ =\ get_time\ ();\l\
+|*_stop\ =\ D.66902;\l\
+|return;\l\
+}"];
+
+	fn_3202_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3202_basic_block_0:s -> fn_3202_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3202_basic_block_2:s -> fn_3202_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3202_basic_block_0:s -> fn_3202_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void hookomp_timing_print(uint64_t, uint64_t)" {
+	color="black";
+	label="void hookomp_timing_print(uint64_t, uint64_t)";
+	fn_3203_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3203_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|D.66903\ =\ tstop\ -\ tstart;\l\
+|printf\ (\"%llu\",\ D.66903);\l\
+|return;\l\
+}"];
+
+	fn_3203_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3203_basic_block_0:s -> fn_3203_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3203_basic_block_2:s -> fn_3203_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3203_basic_block_0:s -> fn_3203_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void hookomp_timing_print_without_dev()" {
+	color="black";
+	label="void hookomp_timing_print_without_dev()";
+	fn_3204_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3204_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|omp_stop.2\ =\ omp_stop;\l\
+|omp_start.3\ =\ omp_start;\l\
+|total_time\ =\ omp_stop.2\ -\ omp_start.3;\l\
+|dev_kernel1_stop.4\ =\ dev_kernel1_stop;\l\
+|dev_kernel1_start.5\ =\ dev_kernel1_start;\l\
+|D.66908\ =\ dev_kernel1_stop.4\ -\ dev_kernel1_start.5;\l\
+|dev_kernel2_stop.6\ =\ dev_kernel2_stop;\l\
+|dev_kernel2_start.7\ =\ dev_kernel2_start;\l\
+|D.66911\ =\ dev_kernel2_stop.6\ -\ dev_kernel2_start.7;\l\
+|D.66912\ =\ D.66908\ +\ D.66911;\l\
+|dev_kernel3_stop.8\ =\ dev_kernel3_stop;\l\
+|dev_kernel3_start.9\ =\ dev_kernel3_start;\l\
+|D.66915\ =\ dev_kernel3_stop.8\ -\ dev_kernel3_start.9;\l\
+|dev_time\ =\ D.66912\ +\ D.66915;\l\
+|data_transfer_h2d_stop.10\ =\ data_transfer_h2d_stop;\l\
+|data_transfer_h2d_start.11\ =\ data_transfer_h2d_start;\l\
+|D.66918\ =\ data_transfer_h2d_stop.10\ -\ data_transfer_h2d_start.11;\l\
+|data_transfer_d2h_stop.12\ =\ data_transfer_d2h_stop;\l\
+|data_transfer_d2h_start.13\ =\ data_transfer_d2h_start;\l\
+|D.66921\ =\ data_transfer_d2h_stop.12\ -\ data_transfer_d2h_start.13;\l\
+|dt_time\ =\ D.66918\ +\ D.66921;\l\
+|if\ (total_time\ !=\ 0)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 4\>;\l\
+}"];
+
+	fn_3204_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|iftmp.14\ =\ total_time;\l\
+}"];
+
+	fn_3204_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|D.66925\ =\ total_time\ -\ dev_time;\l\
+|iftmp.14\ =\ D.66925\ -\ dt_time;\l\
+goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_3204_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|printf\ (\"%llu\",\ iftmp.14);\l\
+|return;\l\
+}"];
+
+	fn_3204_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3204_basic_block_0:s -> fn_3204_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3204_basic_block_2:s -> fn_3204_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3204_basic_block_2:s -> fn_3204_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3204_basic_block_3:s -> fn_3204_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3204_basic_block_4:s -> fn_3204_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3204_basic_block_5:s -> fn_3204_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3204_basic_block_0:s -> fn_3204_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void hookomp_print_time_results()" {
+	color="black";
+	label="void hookomp_print_time_results()";
+	fn_3205_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3205_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\"ORIG\ =\ \",\ 1,\ 7,\ stdout.15);\l\
+|seq_stop.16\ =\ seq_stop;\l\
+|seq_start.17\ =\ seq_start;\l\
+|hookomp_timing_print\ (seq_start.17,\ seq_stop.16);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\",\ \",\ 1,\ 2,\ stdout.15);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\"OMP_OFF\ =\ \",\ 1,\ 10,\ stdout.15);\l\
+|omp_stop.18\ =\ omp_stop;\l\
+|omp_start.19\ =\ omp_start;\l\
+|hookomp_timing_print\ (omp_start.19,\ omp_stop.18);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\",\ \",\ 1,\ 2,\ stdout.15);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\"OMP\ =\ \",\ 1,\ 6,\ stdout.15);\l\
+|hookomp_timing_print_without_dev\ ();\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\",\ \",\ 1,\ 2,\ stdout.15);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\"CUDA_KERNEL1\ =\ \",\ 1,\ 15,\ stdout.15);\l\
+|dev_kernel1_stop.20\ =\ dev_kernel1_stop;\l\
+|dev_kernel1_start.21\ =\ dev_kernel1_start;\l\
+|hookomp_timing_print\ (dev_kernel1_start.21,\ dev_kernel1_stop.20);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\",\ \",\ 1,\ 2,\ stdout.15);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\"CUDA_KERNEL2\ =\ \",\ 1,\ 15,\ stdout.15);\l\
+|dev_kernel2_stop.22\ =\ dev_kernel2_stop;\l\
+|dev_kernel2_start.23\ =\ dev_kernel2_start;\l\
+|hookomp_timing_print\ (dev_kernel2_start.23,\ dev_kernel2_stop.22);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\",\ \",\ 1,\ 2,\ stdout.15);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\"CUDA_KERNEL3\ =\ \",\ 1,\ 15,\ stdout.15);\l\
+|dev_kernel3_stop.24\ =\ dev_kernel3_stop;\l\
+|dev_kernel3_start.25\ =\ dev_kernel3_start;\l\
+|hookomp_timing_print\ (dev_kernel3_start.25,\ dev_kernel3_stop.24);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\",\ \",\ 1,\ 2,\ stdout.15);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\"DT_H2D\ =\ \",\ 1,\ 9,\ stdout.15);\l\
+|data_transfer_h2d_stop.26\ =\ data_transfer_h2d_stop;\l\
+|data_transfer_h2d_start.27\ =\ data_transfer_h2d_start;\l\
+|hookomp_timing_print\ (data_transfer_h2d_start.27,\ data_transfer_h2d_stop.26);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\",\ \",\ 1,\ 2,\ stdout.15);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fwrite\ (\"DT_D2H\ =\ \",\ 1,\ 9,\ stdout.15);\l\
+|data_transfer_d2h_stop.28\ =\ data_transfer_d2h_stop;\l\
+|data_transfer_d2h_start.29\ =\ data_transfer_d2h_start;\l\
+|hookomp_timing_print\ (data_transfer_d2h_start.29,\ data_transfer_d2h_stop.28);\l\
+|reach_offload_decision_point.31\ =\ reach_offload_decision_point;\l\
+|D.66944\ =\ ~reach_offload_decision_point.31;\l\
+|if\ (D.66944\ !=\ 0)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 4\>;\l\
+}"];
+
+	fn_3205_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|iftmp.30\ =\ 0;\l\
+}"];
+
+	fn_3205_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|iftmp.30\ =\ 1;\l\
+goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_3205_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|stdout.15\ =\ stdout;\l\
+|fprintf\ (stdout.15,\ \",\ WORK_FINISHED_BEFORE_OFFLOAD_DECISION\ =\ %d\",\ iftmp.30);\l\
+|reach_offload_decision_point.31\ =\ reach_offload_decision_point;\l\
+|D.66948\ =\ (int)\ reach_offload_decision_point.31;\l\
+|stdout.15\ =\ stdout;\l\
+|fprintf\ (stdout.15,\ \",\ REACH_OFFLOAD_DECISION_POINT\ =\ %d\",\ D.66948);\l\
+|decided_by_offloading.32\ =\ decided_by_offloading;\l\
+|D.66950\ =\ (int)\ decided_by_offloading.32;\l\
+|stdout.15\ =\ stdout;\l\
+|fprintf\ (stdout.15,\ \",\ DECIDED_BY_OFFLOADING\ =\ %d\",\ D.66950);\l\
+|made_the_offloading.33\ =\ made_the_offloading;\l\
+|D.66952\ =\ (int)\ made_the_offloading.33;\l\
+|stdout.15\ =\ stdout;\l\
+|fprintf\ (stdout.15,\ \",\ MADE_THE_OFFLOADING\ =\ %d\",\ D.66952);\l\
+|stdout.15\ =\ stdout;\l\
+|__builtin_fputc\ (10,\ stdout.15);\l\
+|return;\l\
+}"];
+
+	fn_3205_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3205_basic_block_0:s -> fn_3205_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3205_basic_block_2:s -> fn_3205_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3205_basic_block_2:s -> fn_3205_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3205_basic_block_3:s -> fn_3205_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3205_basic_block_4:s -> fn_3205_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3205_basic_block_5:s -> fn_3205_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3205_basic_block_0:s -> fn_3205_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "bool create_target_functions_table(Func****, int, int)" {
+	color="black";
+	label="bool create_target_functions_table(Func****, int, int)";
+	fn_3206_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3206_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|result\ =\ 1;\l\
+|stderr.34\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Allocating\ the\ rows.\n\",\ 1,\ 21,\ stderr.34);\l\
+|D.66954\ =\ (long\ unsigned\ int)\ nrows;\l\
+|D.66955\ =\ D.66954\ *\ 8;\l\
+|table\ =\ malloc\ (D.66955);\l\
+|if\ (table\ !=\ 0B)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 11\>;\l\
+}"];
+
+	fn_3206_basic_block_11 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 11\>:\l\
+|stderr.34\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Error\ in\ table\ of\ target\ functions\ allocation\ (rows).\n\",\ 1,\ 54,\ stderr.34);\l\
+|result\ =\ 0;\l\
+}"];
+
+	fn_3206_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|stderr.34\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Allocating\ the\ columns.\n\",\ 1,\ 24,\ stderr.34);\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 10\>;\l\
+}"];
+
+	fn_3206_basic_block_10 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 10\>:\l\
+|if\ (i\ \<\ nrows)\l\
+\ \ goto\ \<bb\ 4\>;\l\
+else\l\
+\ \ goto\ \<bb\ 12\>;\l\
+}"];
+
+	fn_3206_basic_block_12 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 12\>:\l\
+|stderr.34\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Allocating\ the\ columns\ is\ OK.\n\",\ 1,\ 30,\ stderr.34);\l\
+|*table_\ =\ table;\l\
+|D.66974\ =\ result;\l\
+|return\ D.66974;\l\
+}"];
+
+	fn_3206_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.66958\ =\ (long\ unsigned\ int)\ i;\l\
+|D.66959\ =\ D.66958\ *\ 8;\l\
+|D.66960\ =\ table\ +\ D.66959;\l\
+|D.66961\ =\ (long\ unsigned\ int)\ ncolumns;\l\
+|D.66962\ =\ D.66961\ *\ 8;\l\
+|D.66963\ =\ malloc\ (D.66962);\l\
+|*D.66960\ =\ D.66963;\l\
+|D.66958\ =\ (long\ unsigned\ int)\ i;\l\
+|D.66959\ =\ D.66958\ *\ 8;\l\
+|D.66960\ =\ table\ +\ D.66959;\l\
+|D.66964\ =\ *D.66960;\l\
+|if\ (D.66964\ !=\ 0B)\l\
+\ \ goto\ \<bb\ 5\>;\l\
+else\l\
+\ \ goto\ \<bb\ 8\>;\l\
+}"];
+
+	fn_3206_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|stderr.34\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Error\ in\ table\ of\ target\ functions\ allocation\ (columns).\n\",\ 1,\ 57,\ stderr.34);\l\
+|result\ =\ 0;\l\
+}"];
+
+	fn_3206_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|j\ =\ 0;\l\
+goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_3206_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|if\ (j\ \<\ ncolumns)\l\
+\ \ goto\ \<bb\ 6\>;\l\
+else\l\
+\ \ goto\ \<bb\ 9\>;\l\
+}"];
+
+	fn_3206_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_3206_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|D.66958\ =\ (long\ unsigned\ int)\ i;\l\
+|D.66959\ =\ D.66958\ *\ 8;\l\
+|D.66960\ =\ table\ +\ D.66959;\l\
+|D.66964\ =\ *D.66960;\l\
+|D.66967\ =\ (long\ unsigned\ int)\ j;\l\
+|D.66968\ =\ D.66967\ *\ 8;\l\
+|D.66969\ =\ D.66964\ +\ D.66968;\l\
+|D.66970\ =\ malloc\ (48);\l\
+|*D.66969\ =\ D.66970;\l\
+|D.66958\ =\ (long\ unsigned\ int)\ i;\l\
+|D.66959\ =\ D.66958\ *\ 8;\l\
+|D.66960\ =\ table\ +\ D.66959;\l\
+|D.66964\ =\ *D.66960;\l\
+|D.66967\ =\ (long\ unsigned\ int)\ j;\l\
+|D.66968\ =\ D.66967\ *\ 8;\l\
+|D.66969\ =\ D.66964\ +\ D.66968;\l\
+|D.66971\ =\ *D.66969;\l\
+|D.66971-\>f\ =\ 0B;\l\
+|j\ =\ j\ +\ 1;\l\
+}"];
+
+	fn_3206_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3206_basic_block_0:s -> fn_3206_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3206_basic_block_2:s -> fn_3206_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3206_basic_block_2:s -> fn_3206_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3206_basic_block_3:s -> fn_3206_basic_block_10:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3206_basic_block_4:s -> fn_3206_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3206_basic_block_4:s -> fn_3206_basic_block_8:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3206_basic_block_5:s -> fn_3206_basic_block_7:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3206_basic_block_6:s -> fn_3206_basic_block_7:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3206_basic_block_7:s -> fn_3206_basic_block_6:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3206_basic_block_7:s -> fn_3206_basic_block_9:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3206_basic_block_8:s -> fn_3206_basic_block_9:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3206_basic_block_9:s -> fn_3206_basic_block_10:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3206_basic_block_10:s -> fn_3206_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3206_basic_block_10:s -> fn_3206_basic_block_12:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3206_basic_block_11:s -> fn_3206_basic_block_12:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3206_basic_block_12:s -> fn_3206_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3206_basic_block_0:s -> fn_3206_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void call_function_ffi_call(Func*)" {
+	color="black";
+	label="void call_function_ffi_call(Func*)";
+	fn_3207_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3207_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|stderr.35\ =\ stderr;\l\
+|__builtin_fwrite\ (\"\ In\ call_function_ffi_call.\n\",\ 1,\ 28,\ stderr.35);\l\
+}"];
+
+	fn_3207_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|D.66978\ =\ ff-\>arg_types;\l\
+|D.66979\ =\ ff-\>ret_type;\l\
+|D.66980\ =\ ff-\>nargs;\l\
+|D.66981\ =\ (unsigned\ int)\ D.66980;\l\
+|D.66989\ =\ ffi_prep_cif\ (&cif,\ 2,\ D.66981,\ D.66979,\ D.66978);\l\
+}"];
+
+	fn_3207_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.66982\ =\ D.66989;\l\
+|retval.36\ =\ D.66982\ !=\ 0;\l\
+|if\ (retval.36\ !=\ 0)\l\
+\ \ goto\ \<bb\ 5\>;\l\
+else\l\
+\ \ goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_3207_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|D.66985\ =\ ff-\>arg_values;\l\
+|D.66986\ =\ ff-\>ret_value;\l\
+|D.66987\ =\ ff-\>f;\l\
+|D.66988\ =\ (void\ (*\<T1993\>)\ (void))\ D.66987;\l\
+|ffi_call\ (&cif,\ D.66988,\ D.66986,\ D.66985);\l\
+}"];
+
+	fn_3207_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|cif\ =\ \{CLOBBER\};\l\
+|return;\l\
+}"];
+
+	fn_3207_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|stderr.35\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Error\ ffi_prep_cif.\n\",\ 1,\ 20,\ stderr.35);\l\
+}"];
+
+	fn_3207_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|exit\ (1);\l\
+}"];
+
+	fn_3207_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|\<L2\>:\l\
+|cif\ =\ \{CLOBBER\};\l\
+|resx\ 1\l\
+}"];
+
+	fn_3207_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3207_basic_block_0:s -> fn_3207_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3207_basic_block_2:s -> fn_3207_basic_block_9:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3207_basic_block_2:s -> fn_3207_basic_block_3:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3207_basic_block_3:s -> fn_3207_basic_block_9:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3207_basic_block_3:s -> fn_3207_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3207_basic_block_4:s -> fn_3207_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3207_basic_block_4:s -> fn_3207_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3207_basic_block_5:s -> fn_3207_basic_block_9:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3207_basic_block_5:s -> fn_3207_basic_block_6:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3207_basic_block_7:s -> fn_3207_basic_block_9:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3207_basic_block_7:s -> fn_3207_basic_block_8:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3207_basic_block_8:s -> fn_3207_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3207_basic_block_0:s -> fn_3207_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" {
+	color="black";
+	label="void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])";
+	fn_3208_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3208_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|*alpha\ =\ 3.2412e+4;\l\
+|*beta\ =\ 2.123e+3;\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_3208_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|if\ (i\ \<\ ni)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 8\>;\l\
+}"];
+
+	fn_3208_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 13\>;\l\
+}"];
+
+	fn_3208_basic_block_13 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 13\>:\l\
+|if\ (i\ \<\ nk)\l\
+\ \ goto\ \<bb\ 9\>;\l\
+else\l\
+\ \ goto\ \<bb\ 14\>;\l\
+}"];
+
+	fn_3208_basic_block_14 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 14\>:\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 19\>;\l\
+}"];
+
+	fn_3208_basic_block_19 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 19\>:\l\
+|if\ (i\ \<\ ni)\l\
+\ \ goto\ \<bb\ 15\>;\l\
+else\l\
+\ \ goto\ \<bb\ 20\>;\l\
+}"];
+
+	fn_3208_basic_block_20 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 20\>:\l\
+|return;\l\
+}"];
+
+	fn_3208_basic_block_15 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 15\>:\l\
+|j\ =\ 0;\l\
+goto\ \<bb\ 17\>;\l\
+}"];
+
+	fn_3208_basic_block_17 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 17\>:\l\
+|if\ (j\ \<\ nj)\l\
+\ \ goto\ \<bb\ 16\>;\l\
+else\l\
+\ \ goto\ \<bb\ 18\>;\l\
+}"];
+
+	fn_3208_basic_block_18 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 18\>:\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_3208_basic_block_16 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 16\>:\l\
+|D.66992\ =\ (long\ unsigned\ int)\ i;\l\
+|D.66993\ =\ D.66992\ *\ 32768;\l\
+|D.67000\ =\ C\ +\ D.66993;\l\
+|D.66995\ =\ (double)\ i;\l\
+|D.66996\ =\ (double)\ j;\l\
+|D.66997\ =\ D.66995\ *\ D.66996;\l\
+|D.66998\ =\ D.66997\ *\ 2.44140625e-4;\l\
+|*D.67000[j]\ =\ D.66998;\l\
+|j\ =\ j\ +\ 1;\l\
+}"];
+
+	fn_3208_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|j\ =\ 0;\l\
+goto\ \<bb\ 11\>;\l\
+}"];
+
+	fn_3208_basic_block_11 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 11\>:\l\
+|if\ (j\ \<\ nj)\l\
+\ \ goto\ \<bb\ 10\>;\l\
+else\l\
+\ \ goto\ \<bb\ 12\>;\l\
+}"];
+
+	fn_3208_basic_block_12 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 12\>:\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_3208_basic_block_10 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 10\>:\l\
+|D.66992\ =\ (long\ unsigned\ int)\ i;\l\
+|D.66993\ =\ D.66992\ *\ 32768;\l\
+|D.66999\ =\ B\ +\ D.66993;\l\
+|D.66995\ =\ (double)\ i;\l\
+|D.66996\ =\ (double)\ j;\l\
+|D.66997\ =\ D.66995\ *\ D.66996;\l\
+|D.66998\ =\ D.66997\ *\ 2.44140625e-4;\l\
+|*D.66999[j]\ =\ D.66998;\l\
+|j\ =\ j\ +\ 1;\l\
+}"];
+
+	fn_3208_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|j\ =\ 0;\l\
+goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_3208_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|if\ (j\ \<\ nk)\l\
+\ \ goto\ \<bb\ 4\>;\l\
+else\l\
+\ \ goto\ \<bb\ 6\>;\l\
+}"];
+
+	fn_3208_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_3208_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.66992\ =\ (long\ unsigned\ int)\ i;\l\
+|D.66993\ =\ D.66992\ *\ 32768;\l\
+|D.66994\ =\ A\ +\ D.66993;\l\
+|D.66995\ =\ (double)\ i;\l\
+|D.66996\ =\ (double)\ j;\l\
+|D.66997\ =\ D.66995\ *\ D.66996;\l\
+|D.66998\ =\ D.66997\ *\ 2.44140625e-4;\l\
+|*D.66994[j]\ =\ D.66998;\l\
+|j\ =\ j\ +\ 1;\l\
+}"];
+
+	fn_3208_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3208_basic_block_0:s -> fn_3208_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3208_basic_block_2:s -> fn_3208_basic_block_7:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3208_basic_block_3:s -> fn_3208_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3208_basic_block_4:s -> fn_3208_basic_block_5:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3208_basic_block_5:s -> fn_3208_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_5:s -> fn_3208_basic_block_6:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_6:s -> fn_3208_basic_block_7:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3208_basic_block_7:s -> fn_3208_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_7:s -> fn_3208_basic_block_8:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_8:s -> fn_3208_basic_block_13:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3208_basic_block_9:s -> fn_3208_basic_block_11:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3208_basic_block_10:s -> fn_3208_basic_block_11:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3208_basic_block_11:s -> fn_3208_basic_block_10:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_11:s -> fn_3208_basic_block_12:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_12:s -> fn_3208_basic_block_13:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3208_basic_block_13:s -> fn_3208_basic_block_9:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_13:s -> fn_3208_basic_block_14:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_14:s -> fn_3208_basic_block_19:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3208_basic_block_15:s -> fn_3208_basic_block_17:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3208_basic_block_16:s -> fn_3208_basic_block_17:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3208_basic_block_17:s -> fn_3208_basic_block_16:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_17:s -> fn_3208_basic_block_18:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_18:s -> fn_3208_basic_block_19:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3208_basic_block_19:s -> fn_3208_basic_block_15:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_19:s -> fn_3208_basic_block_20:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_20:s -> fn_3208_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3208_basic_block_0:s -> fn_3208_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void copy_array(int, int, double (*)[4096], double (*)[4096])" {
+	color="black";
+	label="void copy_array(int, int, double (*)[4096], double (*)[4096])";
+	fn_3209_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3209_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_3209_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|if\ (i\ \<\ ni)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 8\>;\l\
+}"];
+
+	fn_3209_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|return;\l\
+}"];
+
+	fn_3209_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|j\ =\ 0;\l\
+goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_3209_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|if\ (j\ \<\ nj)\l\
+\ \ goto\ \<bb\ 4\>;\l\
+else\l\
+\ \ goto\ \<bb\ 6\>;\l\
+}"];
+
+	fn_3209_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_3209_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.67001\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67002\ =\ D.67001\ *\ 32768;\l\
+|D.67003\ =\ C_dest\ +\ D.67002;\l\
+|D.67001\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67002\ =\ D.67001\ *\ 32768;\l\
+|D.67004\ =\ C_source\ +\ D.67002;\l\
+|D.67005\ =\ *D.67004[j];\l\
+|*D.67003[j]\ =\ D.67005;\l\
+|j\ =\ j\ +\ 1;\l\
+}"];
+
+	fn_3209_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3209_basic_block_0:s -> fn_3209_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3209_basic_block_2:s -> fn_3209_basic_block_7:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3209_basic_block_3:s -> fn_3209_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3209_basic_block_4:s -> fn_3209_basic_block_5:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3209_basic_block_5:s -> fn_3209_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3209_basic_block_5:s -> fn_3209_basic_block_6:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3209_basic_block_6:s -> fn_3209_basic_block_7:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3209_basic_block_7:s -> fn_3209_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3209_basic_block_7:s -> fn_3209_basic_block_8:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3209_basic_block_8:s -> fn_3209_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3209_basic_block_0:s -> fn_3209_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void compareResults(int, int, double (*)[4096], double (*)[4096])" {
+	color="black";
+	label="void compareResults(int, int, double (*)[4096], double (*)[4096])";
+	fn_3210_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3210_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|fail\ =\ 0;\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 9\>;\l\
+}"];
+
+	fn_3210_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|if\ (i\ \<\ ni)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 10\>;\l\
+}"];
+
+	fn_3210_basic_block_10 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 10\>:\l\
+|stderr.38\ =\ stderr;\l\
+|fprintf\ (stderr.38,\ \"Non-Matching\ CPU-GPU\ Outputs\ Beyond\ Error\ Threshold\ of\ %4.2f\ Percent:\ %d\n\",\ 5.000000000000000277555756156289135105907917022705078125e-2,\ fail);\l\
+|return;\l\
+}"];
+
+	fn_3210_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|j\ =\ 0;\l\
+goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_3210_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|if\ (j\ \<\ nj)\l\
+\ \ goto\ \<bb\ 4\>;\l\
+else\l\
+\ \ goto\ \<bb\ 8\>;\l\
+}"];
+
+	fn_3210_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_3210_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.67007\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67008\ =\ D.67007\ *\ 32768;\l\
+|D.67009\ =\ C_output\ +\ D.67008;\l\
+|D.67010\ =\ *D.67009[j];\l\
+|D.67007\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67008\ =\ D.67007\ *\ 32768;\l\
+|D.67011\ =\ C\ +\ D.67008;\l\
+|D.67012\ =\ *D.67011[j];\l\
+|D.67013\ =\ percentDiff\ (D.67012,\ D.67010);\l\
+|D.67014\ =\ (double)\ D.67013;\l\
+|retval.37\ =\ D.67014\ \>\ 5.000000000000000277555756156289135105907917022705078125e-2;\l\
+|if\ (retval.37\ !=\ 0)\l\
+\ \ goto\ \<bb\ 5\>;\l\
+else\l\
+\ \ goto\ \<bb\ 6\>;\l\
+}"];
+
+	fn_3210_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|fail\ =\ fail\ +\ 1;\l\
+}"];
+
+	fn_3210_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|j\ =\ j\ +\ 1;\l\
+}"];
+
+	fn_3210_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3210_basic_block_0:s -> fn_3210_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3210_basic_block_2:s -> fn_3210_basic_block_9:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3210_basic_block_3:s -> fn_3210_basic_block_7:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3210_basic_block_4:s -> fn_3210_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3210_basic_block_4:s -> fn_3210_basic_block_6:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3210_basic_block_5:s -> fn_3210_basic_block_6:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3210_basic_block_6:s -> fn_3210_basic_block_7:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3210_basic_block_7:s -> fn_3210_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3210_basic_block_7:s -> fn_3210_basic_block_8:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3210_basic_block_8:s -> fn_3210_basic_block_9:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3210_basic_block_9:s -> fn_3210_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3210_basic_block_9:s -> fn_3210_basic_block_10:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3210_basic_block_10:s -> fn_3210_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3210_basic_block_0:s -> fn_3210_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" {
+	color="black";
+	label="void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])";
+	fn_3212_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3212_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 10\>;\l\
+}"];
+
+	fn_3212_basic_block_10 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 10\>:\l\
+|if\ (i\ \<\ ni)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 11\>;\l\
+}"];
+
+	fn_3212_basic_block_11 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 11\>:\l\
+|return;\l\
+}"];
+
+	fn_3212_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|j\ =\ 0;\l\
+goto\ \<bb\ 8\>;\l\
+}"];
+
+	fn_3212_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|if\ (j\ \<\ nj)\l\
+\ \ goto\ \<bb\ 4\>;\l\
+else\l\
+\ \ goto\ \<bb\ 9\>;\l\
+}"];
+
+	fn_3212_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_3212_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.67019\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67020\ =\ D.67019\ *\ 32768;\l\
+|D.67021\ =\ C\ +\ D.67020;\l\
+|D.67019\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67020\ =\ D.67019\ *\ 32768;\l\
+|D.67021\ =\ C\ +\ D.67020;\l\
+|D.67022\ =\ *D.67021[j];\l\
+|D.67023\ =\ D.67022\ *\ beta;\l\
+|*D.67021[j]\ =\ D.67023;\l\
+|k\ =\ 0;\l\
+goto\ \<bb\ 6\>;\l\
+}"];
+
+	fn_3212_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|if\ (k\ \<\ nk)\l\
+\ \ goto\ \<bb\ 5\>;\l\
+else\l\
+\ \ goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_3212_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|j\ =\ j\ +\ 1;\l\
+}"];
+
+	fn_3212_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|D.67019\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67020\ =\ D.67019\ *\ 32768;\l\
+|D.67021\ =\ C\ +\ D.67020;\l\
+|D.67019\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67020\ =\ D.67019\ *\ 32768;\l\
+|D.67021\ =\ C\ +\ D.67020;\l\
+|D.67022\ =\ *D.67021[j];\l\
+|D.67019\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67020\ =\ D.67019\ *\ 32768;\l\
+|D.67024\ =\ A\ +\ D.67020;\l\
+|D.67025\ =\ *D.67024[k];\l\
+|D.67026\ =\ D.67025\ *\ alpha;\l\
+|D.67027\ =\ (long\ unsigned\ int)\ k;\l\
+|D.67028\ =\ D.67027\ *\ 32768;\l\
+|D.67029\ =\ B\ +\ D.67028;\l\
+|D.67030\ =\ *D.67029[j];\l\
+|D.67031\ =\ D.67026\ *\ D.67030;\l\
+|D.67032\ =\ D.67022\ +\ D.67031;\l\
+|*D.67021[j]\ =\ D.67032;\l\
+|k\ =\ k\ +\ 1;\l\
+}"];
+
+	fn_3212_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3212_basic_block_0:s -> fn_3212_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3212_basic_block_2:s -> fn_3212_basic_block_10:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3212_basic_block_3:s -> fn_3212_basic_block_8:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3212_basic_block_4:s -> fn_3212_basic_block_6:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3212_basic_block_5:s -> fn_3212_basic_block_6:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3212_basic_block_6:s -> fn_3212_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3212_basic_block_6:s -> fn_3212_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3212_basic_block_7:s -> fn_3212_basic_block_8:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3212_basic_block_8:s -> fn_3212_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3212_basic_block_8:s -> fn_3212_basic_block_9:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3212_basic_block_9:s -> fn_3212_basic_block_10:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3212_basic_block_10:s -> fn_3212_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3212_basic_block_10:s -> fn_3212_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3212_basic_block_11:s -> fn_3212_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3212_basic_block_0:s -> fn_3212_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" {
+	color="black";
+	label="void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])";
+	fn_3213_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3213_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|hookomp_timing_start\ (&seq_start);\l\
+|gemm\ (ni,\ nj,\ nk,\ alpha,\ beta,\ A,\ B,\ C);\l\
+|hookomp_timing_stop\ (&seq_stop);\l\
+|return;\l\
+}"];
+
+	fn_3213_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3213_basic_block_0:s -> fn_3213_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3213_basic_block_2:s -> fn_3213_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3213_basic_block_0:s -> fn_3213_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" {
+	color="black";
+	label="void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])";
+	fn_3214_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3214_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|.omp_data_o.42.alpha\ =\ alpha;\l\
+|.omp_data_o.42.beta\ =\ beta;\l\
+|.omp_data_o.42.A\ =\ A;\l\
+|.omp_data_o.42.B\ =\ B;\l\
+|.omp_data_o.42.C\ =\ C;\l\
+|.omp_data_o.42.ni\ =\ ni;\l\
+|.omp_data_o.42.nj\ =\ nj;\l\
+|.omp_data_o.42.nk\ =\ nk;\l\
+|__builtin_GOMP_parallel_start\ (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0,\ &.omp_data_o.42,\ 8);\l\
+|_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0\ (&.omp_data_o.42);\l\
+|__builtin_GOMP_parallel_end\ ();\l\
+|alpha\ =\ .omp_data_o.42.alpha;\l\
+|beta\ =\ .omp_data_o.42.beta;\l\
+|A\ =\ .omp_data_o.42.A;\l\
+|B\ =\ .omp_data_o.42.B;\l\
+|C\ =\ .omp_data_o.42.C;\l\
+|ni\ =\ .omp_data_o.42.ni;\l\
+|nj\ =\ .omp_data_o.42.nj;\l\
+|nk\ =\ .omp_data_o.42.nk;\l\
+|return;\l\
+}"];
+
+	fn_3214_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3214_basic_block_0:s -> fn_3214_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3214_basic_block_2:s -> fn_3214_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3214_basic_block_0:s -> fn_3214_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" {
+	color="black";
+	label="void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])";
+	fn_3215_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3215_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|hookomp_timing_start\ (&omp_start);\l\
+|gemm_omp_kernel\ (ni,\ nj,\ nk,\ alpha,\ beta,\ A,\ B,\ C_outputFromOMP);\l\
+|hookomp_timing_stop\ (&omp_stop);\l\
+|return;\l\
+}"];
+
+	fn_3215_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3215_basic_block_0:s -> fn_3215_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3215_basic_block_2:s -> fn_3215_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3215_basic_block_0:s -> fn_3215_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void GPU_argv_init()" {
+	color="black";
+	label="void GPU_argv_init()";
+	fn_3216_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3216_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|stderr.43\ =\ stderr;\l\
+|__builtin_fwrite\ (\"GPU\ init.\n\",\ 1,\ 10,\ stderr.43);\l\
+}"];
+
+	fn_3216_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|cudaGetDeviceProperties\ (&deviceProp,\ 0);\l\
+}"];
+
+	fn_3216_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|stderr.43\ =\ stderr;\l\
+|fprintf\ (stderr.43,\ \"setting\ device\ %d\ with\ name\ %s\n\",\ 0,\ &deviceProp.name);\l\
+}"];
+
+	fn_3216_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|cudaSetDevice\ (0);\l\
+}"];
+
+	fn_3216_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|deviceProp\ =\ \{CLOBBER\};\l\
+|return;\l\
+}"];
+
+	fn_3216_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|\<L0\>:\l\
+|deviceProp\ =\ \{CLOBBER\};\l\
+|resx\ 1\l\
+}"];
+
+	fn_3216_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3216_basic_block_0:s -> fn_3216_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3216_basic_block_2:s -> fn_3216_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3216_basic_block_2:s -> fn_3216_basic_block_3:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3216_basic_block_3:s -> fn_3216_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3216_basic_block_3:s -> fn_3216_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3216_basic_block_4:s -> fn_3216_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3216_basic_block_4:s -> fn_3216_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3216_basic_block_5:s -> fn_3216_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3216_basic_block_5:s -> fn_3216_basic_block_6:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3216_basic_block_6:s -> fn_3216_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3216_basic_block_0:s -> fn_3216_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void polybench_flush_cache()" {
+	color="black";
+	label="void polybench_flush_cache()";
+	fn_3220_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3220_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|D.67207\ =\ 4194560;\l\
+|cs\ =\ (int)\ D.67207;\l\
+|D.67208\ =\ (long\ unsigned\ int)\ cs;\l\
+|flush\ =\ calloc\ (D.67208,\ 8);\l\
+|tmp\ =\ 0.0;\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 4\>;\l\
+}"];
+
+	fn_3220_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|if\ (i\ \<\ cs)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_3220_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|if\ (tmp\ \<=\ 1.0e+1)\l\
+\ \ goto\ \<bb\ 7\>;\l\
+else\l\
+\ \ goto\ \<bb\ 6\>;\l\
+}"];
+
+	fn_3220_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|__assert_fail\ (\"tmp\ \<=\ 10.0\",\ \"../../../utilities/polybench.c\",\ 96,\ &__PRETTY_FUNCTION__);\l\
+}"];
+
+	fn_3220_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|free\ (flush);\l\
+|return;\l\
+}"];
+
+	fn_3220_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|D.67209\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67210\ =\ D.67209\ *\ 8;\l\
+|D.67211\ =\ flush\ +\ D.67210;\l\
+|D.67212\ =\ *D.67211;\l\
+|tmp\ =\ D.67212\ +\ tmp;\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_3220_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3220_basic_block_0:s -> fn_3220_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3220_basic_block_2:s -> fn_3220_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3220_basic_block_3:s -> fn_3220_basic_block_4:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3220_basic_block_4:s -> fn_3220_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3220_basic_block_4:s -> fn_3220_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3220_basic_block_5:s -> fn_3220_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3220_basic_block_5:s -> fn_3220_basic_block_6:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3220_basic_block_7:s -> fn_3220_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3220_basic_block_0:s -> fn_3220_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void polybench_prepare_instruments()" {
+	color="black";
+	label="void polybench_prepare_instruments()";
+	fn_3221_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3221_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|polybench_flush_cache\ ();\l\
+|return;\l\
+}"];
+
+	fn_3221_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3221_basic_block_0:s -> fn_3221_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3221_basic_block_2:s -> fn_3221_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3221_basic_block_0:s -> fn_3221_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void polybench_timer_start()" {
+	color="black";
+	label="void polybench_timer_start()";
+	fn_3222_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3222_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|polybench_prepare_instruments\ ();\l\
+|D.67217\ =\ rtclock\ ();\l\
+|polybench_t_start.68\ =\ D.67217;\l\
+|polybench_t_start\ =\ polybench_t_start.68;\l\
+|return;\l\
+}"];
+
+	fn_3222_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3222_basic_block_0:s -> fn_3222_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3222_basic_block_2:s -> fn_3222_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3222_basic_block_0:s -> fn_3222_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void polybench_timer_stop()" {
+	color="black";
+	label="void polybench_timer_stop()";
+	fn_3223_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3223_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|D.67231\ =\ rtclock\ ();\l\
+|polybench_t_end.69\ =\ D.67231;\l\
+|polybench_t_end\ =\ polybench_t_end.69;\l\
+|return;\l\
+}"];
+
+	fn_3223_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3223_basic_block_0:s -> fn_3223_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3223_basic_block_2:s -> fn_3223_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3223_basic_block_0:s -> fn_3223_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void polybench_timer_print()" {
+	color="black";
+	label="void polybench_timer_print()";
+	fn_3224_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3224_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|polybench_t_end.70\ =\ polybench_t_end;\l\
+|polybench_t_start.71\ =\ polybench_t_start;\l\
+|D.67234\ =\ polybench_t_end.70\ -\ polybench_t_start.71;\l\
+|printf\ (\"%0.6f\n\",\ D.67234);\l\
+|return;\l\
+}"];
+
+	fn_3224_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3224_basic_block_0:s -> fn_3224_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3224_basic_block_2:s -> fn_3224_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3224_basic_block_0:s -> fn_3224_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void* polybench_alloc_data(long long unsigned int, int)" {
+	color="black";
+	label="void* polybench_alloc_data(long long unsigned int, int)";
+	fn_3226_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3226_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|val\ =\ n;\l\
+|D.67235\ =\ (long\ unsigned\ int)\ elt_size;\l\
+|val\ =\ D.67235\ *\ val;\l\
+|D.67238\ =\ xmalloc\ (val);\l\
+|ret\ =\ D.67238;\l\
+|D.67236\ =\ ret;\l\
+|return\ D.67236;\l\
+}"];
+
+	fn_3226_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3226_basic_block_0:s -> fn_3226_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3226_basic_block_2:s -> fn_3226_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3226_basic_block_0:s -> fn_3226_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "int main(int, char**)" {
+	color="black";
+	label="int main(int, char**)";
+	fn_3218_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3218_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|ni\ =\ 4096;\l\
+|nj\ =\ 4096;\l\
+|nk\ =\ 4096;\l\
+|D.67187\ =\ polybench_alloc_data\ (16777216,\ 8);\l\
+}"];
+
+	fn_3218_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|A.48\ =\ D.67187;\l\
+|A\ =\ A.48;\l\
+|D.67188\ =\ polybench_alloc_data\ (16777216,\ 8);\l\
+}"];
+
+	fn_3218_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|B.49\ =\ D.67188;\l\
+|B\ =\ B.49;\l\
+|D.67189\ =\ polybench_alloc_data\ (16777216,\ 8);\l\
+}"];
+
+	fn_3218_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|C.50\ =\ D.67189;\l\
+|C\ =\ C.50;\l\
+|D.67190\ =\ polybench_alloc_data\ (16777216,\ 8);\l\
+}"];
+
+	fn_3218_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|C_outputFromOMP\ =\ D.67190;\l\
+|D.67191\ =\ polybench_alloc_data\ (16777216,\ 8);\l\
+}"];
+
+	fn_3218_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|C_inputToGpu.51\ =\ D.67191;\l\
+|C_inputToGpu\ =\ C_inputToGpu.51;\l\
+|D.67192\ =\ polybench_alloc_data\ (16777216,\ 8);\l\
+}"];
+
+	fn_3218_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|C_outputFromGpu.52\ =\ D.67192;\l\
+|C_outputFromGpu\ =\ C_outputFromGpu.52;\l\
+|stderr.53\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Preparing\ alternatives\ functions.\n\",\ 1,\ 34,\ stderr.53);\l\
+}"];
+
+	fn_3218_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|n_params\ =\ 10;\l\
+|ff_0\ =\ malloc\ (48);\l\
+|D.67127\ =\ n_params\ +\ 1;\l\
+|D.67128\ =\ (long\ unsigned\ int)\ D.67127;\l\
+|D.67129\ =\ D.67128\ *\ 8;\l\
+|D.67130\ =\ malloc\ (D.67129);\l\
+|ff_0-\>arg_types\ =\ D.67130;\l\
+|D.67127\ =\ n_params\ +\ 1;\l\
+|D.67128\ =\ (long\ unsigned\ int)\ D.67127;\l\
+|D.67129\ =\ D.67128\ *\ 8;\l\
+|D.67131\ =\ malloc\ (D.67129);\l\
+|ff_0-\>arg_values\ =\ D.67131;\l\
+|ff_0-\>f\ =\ gemm_cuda;\l\
+|D.67132\ =\ &ff_0-\>ret_value;\l\
+|memset\ (D.67132,\ 0,\ 8);\l\
+|ff_0-\>ret_type\ =\ &ffi_type_void;\l\
+|ff_0-\>nargs\ =\ n_params;\l\
+|D.67133\ =\ ff_0-\>arg_values;\l\
+|*D.67133\ =\ &ni;\l\
+|D.67133\ =\ ff_0-\>arg_values;\l\
+|D.67134\ =\ D.67133\ +\ 8;\l\
+|*D.67134\ =\ &nj;\l\
+|D.67133\ =\ ff_0-\>arg_values;\l\
+|D.67135\ =\ D.67133\ +\ 16;\l\
+|*D.67135\ =\ &nk;\l\
+|D.67133\ =\ ff_0-\>arg_values;\l\
+|D.67136\ =\ D.67133\ +\ 24;\l\
+|*D.67136\ =\ &alpha;\l\
+|D.67133\ =\ ff_0-\>arg_values;\l\
+|D.67137\ =\ D.67133\ +\ 32;\l\
+|*D.67137\ =\ &beta;\l\
+|D.67133\ =\ ff_0-\>arg_values;\l\
+|D.67138\ =\ D.67133\ +\ 40;\l\
+|*D.67138\ =\ &A;\l\
+|D.67133\ =\ ff_0-\>arg_values;\l\
+|D.67139\ =\ D.67133\ +\ 48;\l\
+|*D.67139\ =\ &B;\l\
+|D.67133\ =\ ff_0-\>arg_values;\l\
+|D.67140\ =\ D.67133\ +\ 56;\l\
+|*D.67140\ =\ &C;\l\
+|D.67133\ =\ ff_0-\>arg_values;\l\
+|D.67141\ =\ D.67133\ +\ 64;\l\
+|*D.67141\ =\ &C_inputToGpu;\l\
+|D.67133\ =\ ff_0-\>arg_values;\l\
+|D.67142\ =\ D.67133\ +\ 72;\l\
+|*D.67142\ =\ &C_outputFromGpu;\l\
+|D.67133\ =\ ff_0-\>arg_values;\l\
+|D.67143\ =\ D.67133\ +\ 80;\l\
+|*D.67143\ =\ 0B;\l\
+|D.67144\ =\ ff_0-\>arg_types;\l\
+|*D.67144\ =\ &ffi_type_sint32;\l\
+|D.67144\ =\ ff_0-\>arg_types;\l\
+|D.67145\ =\ D.67144\ +\ 8;\l\
+|*D.67145\ =\ &ffi_type_sint32;\l\
+|D.67144\ =\ ff_0-\>arg_types;\l\
+|D.67146\ =\ D.67144\ +\ 16;\l\
+|*D.67146\ =\ &ffi_type_sint32;\l\
+|D.67144\ =\ ff_0-\>arg_types;\l\
+|D.67147\ =\ D.67144\ +\ 24;\l\
+|*D.67147\ =\ &ffi_type_double;\l\
+|D.67144\ =\ ff_0-\>arg_types;\l\
+|D.67148\ =\ D.67144\ +\ 32;\l\
+|*D.67148\ =\ &ffi_type_double;\l\
+|D.67144\ =\ ff_0-\>arg_types;\l\
+|D.67149\ =\ D.67144\ +\ 40;\l\
+|*D.67149\ =\ &ffi_type_pointer;\l\
+|D.67144\ =\ ff_0-\>arg_types;\l\
+|D.67150\ =\ D.67144\ +\ 48;\l\
+|*D.67150\ =\ &ffi_type_pointer;\l\
+|D.67144\ =\ ff_0-\>arg_types;\l\
+|D.67151\ =\ D.67144\ +\ 56;\l\
+|*D.67151\ =\ &ffi_type_pointer;\l\
+|D.67144\ =\ ff_0-\>arg_types;\l\
+|D.67152\ =\ D.67144\ +\ 64;\l\
+|*D.67152\ =\ &ffi_type_pointer;\l\
+|D.67144\ =\ ff_0-\>arg_types;\l\
+|D.67153\ =\ D.67144\ +\ 72;\l\
+|*D.67153\ =\ &ffi_type_pointer;\l\
+|D.67144\ =\ ff_0-\>arg_types;\l\
+|D.67154\ =\ D.67144\ +\ 80;\l\
+|*D.67154\ =\ 0B;\l\
+|stderr.53\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Creating\ table\ of\ target\ functions.\n\",\ 1,\ 36,\ stderr.53);\l\
+}"];
+
+	fn_3218_basic_block_10 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 10\>:\l\
+|nloops\ =\ 1;\l\
+|ndevices\ =\ 2;\l\
+|D.67193\ =\ create_target_functions_table\ (&table,\ nloops,\ ndevices);\l\
+}"];
+
+	fn_3218_basic_block_11 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 11\>:\l\
+|retval.54\ =\ D.67193;\l\
+|if\ (retval.54\ !=\ 0)\l\
+\ \ goto\ \<bb\ 12\>;\l\
+else\l\
+\ \ goto\ \<bb\ 17\>;\l\
+}"];
+
+	fn_3218_basic_block_12 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 12\>:\l\
+|table.55\ =\ table;\l\
+|if\ (table.55\ ==\ 0B)\l\
+\ \ goto\ \<bb\ 13\>;\l\
+else\l\
+\ \ goto\ \<bb\ 14\>;\l\
+}"];
+
+	fn_3218_basic_block_14 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 14\>:\l\
+|stderr.53\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Declaring\ function\ in\ 0,1.\n\",\ 1,\ 27,\ stderr.53);\l\
+}"];
+
+	fn_3218_basic_block_15 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 15\>:\l\
+|table.55\ =\ table;\l\
+|D.67161\ =\ *table.55;\l\
+|D.67162\ =\ D.67161\ +\ 8;\l\
+|D.67163\ =\ *D.67162;\l\
+|*D.67163\ =\ MEM[(const\ struct\ Func\ &)ff_0];\l\
+|table.55\ =\ table;\l\
+|TablePointerFunctions\ =\ table.55;\l\
+|TablePointerFunctions.56\ =\ TablePointerFunctions;\l\
+|if\ (TablePointerFunctions.56\ ==\ 0B)\l\
+\ \ goto\ \<bb\ 16\>;\l\
+else\l\
+\ \ goto\ \<bb\ 17\>;\l\
+}"];
+
+	fn_3218_basic_block_17 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 17\>:\l\
+|stderr.53\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Calling\ init_array.\n\",\ 1,\ 20,\ stderr.53);\l\
+}"];
+
+	fn_3218_basic_block_18 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 18\>:\l\
+|C.57\ =\ C;\l\
+|B.58\ =\ B;\l\
+|A.59\ =\ A;\l\
+|nk.60\ =\ nk;\l\
+|nj.61\ =\ nj;\l\
+|ni.62\ =\ ni;\l\
+|init_array\ (ni.62,\ nj.61,\ nk.60,\ &alpha,\ &beta,\ A.59,\ B.58,\ C.57);\l\
+|C.57\ =\ C;\l\
+|nj.61\ =\ nj;\l\
+|ni.62\ =\ ni;\l\
+|copy_array\ (ni.62,\ nj.61,\ C.57,\ C_outputFromOMP);\l\
+|C_outputFromGpu.63\ =\ C_outputFromGpu;\l\
+|C.57\ =\ C;\l\
+|nj.61\ =\ nj;\l\
+|ni.62\ =\ ni;\l\
+|copy_array\ (ni.62,\ nj.61,\ C.57,\ C_outputFromGpu.63);\l\
+|stderr.53\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Calling\ gemm_omp:\n\",\ 1,\ 18,\ stderr.53);\l\
+}"];
+
+	fn_3218_basic_block_19 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 19\>:\l\
+|B.58\ =\ B;\l\
+|A.59\ =\ A;\l\
+|beta.64\ =\ beta;\l\
+|alpha.65\ =\ alpha;\l\
+|nk.60\ =\ nk;\l\
+|nj.61\ =\ nj;\l\
+|ni.62\ =\ ni;\l\
+|gemm_omp\ (ni.62,\ nj.61,\ nk.60,\ alpha.65,\ beta.64,\ A.59,\ B.58,\ C_outputFromOMP);\l\
+|stdout.66\ =\ stdout;\l\
+|fprintf\ (stdout.66,\ \"version\ =\ OMP+OFF,\ num_threads\ =\ %d,\ NI\ =\ %d,\ NJ\ =\ %d,\ NK\ =\ %d,\ \",\ 8,\ 4096,\ 4096,\ 4096);\l\
+}"];
+
+	fn_3218_basic_block_20 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 20\>:\l\
+|hookomp_print_time_results\ ();\l\
+}"];
+
+	fn_3218_basic_block_21 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 21\>:\l\
+|stderr.53\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Calling\ compareResults(original,\ omp).\n\",\ 1,\ 39,\ stderr.53);\l\
+}"];
+
+	fn_3218_basic_block_22 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 22\>:\l\
+|C.57\ =\ C;\l\
+|nj.61\ =\ nj;\l\
+|ni.62\ =\ ni;\l\
+|compareResults\ (ni.62,\ nj.61,\ C.57,\ C_outputFromOMP);\l\
+}"];
+
+	fn_3218_basic_block_23 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 23\>:\l\
+|stderr.53\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Calling\ compareResults(original,\ cuda).\n\",\ 1,\ 40,\ stderr.53);\l\
+}"];
+
+	fn_3218_basic_block_24 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 24\>:\l\
+|C_outputFromGpu.63\ =\ C_outputFromGpu;\l\
+|C.57\ =\ C;\l\
+|nj.61\ =\ nj;\l\
+|ni.62\ =\ ni;\l\
+|compareResults\ (ni.62,\ nj.61,\ C.57,\ C_outputFromGpu.63);\l\
+}"];
+
+	fn_3218_basic_block_25 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 25\>:\l\
+|if\ (argc\ \>\ 42)\l\
+\ \ goto\ \<bb\ 26\>;\l\
+else\l\
+\ \ goto\ \<bb\ 28\>;\l\
+}"];
+
+	fn_3218_basic_block_26 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 26\>:\l\
+|D.67180\ =\ *argv;\l\
+|D.67181\ =\ MEM[(const\ unsigned\ char\ *\ \{ref-all\})D.67180];\l\
+|if\ (D.67181\ ==\ 0)\l\
+\ \ goto\ \<bb\ 27\>;\l\
+else\l\
+\ \ goto\ \<bb\ 28\>;\l\
+}"];
+
+	fn_3218_basic_block_27 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 27\>:\l\
+|C_outputFromGpu.63\ =\ C_outputFromGpu;\l\
+|nj.61\ =\ nj;\l\
+|ni.62\ =\ ni;\l\
+|print_array\ (ni.62,\ nj.61,\ C_outputFromGpu.63);\l\
+}"];
+
+	fn_3218_basic_block_28 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 28\>:\l\
+|A.59\ =\ A;\l\
+|free\ (A.59);\l\
+|B.58\ =\ B;\l\
+|free\ (B.58);\l\
+|C.57\ =\ C;\l\
+|free\ (C.57);\l\
+|free\ (C_outputFromOMP);\l\
+|C_outputFromGpu.63\ =\ C_outputFromGpu;\l\
+|free\ (C_outputFromGpu.63);\l\
+|D.67185\ =\ 0;\l\
+|ni\ =\ \{CLOBBER\};\l\
+|nj\ =\ \{CLOBBER\};\l\
+|nk\ =\ \{CLOBBER\};\l\
+|alpha\ =\ \{CLOBBER\};\l\
+|beta\ =\ \{CLOBBER\};\l\
+|A\ =\ \{CLOBBER\};\l\
+|B\ =\ \{CLOBBER\};\l\
+|C\ =\ \{CLOBBER\};\l\
+|C_inputToGpu\ =\ \{CLOBBER\};\l\
+|C_outputFromGpu\ =\ \{CLOBBER\};\l\
+|return\ D.67185;\l\
+}"];
+
+	fn_3218_basic_block_16 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 16\>:\l\
+|__assert_fail\ (\"TablePointerFunctions\ !=\ __null\",\ \"gemm.cu\",\ 408,\ &__PRETTY_FUNCTION__);\l\
+}"];
+
+	fn_3218_basic_block_13 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 13\>:\l\
+|__assert_fail\ (\"table\ !=\ __null\",\ \"gemm.cu\",\ 402,\ &__PRETTY_FUNCTION__);\l\
+}"];
+
+	fn_3218_basic_block_29 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 29\>:\l\
+|\<L14\>:\l\
+|ni\ =\ \{CLOBBER\};\l\
+|nj\ =\ \{CLOBBER\};\l\
+|nk\ =\ \{CLOBBER\};\l\
+|alpha\ =\ \{CLOBBER\};\l\
+|beta\ =\ \{CLOBBER\};\l\
+|A\ =\ \{CLOBBER\};\l\
+|B\ =\ \{CLOBBER\};\l\
+|C\ =\ \{CLOBBER\};\l\
+|C_inputToGpu\ =\ \{CLOBBER\};\l\
+|C_outputFromGpu\ =\ \{CLOBBER\};\l\
+|resx\ 1\l\
+}"];
+
+	fn_3218_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3218_basic_block_0:s -> fn_3218_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_2:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_2:s -> fn_3218_basic_block_3:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_3:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_3:s -> fn_3218_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_4:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_4:s -> fn_3218_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_5:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_5:s -> fn_3218_basic_block_6:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_6:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_6:s -> fn_3218_basic_block_7:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_7:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_7:s -> fn_3218_basic_block_8:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_8:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_8:s -> fn_3218_basic_block_9:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_9:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_9:s -> fn_3218_basic_block_10:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_10:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_10:s -> fn_3218_basic_block_11:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_11:s -> fn_3218_basic_block_12:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_11:s -> fn_3218_basic_block_17:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_12:s -> fn_3218_basic_block_13:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_12:s -> fn_3218_basic_block_14:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_14:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_14:s -> fn_3218_basic_block_15:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_15:s -> fn_3218_basic_block_16:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_15:s -> fn_3218_basic_block_17:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_17:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_17:s -> fn_3218_basic_block_18:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_18:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_18:s -> fn_3218_basic_block_19:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_19:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_19:s -> fn_3218_basic_block_20:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_20:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_20:s -> fn_3218_basic_block_21:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_21:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_21:s -> fn_3218_basic_block_22:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_22:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_22:s -> fn_3218_basic_block_23:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_23:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_23:s -> fn_3218_basic_block_24:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_24:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_24:s -> fn_3218_basic_block_25:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_25:s -> fn_3218_basic_block_26:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_25:s -> fn_3218_basic_block_28:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_26:s -> fn_3218_basic_block_27:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_26:s -> fn_3218_basic_block_28:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_27:s -> fn_3218_basic_block_29:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_27:s -> fn_3218_basic_block_28:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3218_basic_block_28:s -> fn_3218_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3218_basic_block_0:s -> fn_3218_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" {
+	color="black";
+	label="void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)";
+	fn_3251_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3251_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|D.67281\ =\ cudaSetupArgument\ (&__par0,\ 4,\ 0);\l\
+|D.67249\ =\ D.67281;\l\
+|retval.74\ =\ D.67249\ !=\ 0;\l\
+|if\ (retval.74\ !=\ 0)\l\
+\ \ goto\ \<bb\ 11\>;\l\
+else\l\
+\ \ goto\ \<bb\ 3\>;\l\
+}"];
+
+	fn_3251_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|D.67282\ =\ cudaSetupArgument\ (&__par1,\ 4,\ 4);\l\
+|D.67253\ =\ D.67282;\l\
+|retval.75\ =\ D.67253\ !=\ 0;\l\
+|if\ (retval.75\ !=\ 0)\l\
+\ \ goto\ \<bb\ 11\>;\l\
+else\l\
+\ \ goto\ \<bb\ 4\>;\l\
+}"];
+
+	fn_3251_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.67283\ =\ cudaSetupArgument\ (&__par2,\ 4,\ 8);\l\
+|D.67257\ =\ D.67283;\l\
+|retval.76\ =\ D.67257\ !=\ 0;\l\
+|if\ (retval.76\ !=\ 0)\l\
+\ \ goto\ \<bb\ 11\>;\l\
+else\l\
+\ \ goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_3251_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|D.67284\ =\ cudaSetupArgument\ (&__par3,\ 8,\ 16);\l\
+|D.67261\ =\ D.67284;\l\
+|retval.77\ =\ D.67261\ !=\ 0;\l\
+|if\ (retval.77\ !=\ 0)\l\
+\ \ goto\ \<bb\ 11\>;\l\
+else\l\
+\ \ goto\ \<bb\ 6\>;\l\
+}"];
+
+	fn_3251_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|D.67285\ =\ cudaSetupArgument\ (&__par4,\ 8,\ 24);\l\
+|D.67265\ =\ D.67285;\l\
+|retval.78\ =\ D.67265\ !=\ 0;\l\
+|if\ (retval.78\ !=\ 0)\l\
+\ \ goto\ \<bb\ 11\>;\l\
+else\l\
+\ \ goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_3251_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|D.67286\ =\ cudaSetupArgument\ (&__par5,\ 8,\ 32);\l\
+|D.67269\ =\ D.67286;\l\
+|retval.79\ =\ D.67269\ !=\ 0;\l\
+|if\ (retval.79\ !=\ 0)\l\
+\ \ goto\ \<bb\ 11\>;\l\
+else\l\
+\ \ goto\ \<bb\ 8\>;\l\
+}"];
+
+	fn_3251_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|D.67287\ =\ cudaSetupArgument\ (&__par6,\ 8,\ 40);\l\
+|D.67273\ =\ D.67287;\l\
+|retval.80\ =\ D.67273\ !=\ 0;\l\
+|if\ (retval.80\ !=\ 0)\l\
+\ \ goto\ \<bb\ 11\>;\l\
+else\l\
+\ \ goto\ \<bb\ 9\>;\l\
+}"];
+
+	fn_3251_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|D.67288\ =\ cudaSetupArgument\ (&__par7,\ 8,\ 48);\l\
+|D.67277\ =\ D.67288;\l\
+|retval.81\ =\ D.67277\ !=\ 0;\l\
+|if\ (retval.81\ !=\ 0)\l\
+\ \ goto\ \<bb\ 11\>;\l\
+else\l\
+\ \ goto\ \<bb\ 10\>;\l\
+}"];
+
+	fn_3251_basic_block_10 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 10\>:\l\
+|__f\ =\ gemm_cuda_kernel;\l\
+|cudaLaunch\<char\>\ (gemm_cuda_kernel);\l\
+}"];
+
+	fn_3251_basic_block_11 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 11\>:\l\
+|return;\l\
+}"];
+
+	fn_3251_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3251_basic_block_0:s -> fn_3251_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3251_basic_block_2:s -> fn_3251_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_2:s -> fn_3251_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_3:s -> fn_3251_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_3:s -> fn_3251_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_4:s -> fn_3251_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_4:s -> fn_3251_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_5:s -> fn_3251_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_5:s -> fn_3251_basic_block_6:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_6:s -> fn_3251_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_6:s -> fn_3251_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_7:s -> fn_3251_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_7:s -> fn_3251_basic_block_8:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_8:s -> fn_3251_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_8:s -> fn_3251_basic_block_9:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_9:s -> fn_3251_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_9:s -> fn_3251_basic_block_10:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_10:s -> fn_3251_basic_block_11:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3251_basic_block_11:s -> fn_3251_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3251_basic_block_0:s -> fn_3251_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*)" {
+	color="black";
+	label="void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*)";
+	fn_3252_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3252_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|__device_stub__Z16gemm_cuda_kerneliiiddPdS_S_\ (__cuda_0,\ __cuda_1,\ __cuda_2,\ __cuda_3,\ __cuda_4,\ __cuda_5,\ __cuda_6,\ __cuda_7);\l\
+|return;\l\
+}"];
+
+	fn_3252_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3252_basic_block_0:s -> fn_3252_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3252_basic_block_2:s -> fn_3252_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3252_basic_block_0:s -> fn_3252_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" {
+	color="black";
+	label="void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])";
+	fn_3217_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3217_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|stderr.44\ =\ stderr;\l\
+|__builtin_fwrite\ (\"Calling\ function\ gemm_cuda.\n\",\ 1,\ 28,\ stderr.44);\l\
+}"];
+
+	fn_3217_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|GPU_argv_init\ ();\l\
+}"];
+
+	fn_3217_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.67097\ =\ 134217728;\l\
+|cudaMalloc\ (&A_gpu,\ D.67097);\l\
+}"];
+
+	fn_3217_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|D.67097\ =\ 134217728;\l\
+|cudaMalloc\ (&B_gpu,\ D.67097);\l\
+}"];
+
+	fn_3217_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|D.67097\ =\ 134217728;\l\
+|cudaMalloc\ (&C_gpu,\ D.67097);\l\
+}"];
+
+	fn_3217_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|hookomp_timing_start\ (&data_transfer_h2d_start);\l\
+|D.67097\ =\ 134217728;\l\
+|A_gpu.45\ =\ A_gpu;\l\
+|cudaMemcpy\ (A_gpu.45,\ A,\ D.67097,\ 1);\l\
+}"];
+
+	fn_3217_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|D.67097\ =\ 134217728;\l\
+|B_gpu.46\ =\ B_gpu;\l\
+|cudaMemcpy\ (B_gpu.46,\ B,\ D.67097,\ 1);\l\
+}"];
+
+	fn_3217_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|D.67097\ =\ 134217728;\l\
+|C_gpu.47\ =\ C_gpu;\l\
+|cudaMemcpy\ (C_gpu.47,\ C_inputToGpu,\ D.67097,\ 1);\l\
+}"];
+
+	fn_3217_basic_block_10 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 10\>:\l\
+|hookomp_timing_stop\ (&data_transfer_h2d_stop);\l\
+|dim3::dim3\ (&block,\ 32,\ 8,\ 1);\l\
+|D.67101\ =\ block.y;\l\
+|D.67102\ =\ (float)\ D.67101;\l\
+|D.67103\ =\ 4.096e+3\ /\ D.67102;\l\
+|D.67104\ =\ std::ceil\ (D.67103);\l\
+|D.67105\ =\ (long\ unsigned\ int)\ D.67104;\l\
+|D.67106\ =\ (unsigned\ int)\ D.67105;\l\
+|D.67107\ =\ block.x;\l\
+|D.67108\ =\ (float)\ D.67107;\l\
+|D.67109\ =\ 4.096e+3\ /\ D.67108;\l\
+|D.67110\ =\ std::ceil\ (D.67109);\l\
+|D.67111\ =\ (long\ unsigned\ int)\ D.67110;\l\
+|D.67112\ =\ (unsigned\ int)\ D.67111;\l\
+|dim3::dim3\ (&grid,\ D.67112,\ D.67106,\ 1);\l\
+|hookomp_timing_start\ (&dev_kernel1_start);\l\
+|D.67117\ =\ cudaConfigureCall\ (grid,\ block,\ 0,\ 0B);\l\
+}"];
+
+	fn_3217_basic_block_11 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 11\>:\l\
+|D.67113\ =\ D.67117;\l\
+|if\ (D.67113\ ==\ 0)\l\
+\ \ goto\ \<bb\ 12\>;\l\
+else\l\
+\ \ goto\ \<bb\ 13\>;\l\
+}"];
+
+	fn_3217_basic_block_12 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 12\>:\l\
+|C_gpu.47\ =\ C_gpu;\l\
+|B_gpu.46\ =\ B_gpu;\l\
+|A_gpu.45\ =\ A_gpu;\l\
+|gemm_cuda_kernel\ (ni,\ nj,\ nk,\ alpha,\ beta,\ A_gpu.45,\ B_gpu.46,\ C_gpu.47);\l\
+}"];
+
+	fn_3217_basic_block_13 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 13\>:\l\
+|cudaThreadSynchronize\ ();\l\
+}"];
+
+	fn_3217_basic_block_14 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 14\>:\l\
+|hookomp_timing_stop\ (&dev_kernel1_stop);\l\
+|hookomp_timing_start\ (&data_transfer_d2h_start);\l\
+|D.67097\ =\ 134217728;\l\
+|C_gpu.47\ =\ C_gpu;\l\
+|cudaMemcpy\ (C_outputFromGpu,\ C_gpu.47,\ D.67097,\ 2);\l\
+}"];
+
+	fn_3217_basic_block_15 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 15\>:\l\
+|hookomp_timing_stop\ (&data_transfer_d2h_stop);\l\
+|A_gpu.45\ =\ A_gpu;\l\
+|cudaFree\ (A_gpu.45);\l\
+}"];
+
+	fn_3217_basic_block_16 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 16\>:\l\
+|B_gpu.46\ =\ B_gpu;\l\
+|cudaFree\ (B_gpu.46);\l\
+}"];
+
+	fn_3217_basic_block_17 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 17\>:\l\
+|C_gpu.47\ =\ C_gpu;\l\
+|cudaFree\ (C_gpu.47);\l\
+}"];
+
+	fn_3217_basic_block_18 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 18\>:\l\
+|A_gpu\ =\ \{CLOBBER\};\l\
+|B_gpu\ =\ \{CLOBBER\};\l\
+|C_gpu\ =\ \{CLOBBER\};\l\
+|block\ =\ \{CLOBBER\};\l\
+|grid\ =\ \{CLOBBER\};\l\
+|return;\l\
+}"];
+
+	fn_3217_basic_block_19 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 19\>:\l\
+|\<L3\>:\l\
+|A_gpu\ =\ \{CLOBBER\};\l\
+|B_gpu\ =\ \{CLOBBER\};\l\
+|C_gpu\ =\ \{CLOBBER\};\l\
+|block\ =\ \{CLOBBER\};\l\
+|grid\ =\ \{CLOBBER\};\l\
+|resx\ 1\l\
+}"];
+
+	fn_3217_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3217_basic_block_0:s -> fn_3217_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_2:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_2:s -> fn_3217_basic_block_3:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_3:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_3:s -> fn_3217_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_4:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_4:s -> fn_3217_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_5:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_5:s -> fn_3217_basic_block_6:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_6:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_6:s -> fn_3217_basic_block_7:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_7:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_7:s -> fn_3217_basic_block_8:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_8:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_8:s -> fn_3217_basic_block_9:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_9:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_9:s -> fn_3217_basic_block_10:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_10:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_10:s -> fn_3217_basic_block_11:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_11:s -> fn_3217_basic_block_12:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_11:s -> fn_3217_basic_block_13:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_12:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_12:s -> fn_3217_basic_block_13:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_13:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_13:s -> fn_3217_basic_block_14:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_14:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_14:s -> fn_3217_basic_block_15:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_15:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_15:s -> fn_3217_basic_block_16:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_16:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_16:s -> fn_3217_basic_block_17:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_17:s -> fn_3217_basic_block_19:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_17:s -> fn_3217_basic_block_18:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3217_basic_block_18:s -> fn_3217_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3217_basic_block_0:s -> fn_3217_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "void __sti____cudaRegisterAll_39_tmpxft_000005b1_00000000_7_gemm_cpp1_ii_132e4611()" {
+	color="black";
+	label="void __sti____cudaRegisterAll_39_tmpxft_000005b1_00000000_7_gemm_cpp1_ii_132e4611()";
+	fn_3254_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3254_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|D.67294\ =\ __cudaRegisterFatBinary\ (&__fatDeviceText);\l\
+|__cudaFatCubinHandle.82\ =\ D.67294;\l\
+|__cudaFatCubinHandle\ =\ __cudaFatCubinHandle.82;\l\
+|callback_fp\ =\ __nv_cudaEntityRegisterCallback;\l\
+|__cudaFatCubinHandle.83\ =\ __cudaFatCubinHandle;\l\
+|callback_fp\ (__cudaFatCubinHandle.83);\l\
+|atexit\ (__cudaUnregisterBinaryUtil);\l\
+|return;\l\
+}"];
+
+	fn_3254_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3254_basic_block_0:s -> fn_3254_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3254_basic_block_2:s -> fn_3254_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3254_basic_block_0:s -> fn_3254_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "<built-in>" {
+	color="black";
+	label="<built-in>";
+	fn_3256_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3256_basic_block_16 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 16\>:\l\
+}"];
+
+	fn_3256_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|current_loop_index\ =\ 0;\l\
+|num_threads_defined\ =\ 8;\l\
+|D.67387\ =\ 16;\l\
+|D.67388\ =\ D.67387\ +\ 8;\l\
+|D.67389\ =\ D.67388\ *\ 16777216;\l\
+|q_data_transfer_write.39\ =\ (long\ long\ int)\ D.67389;\l\
+|q_data_transfer_write\ =\ q_data_transfer_write.39;\l\
+|D.67391\ =\ 134217728;\l\
+|q_data_transfer_read.40\ =\ (long\ long\ int)\ D.67391;\l\
+|q_data_transfer_read\ =\ q_data_transfer_read.40;\l\
+|type_of_data_allocation\ =\ 1;\l\
+|D.67393\ =\ .omp_data_i-\>ni;\l\
+|D.67394\ =\ (long\ int)\ D.67393;\l\
+|D.67397\ =\ __builtin_GOMP_loop_dynamic_start\ (0,\ D.67394,\ 1,\ 64,\ &.istart0.110,\ &.iend0.111);\l\
+|if\ (D.67397\ !=\ 0)\l\
+\ \ goto\ \<bb\ 14\>;\l\
+else\l\
+\ \ goto\ \<bb\ 11\>;\l\
+}"];
+
+	fn_3256_basic_block_14 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 14\>:\l\
+|.istart0.112\ =\ .istart0.110;\l\
+|i\ =\ (int)\ .istart0.112;\l\
+|.iend0.113\ =\ .iend0.111;\l\
+|D.67401\ =\ (int)\ .iend0.113;\l\
+}"];
+
+	fn_3256_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|j\ =\ 0;\l\
+}"];
+
+	fn_3256_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|D.67403\ =\ .omp_data_i-\>nj;\l\
+|if\ (j\ \<\ D.67403)\l\
+\ \ goto\ \<bb\ 5\>;\l\
+else\l\
+\ \ goto\ \<bb\ 10\>;\l\
+}"];
+
+	fn_3256_basic_block_10 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 10\>:\l\
+|i\ =\ i\ +\ 1;\l\
+|if\ (i\ \<\ D.67401)\l\
+\ \ goto\ \<bb\ 4\>;\l\
+else\l\
+\ \ goto\ \<bb\ 15\>;\l\
+}"];
+
+	fn_3256_basic_block_15 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 15\>:\l\
+|D.67404\ =\ __builtin_GOMP_loop_dynamic_next\ (&.istart0.110,\ &.iend0.111);\l\
+|if\ (D.67404\ !=\ 0)\l\
+\ \ goto\ \<bb\ 14\>;\l\
+else\l\
+\ \ goto\ \<bb\ 11\>;\l\
+}"];
+
+	fn_3256_basic_block_11 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 11\>:\l\
+|__builtin_GOMP_loop_end_nowait\ ();\l\
+}"];
+
+	fn_3256_basic_block_12 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 12\>:\l\
+|return;\l\
+}"];
+
+	fn_3256_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|D.67405\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67406\ =\ D.67405\ *\ 32768;\l\
+|D.67407\ =\ .omp_data_i-\>C;\l\
+|D.67408\ =\ D.67407\ +\ D.67406;\l\
+|D.67405\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67406\ =\ D.67405\ *\ 32768;\l\
+|D.67409\ =\ .omp_data_i-\>C;\l\
+|D.67408\ =\ D.67409\ +\ D.67406;\l\
+|D.67410\ =\ *D.67408[j];\l\
+|D.67411\ =\ .omp_data_i-\>beta;\l\
+|D.67412\ =\ D.67410\ *\ D.67411;\l\
+|*D.67408[j]\ =\ D.67412;\l\
+|k\ =\ 0;\l\
+}"];
+
+	fn_3256_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|D.67414\ =\ .omp_data_i-\>nk;\l\
+|if\ (k\ \<\ D.67414)\l\
+\ \ goto\ \<bb\ 6\>;\l\
+else\l\
+\ \ goto\ \<bb\ 8\>;\l\
+}"];
+
+	fn_3256_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|j\ =\ j\ +\ 1;\l\
+goto\ \<bb\ 9\>;\l\
+}"];
+
+	fn_3256_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|D.67405\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67406\ =\ D.67405\ *\ 32768;\l\
+|D.67415\ =\ .omp_data_i-\>C;\l\
+|D.67408\ =\ D.67415\ +\ D.67406;\l\
+|D.67405\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67406\ =\ D.67405\ *\ 32768;\l\
+|D.67416\ =\ .omp_data_i-\>C;\l\
+|D.67408\ =\ D.67416\ +\ D.67406;\l\
+|D.67410\ =\ *D.67408[j];\l\
+|D.67405\ =\ (long\ unsigned\ int)\ i;\l\
+|D.67406\ =\ D.67405\ *\ 32768;\l\
+|D.67417\ =\ .omp_data_i-\>A;\l\
+|D.67418\ =\ D.67417\ +\ D.67406;\l\
+|D.67419\ =\ *D.67418[k];\l\
+|D.67420\ =\ .omp_data_i-\>alpha;\l\
+|D.67421\ =\ D.67419\ *\ D.67420;\l\
+|D.67422\ =\ (long\ unsigned\ int)\ k;\l\
+|D.67423\ =\ D.67422\ *\ 32768;\l\
+|D.67424\ =\ .omp_data_i-\>B;\l\
+|D.67425\ =\ D.67424\ +\ D.67423;\l\
+|D.67426\ =\ *D.67425[j];\l\
+|D.67427\ =\ D.67421\ *\ D.67426;\l\
+|D.67428\ =\ D.67410\ +\ D.67427;\l\
+|*D.67408[j]\ =\ D.67428;\l\
+|k\ =\ k\ +\ 1;\l\
+goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_3256_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3256_basic_block_0:s -> fn_3256_basic_block_16:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3256_basic_block_16:s -> fn_3256_basic_block_3:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3256_basic_block_3:s -> fn_3256_basic_block_14:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3256_basic_block_3:s -> fn_3256_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3256_basic_block_14:s -> fn_3256_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3256_basic_block_4:s -> fn_3256_basic_block_9:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3256_basic_block_9:s -> fn_3256_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3256_basic_block_9:s -> fn_3256_basic_block_10:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3256_basic_block_10:s -> fn_3256_basic_block_4:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3256_basic_block_10:s -> fn_3256_basic_block_15:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3256_basic_block_15:s -> fn_3256_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3256_basic_block_15:s -> fn_3256_basic_block_14:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3256_basic_block_5:s -> fn_3256_basic_block_7:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3256_basic_block_7:s -> fn_3256_basic_block_6:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3256_basic_block_7:s -> fn_3256_basic_block_8:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3256_basic_block_8:s -> fn_3256_basic_block_9:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3256_basic_block_6:s -> fn_3256_basic_block_7:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3256_basic_block_11:s -> fn_3256_basic_block_12:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3256_basic_block_12:s -> fn_3256_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3256_basic_block_0:s -> fn_3256_basic_block_1:n [style="invis",constraint=true];
+}
+}

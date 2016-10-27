@@ -1,0 +1,4335 @@
+
+;; Function void* xmalloc(size_t) (_ZL7xmallocm, funcdef_no=3275, decl_uid=67134, cgraph_uid=3097)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;; 2 succs { 4 3 }
+;; 3 succs { 4 5 }
+;; 4 succs { }
+;; 5 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+newA.72_12 -> { newA.72_6 }
+Incremental SSA update started at block: 2
+Number of blocks in CFG: 6
+Number of blocks to update: 3 ( 50%)
+
+
+
+Value ranges after VRP:
+
+ret_5: VARYING
+newA.72_6: VARYING
+stderr.73_8: VARYING
+newA.72_12: ~[0B, 0B]  EQUIVALENCES: { newA.72_6 } (1 elements)
+
+
+void* xmalloc(size_t) (size_t num)
+{
+  int ret;
+  void * newA;
+  struct _IO_FILE * stderr.73;
+  void * newA.72;
+
+  <bb 2>:
+  newA = 0B;
+  ret_5 = posix_memalign (&newA, 32, num_3(D));
+  newA.72_6 = newA;
+  if (newA.72_6 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  if (ret_5 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  stderr.73_8 = stderr;
+  __fprintf_chk (stderr.73_8, 1, "[PolyBench] posix_memalign: cannot allocate memory");
+  exit (1);
+
+  <bb 5>:
+  newA ={v} {CLOBBER};
+  return newA.72_6;
+
+}
+
+
+
+;; Function void __cudaUnregisterBinaryUtil() (_ZL26__cudaUnregisterBinaryUtilv, funcdef_no=3279, decl_uid=67214, cgraph_uid=3100)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Value ranges after VRP:
+
+__cudaFatCubinHandle.84_3: VARYING
+
+
+void __cudaUnregisterBinaryUtil() ()
+{
+  static volatile void * * __ref;
+  void * * __cudaFatCubinHandle.84;
+
+  <bb 2>:
+  __ref = &__cudaFatCubinHandle;
+  __cudaFatCubinHandle.84_3 = __cudaFatCubinHandle;
+  __cudaUnregisterFatBinary (__cudaFatCubinHandle.84_3);
+  return;
+
+}
+
+
+
+;; Function <built-in> (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0, funcdef_no=3306, decl_uid=67704, cgraph_uid=3135)
+
+Created preheader block for loop 1
+;; 5 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 4 14 5 6 7 16 8 15 9 10 11 12 13
+;;
+;; Loop 1
+;;  header 14, latch 15
+;;  depth 1, outer 0
+;;  nodes: 14 15 8 7 6 5 11 10 9 12 16
+;;
+;; Loop 2
+;;  header 5, latch 16
+;;  depth 2, outer 1
+;;  nodes: 5 16 7 6 11 10 9 12
+;;
+;; Loop 3
+;;  header 6, latch 11
+;;  depth 3, outer 2
+;;  nodes: 6 11 10 9 12
+;;
+;; Loop 4
+;;  header 10, latch 12
+;;  depth 4, outer 3
+;;  nodes: 10 12
+;; 2 succs { 4 13 }
+;; 4 succs { 14 }
+;; 14 succs { 5 }
+;; 5 succs { 6 }
+;; 6 succs { 9 7 }
+;; 7 succs { 16 8 }
+;; 16 succs { 5 }
+;; 8 succs { 13 15 }
+;; 15 succs { 14 }
+;; 9 succs { 10 }
+;; 10 succs { 12 11 }
+;; 11 succs { 6 }
+;; 12 succs { 10 }
+;; 13 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+j_55 -> { j_2 }
+k_56 -> { k_3 }
+.omp_data_i_57 -> { .omp_data_i_15(D) }
+_58 -> { _31 }
+Incremental SSA update started at block: 2
+Number of blocks in CFG: 17
+Number of blocks to update: 6 ( 35%)
+
+
+
+Value ranges after VRP:
+
+i_1: VARYING
+j_2: VARYING
+k_3: VARYING
+.MEM_4: VARYING
+.MEM_5: VARYING
+.MEM_6: VARYING
+.MEM_7: VARYING
+.MEM_8: VARYING
+.omp_data_i_15(D): VARYING
+_16: VARYING
+_17: [-2147483648, 2147483647]
+_19: VARYING
+.istart0.114_20: VARYING
+i_21: VARYING
+.iend0.115_22: VARYING
+_23: VARYING
+_24: VARYING
+i_25: VARYING
+_27: VARYING
+_28: ~[2147483648, 18446744071562067967]
+_29: [0, 18446744073709518848]
+_30: VARYING
+_31: VARYING
+_32: VARYING
+_33: VARYING
+_34: VARYING
+_36: VARYING
+j_37: VARYING
+.MEM_38: VARYING
+_39: VARYING
+_40: VARYING
+_41: VARYING
+_42: VARYING
+_43: VARYING
+_44: VARYING
+_45: [0, +INF]
+_46: [0, +INF]
+_47: VARYING
+_48: VARYING
+_49: VARYING
+_50: VARYING
+_51: VARYING
+k_53: VARYING
+j_55: [-INF, _24 + -1]  EQUIVALENCES: { j_2 } (1 elements)
+k_56: [-INF, _36 + -1]  EQUIVALENCES: { k_3 } (1 elements)
+.omp_data_i_57: ~[0, 0]  EQUIVALENCES: { .omp_data_i_15(D) } (1 elements)
+_58: ~[0B, 0B]  EQUIVALENCES: { _31 } (1 elements)
+
+
+Removing basic block 15
+Removing basic block 16
+<built-in> (struct .omp_data_s.41 & restrict .omp_data_i)
+{
+  int k;
+  int j;
+  long int .iend0.115;
+  int i;
+  long int .istart0.114;
+  long int .iend0.113;
+  long int .istart0.112;
+  int _16;
+  long int _17;
+  bool _19;
+  int _23;
+  int _24;
+  bool _27;
+  long unsigned int _28;
+  long unsigned int _29;
+  double[4096] * _30;
+  double[4096] * _31;
+  double _32;
+  double _33;
+  double _34;
+  int _36;
+  double _39;
+  double[4096] * _40;
+  double[4096] * _41;
+  double _42;
+  double _43;
+  double _44;
+  long unsigned int _45;
+  long unsigned int _46;
+  double[4096] * _47;
+  double[4096] * _48;
+  double _49;
+  double _50;
+  double _51;
+
+  <bb 2>:
+  current_loop_index = 0;
+  num_threads_defined = 8;
+  q_data_transfer_write = 402653184;
+  q_data_transfer_read = 134217728;
+  type_of_data_allocation = 1;
+  _16 = .omp_data_i_15(D)->ni;
+  _17 = (long int) _16;
+  _19 = __builtin_GOMP_loop_dynamic_start (0, _17, 1, 64, &.istart0.112, &.iend0.113);
+  if (_19 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 13>;
+
+  <bb 3>:
+
+  <bb 4>:
+  .istart0.114_20 = .istart0.112;
+  i_21 = (int) .istart0.114_20;
+  .iend0.115_22 = .iend0.113;
+  _23 = (int) .iend0.115_22;
+
+  <bb 5>:
+  # i_1 = PHI <i_21(4), i_25(7)>
+
+  <bb 6>:
+  # j_2 = PHI <0(5), j_37(11)>
+  _24 = .omp_data_i_15(D)->nj;
+  if (j_2 < _24)
+    goto <bb 9>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  i_25 = i_1 + 1;
+  if (i_25 < _23)
+    goto <bb 5>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  _27 = __builtin_GOMP_loop_dynamic_next (&.istart0.112, &.iend0.113);
+  if (_27 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 13>;
+
+  <bb 9>:
+  _28 = (long unsigned int) i_1;
+  _29 = _28 * 32768;
+  _30 = .omp_data_i_15(D)->C;
+  _31 = _30 + _29;
+  _32 = *_31[j_2];
+  _33 = .omp_data_i_15(D)->beta;
+  _34 = _32 * _33;
+  *_31[j_2] = _34;
+
+  <bb 10>:
+  # k_3 = PHI <0(9), k_53(12)>
+  _36 = .omp_data_i_15(D)->nk;
+  if (k_3 < _36)
+    goto <bb 12>;
+  else
+    goto <bb 11>;
+
+  <bb 11>:
+  j_37 = j_2 + 1;
+  goto <bb 6>;
+
+  <bb 12>:
+  _39 = *_31[j_2];
+  _40 = .omp_data_i_15(D)->A;
+  _41 = _40 + _29;
+  _42 = *_41[k_3];
+  _43 = .omp_data_i_15(D)->alpha;
+  _44 = _42 * _43;
+  _45 = (long unsigned int) k_3;
+  _46 = _45 * 32768;
+  _47 = .omp_data_i_15(D)->B;
+  _48 = _47 + _46;
+  _49 = *_48[j_2];
+  _50 = _44 * _49;
+  _51 = _39 + _50;
+  *_31[j_2] = _51;
+  k_53 = k_3 + 1;
+  goto <bb 10>;
+
+  <bb 13>:
+  __builtin_GOMP_loop_end_nowait ();
+  return;
+
+}
+
+
+
+;; Function void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*) (_Z16gemm_cuda_kerneliiiddPdS_S_, funcdef_no=3302, decl_uid=66844, cgraph_uid=3123)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 8 9 10 11
+;; 2 succs { 11 3 }
+;; 3 succs { 11 4 }
+;; 4 succs { 11 5 }
+;; 5 succs { 11 6 }
+;; 6 succs { 11 7 }
+;; 7 succs { 11 8 }
+;; 8 succs { 11 9 }
+;; 9 succs { 11 10 }
+;; 10 succs { 11 }
+;; 11 succs { 1 }
+
+Value ranges after VRP:
+
+_11: VARYING
+_12: VARYING
+_13: VARYING
+_14: VARYING
+_15: VARYING
+_16: VARYING
+_17: VARYING
+_18: VARYING
+.MEM_19: VARYING
+
+
+void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*) (int __cuda_0, int __cuda_1, int __cuda_2, double __cuda_3, double __cuda_4, double * __cuda_5, double * __cuda_6, double * __cuda_7)
+{
+  static volatile char * __f;
+  int __par0;
+  int __par1;
+  int __par2;
+  double __par3;
+  double __par4;
+  double * __par5;
+  double * __par6;
+  double * __par7;
+  cudaError _11;
+  cudaError _12;
+  cudaError _13;
+  cudaError _14;
+  cudaError _15;
+  cudaError _16;
+  cudaError _17;
+  cudaError _18;
+
+  <bb 2>:
+  __par0 = __cuda_0_2(D);
+  __par1 = __cuda_1_3(D);
+  __par2 = __cuda_2_4(D);
+  __par3 = __cuda_3_5(D);
+  __par4 = __cuda_4_6(D);
+  __par5 = __cuda_5_7(D);
+  __par6 = __cuda_6_8(D);
+  __par7 = __cuda_7_9(D);
+  _11 = cudaSetupArgument (&__par0, 4, 0);
+  if (_11 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _12 = cudaSetupArgument (&__par1, 4, 4);
+  if (_12 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 4>;
+
+  <bb 4>:
+  _13 = cudaSetupArgument (&__par2, 4, 8);
+  if (_13 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  _14 = cudaSetupArgument (&__par3, 8, 16);
+  if (_14 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  _15 = cudaSetupArgument (&__par4, 8, 24);
+  if (_15 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  _16 = cudaSetupArgument (&__par5, 8, 32);
+  if (_16 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  _17 = cudaSetupArgument (&__par6, 8, 40);
+  if (_17 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  _18 = cudaSetupArgument (&__par7, 8, 48);
+  if (_18 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  __f = gemm_cuda_kernel;
+  cudaLaunch (gemm_cuda_kernel);
+
+  <bb 11>:
+  return;
+
+}
+
+
+
+;; Function float absVal(float) (_Z6absValf, funcdef_no=3240, decl_uid=65923, cgraph_uid=3062)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4
+;; 2 succs { 3 4 }
+;; 3 succs { 4 }
+;; 4 succs { 1 }
+
+Value ranges after VRP:
+
+_1: VARYING
+_3: VARYING
+
+
+float absVal(float) (float a)
+{
+  float _1;
+  float _3;
+
+  <bb 2>:
+  if (a_2(D) < 0.0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _3 = -a_2(D);
+
+  <bb 4>:
+  # _1 = PHI <_3(3), a_2(D)(2)>
+  return _1;
+
+}
+
+
+
+;; Function float percentDiff(double, double) (_Z11percentDiffdd, funcdef_no=3241, decl_uid=65927, cgraph_uid=3063)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17
+;; 2 succs { 3 4 }
+;; 3 succs { 4 }
+;; 4 succs { 5 8 }
+;; 5 succs { 6 7 }
+;; 6 succs { 7 }
+;; 7 succs { 9 8 }
+;; 8 succs { 9 }
+;; 9 succs { 17 10 }
+;; 10 succs { 11 12 }
+;; 11 succs { 12 }
+;; 12 succs { 13 14 }
+;; 13 succs { 14 }
+;; 14 succs { 15 16 }
+;; 15 succs { 16 }
+;; 16 succs { 17 }
+;; 17 succs { 1 }
+
+Value ranges after VRP:
+
+iftmp.1_1: [0, +INF]
+_2: VARYING
+_4: VARYING
+_5: VARYING
+_7: VARYING
+_8: VARYING
+_9: VARYING
+_10: VARYING
+_11: VARYING
+_12: VARYING
+_13: VARYING
+_14: VARYING
+_16: VARYING
+_17: VARYING
+_18: VARYING
+_19: VARYING
+_20: VARYING
+_21: VARYING
+_22: VARYING
+_23: VARYING
+_24: VARYING
+_25: VARYING
+
+
+Jump threading proved probability of edge 9->10 too small (it is 8133, should be 10000).
+Removing basic block 9
+Removing basic block 8
+Merging blocks 19 and 10
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+iftmp.1_26 -> { iftmp.1_1 }
+iftmp.1_27 -> { iftmp.1_1 iftmp.1_26 }
+
+SSA names to release after updating the SSA web
+
+iftmp.1_1 
+Incremental SSA update started at block: 4
+Number of blocks in CFG: 17
+Number of blocks to update: 4 ( 24%)
+
+
+float percentDiff(double, double) (double val1, double val2)
+{
+  bool iftmp.1;
+  float _2;
+  float _4;
+  double _5;
+  float _7;
+  double _8;
+  double _9;
+  float _10;
+  double _11;
+  float _12;
+  float _13;
+  float _14;
+  float _16;
+  float _17;
+  float _18;
+  float _19;
+  float _20;
+  float _21;
+  float _22;
+  float _23;
+  float _24;
+  float _25;
+
+  <bb 2>:
+  _4 = (float) val1_3(D);
+  if (_4 < 0.0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _16 = -_4;
+
+  <bb 4>:
+  # _17 = PHI <_4(2), _16(3)>
+  _5 = (double) _17;
+  if (_5 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 5>;
+  else
+    goto <bb 16>;
+
+  <bb 5>:
+  _7 = (float) val2_6(D);
+  if (_7 < 0.0)
+    goto <bb 6>;
+  else
+    goto <bb 7>;
+
+  <bb 6>:
+  _18 = -_7;
+
+  <bb 7>:
+  # _19 = PHI <_7(5), _18(6)>
+  _8 = (double) _19;
+  if (_8 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 15>;
+  else
+    goto <bb 16>;
+
+  <bb 8>:
+  _20 = -_10;
+
+  <bb 9>:
+  # _21 = PHI <_10(16), _20(8)>
+  _11 = val1_3(D) + 9.99999993922529029077850282192230224609375e-9;
+  _12 = (float) _11;
+  if (_12 < 0.0)
+    goto <bb 10>;
+  else
+    goto <bb 11>;
+
+  <bb 10>:
+  _22 = -_12;
+
+  <bb 11>:
+  # _23 = PHI <_12(9), _22(10)>
+  _13 = _21 / _23;
+  if (_13 < 0.0)
+    goto <bb 12>;
+  else
+    goto <bb 13>;
+
+  <bb 12>:
+  _24 = -_13;
+
+  <bb 13>:
+  # _25 = PHI <_13(11), _24(12)>
+  _14 = _25 * 1.0e+2;
+
+  <bb 14>:
+  # _2 = PHI <0.0(15), _14(13)>
+  return _2;
+
+  <bb 15>:
+  # iftmp.1_26 = PHI <1(7)>
+  goto <bb 14>;
+
+  <bb 16>:
+  # iftmp.1_27 = PHI <0(7), 0(4)>
+  _9 = val1_3(D) - val2_6(D);
+  _10 = (float) _9;
+  if (_10 < 0.0)
+    goto <bb 8>;
+  else
+    goto <bb 9>;
+
+}
+
+
+
+;; Function uint64_t get_time() (_Z8get_timev, funcdef_no=3246, decl_uid=66101, cgraph_uid=3068)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Value ranges after VRP:
+
+_3: VARYING
+_4: [0, +INF]
+_5: [0, +INF]
+_6: VARYING
+_7: [0, +INF]
+_8: [0, +INF]
+
+
+uint64_t get_time() ()
+{
+  struct timespec spec;
+  long int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long int _6;
+  long unsigned int _7;
+  uint64_t _8;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _3 = spec.tv_sec;
+  _4 = (long unsigned int) _3;
+  _5 = _4 * 1000000000;
+  _6 = spec.tv_nsec;
+  _7 = (long unsigned int) _6;
+  _8 = _5 + _7;
+  spec ={v} {CLOBBER};
+  return _8;
+
+}
+
+
+
+;; Function void hookomp_timing_start(uint64_t*) (_Z20hookomp_timing_startPm, funcdef_no=3247, decl_uid=66105, cgraph_uid=3069)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Value ranges after VRP:
+
+_5: VARYING
+_6: [0, +INF]
+_7: [0, +INF]
+_8: VARYING
+_9: [0, +INF]
+_10: [0, +INF]
+
+
+void hookomp_timing_start(uint64_t*) (uint64_t * _start)
+{
+  struct timespec spec;
+  long int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long int _8;
+  long unsigned int _9;
+  uint64_t _10;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _5 = spec.tv_sec;
+  _6 = (long unsigned int) _5;
+  _7 = _6 * 1000000000;
+  _8 = spec.tv_nsec;
+  _9 = (long unsigned int) _8;
+  _10 = _7 + _9;
+  spec ={v} {CLOBBER};
+  *_start_3(D) = _10;
+  return;
+
+}
+
+
+
+;; Function void hookomp_timing_stop(uint64_t*) (_Z19hookomp_timing_stopPm, funcdef_no=3248, decl_uid=66108, cgraph_uid=3070)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Value ranges after VRP:
+
+_5: VARYING
+_6: [0, +INF]
+_7: [0, +INF]
+_8: VARYING
+_9: [0, +INF]
+_10: [0, +INF]
+
+
+void hookomp_timing_stop(uint64_t*) (uint64_t * _stop)
+{
+  struct timespec spec;
+  long int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long int _8;
+  long unsigned int _9;
+  uint64_t _10;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _5 = spec.tv_sec;
+  _6 = (long unsigned int) _5;
+  _7 = _6 * 1000000000;
+  _8 = spec.tv_nsec;
+  _9 = (long unsigned int) _8;
+  _10 = _7 + _9;
+  spec ={v} {CLOBBER};
+  *_stop_3(D) = _10;
+  return;
+
+}
+
+
+
+;; Function void hookomp_timing_print(uint64_t, uint64_t) (_Z20hookomp_timing_printmm, funcdef_no=3249, decl_uid=66112, cgraph_uid=3071)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Value ranges after VRP:
+
+tstop_1(D): VARYING
+tstart_2(D): VARYING
+_3: [0, +INF]
+
+
+void hookomp_timing_print(uint64_t, uint64_t) (uint64_t tstart, uint64_t tstop)
+{
+  long unsigned int _3;
+
+  <bb 2>:
+  _3 = tstop_1(D) - tstart_2(D);
+  __printf_chk (1, "%llu", _3);
+  return;
+
+}
+
+
+
+;; Function void hookomp_timing_print_without_dev() (_Z32hookomp_timing_print_without_devv, funcdef_no=3250, decl_uid=66114, cgraph_uid=3072)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4
+;; 2 succs { 3 4 }
+;; 3 succs { 4 }
+;; 4 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+total_time_28 -> { total_time_5 }
+total_time_29 -> { total_time_5 }
+Incremental SSA update started at block: 2
+Number of blocks in CFG: 6
+Number of blocks to update: 4 ( 67%)
+
+
+
+Value ranges after VRP:
+
+iftmp.14_1: VARYING
+omp_stop.2_3: VARYING
+omp_start.3_4: VARYING
+total_time_5: [0, +INF]
+dev_kernel1_stop.4_6: VARYING
+dev_kernel1_start.5_7: VARYING
+_8: [0, +INF]
+dev_kernel2_stop.6_9: VARYING
+dev_kernel2_start.7_10: VARYING
+_11: [0, +INF]
+_12: [0, +INF]
+dev_kernel3_stop.8_13: VARYING
+dev_kernel3_start.9_14: VARYING
+_15: [0, +INF]
+dev_time_16: [0, +INF]
+data_transfer_h2d_stop.10_17: VARYING
+data_transfer_h2d_start.11_18: VARYING
+_19: [0, +INF]
+data_transfer_d2h_stop.12_20: VARYING
+data_transfer_d2h_start.13_21: VARYING
+_22: [0, +INF]
+dt_time_23: [0, +INF]
+_24: [0, +INF]
+iftmp.14_25: [0, +INF]
+total_time_28: [1, +INF]  EQUIVALENCES: { total_time_5 } (1 elements)
+total_time_29: [0, 0]  EQUIVALENCES: { total_time_5 } (1 elements)
+
+
+Removing basic block 5
+void hookomp_timing_print_without_dev() ()
+{
+  uint64_t dt_time;
+  uint64_t dev_time;
+  uint64_t total_time;
+  uint64_t iftmp.14;
+  long unsigned int data_transfer_d2h_start.13;
+  long unsigned int data_transfer_d2h_stop.12;
+  long unsigned int data_transfer_h2d_start.11;
+  long unsigned int data_transfer_h2d_stop.10;
+  long unsigned int dev_kernel3_start.9;
+  long unsigned int dev_kernel3_stop.8;
+  long unsigned int dev_kernel2_start.7;
+  long unsigned int dev_kernel2_stop.6;
+  long unsigned int dev_kernel1_start.5;
+  long unsigned int dev_kernel1_stop.4;
+  long unsigned int omp_start.3;
+  long unsigned int omp_stop.2;
+  long unsigned int _8;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _15;
+  long unsigned int _19;
+  long unsigned int _22;
+  long unsigned int _24;
+
+  <bb 2>:
+  omp_stop.2_3 = omp_stop;
+  omp_start.3_4 = omp_start;
+  total_time_5 = omp_stop.2_3 - omp_start.3_4;
+  dev_kernel1_stop.4_6 = dev_kernel1_stop;
+  dev_kernel1_start.5_7 = dev_kernel1_start;
+  _8 = dev_kernel1_stop.4_6 - dev_kernel1_start.5_7;
+  dev_kernel2_stop.6_9 = dev_kernel2_stop;
+  dev_kernel2_start.7_10 = dev_kernel2_start;
+  _11 = dev_kernel2_stop.6_9 - dev_kernel2_start.7_10;
+  _12 = _8 + _11;
+  dev_kernel3_stop.8_13 = dev_kernel3_stop;
+  dev_kernel3_start.9_14 = dev_kernel3_start;
+  _15 = dev_kernel3_stop.8_13 - dev_kernel3_start.9_14;
+  dev_time_16 = _12 + _15;
+  data_transfer_h2d_stop.10_17 = data_transfer_h2d_stop;
+  data_transfer_h2d_start.11_18 = data_transfer_h2d_start;
+  _19 = data_transfer_h2d_stop.10_17 - data_transfer_h2d_start.11_18;
+  data_transfer_d2h_stop.12_20 = data_transfer_d2h_stop;
+  data_transfer_d2h_start.13_21 = data_transfer_d2h_start;
+  _22 = data_transfer_d2h_stop.12_20 - data_transfer_d2h_start.13_21;
+  dt_time_23 = _19 + _22;
+  if (total_time_5 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _24 = total_time_5 - dev_time_16;
+  iftmp.14_25 = _24 - dt_time_23;
+
+  <bb 4>:
+  # iftmp.14_1 = PHI <iftmp.14_25(3), 0(2)>
+  __printf_chk (1, "%llu", iftmp.14_1);
+  return;
+
+}
+
+
+
+;; Function void hookomp_print_time_results() (_Z26hookomp_print_time_resultsv, funcdef_no=3251, decl_uid=66119, cgraph_uid=3073)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6
+;; 2 succs { 3 4 }
+;; 3 succs { 4 }
+;; 4 succs { 6 5 }
+;; 5 succs { 6 }
+;; 6 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+total_time_131 -> { total_time_108 }
+total_time_132 -> { total_time_108 }
+Incremental SSA update started at block: 2
+Number of blocks in CFG: 8
+Number of blocks to update: 4 ( 50%)
+
+
+
+Value ranges after VRP:
+
+iftmp.30_1: [0, 1]
+stdout.15_3: VARYING
+seq_stop.16_5: VARYING
+seq_start.17_6: VARYING
+stdout.15_8: VARYING
+stdout.15_10: VARYING
+omp_stop.18_12: VARYING
+omp_start.19_13: VARYING
+stdout.15_15: VARYING
+stdout.15_17: VARYING
+stdout.15_20: VARYING
+stdout.15_22: VARYING
+dev_kernel1_stop.20_24: VARYING
+dev_kernel1_start.21_25: VARYING
+stdout.15_27: VARYING
+stdout.15_29: VARYING
+dev_kernel2_stop.22_31: VARYING
+dev_kernel2_start.23_32: VARYING
+stdout.15_34: VARYING
+stdout.15_36: VARYING
+dev_kernel3_stop.24_38: VARYING
+dev_kernel3_start.25_39: VARYING
+stdout.15_41: VARYING
+stdout.15_43: VARYING
+data_transfer_h2d_stop.26_45: VARYING
+data_transfer_h2d_start.27_46: VARYING
+stdout.15_48: VARYING
+stdout.15_50: VARYING
+data_transfer_d2h_stop.28_52: VARYING
+data_transfer_d2h_start.29_53: VARYING
+reach_offload_decision_point.31_55: VARYING
+stdout.15_56: VARYING
+reach_offload_decision_point.31_58: VARYING
+_59: [0, 1]
+stdout.15_60: VARYING
+decided_by_offloading.32_62: VARYING
+_63: [0, 1]
+stdout.15_64: VARYING
+made_the_offloading.33_66: VARYING
+_67: [0, 1]
+stdout.15_68: VARYING
+stdout.15_70: VARYING
+_72: [0, +INF]
+_73: [0, +INF]
+_74: [0, +INF]
+_75: [0, +INF]
+_76: [0, +INF]
+_77: [0, +INF]
+_78: [0, +INF]
+omp_stop.2_106: VARYING
+omp_start.3_107: VARYING
+total_time_108: [0, +INF]
+dev_kernel1_stop.4_109: VARYING
+dev_kernel1_start.5_110: VARYING
+_111: [0, +INF]
+dev_kernel2_stop.6_112: VARYING
+dev_kernel2_start.7_113: VARYING
+_114: [0, +INF]
+_115: [0, +INF]
+dev_kernel3_stop.8_116: VARYING
+dev_kernel3_start.9_117: VARYING
+_118: [0, +INF]
+dev_time_119: [0, +INF]
+data_transfer_h2d_stop.10_120: VARYING
+data_transfer_h2d_start.11_121: VARYING
+_122: [0, +INF]
+data_transfer_d2h_stop.12_123: VARYING
+data_transfer_d2h_start.13_124: VARYING
+_125: [0, +INF]
+dt_time_126: [0, +INF]
+_127: [0, +INF]
+iftmp.14_128: [0, +INF]
+iftmp.14_129: VARYING
+total_time_131: [1, +INF]  EQUIVALENCES: { total_time_108 } (1 elements)
+total_time_132: [0, 0]  EQUIVALENCES: { total_time_108 } (1 elements)
+
+
+Removing basic block 7
+void hookomp_print_time_results() ()
+{
+  uint64_t dt_time;
+  uint64_t dev_time;
+  uint64_t total_time;
+  uint64_t iftmp.14;
+  long unsigned int data_transfer_d2h_start.13;
+  long unsigned int data_transfer_d2h_stop.12;
+  long unsigned int data_transfer_h2d_start.11;
+  long unsigned int data_transfer_h2d_stop.10;
+  long unsigned int dev_kernel3_start.9;
+  long unsigned int dev_kernel3_stop.8;
+  long unsigned int dev_kernel2_start.7;
+  long unsigned int dev_kernel2_stop.6;
+  long unsigned int dev_kernel1_start.5;
+  long unsigned int dev_kernel1_stop.4;
+  long unsigned int omp_start.3;
+  long unsigned int omp_stop.2;
+  bool made_the_offloading.33;
+  bool decided_by_offloading.32;
+  bool reach_offload_decision_point.31;
+  int iftmp.30;
+  long unsigned int data_transfer_d2h_start.29;
+  long unsigned int data_transfer_d2h_stop.28;
+  long unsigned int data_transfer_h2d_start.27;
+  long unsigned int data_transfer_h2d_stop.26;
+  long unsigned int dev_kernel3_start.25;
+  long unsigned int dev_kernel3_stop.24;
+  long unsigned int dev_kernel2_start.23;
+  long unsigned int dev_kernel2_stop.22;
+  long unsigned int dev_kernel1_start.21;
+  long unsigned int dev_kernel1_stop.20;
+  long unsigned int omp_start.19;
+  long unsigned int omp_stop.18;
+  long unsigned int seq_start.17;
+  long unsigned int seq_stop.16;
+  struct _IO_FILE * stdout.15;
+  int _59;
+  int _63;
+  int _67;
+  long unsigned int _72;
+  long unsigned int _73;
+  long unsigned int _74;
+  long unsigned int _75;
+  long unsigned int _76;
+  long unsigned int _77;
+  long unsigned int _78;
+  long unsigned int _111;
+  long unsigned int _114;
+  long unsigned int _115;
+  long unsigned int _118;
+  long unsigned int _122;
+  long unsigned int _125;
+  long unsigned int _127;
+
+  <bb 2>:
+  stdout.15_3 = stdout;
+  __fprintf_chk (stdout.15_3, 1, "ORIG = ");
+  seq_stop.16_5 = seq_stop;
+  seq_start.17_6 = seq_start;
+  _72 = seq_stop.16_5 - seq_start.17_6;
+  __printf_chk (1, "%llu", _72);
+  stdout.15_8 = stdout;
+  __fprintf_chk (stdout.15_8, 1, ", ");
+  stdout.15_10 = stdout;
+  __fprintf_chk (stdout.15_10, 1, "OMP_OFF = ");
+  omp_stop.18_12 = omp_stop;
+  omp_start.19_13 = omp_start;
+  _73 = omp_stop.18_12 - omp_start.19_13;
+  __printf_chk (1, "%llu", _73);
+  stdout.15_15 = stdout;
+  __fprintf_chk (stdout.15_15, 1, ", ");
+  stdout.15_17 = stdout;
+  __fprintf_chk (stdout.15_17, 1, "OMP = ");
+  omp_stop.2_106 = omp_stop;
+  omp_start.3_107 = omp_start;
+  total_time_108 = omp_stop.2_106 - omp_start.3_107;
+  dev_kernel1_stop.4_109 = dev_kernel1_stop;
+  dev_kernel1_start.5_110 = dev_kernel1_start;
+  _111 = dev_kernel1_stop.4_109 - dev_kernel1_start.5_110;
+  dev_kernel2_stop.6_112 = dev_kernel2_stop;
+  dev_kernel2_start.7_113 = dev_kernel2_start;
+  _114 = dev_kernel2_stop.6_112 - dev_kernel2_start.7_113;
+  _115 = _111 + _114;
+  dev_kernel3_stop.8_116 = dev_kernel3_stop;
+  dev_kernel3_start.9_117 = dev_kernel3_start;
+  _118 = dev_kernel3_stop.8_116 - dev_kernel3_start.9_117;
+  dev_time_119 = _115 + _118;
+  data_transfer_h2d_stop.10_120 = data_transfer_h2d_stop;
+  data_transfer_h2d_start.11_121 = data_transfer_h2d_start;
+  _122 = data_transfer_h2d_stop.10_120 - data_transfer_h2d_start.11_121;
+  data_transfer_d2h_stop.12_123 = data_transfer_d2h_stop;
+  data_transfer_d2h_start.13_124 = data_transfer_d2h_start;
+  _125 = data_transfer_d2h_stop.12_123 - data_transfer_d2h_start.13_124;
+  dt_time_126 = _122 + _125;
+  if (total_time_108 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _127 = total_time_108 - dev_time_119;
+  iftmp.14_128 = _127 - dt_time_126;
+
+  <bb 4>:
+  # iftmp.14_129 = PHI <0(2), iftmp.14_128(3)>
+  __printf_chk (1, "%llu", iftmp.14_129);
+  stdout.15_20 = stdout;
+  __fprintf_chk (stdout.15_20, 1, ", ");
+  stdout.15_22 = stdout;
+  __fprintf_chk (stdout.15_22, 1, "CUDA_KERNEL1 = ");
+  dev_kernel1_stop.20_24 = dev_kernel1_stop;
+  dev_kernel1_start.21_25 = dev_kernel1_start;
+  _74 = dev_kernel1_stop.20_24 - dev_kernel1_start.21_25;
+  __printf_chk (1, "%llu", _74);
+  stdout.15_27 = stdout;
+  __fprintf_chk (stdout.15_27, 1, ", ");
+  stdout.15_29 = stdout;
+  __fprintf_chk (stdout.15_29, 1, "CUDA_KERNEL2 = ");
+  dev_kernel2_stop.22_31 = dev_kernel2_stop;
+  dev_kernel2_start.23_32 = dev_kernel2_start;
+  _75 = dev_kernel2_stop.22_31 - dev_kernel2_start.23_32;
+  __printf_chk (1, "%llu", _75);
+  stdout.15_34 = stdout;
+  __fprintf_chk (stdout.15_34, 1, ", ");
+  stdout.15_36 = stdout;
+  __fprintf_chk (stdout.15_36, 1, "CUDA_KERNEL3 = ");
+  dev_kernel3_stop.24_38 = dev_kernel3_stop;
+  dev_kernel3_start.25_39 = dev_kernel3_start;
+  _76 = dev_kernel3_stop.24_38 - dev_kernel3_start.25_39;
+  __printf_chk (1, "%llu", _76);
+  stdout.15_41 = stdout;
+  __fprintf_chk (stdout.15_41, 1, ", ");
+  stdout.15_43 = stdout;
+  __fprintf_chk (stdout.15_43, 1, "DT_H2D = ");
+  data_transfer_h2d_stop.26_45 = data_transfer_h2d_stop;
+  data_transfer_h2d_start.27_46 = data_transfer_h2d_start;
+  _77 = data_transfer_h2d_stop.26_45 - data_transfer_h2d_start.27_46;
+  __printf_chk (1, "%llu", _77);
+  stdout.15_48 = stdout;
+  __fprintf_chk (stdout.15_48, 1, ", ");
+  stdout.15_50 = stdout;
+  __fprintf_chk (stdout.15_50, 1, "DT_D2H = ");
+  data_transfer_d2h_stop.28_52 = data_transfer_d2h_stop;
+  data_transfer_d2h_start.29_53 = data_transfer_d2h_start;
+  _78 = data_transfer_d2h_stop.28_52 - data_transfer_d2h_start.29_53;
+  __printf_chk (1, "%llu", _78);
+  reach_offload_decision_point.31_55 = reach_offload_decision_point;
+  if (reach_offload_decision_point.31_55 != 0)
+    goto <bb 5>;
+  else
+    goto <bb 6>;
+
+  <bb 5>:
+
+  <bb 6>:
+  # iftmp.30_1 = PHI <1(4), 0(5)>
+  stdout.15_56 = stdout;
+  __fprintf_chk (stdout.15_56, 1, ", WORK_FINISHED_BEFORE_OFFLOAD_DECISION = %d", iftmp.30_1);
+  reach_offload_decision_point.31_58 = reach_offload_decision_point;
+  _59 = (int) reach_offload_decision_point.31_58;
+  stdout.15_60 = stdout;
+  __fprintf_chk (stdout.15_60, 1, ", REACH_OFFLOAD_DECISION_POINT = %d", _59);
+  decided_by_offloading.32_62 = decided_by_offloading;
+  _63 = (int) decided_by_offloading.32_62;
+  stdout.15_64 = stdout;
+  __fprintf_chk (stdout.15_64, 1, ", DECIDED_BY_OFFLOADING = %d", _63);
+  made_the_offloading.33_66 = made_the_offloading;
+  _67 = (int) made_the_offloading.33_66;
+  stdout.15_68 = stdout;
+  __fprintf_chk (stdout.15_68, 1, ", MADE_THE_OFFLOADING = %d", _67);
+  stdout.15_70 = stdout;
+  __fprintf_chk (stdout.15_70, 1, "\n");
+  return;
+
+}
+
+
+
+;; Function bool create_target_functions_table(Func****, int, int) (_Z29create_target_functions_tablePPPP4Funcii, funcdef_no=3256, decl_uid=66664, cgraph_uid=3078)
+
+Created preheader block for loop 2
+;; 3 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 6 5 12 7 8 9 10 11
+;;
+;; Loop 1
+;;  header 9, latch 8
+;;  depth 1, outer 0
+;;  nodes: 9 8 12 7 4 6 5
+;;
+;; Loop 2
+;;  header 12, latch 5
+;;  depth 2, outer 1
+;;  nodes: 12 5
+;; 2 succs { 3 10 }
+;; 3 succs { 9 }
+;; 4 succs { 6 7 }
+;; 6 succs { 12 }
+;; 5 succs { 12 }
+;; 12 succs { 5 8 }
+;; 7 succs { 8 }
+;; 8 succs { 9 }
+;; 9 succs { 4 11 }
+;; 10 succs { 11 }
+;; 11 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_57 -> { i_4 }
+j_58 -> { j_5 }
+table_59 -> { table_17 }
+table_60 -> { table_17 }
+_61 -> { _22 }
+Incremental SSA update started at block: 2
+Number of blocks in CFG: 13
+Number of blocks to update: 9 ( 69%)
+
+
+
+Value ranges after VRP:
+
+result_1: VARYING
+result_2: VARYING
+result_3: VARYING
+i_4: VARYING
+j_5: VARYING
+.MEM_6: VARYING
+.MEM_7: VARYING
+.MEM_8: VARYING
+.MEM_9: VARYING
+stderr.34_11: VARYING
+nrows_13(D): VARYING
+_14: ~[2147483648, 18446744071562067967]
+_15: [0, 18446744073709551608]
+table_17: VARYING
+stderr.34_18: VARYING
+_20: [0, +INF]
+_21: [0, +INF]
+_22: VARYING
+ncolumns_23(D): VARYING
+_24: ~[2147483648, 18446744071562067967]
+_25: [0, 18446744073709551608]
+_27: VARYING
+_29: VARYING
+_30: [0, +INF]
+_31: [0, +INF]
+_32: VARYING
+_34: VARYING
+_36: VARYING
+_37: VARYING
+_38: VARYING
+j_40: VARYING
+stderr.34_41: VARYING
+i_43: VARYING
+stderr.34_44: VARYING
+stderr.34_46: VARYING
+j_50: [0, 0]
+.MEM_56: VARYING
+i_57: [-INF, nrows_13(D) + -1]  EQUIVALENCES: { i_4 } (1 elements)
+j_58: [-INF, ncolumns_23(D) + -1]  EQUIVALENCES: { j_5 } (1 elements)
+table_59: ~[0B, 0B]  EQUIVALENCES: { table_17 } (1 elements)
+table_60: [0B, 0B]  EQUIVALENCES: { table_17 } (1 elements)
+_61: ~[0B, 0B]  EQUIVALENCES: { _22 } (1 elements)
+
+
+bool create_target_functions_table(Func****, int, int) (struct Func * * * * table_, int nrows, int ncolumns)
+{
+  int j;
+  int i;
+  bool result;
+  struct Func * * * table;
+  struct _IO_FILE * stderr.34;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _20;
+  long unsigned int _21;
+  struct Func * * * _22;
+  long unsigned int _24;
+  long unsigned int _25;
+  void * _27;
+  struct Func * * _29;
+  long unsigned int _30;
+  long unsigned int _31;
+  struct Func * * _32;
+  void * _34;
+  struct Func * * _36;
+  struct Func * * _37;
+  struct Func * _38;
+
+  <bb 2>:
+  stderr.34_11 = stderr;
+  __fprintf_chk (stderr.34_11, 1, "Allocating the rows.\n");
+  _14 = (long unsigned int) nrows_13(D);
+  _15 = _14 * 8;
+  table_17 = malloc (_15);
+  if (table_17 != 0B)
+    goto <bb 3>;
+  else
+    goto <bb 11>;
+
+  <bb 3>:
+  stderr.34_18 = stderr;
+  __fprintf_chk (stderr.34_18, 1, "Allocating the columns.\n");
+  goto <bb 10>;
+
+  <bb 4>:
+  _20 = (long unsigned int) i_4;
+  _21 = _20 * 8;
+  _22 = table_17 + _21;
+  _24 = (long unsigned int) ncolumns_23(D);
+  _25 = _24 * 8;
+  _27 = malloc (_25);
+  *_22 = _27;
+  if (_27 != 0B)
+    goto <bb 5>;
+  else
+    goto <bb 8>;
+
+  <bb 5>:
+  j_50 = 0;
+  goto <bb 7>;
+
+  <bb 6>:
+  _29 = *_22;
+  _30 = (long unsigned int) j_5;
+  _31 = _30 * 8;
+  _32 = _29 + _31;
+  _34 = malloc (48);
+  *_32 = _34;
+  _36 = *_22;
+  _37 = _36 + _31;
+  _38 = *_37;
+  _38->f = 0B;
+  j_40 = j_5 + 1;
+
+  <bb 7>:
+  # j_5 = PHI <0(5), j_40(6)>
+  if (j_5 < ncolumns_23(D))
+    goto <bb 6>;
+  else
+    goto <bb 9>;
+
+  <bb 8>:
+  stderr.34_41 = stderr;
+  __fprintf_chk (stderr.34_41, 1, "Error in table of target functions allocation (columns).\n");
+
+  <bb 9>:
+  # result_1 = PHI <result_2(7), 0(8)>
+  i_43 = i_4 + 1;
+
+  <bb 10>:
+  # result_2 = PHI <1(3), result_1(9)>
+  # i_4 = PHI <0(3), i_43(9)>
+  if (i_4 < nrows_13(D))
+    goto <bb 4>;
+  else
+    goto <bb 12>;
+
+  <bb 11>:
+  stderr.34_44 = stderr;
+  __fprintf_chk (stderr.34_44, 1, "Error in table of target functions allocation (rows).\n");
+
+  <bb 12>:
+  # result_3 = PHI <result_2(10), 0(11)>
+  stderr.34_46 = stderr;
+  __fprintf_chk (stderr.34_46, 1, "Allocating the columns is OK.\n");
+  *table__48(D) = table_17;
+  return result_3;
+
+}
+
+
+
+;; Function void call_function_ffi_call(Func*) (_Z22call_function_ffi_callP4Func, funcdef_no=3257, decl_uid=66679, cgraph_uid=3079)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4
+;; 2 succs { 3 4 }
+;; 3 succs { }
+;; 4 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+ff_22 -> { ff_4(D) }
+Incremental SSA update started at block: 2
+Number of blocks in CFG: 5
+Number of blocks to update: 2 ( 40%)
+
+
+
+Value ranges after VRP:
+
+stderr.35_2: VARYING
+ff_4(D): VARYING
+_5: VARYING
+_6: VARYING
+_7: VARYING
+_8: [0, +INF]
+_10: VARYING
+stderr.35_11: VARYING
+_14: VARYING
+_15: VARYING
+_16: VARYING
+_17: VARYING
+ff_22: ~[0B, 0B]  EQUIVALENCES: { ff_4(D) } (1 elements)
+
+
+void call_function_ffi_call(Func*) (struct Func * ff)
+{
+  struct ffi_cif cif;
+  struct _IO_FILE * stderr.35;
+  struct ffi_type * * _5;
+  struct ffi_type * _6;
+  int _7;
+  unsigned int _8;
+  ffi_status _10;
+  void * * _14;
+  void * _15;
+  void * _16;
+  void (*<T19f3>) (void) _17;
+
+  <bb 2>:
+  stderr.35_2 = stderr;
+  __fprintf_chk (stderr.35_2, 1, " In call_function_ffi_call.\n");
+  _5 = ff_4(D)->arg_types;
+  _6 = ff_4(D)->ret_type;
+  _7 = ff_4(D)->nargs;
+  _8 = (unsigned int) _7;
+  _10 = ffi_prep_cif (&cif, 2, _8, _6, _5);
+  if (_10 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  stderr.35_11 = stderr;
+  __fprintf_chk (stderr.35_11, 1, "Error ffi_prep_cif.\n");
+  exit (1);
+
+  <bb 4>:
+  _14 = ff_4(D)->arg_values;
+  _15 = ff_4(D)->ret_value;
+  _16 = ff_4(D)->f;
+  _17 = (void (*<T19f3>) (void)) _16;
+  ffi_call (&cif, _17, _15, _14);
+  cif ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z10init_arrayiiiPdS_PA4096_dS1_S1_, funcdef_no=3258, decl_uid=66690, cgraph_uid=3080)
+
+Created preheader block for loop 3
+Created preheader block for loop 4
+Created preheader block for loop 2
+Created preheader block for loop 5
+Created preheader block for loop 6
+;; 7 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 20 5 6 4 10 7 19 9 18 8 14 11 17 13 16 12 15
+;;
+;; Loop 3
+;;  header 16, latch 13
+;;  depth 1, outer 0
+;;  nodes: 16 13 17 12 11
+;;
+;; Loop 4
+;;  header 17, latch 11
+;;  depth 2, outer 3
+;;  nodes: 17 11
+;;
+;; Loop 2
+;;  header 18, latch 9
+;;  depth 1, outer 0
+;;  nodes: 18 9 19 8 7
+;;
+;; Loop 5
+;;  header 19, latch 7
+;;  depth 2, outer 2
+;;  nodes: 19 7
+;;
+;; Loop 1
+;;  header 6, latch 5
+;;  depth 1, outer 0
+;;  nodes: 6 5 20 4 3
+;;
+;; Loop 6
+;;  header 20, latch 3
+;;  depth 2, outer 1
+;;  nodes: 20 3
+;; 2 succs { 6 }
+;; 3 succs { 20 }
+;; 20 succs { 3 5 }
+;; 5 succs { 6 }
+;; 6 succs { 4 10 }
+;; 4 succs { 20 }
+;; 10 succs { 18 }
+;; 7 succs { 19 }
+;; 19 succs { 7 9 }
+;; 9 succs { 18 }
+;; 18 succs { 8 14 }
+;; 8 succs { 19 }
+;; 14 succs { 16 }
+;; 11 succs { 17 }
+;; 17 succs { 11 13 }
+;; 13 succs { 16 }
+;; 16 succs { 12 15 }
+;; 12 succs { 17 }
+;; 15 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_64 -> { i_1 }
+i_65 -> { i_2 }
+i_66 -> { i_3 }
+j_67 -> { j_4 }
+j_68 -> { j_5 }
+j_69 -> { j_6 }
+ni_70 -> { ni_18(D) }
+Incremental SSA update started at block: 6
+Number of blocks in CFG: 25
+Number of blocks to update: 16 ( 64%)
+
+
+
+Value ranges after VRP:
+
+i_1: VARYING
+i_2: VARYING
+i_3: VARYING
+j_4: VARYING
+j_5: VARYING
+j_6: VARYING
+.MEM_7: VARYING
+.MEM_8: VARYING
+.MEM_9: VARYING
+.MEM_10: VARYING
+.MEM_11: VARYING
+.MEM_12: VARYING
+ni_18(D): VARYING
+.MEM_19: VARYING
+nk_20(D): VARYING
+_21: [0, +INF]
+_22: [0, +INF]
+A_23(D): VARYING
+_24: VARYING
+_25: VARYING
+_26: VARYING
+_27: VARYING
+_28: VARYING
+j_30: VARYING
+i_31: VARYING
+j_32: [0, 0]
+nj_33(D): VARYING
+_34: [0, +INF]
+_35: [0, +INF]
+B_36(D): VARYING
+_37: VARYING
+_38: VARYING
+_39: VARYING
+_40: VARYING
+_41: VARYING
+j_43: VARYING
+i_44: VARYING
+i_45: [0, 0]
+_46: [0, +INF]
+_47: [0, +INF]
+C_48(D): VARYING
+_49: VARYING
+_50: VARYING
+_51: VARYING
+_52: VARYING
+_53: VARYING
+j_55: VARYING
+i_56: VARYING
+.MEM_57: VARYING
+i_58: [0, 0]
+.MEM_59: VARYING
+j_60: [0, 0]
+.MEM_61: VARYING
+j_62: [0, 0]
+.MEM_63: VARYING
+i_64: [-INF, ni_18(D) + -1]  EQUIVALENCES: { i_1 } (1 elements)
+i_65: [-INF, nk_20(D) + -1]  EQUIVALENCES: { i_2 } (1 elements)
+i_66: [-INF, ni_70 + -1]  EQUIVALENCES: { i_3 } (1 elements)
+j_67: [-INF, nk_20(D) + -1]  EQUIVALENCES: { j_4 } (1 elements)
+j_68: [-INF, nj_33(D) + -1]  EQUIVALENCES: { j_5 } (1 elements)
+j_69: [-INF, nj_33(D) + -1]  EQUIVALENCES: { j_6 } (1 elements)
+ni_70: [-INF, i_1]  EQUIVALENCES: { ni_18(D) } (1 elements)
+
+
+Removing basic block 21
+Removing basic block 22
+Removing basic block 23
+Removing basic block 24
+void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double * alpha, double * beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  int j;
+  int i;
+  long unsigned int _21;
+  long unsigned int _22;
+  double[4096] * _24;
+  double _25;
+  double _26;
+  double _27;
+  double _28;
+  long unsigned int _34;
+  long unsigned int _35;
+  double[4096] * _37;
+  double _38;
+  double _39;
+  double _40;
+  double _41;
+  long unsigned int _46;
+  long unsigned int _47;
+  double[4096] * _49;
+  double _50;
+  double _51;
+  double _52;
+  double _53;
+
+  <bb 2>:
+  *alpha_14(D) = 3.2412e+4;
+  *beta_16(D) = 2.123e+3;
+  goto <bb 6>;
+
+  <bb 3>:
+  _21 = (long unsigned int) i_1;
+  _22 = _21 * 32768;
+  _24 = A_23(D) + _22;
+  _25 = (double) i_1;
+  _26 = (double) j_4;
+  _27 = _25 * _26;
+  _28 = _27 * 2.44140625e-4;
+  *_24[j_4] = _28;
+  j_30 = j_4 + 1;
+
+  <bb 4>:
+  # j_4 = PHI <0(7), j_30(3)>
+  if (j_4 < nk_20(D))
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  i_31 = i_1 + 1;
+
+  <bb 6>:
+  # i_1 = PHI <0(2), i_31(5)>
+  if (i_1 < ni_18(D))
+    goto <bb 7>;
+  else
+    goto <bb 8>;
+
+  <bb 7>:
+  j_62 = 0;
+  goto <bb 4>;
+
+  <bb 8>:
+  i_58 = 0;
+  goto <bb 12>;
+
+  <bb 9>:
+  _34 = (long unsigned int) i_2;
+  _35 = _34 * 32768;
+  _37 = B_36(D) + _35;
+  _38 = (double) i_2;
+  _39 = (double) j_5;
+  _40 = _38 * _39;
+  _41 = _40 * 2.44140625e-4;
+  *_37[j_5] = _41;
+  j_43 = j_5 + 1;
+
+  <bb 10>:
+  # j_5 = PHI <0(13), j_43(9)>
+  if (j_5 < nj_33(D))
+    goto <bb 9>;
+  else
+    goto <bb 11>;
+
+  <bb 11>:
+  i_44 = i_2 + 1;
+
+  <bb 12>:
+  # i_2 = PHI <0(8), i_44(11)>
+  if (i_2 < nk_20(D))
+    goto <bb 13>;
+  else
+    goto <bb 14>;
+
+  <bb 13>:
+  j_60 = 0;
+  goto <bb 10>;
+
+  <bb 14>:
+  i_45 = 0;
+  goto <bb 18>;
+
+  <bb 15>:
+  _46 = (long unsigned int) i_3;
+  _47 = _46 * 32768;
+  _49 = C_48(D) + _47;
+  _50 = (double) i_3;
+  _51 = (double) j_6;
+  _52 = _50 * _51;
+  _53 = _52 * 2.44140625e-4;
+  *_49[j_6] = _53;
+  j_55 = j_6 + 1;
+
+  <bb 16>:
+  # j_6 = PHI <0(19), j_55(15)>
+  if (j_6 < nj_33(D))
+    goto <bb 15>;
+  else
+    goto <bb 17>;
+
+  <bb 17>:
+  i_56 = i_3 + 1;
+
+  <bb 18>:
+  # i_3 = PHI <0(14), i_56(17)>
+  if (i_3 < ni_18(D))
+    goto <bb 19>;
+  else
+    goto <bb 20>;
+
+  <bb 19>:
+  j_32 = 0;
+  goto <bb 16>;
+
+  <bb 20>:
+  return;
+
+}
+
+
+
+;; Function void copy_array(int, int, double (*)[4096], double (*)[4096]) (_Z10copy_arrayiiPA4096_dS0_, funcdef_no=3259, decl_uid=66722, cgraph_uid=3081)
+
+Created preheader block for loop 2
+;; 3 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 8 5 6 4 7
+;;
+;; Loop 1
+;;  header 6, latch 5
+;;  depth 1, outer 0
+;;  nodes: 6 5 8 4 3
+;;
+;; Loop 2
+;;  header 8, latch 3
+;;  depth 2, outer 1
+;;  nodes: 8 3
+;; 2 succs { 6 }
+;; 3 succs { 8 }
+;; 8 succs { 3 5 }
+;; 5 succs { 6 }
+;; 6 succs { 4 7 }
+;; 4 succs { 8 }
+;; 7 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_20 -> { i_1 }
+j_21 -> { j_2 }
+Incremental SSA update started at block: 6
+Number of blocks in CFG: 10
+Number of blocks to update: 5 ( 50%)
+
+
+
+Value ranges after VRP:
+
+i_1: VARYING
+j_2: VARYING
+.MEM_3: VARYING
+.MEM_4: VARYING
+ni_6(D): VARYING
+nj_7(D): VARYING
+_8: [0, +INF]
+_9: [0, +INF]
+C_dest_10(D): VARYING
+_11: VARYING
+j_12: [0, 0]
+C_source_13(D): VARYING
+_14: VARYING
+_15: VARYING
+j_17: VARYING
+i_18: VARYING
+.MEM_19: VARYING
+i_20: [-INF, ni_6(D) + -1]  EQUIVALENCES: { i_1 } (1 elements)
+j_21: [-INF, nj_7(D) + -1]  EQUIVALENCES: { j_2 } (1 elements)
+
+
+Removing basic block 9
+void copy_array(int, int, double (*)[4096], double (*)[4096]) (int ni, int nj, double[4096] * C_source, double[4096] * C_dest)
+{
+  int j;
+  int i;
+  long unsigned int _8;
+  long unsigned int _9;
+  double[4096] * _11;
+  double[4096] * _14;
+  double _15;
+
+  <bb 2>:
+  goto <bb 6>;
+
+  <bb 3>:
+  _8 = (long unsigned int) i_1;
+  _9 = _8 * 32768;
+  _11 = C_dest_10(D) + _9;
+  _14 = C_source_13(D) + _9;
+  _15 = *_14[j_2];
+  *_11[j_2] = _15;
+  j_17 = j_2 + 1;
+
+  <bb 4>:
+  # j_2 = PHI <0(7), j_17(3)>
+  if (j_2 < nj_7(D))
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  i_18 = i_1 + 1;
+
+  <bb 6>:
+  # i_1 = PHI <0(2), i_18(5)>
+  if (i_1 < ni_6(D))
+    goto <bb 7>;
+  else
+    goto <bb 8>;
+
+  <bb 7>:
+  j_12 = 0;
+  goto <bb 4>;
+
+  <bb 8>:
+  return;
+
+}
+
+
+
+;; Function void compareResults(int, int, double (*)[4096], double (*)[4096]) (_Z14compareResultsiiPA4096_dS0_, funcdef_no=3260, decl_uid=66738, cgraph_uid=3082)
+
+Created preheader block for loop 2
+;; 3 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 25 22 23 21 24
+;;
+;; Loop 1
+;;  header 23, latch 22
+;;  depth 1, outer 0
+;;  nodes: 23 22 25 21 20 18 19 10 17 15 16 13 14 11 12 8 9 5 3 4 6 7
+;;
+;; Loop 2
+;;  header 25, latch 20
+;;  depth 2, outer 1
+;;  nodes: 25 20 18 19 10 17 15 16 13 14 11 12 8 9 5 3 4 6 7
+;; 2 succs { 23 }
+;; 3 succs { 4 5 }
+;; 4 succs { 5 }
+;; 5 succs { 6 9 }
+;; 6 succs { 7 8 }
+;; 7 succs { 8 }
+;; 8 succs { 10 9 }
+;; 9 succs { 10 }
+;; 10 succs { 18 11 }
+;; 11 succs { 12 13 }
+;; 12 succs { 13 }
+;; 13 succs { 14 15 }
+;; 14 succs { 15 }
+;; 15 succs { 16 17 }
+;; 16 succs { 17 }
+;; 17 succs { 18 }
+;; 18 succs { 19 20 }
+;; 19 succs { 20 }
+;; 20 succs { 25 }
+;; 25 succs { 3 22 }
+;; 22 succs { 23 }
+;; 23 succs { 21 24 }
+;; 21 succs { 25 }
+;; 24 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+fail_14 -> { fail_5 }
+fail_19 -> { fail_4 }
+Incremental SSA update started at block: 23
+Number of blocks in CFG: 26
+Number of blocks to update: 8 ( 31%)
+
+
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_50 -> { i_1 }
+j_51 -> { j_2 }
+Incremental SSA update started at block: 23
+Number of blocks in CFG: 27
+Number of blocks to update: 6 ( 22%)
+
+
+
+Value ranges after VRP:
+
+i_1: VARYING
+j_2: VARYING
+fail_3: [0, +INF(OVF)]
+fail_4: [0, +INF(OVF)]
+fail_5: [0, +INF(OVF)]
+ni_6(D): VARYING
+nj_7(D): VARYING
+_8: [0, +INF]
+_9: [0, +INF]
+C_output_10(D): VARYING
+_11: VARYING
+_13: VARYING
+fail_14: [0, +INF(OVF)]
+j_15: [0, 0]
+C_16(D): VARYING
+_17: VARYING
+_18: VARYING
+fail_19: [0, +INF(OVF)]
+_20: VARYING
+fail_21: [1, +INF(OVF)]
+j_22: VARYING
+i_23: VARYING
+stderr.38_24: VARYING
+_27: VARYING
+_28: VARYING
+_29: VARYING
+_30: VARYING
+_31: VARYING
+_32: VARYING
+_33: VARYING
+_34: VARYING
+iftmp.1_35: [0, +INF]
+_36: VARYING
+_37: VARYING
+_38: VARYING
+_39: VARYING
+_40: VARYING
+_41: VARYING
+_42: VARYING
+_43: VARYING
+_44: VARYING
+_45: VARYING
+_46: VARYING
+_47: VARYING
+_48: VARYING
+fail_49: [0, +INF(OVF)]
+i_50: [-INF, ni_6(D) + -1]  EQUIVALENCES: { i_1 } (1 elements)
+j_51: [-INF, nj_7(D) + -1]  EQUIVALENCES: { j_2 } (1 elements)
+
+
+Jump threading proved probability of edge 10->11 too small (it is 8133, should be 10000).
+Removing basic block 10
+Removing basic block 9
+Removing basic block 26
+Merging blocks 28 and 11
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+iftmp.1_50 -> { iftmp.1_35 }
+iftmp.1_51 -> { iftmp.1_35 iftmp.1_50 }
+
+SSA names to release after updating the SSA web
+
+iftmp.1_35 
+Incremental SSA update started at block: 5
+Number of blocks in CFG: 25
+Number of blocks to update: 4 ( 16%)
+
+
+void compareResults(int, int, double (*)[4096], double (*)[4096]) (int ni, int nj, double[4096] * C, double[4096] * C_output)
+{
+  bool iftmp.1;
+  float D.68697;
+  int fail;
+  int j;
+  int i;
+  struct _IO_FILE * stderr.38;
+  long unsigned int _8;
+  long unsigned int _9;
+  double[4096] * _11;
+  double _13;
+  double[4096] * _17;
+  double _18;
+  double _20;
+  float _27;
+  float _28;
+  float _29;
+  double _30;
+  float _31;
+  float _32;
+  float _33;
+  double _34;
+  double _36;
+  float _37;
+  float _38;
+  double _39;
+  float _40;
+  float _41;
+  float _42;
+  float _43;
+  float _44;
+  float _45;
+  float _46;
+  float _47;
+  float _48;
+
+  <bb 2>:
+  goto <bb 20>;
+
+  <bb 3>:
+  _8 = (long unsigned int) i_1;
+  _9 = _8 * 32768;
+  _11 = C_output_10(D) + _9;
+  _13 = *_11[j_2];
+  _17 = C_16(D) + _9;
+  _18 = *_17[j_2];
+  _27 = (float) _18;
+  if (_27 < 0.0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  _28 = -_27;
+
+  <bb 5>:
+  # _29 = PHI <_27(3), _28(4)>
+  _30 = (double) _29;
+  if (_30 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 6>;
+  else
+    goto <bb 24>;
+
+  <bb 6>:
+  _31 = (float) _13;
+  if (_31 < 0.0)
+    goto <bb 7>;
+  else
+    goto <bb 8>;
+
+  <bb 7>:
+  _32 = -_31;
+
+  <bb 8>:
+  # _33 = PHI <_31(6), _32(7)>
+  _34 = (double) _33;
+  if (_34 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 23>;
+  else
+    goto <bb 24>;
+
+  <bb 9>:
+  _38 = -_37;
+
+  <bb 10>:
+  # _42 = PHI <_37(24), _38(9)>
+  _39 = _18 + 9.99999993922529029077850282192230224609375e-9;
+  _40 = (float) _39;
+  if (_40 < 0.0)
+    goto <bb 11>;
+  else
+    goto <bb 12>;
+
+  <bb 11>:
+  _41 = -_40;
+
+  <bb 12>:
+  # _43 = PHI <_40(10), _41(11)>
+  _44 = _42 / _43;
+  if (_44 < 0.0)
+    goto <bb 13>;
+  else
+    goto <bb 14>;
+
+  <bb 13>:
+  _45 = -_44;
+
+  <bb 14>:
+  # _46 = PHI <_44(12), _45(13)>
+  _47 = _46 * 1.0e+2;
+
+  <bb 15>:
+  # _48 = PHI <0.0(23), _47(14)>
+  _20 = (double) _48;
+  if (_20 > 5.000000000000000277555756156289135105907917022705078125e-2)
+    goto <bb 16>;
+  else
+    goto <bb 17>;
+
+  <bb 16>:
+  fail_21 = fail_4 + 1;
+
+  <bb 17>:
+  # fail_3 = PHI <fail_4(15), fail_21(16)>
+  j_22 = j_2 + 1;
+
+  <bb 18>:
+  # j_2 = PHI <0(21), j_22(17)>
+  # fail_4 = PHI <fail_49(21), fail_3(17)>
+  if (j_2 < nj_7(D))
+    goto <bb 3>;
+  else
+    goto <bb 19>;
+
+  <bb 19>:
+  # fail_19 = PHI <fail_4(18)>
+  i_23 = i_1 + 1;
+
+  <bb 20>:
+  # i_1 = PHI <0(2), i_23(19)>
+  # fail_5 = PHI <0(2), fail_19(19)>
+  if (i_1 < ni_6(D))
+    goto <bb 21>;
+  else
+    goto <bb 22>;
+
+  <bb 21>:
+  # fail_49 = PHI <fail_5(20)>
+  j_15 = 0;
+  goto <bb 18>;
+
+  <bb 22>:
+  # fail_14 = PHI <fail_5(20)>
+  stderr.38_24 = stderr;
+  __fprintf_chk (stderr.38_24, 1, "Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f Percent: %d\n", 5.000000000000000277555756156289135105907917022705078125e-2, fail_14);
+  return;
+
+  <bb 23>:
+  # iftmp.1_50 = PHI <1(8)>
+  goto <bb 15>;
+
+  <bb 24>:
+  # iftmp.1_51 = PHI <0(8), 0(5)>
+  _36 = _18 - _13;
+  _37 = (float) _36;
+  if (_37 < 0.0)
+    goto <bb 9>;
+  else
+    goto <bb 10>;
+
+}
+
+
+
+;; Function void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z4gemmiiiddPA4096_dS0_S0_, funcdef_no=3262, decl_uid=66774, cgraph_uid=3084)
+
+Created preheader block for loop 2
+;; 4 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 11 8 9 7 10
+;;
+;; Loop 1
+;;  header 9, latch 8
+;;  depth 1, outer 0
+;;  nodes: 9 8 11 7 6 5 3 4
+;;
+;; Loop 2
+;;  header 11, latch 6
+;;  depth 2, outer 1
+;;  nodes: 11 6 5 3 4
+;;
+;; Loop 3
+;;  header 5, latch 4
+;;  depth 3, outer 2
+;;  nodes: 5 4
+;; 2 succs { 9 }
+;; 3 succs { 5 }
+;; 4 succs { 5 }
+;; 5 succs { 4 6 }
+;; 6 succs { 11 }
+;; 11 succs { 3 8 }
+;; 8 succs { 9 }
+;; 9 succs { 7 10 }
+;; 7 succs { 11 }
+;; 10 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_38 -> { i_1 }
+j_39 -> { j_2 }
+k_40 -> { k_3 }
+_41 -> { _13 }
+Incremental SSA update started at block: 9
+Number of blocks in CFG: 13
+Number of blocks to update: 8 ( 62%)
+
+
+
+Value ranges after VRP:
+
+i_1: VARYING
+j_2: VARYING
+k_3: VARYING
+.MEM_4: VARYING
+.MEM_5: VARYING
+.MEM_6: VARYING
+ni_8(D): VARYING
+nj_9(D): VARYING
+C_10(D): VARYING
+_11: [0, +INF]
+_12: [0, +INF]
+_13: VARYING
+_14: VARYING
+_16: VARYING
+nk_18(D): VARYING
+j_19: [0, 0]
+_20: VARYING
+A_21(D): VARYING
+_22: VARYING
+_23: VARYING
+_25: VARYING
+_26: [0, +INF]
+_27: [0, +INF]
+B_28(D): VARYING
+_29: VARYING
+_30: VARYING
+_31: VARYING
+_32: VARYING
+k_34: VARYING
+j_35: VARYING
+i_36: VARYING
+.MEM_37: VARYING
+i_38: [-INF, ni_8(D) + -1]  EQUIVALENCES: { i_1 } (1 elements)
+j_39: [-INF, nj_9(D) + -1]  EQUIVALENCES: { j_2 } (1 elements)
+k_40: [-INF, nk_18(D) + -1]  EQUIVALENCES: { k_3 } (1 elements)
+_41: ~[0B, 0B]  EQUIVALENCES: { _13 } (1 elements)
+
+
+Removing basic block 12
+void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  int k;
+  int j;
+  int i;
+  long unsigned int _11;
+  long unsigned int _12;
+  double[4096] * _13;
+  double _14;
+  double _16;
+  double _20;
+  double[4096] * _22;
+  double _23;
+  double _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  double[4096] * _29;
+  double _30;
+  double _31;
+  double _32;
+
+  <bb 2>:
+  goto <bb 9>;
+
+  <bb 3>:
+  _11 = (long unsigned int) i_1;
+  _12 = _11 * 32768;
+  _13 = C_10(D) + _12;
+  _14 = *_13[j_2];
+  _16 = _14 * beta_15(D);
+  *_13[j_2] = _16;
+  goto <bb 5>;
+
+  <bb 4>:
+  _20 = *_13[j_2];
+  _22 = A_21(D) + _12;
+  _23 = *_22[k_3];
+  _25 = _23 * alpha_24(D);
+  _26 = (long unsigned int) k_3;
+  _27 = _26 * 32768;
+  _29 = B_28(D) + _27;
+  _30 = *_29[j_2];
+  _31 = _25 * _30;
+  _32 = _20 + _31;
+  *_13[j_2] = _32;
+  k_34 = k_3 + 1;
+
+  <bb 5>:
+  # k_3 = PHI <0(3), k_34(4)>
+  if (k_3 < nk_18(D))
+    goto <bb 4>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  j_35 = j_2 + 1;
+
+  <bb 7>:
+  # j_2 = PHI <0(10), j_35(6)>
+  if (j_2 < nj_9(D))
+    goto <bb 3>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  i_36 = i_1 + 1;
+
+  <bb 9>:
+  # i_1 = PHI <0(2), i_36(8)>
+  if (i_1 < ni_8(D))
+    goto <bb 10>;
+  else
+    goto <bb 11>;
+
+  <bb 10>:
+  j_19 = 0;
+  goto <bb 7>;
+
+  <bb 11>:
+  return;
+
+}
+
+
+
+;; Function void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z13gemm_originaliiiddPA4096_dS0_S0_, funcdef_no=3263, decl_uid=66799, cgraph_uid=3085)
+
+Created preheader block for loop 2
+;; 4 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 11 8 9 7 10
+;;
+;; Loop 1
+;;  header 9, latch 8
+;;  depth 1, outer 0
+;;  nodes: 9 8 11 7 6 5 3 4
+;;
+;; Loop 2
+;;  header 11, latch 6
+;;  depth 2, outer 1
+;;  nodes: 11 6 5 3 4
+;;
+;; Loop 3
+;;  header 5, latch 4
+;;  depth 3, outer 2
+;;  nodes: 5 4
+;; 2 succs { 9 }
+;; 3 succs { 5 }
+;; 4 succs { 5 }
+;; 5 succs { 4 6 }
+;; 6 succs { 11 }
+;; 11 succs { 3 8 }
+;; 8 succs { 9 }
+;; 9 succs { 7 10 }
+;; 7 succs { 11 }
+;; 10 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_59 -> { i_19 }
+_60 -> { _22 }
+j_61 -> { j_23 }
+k_62 -> { k_28 }
+Incremental SSA update started at block: 9
+Number of blocks in CFG: 13
+Number of blocks to update: 8 ( 62%)
+
+
+
+Value ranges after VRP:
+
+ni_3(D): VARYING
+nj_4(D): VARYING
+nk_5(D): VARYING
+A_8(D): VARYING
+B_9(D): VARYING
+C_10(D): VARYING
+_13: VARYING
+_14: [0, +INF]
+_15: [0, +INF]
+_16: VARYING
+_17: [0, +INF]
+_18: [0, +INF]
+i_19: VARYING
+_20: [0, +INF]
+_21: [0, +INF]
+_22: VARYING
+j_23: VARYING
+_24: VARYING
+_25: VARYING
+_26: VARYING
+_27: VARYING
+k_28: VARYING
+_29: VARYING
+_30: VARYING
+_31: [0, +INF]
+_32: [0, +INF]
+_33: VARYING
+_34: VARYING
+_35: VARYING
+_36: VARYING
+k_37: VARYING
+j_38: VARYING
+i_39: VARYING
+j_40: [0, 0]
+_41: VARYING
+_42: [0, +INF]
+_43: [0, +INF]
+_44: VARYING
+_45: [0, +INF]
+_46: [0, +INF]
+.MEM_47: VARYING
+.MEM_48: VARYING
+.MEM_49: VARYING
+.MEM_58: VARYING
+i_59: [-INF, ni_3(D) + -1]  EQUIVALENCES: { i_19 } (1 elements)
+_60: ~[0B, 0B]  EQUIVALENCES: { _22 } (1 elements)
+j_61: [-INF, nj_4(D) + -1]  EQUIVALENCES: { j_23 } (1 elements)
+k_62: [-INF, nk_5(D) + -1]  EQUIVALENCES: { k_28 } (1 elements)
+
+
+Removing basic block 12
+void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  struct timespec spec;
+  int k;
+  int j;
+  int i;
+  struct timespec spec;
+  long int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long int _16;
+  long unsigned int _17;
+  uint64_t _18;
+  long unsigned int _20;
+  long unsigned int _21;
+  double[4096] * _22;
+  double _24;
+  double _25;
+  double _26;
+  double[4096] * _27;
+  double _29;
+  double _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  double[4096] * _33;
+  double _34;
+  double _35;
+  double _36;
+  long int _41;
+  long unsigned int _42;
+  long unsigned int _43;
+  long int _44;
+  long unsigned int _45;
+  uint64_t _46;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _13 = spec.tv_sec;
+  _14 = (long unsigned int) _13;
+  _15 = _14 * 1000000000;
+  _16 = spec.tv_nsec;
+  _17 = (long unsigned int) _16;
+  _18 = _15 + _17;
+  spec ={v} {CLOBBER};
+  seq_start = _18;
+  goto <bb 9>;
+
+  <bb 3>:
+  _20 = (long unsigned int) i_19;
+  _21 = _20 * 32768;
+  _22 = C_10(D) + _21;
+  _24 = *_22[j_23];
+  _25 = beta_7(D) * _24;
+  *_22[j_23] = _25;
+  goto <bb 5>;
+
+  <bb 4>:
+  _26 = *_22[j_23];
+  _27 = A_8(D) + _21;
+  _29 = *_27[k_28];
+  _30 = alpha_6(D) * _29;
+  _31 = (long unsigned int) k_28;
+  _32 = _31 * 32768;
+  _33 = B_9(D) + _32;
+  _34 = *_33[j_23];
+  _35 = _30 * _34;
+  _36 = _26 + _35;
+  *_22[j_23] = _36;
+  k_37 = k_28 + 1;
+
+  <bb 5>:
+  # k_28 = PHI <0(3), k_37(4)>
+  if (nk_5(D) > k_28)
+    goto <bb 4>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  j_38 = j_23 + 1;
+
+  <bb 7>:
+  # j_23 = PHI <0(10), j_38(6)>
+  if (nj_4(D) > j_23)
+    goto <bb 3>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  i_39 = i_19 + 1;
+
+  <bb 9>:
+  # i_19 = PHI <0(2), i_39(8)>
+  if (ni_3(D) > i_19)
+    goto <bb 10>;
+  else
+    goto <bb 11>;
+
+  <bb 10>:
+  j_40 = 0;
+  goto <bb 7>;
+
+  <bb 11>:
+  clock_gettime (1, &spec);
+  _41 = spec.tv_sec;
+  _42 = (long unsigned int) _41;
+  _43 = _42 * 1000000000;
+  _44 = spec.tv_nsec;
+  _45 = (long unsigned int) _44;
+  _46 = _43 + _45;
+  spec ={v} {CLOBBER};
+  seq_stop = _46;
+  return;
+
+}
+
+
+
+;; Function void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_, funcdef_no=3264, decl_uid=66809, cgraph_uid=3086)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Value ranges after VRP:
+
+
+
+void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  struct .omp_data_s.41 .omp_data_o.42;
+
+  <bb 2>:
+  .omp_data_o.42.alpha = alpha_2(D);
+  .omp_data_o.42.beta = beta_4(D);
+  .omp_data_o.42.A = A_6(D);
+  .omp_data_o.42.B = B_8(D);
+  .omp_data_o.42.C = C_10(D);
+  .omp_data_o.42.ni = ni_12(D);
+  .omp_data_o.42.nj = nj_14(D);
+  .omp_data_o.42.nk = nk_16(D);
+  __builtin_GOMP_parallel_start (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0, &.omp_data_o.42, 8);
+  _Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0 (&.omp_data_o.42);
+  __builtin_GOMP_parallel_end ();
+  return;
+
+}
+
+
+
+;; Function void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z8gemm_ompiiiddPA4096_dS0_S0_, funcdef_no=3265, decl_uid=66831, cgraph_uid=3087)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Value ranges after VRP:
+
+_13: VARYING
+_14: [0, +INF]
+_15: [0, +INF]
+_16: VARYING
+_17: [0, +INF]
+_18: [0, +INF]
+_19: VARYING
+_20: [0, +INF]
+_21: [0, +INF]
+_22: VARYING
+_23: [0, +INF]
+_24: [0, +INF]
+
+
+void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C_outputFromOMP)
+{
+  struct timespec spec;
+  struct .omp_data_s.41 .omp_data_o.42;
+  struct timespec spec;
+  long int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long int _16;
+  long unsigned int _17;
+  uint64_t _18;
+  long int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long int _22;
+  long unsigned int _23;
+  uint64_t _24;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _13 = spec.tv_sec;
+  _14 = (long unsigned int) _13;
+  _15 = _14 * 1000000000;
+  _16 = spec.tv_nsec;
+  _17 = (long unsigned int) _16;
+  _18 = _15 + _17;
+  spec ={v} {CLOBBER};
+  omp_start = _18;
+  .omp_data_o.42.alpha = alpha_6(D);
+  .omp_data_o.42.beta = beta_7(D);
+  .omp_data_o.42.A = A_8(D);
+  .omp_data_o.42.B = B_9(D);
+  .omp_data_o.42.C = C_outputFromOMP_10(D);
+  .omp_data_o.42.ni = ni_3(D);
+  .omp_data_o.42.nj = nj_4(D);
+  .omp_data_o.42.nk = nk_5(D);
+  __builtin_GOMP_parallel_start (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0, &.omp_data_o.42, 8);
+  _Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0 (&.omp_data_o.42);
+  __builtin_GOMP_parallel_end ();
+  clock_gettime (1, &spec);
+  _19 = spec.tv_sec;
+  _20 = (long unsigned int) _19;
+  _21 = _20 * 1000000000;
+  _22 = spec.tv_nsec;
+  _23 = (long unsigned int) _22;
+  _24 = _21 + _23;
+  spec ={v} {CLOBBER};
+  omp_stop = _24;
+  return;
+
+}
+
+
+
+;; Function void GPU_argv_init() (_Z13GPU_argv_initv, funcdef_no=3266, decl_uid=66833, cgraph_uid=3088)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Value ranges after VRP:
+
+stderr.43_2: VARYING
+stderr.43_5: VARYING
+
+
+void GPU_argv_init() ()
+{
+  struct cudaDeviceProp deviceProp;
+  struct _IO_FILE * stderr.43;
+
+  <bb 2>:
+  stderr.43_2 = stderr;
+  __fprintf_chk (stderr.43_2, 1, "GPU init.\n");
+  cudaGetDeviceProperties (&deviceProp, 0);
+  stderr.43_5 = stderr;
+  __fprintf_chk (stderr.43_5, 1, "setting device %d with name %s\n", 0, &deviceProp.name);
+  cudaSetDevice (0);
+  deviceProp ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function int main(int, char**) (main, funcdef_no=3268, decl_uid=66878, cgraph_uid=3090) (executed once)
+
+Created preheader block for loop 4
+Created preheader block for loop 5
+Created preheader block for loop 6
+;; 7 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 8 30 10 11 9 12 13 29 15 16 14 17 18 19 20 21 22 28 24 25 23 26 27
+;;
+;; Loop 3
+;;  header 25, latch 24
+;;  depth 1, outer 0
+;;  nodes: 25 24 28 23 22 20 21
+;;
+;; Loop 4
+;;  header 28, latch 22
+;;  depth 2, outer 3
+;;  nodes: 28 22 20 21
+;;
+;; Loop 2
+;;  header 16, latch 15
+;;  depth 1, outer 0
+;;  nodes: 16 15 29 14 13
+;;
+;; Loop 5
+;;  header 29, latch 13
+;;  depth 2, outer 2
+;;  nodes: 29 13
+;;
+;; Loop 1
+;;  header 11, latch 10
+;;  depth 1, outer 0
+;;  nodes: 11 10 30 9 8
+;;
+;; Loop 6
+;;  header 30, latch 8
+;;  depth 2, outer 1
+;;  nodes: 30 8
+;; 2 succs { 3 7 }
+;; 3 succs { 4 5 }
+;; 4 succs { }
+;; 5 succs { 6 7 }
+;; 6 succs { }
+;; 7 succs { 11 }
+;; 8 succs { 30 }
+;; 30 succs { 8 10 }
+;; 10 succs { 11 }
+;; 11 succs { 9 12 }
+;; 9 succs { 30 }
+;; 12 succs { 16 }
+;; 13 succs { 29 }
+;; 29 succs { 13 15 }
+;; 15 succs { 16 }
+;; 16 succs { 14 17 }
+;; 14 succs { 29 }
+;; 17 succs { 18 27 }
+;; 18 succs { 19 27 }
+;; 19 succs { 25 }
+;; 20 succs { 21 22 }
+;; 21 succs { 22 }
+;; 22 succs { 28 }
+;; 28 succs { 20 24 }
+;; 24 succs { 25 }
+;; 25 succs { 23 26 }
+;; 23 succs { 28 }
+;; 26 succs { 27 }
+;; 27 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+ff_0_209 -> { ff_0_21 }
+_210 -> { _33 }
+_211 -> { _45 }
+table.55_212 -> { table.55_66 }
+ni.62_213 -> { ni.62_84 }
+ni.62_214 -> { ni.62_120 }
+i_215 -> { i_147 }
+j_216 -> { j_152 }
+i_217 -> { i_156 }
+j_218 -> { j_161 }
+i_219 -> { i_185 }
+j_220 -> { j_189 }
+Incremental SSA update started at block: 2
+Number of blocks in CFG: 34
+Number of blocks to update: 21 ( 62%)
+
+
+
+Value ranges after VRP:
+
+.MEM_1: VARYING
+.MEM_2: VARYING
+stderr.53_18: VARYING
+ff_0_21: VARYING
+_23: VARYING
+_26: VARYING
+_29: ~[0B, 0B]
+_33: VARYING
+_45: VARYING
+stderr.53_57: VARYING
+_60: VARYING
+j_61: [0, 0]
+table.55_62: VARYING
+stderr.53_64: VARYING
+table.55_66: VARYING
+_67: VARYING
+_68: VARYING
+.MEM_70: VARYING
+stderr.53_73: VARYING
+C.57_75: VARYING
+B.58_76: VARYING
+A.59_77: VARYING
+nk.60_78: VARYING
+nj.61_79: VARYING
+ni.62_80: VARYING
+C.57_82: VARYING
+nj.61_83: VARYING
+ni.62_84: VARYING
+C_outputFromGpu.63_86: VARYING
+stderr.53_88: VARYING
+B.58_90: VARYING
+A.59_91: VARYING
+beta.64_92: VARYING
+alpha.65_93: VARYING
+nk.60_94: VARYING
+nj.61_95: VARYING
+ni.62_96: VARYING
+stdout.66_98: VARYING
+stderr.53_101: VARYING
+C.57_103: VARYING
+nj.61_104: VARYING
+ni.62_105: VARYING
+stderr.53_107: VARYING
+C_outputFromGpu.63_109: VARYING
+C.57_110: VARYING
+nj.61_111: VARYING
+ni.62_112: VARYING
+argc_114(D): VARYING
+_116: VARYING
+_117: VARYING
+C_outputFromGpu.63_118: VARYING
+nj.61_119: VARYING
+ni.62_120: VARYING
+A.59_122: VARYING
+B.58_124: VARYING
+C.57_126: VARYING
+C_outputFromGpu.63_129: VARYING
+ret_141: VARYING
+ret_142: VARYING
+ret_143: VARYING
+C_outputFromOMP_144: VARYING
+ret_145: VARYING
+ret_146: VARYING
+i_147: VARYING
+_148: [0, +INF]
+_149: [0, +INF]
+_150: VARYING
+_151: VARYING
+j_152: VARYING
+_153: VARYING
+j_154: VARYING
+i_155: VARYING
+i_156: VARYING
+_157: [0, +INF]
+_158: [0, +INF]
+_159: VARYING
+_160: VARYING
+j_161: VARYING
+_162: VARYING
+j_163: VARYING
+i_164: VARYING
+.MEM_165: VARYING
+.MEM_166: VARYING
+.MEM_167: VARYING
+.MEM_168: VARYING
+i_185: [0, +INF]
+_186: [0, 2147483646]
+_187: [0, 70368744112128]
+_188: VARYING
+j_189: VARYING
+_190: VARYING
+stderr.67_191: VARYING
+_192: [0, +INF(OVF)]
+_193: VARYING
+_194: [-19, 19]
+stderr.67_195: VARYING
+j_196: VARYING
+i_197: [1, +INF]
+stderr.67_198: VARYING
+j_199: [0, 0]
+.MEM_200: VARYING
+.MEM_201: VARYING
+.MEM_202: VARYING
+.MEM_206: VARYING
+j_207: [0, 0]
+.MEM_208: VARYING
+ff_0_209: ~[0B, 0B]  EQUIVALENCES: { ff_0_21 } (1 elements)
+_210: ~[0B, 0B]  EQUIVALENCES: { _33 } (1 elements)
+_211: ~[0B, 0B]  EQUIVALENCES: { _45 } (1 elements)
+table.55_212: ~[0B, 0B]  EQUIVALENCES: { table.55_66 } (1 elements)
+ni.62_213: [-INF, i_147]  EQUIVALENCES: { ni.62_84 } (1 elements)
+ni.62_214: [1, +INF]  EQUIVALENCES: { ni.62_120 } (1 elements)
+i_215: [-INF, ni.62_84 + -1]  EQUIVALENCES: { i_147 } (1 elements)
+j_216: [-INF, nj.61_83 + -1]  EQUIVALENCES: { j_152 } (1 elements)
+i_217: [-INF, ni.62_213 + -1]  EQUIVALENCES: { i_156 } (1 elements)
+j_218: [-INF, nj.61_83 + -1]  EQUIVALENCES: { j_161 } (1 elements)
+i_219: [0, 2147483646]  EQUIVALENCES: { i_185 } (1 elements)
+j_220: [-INF, nj.61_119 + -1]  EQUIVALENCES: { j_189 } (1 elements)
+
+
+Folding predicate table.55_212 == 0B to 0
+Removing basic block 6
+Removing basic block 31
+Removing basic block 32
+Removing basic block 33
+int main(int, char**) (int argc, char * * argv)
+{
+  struct _IO_FILE * stderr.67;
+  int i;
+  int j;
+  int i;
+  int j;
+  int i;
+  int j;
+  void * ret;
+  void * ret;
+  void * ret;
+  void * ret;
+  void * ret;
+  static const char __PRETTY_FUNCTION__[22] = "int main(int, char**)";
+  struct Func * ff_0;
+  double[4096][4096] * C_outputFromGpu;
+  double[4096][4096] * C_inputToGpu;
+  double[4096][4096] * C_outputFromOMP;
+  double[4096][4096] * C;
+  double[4096][4096] * B;
+  double[4096][4096] * A;
+  double beta;
+  double alpha;
+  int nk;
+  int nj;
+  int ni;
+  struct _IO_FILE * stdout.66;
+  double alpha.65;
+  double beta.64;
+  double[4096][4096] * C_outputFromGpu.63;
+  int ni.62;
+  int nj.61;
+  int nk.60;
+  double[4096][4096] * A.59;
+  double[4096][4096] * B.58;
+  double[4096][4096] * C.57;
+  struct Func * * * table.55;
+  struct _IO_FILE * stderr.53;
+  void * _23;
+  void * _26;
+  void * * _29;
+  void * * _33;
+  struct ffi_type * * _45;
+  bool _60;
+  struct Func * * _67;
+  struct Func * _68;
+  char * _116;
+  unsigned char _117;
+  long unsigned int _148;
+  long unsigned int _149;
+  double[4096] * _150;
+  double[4096] * _151;
+  double _153;
+  long unsigned int _157;
+  long unsigned int _158;
+  double[4096] * _159;
+  double[4096] * _160;
+  double _162;
+  long unsigned int _186;
+  long unsigned int _187;
+  double[4096] * _188;
+  double _190;
+  int _192;
+  int _193;
+  int _194;
+
+  <bb 2>:
+  ni = 4096;
+  nj = 4096;
+  nk = 4096;
+  ret_141 = xmalloc (134217728);
+  A = ret_141;
+  ret_142 = xmalloc (134217728);
+  B = ret_142;
+  ret_143 = xmalloc (134217728);
+  C = ret_143;
+  C_outputFromOMP_144 = xmalloc (134217728);
+  ret_145 = xmalloc (134217728);
+  C_inputToGpu = ret_145;
+  ret_146 = xmalloc (134217728);
+  C_outputFromGpu = ret_146;
+  stderr.53_18 = stderr;
+  __fprintf_chk (stderr.53_18, 1, "Preparing alternatives functions.\n");
+  ff_0_21 = malloc (48);
+  _23 = malloc (88);
+  ff_0_21->arg_types = _23;
+  _26 = malloc (88);
+  ff_0_21->arg_values = _26;
+  ff_0_21->f = gemm_cuda;
+  _29 = &ff_0_21->ret_value;
+  memset (_29, 0, 8);
+  ff_0_21->ret_type = &ffi_type_void;
+  ff_0_21->nargs = 10;
+  _33 = ff_0_21->arg_values;
+  *_33 = &ni;
+  MEM[(void * *)_33 + 8B] = &nj;
+  MEM[(void * *)_33 + 16B] = &nk;
+  MEM[(void * *)_33 + 24B] = &alpha;
+  MEM[(void * *)_33 + 32B] = &beta;
+  MEM[(void * *)_33 + 40B] = &A;
+  MEM[(void * *)_33 + 48B] = &B;
+  MEM[(void * *)_33 + 56B] = &C;
+  MEM[(void * *)_33 + 64B] = &C_inputToGpu;
+  MEM[(void * *)_33 + 72B] = &C_outputFromGpu;
+  MEM[(void * *)_33 + 80B] = 0B;
+  _45 = ff_0_21->arg_types;
+  *_45 = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_45 + 8B] = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_45 + 16B] = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_45 + 24B] = &ffi_type_double;
+  MEM[(struct ffi_type * *)_45 + 32B] = &ffi_type_double;
+  MEM[(struct ffi_type * *)_45 + 40B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_45 + 48B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_45 + 56B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_45 + 64B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_45 + 72B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_45 + 80B] = 0B;
+  stderr.53_57 = stderr;
+  __fprintf_chk (stderr.53_57, 1, "Creating table of target functions.\n");
+  _60 = create_target_functions_table (&table, 1, 2);
+  if (_60 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 6>;
+
+  <bb 3>:
+  table.55_62 = table;
+  if (table.55_62 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  __assert_fail ("table != NULL", "gemm.cu", 402, &__PRETTY_FUNCTION__);
+
+  <bb 5>:
+  stderr.53_64 = stderr;
+  __fprintf_chk (stderr.53_64, 1, "Declaring function in 0,1.\n");
+  table.55_66 = table;
+  _67 = *table.55_66;
+  _68 = MEM[(struct Func * *)_67 + 8B];
+  *_68 = MEM[(const struct Func &)ff_0_21];
+  TablePointerFunctions = table.55_66;
+
+  <bb 6>:
+  stderr.53_73 = stderr;
+  __fprintf_chk (stderr.53_73, 1, "Calling init_array.\n");
+  C.57_75 = C;
+  B.58_76 = B;
+  A.59_77 = A;
+  nk.60_78 = nk;
+  nj.61_79 = nj;
+  ni.62_80 = ni;
+  init_array (ni.62_80, nj.61_79, nk.60_78, &alpha, &beta, A.59_77, B.58_76, C.57_75);
+  C.57_82 = C;
+  nj.61_83 = nj;
+  ni.62_84 = ni;
+  goto <bb 10>;
+
+  <bb 7>:
+  _148 = (long unsigned int) i_147;
+  _149 = _148 * 32768;
+  _150 = C_outputFromOMP_144 + _149;
+  _151 = C.57_82 + _149;
+  _153 = *_151[j_152];
+  *_150[j_152] = _153;
+  j_154 = j_152 + 1;
+
+  <bb 8>:
+  # j_152 = PHI <0(11), j_154(7)>
+  if (nj.61_83 > j_152)
+    goto <bb 7>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  i_155 = i_147 + 1;
+
+  <bb 10>:
+  # i_147 = PHI <0(6), i_155(9)>
+  if (ni.62_84 > i_147)
+    goto <bb 11>;
+  else
+    goto <bb 12>;
+
+  <bb 11>:
+  j_207 = 0;
+  goto <bb 8>;
+
+  <bb 12>:
+  C_outputFromGpu.63_86 = C_outputFromGpu;
+  goto <bb 16>;
+
+  <bb 13>:
+  _157 = (long unsigned int) i_156;
+  _158 = _157 * 32768;
+  _159 = C_outputFromGpu.63_86 + _158;
+  _160 = C.57_82 + _158;
+  _162 = *_160[j_161];
+  *_159[j_161] = _162;
+  j_163 = j_161 + 1;
+
+  <bb 14>:
+  # j_161 = PHI <0(17), j_163(13)>
+  if (nj.61_83 > j_161)
+    goto <bb 13>;
+  else
+    goto <bb 15>;
+
+  <bb 15>:
+  i_164 = i_156 + 1;
+
+  <bb 16>:
+  # i_156 = PHI <0(12), i_164(15)>
+  if (ni.62_84 > i_156)
+    goto <bb 17>;
+  else
+    goto <bb 18>;
+
+  <bb 17>:
+  j_61 = 0;
+  goto <bb 14>;
+
+  <bb 18>:
+  stderr.53_88 = stderr;
+  __fprintf_chk (stderr.53_88, 1, "Calling gemm_omp:\n");
+  B.58_90 = B;
+  A.59_91 = A;
+  beta.64_92 = beta;
+  alpha.65_93 = alpha;
+  nk.60_94 = nk;
+  nj.61_95 = nj;
+  ni.62_96 = ni;
+  gemm_omp (ni.62_96, nj.61_95, nk.60_94, alpha.65_93, beta.64_92, A.59_91, B.58_90, C_outputFromOMP_144);
+  stdout.66_98 = stdout;
+  __fprintf_chk (stdout.66_98, 1, "version = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 8, 4096, 4096, 4096);
+  hookomp_print_time_results ();
+  stderr.53_101 = stderr;
+  __fprintf_chk (stderr.53_101, 1, "Calling compareResults(original, omp).\n");
+  C.57_103 = C;
+  nj.61_104 = nj;
+  ni.62_105 = ni;
+  compareResults (ni.62_105, nj.61_104, C.57_103, C_outputFromOMP_144);
+  stderr.53_107 = stderr;
+  __fprintf_chk (stderr.53_107, 1, "Calling compareResults(original, cuda).\n");
+  C_outputFromGpu.63_109 = C_outputFromGpu;
+  C.57_110 = C;
+  nj.61_111 = nj;
+  ni.62_112 = ni;
+  compareResults (ni.62_112, nj.61_111, C.57_110, C_outputFromGpu.63_109);
+  if (argc_114(D) > 42)
+    goto <bb 19>;
+  else
+    goto <bb 29>;
+
+  <bb 19>:
+  _116 = *argv_115(D);
+  _117 = MEM[(const unsigned char * {ref-all})_116];
+  if (_117 == 0)
+    goto <bb 20>;
+  else
+    goto <bb 29>;
+
+  <bb 20>:
+  C_outputFromGpu.63_118 = C_outputFromGpu;
+  nj.61_119 = nj;
+  ni.62_120 = ni;
+  goto <bb 26>;
+
+  <bb 21>:
+  _186 = (long unsigned int) i_185;
+  _187 = _186 * 32768;
+  _188 = C_outputFromGpu.63_118 + _187;
+  _190 = *_188[j_189];
+  stderr.67_191 = stderr;
+  __fprintf_chk (stderr.67_191, 1, "%0.2lf ", _190);
+  _192 = ni.62_120 * i_185;
+  _193 = j_189 + _192;
+  _194 = _193 % 20;
+  if (_194 == 0)
+    goto <bb 22>;
+  else
+    goto <bb 23>;
+
+  <bb 22>:
+  stderr.67_195 = stderr;
+  __builtin_fputs ("\n", stderr.67_195);
+
+  <bb 23>:
+  j_196 = j_189 + 1;
+
+  <bb 24>:
+  # j_189 = PHI <0(27), j_196(23)>
+  if (nj.61_119 > j_189)
+    goto <bb 21>;
+  else
+    goto <bb 25>;
+
+  <bb 25>:
+  i_197 = i_185 + 1;
+
+  <bb 26>:
+  # i_185 = PHI <0(20), i_197(25)>
+  if (ni.62_120 > i_185)
+    goto <bb 27>;
+  else
+    goto <bb 28>;
+
+  <bb 27>:
+  j_199 = 0;
+  goto <bb 24>;
+
+  <bb 28>:
+  stderr.67_198 = stderr;
+  __builtin_fputs ("\n", stderr.67_198);
+
+  <bb 29>:
+  A.59_122 = A;
+  free (A.59_122);
+  B.58_124 = B;
+  free (B.58_124);
+  C.57_126 = C;
+  free (C.57_126);
+  free (C_outputFromOMP_144);
+  C_outputFromGpu.63_129 = C_outputFromGpu;
+  free (C_outputFromGpu.63_129);
+  ni ={v} {CLOBBER};
+  nj ={v} {CLOBBER};
+  nk ={v} {CLOBBER};
+  alpha ={v} {CLOBBER};
+  beta ={v} {CLOBBER};
+  A ={v} {CLOBBER};
+  B ={v} {CLOBBER};
+  C ={v} {CLOBBER};
+  C_inputToGpu ={v} {CLOBBER};
+  C_outputFromGpu ={v} {CLOBBER};
+  return 0;
+
+}
+
+
+
+;; Function void polybench_flush_cache() (_Z21polybench_flush_cachev, funcdef_no=3270, decl_uid=67114, cgraph_uid=3092)
+
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 7 6 }
+;; 6 succs { }
+;; 7 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+tmp_14 -> { tmp_2 }
+Incremental SSA update started at block: 4
+Number of blocks in CFG: 8
+Number of blocks to update: 3 ( 38%)
+
+
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_15 -> { i_1 }
+Incremental SSA update started at block: 4
+Number of blocks in CFG: 8
+Number of blocks to update: 2 ( 25%)
+
+
+
+Value ranges after VRP:
+
+i_1: [0, 4194560]
+tmp_2: VARYING
+flush_5: VARYING
+_6: [0, 4194559]
+_7: [0, 33556472]
+_8: VARYING
+_9: VARYING
+tmp_10: VARYING
+i_11: [1, 4194560]
+tmp_14: VARYING
+i_15: [0, 4194559]  EQUIVALENCES: { i_1 } (1 elements)
+
+
+Simplified relational if (i_1 <= 4194559)
+ into if (i_1 != 4194560)
+
+Removing basic block 3
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_15 -> { i_1 }
+tmp_16 -> { tmp_2 }
+i_17 -> { i_1 }
+tmp_18 -> { tmp_2 }
+Incremental SSA update started at block: 8
+Number of blocks in CFG: 9
+Number of blocks to update: 4 ( 44%)
+
+
+void polybench_flush_cache() ()
+{
+  static const char __PRETTY_FUNCTION__[29] = "void polybench_flush_cache()";
+  double tmp;
+  int i;
+  double * flush;
+  long unsigned int _6;
+  long unsigned int _7;
+  double * _8;
+  double _9;
+
+  <bb 2>:
+  flush_5 = calloc (4194560, 8);
+  goto <bb 8>;
+
+  <bb 3>:
+  # i_17 = PHI <i_1(4), i_15(8)>
+  # tmp_18 = PHI <tmp_2(4), tmp_16(8)>
+  _6 = (long unsigned int) i_17;
+  _7 = _6 * 8;
+  _8 = flush_5 + _7;
+  _9 = *_8;
+  tmp_10 = _9 + tmp_18;
+  i_11 = i_17 + 1;
+
+  <bb 4>:
+  # i_1 = PHI <i_11(3)>
+  # tmp_2 = PHI <tmp_10(3)>
+  if (i_1 != 4194560)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  # tmp_14 = PHI <tmp_2(4)>
+  if (tmp_14 <= 1.0e+1)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  __assert_fail ("tmp <= 10.0", "../../../utilities/polybench.c", 96, &__PRETTY_FUNCTION__);
+
+  <bb 7>:
+  free (flush_5);
+  return;
+
+  <bb 8>:
+  # i_15 = PHI <0(2)>
+  # tmp_16 = PHI <0.0(2)>
+  goto <bb 3>;
+
+}
+
+
+
+;; Function void polybench_prepare_instruments() (_Z29polybench_prepare_instrumentsv, funcdef_no=3271, decl_uid=67125, cgraph_uid=3093)
+
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 7 6 }
+;; 6 succs { }
+;; 7 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+tmp_15 -> { tmp_9 }
+Incremental SSA update started at block: 4
+Number of blocks in CFG: 8
+Number of blocks to update: 3 ( 38%)
+
+
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_16 -> { i_4 }
+Incremental SSA update started at block: 4
+Number of blocks in CFG: 8
+Number of blocks to update: 2 ( 25%)
+
+
+
+Value ranges after VRP:
+
+flush_3: VARYING
+i_4: [0, 4194560]
+_5: [0, 4194559]
+_6: [0, 33556472]
+_7: VARYING
+_8: VARYING
+tmp_9: VARYING
+tmp_10: VARYING
+i_11: [1, 4194560]
+tmp_15: VARYING
+i_16: [0, 4194559]  EQUIVALENCES: { i_4 } (1 elements)
+
+
+Simplified relational if (i_4 <= 4194559)
+ into if (i_4 != 4194560)
+
+Removing basic block 3
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_16 -> { i_4 }
+tmp_17 -> { tmp_9 }
+i_18 -> { i_4 }
+tmp_19 -> { tmp_9 }
+Incremental SSA update started at block: 8
+Number of blocks in CFG: 9
+Number of blocks to update: 4 ( 44%)
+
+
+void polybench_prepare_instruments() ()
+{
+  double tmp;
+  int i;
+  double * flush;
+  long unsigned int _5;
+  long unsigned int _6;
+  double * _7;
+  double _8;
+
+  <bb 2>:
+  flush_3 = calloc (4194560, 8);
+  goto <bb 8>;
+
+  <bb 3>:
+  # i_18 = PHI <i_4(4), i_16(8)>
+  # tmp_19 = PHI <tmp_9(4), tmp_17(8)>
+  _5 = (long unsigned int) i_18;
+  _6 = _5 * 8;
+  _7 = flush_3 + _6;
+  _8 = *_7;
+  tmp_10 = _8 + tmp_19;
+  i_11 = i_18 + 1;
+
+  <bb 4>:
+  # i_4 = PHI <i_11(3)>
+  # tmp_9 = PHI <tmp_10(3)>
+  if (i_4 != 4194560)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  # tmp_15 = PHI <tmp_9(4)>
+  if (tmp_15 <= 1.0e+1)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  __assert_fail ("tmp <= 10.0", "../../../utilities/polybench.c", 96, &__PRETTY_FUNCTION__);
+
+  <bb 7>:
+  free (flush_3);
+  return;
+
+  <bb 8>:
+  # i_16 = PHI <0(2)>
+  # tmp_17 = PHI <0.0(2)>
+  goto <bb 3>;
+
+}
+
+
+
+;; Function void polybench_timer_start() (_Z21polybench_timer_startv, funcdef_no=3272, decl_uid=65913, cgraph_uid=3094)
+
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 8 9
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 7 6 }
+;; 6 succs { }
+;; 7 succs { 8 9 }
+;; 8 succs { 9 }
+;; 9 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+tmp_30 -> { tmp_13 }
+Incremental SSA update started at block: 4
+Number of blocks in CFG: 10
+Number of blocks to update: 3 ( 30%)
+
+
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+i_4 -> { i_8 }
+stat_31 -> { stat_16 }
+Incremental SSA update started at block: 4
+Number of blocks in CFG: 10
+Number of blocks to update: 4 ( 40%)
+
+
+
+Value ranges after VRP:
+
+i_4: [0, 4194559]  EQUIVALENCES: { i_8 } (1 elements)
+flush_7: VARYING
+i_8: [0, 4194560]
+_9: [0, 4194559]
+_10: [0, 33556472]
+_11: VARYING
+_12: VARYING
+tmp_13: VARYING
+tmp_14: VARYING
+i_15: [1, 4194560]
+stat_16: VARYING
+_17: VARYING
+_18: VARYING
+_19: VARYING
+_20: VARYING
+_21: VARYING
+_22: VARYING
+.MEM_23: VARYING
+tmp_30: VARYING
+stat_31: ~[0, 0]  EQUIVALENCES: { stat_16 } (1 elements)
+
+
+Simplified relational if (i_8 <= 4194559)
+ into if (i_8 != 4194560)
+
+Removing basic block 3
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+tmp_4 -> { tmp_13 }
+i_31 -> { i_8 }
+i_32 -> { i_8 }
+tmp_33 -> { tmp_13 }
+Incremental SSA update started at block: 10
+Number of blocks in CFG: 11
+Number of blocks to update: 4 ( 36%)
+
+
+void polybench_timer_start() ()
+{
+  struct timeval Tp;
+  int stat;
+  double D.68982;
+  double tmp;
+  int i;
+  double * flush;
+  long unsigned int _9;
+  long unsigned int _10;
+  double * _11;
+  double _12;
+  long int _17;
+  double _18;
+  long int _19;
+  double _20;
+  double _21;
+  double _22;
+
+  <bb 2>:
+  flush_7 = calloc (4194560, 8);
+  goto <bb 10>;
+
+  <bb 3>:
+  # i_32 = PHI <i_8(4), i_31(10)>
+  # tmp_33 = PHI <tmp_13(4), tmp_4(10)>
+  _9 = (long unsigned int) i_32;
+  _10 = _9 * 8;
+  _11 = flush_7 + _10;
+  _12 = *_11;
+  tmp_14 = _12 + tmp_33;
+  i_15 = i_32 + 1;
+
+  <bb 4>:
+  # i_8 = PHI <i_15(3)>
+  # tmp_13 = PHI <tmp_14(3)>
+  if (i_8 != 4194560)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  # tmp_30 = PHI <tmp_13(4)>
+  if (tmp_30 <= 1.0e+1)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  __assert_fail ("tmp <= 10.0", "../../../utilities/polybench.c", 96, &__PRETTY_FUNCTION__);
+
+  <bb 7>:
+  free (flush_7);
+  stat_16 = gettimeofday (&Tp, 0B);
+  if (stat_16 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 9>;
+
+  <bb 8>:
+  __printf_chk (1, "Error return from gettimeofday: %d", stat_16);
+
+  <bb 9>:
+  _17 = Tp.tv_sec;
+  _18 = (double) _17;
+  _19 = Tp.tv_usec;
+  _20 = (double) _19;
+  _21 = _20 * 9.99999999999999954748111825886258685613938723690807819366e-7;
+  _22 = _18 + _21;
+  Tp ={v} {CLOBBER};
+  polybench_t_start = _22;
+  return;
+
+  <bb 10>:
+  # i_31 = PHI <0(2)>
+  # tmp_4 = PHI <0.0(2)>
+  goto <bb 3>;
+
+}
+
+
+
+;; Function void polybench_timer_stop() (_Z20polybench_timer_stopv, funcdef_no=3273, decl_uid=65914, cgraph_uid=3095)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4
+;; 2 succs { 3 4 }
+;; 3 succs { 4 }
+;; 4 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+stat_16 -> { stat_5 }
+Incremental SSA update started at block: 2
+Number of blocks in CFG: 5
+Number of blocks to update: 2 ( 40%)
+
+
+
+Value ranges after VRP:
+
+stat_5: VARYING
+_6: VARYING
+_7: VARYING
+_8: VARYING
+_9: VARYING
+_10: VARYING
+_11: VARYING
+.MEM_12: VARYING
+stat_16: ~[0, 0]  EQUIVALENCES: { stat_5 } (1 elements)
+
+
+void polybench_timer_stop() ()
+{
+  struct timeval Tp;
+  int stat;
+  double D.69000;
+  long int _6;
+  double _7;
+  long int _8;
+  double _9;
+  double _10;
+  double _11;
+
+  <bb 2>:
+  stat_5 = gettimeofday (&Tp, 0B);
+  if (stat_5 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  __printf_chk (1, "Error return from gettimeofday: %d", stat_5);
+
+  <bb 4>:
+  _6 = Tp.tv_sec;
+  _7 = (double) _6;
+  _8 = Tp.tv_usec;
+  _9 = (double) _8;
+  _10 = _9 * 9.99999999999999954748111825886258685613938723690807819366e-7;
+  _11 = _7 + _10;
+  Tp ={v} {CLOBBER};
+  polybench_t_end = _11;
+  return;
+
+}
+
+
+
+;; Function void polybench_timer_print() (_Z21polybench_timer_printv, funcdef_no=3274, decl_uid=65915, cgraph_uid=3096)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Value ranges after VRP:
+
+polybench_t_end.70_2: VARYING
+polybench_t_start.71_3: VARYING
+_4: VARYING
+
+
+void polybench_timer_print() ()
+{
+  double polybench_t_start.71;
+  double polybench_t_end.70;
+  double _4;
+
+  <bb 2>:
+  polybench_t_end.70_2 = polybench_t_end;
+  polybench_t_start.71_3 = polybench_t_start;
+  _4 = polybench_t_end.70_2 - polybench_t_start.71_3;
+  __printf_chk (1, "%0.6f\n", _4);
+  return;
+
+}
+
+
+
+;; Function void* polybench_alloc_data(long long unsigned int, int) (_Z20polybench_alloc_datayi, funcdef_no=3276, decl_uid=65921, cgraph_uid=3098)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;; 2 succs { 4 3 }
+;; 3 succs { 4 5 }
+;; 4 succs { }
+;; 5 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+newA.72_14 -> { newA.72_9 }
+Incremental SSA update started at block: 2
+Number of blocks in CFG: 6
+Number of blocks to update: 3 ( 50%)
+
+
+
+Value ranges after VRP:
+
+n_1(D): VARYING
+elt_size_2(D): VARYING
+_3: ~[2147483648, 18446744071562067967]
+val_4: [0, +INF]
+ret_8: VARYING
+newA.72_9: VARYING
+stderr.73_10: VARYING
+newA.72_14: ~[0B, 0B]  EQUIVALENCES: { newA.72_9 } (1 elements)
+
+
+void* polybench_alloc_data(long long unsigned int, int) (long long unsigned int n, int elt_size)
+{
+  int ret;
+  void * newA;
+  struct _IO_FILE * stderr.73;
+  void * newA.72;
+  void * D.69012;
+  void * ret;
+  size_t val;
+  long unsigned int _3;
+
+  <bb 2>:
+  _3 = (long unsigned int) elt_size_2(D);
+  val_4 = n_1(D) * _3;
+  newA = 0B;
+  ret_8 = posix_memalign (&newA, 32, val_4);
+  newA.72_9 = newA;
+  if (newA.72_9 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  if (ret_8 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  stderr.73_10 = stderr;
+  __builtin_fwrite ("[PolyBench] posix_memalign: cannot allocate memory", 1, 50, stderr.73_10);
+  exit (1);
+
+  <bb 5>:
+  newA ={v} {CLOBBER};
+  return newA.72_9;
+
+}
+
+
+
+;; Function void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*) (_Z45__device_stub__Z16gemm_cuda_kerneliiiddPdS_S_iiiddPdS_S_, funcdef_no=3301, decl_uid=67447, cgraph_uid=3122)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 8 9 10 11
+;; 2 succs { 11 3 }
+;; 3 succs { 11 4 }
+;; 4 succs { 11 5 }
+;; 5 succs { 11 6 }
+;; 6 succs { 11 7 }
+;; 7 succs { 11 8 }
+;; 8 succs { 11 9 }
+;; 9 succs { 11 10 }
+;; 10 succs { 11 }
+;; 11 succs { 1 }
+
+Value ranges after VRP:
+
+.MEM_1: VARYING
+_4: VARYING
+_6: VARYING
+_8: VARYING
+_10: VARYING
+_12: VARYING
+_14: VARYING
+_16: VARYING
+_18: VARYING
+
+
+void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*) (int __par0, int __par1, int __par2, double __par3, double __par4, double * __par5, double * __par6, double * __par7)
+{
+  static volatile char * __f;
+  cudaError _4;
+  cudaError _6;
+  cudaError _8;
+  cudaError _10;
+  cudaError _12;
+  cudaError _14;
+  cudaError _16;
+  cudaError _18;
+
+  <bb 2>:
+  _4 = cudaSetupArgument (&__par0, 4, 0);
+  if (_4 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _6 = cudaSetupArgument (&__par1, 4, 4);
+  if (_6 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 4>;
+
+  <bb 4>:
+  _8 = cudaSetupArgument (&__par2, 4, 8);
+  if (_8 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  _10 = cudaSetupArgument (&__par3, 8, 16);
+  if (_10 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  _12 = cudaSetupArgument (&__par4, 8, 24);
+  if (_12 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  _14 = cudaSetupArgument (&__par5, 8, 32);
+  if (_14 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  _16 = cudaSetupArgument (&__par6, 8, 40);
+  if (_16 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  _18 = cudaSetupArgument (&__par7, 8, 48);
+  if (_18 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  __f = gemm_cuda_kernel;
+  cudaLaunch (gemm_cuda_kernel);
+
+  <bb 11>:
+  return;
+
+}
+
+
+
+;; Function void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096]) (_Z9gemm_cudaiiiddPA4096_dS0_S0_S0_S0_, funcdef_no=3267, decl_uid=66855, cgraph_uid=3089)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4
+;; 2 succs { 3 4 }
+;; 3 succs { 4 }
+;; 4 succs { 1 }
+
+Value ranges after VRP:
+
+.MEM_1: VARYING
+stderr.44_3: VARYING
+A_gpu.45_10: VARYING
+B_gpu.46_13: VARYING
+C_gpu.47_17: VARYING
+_29: VARYING
+C_gpu.47_30: VARYING
+B_gpu.46_31: VARYING
+A_gpu.45_32: VARYING
+C_gpu.47_43: VARYING
+A_gpu.45_47: VARYING
+B_gpu.46_49: VARYING
+C_gpu.47_51: VARYING
+_66: VARYING
+_67: [0, +INF]
+_68: [0, +INF]
+_69: VARYING
+_70: [0, +INF]
+_71: [0, +INF]
+_72: VARYING
+_73: [0, +INF]
+_74: [0, +INF]
+_75: VARYING
+_76: [0, +INF]
+_77: [0, +INF]
+_78: VARYING
+_79: [0, +INF]
+_80: [0, +INF]
+_81: VARYING
+_82: [0, +INF]
+_83: [0, +INF]
+_84: VARYING
+_85: [0, +INF]
+_86: [0, +INF]
+_87: VARYING
+_88: [0, +INF]
+_89: [0, +INF]
+_90: VARYING
+_91: [0, +INF]
+_92: [0, +INF]
+_93: VARYING
+_94: [0, +INF]
+_95: [0, +INF]
+_96: VARYING
+_97: [0, +INF]
+_98: [0, +INF]
+_99: VARYING
+_100: [0, +INF]
+_101: [0, +INF]
+
+
+void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C, double[4096] * C_inputToGpu, double[4096] * C_outputFromGpu)
+{
+  struct timespec spec;
+  struct timespec spec;
+  struct timespec spec;
+  struct timespec spec;
+  struct timespec spec;
+  struct timespec spec;
+  struct dim3 grid;
+  struct dim3 block;
+  double * C_gpu;
+  double * B_gpu;
+  double * A_gpu;
+  double * C_gpu.47;
+  double * B_gpu.46;
+  double * A_gpu.45;
+  struct _IO_FILE * stderr.44;
+  cudaError _29;
+  long int _66;
+  long unsigned int _67;
+  long unsigned int _68;
+  long int _69;
+  long unsigned int _70;
+  uint64_t _71;
+  long int _72;
+  long unsigned int _73;
+  long unsigned int _74;
+  long int _75;
+  long unsigned int _76;
+  uint64_t _77;
+  long int _78;
+  long unsigned int _79;
+  long unsigned int _80;
+  long int _81;
+  long unsigned int _82;
+  uint64_t _83;
+  long int _84;
+  long unsigned int _85;
+  long unsigned int _86;
+  long int _87;
+  long unsigned int _88;
+  uint64_t _89;
+  long int _90;
+  long unsigned int _91;
+  long unsigned int _92;
+  long int _93;
+  long unsigned int _94;
+  uint64_t _95;
+  long int _96;
+  long unsigned int _97;
+  long unsigned int _98;
+  long int _99;
+  long unsigned int _100;
+  uint64_t _101;
+
+  <bb 2>:
+  stderr.44_3 = stderr;
+  __fprintf_chk (stderr.44_3, 1, "Calling function gemm_cuda.\n");
+  GPU_argv_init ();
+  cudaMalloc (&A_gpu, 134217728);
+  cudaMalloc (&B_gpu, 134217728);
+  cudaMalloc (&C_gpu, 134217728);
+  clock_gettime (1, &spec);
+  _66 = spec.tv_sec;
+  _67 = (long unsigned int) _66;
+  _68 = _67 * 1000000000;
+  _69 = spec.tv_nsec;
+  _70 = (long unsigned int) _69;
+  _71 = _68 + _70;
+  spec ={v} {CLOBBER};
+  data_transfer_h2d_start = _71;
+  A_gpu.45_10 = A_gpu;
+  cudaMemcpy (A_gpu.45_10, A_11(D), 134217728, 1);
+  B_gpu.46_13 = B_gpu;
+  cudaMemcpy (B_gpu.46_13, B_14(D), 134217728, 1);
+  C_gpu.47_17 = C_gpu;
+  cudaMemcpy (C_gpu.47_17, C_inputToGpu_18(D), 134217728, 1);
+  clock_gettime (1, &spec);
+  _72 = spec.tv_sec;
+  _73 = (long unsigned int) _72;
+  _74 = _73 * 1000000000;
+  _75 = spec.tv_nsec;
+  _76 = (long unsigned int) _75;
+  _77 = _74 + _76;
+  spec ={v} {CLOBBER};
+  data_transfer_h2d_stop = _77;
+  block.z = 1;
+  grid.x = 128;
+  grid.y = 512;
+  grid.z = 1;
+  clock_gettime (1, &spec);
+  _78 = spec.tv_sec;
+  _79 = (long unsigned int) _78;
+  _80 = _79 * 1000000000;
+  _81 = spec.tv_nsec;
+  _82 = (long unsigned int) _81;
+  _83 = _80 + _82;
+  spec ={v} {CLOBBER};
+  dev_kernel1_start = _83;
+  MEM[(struct dim3 *)&block] = 32;
+  MEM[(struct dim3 *)&block + 4B] = 8;
+  _29 = cudaConfigureCall (grid, block, 0, 0B);
+  if (_29 == 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  C_gpu.47_30 = C_gpu;
+  B_gpu.46_31 = B_gpu;
+  A_gpu.45_32 = A_gpu;
+  __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_ (ni_33(D), nj_34(D), nk_35(D), alpha_36(D), beta_37(D), A_gpu.45_32, B_gpu.46_31, C_gpu.47_30);
+
+  <bb 4>:
+  cudaThreadSynchronize ();
+  clock_gettime (1, &spec);
+  _84 = spec.tv_sec;
+  _85 = (long unsigned int) _84;
+  _86 = _85 * 1000000000;
+  _87 = spec.tv_nsec;
+  _88 = (long unsigned int) _87;
+  _89 = _86 + _88;
+  spec ={v} {CLOBBER};
+  dev_kernel1_stop = _89;
+  clock_gettime (1, &spec);
+  _90 = spec.tv_sec;
+  _91 = (long unsigned int) _90;
+  _92 = _91 * 1000000000;
+  _93 = spec.tv_nsec;
+  _94 = (long unsigned int) _93;
+  _95 = _92 + _94;
+  spec ={v} {CLOBBER};
+  data_transfer_d2h_start = _95;
+  C_gpu.47_43 = C_gpu;
+  cudaMemcpy (C_outputFromGpu_44(D), C_gpu.47_43, 134217728, 2);
+  clock_gettime (1, &spec);
+  _96 = spec.tv_sec;
+  _97 = (long unsigned int) _96;
+  _98 = _97 * 1000000000;
+  _99 = spec.tv_nsec;
+  _100 = (long unsigned int) _99;
+  _101 = _98 + _100;
+  spec ={v} {CLOBBER};
+  data_transfer_d2h_stop = _101;
+  A_gpu.45_47 = A_gpu;
+  cudaFree (A_gpu.45_47);
+  B_gpu.46_49 = B_gpu;
+  cudaFree (B_gpu.46_49);
+  C_gpu.47_51 = C_gpu;
+  cudaFree (C_gpu.47_51);
+  A_gpu ={v} {CLOBBER};
+  B_gpu ={v} {CLOBBER};
+  C_gpu ={v} {CLOBBER};
+  block ={v} {CLOBBER};
+  grid ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function void __sti____cudaRegisterAll_39_tmpxft_00003394_00000000_7_gemm_cpp1_ii_132e4611() (_ZL76__sti____cudaRegisterAll_39_tmpxft_00003394_00000000_7_gemm_cpp1_ii_132e4611v, funcdef_no=3304, decl_uid=67450, cgraph_uid=3125) (executed once)
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Value ranges after VRP:
+
+_3: VARYING
+
+
+void __sti____cudaRegisterAll_39_tmpxft_00003394_00000000_7_gemm_cpp1_ii_132e4611() ()
+{
+  static volatile void * * __ref;
+  void * * _3;
+
+  <bb 2>:
+  _3 = __cudaRegisterFatBinary (&__fatDeviceText);
+  __cudaFatCubinHandle = _3;
+  __ref = _3;
+  __nv_fatbinhandle_for_managed_rt = _3;
+  __cudaRegisterFunction (_3, gemm_cuda_kernel, "_Z16gemm_cuda_kerneliiiddPdS_S_", "_Z16gemm_cuda_kerneliiiddPdS_S_", -1, 0B, 0B, 0B, 0B, 0B);
+  atexit (__cudaUnregisterBinaryUtil);
+  return;
+
+}
+
+
