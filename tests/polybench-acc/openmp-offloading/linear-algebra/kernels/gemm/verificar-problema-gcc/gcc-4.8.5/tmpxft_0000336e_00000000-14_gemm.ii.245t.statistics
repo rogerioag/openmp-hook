@@ -1,0 +1,643 @@
+31 copyprop "Copies propagated" "int fprintf(FILE*, const char*, ...)" 1
+31 copyprop "Statements deleted" "int fprintf(FILE*, const char*, ...)" 1
+41 release_ssa "SSA names released" "int fprintf(FILE*, const char*, ...)" 1
+41 release_ssa "SSA name holes removed" "int fprintf(FILE*, const char*, ...)" 1
+20 ssa "unused VAR_DECLs removed" "int printf(const char*, ...)" 2
+31 copyprop "Copies propagated" "int printf(const char*, ...)" 1
+31 copyprop "Statements deleted" "int printf(const char*, ...)" 1
+41 release_ssa "SSA names released" "int printf(const char*, ...)" 1
+41 release_ssa "SSA name holes removed" "int printf(const char*, ...)" 1
+20 ssa "unused VAR_DECLs removed" "void print_array(int, int, double (*)[4096])" 2
+26 ccp "Statements folded" "void print_array(int, int, double (*)[4096])" 2
+26 ccp "Constants propagated" "void print_array(int, int, double (*)[4096])" 2
+26 ccp "Statements deleted" "void print_array(int, int, double (*)[4096])" 3
+30 fre "SCC iterations == 3" "void print_array(int, int, double (*)[4096])" 2
+30 fre "SCC iterations == 4" "void print_array(int, int, double (*)[4096])" 1
+31 copyprop "Statements deleted" "void print_array(int, int, double (*)[4096])" 2
+33 cddce "PHI nodes deleted" "void print_array(int, int, double (*)[4096])" 1
+41 release_ssa "unused VAR_DECLs removed" "void print_array(int, int, double (*)[4096])" 3
+41 release_ssa "SSA names released" "void print_array(int, int, double (*)[4096])" 7
+41 release_ssa "SSA name holes removed" "void print_array(int, int, double (*)[4096])" 7
+20 ssa "unused VAR_DECLs removed" "void ____nv_dummy_param_ref(void*)" 7
+23 einline "unused VAR_DECLs removed" "void ____nv_dummy_param_ref(void*)" 6
+26 ccp "Statements deleted" "double rtclock()" 1
+30 fre "SCC iterations == 2" "double rtclock()" 1
+41 release_ssa "unused VAR_DECLs removed" "double rtclock()" 1
+41 release_ssa "SSA names released" "double rtclock()" 3
+41 release_ssa "SSA name holes removed" "double rtclock()" 3
+20 ssa "unused VAR_DECLs removed" "void* xmalloc(size_t)" 6
+23 einline "unused VAR_DECLs removed" "void* xmalloc(size_t)" 1
+26 ccp "Statements deleted" "void* xmalloc(size_t)" 1
+30 fre "Eliminated" "void* xmalloc(size_t)" 1
+31 copyprop "Copies propagated" "void* xmalloc(size_t)" 1
+31 copyprop "Statements deleted" "void* xmalloc(size_t)" 1
+41 release_ssa "unused VAR_DECLs removed" "void* xmalloc(size_t)" 1
+41 release_ssa "SSA names released" "void* xmalloc(size_t)" 4
+41 release_ssa "SSA name holes removed" "void* xmalloc(size_t)" 4
+20 ssa "unused VAR_DECLs removed" "cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError]" 1
+23 einline "unused VAR_DECLs removed" "cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError]" 2
+31 copyprop "Copies propagated" "cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError]" 1
+31 copyprop "Statements deleted" "cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError]" 1
+41 release_ssa "SSA names released" "cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError]" 1
+41 release_ssa "SSA name holes removed" "cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError]" 1
+20 ssa "unused VAR_DECLs removed" "void __cudaUnregisterBinaryUtil()" 2
+23 einline "unused VAR_DECLs removed" "void __nv_cudaEntityRegisterCallback(void**)" 1
+23 einline "unused VAR_DECLs removed" "dim3::dim3(unsigned int, unsigned int, unsigned int)" 1
+20 ssa "unused VAR_DECLs removed" "float absVal(float)" 1
+30 fre "SCC iterations == 2" "float absVal(float)" 1
+31 copyprop "Copies propagated" "float absVal(float)" 1
+33 cddce "Statements deleted" "float absVal(float)" 1
+41 release_ssa "SSA names released" "float absVal(float)" 1
+41 release_ssa "SSA name holes removed" "float absVal(float)" 1
+20 ssa "unused VAR_DECLs removed" "float percentDiff(double, double)" 1
+26 ccp "Statements folded" "float percentDiff(double, double)" 3
+26 ccp "Constants propagated" "float percentDiff(double, double)" 3
+30 fre "SCC iterations == 2" "float percentDiff(double, double)" 7
+31 copyprop "Copies propagated" "float percentDiff(double, double)" 6
+31 copyprop "Statements deleted" "float percentDiff(double, double)" 13
+33 cddce "Statements deleted" "float percentDiff(double, double)" 1
+41 release_ssa "unused VAR_DECLs removed" "float percentDiff(double, double)" 6
+41 release_ssa "SSA names released" "float percentDiff(double, double)" 14
+41 release_ssa "SSA name holes removed" "float percentDiff(double, double)" 14
+20 ssa "unused VAR_DECLs removed" "uint64_t get_time()" 15
+23 einline "unused VAR_DECLs removed" "uint64_t get_time()" 5
+20 ssa "unused VAR_DECLs removed" "void hookomp_timing_start(uint64_t*)" 6
+31 copyprop "Copies propagated" "void hookomp_timing_start(uint64_t*)" 1
+31 copyprop "Statements deleted" "void hookomp_timing_start(uint64_t*)" 2
+41 release_ssa "unused VAR_DECLs removed" "void hookomp_timing_start(uint64_t*)" 1
+41 release_ssa "SSA names released" "void hookomp_timing_start(uint64_t*)" 2
+41 release_ssa "SSA name holes removed" "void hookomp_timing_start(uint64_t*)" 2
+20 ssa "unused VAR_DECLs removed" "void hookomp_timing_stop(uint64_t*)" 1
+31 copyprop "Copies propagated" "void hookomp_timing_stop(uint64_t*)" 1
+31 copyprop "Statements deleted" "void hookomp_timing_stop(uint64_t*)" 2
+41 release_ssa "unused VAR_DECLs removed" "void hookomp_timing_stop(uint64_t*)" 1
+41 release_ssa "SSA names released" "void hookomp_timing_stop(uint64_t*)" 2
+41 release_ssa "SSA name holes removed" "void hookomp_timing_stop(uint64_t*)" 2
+20 ssa "unused VAR_DECLs removed" "void hookomp_timing_print(uint64_t, uint64_t)" 1
+26 ccp "Statements deleted" "void hookomp_timing_print(uint64_t, uint64_t)" 1
+41 release_ssa "unused VAR_DECLs removed" "void hookomp_timing_print(uint64_t, uint64_t)" 1
+41 release_ssa "SSA names released" "void hookomp_timing_print(uint64_t, uint64_t)" 2
+41 release_ssa "SSA name holes removed" "void hookomp_timing_print(uint64_t, uint64_t)" 2
+20 ssa "unused VAR_DECLs removed" "void hookomp_timing_print_without_dev()" 1
+23 einline "unused VAR_DECLs removed" "void hookomp_timing_print_without_dev()" 1
+26 ccp "Statements deleted" "void hookomp_timing_print_without_dev()" 1
+30 fre "SCC iterations == 2" "void hookomp_timing_print_without_dev()" 1
+31 copyprop "Copies propagated" "void hookomp_timing_print_without_dev()" 1
+33 cddce "Statements deleted" "void hookomp_timing_print_without_dev()" 1
+41 release_ssa "unused VAR_DECLs removed" "void hookomp_timing_print_without_dev()" 1
+41 release_ssa "SSA names released" "void hookomp_timing_print_without_dev()" 3
+41 release_ssa "SSA name holes removed" "void hookomp_timing_print_without_dev()" 3
+20 ssa "unused VAR_DECLs removed" "void hookomp_print_time_results()" 7
+23 einline "unused VAR_DECLs removed" "void hookomp_print_time_results()" 1
+26 ccp "Statements folded" "void hookomp_print_time_results()" 2
+26 ccp "Constants propagated" "void hookomp_print_time_results()" 2
+26 ccp "Statements deleted" "void hookomp_print_time_results()" 20
+30 fre "SCC iterations == 2" "void hookomp_print_time_results()" 1
+31 copyprop "Statements deleted" "void hookomp_print_time_results()" 2
+41 release_ssa "unused VAR_DECLs removed" "void hookomp_print_time_results()" 20
+41 release_ssa "SSA names released" "void hookomp_print_time_results()" 43
+41 release_ssa "SSA name holes removed" "void hookomp_print_time_results()" 43
+20 ssa "unused VAR_DECLs removed" "bool create_target_functions_table(Func****, int, int)" 4
+23 einline "unused VAR_DECLs removed" "bool create_target_functions_table(Func****, int, int)" 54
+26 ccp "Statements folded" "bool create_target_functions_table(Func****, int, int)" 5
+26 ccp "Constants propagated" "bool create_target_functions_table(Func****, int, int)" 5
+26 ccp "Statements deleted" "bool create_target_functions_table(Func****, int, int)" 5
+30 fre "SCC iterations == 2" "bool create_target_functions_table(Func****, int, int)" 2
+30 fre "SCC iterations == 3" "bool create_target_functions_table(Func****, int, int)" 4
+30 fre "Eliminated" "bool create_target_functions_table(Func****, int, int)" 12
+31 copyprop "Copies propagated" "bool create_target_functions_table(Func****, int, int)" 5
+31 copyprop "Statements deleted" "bool create_target_functions_table(Func****, int, int)" 18
+33 cddce "PHI nodes deleted" "bool create_target_functions_table(Func****, int, int)" 1
+41 release_ssa "unused VAR_DECLs removed" "bool create_target_functions_table(Func****, int, int)" 5
+41 release_ssa "SSA names released" "bool create_target_functions_table(Func****, int, int)" 27
+41 release_ssa "SSA name holes removed" "bool create_target_functions_table(Func****, int, int)" 27
+20 ssa "unused VAR_DECLs removed" "void call_function_ffi_call(Func*)" 15
+23 einline "unused VAR_DECLs removed" "void call_function_ffi_call(Func*)" 10
+26 ccp "Statements deleted" "void call_function_ffi_call(Func*)" 2
+30 fre "SCC iterations == 2" "void call_function_ffi_call(Func*)" 1
+30 fre "Eliminated" "void call_function_ffi_call(Func*)" 1
+31 copyprop "Copies propagated" "void call_function_ffi_call(Func*)" 1
+31 copyprop "Statements deleted" "void call_function_ffi_call(Func*)" 1
+41 release_ssa "unused VAR_DECLs removed" "void call_function_ffi_call(Func*)" 3
+41 release_ssa "SSA names released" "void call_function_ffi_call(Func*)" 8
+41 release_ssa "SSA name holes removed" "void call_function_ffi_call(Func*)" 8
+20 ssa "unused VAR_DECLs removed" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 10
+23 einline "unused VAR_DECLs removed" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 4
+26 ccp "Statements folded" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 6
+26 ccp "Constants propagated" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 6
+30 fre "SCC iterations == 3" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 6
+30 fre "SCC iterations == 4" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+31 copyprop "Statements deleted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 6
+33 cddce "PHI nodes deleted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+41 release_ssa "SSA names released" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+41 release_ssa "SSA name holes removed" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+20 ssa "unused VAR_DECLs removed" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 9
+26 ccp "Statements folded" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 2
+26 ccp "Constants propagated" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 2
+30 fre "SCC iterations == 3" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 2
+30 fre "SCC iterations == 4" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+30 fre "Eliminated" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 2
+31 copyprop "Copies propagated" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+31 copyprop "Statements deleted" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 4
+33 cddce "PHI nodes deleted" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+41 release_ssa "SSA names released" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 3
+41 release_ssa "SSA name holes removed" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 3
+20 ssa "unused VAR_DECLs removed" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 5
+26 ccp "Statements folded" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 3
+26 ccp "Constants propagated" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 3
+26 ccp "Statements deleted" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+30 fre "SCC iterations == 3" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 2
+30 fre "SCC iterations == 4" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+30 fre "Eliminated" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 2
+31 copyprop "Copies propagated" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+31 copyprop "Statements deleted" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 5
+41 release_ssa "unused VAR_DECLs removed" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 2
+41 release_ssa "SSA names released" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 6
+41 release_ssa "SSA name holes removed" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 6
+20 ssa "unused VAR_DECLs removed" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 8
+23 einline "unused VAR_DECLs removed" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 2
+26 ccp "Statements folded" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+26 ccp "Constants propagated" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+26 ccp "Statements deleted" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 6
+30 fre "SCC iterations == 3" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+30 fre "SCC iterations == 4" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+30 fre "Eliminated" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+31 copyprop "Copies propagated" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+31 copyprop "Statements deleted" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 8
+33 cddce "PHI nodes deleted" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+41 release_ssa "SSA names released" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 13
+41 release_ssa "SSA name holes removed" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 13
+20 ssa "unused VAR_DECLs removed" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 14
+26 ccp "Statements deleted" "void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 8
+41 release_ssa "SSA names released" "void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 8
+41 release_ssa "SSA name holes removed" "void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 8
+20 ssa "unused VAR_DECLs removed" "void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 25
+26 ccp "Statements deleted" "void GPU_argv_init()" 2
+30 fre "SCC iterations == 2" "void GPU_argv_init()" 1
+41 release_ssa "unused VAR_DECLs removed" "void GPU_argv_init()" 2
+41 release_ssa "SSA names released" "void GPU_argv_init()" 6
+41 release_ssa "SSA name holes removed" "void GPU_argv_init()" 6
+23 einline "unused VAR_DECLs removed" "void polybench_flush_cache()" 4
+26 ccp "Statements folded" "void polybench_flush_cache()" 4
+26 ccp "Constants propagated" "void polybench_flush_cache()" 3
+26 ccp "Statements deleted" "void polybench_flush_cache()" 2
+30 fre "SCC iterations == 3" "void polybench_flush_cache()" 2
+31 copyprop "Statements deleted" "void polybench_flush_cache()" 3
+41 release_ssa "unused VAR_DECLs removed" "void polybench_flush_cache()" 1
+41 release_ssa "SSA names released" "void polybench_flush_cache()" 5
+41 release_ssa "SSA name holes removed" "void polybench_flush_cache()" 5
+20 ssa "unused VAR_DECLs removed" "void polybench_prepare_instruments()" 6
+31 copyprop "Copies propagated" "void polybench_timer_start()" 1
+31 copyprop "Statements deleted" "void polybench_timer_start()" 1
+41 release_ssa "unused VAR_DECLs removed" "void polybench_timer_start()" 1
+41 release_ssa "SSA names released" "void polybench_timer_start()" 1
+41 release_ssa "SSA name holes removed" "void polybench_timer_start()" 1
+20 ssa "unused VAR_DECLs removed" "void polybench_timer_stop()" 1
+31 copyprop "Copies propagated" "void polybench_timer_stop()" 1
+31 copyprop "Statements deleted" "void polybench_timer_stop()" 1
+41 release_ssa "unused VAR_DECLs removed" "void polybench_timer_stop()" 1
+41 release_ssa "SSA names released" "void polybench_timer_stop()" 1
+41 release_ssa "SSA name holes removed" "void polybench_timer_stop()" 1
+20 ssa "unused VAR_DECLs removed" "void polybench_timer_print()" 1
+26 ccp "Statements deleted" "void polybench_timer_print()" 1
+41 release_ssa "unused VAR_DECLs removed" "void polybench_timer_print()" 1
+41 release_ssa "SSA names released" "void polybench_timer_print()" 2
+41 release_ssa "SSA name holes removed" "void polybench_timer_print()" 2
+20 ssa "unused VAR_DECLs removed" "void* polybench_alloc_data(long long unsigned int, int)" 1
+23 einline "unused VAR_DECLs removed" "void* polybench_alloc_data(long long unsigned int, int)" 1
+25 copyrename "copies coalesced" "void* polybench_alloc_data(long long unsigned int, int)" 2
+31 copyprop "Copies propagated" "void* polybench_alloc_data(long long unsigned int, int)" 2
+31 copyprop "Statements deleted" "void* polybench_alloc_data(long long unsigned int, int)" 3
+41 release_ssa "SSA names released" "void* polybench_alloc_data(long long unsigned int, int)" 3
+41 release_ssa "SSA name holes removed" "void* polybench_alloc_data(long long unsigned int, int)" 3
+20 ssa "unused VAR_DECLs removed" "int main(int, char**)" 3
+25 copyrename "copies coalesced" "int main(int, char**)" 12
+26 ccp "Statements folded" "int main(int, char**)" 9
+26 ccp "Constants propagated" "int main(int, char**)" 4
+26 ccp "Statements deleted" "int main(int, char**)" 32
+30 fre "SCC iterations == 2" "int main(int, char**)" 3
+30 fre "SCC iterations == 3" "int main(int, char**)" 4
+30 fre "SCC iterations == 4" "int main(int, char**)" 2
+30 fre "Eliminated" "int main(int, char**)" 25
+31 copyprop "Copies propagated" "int main(int, char**)" 35
+31 copyprop "Statements deleted" "int main(int, char**)" 40
+33 cddce "PHI nodes deleted" "int main(int, char**)" 2
+33 cddce "Statements deleted" "int main(int, char**)" 4
+41 release_ssa "unused VAR_DECLs removed" "int main(int, char**)" 31
+41 release_ssa "SSA names released" "int main(int, char**)" 114
+41 release_ssa "SSA name holes removed" "int main(int, char**)" 114
+20 ssa "unused VAR_DECLs removed" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 41
+23 einline "unused VAR_DECLs removed" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 36
+26 ccp "Statements deleted" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 1
+30 fre "SCC iterations == 2" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 1
+31 copyprop "Copies propagated" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 8
+31 copyprop "Statements deleted" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 8
+41 release_ssa "unused VAR_DECLs removed" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 9
+41 release_ssa "SSA names released" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 18
+41 release_ssa "SSA name holes removed" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 18
+20 ssa "unused VAR_DECLs removed" "void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*)" 16
+23 einline "unused VAR_DECLs removed" "void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*)" 1
+26 ccp "Statements folded" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 7
+26 ccp "Statements deleted" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 8
+29 esra "Scalarized aggregates" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 1
+29 esra "Modified expressions" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 4
+29 esra "Separate LHS and RHS handling" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 4
+29 esra "Subtree copy stmts" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 2
+29 esra "Scalar replacements created" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 2
+30 fre "SCC iterations == 2" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 2
+30 fre "Eliminated" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 4
+31 copyprop "Copies propagated" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 3
+31 copyprop "Statements deleted" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 13
+31 copyprop "Constants propagated" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 4
+41 release_ssa "unused VAR_DECLs removed" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 5
+41 release_ssa "SSA names released" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 26
+41 release_ssa "SSA name holes removed" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 26
+20 ssa "unused VAR_DECLs removed" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 15
+23 einline "unused VAR_DECLs removed" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 20
+26 ccp "Constants propagated" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 1
+26 ccp "Statements deleted" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 1
+30 fre "Eliminated" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 1
+31 copyprop "Copies propagated" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 2
+31 copyprop "Statements deleted" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 2
+41 release_ssa "unused VAR_DECLs removed" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 3
+41 release_ssa "SSA names released" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 3
+41 release_ssa "SSA name holes removed" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 3
+20 ssa "unused VAR_DECLs removed" "<built-in>" 1
+26 ccp "Statements folded" "<built-in>" 2
+26 ccp "Constants propagated" "<built-in>" 4
+26 ccp "Statements deleted" "<built-in>" 14
+30 fre "SCC iterations == 2" "<built-in>" 1
+30 fre "SCC iterations == 3" "<built-in>" 3
+30 fre "Eliminated" "<built-in>" 6
+31 copyprop "Copies propagated" "<built-in>" 3
+31 copyprop "Statements deleted" "<built-in>" 8
+33 cddce "PHI nodes deleted" "<built-in>" 1
+41 release_ssa "unused VAR_DECLs removed" "<built-in>" 2
+41 release_ssa "SSA names released" "<built-in>" 21
+41 release_ssa "SSA name holes removed" "<built-in>" 21
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void* xmalloc(size_t)" 1
+95 pre "compute_antic iterations == 2" "void* xmalloc(size_t)" 1
+95 pre "compute_partial_antic iterations == 2" "void* xmalloc(size_t)" 1
+95 pre "insert iterations == 1" "void* xmalloc(size_t)" 1
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void* xmalloc(size_t)" 1
+95 pre "compute_antic iterations == 2" "void __cudaUnregisterBinaryUtil()" 1
+95 pre "compute_partial_antic iterations == 1" "void __cudaUnregisterBinaryUtil()" 1
+95 pre "insert iterations == 1" "void __cudaUnregisterBinaryUtil()" 1
+67 fre "SCC iterations == 2" "<built-in>" 2
+67 fre "SCC iterations == 3" "<built-in>" 3
+70 vrp "Number of ASSERT_EXPR expressions inserted" "<built-in>" 4
+71 dce "PHI nodes deleted" "<built-in>" 1
+95 pre "compute_antic iterations == 2" "<built-in>" 1
+95 pre "Insertions" "<built-in>" 13
+95 pre "compute_partial_antic iterations == 2" "<built-in>" 1
+95 pre "New PHIs" "<built-in>" 1
+95 pre "SCC iterations == 2" "<built-in>" 1
+95 pre "SCC iterations == 3" "<built-in>" 3
+95 pre "insert iterations == 2" "<built-in>" 1
+95 pre "Eliminated" "<built-in>" 12
+102 copyprop "Copies propagated" "<built-in>" 11
+103 dceloop "Statements deleted" "<built-in>" 12
+117 dceloop "PHI nodes deleted" "<built-in>" 2
+129 vrp "Number of ASSERT_EXPR expressions inserted" "<built-in>" 2
+131 dom "Copies propagated" "<built-in>" 3
+131 dom "Redundant expressions eliminated" "<built-in>" 1
+133 cddce "Statements deleted" "<built-in>" 2
+67 fre "SCC iterations == 2" "void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*)" 1
+95 pre "compute_antic iterations == 2" "void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*)" 1
+95 pre "compute_partial_antic iterations == 1" "void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*)" 1
+95 pre "SCC iterations == 2" "void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*)" 1
+95 pre "insert iterations == 1" "void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*)" 1
+169 optimized "unused VAR_DECLs removed" "void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*)" 1
+67 fre "SCC iterations == 2" "float absVal(float)" 1
+95 pre "compute_antic iterations == 2" "float absVal(float)" 1
+95 pre "compute_partial_antic iterations == 2" "float absVal(float)" 1
+95 pre "SCC iterations == 2" "float absVal(float)" 1
+95 pre "insert iterations == 1" "float absVal(float)" 1
+67 fre "SCC iterations == 2" "float percentDiff(double, double)" 7
+70 vrp "Jumps threaded" "float percentDiff(double, double)" 2
+71 dce "PHI nodes deleted" "float percentDiff(double, double)" 2
+95 pre "compute_antic iterations == 2" "float percentDiff(double, double)" 1
+95 pre "compute_partial_antic iterations == 2" "float percentDiff(double, double)" 1
+95 pre "SCC iterations == 2" "float percentDiff(double, double)" 6
+95 pre "insert iterations == 1" "float percentDiff(double, double)" 1
+95 pre "compute_antic iterations == 1" "uint64_t get_time()" 1
+95 pre "compute_partial_antic iterations == 1" "uint64_t get_time()" 1
+95 pre "insert iterations == 1" "uint64_t get_time()" 1
+169 optimized "unused VAR_DECLs removed" "uint64_t get_time()" 1
+95 pre "compute_antic iterations == 2" "void hookomp_timing_start(uint64_t*)" 1
+95 pre "compute_partial_antic iterations == 1" "void hookomp_timing_start(uint64_t*)" 1
+95 pre "insert iterations == 1" "void hookomp_timing_start(uint64_t*)" 1
+95 pre "compute_antic iterations == 2" "void hookomp_timing_stop(uint64_t*)" 1
+95 pre "compute_partial_antic iterations == 1" "void hookomp_timing_stop(uint64_t*)" 1
+95 pre "insert iterations == 1" "void hookomp_timing_stop(uint64_t*)" 1
+95 pre "compute_antic iterations == 2" "void hookomp_timing_print(uint64_t, uint64_t)" 1
+95 pre "compute_partial_antic iterations == 1" "void hookomp_timing_print(uint64_t, uint64_t)" 1
+95 pre "insert iterations == 1" "void hookomp_timing_print(uint64_t, uint64_t)" 1
+67 fre "SCC iterations == 2" "void hookomp_timing_print_without_dev()" 1
+70 vrp "Constants propagated" "void hookomp_timing_print_without_dev()" 1
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void hookomp_timing_print_without_dev()" 2
+85 reassoc "Linearized" "void hookomp_timing_print_without_dev()" 5
+86 dce "Statements deleted" "void hookomp_timing_print_without_dev()" 10
+90 ccp "Statements deleted" "void hookomp_timing_print_without_dev()" 5
+95 pre "compute_antic iterations == 2" "void hookomp_timing_print_without_dev()" 1
+95 pre "compute_partial_antic iterations == 2" "void hookomp_timing_print_without_dev()" 1
+95 pre "SCC iterations == 2" "void hookomp_timing_print_without_dev()" 1
+95 pre "insert iterations == 1" "void hookomp_timing_print_without_dev()" 1
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void hookomp_timing_print_without_dev()" 1
+133 cddce "Statements deleted" "void hookomp_timing_print_without_dev()" 1
+67 fre "SCC iterations == 2" "void hookomp_print_time_results()" 2
+70 vrp "Constants propagated" "void hookomp_print_time_results()" 1
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void hookomp_print_time_results()" 2
+85 reassoc "Linearized" "void hookomp_print_time_results()" 5
+86 dce "Statements deleted" "void hookomp_print_time_results()" 10
+90 ccp "Statements deleted" "void hookomp_print_time_results()" 5
+95 pre "compute_antic iterations == 2" "void hookomp_print_time_results()" 1
+95 pre "compute_partial_antic iterations == 2" "void hookomp_print_time_results()" 1
+95 pre "SCC iterations == 2" "void hookomp_print_time_results()" 1
+95 pre "insert iterations == 1" "void hookomp_print_time_results()" 1
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void hookomp_print_time_results()" 1
+133 cddce "Statements deleted" "void hookomp_print_time_results()" 1
+61 ccp "Statements folded" "bool create_target_functions_table(Func****, int, int)" 1
+61 ccp "Constants propagated" "bool create_target_functions_table(Func****, int, int)" 1
+67 fre "SCC iterations == 2" "bool create_target_functions_table(Func****, int, int)" 2
+67 fre "SCC iterations == 3" "bool create_target_functions_table(Func****, int, int)" 4
+68 copyprop "Statements deleted" "bool create_target_functions_table(Func****, int, int)" 1
+70 vrp "Constants propagated" "bool create_target_functions_table(Func****, int, int)" 1
+70 vrp "Number of ASSERT_EXPR expressions inserted" "bool create_target_functions_table(Func****, int, int)" 5
+71 dce "PHI nodes deleted" "bool create_target_functions_table(Func****, int, int)" 1
+71 dce "Statements deleted" "bool create_target_functions_table(Func****, int, int)" 1
+82 dom "Constants propagated" "bool create_target_functions_table(Func****, int, int)" 1
+95 pre "compute_antic iterations == 3" "bool create_target_functions_table(Func****, int, int)" 1
+95 pre "Insertions" "bool create_target_functions_table(Func****, int, int)" 9
+95 pre "compute_partial_antic iterations == 2" "bool create_target_functions_table(Func****, int, int)" 1
+95 pre "New PHIs" "bool create_target_functions_table(Func****, int, int)" 1
+95 pre "SCC iterations == 2" "bool create_target_functions_table(Func****, int, int)" 2
+95 pre "SCC iterations == 3" "bool create_target_functions_table(Func****, int, int)" 4
+95 pre "insert iterations == 2" "bool create_target_functions_table(Func****, int, int)" 1
+95 pre "Eliminated" "bool create_target_functions_table(Func****, int, int)" 3
+102 copyprop "Copies propagated" "bool create_target_functions_table(Func****, int, int)" 2
+103 dceloop "Statements deleted" "bool create_target_functions_table(Func****, int, int)" 3
+108 copyprop "Copies propagated" "bool create_target_functions_table(Func****, int, int)" 1
+117 dceloop "PHI nodes deleted" "bool create_target_functions_table(Func****, int, int)" 1
+117 dceloop "Statements deleted" "bool create_target_functions_table(Func****, int, int)" 1
+129 vrp "Number of ASSERT_EXPR expressions inserted" "bool create_target_functions_table(Func****, int, int)" 4
+131 dom "Copies propagated" "bool create_target_functions_table(Func****, int, int)" 5
+131 dom "Redundant expressions eliminated" "bool create_target_functions_table(Func****, int, int)" 3
+133 cddce "Statements deleted" "bool create_target_functions_table(Func****, int, int)" 4
+169 optimized "unused VAR_DECLs removed" "bool create_target_functions_table(Func****, int, int)" 1
+67 fre "Eliminated" "void call_function_ffi_call(Func*)" 1
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void call_function_ffi_call(Func*)" 1
+95 pre "compute_antic iterations == 2" "void call_function_ffi_call(Func*)" 1
+95 pre "compute_partial_antic iterations == 1" "void call_function_ffi_call(Func*)" 1
+95 pre "insert iterations == 1" "void call_function_ffi_call(Func*)" 1
+95 pre "Eliminated" "void call_function_ffi_call(Func*)" 1
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void call_function_ffi_call(Func*)" 1
+169 optimized "unused VAR_DECLs removed" "void call_function_ffi_call(Func*)" 2
+61 ccp "Statements folded" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 2
+61 ccp "Constants propagated" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+61 ccp "Statements deleted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+67 fre "SCC iterations == 3" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 6
+67 fre "SCC iterations == 4" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+68 copyprop "Statements deleted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 2
+70 vrp "Constants propagated" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 7
+71 dce "PHI nodes deleted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+71 dce "Statements deleted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+82 dom "Constants propagated" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+95 pre "compute_antic iterations == 2" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "Insertions" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 21
+95 pre "compute_partial_antic iterations == 2" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "SCC iterations == 2" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+95 pre "SCC iterations == 3" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 9
+95 pre "insert iterations == 2" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "Eliminated" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 12
+102 copyprop "Copies propagated" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 6
+103 dceloop "Statements deleted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 12
+116 vect "Vectorized loops" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+117 dceloop "PHI nodes deleted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 21
+117 dceloop "Statements deleted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 18
+129 vrp "Statements folded" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 15
+129 vrp "Jumps threaded" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 76
+131 dom "Copies propagated" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 60
+131 dom "Redundant expressions eliminated" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 33
+131 dom "Constants propagated" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 24
+133 cddce "Statements deleted" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 63
+142 copyrename "copies coalesced" "void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+61 ccp "Constants propagated" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+61 ccp "Statements deleted" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+67 fre "SCC iterations == 3" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 2
+67 fre "SCC iterations == 4" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+70 vrp "Constants propagated" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 2
+71 dce "PHI nodes deleted" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+71 dce "Statements deleted" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+82 dom "Constants propagated" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+95 pre "compute_antic iterations == 2" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+95 pre "Insertions" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 6
+95 pre "compute_partial_antic iterations == 2" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+95 pre "SCC iterations == 2" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+95 pre "SCC iterations == 3" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 3
+95 pre "insert iterations == 2" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+95 pre "Eliminated" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 4
+102 copyprop "Copies propagated" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 2
+103 dceloop "Statements deleted" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 4
+117 dceloop "PHI nodes deleted" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 2
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+131 dom "Copies propagated" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+131 dom "Redundant expressions eliminated" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+133 cddce "Statements deleted" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 1
+169 optimized "unused VAR_DECLs removed" "void copy_array(int, int, double (*)[4096], double (*)[4096])" 30
+61 ccp "Constants propagated" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+61 ccp "Statements deleted" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+67 fre "SCC iterations == 2" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 7
+67 fre "SCC iterations == 3" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 2
+67 fre "SCC iterations == 4" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+68 copyprop "Copies propagated" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 2
+68 copyprop "Statements deleted" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 3
+70 vrp "Constants propagated" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+70 vrp "Jumps threaded" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 2
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 2
+71 dce "PHI nodes deleted" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 2
+71 dce "Statements deleted" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+82 dom "Jumps threaded" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+95 pre "compute_antic iterations == 2" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+95 pre "Insertions" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 6
+95 pre "compute_partial_antic iterations == 2" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+95 pre "SCC iterations == 2" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 6
+95 pre "SCC iterations == 3" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 3
+95 pre "insert iterations == 2" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+95 pre "Eliminated" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 4
+102 copyprop "Copies propagated" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 2
+103 dceloop "Statements deleted" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 4
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+131 dom "Copies propagated" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+131 dom "Redundant expressions eliminated" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+133 cddce "Statements deleted" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 1
+169 optimized "unused VAR_DECLs removed" "void compareResults(int, int, double (*)[4096], double (*)[4096])" 2
+52 inline "unused VAR_DECLs removed" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 2
+61 ccp "Constants propagated" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+61 ccp "Statements deleted" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+67 fre "SCC iterations == 3" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+67 fre "SCC iterations == 4" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+70 vrp "Constants propagated" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 4
+71 dce "PHI nodes deleted" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+71 dce "Statements deleted" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+82 dom "Constants propagated" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "compute_antic iterations == 2" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "Insertions" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 9
+95 pre "compute_partial_antic iterations == 2" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "New PHIs" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "SCC iterations == 2" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "SCC iterations == 3" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 4
+95 pre "insert iterations == 2" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "Eliminated" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+102 copyprop "Copies propagated" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 6
+103 dceloop "Statements deleted" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+117 dceloop "PHI nodes deleted" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+131 dom "Copies propagated" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 9
+131 dom "Redundant expressions eliminated" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 7
+133 cddce "Statements deleted" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 11
+169 optimized "unused VAR_DECLs removed" "void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 4
+61 ccp "Constants propagated" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+61 ccp "Statements deleted" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+67 fre "SCC iterations == 3" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+67 fre "SCC iterations == 4" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+70 vrp "Constants propagated" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 4
+71 dce "PHI nodes deleted" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+71 dce "Statements deleted" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+82 dom "Constants propagated" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "compute_antic iterations == 2" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "Insertions" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 9
+95 pre "compute_partial_antic iterations == 2" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "New PHIs" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "SCC iterations == 2" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "SCC iterations == 3" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 4
+95 pre "insert iterations == 2" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "Eliminated" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+102 copyprop "Copies propagated" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 6
+103 dceloop "Statements deleted" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 5
+117 dceloop "PHI nodes deleted" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+131 dom "Copies propagated" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 9
+131 dom "Redundant expressions eliminated" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 7
+133 cddce "Statements deleted" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 11
+169 optimized "unused VAR_DECLs removed" "void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+52 inline "unused VAR_DECLs removed" "void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 10
+95 pre "compute_antic iterations == 2" "void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "compute_partial_antic iterations == 1" "void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "insert iterations == 1" "void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+169 optimized "unused VAR_DECLs removed" "void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 3
+95 pre "compute_antic iterations == 2" "void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "compute_partial_antic iterations == 1" "void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "insert iterations == 1" "void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])" 1
+52 inline "unused VAR_DECLs removed" "void GPU_argv_init()" 10
+95 pre "compute_antic iterations == 2" "void GPU_argv_init()" 1
+95 pre "compute_partial_antic iterations == 1" "void GPU_argv_init()" 1
+95 pre "insert iterations == 1" "void GPU_argv_init()" 1
+61 ccp "Constants propagated" "int main(int, char**)" 3
+61 ccp "Statements deleted" "int main(int, char**)" 3
+67 fre "SCC iterations == 2" "int main(int, char**)" 2
+67 fre "SCC iterations == 3" "int main(int, char**)" 6
+67 fre "SCC iterations == 4" "int main(int, char**)" 3
+70 vrp "Statements folded" "int main(int, char**)" 1
+70 vrp "Constants propagated" "int main(int, char**)" 3
+70 vrp "Number of ASSERT_EXPR expressions inserted" "int main(int, char**)" 12
+71 dce "PHI nodes deleted" "int main(int, char**)" 3
+71 dce "Statements deleted" "int main(int, char**)" 3
+82 dom "Constants propagated" "int main(int, char**)" 3
+82 dom "Jumps threaded" "int main(int, char**)" 2
+86 dce "Statements deleted" "int main(int, char**)" 1
+95 pre "compute_antic iterations == 2" "int main(int, char**)" 1
+95 pre "Insertions" "int main(int, char**)" 17
+95 pre "compute_partial_antic iterations == 2" "int main(int, char**)" 1
+95 pre "SCC iterations == 2" "int main(int, char**)" 4
+95 pre "SCC iterations == 3" "int main(int, char**)" 9
+95 pre "insert iterations == 2" "int main(int, char**)" 1
+95 pre "Eliminated" "int main(int, char**)" 12
+102 copyprop "Copies propagated" "int main(int, char**)" 6
+103 dceloop "Statements deleted" "int main(int, char**)" 12
+117 dceloop "PHI nodes deleted" "int main(int, char**)" 5
+129 vrp "Number of ASSERT_EXPR expressions inserted" "int main(int, char**)" 8
+131 dom "Copies propagated" "int main(int, char**)" 20
+131 dom "Redundant expressions eliminated" "int main(int, char**)" 20
+133 cddce "Statements deleted" "int main(int, char**)" 23
+52 inline "unused VAR_DECLs removed" "void polybench_flush_cache()" 3
+67 fre "SCC iterations == 3" "void polybench_flush_cache()" 2
+70 vrp "Statements folded" "void polybench_flush_cache()" 1
+70 vrp "Jumps threaded" "void polybench_flush_cache()" 1
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void polybench_flush_cache()" 1
+95 pre "compute_antic iterations == 2" "void polybench_flush_cache()" 1
+95 pre "Insertions" "void polybench_flush_cache()" 3
+95 pre "compute_partial_antic iterations == 2" "void polybench_flush_cache()" 1
+95 pre "SCC iterations == 3" "void polybench_flush_cache()" 2
+95 pre "insert iterations == 2" "void polybench_flush_cache()" 1
+169 optimized "unused VAR_DECLs removed" "void polybench_flush_cache()" 6
+67 fre "SCC iterations == 3" "void polybench_prepare_instruments()" 2
+70 vrp "Statements folded" "void polybench_prepare_instruments()" 1
+70 vrp "Jumps threaded" "void polybench_prepare_instruments()" 1
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void polybench_prepare_instruments()" 1
+95 pre "compute_antic iterations == 2" "void polybench_prepare_instruments()" 1
+95 pre "Insertions" "void polybench_prepare_instruments()" 3
+95 pre "compute_partial_antic iterations == 2" "void polybench_prepare_instruments()" 1
+95 pre "SCC iterations == 3" "void polybench_prepare_instruments()" 2
+95 pre "insert iterations == 2" "void polybench_prepare_instruments()" 1
+169 optimized "unused VAR_DECLs removed" "void polybench_prepare_instruments()" 1
+67 fre "SCC iterations == 2" "void polybench_timer_start()" 1
+67 fre "SCC iterations == 3" "void polybench_timer_start()" 2
+68 copyprop "Copies propagated" "void polybench_timer_start()" 1
+68 copyprop "Statements deleted" "void polybench_timer_start()" 2
+70 vrp "Statements folded" "void polybench_timer_start()" 1
+70 vrp "Jumps threaded" "void polybench_timer_start()" 1
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void polybench_timer_start()" 2
+95 pre "compute_antic iterations == 2" "void polybench_timer_start()" 1
+95 pre "Insertions" "void polybench_timer_start()" 3
+95 pre "compute_partial_antic iterations == 2" "void polybench_timer_start()" 1
+95 pre "SCC iterations == 2" "void polybench_timer_start()" 1
+95 pre "SCC iterations == 3" "void polybench_timer_start()" 2
+95 pre "insert iterations == 2" "void polybench_timer_start()" 1
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void polybench_timer_start()" 1
+169 optimized "unused VAR_DECLs removed" "void polybench_timer_start()" 1
+67 fre "SCC iterations == 2" "void polybench_timer_stop()" 1
+68 copyprop "Copies propagated" "void polybench_timer_stop()" 1
+68 copyprop "Statements deleted" "void polybench_timer_stop()" 2
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void polybench_timer_stop()" 1
+95 pre "compute_antic iterations == 2" "void polybench_timer_stop()" 1
+95 pre "compute_partial_antic iterations == 1" "void polybench_timer_stop()" 1
+95 pre "SCC iterations == 2" "void polybench_timer_stop()" 1
+95 pre "insert iterations == 1" "void polybench_timer_stop()" 1
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void polybench_timer_stop()" 1
+169 optimized "unused VAR_DECLs removed" "void polybench_timer_stop()" 2
+95 pre "compute_antic iterations == 2" "void polybench_timer_print()" 1
+95 pre "compute_partial_antic iterations == 1" "void polybench_timer_print()" 1
+95 pre "insert iterations == 1" "void polybench_timer_print()" 1
+169 optimized "unused VAR_DECLs removed" "void polybench_timer_print()" 1
+59 copyrename "copies coalesced" "void* polybench_alloc_data(long long unsigned int, int)" 1
+68 copyprop "Copies propagated" "void* polybench_alloc_data(long long unsigned int, int)" 1
+68 copyprop "Statements deleted" "void* polybench_alloc_data(long long unsigned int, int)" 2
+70 vrp "Number of ASSERT_EXPR expressions inserted" "void* polybench_alloc_data(long long unsigned int, int)" 1
+95 pre "compute_antic iterations == 2" "void* polybench_alloc_data(long long unsigned int, int)" 1
+95 pre "compute_partial_antic iterations == 2" "void* polybench_alloc_data(long long unsigned int, int)" 1
+95 pre "insert iterations == 1" "void* polybench_alloc_data(long long unsigned int, int)" 1
+129 vrp "Number of ASSERT_EXPR expressions inserted" "void* polybench_alloc_data(long long unsigned int, int)" 1
+52 inline "unused VAR_DECLs removed" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 1
+67 fre "SCC iterations == 2" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 1
+95 pre "compute_antic iterations == 1" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 1
+95 pre "compute_partial_antic iterations == 1" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 1
+95 pre "SCC iterations == 2" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 1
+95 pre "insert iterations == 1" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 1
+169 optimized "unused VAR_DECLs removed" "void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)" 2
+61 ccp "Constants propagated" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 2
+61 ccp "Statements deleted" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 6
+67 fre "SCC iterations == 2" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "compute_antic iterations == 2" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "compute_partial_antic iterations == 1" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "SCC iterations == 2" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 1
+95 pre "insert iterations == 1" "void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])" 1
+52 inline "unused VAR_DECLs removed" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 6
+95 pre "compute_antic iterations == 1" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 1
+95 pre "compute_partial_antic iterations == 1" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 1
+95 pre "insert iterations == 1" "void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()" 1

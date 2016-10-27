@@ -1,0 +1,3459 @@
+
+;; Function void* xmalloc(size_t) (_ZL7xmallocm, funcdef_no=3225, decl_uid=66490, cgraph_uid=3047)
+
+void* xmalloc(size_t) (size_t num)
+{
+  int ret;
+  void * newA;
+  struct _IO_FILE * stderr.73;
+  void * newA.72;
+
+  <bb 2>:
+  newA = 0B;
+  ret_5 = posix_memalign (&newA, 32, num_3(D));
+  newA.72_6 = newA;
+  if (newA.72_6 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  if (ret_5 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  stderr.73_8 = stderr;
+  __builtin_fwrite ("[PolyBench] posix_memalign: cannot allocate memory", 1, 50, stderr.73_8);
+  exit (1);
+
+  <bb 5>:
+  newA ={v} {CLOBBER};
+  return newA.72_6;
+
+}
+
+
+
+;; Function void __cudaUnregisterBinaryUtil() (_ZL26__cudaUnregisterBinaryUtilv, funcdef_no=3229, decl_uid=66570, cgraph_uid=3050)
+
+void __cudaUnregisterBinaryUtil() ()
+{
+  static volatile void * * __ref;
+  void * * __cudaFatCubinHandle.84;
+
+  <bb 2>:
+  __ref = &__cudaFatCubinHandle;
+  __cudaFatCubinHandle.84_3 = __cudaFatCubinHandle;
+  __cudaUnregisterFatBinary (__cudaFatCubinHandle.84_3);
+  return;
+
+}
+
+
+
+;; Function <built-in> (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0, funcdef_no=3256, decl_uid=67054, cgraph_uid=3087)
+
+<built-in> (struct .omp_data_s.41 * .omp_data_i)
+{
+  long unsigned int ivtmp.156;
+  unsigned long ivtmp.147;
+  unsigned long ivtmp.143;
+  unsigned long ivtmp.140;
+  int k;
+  int j;
+  long int .iend0.113;
+  int i;
+  long int .istart0.112;
+  long int .iend0.111;
+  long int .istart0.110;
+  unsigned long _7;
+  int _16;
+  long int _17;
+  bool _19;
+  int _23;
+  bool _27;
+  double * _29;
+  double _32;
+  double _33;
+  double _34;
+  unsigned int _36;
+  double * _39;
+  void * _40;
+  void * _41;
+  double _42;
+  double _43;
+  double _44;
+  unsigned int _46;
+  unsigned int _47;
+  unsigned long _48;
+  double _49;
+  double _50;
+  double _51;
+  unsigned int _53;
+  unsigned long _63;
+  unsigned long _65;
+  long unsigned int _81;
+  int pretmp_82;
+  unsigned long _87;
+  unsigned long _88;
+  double[4096] * pretmp_91;
+  double[4096] * pretmp_93;
+  int pretmp_94;
+  double prephitmp_97;
+  double[4096] * pretmp_98;
+  double[4096] * pretmp_100;
+  double[4096] * pretmp_103;
+  unsigned long _106;
+
+  <bb 2>:
+  current_loop_index = 0;
+  num_threads_defined = 8;
+  q_data_transfer_write = 402653184;
+  q_data_transfer_read = 134217728;
+  type_of_data_allocation = 1;
+  _16 = .omp_data_i_15(D)->ni;
+  _17 = (long int) _16;
+  _19 = __builtin_GOMP_loop_dynamic_start (0, _17, 1, 64, &.istart0.110, &.iend0.111);
+  if (_19 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 17>;
+
+  <bb 3>:
+
+  <bb 4>:
+  .istart0.112_20 = .istart0.110;
+  i_21 = (int) .istart0.112_20;
+  .iend0.113_22 = .iend0.111;
+  _23 = (int) .iend0.113_22;
+  pretmp_82 = .omp_data_i_15(D)->nj;
+  _81 = (long unsigned int) i_21;
+  ivtmp.156_85 = _81 * 32768;
+
+  <bb 5>:
+  # i_1 = PHI <i_21(4), i_25(7)>
+  # ivtmp.156_37 = PHI <ivtmp.156_85(4), ivtmp.156_86(7)>
+  if (pretmp_82 > 0)
+    goto <bb 10>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  i_25 = i_1 + 1;
+  ivtmp.156_86 = ivtmp.156_37 + 32768;
+  if (_23 > i_25)
+    goto <bb 7>;
+  else
+    goto <bb 8>;
+
+  <bb 7>:
+  goto <bb 5>;
+
+  <bb 8>:
+  _27 = __builtin_GOMP_loop_dynamic_next (&.istart0.110, &.iend0.111);
+  if (_27 != 0)
+    goto <bb 9>;
+  else
+    goto <bb 17>;
+
+  <bb 9>:
+  goto <bb 4>;
+
+  <bb 10>:
+  pretmp_91 = .omp_data_i_15(D)->C;
+  pretmp_93 = pretmp_91 + ivtmp.156_37;
+  pretmp_94 = .omp_data_i_15(D)->nk;
+  _46 = (unsigned int) pretmp_82;
+  _53 = _46 + 4294967295;
+  _48 = (unsigned long) _53;
+  _87 = _48 + 1;
+  _47 = (unsigned int) pretmp_94;
+  _36 = _47 + 4294967295;
+  _63 = (unsigned long) _36;
+  _65 = _63 * 8;
+
+  <bb 11>:
+  # ivtmp.147_62 = PHI <ivtmp.147_45(13), 0(10)>
+  j_61 = (int) ivtmp.147_62;
+  _32 = MEM[base: pretmp_93, index: ivtmp.147_62, step: 8, offset: 0B];
+  _33 = .omp_data_i_15(D)->beta;
+  _34 = _32 * _33;
+  MEM[base: pretmp_93, index: ivtmp.147_62, step: 8, offset: 0B] = _34;
+  if (pretmp_94 > 0)
+    goto <bb 14>;
+  else
+    goto <bb 12>;
+
+  <bb 12>:
+  ivtmp.147_45 = ivtmp.147_62 + 1;
+  if (ivtmp.147_45 != _87)
+    goto <bb 13>;
+  else
+    goto <bb 6>;
+
+  <bb 13>:
+  goto <bb 11>;
+
+  <bb 14>:
+  pretmp_98 = .omp_data_i_15(D)->A;
+  pretmp_100 = pretmp_98 + ivtmp.156_37;
+  pretmp_103 = .omp_data_i_15(D)->B;
+  _29 = &*pretmp_100[0];
+  ivtmp.140_28 = (unsigned long) _29;
+  _39 = &*pretmp_103[j_61];
+  ivtmp.143_24 = (unsigned long) _39;
+  _7 = (unsigned long) pretmp_100;
+  _106 = _65 + 8;
+  _88 = _106 + _7;
+
+  <bb 15>:
+  # prephitmp_97 = PHI <_51(16), _34(14)>
+  # ivtmp.140_55 = PHI <ivtmp.140_60(16), ivtmp.140_28(14)>
+  # ivtmp.143_30 = PHI <ivtmp.143_31(16), ivtmp.143_24(14)>
+  _40 = (void *) ivtmp.140_55;
+  _42 = MEM[base: _40, offset: 0B];
+  _43 = .omp_data_i_15(D)->alpha;
+  _44 = _42 * _43;
+  _41 = (void *) ivtmp.143_30;
+  _49 = MEM[base: _41, offset: 0B];
+  _50 = _44 * _49;
+  _51 = _50 + prephitmp_97;
+  MEM[base: pretmp_93, index: ivtmp.147_62, step: 8, offset: 0B] = _51;
+  ivtmp.140_60 = ivtmp.140_55 + 8;
+  ivtmp.143_31 = ivtmp.143_30 + 32768;
+  if (ivtmp.140_60 != _88)
+    goto <bb 16>;
+  else
+    goto <bb 12>;
+
+  <bb 16>:
+  goto <bb 15>;
+
+  <bb 17>:
+  __builtin_GOMP_loop_end_nowait ();
+  return;
+
+}
+
+
+
+;; Function void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*) (_Z16gemm_cuda_kerneliiiddPdS_S_, funcdef_no=3252, decl_uid=66200, cgraph_uid=3073)
+
+void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*) (int __cuda_0, int __cuda_1, int __cuda_2, double __cuda_3, double __cuda_4, double * __cuda_5, double * __cuda_6, double * __cuda_7)
+{
+  static volatile char * __f;
+  int __par0;
+  int __par1;
+  int __par2;
+  double __par3;
+  double __par4;
+  double * __par5;
+  double * __par6;
+  double * __par7;
+  cudaError _11;
+  cudaError _12;
+  cudaError _13;
+  cudaError _14;
+  cudaError _15;
+  cudaError _16;
+  cudaError _17;
+  cudaError _18;
+
+  <bb 2>:
+  __par0 = __cuda_0_2(D);
+  __par1 = __cuda_1_3(D);
+  __par2 = __cuda_2_4(D);
+  __par3 = __cuda_3_5(D);
+  __par4 = __cuda_4_6(D);
+  __par5 = __cuda_5_7(D);
+  __par6 = __cuda_6_8(D);
+  __par7 = __cuda_7_9(D);
+  _11 = cudaSetupArgument (&__par0, 4, 0);
+  if (_11 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  goto <bb 12>;
+
+  <bb 4>:
+  _12 = cudaSetupArgument (&__par1, 4, 4);
+  if (_12 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  _13 = cudaSetupArgument (&__par2, 4, 8);
+  if (_13 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  _14 = cudaSetupArgument (&__par3, 8, 16);
+  if (_14 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  _15 = cudaSetupArgument (&__par4, 8, 24);
+  if (_15 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  _16 = cudaSetupArgument (&__par5, 8, 32);
+  if (_16 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  _17 = cudaSetupArgument (&__par6, 8, 40);
+  if (_17 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  _18 = cudaSetupArgument (&__par7, 8, 48);
+  if (_18 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 11>;
+
+  <bb 11>:
+  __f = gemm_cuda_kernel;
+  cudaLaunch (gemm_cuda_kernel);
+
+  <bb 12>:
+  return;
+
+}
+
+
+
+;; Function float absVal(float) (_Z6absValf, funcdef_no=3194, decl_uid=65338, cgraph_uid=3016)
+
+float absVal(float) (float a)
+{
+  float _1;
+  float _3;
+
+  <bb 2>:
+  if (a_2(D) < 0.0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _3 = -a_2(D);
+
+  <bb 4>:
+  # _1 = PHI <_3(3), a_2(D)(2)>
+  return _1;
+
+}
+
+
+
+;; Function float percentDiff(double, double) (_Z11percentDiffdd, funcdef_no=3195, decl_uid=65342, cgraph_uid=3017)
+
+float percentDiff(double, double) (double val1, double val2)
+{
+  bool iftmp.1;
+  float _2;
+  float _4;
+  double _5;
+  float _7;
+  double _8;
+  double _9;
+  float _10;
+  double _11;
+  float _12;
+  float _13;
+  float _14;
+  float _16;
+  float _17;
+  float _18;
+  float _19;
+  float _20;
+  float _21;
+  float _22;
+  float _23;
+  float _24;
+  float _25;
+
+  <bb 2>:
+  _4 = (float) val1_3(D);
+  if (_4 < 0.0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _16 = -_4;
+
+  <bb 4>:
+  # _17 = PHI <_4(2), _16(3)>
+  _5 = (double) _17;
+  if (_5 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 5>;
+  else
+    goto <bb 15>;
+
+  <bb 5>:
+  _7 = (float) val2_6(D);
+  if (_7 < 0.0)
+    goto <bb 6>;
+  else
+    goto <bb 7>;
+
+  <bb 6>:
+  _18 = -_7;
+
+  <bb 7>:
+  # _19 = PHI <_7(5), _18(6)>
+  _8 = (double) _19;
+  if (_8 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 14>;
+  else
+    goto <bb 15>;
+
+  <bb 8>:
+  _20 = -_10;
+
+  <bb 9>:
+  # _21 = PHI <_10(15), _20(8)>
+  _11 = val1_3(D) + 9.99999993922529029077850282192230224609375e-9;
+  _12 = (float) _11;
+  if (_12 < 0.0)
+    goto <bb 10>;
+  else
+    goto <bb 11>;
+
+  <bb 10>:
+  _22 = -_12;
+
+  <bb 11>:
+  # _23 = PHI <_12(9), _22(10)>
+  _13 = _21 / _23;
+  if (_13 < 0.0)
+    goto <bb 12>;
+  else
+    goto <bb 13>;
+
+  <bb 12>:
+  _24 = -_13;
+
+  <bb 13>:
+  # _25 = PHI <_13(11), _24(12)>
+  _14 = _25 * 1.0e+2;
+
+  <bb 14>:
+  # _2 = PHI <0.0(7), _14(13)>
+  return _2;
+
+  <bb 15>:
+  _9 = val1_3(D) - val2_6(D);
+  _10 = (float) _9;
+  if (_10 < 0.0)
+    goto <bb 8>;
+  else
+    goto <bb 9>;
+
+}
+
+
+
+;; Function uint64_t get_time() (_Z8get_timev, funcdef_no=3200, decl_uid=65516, cgraph_uid=3022)
+
+uint64_t get_time() ()
+{
+  struct timespec spec;
+  long int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long int _6;
+  long unsigned int _7;
+  uint64_t _8;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _3 = spec.tv_sec;
+  _4 = (long unsigned int) _3;
+  _5 = _4 * 1000000000;
+  _6 = spec.tv_nsec;
+  _7 = (long unsigned int) _6;
+  _8 = _5 + _7;
+  spec ={v} {CLOBBER};
+  return _8;
+
+}
+
+
+
+;; Function void hookomp_timing_start(uint64_t*) (_Z20hookomp_timing_startPm, funcdef_no=3201, decl_uid=65520, cgraph_uid=3023)
+
+void hookomp_timing_start(uint64_t*) (uint64_t * _start)
+{
+  struct timespec spec;
+  long int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long int _8;
+  long unsigned int _9;
+  uint64_t _10;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _5 = spec.tv_sec;
+  _6 = (long unsigned int) _5;
+  _7 = _6 * 1000000000;
+  _8 = spec.tv_nsec;
+  _9 = (long unsigned int) _8;
+  _10 = _7 + _9;
+  spec ={v} {CLOBBER};
+  *_start_3(D) = _10;
+  return;
+
+}
+
+
+
+;; Function void hookomp_timing_stop(uint64_t*) (_Z19hookomp_timing_stopPm, funcdef_no=3202, decl_uid=65523, cgraph_uid=3024)
+
+void hookomp_timing_stop(uint64_t*) (uint64_t * _stop)
+{
+  struct timespec spec;
+  long int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long int _8;
+  long unsigned int _9;
+  uint64_t _10;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _5 = spec.tv_sec;
+  _6 = (long unsigned int) _5;
+  _7 = _6 * 1000000000;
+  _8 = spec.tv_nsec;
+  _9 = (long unsigned int) _8;
+  _10 = _7 + _9;
+  spec ={v} {CLOBBER};
+  *_stop_3(D) = _10;
+  return;
+
+}
+
+
+
+;; Function void hookomp_timing_print(uint64_t, uint64_t) (_Z20hookomp_timing_printmm, funcdef_no=3203, decl_uid=65527, cgraph_uid=3025)
+
+void hookomp_timing_print(uint64_t, uint64_t) (uint64_t tstart, uint64_t tstop)
+{
+  long unsigned int _3;
+
+  <bb 2>:
+  _3 = tstop_1(D) - tstart_2(D);
+  printf ("%llu", _3);
+  return;
+
+}
+
+
+
+;; Function void hookomp_timing_print_without_dev() (_Z32hookomp_timing_print_without_devv, funcdef_no=3204, decl_uid=65529, cgraph_uid=3026)
+
+void hookomp_timing_print_without_dev() ()
+{
+  uint64_t dt_time;
+  uint64_t dev_time;
+  uint64_t total_time;
+  uint64_t iftmp.14;
+  long unsigned int data_transfer_d2h_start.13;
+  long unsigned int data_transfer_d2h_stop.12;
+  long unsigned int data_transfer_h2d_start.11;
+  long unsigned int data_transfer_h2d_stop.10;
+  long unsigned int dev_kernel3_start.9;
+  long unsigned int dev_kernel3_stop.8;
+  long unsigned int dev_kernel2_start.7;
+  long unsigned int dev_kernel2_stop.6;
+  long unsigned int dev_kernel1_start.5;
+  long unsigned int dev_kernel1_stop.4;
+  long unsigned int omp_start.3;
+  long unsigned int omp_stop.2;
+  long unsigned int _8;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _15;
+  long unsigned int _19;
+  long unsigned int _22;
+  long unsigned int _24;
+
+  <bb 2>:
+  omp_stop.2_3 = omp_stop;
+  omp_start.3_4 = omp_start;
+  total_time_5 = omp_stop.2_3 - omp_start.3_4;
+  dev_kernel1_stop.4_6 = dev_kernel1_stop;
+  dev_kernel1_start.5_7 = dev_kernel1_start;
+  dev_kernel2_stop.6_9 = dev_kernel2_stop;
+  dev_kernel2_start.7_10 = dev_kernel2_start;
+  dev_kernel3_stop.8_13 = dev_kernel3_stop;
+  dev_kernel3_start.9_14 = dev_kernel3_start;
+  data_transfer_h2d_stop.10_17 = data_transfer_h2d_stop;
+  data_transfer_h2d_start.11_18 = data_transfer_h2d_start;
+  data_transfer_d2h_stop.12_20 = data_transfer_d2h_stop;
+  data_transfer_d2h_start.13_21 = data_transfer_d2h_start;
+  if (total_time_5 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _8 = total_time_5 - dev_kernel1_stop.4_6;
+  _11 = _8 - dev_kernel2_stop.6_9;
+  _12 = _11 - dev_kernel3_stop.8_13;
+  _15 = _12 - data_transfer_h2d_stop.10_17;
+  dev_time_16 = dev_kernel2_start.7_10 + dev_kernel1_start.5_7;
+  _24 = dev_time_16 + dev_kernel3_start.9_14;
+  _22 = _24 + data_transfer_h2d_start.11_18;
+  dt_time_23 = _22 + data_transfer_d2h_start.13_21;
+  _19 = dt_time_23 - data_transfer_d2h_stop.12_20;
+  iftmp.14_25 = _19 + _15;
+
+  <bb 4>:
+  # iftmp.14_1 = PHI <iftmp.14_25(3), 0(2)>
+  printf ("%llu", iftmp.14_1);
+  return;
+
+}
+
+
+
+;; Function void hookomp_print_time_results() (_Z26hookomp_print_time_resultsv, funcdef_no=3205, decl_uid=65534, cgraph_uid=3027)
+
+void hookomp_print_time_results() ()
+{
+  uint64_t dt_time;
+  uint64_t dev_time;
+  uint64_t total_time;
+  uint64_t iftmp.14;
+  long unsigned int data_transfer_d2h_start.13;
+  long unsigned int data_transfer_d2h_stop.12;
+  long unsigned int data_transfer_h2d_start.11;
+  long unsigned int data_transfer_h2d_stop.10;
+  long unsigned int dev_kernel3_start.9;
+  long unsigned int dev_kernel3_stop.8;
+  long unsigned int dev_kernel2_start.7;
+  long unsigned int dev_kernel2_stop.6;
+  long unsigned int dev_kernel1_start.5;
+  long unsigned int dev_kernel1_stop.4;
+  long unsigned int omp_start.3;
+  long unsigned int omp_stop.2;
+  bool made_the_offloading.33;
+  bool decided_by_offloading.32;
+  bool reach_offload_decision_point.31;
+  int iftmp.30;
+  long unsigned int data_transfer_d2h_start.29;
+  long unsigned int data_transfer_d2h_stop.28;
+  long unsigned int data_transfer_h2d_start.27;
+  long unsigned int data_transfer_h2d_stop.26;
+  long unsigned int dev_kernel3_start.25;
+  long unsigned int dev_kernel3_stop.24;
+  long unsigned int dev_kernel2_start.23;
+  long unsigned int dev_kernel2_stop.22;
+  long unsigned int dev_kernel1_start.21;
+  long unsigned int dev_kernel1_stop.20;
+  long unsigned int omp_start.19;
+  long unsigned int omp_stop.18;
+  long unsigned int seq_start.17;
+  long unsigned int seq_stop.16;
+  struct _IO_FILE * stdout.15;
+  int _59;
+  int _63;
+  int _67;
+  long unsigned int _72;
+  long unsigned int _73;
+  long unsigned int _74;
+  long unsigned int _75;
+  long unsigned int _76;
+  long unsigned int _77;
+  long unsigned int _78;
+  long unsigned int _91;
+  long unsigned int _94;
+  long unsigned int _95;
+  long unsigned int _98;
+  long unsigned int _102;
+  long unsigned int _105;
+  long unsigned int _107;
+  bool _111;
+  int _112;
+
+  <bb 2>:
+  stdout.15_3 = stdout;
+  __builtin_fwrite ("ORIG = ", 1, 7, stdout.15_3);
+  seq_stop.16_5 = seq_stop;
+  seq_start.17_6 = seq_start;
+  _72 = seq_stop.16_5 - seq_start.17_6;
+  printf ("%llu", _72);
+  stdout.15_8 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15_8);
+  stdout.15_10 = stdout;
+  __builtin_fwrite ("OMP_OFF = ", 1, 10, stdout.15_10);
+  omp_stop.18_12 = omp_stop;
+  omp_start.19_13 = omp_start;
+  _73 = omp_stop.18_12 - omp_start.19_13;
+  printf ("%llu", _73);
+  stdout.15_15 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15_15);
+  stdout.15_17 = stdout;
+  __builtin_fwrite ("OMP = ", 1, 6, stdout.15_17);
+  omp_stop.2_86 = omp_stop;
+  omp_start.3_87 = omp_start;
+  total_time_88 = omp_stop.2_86 - omp_start.3_87;
+  dev_kernel1_stop.4_89 = dev_kernel1_stop;
+  dev_kernel1_start.5_90 = dev_kernel1_start;
+  dev_kernel2_stop.6_92 = dev_kernel2_stop;
+  dev_kernel2_start.7_93 = dev_kernel2_start;
+  dev_kernel3_stop.8_96 = dev_kernel3_stop;
+  dev_kernel3_start.9_97 = dev_kernel3_start;
+  data_transfer_h2d_stop.10_100 = data_transfer_h2d_stop;
+  data_transfer_h2d_start.11_101 = data_transfer_h2d_start;
+  data_transfer_d2h_stop.12_103 = data_transfer_d2h_stop;
+  data_transfer_d2h_start.13_104 = data_transfer_d2h_start;
+  if (total_time_88 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _91 = total_time_88 - dev_kernel1_stop.4_89;
+  _94 = _91 - dev_kernel2_stop.6_92;
+  _95 = _94 - dev_kernel3_stop.8_96;
+  _98 = _95 - data_transfer_h2d_stop.10_100;
+  dev_time_99 = dev_kernel2_start.7_93 + dev_kernel1_start.5_90;
+  _107 = dev_time_99 + dev_kernel3_start.9_97;
+  _105 = _107 + data_transfer_h2d_start.11_101;
+  dt_time_106 = _105 + data_transfer_d2h_start.13_104;
+  _102 = dt_time_106 - data_transfer_d2h_stop.12_103;
+  iftmp.14_108 = _102 + _98;
+
+  <bb 4>:
+  # iftmp.14_109 = PHI <0(2), iftmp.14_108(3)>
+  printf ("%llu", iftmp.14_109);
+  stdout.15_20 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15_20);
+  stdout.15_22 = stdout;
+  __builtin_fwrite ("CUDA_KERNEL1 = ", 1, 15, stdout.15_22);
+  dev_kernel1_stop.20_24 = dev_kernel1_stop;
+  dev_kernel1_start.21_25 = dev_kernel1_start;
+  _74 = dev_kernel1_stop.20_24 - dev_kernel1_start.21_25;
+  printf ("%llu", _74);
+  stdout.15_27 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15_27);
+  stdout.15_29 = stdout;
+  __builtin_fwrite ("CUDA_KERNEL2 = ", 1, 15, stdout.15_29);
+  dev_kernel2_stop.22_31 = dev_kernel2_stop;
+  dev_kernel2_start.23_32 = dev_kernel2_start;
+  _75 = dev_kernel2_stop.22_31 - dev_kernel2_start.23_32;
+  printf ("%llu", _75);
+  stdout.15_34 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15_34);
+  stdout.15_36 = stdout;
+  __builtin_fwrite ("CUDA_KERNEL3 = ", 1, 15, stdout.15_36);
+  dev_kernel3_stop.24_38 = dev_kernel3_stop;
+  dev_kernel3_start.25_39 = dev_kernel3_start;
+  _76 = dev_kernel3_stop.24_38 - dev_kernel3_start.25_39;
+  printf ("%llu", _76);
+  stdout.15_41 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15_41);
+  stdout.15_43 = stdout;
+  __builtin_fwrite ("DT_H2D = ", 1, 9, stdout.15_43);
+  data_transfer_h2d_stop.26_45 = data_transfer_h2d_stop;
+  data_transfer_h2d_start.27_46 = data_transfer_h2d_start;
+  _77 = data_transfer_h2d_stop.26_45 - data_transfer_h2d_start.27_46;
+  printf ("%llu", _77);
+  stdout.15_48 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15_48);
+  stdout.15_50 = stdout;
+  __builtin_fwrite ("DT_D2H = ", 1, 9, stdout.15_50);
+  data_transfer_d2h_stop.28_52 = data_transfer_d2h_stop;
+  data_transfer_d2h_start.29_53 = data_transfer_d2h_start;
+  _78 = data_transfer_d2h_stop.28_52 - data_transfer_d2h_start.29_53;
+  printf ("%llu", _78);
+  reach_offload_decision_point.31_55 = reach_offload_decision_point;
+  _111 = ~reach_offload_decision_point.31_55;
+  _112 = (int) _111;
+  stdout.15_56 = stdout;
+  fprintf (stdout.15_56, ", WORK_FINISHED_BEFORE_OFFLOAD_DECISION = %d", _112);
+  reach_offload_decision_point.31_58 = reach_offload_decision_point;
+  _59 = (int) reach_offload_decision_point.31_58;
+  stdout.15_60 = stdout;
+  fprintf (stdout.15_60, ", REACH_OFFLOAD_DECISION_POINT = %d", _59);
+  decided_by_offloading.32_62 = decided_by_offloading;
+  _63 = (int) decided_by_offloading.32_62;
+  stdout.15_64 = stdout;
+  fprintf (stdout.15_64, ", DECIDED_BY_OFFLOADING = %d", _63);
+  made_the_offloading.33_66 = made_the_offloading;
+  _67 = (int) made_the_offloading.33_66;
+  stdout.15_68 = stdout;
+  fprintf (stdout.15_68, ", MADE_THE_OFFLOADING = %d", _67);
+  stdout.15_70 = stdout;
+  __builtin_fputc (10, stdout.15_70);
+  return;
+
+}
+
+
+
+;; Function bool create_target_functions_table(Func****, int, int) (_Z29create_target_functions_tablePPPP4Funcii, funcdef_no=3206, decl_uid=66020, cgraph_uid=3028)
+
+bool create_target_functions_table(Func****, int, int) (struct Func * * * * table_, int nrows, int ncolumns)
+{
+  unsigned long ivtmp.189;
+  long unsigned int ivtmp.184;
+  int j;
+  int i;
+  bool result;
+  struct Func * * * table;
+  struct _IO_FILE * stderr.34;
+  void * _2;
+  long unsigned int _4;
+  long unsigned int pretmp_5;
+  long unsigned int pretmp_6;
+  long unsigned int _8;
+  long unsigned int _14;
+  long unsigned int _15;
+  void * _27;
+  unsigned int _29;
+  struct Func * * _32;
+  void * _34;
+  struct Func * * _36;
+  struct Func * * _37;
+  struct Func * _38;
+  long unsigned int _50;
+  unsigned int _51;
+  unsigned long _52;
+  struct Func * * pretmp_53;
+  struct Func * * prephitmp_55;
+  unsigned long _56;
+  unsigned long _62;
+  unsigned int _63;
+  unsigned int _64;
+  unsigned long _66;
+
+  <bb 2>:
+  stderr.34_11 = stderr;
+  __builtin_fwrite ("Allocating the rows.\n", 1, 21, stderr.34_11);
+  _14 = (long unsigned int) nrows_13(D);
+  _15 = _14 * 8;
+  table_17 = malloc (_15);
+  if (table_17 != 0B)
+    goto <bb 3>;
+  else
+    goto <bb 13>;
+
+  <bb 3>:
+  stderr.34_18 = stderr;
+  __builtin_fwrite ("Allocating the columns.\n", 1, 24, stderr.34_18);
+  if (nrows_13(D) > 0)
+    goto <bb 4>;
+  else
+    goto <bb 14>;
+
+  <bb 4>:
+  pretmp_6 = (long unsigned int) ncolumns_23(D);
+  pretmp_5 = pretmp_6 * 8;
+  ivtmp.189_30 = (unsigned long) table_17;
+  _64 = (unsigned int) nrows_13(D);
+  _63 = _64 + 4294967295;
+  _62 = (unsigned long) _63;
+  _56 = _62 * 8;
+  _52 = _56 + 8;
+  _66 = ivtmp.189_30 + _52;
+  _29 = (unsigned int) ncolumns_23(D);
+  _51 = _29 + 4294967295;
+  _50 = (long unsigned int) _51;
+  _8 = _50 + 1;
+  _4 = _8 * 8;
+
+  <bb 5>:
+  # result_57 = PHI <result_1(12), 1(4)>
+  # ivtmp.189_59 = PHI <ivtmp.189_40(12), ivtmp.189_30(4)>
+  _27 = malloc (pretmp_5);
+  _2 = (void *) ivtmp.189_59;
+  MEM[base: _2, offset: 0B] = _27;
+  if (_27 != 0B)
+    goto <bb 6>;
+  else
+    goto <bb 10>;
+
+  <bb 6>:
+  if (ncolumns_23(D) > 0)
+    goto <bb 7>;
+  else
+    goto <bb 11>;
+
+  <bb 7>:
+
+  <bb 8>:
+  # prephitmp_55 = PHI <pretmp_53(9), _27(7)>
+  # ivtmp.184_25 = PHI <ivtmp.184_24(9), 0(7)>
+  _32 = prephitmp_55 + ivtmp.184_25;
+  _34 = malloc (48);
+  *_32 = _34;
+  _36 = MEM[base: _2, offset: 0B];
+  _37 = _36 + ivtmp.184_25;
+  _38 = *_37;
+  _38->f = 0B;
+  ivtmp.184_24 = ivtmp.184_25 + 8;
+  if (ivtmp.184_24 != _4)
+    goto <bb 9>;
+  else
+    goto <bb 11>;
+
+  <bb 9>:
+  pretmp_53 = MEM[base: _2, offset: 0B];
+  goto <bb 8>;
+
+  <bb 10>:
+  stderr.34_41 = stderr;
+  __builtin_fwrite ("Error in table of target functions allocation (columns).\n", 1, 57, stderr.34_41);
+
+  <bb 11>:
+  # result_1 = PHI <result_57(8), 0(10), result_57(6)>
+  ivtmp.189_40 = ivtmp.189_59 + 8;
+  if (ivtmp.189_40 != _66)
+    goto <bb 12>;
+  else
+    goto <bb 14>;
+
+  <bb 12>:
+  goto <bb 5>;
+
+  <bb 13>:
+  stderr.34_44 = stderr;
+  __builtin_fwrite ("Error in table of target functions allocation (rows).\n", 1, 54, stderr.34_44);
+
+  <bb 14>:
+  # result_3 = PHI <result_1(11), 0(13), 1(3)>
+  stderr.34_46 = stderr;
+  __builtin_fwrite ("Allocating the columns is OK.\n", 1, 30, stderr.34_46);
+  *table__48(D) = table_17;
+  return result_3;
+
+}
+
+
+
+;; Function void call_function_ffi_call(Func*) (_Z22call_function_ffi_callP4Func, funcdef_no=3207, decl_uid=66035, cgraph_uid=3029)
+
+void call_function_ffi_call(Func*) (struct Func * ff)
+{
+  struct ffi_cif cif;
+  struct _IO_FILE * stderr.35;
+  struct ffi_type * * _5;
+  struct ffi_type * _6;
+  int _7;
+  unsigned int _8;
+  ffi_status _10;
+  void * * _14;
+  void * _15;
+  void * _16;
+  void (*<T1993>) (void) _17;
+
+  <bb 2>:
+  stderr.35_2 = stderr;
+  __builtin_fwrite (" In call_function_ffi_call.\n", 1, 28, stderr.35_2);
+  _5 = ff_4(D)->arg_types;
+  _6 = ff_4(D)->ret_type;
+  _7 = ff_4(D)->nargs;
+  _8 = (unsigned int) _7;
+  _10 = ffi_prep_cif (&cif, 2, _8, _6, _5);
+  if (_10 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  stderr.35_11 = stderr;
+  __builtin_fwrite ("Error ffi_prep_cif.\n", 1, 20, stderr.35_11);
+  exit (1);
+
+  <bb 4>:
+  _14 = ff_4(D)->arg_values;
+  _15 = ff_4(D)->ret_value;
+  _16 = ff_4(D)->f;
+  _17 = (void (*<T1993>) (void)) _16;
+  ffi_call (&cif, _17, _15, _14);
+  cif ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z10init_arrayiiiPdS_PA4096_dS1_S1_, funcdef_no=3208, decl_uid=66046, cgraph_uid=3030)
+
+void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double * alpha, double * beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  unsigned long ivtmp.321;
+  unsigned long ivtmp.311;
+  unsigned int ivtmp.309;
+  unsigned long ivtmp.303;
+  unsigned long ivtmp.293;
+  unsigned int ivtmp.291;
+  unsigned long ivtmp.285;
+  unsigned long ivtmp.275;
+  unsigned int ivtmp.273;
+  vector(4) int vect_cst_.272;
+  vector(4) int vect_j.271;
+  vector(2) double * vect_p.270;
+  sizetype base_off.269;
+  double[4096] * batmp.268;
+  vector(2) double * vect_p.267;
+  vector(2) double vect_cst_.266;
+  vector(2) double vect_var_.265;
+  vector(2) double vect_cst_.264;
+  vector(2) double vect_var_.263;
+  vector(2) double vect_var_.262;
+  vector(4) int vect_vec_iv_.261;
+  vector(4) int vect_cst_.260;
+  vector(4) int vect_cst_.259;
+  int stmp_var_.258;
+  int tmp.257;
+  unsigned int ratio_mult_vf.256;
+  unsigned int bnd.255;
+  unsigned int niters.254;
+  sizetype prolog_loop_adjusted_niters.253;
+  unsigned int prologue_after_cost_adjust.252;
+  unsigned int prolog_loop_niters.251;
+  vector(2) double * vect_p.250;
+  sizetype base_off.249;
+  double[4096] * batmp.248;
+  unsigned int niters.247;
+  vector(4) int vect_cst_.246;
+  vector(4) int vect_j.245;
+  vector(2) double * vect_p.244;
+  sizetype base_off.243;
+  double[4096] * batmp.242;
+  vector(2) double * vect_p.241;
+  vector(2) double vect_cst_.240;
+  vector(2) double vect_var_.239;
+  vector(2) double vect_cst_.238;
+  vector(2) double vect_var_.237;
+  vector(2) double vect_var_.236;
+  vector(4) int vect_vec_iv_.235;
+  vector(4) int vect_cst_.234;
+  vector(4) int vect_cst_.233;
+  int stmp_var_.232;
+  int tmp.231;
+  unsigned int ratio_mult_vf.230;
+  unsigned int bnd.229;
+  unsigned int niters.228;
+  sizetype prolog_loop_adjusted_niters.227;
+  unsigned int prologue_after_cost_adjust.226;
+  unsigned int prolog_loop_niters.225;
+  vector(2) double * vect_p.224;
+  sizetype base_off.223;
+  double[4096] * batmp.222;
+  unsigned int niters.221;
+  vector(4) int vect_cst_.220;
+  vector(4) int vect_j.219;
+  vector(2) double * vect_p.218;
+  sizetype base_off.217;
+  double[4096] * batmp.216;
+  vector(2) double * vect_p.215;
+  vector(2) double vect_cst_.214;
+  vector(2) double vect_var_.213;
+  vector(2) double vect_cst_.212;
+  vector(2) double vect_var_.211;
+  vector(2) double vect_var_.210;
+  vector(4) int vect_vec_iv_.209;
+  vector(4) int vect_cst_.208;
+  vector(4) int vect_cst_.207;
+  int stmp_var_.206;
+  int tmp.205;
+  unsigned int ratio_mult_vf.204;
+  unsigned int bnd.203;
+  unsigned int niters.202;
+  sizetype prolog_loop_adjusted_niters.201;
+  unsigned int prologue_after_cost_adjust.200;
+  unsigned int prolog_loop_niters.199;
+  vector(2) double * vect_p.198;
+  sizetype base_off.197;
+  double[4096] * batmp.196;
+  unsigned int niters.195;
+  int j;
+  int i;
+  double[4096] * pretmp_2;
+  double _11;
+  unsigned long _19;
+  double _34;
+  double _39;
+  double _53;
+  unsigned int _58;
+  unsigned int _64;
+  double _67;
+  double _68;
+  double _69;
+  void * _70;
+  double pretmp_71;
+  double _74;
+  unsigned int _83;
+  unsigned long _85;
+  unsigned long _88;
+  double[4096] * pretmp_89;
+  double pretmp_90;
+  double _91;
+  double[4096] * pretmp_102;
+  double pretmp_103;
+  double _112;
+  double _113;
+  int _115;
+  double _141;
+  void * _148;
+  unsigned long _151;
+  unsigned long _152;
+  unsigned long _153;
+  unsigned int _154;
+  unsigned int _155;
+  double _159;
+  double _160;
+  unsigned int _163;
+  double _181;
+  double _182;
+  double _183;
+  double _190;
+  double _191;
+  int _193;
+  unsigned long _229;
+  unsigned long _230;
+  unsigned long _231;
+  unsigned int _232;
+  unsigned int _233;
+  double _237;
+  double _238;
+  unsigned int _241;
+  double _259;
+  double _260;
+  double _261;
+  double _265;
+  double _269;
+  int _271;
+  double _309;
+  double _310;
+  double _318;
+  double _319;
+  double _325;
+  double _326;
+  double _327;
+  double _332;
+  double _333;
+  double _334;
+  double _341;
+  double _342;
+  double _351;
+  double _359;
+  double _360;
+  double _368;
+  double _369;
+  double _377;
+  double _378;
+  void * _382;
+  double _384;
+  double _385;
+  double _386;
+  double _391;
+  double _392;
+  double _393;
+  double _400;
+  double _401;
+  double _410;
+  double _418;
+  double _419;
+  double _427;
+  double _428;
+  double _436;
+  double _437;
+
+  <bb 2>:
+  *alpha_14(D) = 3.2412e+4;
+  *beta_16(D) = 2.123e+3;
+  if (ni_18(D) > 0)
+    goto <bb 3>;
+  else
+    goto <bb 26>;
+
+  <bb 3>:
+  ivtmp.321_299 = (unsigned long) A_23(D);
+  _241 = (unsigned int) nk_20(D);
+  goto <bb 14>;
+
+  <bb 4>:
+
+  <bb 5>:
+  # vect_vec_iv_.261_277 = PHI <vect_vec_iv_.261_278(4), vect_cst_.259_275(25)>
+  # ivtmp.309_146 = PHI <ivtmp.309_210(4), 0(25)>
+  # ivtmp.311_147 = PHI <ivtmp.311_145(4), ivtmp.311_211(25)>
+  vect_vec_iv_.261_278 = vect_vec_iv_.261_277 + vect_cst_.260_276;
+  vect_var_.262_279 = [vec_unpack_float_lo_expr] vect_vec_iv_.261_277;
+  vect_var_.262_280 = [vec_unpack_float_hi_expr] vect_vec_iv_.261_277;
+  vect_var_.263_282 = vect_var_.262_279 * vect_cst_.264_281;
+  vect_var_.263_283 = vect_var_.262_280 * vect_cst_.264_281;
+  vect_var_.265_285 = vect_var_.263_282 * { 2.44140625e-4, 2.44140625e-4 };
+  vect_var_.265_286 = vect_var_.263_283 * { 2.44140625e-4, 2.44140625e-4 };
+  _148 = (void *) ivtmp.311_147;
+  MEM[base: _148, offset: 0B] = vect_var_.265_285;
+  MEM[base: _148, offset: 16B] = vect_var_.265_286;
+  ivtmp.309_210 = ivtmp.309_146 + 1;
+  ivtmp.311_145 = ivtmp.311_147 + 32;
+  if (ivtmp.309_210 < bnd.255_255)
+    goto <bb 4>;
+  else
+    goto <bb 7>;
+
+  <bb 6>:
+  _259 = (double) j_395;
+  _260 = _259 * pretmp_103;
+  _261 = _260 * 2.44140625e-4;
+  *pretmp_102[j_395] = _261;
+  goto <bb 10>;
+
+  <bb 7>:
+  _271 = (int) ratio_mult_vf.256_256;
+  tmp.257_270 = j_244 + _271;
+  if (niters.254_253 == ratio_mult_vf.256_256)
+    goto <bb 10>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  # j_264 = PHI <tmp.257_270(7), j_244(24)>
+  _384 = (double) j_264;
+  _385 = _384 * pretmp_103;
+  _386 = _385 * 2.44140625e-4;
+  *pretmp_102[j_264] = _386;
+  j_388 = j_264 + 1;
+  if (nk_20(D) > j_388)
+    goto <bb 9>;
+  else
+    goto <bb 10>;
+
+  <bb 9>:
+  _391 = (double) j_388;
+  _392 = _391 * pretmp_103;
+  _393 = _392 * 2.44140625e-4;
+  *pretmp_102[j_388] = _393;
+  j_395 = j_388 + 1;
+  if (nk_20(D) > j_395)
+    goto <bb 6>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+
+  <bb 11>:
+
+  <bb 12>:
+  i_31 = i_76 + 1;
+  ivtmp.321_292 = ivtmp.321_298 + 32768;
+  if (i_31 != ni_18(D))
+    goto <bb 13>;
+  else
+    goto <bb 26>;
+
+  <bb 13>:
+
+  <bb 14>:
+  # i_76 = PHI <i_31(13), 0(3)>
+  # ivtmp.321_298 = PHI <ivtmp.321_292(13), ivtmp.321_299(3)>
+  if (nk_20(D) > 0)
+    goto <bb 15>;
+  else
+    goto <bb 12>;
+
+  <bb 15>:
+  pretmp_102 = (double[4096] *) ivtmp.321_298;
+  pretmp_103 = (double) i_76;
+  _229 = ivtmp.321_298 & 15;
+  _230 = _229 >> 3;
+  _231 = -_230;
+  _232 = (unsigned int) _231;
+  _233 = _232 & 1;
+  prolog_loop_niters.251_227 = MIN_EXPR <_233, _241>;
+  if (_241 <= 6)
+    goto <bb 17>;
+  else
+    goto <bb 16>;
+
+  <bb 16>:
+  if (prolog_loop_niters.251_227 == 0)
+    goto <bb 24>;
+  else
+    goto <bb 17>;
+
+  <bb 17>:
+  # prologue_after_cost_adjust.252_371 = PHI <_241(15), prolog_loop_niters.251_227(16)>
+  _400 = pretmp_103 * 0.0;
+  _401 = _400 * 2.44140625e-4;
+  MEM[base: pretmp_102, offset: 0B] = _401;
+  if (prologue_after_cost_adjust.252_371 != 1)
+    goto <bb 18>;
+  else
+    goto <bb 23>;
+
+  <bb 18>:
+  _410 = pretmp_103 * 2.44140625e-4;
+  MEM[base: pretmp_102, offset: 8B] = _410;
+  if (prologue_after_cost_adjust.252_371 != 2)
+    goto <bb 19>;
+  else
+    goto <bb 23>;
+
+  <bb 19>:
+  _418 = pretmp_103 * 2.0e+0;
+  _419 = _418 * 2.44140625e-4;
+  MEM[base: pretmp_102, offset: 16B] = _419;
+  if (prologue_after_cost_adjust.252_371 != 3)
+    goto <bb 20>;
+  else
+    goto <bb 23>;
+
+  <bb 20>:
+  _427 = pretmp_103 * 3.0e+0;
+  _428 = _427 * 2.44140625e-4;
+  MEM[base: pretmp_102, offset: 24B] = _428;
+  if (prologue_after_cost_adjust.252_371 != 4)
+    goto <bb 21>;
+  else
+    goto <bb 23>;
+
+  <bb 21>:
+  _436 = pretmp_103 * 4.0e+0;
+  _437 = _436 * 2.44140625e-4;
+  MEM[base: pretmp_102, offset: 32B] = _437;
+  if (prologue_after_cost_adjust.252_371 == 6)
+    goto <bb 22>;
+  else
+    goto <bb 23>;
+
+  <bb 22>:
+  _237 = pretmp_103 * 5.0e+0;
+  _238 = _237 * 2.44140625e-4;
+  MEM[base: pretmp_102, offset: 40B] = _238;
+
+  <bb 23>:
+  # j_245 = PHI <6(22), 1(17), 2(18), 3(19), 4(20), 5(21)>
+  if (_241 == prologue_after_cost_adjust.252_371)
+    goto <bb 11>;
+  else
+    goto <bb 24>;
+
+  <bb 24>:
+  # j_244 = PHI <j_245(23), 0(16)>
+  # prologue_after_cost_adjust.252_366 = PHI <prologue_after_cost_adjust.252_371(23), prolog_loop_niters.251_227(16)>
+  prolog_loop_adjusted_niters.253_252 = (sizetype) prologue_after_cost_adjust.252_366;
+  niters.254_253 = _241 - prologue_after_cost_adjust.252_366;
+  bnd.255_255 = niters.254_253 >> 2;
+  ratio_mult_vf.256_256 = bnd.255_255 << 2;
+  if (ratio_mult_vf.256_256 == 0)
+    goto <bb 8>;
+  else
+    goto <bb 25>;
+
+  <bb 25>:
+  stmp_var_.258_272 = j_244 + 1;
+  stmp_var_.258_273 = stmp_var_.258_272 + 1;
+  stmp_var_.258_274 = stmp_var_.258_273 + 1;
+  vect_cst_.259_275 = {j_244, stmp_var_.258_272, stmp_var_.258_273, stmp_var_.258_274};
+  vect_cst_.260_276 = { 4, 4, 4, 4 };
+  vect_cst_.264_281 = {pretmp_103, pretmp_103};
+  base_off.269_290 = prolog_loop_adjusted_niters.253_252 * 8;
+  vect_p.270_291 = pretmp_102 + base_off.269_290;
+  ivtmp.311_211 = (unsigned long) vect_p.270_291;
+  goto <bb 5>;
+
+  <bb 26>:
+  if (nk_20(D) > 0)
+    goto <bb 27>;
+  else
+    goto <bb 50>;
+
+  <bb 27>:
+  ivtmp.303_221 = (unsigned long) B_36(D);
+  _163 = (unsigned int) nj_33(D);
+  goto <bb 38>;
+
+  <bb 28>:
+
+  <bb 29>:
+  # vect_vec_iv_.235_199 = PHI <vect_vec_iv_.235_200(28), vect_cst_.233_197(49)>
+  # ivtmp.291_46 = PHI <ivtmp.291_132(28), 0(49)>
+  # ivtmp.293_47 = PHI <ivtmp.293_38(28), ivtmp.293_133(49)>
+  vect_vec_iv_.235_200 = vect_vec_iv_.235_199 + vect_cst_.234_198;
+  vect_var_.236_201 = [vec_unpack_float_lo_expr] vect_vec_iv_.235_199;
+  vect_var_.236_202 = [vec_unpack_float_hi_expr] vect_vec_iv_.235_199;
+  vect_var_.237_204 = vect_var_.236_201 * vect_cst_.238_203;
+  vect_var_.237_205 = vect_var_.236_202 * vect_cst_.238_203;
+  vect_var_.239_207 = vect_var_.237_204 * { 2.44140625e-4, 2.44140625e-4 };
+  vect_var_.239_208 = vect_var_.237_205 * { 2.44140625e-4, 2.44140625e-4 };
+  _70 = (void *) ivtmp.293_47;
+  MEM[base: _70, offset: 0B] = vect_var_.239_207;
+  MEM[base: _70, offset: 16B] = vect_var_.239_208;
+  ivtmp.291_132 = ivtmp.291_46 + 1;
+  ivtmp.293_38 = ivtmp.293_47 + 32;
+  if (ivtmp.291_132 < bnd.229_177)
+    goto <bb 28>;
+  else
+    goto <bb 31>;
+
+  <bb 30>:
+  _181 = (double) j_336;
+  _182 = _181 * pretmp_90;
+  _183 = _182 * 2.44140625e-4;
+  *pretmp_89[j_336] = _183;
+  goto <bb 34>;
+
+  <bb 31>:
+  _193 = (int) ratio_mult_vf.230_178;
+  tmp.231_192 = j_166 + _193;
+  if (niters.228_175 == ratio_mult_vf.230_178)
+    goto <bb 34>;
+  else
+    goto <bb 32>;
+
+  <bb 32>:
+  # j_186 = PHI <tmp.231_192(31), j_166(48)>
+  _325 = (double) j_186;
+  _326 = _325 * pretmp_90;
+  _327 = _326 * 2.44140625e-4;
+  *pretmp_89[j_186] = _327;
+  j_329 = j_186 + 1;
+  if (nj_33(D) > j_329)
+    goto <bb 33>;
+  else
+    goto <bb 34>;
+
+  <bb 33>:
+  _332 = (double) j_329;
+  _333 = _332 * pretmp_90;
+  _334 = _333 * 2.44140625e-4;
+  *pretmp_89[j_329] = _334;
+  j_336 = j_329 + 1;
+  if (nj_33(D) > j_336)
+    goto <bb 30>;
+  else
+    goto <bb 34>;
+
+  <bb 34>:
+
+  <bb 35>:
+
+  <bb 36>:
+  i_44 = i_77 + 1;
+  ivtmp.303_214 = ivtmp.303_220 + 32768;
+  if (i_44 != nk_20(D))
+    goto <bb 37>;
+  else
+    goto <bb 50>;
+
+  <bb 37>:
+
+  <bb 38>:
+  # i_77 = PHI <i_44(37), 0(27)>
+  # ivtmp.303_220 = PHI <ivtmp.303_214(37), ivtmp.303_221(27)>
+  if (nj_33(D) > 0)
+    goto <bb 39>;
+  else
+    goto <bb 36>;
+
+  <bb 39>:
+  pretmp_89 = (double[4096] *) ivtmp.303_220;
+  pretmp_90 = (double) i_77;
+  _151 = ivtmp.303_220 & 15;
+  _152 = _151 >> 3;
+  _153 = -_152;
+  _154 = (unsigned int) _153;
+  _155 = _154 & 1;
+  prolog_loop_niters.225_149 = MIN_EXPR <_155, _163>;
+  if (_163 <= 6)
+    goto <bb 41>;
+  else
+    goto <bb 40>;
+
+  <bb 40>:
+  if (prolog_loop_niters.225_149 == 0)
+    goto <bb 48>;
+  else
+    goto <bb 41>;
+
+  <bb 41>:
+  # prologue_after_cost_adjust.226_373 = PHI <_163(39), prolog_loop_niters.225_149(40)>
+  _341 = pretmp_90 * 0.0;
+  _342 = _341 * 2.44140625e-4;
+  MEM[base: pretmp_89, offset: 0B] = _342;
+  if (prologue_after_cost_adjust.226_373 != 1)
+    goto <bb 42>;
+  else
+    goto <bb 47>;
+
+  <bb 42>:
+  _351 = pretmp_90 * 2.44140625e-4;
+  MEM[base: pretmp_89, offset: 8B] = _351;
+  if (prologue_after_cost_adjust.226_373 != 2)
+    goto <bb 43>;
+  else
+    goto <bb 47>;
+
+  <bb 43>:
+  _359 = pretmp_90 * 2.0e+0;
+  _360 = _359 * 2.44140625e-4;
+  MEM[base: pretmp_89, offset: 16B] = _360;
+  if (prologue_after_cost_adjust.226_373 != 3)
+    goto <bb 44>;
+  else
+    goto <bb 47>;
+
+  <bb 44>:
+  _368 = pretmp_90 * 3.0e+0;
+  _369 = _368 * 2.44140625e-4;
+  MEM[base: pretmp_89, offset: 24B] = _369;
+  if (prologue_after_cost_adjust.226_373 != 4)
+    goto <bb 45>;
+  else
+    goto <bb 47>;
+
+  <bb 45>:
+  _377 = pretmp_90 * 4.0e+0;
+  _378 = _377 * 2.44140625e-4;
+  MEM[base: pretmp_89, offset: 32B] = _378;
+  if (prologue_after_cost_adjust.226_373 == 6)
+    goto <bb 46>;
+  else
+    goto <bb 47>;
+
+  <bb 46>:
+  _159 = pretmp_90 * 5.0e+0;
+  _160 = _159 * 2.44140625e-4;
+  MEM[base: pretmp_89, offset: 40B] = _160;
+
+  <bb 47>:
+  # j_167 = PHI <6(46), 1(41), 2(42), 3(43), 4(44), 5(45)>
+  if (_163 == prologue_after_cost_adjust.226_373)
+    goto <bb 35>;
+  else
+    goto <bb 48>;
+
+  <bb 48>:
+  # j_166 = PHI <j_167(47), 0(40)>
+  # prologue_after_cost_adjust.226_372 = PHI <prologue_after_cost_adjust.226_373(47), prolog_loop_niters.225_149(40)>
+  prolog_loop_adjusted_niters.227_174 = (sizetype) prologue_after_cost_adjust.226_372;
+  niters.228_175 = _163 - prologue_after_cost_adjust.226_372;
+  bnd.229_177 = niters.228_175 >> 2;
+  ratio_mult_vf.230_178 = bnd.229_177 << 2;
+  if (ratio_mult_vf.230_178 == 0)
+    goto <bb 32>;
+  else
+    goto <bb 49>;
+
+  <bb 49>:
+  stmp_var_.232_194 = j_166 + 1;
+  stmp_var_.232_195 = stmp_var_.232_194 + 1;
+  stmp_var_.232_196 = stmp_var_.232_195 + 1;
+  vect_cst_.233_197 = {j_166, stmp_var_.232_194, stmp_var_.232_195, stmp_var_.232_196};
+  vect_cst_.234_198 = { 4, 4, 4, 4 };
+  vect_cst_.238_203 = {pretmp_90, pretmp_90};
+  base_off.243_212 = prolog_loop_adjusted_niters.227_174 * 8;
+  vect_p.244_213 = pretmp_89 + base_off.243_212;
+  ivtmp.293_133 = (unsigned long) vect_p.244_213;
+  goto <bb 29>;
+
+  <bb 50>:
+  if (ni_18(D) > 0)
+    goto <bb 51>;
+  else
+    goto <bb 74>;
+
+  <bb 51>:
+  ivtmp.285_143 = (unsigned long) C_48(D);
+  _64 = (unsigned int) nj_33(D);
+  goto <bb 62>;
+
+  <bb 52>:
+
+  <bb 53>:
+  # vect_vec_iv_.209_121 = PHI <vect_vec_iv_.209_122(52), vect_cst_.207_119(73)>
+  # ivtmp.273_8 = PHI <ivtmp.273_22(52), 0(73)>
+  # ivtmp.275_324 = PHI <ivtmp.275_323(52), ivtmp.275_383(73)>
+  vect_vec_iv_.209_122 = vect_vec_iv_.209_121 + vect_cst_.208_120;
+  vect_var_.210_123 = [vec_unpack_float_lo_expr] vect_vec_iv_.209_121;
+  vect_var_.210_124 = [vec_unpack_float_hi_expr] vect_vec_iv_.209_121;
+  vect_var_.211_126 = vect_var_.210_123 * vect_cst_.212_125;
+  vect_var_.211_127 = vect_var_.210_124 * vect_cst_.212_125;
+  vect_var_.213_129 = vect_var_.211_126 * { 2.44140625e-4, 2.44140625e-4 };
+  vect_var_.213_130 = vect_var_.211_127 * { 2.44140625e-4, 2.44140625e-4 };
+  _382 = (void *) ivtmp.275_324;
+  MEM[base: _382, offset: 0B] = vect_var_.213_129;
+  MEM[base: _382, offset: 16B] = vect_var_.213_130;
+  ivtmp.273_22 = ivtmp.273_8 + 1;
+  ivtmp.275_323 = ivtmp.275_324 + 32;
+  if (ivtmp.273_22 < bnd.203_105)
+    goto <bb 52>;
+  else
+    goto <bb 55>;
+
+  <bb 54>:
+  _91 = (double) j_80;
+  _68 = _91 * pretmp_71;
+  _67 = _68 * 2.44140625e-4;
+  *pretmp_2[j_80] = _67;
+  goto <bb 58>;
+
+  <bb 55>:
+  _115 = (int) ratio_mult_vf.204_104;
+  tmp.205_114 = j_61 + _115;
+  if (niters.202_4 == ratio_mult_vf.204_104)
+    goto <bb 58>;
+  else
+    goto <bb 56>;
+
+  <bb 56>:
+  # j_108 = PHI <tmp.205_114(55), j_61(72)>
+  _34 = (double) j_108;
+  _112 = _34 * pretmp_71;
+  _113 = _112 * 2.44140625e-4;
+  *pretmp_2[j_108] = _113;
+  j_81 = j_108 + 1;
+  if (nj_33(D) > j_81)
+    goto <bb 57>;
+  else
+    goto <bb 58>;
+
+  <bb 57>:
+  _11 = (double) j_81;
+  _190 = _11 * pretmp_71;
+  _191 = _190 * 2.44140625e-4;
+  *pretmp_2[j_81] = _191;
+  j_80 = j_81 + 1;
+  if (nj_33(D) > j_80)
+    goto <bb 54>;
+  else
+    goto <bb 58>;
+
+  <bb 58>:
+
+  <bb 59>:
+
+  <bb 60>:
+  i_56 = i_78 + 1;
+  ivtmp.285_136 = ivtmp.285_142 + 32768;
+  if (i_56 != ni_18(D))
+    goto <bb 61>;
+  else
+    goto <bb 74>;
+
+  <bb 61>:
+
+  <bb 62>:
+  # i_78 = PHI <i_56(61), 0(51)>
+  # ivtmp.285_142 = PHI <ivtmp.285_136(61), ivtmp.285_143(51)>
+  if (nj_33(D) > 0)
+    goto <bb 63>;
+  else
+    goto <bb 60>;
+
+  <bb 63>:
+  pretmp_2 = (double[4096] *) ivtmp.285_142;
+  pretmp_71 = (double) i_78;
+  _88 = ivtmp.285_142 & 15;
+  _85 = _88 >> 3;
+  _19 = -_85;
+  _83 = (unsigned int) _19;
+  _58 = _83 & 1;
+  prolog_loop_niters.199_50 = MIN_EXPR <_58, _64>;
+  if (_64 <= 6)
+    goto <bb 65>;
+  else
+    goto <bb 64>;
+
+  <bb 64>:
+  if (prolog_loop_niters.199_50 == 0)
+    goto <bb 72>;
+  else
+    goto <bb 65>;
+
+  <bb 65>:
+  # prologue_after_cost_adjust.200_380 = PHI <_64(63), prolog_loop_niters.199_50(64)>
+  _269 = pretmp_71 * 0.0;
+  _265 = _269 * 2.44140625e-4;
+  MEM[base: pretmp_2, offset: 0B] = _265;
+  if (prologue_after_cost_adjust.200_380 != 1)
+    goto <bb 66>;
+  else
+    goto <bb 71>;
+
+  <bb 66>:
+  _39 = pretmp_71 * 2.44140625e-4;
+  MEM[base: pretmp_2, offset: 8B] = _39;
+  if (prologue_after_cost_adjust.200_380 != 2)
+    goto <bb 67>;
+  else
+    goto <bb 71>;
+
+  <bb 67>:
+  _53 = pretmp_71 * 2.0e+0;
+  _141 = _53 * 2.44140625e-4;
+  MEM[base: pretmp_2, offset: 16B] = _141;
+  if (prologue_after_cost_adjust.200_380 != 3)
+    goto <bb 68>;
+  else
+    goto <bb 71>;
+
+  <bb 68>:
+  _309 = pretmp_71 * 3.0e+0;
+  _310 = _309 * 2.44140625e-4;
+  MEM[base: pretmp_2, offset: 24B] = _310;
+  if (prologue_after_cost_adjust.200_380 != 4)
+    goto <bb 69>;
+  else
+    goto <bb 71>;
+
+  <bb 69>:
+  _318 = pretmp_71 * 4.0e+0;
+  _319 = _318 * 2.44140625e-4;
+  MEM[base: pretmp_2, offset: 32B] = _319;
+  if (prologue_after_cost_adjust.200_380 == 6)
+    goto <bb 70>;
+  else
+    goto <bb 71>;
+
+  <bb 70>:
+  _74 = pretmp_71 * 5.0e+0;
+  _69 = _74 * 2.44140625e-4;
+  MEM[base: pretmp_2, offset: 40B] = _69;
+
+  <bb 71>:
+  # j_57 = PHI <6(70), 1(65), 2(66), 3(67), 4(68), 5(69)>
+  if (_64 == prologue_after_cost_adjust.200_380)
+    goto <bb 59>;
+  else
+    goto <bb 72>;
+
+  <bb 72>:
+  # j_61 = PHI <j_57(71), 0(64)>
+  # prologue_after_cost_adjust.200_375 = PHI <prologue_after_cost_adjust.200_380(71), prolog_loop_niters.199_50(64)>
+  prolog_loop_adjusted_niters.201_5 = (sizetype) prologue_after_cost_adjust.200_375;
+  niters.202_4 = _64 - prologue_after_cost_adjust.200_375;
+  bnd.203_105 = niters.202_4 >> 2;
+  ratio_mult_vf.204_104 = bnd.203_105 << 2;
+  if (ratio_mult_vf.204_104 == 0)
+    goto <bb 56>;
+  else
+    goto <bb 73>;
+
+  <bb 73>:
+  stmp_var_.206_116 = j_61 + 1;
+  stmp_var_.206_117 = stmp_var_.206_116 + 1;
+  stmp_var_.206_118 = stmp_var_.206_117 + 1;
+  vect_cst_.207_119 = {j_61, stmp_var_.206_116, stmp_var_.206_117, stmp_var_.206_118};
+  vect_cst_.208_120 = { 4, 4, 4, 4 };
+  vect_cst_.212_125 = {pretmp_71, pretmp_71};
+  base_off.217_134 = prolog_loop_adjusted_niters.201_5 * 8;
+  vect_p.218_135 = pretmp_2 + base_off.217_134;
+  ivtmp.275_383 = (unsigned long) vect_p.218_135;
+  goto <bb 53>;
+
+  <bb 74>:
+  return;
+
+}
+
+
+
+;; Function void copy_array(int, int, double (*)[4096], double (*)[4096]) (_Z10copy_arrayiiPA4096_dS0_, funcdef_no=3209, decl_uid=66078, cgraph_uid=3031)
+
+void copy_array(int, int, double (*)[4096], double (*)[4096]) (int ni, int nj, double[4096] * C_source, double[4096] * C_dest)
+{
+  unsigned long ivtmp.342;
+  unsigned long ivtmp.340;
+  sizetype ivtmp.333;
+  int j;
+  int i;
+  sizetype _1;
+  double[4096] * pretmp_2;
+  unsigned int _11;
+  unsigned int _14;
+  double _15;
+  double[4096] * pretmp_21;
+  sizetype _27;
+  sizetype _28;
+  unsigned int _31;
+  unsigned int _32;
+  unsigned long _33;
+  unsigned long _34;
+  unsigned long _36;
+  unsigned long _37;
+
+  <bb 2>:
+  if (ni_6(D) > 0)
+    goto <bb 3>;
+  else
+    goto <bb 10>;
+
+  <bb 3>:
+  ivtmp.340_20 = (unsigned long) C_source_13(D);
+  ivtmp.342_30 = (unsigned long) C_dest_10(D);
+  _31 = (unsigned int) ni_6(D);
+  _32 = _31 + 4294967295;
+  _33 = (unsigned long) _32;
+  _34 = _33 * 32768;
+  _36 = ivtmp.340_20 + 32768;
+  _37 = _36 + _34;
+  _11 = (unsigned int) nj_7(D);
+  _14 = _11 + 4294967295;
+  _27 = (sizetype) _14;
+  _28 = _27 + 1;
+  _1 = _28 * 8;
+  goto <bb 8>;
+
+  <bb 4>:
+
+  <bb 5>:
+  # ivtmp.333_9 = PHI <ivtmp.333_8(4), 0(9)>
+  _15 = MEM[base: pretmp_21, index: ivtmp.333_9, offset: 0B];
+  MEM[base: pretmp_2, index: ivtmp.333_9, offset: 0B] = _15;
+  ivtmp.333_8 = ivtmp.333_9 + 8;
+  if (ivtmp.333_8 != _1)
+    goto <bb 4>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  ivtmp.340_17 = ivtmp.340_25 + 32768;
+  ivtmp.342_29 = ivtmp.342_19 + 32768;
+  if (ivtmp.340_17 != _37)
+    goto <bb 7>;
+  else
+    goto <bb 10>;
+
+  <bb 7>:
+
+  <bb 8>:
+  # ivtmp.340_25 = PHI <ivtmp.340_17(7), ivtmp.340_20(3)>
+  # ivtmp.342_19 = PHI <ivtmp.342_29(7), ivtmp.342_30(3)>
+  if (nj_7(D) > 0)
+    goto <bb 9>;
+  else
+    goto <bb 6>;
+
+  <bb 9>:
+  pretmp_2 = (double[4096] *) ivtmp.342_19;
+  pretmp_21 = (double[4096] *) ivtmp.340_25;
+  goto <bb 5>;
+
+  <bb 10>:
+  return;
+
+}
+
+
+
+;; Function void compareResults(int, int, double (*)[4096], double (*)[4096]) (_Z14compareResultsiiPA4096_dS0_, funcdef_no=3210, decl_uid=66094, cgraph_uid=3032)
+
+void compareResults(int, int, double (*)[4096], double (*)[4096]) (int ni, int nj, double[4096] * C, double[4096] * C_output)
+{
+  unsigned long ivtmp.358;
+  unsigned long ivtmp.356;
+  sizetype ivtmp.349;
+  bool iftmp.1;
+  float D.67900;
+  int fail;
+  int j;
+  int i;
+  struct _IO_FILE * stderr.38;
+  unsigned long _2;
+  unsigned long _4;
+  unsigned int _11;
+  double _13;
+  unsigned long _15;
+  unsigned int _17;
+  double _18;
+  double _20;
+  float _26;
+  float _27;
+  float _28;
+  double _29;
+  float _30;
+  float _31;
+  float _32;
+  double _33;
+  unsigned long _34;
+  double _35;
+  float _36;
+  float _37;
+  double _38;
+  float _39;
+  float _40;
+  float _41;
+  float _42;
+  float _43;
+  float _44;
+  float _45;
+  float _46;
+  unsigned int _47;
+  unsigned int _49;
+  double[4096] * pretmp_57;
+  double[4096] * pretmp_58;
+  sizetype _62;
+  sizetype _63;
+  sizetype _64;
+
+  <bb 2>:
+  if (ni_6(D) > 0)
+    goto <bb 3>;
+  else
+    goto <bb 23>;
+
+  <bb 3>:
+  ivtmp.356_61 = (unsigned long) C_output_10(D);
+  ivtmp.358_50 = (unsigned long) C_16(D);
+  _49 = (unsigned int) ni_6(D);
+  _47 = _49 + 4294967295;
+  _34 = (unsigned long) _47;
+  _15 = _34 * 32768;
+  _4 = ivtmp.356_61 + 32768;
+  _2 = _4 + _15;
+  _11 = (unsigned int) nj_7(D);
+  _17 = _11 + 4294967295;
+  _64 = (sizetype) _17;
+  _63 = _64 + 1;
+  _62 = _63 * 8;
+  goto <bb 21>;
+
+  <bb 4>:
+
+  <bb 5>:
+  # fail_53 = PHI <fail_3(4), fail_48(22)>
+  # ivtmp.349_8 = PHI <ivtmp.349_9(4), 0(22)>
+  _13 = MEM[base: pretmp_57, index: ivtmp.349_8, offset: 0B];
+  _18 = MEM[base: pretmp_58, index: ivtmp.349_8, offset: 0B];
+  _26 = (float) _18;
+  if (_26 < 0.0)
+    goto <bb 6>;
+  else
+    goto <bb 7>;
+
+  <bb 6>:
+  _27 = -_26;
+
+  <bb 7>:
+  # _28 = PHI <_26(5), _27(6)>
+  _29 = (double) _28;
+  if (_29 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 8>;
+  else
+    goto <bb 24>;
+
+  <bb 8>:
+  _30 = (float) _13;
+  if (_30 < 0.0)
+    goto <bb 9>;
+  else
+    goto <bb 10>;
+
+  <bb 9>:
+  _31 = -_30;
+
+  <bb 10>:
+  # _32 = PHI <_30(8), _31(9)>
+  _33 = (double) _32;
+  if (_33 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 18>;
+  else
+    goto <bb 24>;
+
+  <bb 11>:
+  _37 = -_36;
+
+  <bb 12>:
+  # _41 = PHI <_36(24), _37(11)>
+  _38 = _18 + 9.99999993922529029077850282192230224609375e-9;
+  _39 = (float) _38;
+  if (_39 < 0.0)
+    goto <bb 13>;
+  else
+    goto <bb 14>;
+
+  <bb 13>:
+  _40 = -_39;
+
+  <bb 14>:
+  # _42 = PHI <_39(12), _40(13)>
+  _43 = _41 / _42;
+  if (_43 < 0.0)
+    goto <bb 15>;
+  else
+    goto <bb 16>;
+
+  <bb 15>:
+  _44 = -_43;
+
+  <bb 16>:
+  # _45 = PHI <_43(14), _44(15)>
+  _46 = _45 * 1.0e+2;
+  _20 = (double) _46;
+  if (_20 > 5.000000000000000277555756156289135105907917022705078125e-2)
+    goto <bb 17>;
+  else
+    goto <bb 18>;
+
+  <bb 17>:
+  fail_21 = fail_53 + 1;
+
+  <bb 18>:
+  # fail_3 = PHI <fail_53(16), fail_21(17), fail_53(10)>
+  ivtmp.349_9 = ivtmp.349_8 + 8;
+  if (ivtmp.349_9 != _62)
+    goto <bb 4>;
+  else
+    goto <bb 19>;
+
+  <bb 19>:
+  # fail_19 = PHI <fail_3(18), fail_48(21)>
+  ivtmp.356_22 = ivtmp.356_52 + 32768;
+  ivtmp.358_54 = ivtmp.358_60 + 32768;
+  if (ivtmp.356_22 != _2)
+    goto <bb 20>;
+  else
+    goto <bb 23>;
+
+  <bb 20>:
+
+  <bb 21>:
+  # fail_48 = PHI <fail_19(20), 0(3)>
+  # ivtmp.356_52 = PHI <ivtmp.356_22(20), ivtmp.356_61(3)>
+  # ivtmp.358_60 = PHI <ivtmp.358_54(20), ivtmp.358_50(3)>
+  if (nj_7(D) > 0)
+    goto <bb 22>;
+  else
+    goto <bb 19>;
+
+  <bb 22>:
+  pretmp_57 = (double[4096] *) ivtmp.356_52;
+  pretmp_58 = (double[4096] *) ivtmp.358_60;
+  goto <bb 5>;
+
+  <bb 23>:
+  # fail_14 = PHI <fail_19(19), 0(2)>
+  stderr.38_24 = stderr;
+  fprintf (stderr.38_24, "Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f Percent: %d\n", 5.000000000000000277555756156289135105907917022705078125e-2, fail_14);
+  return;
+
+  <bb 24>:
+  _35 = _18 - _13;
+  _36 = (float) _35;
+  if (_36 < 0.0)
+    goto <bb 11>;
+  else
+    goto <bb 12>;
+
+}
+
+
+
+;; Function void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z4gemmiiiddPA4096_dS0_S0_, funcdef_no=3212, decl_uid=66130, cgraph_uid=3034)
+
+void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  unsigned long ivtmp.381;
+  unsigned long ivtmp.379;
+  sizetype ivtmp.373;
+  unsigned long ivtmp.367;
+  unsigned long ivtmp.364;
+  int k;
+  int j;
+  int i;
+  unsigned int _1;
+  unsigned int _2;
+  unsigned long _6;
+  double _14;
+  double _16;
+  double _23;
+  double _25;
+  unsigned int _27;
+  sizetype _29;
+  double _30;
+  double _31;
+  double _32;
+  unsigned int _34;
+  unsigned long _37;
+  sizetype _38;
+  sizetype _39;
+  unsigned long _43;
+  unsigned long _52;
+  unsigned long _53;
+  unsigned int _54;
+  unsigned int _55;
+  void * _56;
+  void * _57;
+  double[4096] * pretmp_60;
+  unsigned long _61;
+  double prephitmp_63;
+  unsigned long _66;
+  unsigned long _67;
+  unsigned long _75;
+  unsigned long _77;
+  unsigned long _78;
+  unsigned long _79;
+
+  <bb 2>:
+  if (ni_8(D) > 0)
+    goto <bb 3>;
+  else
+    goto <bb 14>;
+
+  <bb 3>:
+  ivtmp.379_35 = (unsigned long) C_10(D);
+  ivtmp.381_3 = (unsigned long) A_21(D);
+  _2 = (unsigned int) ni_8(D);
+  _1 = _2 + 4294967295;
+  _67 = (unsigned long) _1;
+  _66 = _67 * 32768;
+  _61 = ivtmp.379_35 + 32768;
+  _53 = _61 + _66;
+  _27 = (unsigned int) nj_9(D);
+  _34 = _27 + 4294967295;
+  _29 = (sizetype) _34;
+  _39 = _29 + 1;
+  _38 = _39 * 8;
+  _55 = (unsigned int) nk_18(D);
+  _54 = _55 + 4294967295;
+  _52 = (unsigned long) _54;
+  _43 = _52 * 8;
+  _75 = _43 - ivtmp.379_35;
+  _77 = ivtmp.381_3 + _75;
+  goto <bb 12>;
+
+  <bb 4>:
+
+  <bb 5>:
+  # ivtmp.373_46 = PHI <ivtmp.373_26(4), 0(13)>
+  _14 = MEM[base: pretmp_60, index: ivtmp.373_46, offset: 0B];
+  _16 = _14 * beta_15(D);
+  MEM[base: pretmp_60, index: ivtmp.373_46, offset: 0B] = _16;
+  if (nk_18(D) > 0)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  ivtmp.373_26 = ivtmp.373_46 + 8;
+  if (ivtmp.373_26 != _38)
+    goto <bb 4>;
+  else
+    goto <bb 10>;
+
+  <bb 7>:
+  _37 = (unsigned long) B_28(D);
+  _6 = ivtmp.373_46 + _37;
+
+  <bb 8>:
+  # prephitmp_63 = PHI <_32(9), _16(7)>
+  # ivtmp.364_13 = PHI <ivtmp.364_12(9), ivtmp.381_5(7)>
+  # ivtmp.367_22 = PHI <ivtmp.367_50(9), _6(7)>
+  _57 = (void *) ivtmp.364_13;
+  _23 = MEM[base: _57, offset: 0B];
+  _25 = _23 * alpha_24(D);
+  _56 = (void *) ivtmp.367_22;
+  _30 = MEM[base: _56, offset: 0B];
+  _31 = _25 * _30;
+  _32 = _31 + prephitmp_63;
+  MEM[base: pretmp_60, index: ivtmp.373_46, offset: 0B] = _32;
+  ivtmp.364_12 = ivtmp.364_13 + 8;
+  ivtmp.367_50 = ivtmp.367_22 + 32768;
+  if (ivtmp.364_12 != _79)
+    goto <bb 9>;
+  else
+    goto <bb 6>;
+
+  <bb 9>:
+  goto <bb 8>;
+
+  <bb 10>:
+  ivtmp.379_51 = ivtmp.379_45 + 32768;
+  ivtmp.381_4 = ivtmp.381_5 + 32768;
+  if (ivtmp.379_51 != _53)
+    goto <bb 11>;
+  else
+    goto <bb 14>;
+
+  <bb 11>:
+
+  <bb 12>:
+  # ivtmp.379_45 = PHI <ivtmp.379_51(11), ivtmp.379_35(3)>
+  # ivtmp.381_5 = PHI <ivtmp.381_4(11), ivtmp.381_3(3)>
+  if (nj_9(D) > 0)
+    goto <bb 13>;
+  else
+    goto <bb 10>;
+
+  <bb 13>:
+  pretmp_60 = (double[4096] *) ivtmp.379_45;
+  _78 = _77 + 8;
+  _79 = _78 + ivtmp.379_45;
+  goto <bb 5>;
+
+  <bb 14>:
+  return;
+
+}
+
+
+
+;; Function void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z13gemm_originaliiiddPA4096_dS0_S0_, funcdef_no=3213, decl_uid=66155, cgraph_uid=3035)
+
+void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  unsigned long ivtmp.406;
+  unsigned long ivtmp.404;
+  sizetype ivtmp.398;
+  unsigned long ivtmp.392;
+  unsigned long ivtmp.389;
+  struct timespec spec;
+  int k;
+  int j;
+  int i;
+  struct timespec spec;
+  long int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long int _16;
+  long unsigned int _17;
+  uint64_t _18;
+  unsigned int _19;
+  unsigned int _23;
+  double _24;
+  double _25;
+  double _29;
+  double _30;
+  unsigned int _32;
+  sizetype _33;
+  double _34;
+  double _35;
+  double _36;
+  unsigned int _37;
+  long int _41;
+  long unsigned int _42;
+  long unsigned int _43;
+  long int _44;
+  long unsigned int _45;
+  uint64_t _46;
+  unsigned long _49;
+  unsigned long _58;
+  sizetype _59;
+  sizetype _60;
+  unsigned long _64;
+  unsigned long _73;
+  unsigned long _74;
+  unsigned int _75;
+  unsigned int _76;
+  void * _77;
+  void * _78;
+  double[4096] * pretmp_81;
+  unsigned long _82;
+  double prephitmp_84;
+  unsigned long _87;
+  unsigned long _88;
+  unsigned long _96;
+  unsigned long _98;
+  unsigned long _99;
+  unsigned long _100;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _13 = spec.tv_sec;
+  _14 = (long unsigned int) _13;
+  _15 = _14 * 1000000000;
+  _16 = spec.tv_nsec;
+  _17 = (long unsigned int) _16;
+  _18 = _15 + _17;
+  spec ={v} {CLOBBER};
+  seq_start = _18;
+  if (ni_3(D) > 0)
+    goto <bb 3>;
+  else
+    goto <bb 14>;
+
+  <bb 3>:
+  ivtmp.404_38 = (unsigned long) C_10(D);
+  ivtmp.406_28 = (unsigned long) A_8(D);
+  _23 = (unsigned int) ni_3(D);
+  _19 = _23 + 4294967295;
+  _88 = (unsigned long) _19;
+  _87 = _88 * 32768;
+  _82 = ivtmp.404_38 + 32768;
+  _74 = _82 + _87;
+  _32 = (unsigned int) nj_4(D);
+  _37 = _32 + 4294967295;
+  _33 = (sizetype) _37;
+  _60 = _33 + 1;
+  _59 = _60 * 8;
+  _76 = (unsigned int) nk_5(D);
+  _75 = _76 + 4294967295;
+  _73 = (unsigned long) _75;
+  _64 = _73 * 8;
+  _96 = ivtmp.406_28 - ivtmp.404_38;
+  _98 = _64 + _96;
+  goto <bb 12>;
+
+  <bb 4>:
+
+  <bb 5>:
+  # ivtmp.398_67 = PHI <ivtmp.398_31(4), 0(13)>
+  _24 = MEM[base: pretmp_81, index: ivtmp.398_67, offset: 0B];
+  _25 = beta_7(D) * _24;
+  MEM[base: pretmp_81, index: ivtmp.398_67, offset: 0B] = _25;
+  if (nk_5(D) > 0)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  ivtmp.398_31 = ivtmp.398_67 + 8;
+  if (ivtmp.398_31 != _59)
+    goto <bb 4>;
+  else
+    goto <bb 10>;
+
+  <bb 7>:
+  _58 = (unsigned long) B_9(D);
+  _49 = ivtmp.398_67 + _58;
+
+  <bb 8>:
+  # prephitmp_84 = PHI <_36(9), _25(7)>
+  # ivtmp.389_22 = PHI <ivtmp.389_21(9), ivtmp.406_48(7)>
+  # ivtmp.392_27 = PHI <ivtmp.392_71(9), _49(7)>
+  _78 = (void *) ivtmp.389_22;
+  _29 = MEM[base: _78, offset: 0B];
+  _30 = alpha_6(D) * _29;
+  _77 = (void *) ivtmp.392_27;
+  _34 = MEM[base: _77, offset: 0B];
+  _35 = _30 * _34;
+  _36 = _35 + prephitmp_84;
+  MEM[base: pretmp_81, index: ivtmp.398_67, offset: 0B] = _36;
+  ivtmp.389_21 = ivtmp.389_22 + 8;
+  ivtmp.392_71 = ivtmp.392_27 + 32768;
+  if (ivtmp.389_21 != _100)
+    goto <bb 9>;
+  else
+    goto <bb 6>;
+
+  <bb 9>:
+  goto <bb 8>;
+
+  <bb 10>:
+  ivtmp.404_72 = ivtmp.404_66 + 32768;
+  ivtmp.406_47 = ivtmp.406_48 + 32768;
+  if (ivtmp.404_72 != _74)
+    goto <bb 11>;
+  else
+    goto <bb 14>;
+
+  <bb 11>:
+
+  <bb 12>:
+  # ivtmp.404_66 = PHI <ivtmp.404_72(11), ivtmp.404_38(3)>
+  # ivtmp.406_48 = PHI <ivtmp.406_47(11), ivtmp.406_28(3)>
+  if (nj_4(D) > 0)
+    goto <bb 13>;
+  else
+    goto <bb 10>;
+
+  <bb 13>:
+  pretmp_81 = (double[4096] *) ivtmp.404_66;
+  _99 = _98 + 8;
+  _100 = _99 + ivtmp.404_66;
+  goto <bb 5>;
+
+  <bb 14>:
+  clock_gettime (1, &spec);
+  _41 = spec.tv_sec;
+  _42 = (long unsigned int) _41;
+  _43 = _42 * 1000000000;
+  _44 = spec.tv_nsec;
+  _45 = (long unsigned int) _44;
+  _46 = _43 + _45;
+  spec ={v} {CLOBBER};
+  seq_stop = _46;
+  return;
+
+}
+
+
+
+;; Function void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_, funcdef_no=3214, decl_uid=66165, cgraph_uid=3036)
+
+void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  struct .omp_data_s.41 .omp_data_o.42;
+
+  <bb 2>:
+  .omp_data_o.42.alpha = alpha_2(D);
+  .omp_data_o.42.beta = beta_4(D);
+  .omp_data_o.42.A = A_6(D);
+  .omp_data_o.42.B = B_8(D);
+  .omp_data_o.42.C = C_10(D);
+  .omp_data_o.42.ni = ni_12(D);
+  .omp_data_o.42.nj = nj_14(D);
+  .omp_data_o.42.nk = nk_16(D);
+  __builtin_GOMP_parallel_start (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0, &.omp_data_o.42, 8);
+  _Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0 (&.omp_data_o.42);
+  __builtin_GOMP_parallel_end ();
+  return;
+
+}
+
+
+
+;; Function void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z8gemm_ompiiiddPA4096_dS0_S0_, funcdef_no=3215, decl_uid=66187, cgraph_uid=3037)
+
+void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C_outputFromOMP)
+{
+  struct timespec spec;
+  struct .omp_data_s.41 .omp_data_o.42;
+  struct timespec spec;
+  long int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long int _16;
+  long unsigned int _17;
+  uint64_t _18;
+  long int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long int _22;
+  long unsigned int _23;
+  uint64_t _24;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _13 = spec.tv_sec;
+  _14 = (long unsigned int) _13;
+  _15 = _14 * 1000000000;
+  _16 = spec.tv_nsec;
+  _17 = (long unsigned int) _16;
+  _18 = _15 + _17;
+  spec ={v} {CLOBBER};
+  omp_start = _18;
+  .omp_data_o.42.alpha = alpha_6(D);
+  .omp_data_o.42.beta = beta_7(D);
+  .omp_data_o.42.A = A_8(D);
+  .omp_data_o.42.B = B_9(D);
+  .omp_data_o.42.C = C_outputFromOMP_10(D);
+  .omp_data_o.42.ni = ni_3(D);
+  .omp_data_o.42.nj = nj_4(D);
+  .omp_data_o.42.nk = nk_5(D);
+  __builtin_GOMP_parallel_start (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0, &.omp_data_o.42, 8);
+  _Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0 (&.omp_data_o.42);
+  __builtin_GOMP_parallel_end ();
+  clock_gettime (1, &spec);
+  _19 = spec.tv_sec;
+  _20 = (long unsigned int) _19;
+  _21 = _20 * 1000000000;
+  _22 = spec.tv_nsec;
+  _23 = (long unsigned int) _22;
+  _24 = _21 + _23;
+  spec ={v} {CLOBBER};
+  omp_stop = _24;
+  return;
+
+}
+
+
+
+;; Function void GPU_argv_init() (_Z13GPU_argv_initv, funcdef_no=3216, decl_uid=66189, cgraph_uid=3038)
+
+void GPU_argv_init() ()
+{
+  struct cudaDeviceProp deviceProp;
+  struct _IO_FILE * stderr.43;
+
+  <bb 2>:
+  stderr.43_2 = stderr;
+  __builtin_fwrite ("GPU init.\n", 1, 10, stderr.43_2);
+  cudaGetDeviceProperties (&deviceProp, 0);
+  stderr.43_5 = stderr;
+  fprintf (stderr.43_5, "setting device %d with name %s\n", 0, &deviceProp.name);
+  cudaSetDevice (0);
+  deviceProp ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function int main(int, char**) (main, funcdef_no=3218, decl_uid=66234, cgraph_uid=3040) (executed once)
+
+int main(int, char**) (int argc, char * * argv)
+{
+  unsigned long ivtmp.459;
+  unsigned long ivtmp.457;
+  sizetype ivtmp.450;
+  unsigned long ivtmp.445;
+  unsigned long ivtmp.443;
+  sizetype ivtmp.436;
+  unsigned int ivtmp.431;
+  unsigned long ivtmp.430;
+  unsigned int ivtmp.423;
+  unsigned long ivtmp.420;
+  struct _IO_FILE * stderr.67;
+  int i;
+  int j;
+  int i;
+  int j;
+  int i;
+  int j;
+  void * ret;
+  void * ret;
+  void * ret;
+  void * ret;
+  void * ret;
+  static const char __PRETTY_FUNCTION__[22] = "int main(int, char**)";
+  struct Func * ff_0;
+  double[4096][4096] * C_outputFromGpu;
+  double[4096][4096] * C_inputToGpu;
+  double[4096][4096] * C_outputFromOMP;
+  double[4096][4096] * C;
+  double[4096][4096] * B;
+  double[4096][4096] * A;
+  double beta;
+  double alpha;
+  int nk;
+  int nj;
+  int ni;
+  struct _IO_FILE * stdout.66;
+  double alpha.65;
+  double beta.64;
+  double[4096][4096] * C_outputFromGpu.63;
+  int ni.62;
+  int nj.61;
+  int nk.60;
+  double[4096][4096] * A.59;
+  double[4096][4096] * B.58;
+  double[4096][4096] * C.57;
+  struct Func * * * table.55;
+  struct _IO_FILE * stderr.53;
+  void * _23;
+  void * _26;
+  void * * _29;
+  void * * _33;
+  struct ffi_type * * _45;
+  bool _60;
+  unsigned long _61;
+  struct Func * * _67;
+  struct Func * _68;
+  char * _116;
+  unsigned char _117;
+  double _153;
+  unsigned long _156;
+  unsigned int _157;
+  unsigned int _158;
+  unsigned long _159;
+  unsigned long _160;
+  double _162;
+  unsigned int _164;
+  unsigned long _165;
+  unsigned int _177;
+  double _182;
+  void * _184;
+  int _185;
+  int _186;
+  unsigned int _200;
+  unsigned int _204;
+  double[4096][4096] * pretmp_208;
+  double[4096][4096] * pretmp_209;
+  double[4096][4096] * pretmp_210;
+  double[4096][4096] * pretmp_227;
+  unsigned long _228;
+  unsigned long _229;
+  unsigned long _230;
+  sizetype _240;
+  sizetype _241;
+  sizetype _242;
+  unsigned int _247;
+  unsigned int _248;
+  unsigned long _249;
+  unsigned long _250;
+  unsigned long _252;
+  unsigned long _253;
+
+  <bb 2>:
+  ni = 4096;
+  nj = 4096;
+  nk = 4096;
+  ret_141 = xmalloc (134217728);
+  A = ret_141;
+  ret_142 = xmalloc (134217728);
+  B = ret_142;
+  ret_143 = xmalloc (134217728);
+  C = ret_143;
+  C_outputFromOMP_144 = xmalloc (134217728);
+  ret_145 = xmalloc (134217728);
+  C_inputToGpu = ret_145;
+  ret_146 = xmalloc (134217728);
+  C_outputFromGpu = ret_146;
+  stderr.53_18 = stderr;
+  __builtin_fwrite ("Preparing alternatives functions.\n", 1, 34, stderr.53_18);
+  ff_0_21 = malloc (48);
+  _23 = malloc (88);
+  ff_0_21->arg_types = _23;
+  _26 = malloc (88);
+  ff_0_21->arg_values = _26;
+  ff_0_21->f = gemm_cuda;
+  _29 = &ff_0_21->ret_value;
+  memset (_29, 0, 8);
+  ff_0_21->ret_type = &ffi_type_void;
+  ff_0_21->nargs = 10;
+  _33 = ff_0_21->arg_values;
+  *_33 = &ni;
+  MEM[(void * *)_33 + 8B] = &nj;
+  MEM[(void * *)_33 + 16B] = &nk;
+  MEM[(void * *)_33 + 24B] = &alpha;
+  MEM[(void * *)_33 + 32B] = &beta;
+  MEM[(void * *)_33 + 40B] = &A;
+  MEM[(void * *)_33 + 48B] = &B;
+  MEM[(void * *)_33 + 56B] = &C;
+  MEM[(void * *)_33 + 64B] = &C_inputToGpu;
+  MEM[(void * *)_33 + 72B] = &C_outputFromGpu;
+  MEM[(void * *)_33 + 80B] = 0B;
+  _45 = ff_0_21->arg_types;
+  *_45 = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_45 + 8B] = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_45 + 16B] = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_45 + 24B] = &ffi_type_double;
+  MEM[(struct ffi_type * *)_45 + 32B] = &ffi_type_double;
+  MEM[(struct ffi_type * *)_45 + 40B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_45 + 48B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_45 + 56B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_45 + 64B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_45 + 72B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_45 + 80B] = 0B;
+  stderr.53_57 = stderr;
+  __builtin_fwrite ("Creating table of target functions.\n", 1, 36, stderr.53_57);
+  _60 = create_target_functions_table (&table, 1, 2);
+  if (_60 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 6>;
+
+  <bb 3>:
+  table.55_62 = table;
+  if (table.55_62 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  __assert_fail ("table != __null", "gemm.cu", 402, &__PRETTY_FUNCTION__);
+
+  <bb 5>:
+  stderr.53_64 = stderr;
+  __builtin_fwrite ("Declaring function in 0,1.\n", 1, 27, stderr.53_64);
+  table.55_66 = table;
+  _67 = *table.55_66;
+  _68 = MEM[(struct Func * *)_67 + 8B];
+  *_68 = MEM[(const struct Func &)ff_0_21];
+  TablePointerFunctions = table.55_66;
+
+  <bb 6>:
+  stderr.53_73 = stderr;
+  __builtin_fwrite ("Calling init_array.\n", 1, 20, stderr.53_73);
+  C.57_75 = C;
+  B.58_76 = B;
+  A.59_77 = A;
+  nk.60_78 = nk;
+  nj.61_79 = nj;
+  ni.62_80 = ni;
+  init_array (ni.62_80, nj.61_79, nk.60_78, &alpha, &beta, A.59_77, B.58_76, C.57_75);
+  C.57_82 = C;
+  nj.61_83 = nj;
+  ni.62_84 = ni;
+  if (ni.62_84 > 0)
+    goto <bb 7>;
+  else
+    goto <bb 20>;
+
+  <bb 7>:
+  ivtmp.457_243 = (unsigned long) C.57_82;
+  ivtmp.459_246 = (unsigned long) C_outputFromOMP_144;
+  _247 = (unsigned int) ni.62_84;
+  _248 = _247 + 4294967295;
+  _249 = (unsigned long) _248;
+  _250 = _249 * 32768;
+  _252 = ivtmp.457_243 + 32768;
+  _253 = _252 + _250;
+  _204 = (unsigned int) nj.61_83;
+  _164 = _204 + 4294967295;
+  _240 = (sizetype) _164;
+  _241 = _240 + 1;
+  _242 = _241 * 8;
+  goto <bb 12>;
+
+  <bb 8>:
+
+  <bb 9>:
+  # ivtmp.450_214 = PHI <ivtmp.450_152(8), 0(13)>
+  _153 = MEM[base: pretmp_209, index: ivtmp.450_214, offset: 0B];
+  MEM[base: pretmp_210, index: ivtmp.450_214, offset: 0B] = _153;
+  ivtmp.450_152 = ivtmp.450_214 + 8;
+  if (ivtmp.450_152 != _242)
+    goto <bb 8>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  ivtmp.457_154 = ivtmp.457_213 + 32768;
+  ivtmp.459_245 = ivtmp.459_244 + 32768;
+  if (ivtmp.457_154 != _253)
+    goto <bb 11>;
+  else
+    goto <bb 34>;
+
+  <bb 11>:
+
+  <bb 12>:
+  # ivtmp.457_213 = PHI <ivtmp.457_154(11), ivtmp.457_243(7)>
+  # ivtmp.459_244 = PHI <ivtmp.459_245(11), ivtmp.459_246(7)>
+  if (nj.61_83 > 0)
+    goto <bb 13>;
+  else
+    goto <bb 10>;
+
+  <bb 13>:
+  pretmp_210 = (double[4096][4096] *) ivtmp.459_244;
+  pretmp_209 = (double[4096][4096] *) ivtmp.457_213;
+  goto <bb 9>;
+
+  <bb 14>:
+
+  <bb 15>:
+  # ivtmp.436_222 = PHI <ivtmp.436_86(14), 0(19)>
+  _162 = MEM[base: pretmp_227, index: ivtmp.436_222, offset: 0B];
+  MEM[base: pretmp_208, index: ivtmp.436_222, offset: 0B] = _162;
+  ivtmp.436_86 = ivtmp.436_222 + 8;
+  if (ivtmp.436_86 != _242)
+    goto <bb 14>;
+  else
+    goto <bb 16>;
+
+  <bb 16>:
+  ivtmp.443_163 = ivtmp.443_215 + 32768;
+  ivtmp.445_231 = ivtmp.445_150 + 32768;
+  if (ivtmp.443_163 != _253)
+    goto <bb 17>;
+  else
+    goto <bb 20>;
+
+  <bb 17>:
+
+  <bb 18>:
+  # ivtmp.443_215 = PHI <ivtmp.443_163(17), ivtmp.457_243(34)>
+  # ivtmp.445_150 = PHI <ivtmp.445_231(17), ivtmp.445_232(34)>
+  if (nj.61_83 > 0)
+    goto <bb 19>;
+  else
+    goto <bb 16>;
+
+  <bb 19>:
+  pretmp_208 = (double[4096][4096] *) ivtmp.445_150;
+  pretmp_227 = (double[4096][4096] *) ivtmp.443_215;
+  goto <bb 15>;
+
+  <bb 20>:
+  stderr.53_88 = stderr;
+  __builtin_fwrite ("Calling gemm_omp:\n", 1, 18, stderr.53_88);
+  B.58_90 = B;
+  A.59_91 = A;
+  beta.64_92 = beta;
+  alpha.65_93 = alpha;
+  nk.60_94 = nk;
+  nj.61_95 = nj;
+  ni.62_96 = ni;
+  gemm_omp (ni.62_96, nj.61_95, nk.60_94, alpha.65_93, beta.64_92, A.59_91, B.58_90, C_outputFromOMP_144);
+  stdout.66_98 = stdout;
+  fprintf (stdout.66_98, "version = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 8, 4096, 4096, 4096);
+  hookomp_print_time_results ();
+  stderr.53_101 = stderr;
+  __builtin_fwrite ("Calling compareResults(original, omp).\n", 1, 39, stderr.53_101);
+  C.57_103 = C;
+  nj.61_104 = nj;
+  ni.62_105 = ni;
+  compareResults (ni.62_105, nj.61_104, C.57_103, C_outputFromOMP_144);
+  stderr.53_107 = stderr;
+  __builtin_fwrite ("Calling compareResults(original, cuda).\n", 1, 40, stderr.53_107);
+  C_outputFromGpu.63_109 = C_outputFromGpu;
+  C.57_110 = C;
+  nj.61_111 = nj;
+  ni.62_112 = ni;
+  compareResults (ni.62_112, nj.61_111, C.57_110, C_outputFromGpu.63_109);
+  if (argc_114(D) > 42)
+    goto <bb 21>;
+  else
+    goto <bb 33>;
+
+  <bb 21>:
+  _116 = *argv_115(D);
+  _117 = MEM[(const unsigned char * {ref-all})_116];
+  if (_117 == 0)
+    goto <bb 22>;
+  else
+    goto <bb 33>;
+
+  <bb 22>:
+  C_outputFromGpu.63_118 = C_outputFromGpu;
+  nj.61_119 = nj;
+  ni.62_120 = ni;
+  if (ni.62_120 > 0)
+    goto <bb 23>;
+  else
+    goto <bb 32>;
+
+  <bb 23>:
+  ivtmp.430_217 = (unsigned long) C_outputFromGpu.63_118;
+  _200 = (unsigned int) ni.62_120;
+  _177 = _200 + 4294967295;
+  _165 = (unsigned long) _177;
+  _156 = _165 * 32768;
+  _61 = ivtmp.430_217 + 32768;
+  _228 = _61 + _156;
+  _157 = (unsigned int) nj.61_119;
+  _158 = _157 + 4294967295;
+  _159 = (unsigned long) _158;
+  _160 = _159 * 8;
+  goto <bb 30>;
+
+  <bb 24>:
+
+  <bb 25>:
+  # ivtmp.420_149 = PHI <ivtmp.420_148(24), ivtmp.430_223(31)>
+  # ivtmp.423_178 = PHI <ivtmp.423_179(24), ivtmp.431_221(31)>
+  _184 = (void *) ivtmp.420_149;
+  _182 = MEM[base: _184, offset: 0B];
+  stderr.67_183 = stderr;
+  fprintf (stderr.67_183, "%0.2lf ", _182);
+  _185 = (int) ivtmp.423_178;
+  _186 = _185 % 20;
+  if (_186 == 0)
+    goto <bb 26>;
+  else
+    goto <bb 27>;
+
+  <bb 26>:
+  stderr.67_187 = stderr;
+  __builtin_fputc (10, stderr.67_187);
+
+  <bb 27>:
+  ivtmp.420_148 = ivtmp.420_149 + 8;
+  ivtmp.423_179 = ivtmp.423_178 + 1;
+  if (ivtmp.420_148 != _230)
+    goto <bb 24>;
+  else
+    goto <bb 28>;
+
+  <bb 28>:
+  ivtmp.430_188 = ivtmp.430_223 + 32768;
+  ivtmp.431_202 = ivtmp.431_221 + _200;
+  if (ivtmp.430_188 != _228)
+    goto <bb 29>;
+  else
+    goto <bb 32>;
+
+  <bb 29>:
+
+  <bb 30>:
+  # ivtmp.430_223 = PHI <ivtmp.430_188(29), ivtmp.430_217(23)>
+  # ivtmp.431_221 = PHI <ivtmp.431_202(29), 0(23)>
+  if (nj.61_119 > 0)
+    goto <bb 31>;
+  else
+    goto <bb 28>;
+
+  <bb 31>:
+  _229 = _160 + 8;
+  _230 = _229 + ivtmp.430_223;
+  goto <bb 25>;
+
+  <bb 32>:
+  stderr.67_190 = stderr;
+  __builtin_fputc (10, stderr.67_190);
+
+  <bb 33>:
+  A.59_122 = A;
+  free (A.59_122);
+  B.58_124 = B;
+  free (B.58_124);
+  C.57_126 = C;
+  free (C.57_126);
+  free (C_outputFromOMP_144);
+  C_outputFromGpu.63_129 = C_outputFromGpu;
+  free (C_outputFromGpu.63_129);
+  ni ={v} {CLOBBER};
+  nj ={v} {CLOBBER};
+  nk ={v} {CLOBBER};
+  alpha ={v} {CLOBBER};
+  beta ={v} {CLOBBER};
+  A ={v} {CLOBBER};
+  B ={v} {CLOBBER};
+  C ={v} {CLOBBER};
+  C_inputToGpu ={v} {CLOBBER};
+  C_outputFromGpu ={v} {CLOBBER};
+  return 0;
+
+  <bb 34>:
+  C_outputFromGpu.63_206 = C_outputFromGpu;
+  ivtmp.445_232 = (unsigned long) C_outputFromGpu.63_206;
+  goto <bb 18>;
+
+}
+
+
+
+;; Function void polybench_flush_cache() (_Z21polybench_flush_cachev, funcdef_no=3220, decl_uid=66470, cgraph_uid=3042)
+
+void polybench_flush_cache() ()
+{
+  sizetype ivtmp.469;
+  static const char __PRETTY_FUNCTION__[29] = "void polybench_flush_cache()";
+  double tmp;
+  int i;
+  double * flush;
+  double _9;
+
+  <bb 2>:
+  flush_5 = calloc (4194560, 8);
+
+  <bb 3>:
+  # tmp_18 = PHI <tmp_10(4), 0.0(2)>
+  # ivtmp.469_24 = PHI <ivtmp.469_23(4), 0(2)>
+  _9 = MEM[base: flush_5, index: ivtmp.469_24, offset: 0B];
+  tmp_10 = _9 + tmp_18;
+  ivtmp.469_23 = ivtmp.469_24 + 8;
+  if (ivtmp.469_23 != 33556480)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  goto <bb 3>;
+
+  <bb 5>:
+  # tmp_27 = PHI <tmp_10(3)>
+  if (tmp_27 <= 1.0e+1)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  __assert_fail ("tmp <= 10.0", "../../../utilities/polybench.c", 96, &__PRETTY_FUNCTION__);
+
+  <bb 7>:
+  free (flush_5);
+  return;
+
+}
+
+
+
+;; Function void polybench_prepare_instruments() (_Z29polybench_prepare_instrumentsv, funcdef_no=3221, decl_uid=66481, cgraph_uid=3043)
+
+void polybench_prepare_instruments() ()
+{
+  sizetype ivtmp.479;
+  double tmp;
+  int i;
+  double * flush;
+  double _8;
+
+  <bb 2>:
+  flush_3 = calloc (4194560, 8);
+
+  <bb 3>:
+  # tmp_19 = PHI <tmp_10(4), 0.0(2)>
+  # ivtmp.479_25 = PHI <ivtmp.479_24(4), 0(2)>
+  _8 = MEM[base: flush_3, index: ivtmp.479_25, offset: 0B];
+  tmp_10 = _8 + tmp_19;
+  ivtmp.479_24 = ivtmp.479_25 + 8;
+  if (ivtmp.479_24 != 33556480)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  goto <bb 3>;
+
+  <bb 5>:
+  # tmp_28 = PHI <tmp_10(3)>
+  if (tmp_28 <= 1.0e+1)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  __assert_fail ("tmp <= 10.0", "../../../utilities/polybench.c", 96, &__PRETTY_FUNCTION__);
+
+  <bb 7>:
+  free (flush_3);
+  return;
+
+}
+
+
+
+;; Function void polybench_timer_start() (_Z21polybench_timer_startv, funcdef_no=3222, decl_uid=65328, cgraph_uid=3044)
+
+void polybench_timer_start() ()
+{
+  sizetype ivtmp.489;
+  struct timeval Tp;
+  int stat;
+  double D.68182;
+  double tmp;
+  int i;
+  double * flush;
+  double _12;
+  long int _17;
+  double _18;
+  long int _19;
+  double _20;
+  double _21;
+  double _22;
+
+  <bb 2>:
+  flush_7 = calloc (4194560, 8);
+
+  <bb 3>:
+  # tmp_33 = PHI <tmp_14(4), 0.0(2)>
+  # ivtmp.489_49 = PHI <ivtmp.489_48(4), 0(2)>
+  _12 = MEM[base: flush_7, index: ivtmp.489_49, offset: 0B];
+  tmp_14 = _12 + tmp_33;
+  ivtmp.489_48 = ivtmp.489_49 + 8;
+  if (ivtmp.489_48 != 33556480)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  goto <bb 3>;
+
+  <bb 5>:
+  # tmp_52 = PHI <tmp_14(3)>
+  if (tmp_52 <= 1.0e+1)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  __assert_fail ("tmp <= 10.0", "../../../utilities/polybench.c", 96, &__PRETTY_FUNCTION__);
+
+  <bb 7>:
+  free (flush_7);
+  stat_16 = gettimeofday (&Tp, 0B);
+  if (stat_16 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 9>;
+
+  <bb 8>:
+  printf ("Error return from gettimeofday: %d", stat_16);
+
+  <bb 9>:
+  _17 = Tp.tv_sec;
+  _18 = (double) _17;
+  _19 = Tp.tv_usec;
+  _20 = (double) _19;
+  _21 = _20 * 9.99999999999999954748111825886258685613938723690807819366e-7;
+  _22 = _18 + _21;
+  Tp ={v} {CLOBBER};
+  polybench_t_start = _22;
+  return;
+
+}
+
+
+
+;; Function void polybench_timer_stop() (_Z20polybench_timer_stopv, funcdef_no=3223, decl_uid=65329, cgraph_uid=3045)
+
+void polybench_timer_stop() ()
+{
+  struct timeval Tp;
+  int stat;
+  double D.68200;
+  long int _6;
+  double _7;
+  long int _8;
+  double _9;
+  double _10;
+  double _11;
+
+  <bb 2>:
+  stat_5 = gettimeofday (&Tp, 0B);
+  if (stat_5 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  printf ("Error return from gettimeofday: %d", stat_5);
+
+  <bb 4>:
+  _6 = Tp.tv_sec;
+  _7 = (double) _6;
+  _8 = Tp.tv_usec;
+  _9 = (double) _8;
+  _10 = _9 * 9.99999999999999954748111825886258685613938723690807819366e-7;
+  _11 = _7 + _10;
+  Tp ={v} {CLOBBER};
+  polybench_t_end = _11;
+  return;
+
+}
+
+
+
+;; Function void polybench_timer_print() (_Z21polybench_timer_printv, funcdef_no=3224, decl_uid=65330, cgraph_uid=3046)
+
+void polybench_timer_print() ()
+{
+  double polybench_t_start.71;
+  double polybench_t_end.70;
+  double _4;
+
+  <bb 2>:
+  polybench_t_end.70_2 = polybench_t_end;
+  polybench_t_start.71_3 = polybench_t_start;
+  _4 = polybench_t_end.70_2 - polybench_t_start.71_3;
+  printf ("%0.6f\n", _4);
+  return;
+
+}
+
+
+
+;; Function void* polybench_alloc_data(long long unsigned int, int) (_Z20polybench_alloc_datayi, funcdef_no=3226, decl_uid=65336, cgraph_uid=3048)
+
+void* polybench_alloc_data(long long unsigned int, int) (long long unsigned int n, int elt_size)
+{
+  int ret;
+  void * newA;
+  struct _IO_FILE * stderr.73;
+  void * newA.72;
+  void * D.68212;
+  void * ret;
+  size_t val;
+  long unsigned int _3;
+
+  <bb 2>:
+  _3 = (long unsigned int) elt_size_2(D);
+  val_4 = _3 * n_1(D);
+  newA = 0B;
+  ret_8 = posix_memalign (&newA, 32, val_4);
+  newA.72_9 = newA;
+  if (newA.72_9 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  if (ret_8 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  stderr.73_10 = stderr;
+  __builtin_fwrite ("[PolyBench] posix_memalign: cannot allocate memory", 1, 50, stderr.73_10);
+  exit (1);
+
+  <bb 5>:
+  newA ={v} {CLOBBER};
+  return newA.72_9;
+
+}
+
+
+
+;; Function void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*) (_Z45__device_stub__Z16gemm_cuda_kerneliiiddPdS_S_iiiddPdS_S_, funcdef_no=3251, decl_uid=66803, cgraph_uid=3072)
+
+void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*) (int __par0, int __par1, int __par2, double __par3, double __par4, double * __par5, double * __par6, double * __par7)
+{
+  static volatile char * __f;
+  cudaError _4;
+  cudaError _6;
+  cudaError _8;
+  cudaError _10;
+  cudaError _12;
+  cudaError _14;
+  cudaError _16;
+  cudaError _18;
+
+  <bb 2>:
+  _4 = cudaSetupArgument (&__par0, 4, 0);
+  if (_4 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  goto <bb 12>;
+
+  <bb 4>:
+  _6 = cudaSetupArgument (&__par1, 4, 4);
+  if (_6 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  _8 = cudaSetupArgument (&__par2, 4, 8);
+  if (_8 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  _10 = cudaSetupArgument (&__par3, 8, 16);
+  if (_10 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  _12 = cudaSetupArgument (&__par4, 8, 24);
+  if (_12 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  _14 = cudaSetupArgument (&__par5, 8, 32);
+  if (_14 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  _16 = cudaSetupArgument (&__par6, 8, 40);
+  if (_16 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  _18 = cudaSetupArgument (&__par7, 8, 48);
+  if (_18 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 11>;
+
+  <bb 11>:
+  __f = gemm_cuda_kernel;
+  cudaLaunch (gemm_cuda_kernel);
+
+  <bb 12>:
+  return;
+
+}
+
+
+
+;; Function void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096]) (_Z9gemm_cudaiiiddPA4096_dS0_S0_S0_S0_, funcdef_no=3217, decl_uid=66211, cgraph_uid=3039)
+
+void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C, double[4096] * C_inputToGpu, double[4096] * C_outputFromGpu)
+{
+  struct timespec spec;
+  struct timespec spec;
+  struct timespec spec;
+  struct timespec spec;
+  struct timespec spec;
+  struct timespec spec;
+  struct dim3 grid;
+  struct dim3 block;
+  double * C_gpu;
+  double * B_gpu;
+  double * A_gpu;
+  double * C_gpu.47;
+  double * B_gpu.46;
+  double * A_gpu.45;
+  struct _IO_FILE * stderr.44;
+  cudaError _29;
+  long int _65;
+  long unsigned int _66;
+  long unsigned int _67;
+  long int _68;
+  long unsigned int _69;
+  uint64_t _70;
+  long int _71;
+  long unsigned int _72;
+  long unsigned int _73;
+  long int _74;
+  long unsigned int _75;
+  uint64_t _76;
+  long int _77;
+  long unsigned int _78;
+  long unsigned int _79;
+  long int _80;
+  long unsigned int _81;
+  uint64_t _82;
+  long int _83;
+  long unsigned int _84;
+  long unsigned int _85;
+  long int _86;
+  long unsigned int _87;
+  uint64_t _88;
+  long int _89;
+  long unsigned int _90;
+  long unsigned int _91;
+  long int _92;
+  long unsigned int _93;
+  uint64_t _94;
+  long int _95;
+  long unsigned int _96;
+  long unsigned int _97;
+  long int _98;
+  long unsigned int _99;
+  uint64_t _100;
+
+  <bb 2>:
+  stderr.44_3 = stderr;
+  __builtin_fwrite ("Calling function gemm_cuda.\n", 1, 28, stderr.44_3);
+  GPU_argv_init ();
+  cudaMalloc (&A_gpu, 134217728);
+  cudaMalloc (&B_gpu, 134217728);
+  cudaMalloc (&C_gpu, 134217728);
+  clock_gettime (1, &spec);
+  _65 = spec.tv_sec;
+  _66 = (long unsigned int) _65;
+  _67 = _66 * 1000000000;
+  _68 = spec.tv_nsec;
+  _69 = (long unsigned int) _68;
+  _70 = _67 + _69;
+  spec ={v} {CLOBBER};
+  data_transfer_h2d_start = _70;
+  A_gpu.45_10 = A_gpu;
+  cudaMemcpy (A_gpu.45_10, A_11(D), 134217728, 1);
+  B_gpu.46_13 = B_gpu;
+  cudaMemcpy (B_gpu.46_13, B_14(D), 134217728, 1);
+  C_gpu.47_17 = C_gpu;
+  cudaMemcpy (C_gpu.47_17, C_inputToGpu_18(D), 134217728, 1);
+  clock_gettime (1, &spec);
+  _71 = spec.tv_sec;
+  _72 = (long unsigned int) _71;
+  _73 = _72 * 1000000000;
+  _74 = spec.tv_nsec;
+  _75 = (long unsigned int) _74;
+  _76 = _73 + _75;
+  spec ={v} {CLOBBER};
+  data_transfer_h2d_stop = _76;
+  block.z = 1;
+  grid.x = 128;
+  grid.y = 512;
+  grid.z = 1;
+  clock_gettime (1, &spec);
+  _77 = spec.tv_sec;
+  _78 = (long unsigned int) _77;
+  _79 = _78 * 1000000000;
+  _80 = spec.tv_nsec;
+  _81 = (long unsigned int) _80;
+  _82 = _79 + _81;
+  spec ={v} {CLOBBER};
+  dev_kernel1_start = _82;
+  MEM[(struct dim3 *)&block] = 32;
+  MEM[(struct dim3 *)&block + 4B] = 8;
+  _29 = cudaConfigureCall (grid, block, 0, 0B);
+  if (_29 == 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  C_gpu.47_30 = C_gpu;
+  B_gpu.46_31 = B_gpu;
+  A_gpu.45_32 = A_gpu;
+  __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_ (ni_33(D), nj_34(D), nk_35(D), alpha_36(D), beta_37(D), A_gpu.45_32, B_gpu.46_31, C_gpu.47_30);
+
+  <bb 4>:
+  cudaThreadSynchronize ();
+  clock_gettime (1, &spec);
+  _83 = spec.tv_sec;
+  _84 = (long unsigned int) _83;
+  _85 = _84 * 1000000000;
+  _86 = spec.tv_nsec;
+  _87 = (long unsigned int) _86;
+  _88 = _85 + _87;
+  spec ={v} {CLOBBER};
+  dev_kernel1_stop = _88;
+  clock_gettime (1, &spec);
+  _89 = spec.tv_sec;
+  _90 = (long unsigned int) _89;
+  _91 = _90 * 1000000000;
+  _92 = spec.tv_nsec;
+  _93 = (long unsigned int) _92;
+  _94 = _91 + _93;
+  spec ={v} {CLOBBER};
+  data_transfer_d2h_start = _94;
+  C_gpu.47_43 = C_gpu;
+  cudaMemcpy (C_outputFromGpu_44(D), C_gpu.47_43, 134217728, 2);
+  clock_gettime (1, &spec);
+  _95 = spec.tv_sec;
+  _96 = (long unsigned int) _95;
+  _97 = _96 * 1000000000;
+  _98 = spec.tv_nsec;
+  _99 = (long unsigned int) _98;
+  _100 = _97 + _99;
+  spec ={v} {CLOBBER};
+  data_transfer_d2h_stop = _100;
+  A_gpu.45_47 = A_gpu;
+  cudaFree (A_gpu.45_47);
+  B_gpu.46_49 = B_gpu;
+  cudaFree (B_gpu.46_49);
+  C_gpu.47_51 = C_gpu;
+  cudaFree (C_gpu.47_51);
+  A_gpu ={v} {CLOBBER};
+  B_gpu ={v} {CLOBBER};
+  C_gpu ={v} {CLOBBER};
+  block ={v} {CLOBBER};
+  grid ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function void __sti____cudaRegisterAll_39_tmpxft_000005b1_00000000_7_gemm_cpp1_ii_132e4611() (_ZL76__sti____cudaRegisterAll_39_tmpxft_000005b1_00000000_7_gemm_cpp1_ii_132e4611v, funcdef_no=3254, decl_uid=66806, cgraph_uid=3075) (executed once)
+
+void __sti____cudaRegisterAll_39_tmpxft_000005b1_00000000_7_gemm_cpp1_ii_132e4611() ()
+{
+  static volatile void * * __ref;
+  void * * _3;
+
+  <bb 2>:
+  _3 = __cudaRegisterFatBinary (&__fatDeviceText);
+  __cudaFatCubinHandle = _3;
+  __ref = _3;
+  __nv_fatbinhandle_for_managed_rt = _3;
+  __cudaRegisterFunction (_3, gemm_cuda_kernel, "_Z16gemm_cuda_kerneliiiddPdS_S_", "_Z16gemm_cuda_kerneliiiddPdS_S_", -1, 0B, 0B, 0B, 0B, 0B);
+  atexit (__cudaUnregisterBinaryUtil);
+  return;
+
+}
+
+

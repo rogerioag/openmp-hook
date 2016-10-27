@@ -1,0 +1,762 @@
+
+;; Function double rtclock() (_ZL7rtclockv, funcdef_no=3219, decl_uid=66466, cgraph_uid=3041)
+
+Before removal of unreachable regions:
+Eh tree:
+   2 must_not_throw
+   1 cleanup land:{1,<L5>}
+Reachable regions: n_bits = 3, set = {1 }
+Reachable landing pads: n_bits = 2, set = {1 }
+Removing unreachable region 2
+
+
+After removal of unreachable regions:
+Eh tree:
+   1 cleanup land:{1,<L5>}
+
+
+Removing basic block 5
+Removing unreachable region 1
+double rtclock() ()
+{
+  int stat;
+  struct timeval Tp;
+  long int _7;
+  double _8;
+  long int _9;
+  double _10;
+  double _11;
+  double _12;
+
+  <bb 2>:
+  stat_4 = gettimeofday (&Tp, 0B);
+  if (stat_4 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  printf ("Error return from gettimeofday: %d", stat_4);
+
+  <bb 4>:
+  _7 = Tp.tv_sec;
+  _8 = (double) _7;
+  _9 = Tp.tv_usec;
+  _10 = (double) _9;
+  _11 = _10 * 9.99999999999999954748111825886258685613938723690807819366e-7;
+  _12 = _8 + _11;
+  Tp ={v} {CLOBBER};
+  return _12;
+
+}
+
+
+
+;; Function void* xmalloc(size_t) (_ZL7xmallocm, funcdef_no=3225, decl_uid=66490, cgraph_uid=3047)
+
+Before removal of unreachable regions:
+Eh tree:
+   2 must_not_throw
+   1 cleanup land:{1,<L5>}
+Reachable regions: n_bits = 3, set = {1 }
+Reachable landing pads: n_bits = 2, set = {1 }
+Removing unreachable region 2
+
+
+After removal of unreachable regions:
+Eh tree:
+   1 cleanup land:{1,<L5>}
+
+
+Removing basic block 7
+Removing unreachable region 1
+Merging blocks 4 and 5
+void* xmalloc(size_t) (size_t num)
+{
+  int ret;
+  void * newA;
+  struct _IO_FILE * stderr.73;
+  void * newA.72;
+
+  <bb 2>:
+  newA = 0B;
+  ret_5 = posix_memalign (&newA, 32, num_3(D));
+  newA.72_6 = newA;
+  if (newA.72_6 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  if (ret_5 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  stderr.73_9 = stderr;
+  __builtin_fwrite ("[PolyBench] posix_memalign: cannot allocate memory", 1, 50, stderr.73_9);
+  exit (1);
+
+  <bb 5>:
+  newA ={v} {CLOBBER};
+  return newA.72_6;
+
+}
+
+
+
+;; Function uint64_t get_time() (_Z8get_timev, funcdef_no=3200, decl_uid=65516, cgraph_uid=3022)
+
+Before removal of unreachable regions:
+Eh tree:
+   1 cleanup
+Reachable regions: n_bits = 2, set = {}
+Reachable landing pads: n_bits = 1, set = {}
+Removing unreachable region 1
+
+
+After removal of unreachable regions:
+
+
+uint64_t get_time() ()
+{
+  struct timespec spec;
+  long int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long int _6;
+  long unsigned int _7;
+  uint64_t _8;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _3 = spec.tv_sec;
+  _4 = (long unsigned int) _3;
+  _5 = _4 * 1000000000;
+  _6 = spec.tv_nsec;
+  _7 = (long unsigned int) _6;
+  _8 = _5 + _7;
+  spec ={v} {CLOBBER};
+  return _8;
+
+}
+
+
+
+;; Function void call_function_ffi_call(Func*) (_Z22call_function_ffi_callP4Func, funcdef_no=3207, decl_uid=66035, cgraph_uid=3029)
+
+Before removal of unreachable regions:
+Eh tree:
+   2 must_not_throw
+   1 cleanup land:{1,<L2>}
+Reachable regions: n_bits = 3, set = {1 }
+Reachable landing pads: n_bits = 2, set = {1 }
+Removing unreachable region 2
+
+
+After removal of unreachable regions:
+Eh tree:
+   1 cleanup land:{1,<L2>}
+
+
+Removing basic block 9
+Removing unreachable region 1
+Merging blocks 2 and 3
+Merging blocks 5 and 6
+Merging blocks 7 and 8
+Merging blocks 2 and 4
+void call_function_ffi_call(Func*) (struct Func * ff)
+{
+  struct ffi_cif cif;
+  bool retval.36;
+  struct _IO_FILE * stderr.35;
+  struct ffi_type * * _6;
+  struct ffi_type * _7;
+  int _8;
+  unsigned int _9;
+  ffi_status _11;
+  void * * _17;
+  void * _18;
+  void * _19;
+  void (*<T1993>) (void) _20;
+
+  <bb 2>:
+  stderr.35_3 = stderr;
+  __builtin_fwrite (" In call_function_ffi_call.\n", 1, 28, stderr.35_3);
+  _6 = ff_5(D)->arg_types;
+  _7 = ff_5(D)->ret_type;
+  _8 = ff_5(D)->nargs;
+  _9 = (unsigned int) _8;
+  _11 = ffi_prep_cif (&cif, 2, _9, _7, _6);
+  if (_11 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  stderr.35_14 = stderr;
+  __builtin_fwrite ("Error ffi_prep_cif.\n", 1, 20, stderr.35_14);
+  exit (1);
+
+  <bb 4>:
+  _17 = ff_5(D)->arg_values;
+  _18 = ff_5(D)->ret_value;
+  _19 = ff_5(D)->f;
+  _20 = (void (*<T1993>) (void)) _19;
+  ffi_call (&cif, _20, _18, _17);
+  cif ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_, funcdef_no=3214, decl_uid=66165, cgraph_uid=3036)
+
+Before removal of unreachable regions:
+Eh tree:
+   1 must_not_throw
+     2 must_not_throw
+Reachable regions: n_bits = 3, set = {}
+Reachable landing pads: n_bits = 1, set = {}
+Removing unreachable region 1
+Removing unreachable region 2
+
+
+After removal of unreachable regions:
+
+
+void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  struct .omp_data_s.41 .omp_data_o.42;
+
+  <bb 2>:
+  .omp_data_o.42.alpha = alpha_2(D);
+  .omp_data_o.42.beta = beta_4(D);
+  .omp_data_o.42.A = A_6(D);
+  .omp_data_o.42.B = B_8(D);
+  .omp_data_o.42.C = C_10(D);
+  .omp_data_o.42.ni = ni_12(D);
+  .omp_data_o.42.nj = nj_14(D);
+  .omp_data_o.42.nk = nk_16(D);
+  __builtin_GOMP_parallel_start (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0, &.omp_data_o.42, 8);
+  _Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0 (&.omp_data_o.42);
+  __builtin_GOMP_parallel_end ();
+  return;
+
+}
+
+
+
+;; Function void GPU_argv_init() (_Z13GPU_argv_initv, funcdef_no=3216, decl_uid=66189, cgraph_uid=3038)
+
+Before removal of unreachable regions:
+Eh tree:
+   2 must_not_throw
+   1 cleanup land:{1,<L0>}
+Reachable regions: n_bits = 3, set = {1 }
+Reachable landing pads: n_bits = 2, set = {1 }
+Removing unreachable region 2
+
+
+After removal of unreachable regions:
+Eh tree:
+   1 cleanup land:{1,<L0>}
+
+
+Removing basic block 7
+Removing unreachable region 1
+Merging blocks 2 and 3
+Merging blocks 4 and 5
+Merging blocks 2 and 4
+Merging blocks 2 and 6
+void GPU_argv_init() ()
+{
+  struct cudaDeviceProp deviceProp;
+  struct _IO_FILE * stderr.43;
+
+  <bb 2>:
+  stderr.43_3 = stderr;
+  __builtin_fwrite ("GPU init.\n", 1, 10, stderr.43_3);
+  cudaGetDeviceProperties (&deviceProp, 0);
+  stderr.43_6 = stderr;
+  fprintf (stderr.43_6, "setting device %d with name %s\n", 0, &deviceProp.name);
+  cudaSetDevice (0);
+  deviceProp ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function int main(int, char**) (main, funcdef_no=3218, decl_uid=66234, cgraph_uid=3040)
+
+Before removal of unreachable regions:
+Eh tree:
+   2 must_not_throw
+   1 cleanup land:{1,<L14>}
+Reachable regions: n_bits = 3, set = {1 }
+Reachable landing pads: n_bits = 2, set = {1 }
+Removing unreachable region 2
+
+
+After removal of unreachable regions:
+Eh tree:
+   1 cleanup land:{1,<L14>}
+
+
+Removing basic block 41
+Removing unreachable region 1
+Merging blocks 2 and 3
+Merging blocks 4 and 5
+Merging blocks 6 and 7
+Merging blocks 8 and 9
+Merging blocks 10 and 11
+Merging blocks 14 and 15
+Merging blocks 17 and 18
+Merging blocks 30 and 31
+Merging blocks 32 and 33
+Merging blocks 34 and 35
+Merging blocks 36 and 37
+Merging blocks 2 and 4
+Merging blocks 2 and 6
+Merging blocks 2 and 8
+Merging blocks 2 and 10
+Merging blocks 30 and 32
+Merging blocks 30 and 34
+Merging blocks 30 and 36
+int main(int, char**) (int argc, char * * argv)
+{
+  int i;
+  int j;
+  int i;
+  int j;
+  size_t val;
+  void * ret;
+  void * D.67486;
+  size_t val;
+  void * ret;
+  void * D.67481;
+  size_t val;
+  void * ret;
+  void * D.67476;
+  size_t val;
+  void * ret;
+  void * D.67471;
+  size_t val;
+  void * ret;
+  void * D.67466;
+  size_t val;
+  void * ret;
+  void * D.67461;
+  static const char __PRETTY_FUNCTION__[22] = "int main(int, char**)";
+  int ndevices;
+  int nloops;
+  struct Func * ff_0;
+  int n_params;
+  double[4096][4096] * C_outputFromGpu;
+  double[4096][4096] * C_inputToGpu;
+  double[4096][4096] * C_outputFromOMP;
+  double[4096][4096] * C;
+  double[4096][4096] * B;
+  double[4096][4096] * A;
+  double beta;
+  double alpha;
+  int nk;
+  int nj;
+  int ni;
+  struct _IO_FILE * stdout.66;
+  double alpha.65;
+  double beta.64;
+  double[4096][4096] * C_outputFromGpu.63;
+  int ni.62;
+  int nj.61;
+  int nk.60;
+  double[4096][4096] * A.59;
+  double[4096][4096] * B.58;
+  double[4096][4096] * C.57;
+  struct Func * * * TablePointerFunctions.56;
+  struct Func * * * table.55;
+  bool retval.54;
+  struct _IO_FILE * stderr.53;
+  void * C_outputFromGpu.52;
+  void * C_inputToGpu.51;
+  void * C.50;
+  void * B.49;
+  void * A.48;
+  void * _40;
+  void * _46;
+  void * * _49;
+  void * * _53;
+  struct ffi_type * * _85;
+  bool _122;
+  struct Func * * _129;
+  struct Func * _131;
+  char * _183;
+  unsigned char _184;
+  long unsigned int _238;
+  long unsigned int _239;
+  double[4096] * _240;
+  double[4096] * _241;
+  double _243;
+  long unsigned int _248;
+  long unsigned int _249;
+  double[4096] * _250;
+  double[4096] * _251;
+  double _253;
+
+  <bb 2>:
+  ni = 4096;
+  nj = 4096;
+  nk = 4096;
+  ret_221 = xmalloc (134217728);
+  A = ret_221;
+  ret_224 = xmalloc (134217728);
+  B = ret_224;
+  ret_227 = xmalloc (134217728);
+  C = ret_227;
+  C_outputFromOMP_230 = xmalloc (134217728);
+  ret_233 = xmalloc (134217728);
+  C_inputToGpu = ret_233;
+  ret_236 = xmalloc (134217728);
+  C_outputFromGpu = ret_236;
+  stderr.53_31 = stderr;
+  __builtin_fwrite ("Preparing alternatives functions.\n", 1, 34, stderr.53_31);
+  ff_0_35 = malloc (48);
+  _40 = malloc (88);
+  ff_0_35->arg_types = _40;
+  _46 = malloc (88);
+  ff_0_35->arg_values = _46;
+  ff_0_35->f = gemm_cuda;
+  _49 = &ff_0_35->ret_value;
+  memset (_49, 0, 8);
+  ff_0_35->ret_type = &ffi_type_void;
+  ff_0_35->nargs = 10;
+  _53 = ff_0_35->arg_values;
+  *_53 = &ni;
+  MEM[(void * *)_53 + 8B] = &nj;
+  MEM[(void * *)_53 + 16B] = &nk;
+  MEM[(void * *)_53 + 24B] = &alpha;
+  MEM[(void * *)_53 + 32B] = &beta;
+  MEM[(void * *)_53 + 40B] = &A;
+  MEM[(void * *)_53 + 48B] = &B;
+  MEM[(void * *)_53 + 56B] = &C;
+  MEM[(void * *)_53 + 64B] = &C_inputToGpu;
+  MEM[(void * *)_53 + 72B] = &C_outputFromGpu;
+  MEM[(void * *)_53 + 80B] = 0B;
+  _85 = ff_0_35->arg_types;
+  *_85 = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_85 + 8B] = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_85 + 16B] = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_85 + 24B] = &ffi_type_double;
+  MEM[(struct ffi_type * *)_85 + 32B] = &ffi_type_double;
+  MEM[(struct ffi_type * *)_85 + 40B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_85 + 48B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_85 + 56B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_85 + 64B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_85 + 72B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_85 + 80B] = 0B;
+  stderr.53_117 = stderr;
+  __builtin_fwrite ("Creating table of target functions.\n", 1, 36, stderr.53_117);
+  _122 = create_target_functions_table (&table, 1, 2);
+  if (_122 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 7>;
+
+  <bb 3>:
+  table.55_124 = table;
+  if (table.55_124 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  __assert_fail ("table != __null", "gemm.cu", 402, &__PRETTY_FUNCTION__);
+
+  <bb 5>:
+  stderr.53_126 = stderr;
+  __builtin_fwrite ("Declaring function in 0,1.\n", 1, 27, stderr.53_126);
+  table.55_128 = table;
+  _129 = *table.55_128;
+  _131 = MEM[(struct Func * *)_129 + 8B];
+  *_131 = MEM[(const struct Func &)ff_0_35];
+  TablePointerFunctions = table.55_128;
+  if (table.55_128 == 0B)
+    goto <bb 6>;
+  else
+    goto <bb 7>;
+
+  <bb 6>:
+  __assert_fail ("TablePointerFunctions != __null", "gemm.cu", 408, &__PRETTY_FUNCTION__);
+
+  <bb 7>:
+  stderr.53_137 = stderr;
+  __builtin_fwrite ("Calling init_array.\n", 1, 20, stderr.53_137);
+  C.57_139 = C;
+  B.58_140 = B;
+  A.59_141 = A;
+  nk.60_142 = nk;
+  nj.61_143 = nj;
+  ni.62_144 = ni;
+  init_array (ni.62_144, nj.61_143, nk.60_142, &alpha, &beta, A.59_141, B.58_140, C.57_139);
+  C.57_146 = C;
+  nj.61_147 = nj;
+  ni.62_148 = ni;
+  goto <bb 11>;
+
+  <bb 8>:
+  _238 = (long unsigned int) i_237;
+  _239 = _238 * 32768;
+  _240 = C_outputFromOMP_230 + _239;
+  _241 = C.57_146 + _239;
+  _243 = *_241[j_242];
+  *_240[j_242] = _243;
+  j_244 = j_242 + 1;
+
+  <bb 9>:
+  # j_242 = PHI <j_123(12), j_244(8)>
+  if (nj.61_147 > j_242)
+    goto <bb 8>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  i_245 = i_237 + 1;
+
+  <bb 11>:
+  # i_237 = PHI <0(7), i_245(10)>
+  if (ni.62_148 > i_237)
+    goto <bb 12>;
+  else
+    goto <bb 13>;
+
+  <bb 12>:
+  # j_123 = PHI <0(11)>
+  goto <bb 9>;
+
+  <bb 13>:
+  C_outputFromGpu.63_150 = C_outputFromGpu;
+  goto <bb 17>;
+
+  <bb 14>:
+  _248 = (long unsigned int) i_247;
+  _249 = _248 * 32768;
+  _250 = C_outputFromGpu.63_150 + _249;
+  _251 = C.57_146 + _249;
+  _253 = *_251[j_252];
+  *_250[j_252] = _253;
+  j_254 = j_252 + 1;
+
+  <bb 15>:
+  # j_252 = PHI <j_133(18), j_254(14)>
+  if (nj.61_147 > j_252)
+    goto <bb 14>;
+  else
+    goto <bb 16>;
+
+  <bb 16>:
+  i_255 = i_247 + 1;
+
+  <bb 17>:
+  # i_247 = PHI <0(13), i_255(16)>
+  if (ni.62_148 > i_247)
+    goto <bb 18>;
+  else
+    goto <bb 19>;
+
+  <bb 18>:
+  # j_133 = PHI <0(17)>
+  goto <bb 15>;
+
+  <bb 19>:
+  stderr.53_155 = stderr;
+  __builtin_fwrite ("Calling gemm_omp:\n", 1, 18, stderr.53_155);
+  B.58_157 = B;
+  A.59_158 = A;
+  beta.64_159 = beta;
+  alpha.65_160 = alpha;
+  nk.60_161 = nk;
+  nj.61_162 = nj;
+  ni.62_163 = ni;
+  gemm_omp (ni.62_163, nj.61_162, nk.60_161, alpha.65_160, beta.64_159, A.59_158, B.58_157, C_outputFromOMP_230);
+  stdout.66_165 = stdout;
+  fprintf (stdout.66_165, "version = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 8, 4096, 4096, 4096);
+  hookomp_print_time_results ();
+  stderr.53_168 = stderr;
+  __builtin_fwrite ("Calling compareResults(original, omp).\n", 1, 39, stderr.53_168);
+  C.57_170 = C;
+  nj.61_171 = nj;
+  ni.62_172 = ni;
+  compareResults (ni.62_172, nj.61_171, C.57_170, C_outputFromOMP_230);
+  stderr.53_174 = stderr;
+  __builtin_fwrite ("Calling compareResults(original, cuda).\n", 1, 40, stderr.53_174);
+  C_outputFromGpu.63_176 = C_outputFromGpu;
+  C.57_177 = C;
+  nj.61_178 = nj;
+  ni.62_179 = ni;
+  compareResults (ni.62_179, nj.61_178, C.57_177, C_outputFromGpu.63_176);
+  if (argc_181(D) > 42)
+    goto <bb 20>;
+  else
+    goto <bb 22>;
+
+  <bb 20>:
+  _183 = *argv_182(D);
+  _184 = MEM[(const unsigned char * {ref-all})_183];
+  if (_184 == 0)
+    goto <bb 21>;
+  else
+    goto <bb 22>;
+
+  <bb 21>:
+  C_outputFromGpu.63_185 = C_outputFromGpu;
+  nj.61_186 = nj;
+  ni.62_187 = ni;
+  print_array (ni.62_187, nj.61_186, C_outputFromGpu.63_185);
+
+  <bb 22>:
+  A.59_189 = A;
+  free (A.59_189);
+  B.58_191 = B;
+  free (B.58_191);
+  C.57_193 = C;
+  free (C.57_193);
+  free (C_outputFromOMP_230);
+  C_outputFromGpu.63_196 = C_outputFromGpu;
+  free (C_outputFromGpu.63_196);
+  ni ={v} {CLOBBER};
+  nj ={v} {CLOBBER};
+  nk ={v} {CLOBBER};
+  alpha ={v} {CLOBBER};
+  beta ={v} {CLOBBER};
+  A ={v} {CLOBBER};
+  B ={v} {CLOBBER};
+  C ={v} {CLOBBER};
+  C_inputToGpu ={v} {CLOBBER};
+  C_outputFromGpu ={v} {CLOBBER};
+  return 0;
+
+}
+
+
+
+;; Function void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096]) (_Z9gemm_cudaiiiddPA4096_dS0_S0_S0_S0_, funcdef_no=3217, decl_uid=66211, cgraph_uid=3039)
+
+Before removal of unreachable regions:
+Eh tree:
+   2 must_not_throw
+   1 cleanup land:{1,<L3>}
+Reachable regions: n_bits = 3, set = {1 }
+Reachable landing pads: n_bits = 2, set = {1 }
+Removing unreachable region 2
+
+
+After removal of unreachable regions:
+Eh tree:
+   1 cleanup land:{1,<L3>}
+
+
+Removing basic block 19
+Removing unreachable region 1
+Merging blocks 2 and 3
+Merging blocks 4 and 5
+Merging blocks 6 and 7
+Merging blocks 8 and 9
+Merging blocks 10 and 11
+Merging blocks 13 and 14
+Merging blocks 15 and 16
+Merging blocks 17 and 18
+Merging blocks 2 and 4
+Merging blocks 2 and 6
+Merging blocks 2 and 8
+Merging blocks 2 and 10
+Merging blocks 13 and 15
+Merging blocks 13 and 17
+void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C, double[4096] * C_inputToGpu, double[4096] * C_outputFromGpu)
+{
+  unsigned int block$y;
+  unsigned int block$x;
+  float D.67517;
+  float D.67515;
+  struct dim3 grid;
+  struct dim3 block;
+  double * C_gpu;
+  double * B_gpu;
+  double * A_gpu;
+  double * C_gpu.47;
+  double * B_gpu.46;
+  double * A_gpu.45;
+  struct _IO_FILE * stderr.44;
+  long unsigned int _32;
+  unsigned int _33;
+  long unsigned int _38;
+  unsigned int _39;
+  cudaError _43;
+  float _78;
+  float _79;
+
+  <bb 2>:
+  stderr.44_4 = stderr;
+  __builtin_fwrite ("Calling function gemm_cuda.\n", 1, 28, stderr.44_4);
+  GPU_argv_init ();
+  cudaMalloc (&A_gpu, 134217728);
+  cudaMalloc (&B_gpu, 134217728);
+  cudaMalloc (&C_gpu, 134217728);
+  hookomp_timing_start (&data_transfer_h2d_start);
+  A_gpu.45_15 = A_gpu;
+  cudaMemcpy (A_gpu.45_15, A_16(D), 134217728, 1);
+  B_gpu.46_19 = B_gpu;
+  cudaMemcpy (B_gpu.46_19, B_20(D), 134217728, 1);
+  C_gpu.47_23 = C_gpu;
+  cudaMemcpy (C_gpu.47_23, C_inputToGpu_24(D), 134217728, 1);
+  hookomp_timing_stop (&data_transfer_h2d_stop);
+  block.z = 1;
+  _78 = 5.12e+2;
+  _32 = (long unsigned int) _78;
+  _33 = (unsigned int) _32;
+  _79 = 1.28e+2;
+  _38 = (long unsigned int) _79;
+  _39 = (unsigned int) _38;
+  grid.x = _39;
+  grid.y = _33;
+  grid.z = 1;
+  hookomp_timing_start (&dev_kernel1_start);
+  MEM[(struct dim3 *)&block] = 32;
+  MEM[(struct dim3 *)&block + 4B] = 8;
+  _43 = cudaConfigureCall (grid, block, 0, 0B);
+  if (_43 == 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  C_gpu.47_45 = C_gpu;
+  B_gpu.46_46 = B_gpu;
+  A_gpu.45_47 = A_gpu;
+  __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_ (ni_48(D), nj_49(D), nk_50(D), alpha_51(D), beta_52(D), A_gpu.45_47, B_gpu.46_46, C_gpu.47_45);
+
+  <bb 4>:
+  cudaThreadSynchronize ();
+  hookomp_timing_stop (&dev_kernel1_stop);
+  hookomp_timing_start (&data_transfer_d2h_start);
+  C_gpu.47_58 = C_gpu;
+  cudaMemcpy (C_outputFromGpu_59(D), C_gpu.47_58, 134217728, 2);
+  hookomp_timing_stop (&data_transfer_d2h_stop);
+  A_gpu.45_62 = A_gpu;
+  cudaFree (A_gpu.45_62);
+  B_gpu.46_64 = B_gpu;
+  cudaFree (B_gpu.46_64);
+  C_gpu.47_66 = C_gpu;
+  cudaFree (C_gpu.47_66);
+  A_gpu ={v} {CLOBBER};
+  B_gpu ={v} {CLOBBER};
+  C_gpu ={v} {CLOBBER};
+  block ={v} {CLOBBER};
+  grid ={v} {CLOBBER};
+  return;
+
+}
+
+

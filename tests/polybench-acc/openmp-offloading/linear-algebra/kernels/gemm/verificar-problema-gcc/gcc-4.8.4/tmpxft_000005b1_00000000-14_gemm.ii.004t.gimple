@@ -1,0 +1,1730 @@
+float absVal(float) (float a)
+{
+  float D.66867;
+
+  if (a < 0.0) goto <D.66865>; else goto <D.66866>;
+  <D.66865>:
+  D.66867 = -a;
+  return D.66867;
+  <D.66866>:
+  D.66867 = a;
+  return D.66867;
+}
+
+
+float percentDiff(double, double) (double val1, double val2)
+{
+  bool retval.0;
+  bool iftmp.1;
+  float D.66873;
+  float D.66874;
+  double D.66875;
+  float D.66877;
+  float D.66878;
+  double D.66879;
+  float D.66883;
+  double D.66884;
+  float D.66885;
+  float D.66886;
+  double D.66887;
+  float D.66888;
+  float D.66889;
+  float D.66890;
+  float D.66891;
+
+  D.66873 = (float) val1;
+  D.66874 = absVal (D.66873);
+  D.66875 = (double) D.66874;
+  if (D.66875 < 1.00000000000000002081668171172168513294309377670288085938e-2) goto <D.66876>; else goto <D.66871>;
+  <D.66876>:
+  D.66877 = (float) val2;
+  D.66878 = absVal (D.66877);
+  D.66879 = (double) D.66878;
+  if (D.66879 < 1.00000000000000002081668171172168513294309377670288085938e-2) goto <D.66880>; else goto <D.66871>;
+  <D.66880>:
+  iftmp.1 = 1;
+  goto <D.66872>;
+  <D.66871>:
+  iftmp.1 = 0;
+  <D.66872>:
+  retval.0 = iftmp.1;
+  if (retval.0 != 0) goto <D.66881>; else goto <D.66882>;
+  <D.66881>:
+  D.66883 = 0.0;
+  return D.66883;
+  <D.66882>:
+  D.66884 = val1 - val2;
+  D.66885 = (float) D.66884;
+  D.66886 = absVal (D.66885);
+  D.66887 = val1 + 9.99999993922529029077850282192230224609375e-9;
+  D.66888 = (float) D.66887;
+  D.66889 = absVal (D.66888);
+  D.66890 = D.66886 / D.66889;
+  D.66891 = absVal (D.66890);
+  D.66883 = D.66891 * 1.0e+2;
+  return D.66883;
+}
+
+
+uint64_t get_time() ()
+{
+  uint64_t D.66893;
+  long int D.66894;
+  long unsigned int D.66895;
+  long unsigned int D.66896;
+  long int D.66897;
+  long unsigned int D.66898;
+  struct timespec spec;
+
+  try
+    {
+      clock_gettime (1, &spec);
+      D.66894 = spec.tv_sec;
+      D.66895 = (long unsigned int) D.66894;
+      D.66896 = D.66895 * 1000000000;
+      D.66897 = spec.tv_nsec;
+      D.66898 = (long unsigned int) D.66897;
+      D.66893 = D.66896 + D.66898;
+      return D.66893;
+    }
+  finally
+    {
+      spec = {CLOBBER};
+    }
+}
+
+
+void hookomp_timing_start(uint64_t*) (uint64_t * _start)
+{
+  long unsigned int D.66901;
+
+  D.66901 = get_time ();
+  *_start = D.66901;
+}
+
+
+void hookomp_timing_stop(uint64_t*) (uint64_t * _stop)
+{
+  long unsigned int D.66902;
+
+  D.66902 = get_time ();
+  *_stop = D.66902;
+}
+
+
+void hookomp_timing_print(uint64_t, uint64_t) (uint64_t tstart, uint64_t tstop)
+{
+  long unsigned int D.66903;
+
+  D.66903 = tstop - tstart;
+  printf ("%llu", D.66903);
+}
+
+
+void hookomp_timing_print_without_dev() ()
+{
+  long unsigned int omp_stop.2;
+  long unsigned int omp_start.3;
+  long unsigned int dev_kernel1_stop.4;
+  long unsigned int dev_kernel1_start.5;
+  long unsigned int D.66908;
+  long unsigned int dev_kernel2_stop.6;
+  long unsigned int dev_kernel2_start.7;
+  long unsigned int D.66911;
+  long unsigned int D.66912;
+  long unsigned int dev_kernel3_stop.8;
+  long unsigned int dev_kernel3_start.9;
+  long unsigned int D.66915;
+  long unsigned int data_transfer_h2d_stop.10;
+  long unsigned int data_transfer_h2d_start.11;
+  long unsigned int D.66918;
+  long unsigned int data_transfer_d2h_stop.12;
+  long unsigned int data_transfer_d2h_start.13;
+  long unsigned int D.66921;
+  uint64_t iftmp.14;
+  long unsigned int D.66925;
+  uint64_t total_time;
+  uint64_t dev_time;
+  uint64_t dt_time;
+
+  omp_stop.2 = omp_stop;
+  omp_start.3 = omp_start;
+  total_time = omp_stop.2 - omp_start.3;
+  dev_kernel1_stop.4 = dev_kernel1_stop;
+  dev_kernel1_start.5 = dev_kernel1_start;
+  D.66908 = dev_kernel1_stop.4 - dev_kernel1_start.5;
+  dev_kernel2_stop.6 = dev_kernel2_stop;
+  dev_kernel2_start.7 = dev_kernel2_start;
+  D.66911 = dev_kernel2_stop.6 - dev_kernel2_start.7;
+  D.66912 = D.66908 + D.66911;
+  dev_kernel3_stop.8 = dev_kernel3_stop;
+  dev_kernel3_start.9 = dev_kernel3_start;
+  D.66915 = dev_kernel3_stop.8 - dev_kernel3_start.9;
+  dev_time = D.66912 + D.66915;
+  data_transfer_h2d_stop.10 = data_transfer_h2d_stop;
+  data_transfer_h2d_start.11 = data_transfer_h2d_start;
+  D.66918 = data_transfer_h2d_stop.10 - data_transfer_h2d_start.11;
+  data_transfer_d2h_stop.12 = data_transfer_d2h_stop;
+  data_transfer_d2h_start.13 = data_transfer_d2h_start;
+  D.66921 = data_transfer_d2h_stop.12 - data_transfer_d2h_start.13;
+  dt_time = D.66918 + D.66921;
+  if (total_time != 0) goto <D.66923>; else goto <D.66924>;
+  <D.66923>:
+  D.66925 = total_time - dev_time;
+  iftmp.14 = D.66925 - dt_time;
+  goto <D.66926>;
+  <D.66924>:
+  iftmp.14 = total_time;
+  <D.66926>:
+  printf ("%llu", iftmp.14);
+}
+
+
+void hookomp_print_time_results() ()
+{
+  struct _IO_FILE * stdout.15;
+  long unsigned int seq_stop.16;
+  long unsigned int seq_start.17;
+  long unsigned int omp_stop.18;
+  long unsigned int omp_start.19;
+  long unsigned int dev_kernel1_stop.20;
+  long unsigned int dev_kernel1_start.21;
+  long unsigned int dev_kernel2_stop.22;
+  long unsigned int dev_kernel2_start.23;
+  long unsigned int dev_kernel3_stop.24;
+  long unsigned int dev_kernel3_start.25;
+  long unsigned int data_transfer_h2d_stop.26;
+  long unsigned int data_transfer_h2d_start.27;
+  long unsigned int data_transfer_d2h_stop.28;
+  long unsigned int data_transfer_d2h_start.29;
+  int iftmp.30;
+  bool reach_offload_decision_point.31;
+  bool D.66944;
+  int D.66948;
+  bool decided_by_offloading.32;
+  int D.66950;
+  bool made_the_offloading.33;
+  int D.66952;
+
+  stdout.15 = stdout;
+  __builtin_fwrite ("ORIG = ", 1, 7, stdout.15);
+  seq_stop.16 = seq_stop;
+  seq_start.17 = seq_start;
+  hookomp_timing_print (seq_start.17, seq_stop.16);
+  stdout.15 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15);
+  stdout.15 = stdout;
+  __builtin_fwrite ("OMP_OFF = ", 1, 10, stdout.15);
+  omp_stop.18 = omp_stop;
+  omp_start.19 = omp_start;
+  hookomp_timing_print (omp_start.19, omp_stop.18);
+  stdout.15 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15);
+  stdout.15 = stdout;
+  __builtin_fwrite ("OMP = ", 1, 6, stdout.15);
+  hookomp_timing_print_without_dev ();
+  stdout.15 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15);
+  stdout.15 = stdout;
+  __builtin_fwrite ("CUDA_KERNEL1 = ", 1, 15, stdout.15);
+  dev_kernel1_stop.20 = dev_kernel1_stop;
+  dev_kernel1_start.21 = dev_kernel1_start;
+  hookomp_timing_print (dev_kernel1_start.21, dev_kernel1_stop.20);
+  stdout.15 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15);
+  stdout.15 = stdout;
+  __builtin_fwrite ("CUDA_KERNEL2 = ", 1, 15, stdout.15);
+  dev_kernel2_stop.22 = dev_kernel2_stop;
+  dev_kernel2_start.23 = dev_kernel2_start;
+  hookomp_timing_print (dev_kernel2_start.23, dev_kernel2_stop.22);
+  stdout.15 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15);
+  stdout.15 = stdout;
+  __builtin_fwrite ("CUDA_KERNEL3 = ", 1, 15, stdout.15);
+  dev_kernel3_stop.24 = dev_kernel3_stop;
+  dev_kernel3_start.25 = dev_kernel3_start;
+  hookomp_timing_print (dev_kernel3_start.25, dev_kernel3_stop.24);
+  stdout.15 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15);
+  stdout.15 = stdout;
+  __builtin_fwrite ("DT_H2D = ", 1, 9, stdout.15);
+  data_transfer_h2d_stop.26 = data_transfer_h2d_stop;
+  data_transfer_h2d_start.27 = data_transfer_h2d_start;
+  hookomp_timing_print (data_transfer_h2d_start.27, data_transfer_h2d_stop.26);
+  stdout.15 = stdout;
+  __builtin_fwrite (", ", 1, 2, stdout.15);
+  stdout.15 = stdout;
+  __builtin_fwrite ("DT_D2H = ", 1, 9, stdout.15);
+  data_transfer_d2h_stop.28 = data_transfer_d2h_stop;
+  data_transfer_d2h_start.29 = data_transfer_d2h_start;
+  hookomp_timing_print (data_transfer_d2h_start.29, data_transfer_d2h_stop.28);
+  reach_offload_decision_point.31 = reach_offload_decision_point;
+  D.66944 = ~reach_offload_decision_point.31;
+  if (D.66944 != 0) goto <D.66945>; else goto <D.66946>;
+  <D.66945>:
+  iftmp.30 = 1;
+  goto <D.66947>;
+  <D.66946>:
+  iftmp.30 = 0;
+  <D.66947>:
+  stdout.15 = stdout;
+  fprintf (stdout.15, ", WORK_FINISHED_BEFORE_OFFLOAD_DECISION = %d", iftmp.30);
+  reach_offload_decision_point.31 = reach_offload_decision_point;
+  D.66948 = (int) reach_offload_decision_point.31;
+  stdout.15 = stdout;
+  fprintf (stdout.15, ", REACH_OFFLOAD_DECISION_POINT = %d", D.66948);
+  decided_by_offloading.32 = decided_by_offloading;
+  D.66950 = (int) decided_by_offloading.32;
+  stdout.15 = stdout;
+  fprintf (stdout.15, ", DECIDED_BY_OFFLOADING = %d", D.66950);
+  made_the_offloading.33 = made_the_offloading;
+  D.66952 = (int) made_the_offloading.33;
+  stdout.15 = stdout;
+  fprintf (stdout.15, ", MADE_THE_OFFLOADING = %d", D.66952);
+  stdout.15 = stdout;
+  __builtin_fputc (10, stdout.15);
+}
+
+
+bool create_target_functions_table(Func****, int, int) (struct Func * * * * table_, int nrows, int ncolumns)
+{
+  struct _IO_FILE * stderr.34;
+  long unsigned int D.66954;
+  long unsigned int D.66955;
+  long unsigned int D.66958;
+  long unsigned int D.66959;
+  struct Func * * * D.66960;
+  long unsigned int D.66961;
+  long unsigned int D.66962;
+  void * D.66963;
+  struct Func * * D.66964;
+  long unsigned int D.66967;
+  long unsigned int D.66968;
+  struct Func * * D.66969;
+  void * D.66970;
+  struct Func * D.66971;
+  bool D.66974;
+  struct Func * * * table;
+  bool result;
+  int i;
+  int j;
+
+  result = 1;
+  stderr.34 = stderr;
+  __builtin_fwrite ("Allocating the rows.\n", 1, 21, stderr.34);
+  D.66954 = (long unsigned int) nrows;
+  D.66955 = D.66954 * 8;
+  table = malloc (D.66955);
+  if (table != 0B) goto <D.66956>; else goto <D.66957>;
+  <D.66956>:
+  stderr.34 = stderr;
+  __builtin_fwrite ("Allocating the columns.\n", 1, 24, stderr.34);
+  i = 0;
+  goto <D.66033>;
+  <D.66032>:
+  D.66958 = (long unsigned int) i;
+  D.66959 = D.66958 * 8;
+  D.66960 = table + D.66959;
+  D.66961 = (long unsigned int) ncolumns;
+  D.66962 = D.66961 * 8;
+  D.66963 = malloc (D.66962);
+  *D.66960 = D.66963;
+  D.66958 = (long unsigned int) i;
+  D.66959 = D.66958 * 8;
+  D.66960 = table + D.66959;
+  D.66964 = *D.66960;
+  if (D.66964 != 0B) goto <D.66965>; else goto <D.66966>;
+  <D.66965>:
+  j = 0;
+  goto <D.66031>;
+  <D.66030>:
+  D.66958 = (long unsigned int) i;
+  D.66959 = D.66958 * 8;
+  D.66960 = table + D.66959;
+  D.66964 = *D.66960;
+  D.66967 = (long unsigned int) j;
+  D.66968 = D.66967 * 8;
+  D.66969 = D.66964 + D.66968;
+  D.66970 = malloc (48);
+  *D.66969 = D.66970;
+  D.66958 = (long unsigned int) i;
+  D.66959 = D.66958 * 8;
+  D.66960 = table + D.66959;
+  D.66964 = *D.66960;
+  D.66967 = (long unsigned int) j;
+  D.66968 = D.66967 * 8;
+  D.66969 = D.66964 + D.66968;
+  D.66971 = *D.66969;
+  D.66971->f = 0B;
+  j = j + 1;
+  <D.66031>:
+  if (j < ncolumns) goto <D.66030>; else goto <D.66028>;
+  <D.66028>:
+  goto <D.66972>;
+  <D.66966>:
+  stderr.34 = stderr;
+  __builtin_fwrite ("Error in table of target functions allocation (columns).\n", 1, 57, stderr.34);
+  result = 0;
+  <D.66972>:
+  i = i + 1;
+  <D.66033>:
+  if (i < nrows) goto <D.66032>; else goto <D.66026>;
+  <D.66026>:
+  goto <D.66973>;
+  <D.66957>:
+  stderr.34 = stderr;
+  __builtin_fwrite ("Error in table of target functions allocation (rows).\n", 1, 54, stderr.34);
+  result = 0;
+  <D.66973>:
+  stderr.34 = stderr;
+  __builtin_fwrite ("Allocating the columns is OK.\n", 1, 30, stderr.34);
+  *table_ = table;
+  D.66974 = result;
+  return D.66974;
+}
+
+
+void call_function_ffi_call(Func*) (struct Func * ff)
+{
+  struct _IO_FILE * stderr.35;
+  bool retval.36;
+  struct ffi_type * * D.66978;
+  struct ffi_type * D.66979;
+  int D.66980;
+  unsigned int D.66981;
+  ffi_status D.66982;
+  void * * D.66985;
+  void * D.66986;
+  void * D.66987;
+  void (*<T1993>) (void) D.66988;
+  struct ffi_cif cif;
+
+  try
+    {
+      stderr.35 = stderr;
+      __builtin_fwrite (" In call_function_ffi_call.\n", 1, 28, stderr.35);
+      D.66978 = ff->arg_types;
+      D.66979 = ff->ret_type;
+      D.66980 = ff->nargs;
+      D.66981 = (unsigned int) D.66980;
+      D.66982 = ffi_prep_cif (&cif, 2, D.66981, D.66979, D.66978);
+      retval.36 = D.66982 != 0;
+      if (retval.36 != 0) goto <D.66983>; else goto <D.66984>;
+      <D.66983>:
+      stderr.35 = stderr;
+      __builtin_fwrite ("Error ffi_prep_cif.\n", 1, 20, stderr.35);
+      exit (1);
+      <D.66984>:
+      D.66985 = ff->arg_values;
+      D.66986 = ff->ret_value;
+      D.66987 = ff->f;
+      D.66988 = (void (*<T1993>) (void)) D.66987;
+      ffi_call (&cif, D.66988, D.66986, D.66985);
+    }
+  finally
+    {
+      cif = {CLOBBER};
+    }
+}
+
+
+void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double * alpha, double * beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  long unsigned int D.66992;
+  long unsigned int D.66993;
+  double[4096] * D.66994;
+  double D.66995;
+  double D.66996;
+  double D.66997;
+  double D.66998;
+  double[4096] * D.66999;
+  double[4096] * D.67000;
+  int i;
+  int j;
+
+  *alpha = 3.2412e+4;
+  *beta = 2.123e+3;
+  i = 0;
+  goto <D.66057>;
+  <D.66056>:
+  j = 0;
+  goto <D.66055>;
+  <D.66054>:
+  D.66992 = (long unsigned int) i;
+  D.66993 = D.66992 * 32768;
+  D.66994 = A + D.66993;
+  D.66995 = (double) i;
+  D.66996 = (double) j;
+  D.66997 = D.66995 * D.66996;
+  D.66998 = D.66997 * 2.44140625e-4;
+  *D.66994[j] = D.66998;
+  j = j + 1;
+  <D.66055>:
+  if (j < nk) goto <D.66054>; else goto <D.66052>;
+  <D.66052>:
+  i = i + 1;
+  <D.66057>:
+  if (i < ni) goto <D.66056>; else goto <D.66050>;
+  <D.66050>:
+  i = 0;
+  goto <D.66065>;
+  <D.66064>:
+  j = 0;
+  goto <D.66063>;
+  <D.66062>:
+  D.66992 = (long unsigned int) i;
+  D.66993 = D.66992 * 32768;
+  D.66999 = B + D.66993;
+  D.66995 = (double) i;
+  D.66996 = (double) j;
+  D.66997 = D.66995 * D.66996;
+  D.66998 = D.66997 * 2.44140625e-4;
+  *D.66999[j] = D.66998;
+  j = j + 1;
+  <D.66063>:
+  if (j < nj) goto <D.66062>; else goto <D.66060>;
+  <D.66060>:
+  i = i + 1;
+  <D.66065>:
+  if (i < nk) goto <D.66064>; else goto <D.66058>;
+  <D.66058>:
+  i = 0;
+  goto <D.66073>;
+  <D.66072>:
+  j = 0;
+  goto <D.66071>;
+  <D.66070>:
+  D.66992 = (long unsigned int) i;
+  D.66993 = D.66992 * 32768;
+  D.67000 = C + D.66993;
+  D.66995 = (double) i;
+  D.66996 = (double) j;
+  D.66997 = D.66995 * D.66996;
+  D.66998 = D.66997 * 2.44140625e-4;
+  *D.67000[j] = D.66998;
+  j = j + 1;
+  <D.66071>:
+  if (j < nj) goto <D.66070>; else goto <D.66068>;
+  <D.66068>:
+  i = i + 1;
+  <D.66073>:
+  if (i < ni) goto <D.66072>; else goto <D.66066>;
+  <D.66066>:
+}
+
+
+void copy_array(int, int, double (*)[4096], double (*)[4096]) (int ni, int nj, double[4096] * C_source, double[4096] * C_dest)
+{
+  long unsigned int D.67001;
+  long unsigned int D.67002;
+  double[4096] * D.67003;
+  double[4096] * D.67004;
+  double D.67005;
+  int i;
+  int j;
+
+  i = 0;
+  goto <D.66089>;
+  <D.66088>:
+  j = 0;
+  goto <D.66087>;
+  <D.66086>:
+  D.67001 = (long unsigned int) i;
+  D.67002 = D.67001 * 32768;
+  D.67003 = C_dest + D.67002;
+  D.67001 = (long unsigned int) i;
+  D.67002 = D.67001 * 32768;
+  D.67004 = C_source + D.67002;
+  D.67005 = *D.67004[j];
+  *D.67003[j] = D.67005;
+  j = j + 1;
+  <D.66087>:
+  if (j < nj) goto <D.66086>; else goto <D.66084>;
+  <D.66084>:
+  i = i + 1;
+  <D.66089>:
+  if (i < ni) goto <D.66088>; else goto <D.66082>;
+  <D.66082>:
+}
+
+
+void compareResults(int, int, double (*)[4096], double (*)[4096]) (int ni, int nj, double[4096] * C, double[4096] * C_output)
+{
+  bool retval.37;
+  long unsigned int D.67007;
+  long unsigned int D.67008;
+  double[4096] * D.67009;
+  double D.67010;
+  double[4096] * D.67011;
+  double D.67012;
+  float D.67013;
+  double D.67014;
+  struct _IO_FILE * stderr.38;
+  int i;
+  int j;
+  int fail;
+
+  fail = 0;
+  i = 0;
+  goto <D.66106>;
+  <D.66105>:
+  j = 0;
+  goto <D.66104>;
+  <D.66103>:
+  D.67007 = (long unsigned int) i;
+  D.67008 = D.67007 * 32768;
+  D.67009 = C_output + D.67008;
+  D.67010 = *D.67009[j];
+  D.67007 = (long unsigned int) i;
+  D.67008 = D.67007 * 32768;
+  D.67011 = C + D.67008;
+  D.67012 = *D.67011[j];
+  D.67013 = percentDiff (D.67012, D.67010);
+  D.67014 = (double) D.67013;
+  retval.37 = D.67014 > 5.000000000000000277555756156289135105907917022705078125e-2;
+  if (retval.37 != 0) goto <D.67015>; else goto <D.67016>;
+  <D.67015>:
+  fail = fail + 1;
+  goto <D.67017>;
+  <D.67016>:
+  <D.67017>:
+  j = j + 1;
+  <D.66104>:
+  if (j < nj) goto <D.66103>; else goto <D.66101>;
+  <D.66101>:
+  i = i + 1;
+  <D.66106>:
+  if (i < ni) goto <D.66105>; else goto <D.66099>;
+  <D.66099>:
+  stderr.38 = stderr;
+  fprintf (stderr.38, "Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f Percent: %d\n", 5.000000000000000277555756156289135105907917022705078125e-2, fail);
+}
+
+
+void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  long unsigned int D.67019;
+  long unsigned int D.67020;
+  double[4096] * D.67021;
+  double D.67022;
+  double D.67023;
+  double[4096] * D.67024;
+  double D.67025;
+  double D.67026;
+  long unsigned int D.67027;
+  long unsigned int D.67028;
+  double[4096] * D.67029;
+  double D.67030;
+  double D.67031;
+  double D.67032;
+  int i;
+  int j;
+  int k;
+
+  i = 0;
+  goto <D.66146>;
+  <D.66145>:
+  j = 0;
+  goto <D.66144>;
+  <D.66143>:
+  D.67019 = (long unsigned int) i;
+  D.67020 = D.67019 * 32768;
+  D.67021 = C + D.67020;
+  D.67019 = (long unsigned int) i;
+  D.67020 = D.67019 * 32768;
+  D.67021 = C + D.67020;
+  D.67022 = *D.67021[j];
+  D.67023 = D.67022 * beta;
+  *D.67021[j] = D.67023;
+  k = 0;
+  goto <D.66142>;
+  <D.66141>:
+  D.67019 = (long unsigned int) i;
+  D.67020 = D.67019 * 32768;
+  D.67021 = C + D.67020;
+  D.67019 = (long unsigned int) i;
+  D.67020 = D.67019 * 32768;
+  D.67021 = C + D.67020;
+  D.67022 = *D.67021[j];
+  D.67019 = (long unsigned int) i;
+  D.67020 = D.67019 * 32768;
+  D.67024 = A + D.67020;
+  D.67025 = *D.67024[k];
+  D.67026 = D.67025 * alpha;
+  D.67027 = (long unsigned int) k;
+  D.67028 = D.67027 * 32768;
+  D.67029 = B + D.67028;
+  D.67030 = *D.67029[j];
+  D.67031 = D.67026 * D.67030;
+  D.67032 = D.67022 + D.67031;
+  *D.67021[j] = D.67032;
+  k = k + 1;
+  <D.66142>:
+  if (k < nk) goto <D.66141>; else goto <D.66139>;
+  <D.66139>:
+  j = j + 1;
+  <D.66144>:
+  if (j < nj) goto <D.66143>; else goto <D.66137>;
+  <D.66137>:
+  i = i + 1;
+  <D.66146>:
+  if (i < ni) goto <D.66145>; else goto <D.66135>;
+  <D.66135>:
+}
+
+
+void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  hookomp_timing_start (&seq_start);
+  gemm (ni, nj, nk, alpha, beta, A, B, C);
+  hookomp_timing_stop (&seq_stop);
+}
+
+
+void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  int i;
+  int j;
+  int k;
+
+  #pragma omp parallel num_threads(8) shared(C) shared(B) shared(A) shared(beta) shared(alpha) shared(nk) shared(nj) shared(ni)
+    {
+      long unsigned int D.67033;
+      long unsigned int D.67034;
+      long unsigned int D.67035;
+      long long int q_data_transfer_write.39;
+      long unsigned int D.67037;
+      long long int q_data_transfer_read.40;
+      long unsigned int D.67039;
+      long unsigned int D.67040;
+      double[4096] * D.67041;
+      double D.67042;
+      double D.67043;
+      double[4096] * D.67044;
+      double D.67045;
+      double D.67046;
+      long unsigned int D.67047;
+      long unsigned int D.67048;
+      double[4096] * D.67049;
+      double D.67050;
+      double D.67051;
+      double D.67052;
+
+      current_loop_index = 0;
+      num_threads_defined = 8;
+      D.67033 = 16;
+      D.67034 = D.67033 + 8;
+      D.67035 = D.67034 * 16777216;
+      q_data_transfer_write.39 = (long long int) D.67035;
+      q_data_transfer_write = q_data_transfer_write.39;
+      D.67037 = 134217728;
+      q_data_transfer_read.40 = (long long int) D.67037;
+      q_data_transfer_read = q_data_transfer_read.40;
+      type_of_data_allocation = 1;
+      #pragma omp for schedule(dynamic,64) private(k) private(j) private(i)
+      for (i = 0; i < ni; i = i + 1)
+        {
+          j = 0;
+          goto <D.66178>;
+          <D.66177>:
+          D.67039 = (long unsigned int) i;
+          D.67040 = D.67039 * 32768;
+          D.67041 = C + D.67040;
+          D.67039 = (long unsigned int) i;
+          D.67040 = D.67039 * 32768;
+          D.67041 = C + D.67040;
+          D.67042 = *D.67041[j];
+          D.67043 = D.67042 * beta;
+          *D.67041[j] = D.67043;
+          k = 0;
+          goto <D.66176>;
+          <D.66175>:
+          D.67039 = (long unsigned int) i;
+          D.67040 = D.67039 * 32768;
+          D.67041 = C + D.67040;
+          D.67039 = (long unsigned int) i;
+          D.67040 = D.67039 * 32768;
+          D.67041 = C + D.67040;
+          D.67042 = *D.67041[j];
+          D.67039 = (long unsigned int) i;
+          D.67040 = D.67039 * 32768;
+          D.67044 = A + D.67040;
+          D.67045 = *D.67044[k];
+          D.67046 = D.67045 * alpha;
+          D.67047 = (long unsigned int) k;
+          D.67048 = D.67047 * 32768;
+          D.67049 = B + D.67048;
+          D.67050 = *D.67049[j];
+          D.67051 = D.67046 * D.67050;
+          D.67052 = D.67042 + D.67051;
+          *D.67041[j] = D.67052;
+          k = k + 1;
+          <D.66176>:
+          if (k < nk) goto <D.66175>; else goto <D.66173>;
+          <D.66173>:
+          j = j + 1;
+          <D.66178>:
+          if (j < nj) goto <D.66177>; else goto <D.66171>;
+          <D.66171>:
+        }
+    }
+}
+
+
+void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C_outputFromOMP)
+{
+  hookomp_timing_start (&omp_start);
+  gemm_omp_kernel (ni, nj, nk, alpha, beta, A, B, C_outputFromOMP);
+  hookomp_timing_stop (&omp_stop);
+}
+
+
+void GPU_argv_init() ()
+{
+  struct _IO_FILE * stderr.43;
+  struct cudaDeviceProp deviceProp;
+
+  try
+    {
+      stderr.43 = stderr;
+      __builtin_fwrite ("GPU init.\n", 1, 10, stderr.43);
+      cudaGetDeviceProperties (&deviceProp, 0);
+      stderr.43 = stderr;
+      fprintf (stderr.43, "setting device %d with name %s\n", 0, &deviceProp.name);
+      cudaSetDevice (0);
+    }
+  finally
+    {
+      deviceProp = {CLOBBER};
+    }
+}
+
+
+void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C, double[4096] * C_inputToGpu, double[4096] * C_outputFromGpu)
+{
+  struct _IO_FILE * stderr.44;
+  long unsigned int D.67097;
+  double * A_gpu.45;
+  double * B_gpu.46;
+  double * C_gpu.47;
+  unsigned int D.67101;
+  float D.67102;
+  float D.67103;
+  float D.67104;
+  long unsigned int D.67105;
+  unsigned int D.67106;
+  unsigned int D.67107;
+  float D.67108;
+  float D.67109;
+  float D.67110;
+  long unsigned int D.67111;
+  unsigned int D.67112;
+  cudaError D.67113;
+  double * A_gpu;
+  double * B_gpu;
+  double * C_gpu;
+  struct dim3 block;
+  struct dim3 grid;
+
+  try
+    {
+      stderr.44 = stderr;
+      __builtin_fwrite ("Calling function gemm_cuda.\n", 1, 28, stderr.44);
+      GPU_argv_init ();
+      D.67097 = 134217728;
+      cudaMalloc (&A_gpu, D.67097);
+      D.67097 = 134217728;
+      cudaMalloc (&B_gpu, D.67097);
+      D.67097 = 134217728;
+      cudaMalloc (&C_gpu, D.67097);
+      hookomp_timing_start (&data_transfer_h2d_start);
+      D.67097 = 134217728;
+      A_gpu.45 = A_gpu;
+      cudaMemcpy (A_gpu.45, A, D.67097, 1);
+      D.67097 = 134217728;
+      B_gpu.46 = B_gpu;
+      cudaMemcpy (B_gpu.46, B, D.67097, 1);
+      D.67097 = 134217728;
+      C_gpu.47 = C_gpu;
+      cudaMemcpy (C_gpu.47, C_inputToGpu, D.67097, 1);
+      hookomp_timing_stop (&data_transfer_h2d_stop);
+      dim3::dim3 (&block, 32, 8, 1);
+      D.67101 = block.y;
+      D.67102 = (float) D.67101;
+      D.67103 = 4.096e+3 / D.67102;
+      D.67104 = std::ceil (D.67103);
+      D.67105 = (long unsigned int) D.67104;
+      D.67106 = (unsigned int) D.67105;
+      D.67107 = block.x;
+      D.67108 = (float) D.67107;
+      D.67109 = 4.096e+3 / D.67108;
+      D.67110 = std::ceil (D.67109);
+      D.67111 = (long unsigned int) D.67110;
+      D.67112 = (unsigned int) D.67111;
+      dim3::dim3 (&grid, D.67112, D.67106, 1);
+      hookomp_timing_start (&dev_kernel1_start);
+      D.67113 = cudaConfigureCall (grid, block, 0, 0B);
+      if (D.67113 == 0) goto <D.67114>; else goto <D.67115>;
+      <D.67114>:
+      C_gpu.47 = C_gpu;
+      B_gpu.46 = B_gpu;
+      A_gpu.45 = A_gpu;
+      gemm_cuda_kernel (ni, nj, nk, alpha, beta, A_gpu.45, B_gpu.46, C_gpu.47);
+      goto <D.67116>;
+      <D.67115>:
+      <D.67116>:
+      cudaThreadSynchronize ();
+      hookomp_timing_stop (&dev_kernel1_stop);
+      hookomp_timing_start (&data_transfer_d2h_start);
+      D.67097 = 134217728;
+      C_gpu.47 = C_gpu;
+      cudaMemcpy (C_outputFromGpu, C_gpu.47, D.67097, 2);
+      hookomp_timing_stop (&data_transfer_d2h_stop);
+      A_gpu.45 = A_gpu;
+      cudaFree (A_gpu.45);
+      B_gpu.46 = B_gpu;
+      cudaFree (B_gpu.46);
+      C_gpu.47 = C_gpu;
+      cudaFree (C_gpu.47);
+    }
+  finally
+    {
+      A_gpu = {CLOBBER};
+      B_gpu = {CLOBBER};
+      C_gpu = {CLOBBER};
+      block = {CLOBBER};
+      grid = {CLOBBER};
+    }
+}
+
+
+float std::ceil(float) (float __x)
+{
+  float D.67119;
+
+  D.67119 = __builtin_ceilf (__x);
+  return D.67119;
+}
+
+
+dim3::dim3(unsigned int, unsigned int, unsigned int) (struct dim3 * const this, unsigned int vx, unsigned int vy, unsigned int vz)
+{
+  this->x = vx;
+  this->y = vy;
+  this->z = vz;
+}
+
+
+int main(int, char**) (int argc, char * * argv)
+{
+  void * A.48;
+  void * B.49;
+  void * C.50;
+  void * C_inputToGpu.51;
+  void * C_outputFromGpu.52;
+  struct _IO_FILE * stderr.53;
+  int D.67127;
+  long unsigned int D.67128;
+  long unsigned int D.67129;
+  void * D.67130;
+  void * D.67131;
+  void * * D.67132;
+  void * * D.67133;
+  void * * D.67134;
+  void * * D.67135;
+  void * * D.67136;
+  void * * D.67137;
+  void * * D.67138;
+  void * * D.67139;
+  void * * D.67140;
+  void * * D.67141;
+  void * * D.67142;
+  void * * D.67143;
+  struct ffi_type * * D.67144;
+  struct ffi_type * * D.67145;
+  struct ffi_type * * D.67146;
+  struct ffi_type * * D.67147;
+  struct ffi_type * * D.67148;
+  struct ffi_type * * D.67149;
+  struct ffi_type * * D.67150;
+  struct ffi_type * * D.67151;
+  struct ffi_type * * D.67152;
+  struct ffi_type * * D.67153;
+  struct ffi_type * * D.67154;
+  bool retval.54;
+  struct Func * * * table.55;
+  struct Func * * D.67161;
+  struct Func * * D.67162;
+  struct Func * D.67163;
+  struct Func * * * TablePointerFunctions.56;
+  double[4096][4096] * C.57;
+  double[4096][4096] * B.58;
+  double[4096][4096] * A.59;
+  int nk.60;
+  int nj.61;
+  int ni.62;
+  double[4096][4096] * C_outputFromGpu.63;
+  double beta.64;
+  double alpha.65;
+  struct _IO_FILE * stdout.66;
+  char * D.67180;
+  unsigned char D.67181;
+  int D.67185;
+
+  {
+    int ni;
+    int nj;
+    int nk;
+    double alpha;
+    double beta;
+    double[4096][4096] * A;
+    double[4096][4096] * B;
+    double[4096][4096] * C;
+    double[4096][4096] * C_outputFromOMP;
+    double[4096][4096] * C_inputToGpu;
+    double[4096][4096] * C_outputFromGpu;
+    int n_params;
+    struct Func * ff_0;
+    int nloops;
+    int ndevices;
+    static const char __PRETTY_FUNCTION__[22] = "int main(int, char**)";
+
+    try
+      {
+        ni = 4096;
+        nj = 4096;
+        nk = 4096;
+        A.48 = polybench_alloc_data (16777216, 8);
+        A = A.48;
+        B.49 = polybench_alloc_data (16777216, 8);
+        B = B.49;
+        C.50 = polybench_alloc_data (16777216, 8);
+        C = C.50;
+        C_outputFromOMP = polybench_alloc_data (16777216, 8);
+        C_inputToGpu.51 = polybench_alloc_data (16777216, 8);
+        C_inputToGpu = C_inputToGpu.51;
+        C_outputFromGpu.52 = polybench_alloc_data (16777216, 8);
+        C_outputFromGpu = C_outputFromGpu.52;
+        stderr.53 = stderr;
+        __builtin_fwrite ("Preparing alternatives functions.\n", 1, 34, stderr.53);
+        n_params = 10;
+        ff_0 = malloc (48);
+        D.67127 = n_params + 1;
+        D.67128 = (long unsigned int) D.67127;
+        D.67129 = D.67128 * 8;
+        D.67130 = malloc (D.67129);
+        ff_0->arg_types = D.67130;
+        D.67127 = n_params + 1;
+        D.67128 = (long unsigned int) D.67127;
+        D.67129 = D.67128 * 8;
+        D.67131 = malloc (D.67129);
+        ff_0->arg_values = D.67131;
+        ff_0->f = gemm_cuda;
+        D.67132 = &ff_0->ret_value;
+        memset (D.67132, 0, 8);
+        ff_0->ret_type = &ffi_type_void;
+        ff_0->nargs = n_params;
+        D.67133 = ff_0->arg_values;
+        *D.67133 = &ni;
+        D.67133 = ff_0->arg_values;
+        D.67134 = D.67133 + 8;
+        *D.67134 = &nj;
+        D.67133 = ff_0->arg_values;
+        D.67135 = D.67133 + 16;
+        *D.67135 = &nk;
+        D.67133 = ff_0->arg_values;
+        D.67136 = D.67133 + 24;
+        *D.67136 = &alpha;
+        D.67133 = ff_0->arg_values;
+        D.67137 = D.67133 + 32;
+        *D.67137 = &beta;
+        D.67133 = ff_0->arg_values;
+        D.67138 = D.67133 + 40;
+        *D.67138 = &A;
+        D.67133 = ff_0->arg_values;
+        D.67139 = D.67133 + 48;
+        *D.67139 = &B;
+        D.67133 = ff_0->arg_values;
+        D.67140 = D.67133 + 56;
+        *D.67140 = &C;
+        D.67133 = ff_0->arg_values;
+        D.67141 = D.67133 + 64;
+        *D.67141 = &C_inputToGpu;
+        D.67133 = ff_0->arg_values;
+        D.67142 = D.67133 + 72;
+        *D.67142 = &C_outputFromGpu;
+        D.67133 = ff_0->arg_values;
+        D.67143 = D.67133 + 80;
+        *D.67143 = 0B;
+        D.67144 = ff_0->arg_types;
+        *D.67144 = &ffi_type_sint32;
+        D.67144 = ff_0->arg_types;
+        D.67145 = D.67144 + 8;
+        *D.67145 = &ffi_type_sint32;
+        D.67144 = ff_0->arg_types;
+        D.67146 = D.67144 + 16;
+        *D.67146 = &ffi_type_sint32;
+        D.67144 = ff_0->arg_types;
+        D.67147 = D.67144 + 24;
+        *D.67147 = &ffi_type_double;
+        D.67144 = ff_0->arg_types;
+        D.67148 = D.67144 + 32;
+        *D.67148 = &ffi_type_double;
+        D.67144 = ff_0->arg_types;
+        D.67149 = D.67144 + 40;
+        *D.67149 = &ffi_type_pointer;
+        D.67144 = ff_0->arg_types;
+        D.67150 = D.67144 + 48;
+        *D.67150 = &ffi_type_pointer;
+        D.67144 = ff_0->arg_types;
+        D.67151 = D.67144 + 56;
+        *D.67151 = &ffi_type_pointer;
+        D.67144 = ff_0->arg_types;
+        D.67152 = D.67144 + 64;
+        *D.67152 = &ffi_type_pointer;
+        D.67144 = ff_0->arg_types;
+        D.67153 = D.67144 + 72;
+        *D.67153 = &ffi_type_pointer;
+        D.67144 = ff_0->arg_types;
+        D.67154 = D.67144 + 80;
+        *D.67154 = 0B;
+        stderr.53 = stderr;
+        __builtin_fwrite ("Creating table of target functions.\n", 1, 36, stderr.53);
+        nloops = 1;
+        ndevices = 2;
+        retval.54 = create_target_functions_table (&table, nloops, ndevices);
+        if (retval.54 != 0) goto <D.67156>; else goto <D.67157>;
+        <D.67156>:
+        table.55 = table;
+        if (table.55 == 0B) goto <D.67159>; else goto <D.67160>;
+        <D.67159>:
+        __assert_fail ("table != __null", "gemm.cu", 402, &__PRETTY_FUNCTION__);
+        <D.67160>:
+        stderr.53 = stderr;
+        __builtin_fwrite ("Declaring function in 0,1.\n", 1, 27, stderr.53);
+        table.55 = table;
+        D.67161 = *table.55;
+        D.67162 = D.67161 + 8;
+        D.67163 = *D.67162;
+        *D.67163 = MEM[(const struct Func &)ff_0];
+        table.55 = table;
+        TablePointerFunctions = table.55;
+        TablePointerFunctions.56 = TablePointerFunctions;
+        if (TablePointerFunctions.56 == 0B) goto <D.67165>; else goto <D.67166>;
+        <D.67165>:
+        __assert_fail ("TablePointerFunctions != __null", "gemm.cu", 408, &__PRETTY_FUNCTION__);
+        <D.67166>:
+        goto <D.67167>;
+        <D.67157>:
+        <D.67167>:
+        stderr.53 = stderr;
+        __builtin_fwrite ("Calling init_array.\n", 1, 20, stderr.53);
+        C.57 = C;
+        B.58 = B;
+        A.59 = A;
+        nk.60 = nk;
+        nj.61 = nj;
+        ni.62 = ni;
+        init_array (ni.62, nj.61, nk.60, &alpha, &beta, A.59, B.58, C.57);
+        C.57 = C;
+        nj.61 = nj;
+        ni.62 = ni;
+        copy_array (ni.62, nj.61, C.57, C_outputFromOMP);
+        C_outputFromGpu.63 = C_outputFromGpu;
+        C.57 = C;
+        nj.61 = nj;
+        ni.62 = ni;
+        copy_array (ni.62, nj.61, C.57, C_outputFromGpu.63);
+        stderr.53 = stderr;
+        __builtin_fwrite ("Calling gemm_omp:\n", 1, 18, stderr.53);
+        B.58 = B;
+        A.59 = A;
+        beta.64 = beta;
+        alpha.65 = alpha;
+        nk.60 = nk;
+        nj.61 = nj;
+        ni.62 = ni;
+        gemm_omp (ni.62, nj.61, nk.60, alpha.65, beta.64, A.59, B.58, C_outputFromOMP);
+        stdout.66 = stdout;
+        fprintf (stdout.66, "version = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 8, 4096, 4096, 4096);
+        hookomp_print_time_results ();
+        stderr.53 = stderr;
+        __builtin_fwrite ("Calling compareResults(original, omp).\n", 1, 39, stderr.53);
+        C.57 = C;
+        nj.61 = nj;
+        ni.62 = ni;
+        compareResults (ni.62, nj.61, C.57, C_outputFromOMP);
+        stderr.53 = stderr;
+        __builtin_fwrite ("Calling compareResults(original, cuda).\n", 1, 40, stderr.53);
+        C_outputFromGpu.63 = C_outputFromGpu;
+        C.57 = C;
+        nj.61 = nj;
+        ni.62 = ni;
+        compareResults (ni.62, nj.61, C.57, C_outputFromGpu.63);
+        if (argc > 42) goto <D.67178>; else goto <D.67179>;
+        <D.67178>:
+        D.67180 = *argv;
+        D.67181 = MEM[(const unsigned char * {ref-all})D.67180];
+        if (D.67181 == 0) goto <D.67182>; else goto <D.67183>;
+        <D.67182>:
+        C_outputFromGpu.63 = C_outputFromGpu;
+        nj.61 = nj;
+        ni.62 = ni;
+        print_array (ni.62, nj.61, C_outputFromGpu.63);
+        goto <D.67184>;
+        <D.67183>:
+        <D.67184>:
+        <D.67179>:
+        A.59 = A;
+        free (A.59);
+        B.58 = B;
+        free (B.58);
+        C.57 = C;
+        free (C.57);
+        free (C_outputFromOMP);
+        C_outputFromGpu.63 = C_outputFromGpu;
+        free (C_outputFromGpu.63);
+        D.67185 = 0;
+        return D.67185;
+      }
+    finally
+      {
+        ni = {CLOBBER};
+        nj = {CLOBBER};
+        nk = {CLOBBER};
+        alpha = {CLOBBER};
+        beta = {CLOBBER};
+        A = {CLOBBER};
+        B = {CLOBBER};
+        C = {CLOBBER};
+        C_inputToGpu = {CLOBBER};
+        C_outputFromGpu = {CLOBBER};
+      }
+  }
+  D.67185 = 0;
+  return D.67185;
+}
+
+
+void print_array(int, int, double (*)[4096]) (int ni, int nj, double[4096] * C)
+{
+  long unsigned int D.67196;
+  long unsigned int D.67197;
+  double[4096] * D.67198;
+  double D.67199;
+  struct _IO_FILE * stderr.67;
+  int D.67201;
+  int D.67202;
+  int D.67203;
+  int i;
+  int j;
+
+  i = 0;
+  goto <D.66121>;
+  <D.66120>:
+  j = 0;
+  goto <D.66119>;
+  <D.66118>:
+  D.67196 = (long unsigned int) i;
+  D.67197 = D.67196 * 32768;
+  D.67198 = C + D.67197;
+  D.67199 = *D.67198[j];
+  stderr.67 = stderr;
+  fprintf (stderr.67, "%0.2lf ", D.67199);
+  D.67201 = i * ni;
+  D.67202 = D.67201 + j;
+  D.67203 = D.67202 % 20;
+  if (D.67203 == 0) goto <D.67204>; else goto <D.67205>;
+  <D.67204>:
+  stderr.67 = stderr;
+  __builtin_fputc (10, stderr.67);
+  goto <D.67206>;
+  <D.67205>:
+  <D.67206>:
+  j = j + 1;
+  <D.66119>:
+  if (j < nj) goto <D.66118>; else goto <D.66116>;
+  <D.66116>:
+  i = i + 1;
+  <D.66121>:
+  if (i < ni) goto <D.66120>; else goto <D.66114>;
+  <D.66114>:
+  stderr.67 = stderr;
+  __builtin_fputc (10, stderr.67);
+}
+
+
+void polybench_flush_cache() ()
+{
+  long unsigned int D.67207;
+  long unsigned int D.67208;
+  long unsigned int D.67209;
+  long unsigned int D.67210;
+  double * D.67211;
+  double D.67212;
+  int cs;
+  double * flush;
+  int i;
+  double tmp;
+  static const char __PRETTY_FUNCTION__[29] = "void polybench_flush_cache()";
+
+  D.67207 = 4194560;
+  cs = (int) D.67207;
+  D.67208 = (long unsigned int) cs;
+  flush = calloc (D.67208, 8);
+  tmp = 0.0;
+  i = 0;
+  goto <D.66480>;
+  <D.66479>:
+  D.67209 = (long unsigned int) i;
+  D.67210 = D.67209 * 8;
+  D.67211 = flush + D.67210;
+  D.67212 = *D.67211;
+  tmp = D.67212 + tmp;
+  i = i + 1;
+  <D.66480>:
+  if (i < cs) goto <D.66479>; else goto <D.66477>;
+  <D.66477>:
+  if (tmp <= 1.0e+1) goto <D.67213>; else goto <D.67214>;
+  <D.67213>:
+  goto <D.67215>;
+  <D.67214>:
+  __assert_fail ("tmp <= 10.0", "../../../utilities/polybench.c", 96, &__PRETTY_FUNCTION__);
+  <D.67215>:
+  free (flush);
+}
+
+
+void polybench_prepare_instruments() ()
+{
+  polybench_flush_cache ();
+}
+
+
+void polybench_timer_start() ()
+{
+  double polybench_t_start.68;
+
+  polybench_prepare_instruments ();
+  polybench_t_start.68 = rtclock ();
+  polybench_t_start = polybench_t_start.68;
+}
+
+
+double rtclock() ()
+{
+  double D.67221;
+  long int D.67222;
+  double D.67223;
+  long int D.67224;
+  double D.67225;
+  double D.67226;
+  struct timeval Tp;
+  int stat;
+
+  try
+    {
+      stat = gettimeofday (&Tp, 0B);
+      if (stat != 0) goto <D.67218>; else goto <D.67219>;
+      <D.67218>:
+      printf ("Error return from gettimeofday: %d", stat);
+      goto <D.67220>;
+      <D.67219>:
+      <D.67220>:
+      D.67222 = Tp.tv_sec;
+      D.67223 = (double) D.67222;
+      D.67224 = Tp.tv_usec;
+      D.67225 = (double) D.67224;
+      D.67226 = D.67225 * 9.99999999999999954748111825886258685613938723690807819366e-7;
+      D.67221 = D.67223 + D.67226;
+      return D.67221;
+    }
+  finally
+    {
+      Tp = {CLOBBER};
+    }
+}
+
+
+void polybench_timer_stop() ()
+{
+  double polybench_t_end.69;
+
+  polybench_t_end.69 = rtclock ();
+  polybench_t_end = polybench_t_end.69;
+}
+
+
+void polybench_timer_print() ()
+{
+  double polybench_t_end.70;
+  double polybench_t_start.71;
+  double D.67234;
+
+  polybench_t_end.70 = polybench_t_end;
+  polybench_t_start.71 = polybench_t_start;
+  D.67234 = polybench_t_end.70 - polybench_t_start.71;
+  printf ("%0.6f\n", D.67234);
+}
+
+
+void* polybench_alloc_data(long long unsigned int, int) (long long unsigned int n, int elt_size)
+{
+  long unsigned int D.67235;
+  void * D.67236;
+  size_t val;
+  void * ret;
+
+  val = n;
+  D.67235 = (long unsigned int) elt_size;
+  val = D.67235 * val;
+  ret = xmalloc (val);
+  D.67236 = ret;
+  return D.67236;
+}
+
+
+void* xmalloc(size_t) (size_t num)
+{
+  void * newA.72;
+  struct _IO_FILE * stderr.73;
+  void * D.67244;
+  void * newA;
+  int ret;
+
+  try
+    {
+      newA = 0B;
+      ret = posix_memalign (&newA, 32, num);
+      newA.72 = newA;
+      if (newA.72 == 0B) goto <D.67239>; else goto <D.67242>;
+      <D.67242>:
+      if (ret != 0) goto <D.67239>; else goto <D.67240>;
+      <D.67239>:
+      stderr.73 = stderr;
+      __builtin_fwrite ("[PolyBench] posix_memalign: cannot allocate memory", 1, 50, stderr.73);
+      exit (1);
+      <D.67240>:
+      D.67244 = newA;
+      return D.67244;
+    }
+  finally
+    {
+      newA = {CLOBBER};
+    }
+}
+
+
+void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*) (int __par0, int __par1, int __par2, double __par3, double __par4, double * __par5, double * __par6, double * __par7)
+{
+  bool retval.74;
+  cudaError D.67249;
+  bool retval.75;
+  cudaError D.67253;
+  bool retval.76;
+  cudaError D.67257;
+  bool retval.77;
+  cudaError D.67261;
+  bool retval.78;
+  cudaError D.67265;
+  bool retval.79;
+  cudaError D.67269;
+  bool retval.80;
+  cudaError D.67273;
+  bool retval.81;
+  cudaError D.67277;
+
+  D.67249 = cudaSetupArgument (&__par0, 4, 0);
+  retval.74 = D.67249 != 0;
+  if (retval.74 != 0) goto <D.67250>; else goto <D.67251>;
+  <D.67250>:
+  return;
+  <D.67251>:
+  D.67253 = cudaSetupArgument (&__par1, 4, 4);
+  retval.75 = D.67253 != 0;
+  if (retval.75 != 0) goto <D.67254>; else goto <D.67255>;
+  <D.67254>:
+  return;
+  <D.67255>:
+  D.67257 = cudaSetupArgument (&__par2, 4, 8);
+  retval.76 = D.67257 != 0;
+  if (retval.76 != 0) goto <D.67258>; else goto <D.67259>;
+  <D.67258>:
+  return;
+  <D.67259>:
+  D.67261 = cudaSetupArgument (&__par3, 8, 16);
+  retval.77 = D.67261 != 0;
+  if (retval.77 != 0) goto <D.67262>; else goto <D.67263>;
+  <D.67262>:
+  return;
+  <D.67263>:
+  D.67265 = cudaSetupArgument (&__par4, 8, 24);
+  retval.78 = D.67265 != 0;
+  if (retval.78 != 0) goto <D.67266>; else goto <D.67267>;
+  <D.67266>:
+  return;
+  <D.67267>:
+  D.67269 = cudaSetupArgument (&__par5, 8, 32);
+  retval.79 = D.67269 != 0;
+  if (retval.79 != 0) goto <D.67270>; else goto <D.67271>;
+  <D.67270>:
+  return;
+  <D.67271>:
+  D.67273 = cudaSetupArgument (&__par6, 8, 40);
+  retval.80 = D.67273 != 0;
+  if (retval.80 != 0) goto <D.67274>; else goto <D.67275>;
+  <D.67274>:
+  return;
+  <D.67275>:
+  D.67277 = cudaSetupArgument (&__par7, 8, 48);
+  retval.81 = D.67277 != 0;
+  if (retval.81 != 0) goto <D.67278>; else goto <D.67279>;
+  <D.67278>:
+  return;
+  <D.67279>:
+  {
+    static volatile char * __f;
+
+    __f = gemm_cuda_kernel;
+    cudaLaunch<char> (gemm_cuda_kernel);
+  }
+}
+
+
+cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (char * func)
+{
+  cudaError_t D.67289;
+
+  D.67289 = cudaLaunch (func);
+  return D.67289;
+}
+
+
+void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*) (int __cuda_0, int __cuda_1, int __cuda_2, double __cuda_3, double __cuda_4, double * __cuda_5, double * __cuda_6, double * __cuda_7)
+{
+  __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_ (__cuda_0, __cuda_1, __cuda_2, __cuda_3, __cuda_4, __cuda_5, __cuda_6, __cuda_7);
+}
+
+
+void __sti____cudaRegisterAll_39_tmpxft_000005b1_00000000_7_gemm_cpp1_ii_132e4611() ()
+{
+  void * * __cudaFatCubinHandle.82;
+  void * * __cudaFatCubinHandle.83;
+
+  __cudaFatCubinHandle.82 = __cudaRegisterFatBinary (&__fatDeviceText);
+  __cudaFatCubinHandle = __cudaFatCubinHandle.82;
+  {
+    void (*<T73ba>) (void * *) callback_fp;
+
+    callback_fp = __nv_cudaEntityRegisterCallback;
+    __cudaFatCubinHandle.83 = __cudaFatCubinHandle;
+    callback_fp (__cudaFatCubinHandle.83);
+  }
+  atexit (__cudaUnregisterBinaryUtil);
+}
+
+
+void __cudaUnregisterBinaryUtil() ()
+{
+  void * * __cudaFatCubinHandle.84;
+
+  ____nv_dummy_param_ref (&__cudaFatCubinHandle);
+  __cudaFatCubinHandle.84 = __cudaFatCubinHandle;
+  __cudaUnregisterFatBinary (__cudaFatCubinHandle.84);
+}
+
+
+void ____nv_dummy_param_ref(void*) (void * param)
+{
+  static volatile void * * __ref;
+
+  __ref = param;
+}
+
+
+void __nv_cudaEntityRegisterCallback(void**) (void * * __T26)
+{
+  {
+    static volatile void * * __ref;
+
+    __ref = __T26;
+  }
+  __nv_save_fatbinhandle_for_managed_rt (__T26);
+  __cudaRegisterFunction (__T26, gemm_cuda_kernel, "_Z16gemm_cuda_kerneliiiddPdS_S_", "_Z16gemm_cuda_kerneliiiddPdS_S_", -1, 0B, 0B, 0B, 0B, 0B);
+}
+
+
+void __nv_save_fatbinhandle_for_managed_rt(void**) (void * * in)
+{
+  __nv_fatbinhandle_for_managed_rt = in;
+}
+
+
+<built-in> (struct .omp_data_s.41 * .omp_data_i)
+{
+  double[4096] * C [value-expr: .omp_data_i->C];
+  double[4096] * B [value-expr: .omp_data_i->B];
+  double[4096] * A [value-expr: .omp_data_i->A];
+  double beta [value-expr: .omp_data_i->beta];
+  double alpha [value-expr: .omp_data_i->alpha];
+  int nk [value-expr: .omp_data_i->nk];
+  int nj [value-expr: .omp_data_i->nj];
+  int ni [value-expr: .omp_data_i->ni];
+  double D.67428;
+  double D.67427;
+  double D.67426;
+  double[4096] * D.67425;
+  double[4096] * D.67424;
+  long unsigned int D.67423;
+  long unsigned int D.67422;
+  double D.67421;
+  double D.67420;
+  double D.67419;
+  double[4096] * D.67418;
+  double[4096] * D.67417;
+  double[4096] * D.67416;
+  double[4096] * D.67415;
+  int D.67414;
+  int k;
+  double D.67412;
+  double D.67411;
+  double D.67410;
+  double[4096] * D.67409;
+  double[4096] * D.67408;
+  double[4096] * D.67407;
+  long unsigned int D.67406;
+  long unsigned int D.67405;
+  bool D.67404;
+  int D.67403;
+  int j;
+  int D.67401;
+  long int .iend0.113;
+  int i;
+  long int .istart0.112;
+  bool D.67397;
+  long int .iend0.111;
+  long int .istart0.110;
+  long int D.67394;
+  int D.67393;
+  long long int q_data_transfer_read.40;
+  long unsigned int D.67391;
+  long long int q_data_transfer_write.39;
+  long unsigned int D.67389;
+  long unsigned int D.67388;
+  long unsigned int D.67387;
+
+  <bb 16>:
+
+  <bb 3>:
+  current_loop_index = 0;
+  num_threads_defined = 8;
+  D.67387 = 16;
+  D.67388 = D.67387 + 8;
+  D.67389 = D.67388 * 16777216;
+  q_data_transfer_write.39 = (long long int) D.67389;
+  q_data_transfer_write = q_data_transfer_write.39;
+  D.67391 = 134217728;
+  q_data_transfer_read.40 = (long long int) D.67391;
+  q_data_transfer_read = q_data_transfer_read.40;
+  type_of_data_allocation = 1;
+  D.67393 = .omp_data_i->ni;
+  D.67394 = (long int) D.67393;
+  D.67397 = __builtin_GOMP_loop_dynamic_start (0, D.67394, 1, 64, &.istart0.110, &.iend0.111);
+  if (D.67397 != 0)
+    goto <bb 14>;
+  else
+    goto <bb 11>;
+
+  <bb 14>:
+  .istart0.112 = .istart0.110;
+  i = (int) .istart0.112;
+  .iend0.113 = .iend0.111;
+  D.67401 = (int) .iend0.113;
+
+  <bb 4>:
+  j = 0;
+
+  <bb 9>:
+  D.67403 = .omp_data_i->nj;
+  if (j < D.67403)
+    goto <bb 5>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  i = i + 1;
+  if (i < D.67401)
+    goto <bb 4>;
+  else
+    goto <bb 15>;
+
+  <bb 15>:
+  D.67404 = __builtin_GOMP_loop_dynamic_next (&.istart0.110, &.iend0.111);
+  if (D.67404 != 0)
+    goto <bb 14>;
+  else
+    goto <bb 11>;
+
+  <bb 5>:
+  D.67405 = (long unsigned int) i;
+  D.67406 = D.67405 * 32768;
+  D.67407 = .omp_data_i->C;
+  D.67408 = D.67407 + D.67406;
+  D.67405 = (long unsigned int) i;
+  D.67406 = D.67405 * 32768;
+  D.67409 = .omp_data_i->C;
+  D.67408 = D.67409 + D.67406;
+  D.67410 = *D.67408[j];
+  D.67411 = .omp_data_i->beta;
+  D.67412 = D.67410 * D.67411;
+  *D.67408[j] = D.67412;
+  k = 0;
+
+  <bb 7>:
+  D.67414 = .omp_data_i->nk;
+  if (k < D.67414)
+    goto <bb 6>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  j = j + 1;
+  goto <bb 9>;
+
+  <bb 6>:
+  D.67405 = (long unsigned int) i;
+  D.67406 = D.67405 * 32768;
+  D.67415 = .omp_data_i->C;
+  D.67408 = D.67415 + D.67406;
+  D.67405 = (long unsigned int) i;
+  D.67406 = D.67405 * 32768;
+  D.67416 = .omp_data_i->C;
+  D.67408 = D.67416 + D.67406;
+  D.67410 = *D.67408[j];
+  D.67405 = (long unsigned int) i;
+  D.67406 = D.67405 * 32768;
+  D.67417 = .omp_data_i->A;
+  D.67418 = D.67417 + D.67406;
+  D.67419 = *D.67418[k];
+  D.67420 = .omp_data_i->alpha;
+  D.67421 = D.67419 * D.67420;
+  D.67422 = (long unsigned int) k;
+  D.67423 = D.67422 * 32768;
+  D.67424 = .omp_data_i->B;
+  D.67425 = D.67424 + D.67423;
+  D.67426 = *D.67425[j];
+  D.67427 = D.67421 * D.67426;
+  D.67428 = D.67410 + D.67427;
+  *D.67408[j] = D.67428;
+  k = k + 1;
+  goto <bb 7>;
+
+  <bb 11>:
+  __builtin_GOMP_loop_end_nowait ();
+
+  <bb 12>:
+  return;
+
+}
+
+

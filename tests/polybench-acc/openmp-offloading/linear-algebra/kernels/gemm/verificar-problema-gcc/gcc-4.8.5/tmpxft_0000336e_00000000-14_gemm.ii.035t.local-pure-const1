@@ -1,0 +1,2929 @@
+
+;; Function void __nv_save_fatbinhandle_for_managed_rt(void**) (_ZL37__nv_save_fatbinhandle_for_managed_rtPPv, funcdef_no=0, decl_uid=2204, cgraph_uid=0)
+
+
+
+ local analysis of void __nv_save_fatbinhandle_for_managed_rt(void**)
+   scanning: __nv_fatbinhandle_for_managed_rt = in_2(D);
+    static/global memory write is not const/pure
+  scanning: return;
+void __nv_save_fatbinhandle_for_managed_rt(void**) (void * * in)
+{
+  <bb 2>:
+  __nv_fatbinhandle_for_managed_rt = in_2(D);
+  return;
+
+}
+
+
+
+;; Function int fprintf(FILE*, const char*, ...) (<unset-asm-name>, funcdef_no=3212, decl_uid=1062, cgraph_uid=3034)
+
+
+
+ local analysis of int fprintf(FILE*, const char*, ...)
+   scanning: _5 = __fprintf_chk (__stream_2(D), 1, __fmt_3(D), __builtin_va_arg_pack ());
+    can throw externally to lp 0
+     callee:__fprintf_chk
+Function is locally looping.
+Function is locally throwing.
+int fprintf(FILE*, const char*, ...) (struct FILE * restrict __stream, const char * restrict __fmt)
+{
+  int _5;
+
+  <bb 2>:
+  _5 = __fprintf_chk (__stream_2(D), 1, __fmt_3(D), __builtin_va_arg_pack ());
+  return _5;
+
+}
+
+
+
+;; Function int printf(const char*, ...) (<unset-asm-name>, funcdef_no=3213, decl_uid=1095, cgraph_uid=3035)
+
+
+
+ local analysis of int printf(const char*, ...)
+   scanning: _4 = __printf_chk (1, __fmt_2(D), __builtin_va_arg_pack ());
+    can throw externally to lp 0
+     callee:__printf_chk
+Function is locally looping.
+Function is locally throwing.
+int printf(const char*, ...) (const char * restrict __fmt)
+{
+  int _4;
+
+  <bb 2>:
+  _4 = __printf_chk (1, __fmt_2(D), __builtin_va_arg_pack ());
+  return _4;
+
+}
+
+
+
+;; Function void print_array(int, int, double (*)[4096]) (_ZL11print_arrayiiPA4096_d, funcdef_no=3261, decl_uid=66754, cgraph_uid=3083)
+
+
+
+ local analysis of void print_array(int, int, double (*)[4096])
+   scanning: _11 = (long unsigned int) i_1;
+  scanning: _12 = _11 * 32768;
+  scanning: _14 = C_13(D) + _12;
+  scanning: _15 = *_14[j_2];
+    Indirect ref read is not const
+  scanning: stderr.67_16 = stderr;
+    global memory read is not const
+  scanning: __fprintf_chk (stderr.67_16, 1, "%0.2lf ", _15);
+    can throw externally to lp 0
+     callee:__fprintf_chk
+Function is locally looping.
+Function is locally throwing.
+void print_array(int, int, double (*)[4096]) (int ni, int nj, double[4096] * C)
+{
+  int D.67964;
+  int D.67961;
+  int D.67958;
+  int j;
+  int i;
+  struct _IO_FILE * stderr.67;
+  long unsigned int _11;
+  long unsigned int _12;
+  double[4096] * _14;
+  double _15;
+  int _18;
+  int _19;
+  int _20;
+
+  <bb 2>:
+  goto <bb 8>;
+
+  <bb 3>:
+  _11 = (long unsigned int) i_1;
+  _12 = _11 * 32768;
+  _14 = C_13(D) + _12;
+  _15 = *_14[j_2];
+  stderr.67_16 = stderr;
+  __fprintf_chk (stderr.67_16, 1, "%0.2lf ", _15);
+  _18 = i_1 * ni_8(D);
+  _19 = _18 + j_2;
+  _20 = _19 % 20;
+  if (_20 == 0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  stderr.67_21 = stderr;
+  __fprintf_chk (stderr.67_21, 1, "\n");
+
+  <bb 5>:
+  j_23 = j_2 + 1;
+
+  <bb 6>:
+  # j_2 = PHI <j_9(9), j_23(5)>
+  if (j_2 < nj_10(D))
+    goto <bb 3>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  i_24 = i_1 + 1;
+
+  <bb 8>:
+  # i_1 = PHI <0(2), i_24(7)>
+  if (i_1 < ni_8(D))
+    goto <bb 9>;
+  else
+    goto <bb 10>;
+
+  <bb 9>:
+  # j_9 = PHI <0(8)>
+  goto <bb 6>;
+
+  <bb 10>:
+  stderr.67_25 = stderr;
+  __fprintf_chk (stderr.67_25, 1, "\n");
+  return;
+
+}
+
+
+
+;; Function void ____nv_dummy_param_ref(void*) (_ZL22____nv_dummy_param_refPv, funcdef_no=3278, decl_uid=67150, cgraph_uid=3099)
+
+
+
+ local analysis of void ____nv_dummy_param_ref(void*)
+   scanning: __ref = param_2(D);
+    static/global memory write is not const/pure
+  scanning: return;
+void ____nv_dummy_param_ref(void*) (void * param)
+{
+  static volatile void * * __ref;
+
+  <bb 2>:
+  __ref = param_2(D);
+  return;
+
+}
+
+
+
+;; Function double rtclock() (_ZL7rtclockv, funcdef_no=3269, decl_uid=67110, cgraph_uid=3091)
+
+
+
+ local analysis of double rtclock()
+   scanning: stat_4 = gettimeofday (&Tp, 0B);
+  scanning: if (stat_4 != 0)
+  scanning: __printf_chk (1, "Error return from gettimeofday: %d", stat_4);
+    can throw externally to lp 0
+     callee:__printf_chk
+Function is locally looping.
+Function is locally throwing.
+double rtclock() ()
+{
+  int D.67970;
+  int stat;
+  struct timeval Tp;
+  long int _7;
+  double _8;
+  long int _9;
+  double _10;
+  double _11;
+  double _12;
+
+  <bb 2>:
+  stat_4 = gettimeofday (&Tp, 0B);
+  if (stat_4 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  __printf_chk (1, "Error return from gettimeofday: %d", stat_4);
+
+  <bb 4>:
+  _7 = Tp.tv_sec;
+  _8 = (double) _7;
+  _9 = Tp.tv_usec;
+  _10 = (double) _9;
+  _11 = _10 * 9.99999999999999954748111825886258685613938723690807819366e-7;
+  _12 = _8 + _11;
+  Tp ={v} {CLOBBER};
+  return _12;
+
+}
+
+
+
+;; Function void* xmalloc(size_t) (_ZL7xmallocm, funcdef_no=3275, decl_uid=67134, cgraph_uid=3097)
+
+
+
+ local analysis of void* xmalloc(size_t)
+   scanning: newA = 0B;
+  scanning: ret_5 = posix_memalign (&newA, 32, num_3(D));
+  scanning: newA.72_6 = newA;
+  scanning: if (newA.72_6 == 0B)
+  scanning: if (ret_5 != 0)
+  scanning: stderr.73_9 = stderr;
+    global memory read is not const
+  scanning: __fprintf_chk (stderr.73_9, 1, "[PolyBench] posix_memalign: cannot allocate memory");
+    can throw externally to lp 0
+     callee:__fprintf_chk
+Function is locally looping.
+Function is locally throwing.
+void* xmalloc(size_t) (size_t num)
+{
+  int D.67975;
+  int ret;
+  void * newA;
+  struct _IO_FILE * stderr.73;
+  void * newA.72;
+
+  <bb 2>:
+  newA = 0B;
+  ret_5 = posix_memalign (&newA, 32, num_3(D));
+  newA.72_6 = newA;
+  if (newA.72_6 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  if (ret_5 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  stderr.73_9 = stderr;
+  __fprintf_chk (stderr.73_9, 1, "[PolyBench] posix_memalign: cannot allocate memory");
+  exit (1);
+
+  <bb 5>:
+  newA ={v} {CLOBBER};
+  return newA.72_6;
+
+}
+
+
+
+;; Function cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (_Z10cudaLaunchIcE9cudaErrorPT_, funcdef_no=3305, decl_uid=67478, cgraph_uid=3126)
+
+
+
+ local analysis of cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError]
+   scanning: _4 = cudaLaunch (func_2(D));
+    can throw externally to lp 0
+     callee:cudaLaunch
+Function is locally looping.
+Function is locally throwing.
+cudaError_t cudaLaunch(T*) [with T = char; cudaError_t = cudaError] (char * func)
+{
+  cudaError_t _4;
+
+  <bb 2>:
+  _4 = cudaLaunch (func_2(D));
+  return _4;
+
+}
+
+
+
+;; Function void __cudaUnregisterBinaryUtil() (_ZL26__cudaUnregisterBinaryUtilv, funcdef_no=3279, decl_uid=67214, cgraph_uid=3100)
+
+
+
+ local analysis of void __cudaUnregisterBinaryUtil()
+   scanning: __ref = &__cudaFatCubinHandle;
+    static/global memory write is not const/pure
+  scanning: __cudaFatCubinHandle.84_3 = __cudaFatCubinHandle;
+    static memory read is not const
+  scanning: __cudaUnregisterFatBinary (__cudaFatCubinHandle.84_3);
+    can throw externally to lp 0
+     callee:__cudaUnregisterFatBinary
+Function is locally looping.
+Function is locally throwing.
+void __cudaUnregisterBinaryUtil() ()
+{
+  static volatile void * * __ref;
+  void * * __cudaFatCubinHandle.84;
+
+  <bb 2>:
+  __ref = &__cudaFatCubinHandle;
+  __cudaFatCubinHandle.84_3 = __cudaFatCubinHandle;
+  __cudaUnregisterFatBinary (__cudaFatCubinHandle.84_3);
+  return;
+
+}
+
+
+
+;; Function void __nv_cudaEntityRegisterCallback(void**) (_ZL31__nv_cudaEntityRegisterCallbackPPv, funcdef_no=3303, decl_uid=67449, cgraph_uid=3124)
+
+
+
+ local analysis of void __nv_cudaEntityRegisterCallback(void**)
+   scanning: __ref = __T26_2(D);
+    static/global memory write is not const/pure
+  scanning: __nv_fatbinhandle_for_managed_rt = __T26_2(D);
+    static/global memory write is not const/pure
+  scanning: __cudaRegisterFunction (__T26_2(D), gemm_cuda_kernel, "_Z16gemm_cuda_kerneliiiddPdS_S_", "_Z16gemm_cuda_kerneliiiddPdS_S_", -1, 0B, 0B, 0B, 0B, 0B);
+    can throw externally to lp 0
+     callee:__cudaRegisterFunction
+Function is locally looping.
+Function is locally throwing.
+void __nv_cudaEntityRegisterCallback(void**) (void * * __T26)
+{
+  static volatile void * * __ref;
+
+  <bb 2>:
+  __ref = __T26_2(D);
+  __nv_fatbinhandle_for_managed_rt = __T26_2(D);
+  __cudaRegisterFunction (__T26_2(D), gemm_cuda_kernel, "_Z16gemm_cuda_kerneliiiddPdS_S_", "_Z16gemm_cuda_kerneliiiddPdS_S_", -1, 0B, 0B, 0B, 0B, 0B);
+  return;
+
+}
+
+
+
+;; Function dim3::dim3(unsigned int, unsigned int, unsigned int) (_ZN4dim3C2Ejjj, funcdef_no=3, decl_uid=3003, cgraph_uid=3)
+
+
+
+ local analysis of dim3::dim3(unsigned int, unsigned int, unsigned int)
+   scanning: this_2(D)->x = vx_3(D);
+    Indirect ref write is not const/pure
+  scanning: this_2(D)->y = vy_5(D);
+    Indirect ref write is not const/pure
+  scanning: this_2(D)->z = vz_7(D);
+    Indirect ref write is not const/pure
+  scanning: return;
+dim3::dim3(unsigned int, unsigned int, unsigned int) (struct dim3 * const this, unsigned int vx, unsigned int vy, unsigned int vz)
+{
+  <bb 2>:
+  this_2(D)->x = vx_3(D);
+  this_2(D)->y = vy_5(D);
+  this_2(D)->z = vz_7(D);
+  return;
+
+}
+
+
+
+;; Function float std::ceil(float) (_ZSt4ceilf, funcdef_no=154, decl_uid=8694, cgraph_uid=146)
+
+
+
+ local analysis of float std::ceil(float)
+   scanning: _2 = __builtin_ceilf (__x_1(D));
+  scanning: return _2;
+Function is locally const.
+Function found to be const: float std::ceil(float)
+float std::ceil(float) (float __x)
+{
+  float _2;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _2 = __builtin_ceilf (__x_1(D));
+  return _2;
+;;    succ:       EXIT
+
+}
+
+
+float std::ceil(float) (float __x)
+{
+  float _2;
+
+  <bb 2>:
+  _2 = __builtin_ceilf (__x_1(D));
+  return _2;
+
+}
+
+
+
+;; Function float absVal(float) (_Z6absValf, funcdef_no=3240, decl_uid=65923, cgraph_uid=3062)
+
+
+
+ local analysis of float absVal(float)
+   scanning: if (a_2(D) < 0.0)
+  scanning: _3 = -a_2(D);
+  scanning: return _1;
+Function is locally const.
+Function found to be const: float absVal(float)
+float absVal(float) (float a)
+{
+  float _1;
+  float _3;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (a_2(D) < 0.0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _3 = -a_2(D);
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                2
+  # _1 = PHI <_3(3), a_2(D)(2)>
+  return _1;
+;;    succ:       EXIT
+
+}
+
+
+float absVal(float) (float a)
+{
+  float _1;
+  float _3;
+
+  <bb 2>:
+  if (a_2(D) < 0.0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _3 = -a_2(D);
+
+  <bb 4>:
+  # _1 = PHI <_3(3), a_2(D)(2)>
+  return _1;
+
+}
+
+
+
+;; Function float percentDiff(double, double) (_Z11percentDiffdd, funcdef_no=3241, decl_uid=65927, cgraph_uid=3063)
+
+
+
+ local analysis of float percentDiff(double, double)
+   scanning: _4 = (float) val1_3(D);
+  scanning: if (_4 < 0.0)
+  scanning: _25 = -_4;
+  scanning: _6 = (double) _26;
+  scanning: if (_6 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+  scanning: _8 = (float) val2_7(D);
+  scanning: if (_8 < 0.0)
+  scanning: _27 = -_8;
+  scanning: _10 = (double) _28;
+  scanning: if (_10 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+  scanning: if (iftmp.1_1 != 0)
+  scanning: _15 = val1_3(D) - val2_7(D);
+  scanning: _16 = (float) _15;
+  scanning: if (_16 < 0.0)
+  scanning: _29 = -_16;
+  scanning: _18 = val1_3(D) + 9.99999993922529029077850282192230224609375e-9;
+  scanning: _19 = (float) _18;
+  scanning: if (_19 < 0.0)
+  scanning: _31 = -_19;
+  scanning: _21 = _30 / _32;
+  scanning: if (_21 < 0.0)
+  scanning: _33 = -_21;
+  scanning: _23 = _34 * 1.0e+2;
+  scanning: return _2;
+Function is locally const.
+Function found to be const: float percentDiff(double, double)
+float percentDiff(double, double) (double val1, double val2)
+{
+  float D.68001;
+  float D.67999;
+  float D.67997;
+  float D.67995;
+  float D.67993;
+  bool iftmp.1;
+  bool retval.0;
+  float _2;
+  float _4;
+  double _6;
+  float _8;
+  double _10;
+  double _15;
+  float _16;
+  double _18;
+  float _19;
+  float _21;
+  float _23;
+  float _25;
+  float _26;
+  float _27;
+  float _28;
+  float _29;
+  float _30;
+  float _31;
+  float _32;
+  float _33;
+  float _34;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = (float) val1_3(D);
+  if (_4 < 0.0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _25 = -_4;
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # _26 = PHI <_4(2), _25(3)>
+  _6 = (double) _26;
+  if (_6 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 5>;
+  else
+    goto <bb 8>;
+;;    succ:       5
+;;                8
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _8 = (float) val2_7(D);
+  if (_8 < 0.0)
+    goto <bb 6>;
+  else
+    goto <bb 7>;
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _27 = -_8;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                6
+  # _28 = PHI <_8(5), _27(6)>
+  _10 = (double) _28;
+  if (_10 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 9>;
+  else
+    goto <bb 8>;
+;;    succ:       9
+;;                8
+
+;;   basic block 8, loop depth 0
+;;    pred:       4
+;;                7
+;;    succ:       9
+
+;;   basic block 9, loop depth 0
+;;    pred:       7
+;;                8
+  # iftmp.1_1 = PHI <1(7), 0(8)>
+  if (iftmp.1_1 != 0)
+    goto <bb 17>;
+  else
+    goto <bb 10>;
+;;    succ:       17
+;;                10
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+  _15 = val1_3(D) - val2_7(D);
+  _16 = (float) _15;
+  if (_16 < 0.0)
+    goto <bb 11>;
+  else
+    goto <bb 12>;
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  _29 = -_16;
+;;    succ:       12
+
+;;   basic block 12, loop depth 0
+;;    pred:       10
+;;                11
+  # _30 = PHI <_16(10), _29(11)>
+  _18 = val1_3(D) + 9.99999993922529029077850282192230224609375e-9;
+  _19 = (float) _18;
+  if (_19 < 0.0)
+    goto <bb 13>;
+  else
+    goto <bb 14>;
+;;    succ:       13
+;;                14
+
+;;   basic block 13, loop depth 0
+;;    pred:       12
+  _31 = -_19;
+;;    succ:       14
+
+;;   basic block 14, loop depth 0
+;;    pred:       12
+;;                13
+  # _32 = PHI <_19(12), _31(13)>
+  _21 = _30 / _32;
+  if (_21 < 0.0)
+    goto <bb 15>;
+  else
+    goto <bb 16>;
+;;    succ:       15
+;;                16
+
+;;   basic block 15, loop depth 0
+;;    pred:       14
+  _33 = -_21;
+;;    succ:       16
+
+;;   basic block 16, loop depth 0
+;;    pred:       14
+;;                15
+  # _34 = PHI <_21(14), _33(15)>
+  _23 = _34 * 1.0e+2;
+;;    succ:       17
+
+;;   basic block 17, loop depth 0
+;;    pred:       9
+;;                16
+  # _2 = PHI <0.0(9), _23(16)>
+  return _2;
+;;    succ:       EXIT
+
+}
+
+
+float percentDiff(double, double) (double val1, double val2)
+{
+  float D.68001;
+  float D.67999;
+  float D.67997;
+  float D.67995;
+  float D.67993;
+  bool iftmp.1;
+  bool retval.0;
+  float _2;
+  float _4;
+  double _6;
+  float _8;
+  double _10;
+  double _15;
+  float _16;
+  double _18;
+  float _19;
+  float _21;
+  float _23;
+  float _25;
+  float _26;
+  float _27;
+  float _28;
+  float _29;
+  float _30;
+  float _31;
+  float _32;
+  float _33;
+  float _34;
+
+  <bb 2>:
+  _4 = (float) val1_3(D);
+  if (_4 < 0.0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _25 = -_4;
+
+  <bb 4>:
+  # _26 = PHI <_4(2), _25(3)>
+  _6 = (double) _26;
+  if (_6 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 5>;
+  else
+    goto <bb 8>;
+
+  <bb 5>:
+  _8 = (float) val2_7(D);
+  if (_8 < 0.0)
+    goto <bb 6>;
+  else
+    goto <bb 7>;
+
+  <bb 6>:
+  _27 = -_8;
+
+  <bb 7>:
+  # _28 = PHI <_8(5), _27(6)>
+  _10 = (double) _28;
+  if (_10 < 1.00000000000000002081668171172168513294309377670288085938e-2)
+    goto <bb 9>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+
+  <bb 9>:
+  # iftmp.1_1 = PHI <1(7), 0(8)>
+  if (iftmp.1_1 != 0)
+    goto <bb 17>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  _15 = val1_3(D) - val2_7(D);
+  _16 = (float) _15;
+  if (_16 < 0.0)
+    goto <bb 11>;
+  else
+    goto <bb 12>;
+
+  <bb 11>:
+  _29 = -_16;
+
+  <bb 12>:
+  # _30 = PHI <_16(10), _29(11)>
+  _18 = val1_3(D) + 9.99999993922529029077850282192230224609375e-9;
+  _19 = (float) _18;
+  if (_19 < 0.0)
+    goto <bb 13>;
+  else
+    goto <bb 14>;
+
+  <bb 13>:
+  _31 = -_19;
+
+  <bb 14>:
+  # _32 = PHI <_19(12), _31(13)>
+  _21 = _30 / _32;
+  if (_21 < 0.0)
+    goto <bb 15>;
+  else
+    goto <bb 16>;
+
+  <bb 15>:
+  _33 = -_21;
+
+  <bb 16>:
+  # _34 = PHI <_21(14), _33(15)>
+  _23 = _34 * 1.0e+2;
+
+  <bb 17>:
+  # _2 = PHI <0.0(9), _23(16)>
+  return _2;
+
+}
+
+
+
+;; Function uint64_t get_time() (_Z8get_timev, funcdef_no=3246, decl_uid=66101, cgraph_uid=3068)
+
+
+
+ local analysis of uint64_t get_time()
+   scanning: clock_gettime (1, &spec);
+  scanning: _3 = spec.tv_sec;
+  scanning: _4 = (long unsigned int) _3;
+  scanning: _5 = _4 * 1000000000;
+  scanning: _6 = spec.tv_nsec;
+  scanning: _7 = (long unsigned int) _6;
+  scanning: _8 = _5 + _7;
+  scanning: spec ={v} {CLOBBER};
+  scanning: return _8;
+Function is locally looping.
+uint64_t get_time() ()
+{
+  struct timespec spec;
+  long int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long int _6;
+  long unsigned int _7;
+  uint64_t _8;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _3 = spec.tv_sec;
+  _4 = (long unsigned int) _3;
+  _5 = _4 * 1000000000;
+  _6 = spec.tv_nsec;
+  _7 = (long unsigned int) _6;
+  _8 = _5 + _7;
+  spec ={v} {CLOBBER};
+  return _8;
+
+}
+
+
+
+;; Function void hookomp_timing_start(uint64_t*) (_Z20hookomp_timing_startPm, funcdef_no=3247, decl_uid=66105, cgraph_uid=3069)
+
+
+
+ local analysis of void hookomp_timing_start(uint64_t*)
+   scanning: clock_gettime (1, &spec);
+  scanning: _6 = spec.tv_sec;
+  scanning: _7 = (long unsigned int) _6;
+  scanning: _8 = _7 * 1000000000;
+  scanning: _9 = spec.tv_nsec;
+  scanning: _10 = (long unsigned int) _9;
+  scanning: _11 = _8 + _10;
+  scanning: spec ={v} {CLOBBER};
+  scanning: *_start_4(D) = _11;
+    Indirect ref write is not const/pure
+  scanning: return;
+Function is locally looping.
+void hookomp_timing_start(uint64_t*) (uint64_t * _start)
+{
+  struct timespec spec;
+  uint64_t D.68007;
+  long int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long int _9;
+  long unsigned int _10;
+  uint64_t _11;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _6 = spec.tv_sec;
+  _7 = (long unsigned int) _6;
+  _8 = _7 * 1000000000;
+  _9 = spec.tv_nsec;
+  _10 = (long unsigned int) _9;
+  _11 = _8 + _10;
+  spec ={v} {CLOBBER};
+  *_start_4(D) = _11;
+  return;
+
+}
+
+
+
+;; Function void hookomp_timing_stop(uint64_t*) (_Z19hookomp_timing_stopPm, funcdef_no=3248, decl_uid=66108, cgraph_uid=3070)
+
+
+
+ local analysis of void hookomp_timing_stop(uint64_t*)
+   scanning: clock_gettime (1, &spec);
+  scanning: _6 = spec.tv_sec;
+  scanning: _7 = (long unsigned int) _6;
+  scanning: _8 = _7 * 1000000000;
+  scanning: _9 = spec.tv_nsec;
+  scanning: _10 = (long unsigned int) _9;
+  scanning: _11 = _8 + _10;
+  scanning: spec ={v} {CLOBBER};
+  scanning: *_stop_4(D) = _11;
+    Indirect ref write is not const/pure
+  scanning: return;
+Function is locally looping.
+void hookomp_timing_stop(uint64_t*) (uint64_t * _stop)
+{
+  struct timespec spec;
+  uint64_t D.68011;
+  long int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long int _9;
+  long unsigned int _10;
+  uint64_t _11;
+
+  <bb 2>:
+  clock_gettime (1, &spec);
+  _6 = spec.tv_sec;
+  _7 = (long unsigned int) _6;
+  _8 = _7 * 1000000000;
+  _9 = spec.tv_nsec;
+  _10 = (long unsigned int) _9;
+  _11 = _8 + _10;
+  spec ={v} {CLOBBER};
+  *_stop_4(D) = _11;
+  return;
+
+}
+
+
+
+;; Function void hookomp_timing_print(uint64_t, uint64_t) (_Z20hookomp_timing_printmm, funcdef_no=3249, decl_uid=66112, cgraph_uid=3071)
+
+
+
+ local analysis of void hookomp_timing_print(uint64_t, uint64_t)
+   scanning: _3 = tstop_1(D) - tstart_2(D);
+  scanning: __printf_chk (1, "%llu", _3);
+    can throw externally to lp 0
+     callee:__printf_chk
+Function is locally looping.
+Function is locally throwing.
+void hookomp_timing_print(uint64_t, uint64_t) (uint64_t tstart, uint64_t tstop)
+{
+  int D.68015;
+  long unsigned int _3;
+
+  <bb 2>:
+  _3 = tstop_1(D) - tstart_2(D);
+  __printf_chk (1, "%llu", _3);
+  return;
+
+}
+
+
+
+;; Function void hookomp_timing_print_without_dev() (_Z32hookomp_timing_print_without_devv, funcdef_no=3250, decl_uid=66114, cgraph_uid=3072)
+
+
+
+ local analysis of void hookomp_timing_print_without_dev()
+   scanning: omp_stop.2_3 = omp_stop;
+    global memory read is not const
+  scanning: omp_start.3_4 = omp_start;
+    global memory read is not const
+  scanning: total_time_5 = omp_stop.2_3 - omp_start.3_4;
+  scanning: dev_kernel1_stop.4_6 = dev_kernel1_stop;
+    global memory read is not const
+  scanning: dev_kernel1_start.5_7 = dev_kernel1_start;
+    global memory read is not const
+  scanning: _8 = dev_kernel1_stop.4_6 - dev_kernel1_start.5_7;
+  scanning: dev_kernel2_stop.6_9 = dev_kernel2_stop;
+    global memory read is not const
+  scanning: dev_kernel2_start.7_10 = dev_kernel2_start;
+    global memory read is not const
+  scanning: _11 = dev_kernel2_stop.6_9 - dev_kernel2_start.7_10;
+  scanning: _12 = _8 + _11;
+  scanning: dev_kernel3_stop.8_13 = dev_kernel3_stop;
+    global memory read is not const
+  scanning: dev_kernel3_start.9_14 = dev_kernel3_start;
+    global memory read is not const
+  scanning: _15 = dev_kernel3_stop.8_13 - dev_kernel3_start.9_14;
+  scanning: dev_time_16 = _12 + _15;
+  scanning: data_transfer_h2d_stop.10_17 = data_transfer_h2d_stop;
+    global memory read is not const
+  scanning: data_transfer_h2d_start.11_18 = data_transfer_h2d_start;
+    global memory read is not const
+  scanning: _19 = data_transfer_h2d_stop.10_17 - data_transfer_h2d_start.11_18;
+  scanning: data_transfer_d2h_stop.12_20 = data_transfer_d2h_stop;
+    global memory read is not const
+  scanning: data_transfer_d2h_start.13_21 = data_transfer_d2h_start;
+    global memory read is not const
+  scanning: _22 = data_transfer_d2h_stop.12_20 - data_transfer_d2h_start.13_21;
+  scanning: dt_time_23 = _19 + _22;
+  scanning: if (total_time_5 != 0)
+  scanning: _24 = total_time_5 - dev_time_16;
+  scanning: iftmp.14_25 = _24 - dt_time_23;
+  scanning: __printf_chk (1, "%llu", iftmp.14_1);
+    can throw externally to lp 0
+     callee:__printf_chk
+Function is locally looping.
+Function is locally throwing.
+void hookomp_timing_print_without_dev() ()
+{
+  int D.68019;
+  uint64_t dt_time;
+  uint64_t dev_time;
+  uint64_t total_time;
+  uint64_t iftmp.14;
+  long unsigned int data_transfer_d2h_start.13;
+  long unsigned int data_transfer_d2h_stop.12;
+  long unsigned int data_transfer_h2d_start.11;
+  long unsigned int data_transfer_h2d_stop.10;
+  long unsigned int dev_kernel3_start.9;
+  long unsigned int dev_kernel3_stop.8;
+  long unsigned int dev_kernel2_start.7;
+  long unsigned int dev_kernel2_stop.6;
+  long unsigned int dev_kernel1_start.5;
+  long unsigned int dev_kernel1_stop.4;
+  long unsigned int omp_start.3;
+  long unsigned int omp_stop.2;
+  long unsigned int _8;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _15;
+  long unsigned int _19;
+  long unsigned int _22;
+  long unsigned int _24;
+
+  <bb 2>:
+  omp_stop.2_3 = omp_stop;
+  omp_start.3_4 = omp_start;
+  total_time_5 = omp_stop.2_3 - omp_start.3_4;
+  dev_kernel1_stop.4_6 = dev_kernel1_stop;
+  dev_kernel1_start.5_7 = dev_kernel1_start;
+  _8 = dev_kernel1_stop.4_6 - dev_kernel1_start.5_7;
+  dev_kernel2_stop.6_9 = dev_kernel2_stop;
+  dev_kernel2_start.7_10 = dev_kernel2_start;
+  _11 = dev_kernel2_stop.6_9 - dev_kernel2_start.7_10;
+  _12 = _8 + _11;
+  dev_kernel3_stop.8_13 = dev_kernel3_stop;
+  dev_kernel3_start.9_14 = dev_kernel3_start;
+  _15 = dev_kernel3_stop.8_13 - dev_kernel3_start.9_14;
+  dev_time_16 = _12 + _15;
+  data_transfer_h2d_stop.10_17 = data_transfer_h2d_stop;
+  data_transfer_h2d_start.11_18 = data_transfer_h2d_start;
+  _19 = data_transfer_h2d_stop.10_17 - data_transfer_h2d_start.11_18;
+  data_transfer_d2h_stop.12_20 = data_transfer_d2h_stop;
+  data_transfer_d2h_start.13_21 = data_transfer_d2h_start;
+  _22 = data_transfer_d2h_stop.12_20 - data_transfer_d2h_start.13_21;
+  dt_time_23 = _19 + _22;
+  if (total_time_5 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _24 = total_time_5 - dev_time_16;
+  iftmp.14_25 = _24 - dt_time_23;
+
+  <bb 4>:
+  # iftmp.14_1 = PHI <iftmp.14_25(3), total_time_5(2)>
+  __printf_chk (1, "%llu", iftmp.14_1);
+  return;
+
+}
+
+
+
+;; Function void hookomp_print_time_results() (_Z26hookomp_print_time_resultsv, funcdef_no=3251, decl_uid=66119, cgraph_uid=3073)
+
+
+
+ local analysis of void hookomp_print_time_results()
+   scanning: stdout.15_3 = stdout;
+    global memory read is not const
+  scanning: __fprintf_chk (stdout.15_3, 1, "ORIG = ");
+    can throw externally to lp 0
+     callee:__fprintf_chk
+Function is locally looping.
+Function is locally throwing.
+void hookomp_print_time_results() ()
+{
+  int D.68095;
+  int D.68092;
+  int D.68089;
+  int D.68086;
+  int D.68083;
+  int D.68078;
+  int D.68075;
+  int D.68070;
+  int D.68067;
+  int D.68062;
+  int D.68059;
+  int D.68054;
+  int D.68051;
+  int D.68046;
+  int D.68043;
+  int D.68040;
+  int D.68037;
+  int D.68032;
+  int D.68029;
+  int D.68024;
+  bool made_the_offloading.33;
+  bool decided_by_offloading.32;
+  bool reach_offload_decision_point.31;
+  int iftmp.30;
+  long unsigned int data_transfer_d2h_start.29;
+  long unsigned int data_transfer_d2h_stop.28;
+  long unsigned int data_transfer_h2d_start.27;
+  long unsigned int data_transfer_h2d_stop.26;
+  long unsigned int dev_kernel3_start.25;
+  long unsigned int dev_kernel3_stop.24;
+  long unsigned int dev_kernel2_start.23;
+  long unsigned int dev_kernel2_stop.22;
+  long unsigned int dev_kernel1_start.21;
+  long unsigned int dev_kernel1_stop.20;
+  long unsigned int omp_start.19;
+  long unsigned int omp_stop.18;
+  long unsigned int seq_start.17;
+  long unsigned int seq_stop.16;
+  struct _IO_FILE * stdout.15;
+  int _62;
+  int _66;
+  int _70;
+  long unsigned int _76;
+  long unsigned int _79;
+  long unsigned int _84;
+  long unsigned int _87;
+  long unsigned int _90;
+  long unsigned int _93;
+  long unsigned int _96;
+
+  <bb 2>:
+  stdout.15_3 = stdout;
+  __fprintf_chk (stdout.15_3, 1, "ORIG = ");
+  seq_stop.16_5 = seq_stop;
+  seq_start.17_6 = seq_start;
+  _76 = seq_stop.16_5 - seq_start.17_6;
+  __printf_chk (1, "%llu", _76);
+  stdout.15_8 = stdout;
+  __fprintf_chk (stdout.15_8, 1, ", ");
+  stdout.15_10 = stdout;
+  __fprintf_chk (stdout.15_10, 1, "OMP_OFF = ");
+  omp_stop.18_12 = omp_stop;
+  omp_start.19_13 = omp_start;
+  _79 = omp_stop.18_12 - omp_start.19_13;
+  __printf_chk (1, "%llu", _79);
+  stdout.15_15 = stdout;
+  __fprintf_chk (stdout.15_15, 1, ", ");
+  stdout.15_17 = stdout;
+  __fprintf_chk (stdout.15_17, 1, "OMP = ");
+  hookomp_timing_print_without_dev ();
+  stdout.15_20 = stdout;
+  __fprintf_chk (stdout.15_20, 1, ", ");
+  stdout.15_22 = stdout;
+  __fprintf_chk (stdout.15_22, 1, "CUDA_KERNEL1 = ");
+  dev_kernel1_stop.20_24 = dev_kernel1_stop;
+  dev_kernel1_start.21_25 = dev_kernel1_start;
+  _84 = dev_kernel1_stop.20_24 - dev_kernel1_start.21_25;
+  __printf_chk (1, "%llu", _84);
+  stdout.15_27 = stdout;
+  __fprintf_chk (stdout.15_27, 1, ", ");
+  stdout.15_29 = stdout;
+  __fprintf_chk (stdout.15_29, 1, "CUDA_KERNEL2 = ");
+  dev_kernel2_stop.22_31 = dev_kernel2_stop;
+  dev_kernel2_start.23_32 = dev_kernel2_start;
+  _87 = dev_kernel2_stop.22_31 - dev_kernel2_start.23_32;
+  __printf_chk (1, "%llu", _87);
+  stdout.15_34 = stdout;
+  __fprintf_chk (stdout.15_34, 1, ", ");
+  stdout.15_36 = stdout;
+  __fprintf_chk (stdout.15_36, 1, "CUDA_KERNEL3 = ");
+  dev_kernel3_stop.24_38 = dev_kernel3_stop;
+  dev_kernel3_start.25_39 = dev_kernel3_start;
+  _90 = dev_kernel3_stop.24_38 - dev_kernel3_start.25_39;
+  __printf_chk (1, "%llu", _90);
+  stdout.15_41 = stdout;
+  __fprintf_chk (stdout.15_41, 1, ", ");
+  stdout.15_43 = stdout;
+  __fprintf_chk (stdout.15_43, 1, "DT_H2D = ");
+  data_transfer_h2d_stop.26_45 = data_transfer_h2d_stop;
+  data_transfer_h2d_start.27_46 = data_transfer_h2d_start;
+  _93 = data_transfer_h2d_stop.26_45 - data_transfer_h2d_start.27_46;
+  __printf_chk (1, "%llu", _93);
+  stdout.15_48 = stdout;
+  __fprintf_chk (stdout.15_48, 1, ", ");
+  stdout.15_50 = stdout;
+  __fprintf_chk (stdout.15_50, 1, "DT_D2H = ");
+  data_transfer_d2h_stop.28_52 = data_transfer_d2h_stop;
+  data_transfer_d2h_start.29_53 = data_transfer_d2h_start;
+  _96 = data_transfer_d2h_stop.28_52 - data_transfer_d2h_start.29_53;
+  __printf_chk (1, "%llu", _96);
+  reach_offload_decision_point.31_55 = reach_offload_decision_point;
+  if (reach_offload_decision_point.31_55 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+
+  <bb 4>:
+  # iftmp.30_1 = PHI <1(2), 0(3)>
+  stdout.15_59 = stdout;
+  __fprintf_chk (stdout.15_59, 1, ", WORK_FINISHED_BEFORE_OFFLOAD_DECISION = %d", iftmp.30_1);
+  reach_offload_decision_point.31_61 = reach_offload_decision_point;
+  _62 = (int) reach_offload_decision_point.31_61;
+  stdout.15_63 = stdout;
+  __fprintf_chk (stdout.15_63, 1, ", REACH_OFFLOAD_DECISION_POINT = %d", _62);
+  decided_by_offloading.32_65 = decided_by_offloading;
+  _66 = (int) decided_by_offloading.32_65;
+  stdout.15_67 = stdout;
+  __fprintf_chk (stdout.15_67, 1, ", DECIDED_BY_OFFLOADING = %d", _66);
+  made_the_offloading.33_69 = made_the_offloading;
+  _70 = (int) made_the_offloading.33_69;
+  stdout.15_71 = stdout;
+  __fprintf_chk (stdout.15_71, 1, ", MADE_THE_OFFLOADING = %d", _70);
+  stdout.15_73 = stdout;
+  __fprintf_chk (stdout.15_73, 1, "\n");
+  return;
+
+}
+
+
+
+;; Function bool create_target_functions_table(Func****, int, int) (_Z29create_target_functions_tablePPPP4Funcii, funcdef_no=3256, decl_uid=66664, cgraph_uid=3078)
+
+
+
+ local analysis of bool create_target_functions_table(Func****, int, int)
+   scanning: stderr.34_12 = stderr;
+    global memory read is not const
+  scanning: __fprintf_chk (stderr.34_12, 1, "Allocating the rows.\n");
+    can throw externally to lp 0
+     callee:__fprintf_chk
+Function is locally looping.
+Function is locally throwing.
+bool create_target_functions_table(Func****, int, int) (struct Func * * * * table_, int nrows, int ncolumns)
+{
+  int D.68112;
+  int D.68109;
+  int D.68106;
+  int D.68103;
+  int D.68100;
+  int j;
+  int i;
+  bool result;
+  struct Func * * * table;
+  struct _IO_FILE * stderr.34;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _22;
+  long unsigned int _23;
+  struct Func * * * _24;
+  long unsigned int _26;
+  long unsigned int _27;
+  void * _29;
+  struct Func * * _39;
+  long unsigned int _40;
+  long unsigned int _41;
+  struct Func * * _42;
+  void * _44;
+  struct Func * * _49;
+  struct Func * * _52;
+  struct Func * _53;
+
+  <bb 2>:
+  stderr.34_12 = stderr;
+  __fprintf_chk (stderr.34_12, 1, "Allocating the rows.\n");
+  _15 = (long unsigned int) nrows_14(D);
+  _16 = _15 * 8;
+  table_18 = malloc (_16);
+  if (table_18 != 0B)
+    goto <bb 3>;
+  else
+    goto <bb 11>;
+
+  <bb 3>:
+  stderr.34_19 = stderr;
+  __fprintf_chk (stderr.34_19, 1, "Allocating the columns.\n");
+  goto <bb 10>;
+
+  <bb 4>:
+  _22 = (long unsigned int) i_4;
+  _23 = _22 * 8;
+  _24 = table_18 + _23;
+  _26 = (long unsigned int) ncolumns_25(D);
+  _27 = _26 * 8;
+  _29 = malloc (_27);
+  *_24 = _29;
+  if (_29 != 0B)
+    goto <bb 5>;
+  else
+    goto <bb 8>;
+
+  <bb 5>:
+  # j_67 = PHI <0(4)>
+  goto <bb 7>;
+
+  <bb 6>:
+  _39 = *_24;
+  _40 = (long unsigned int) j_5;
+  _41 = _40 * 8;
+  _42 = _39 + _41;
+  _44 = malloc (48);
+  *_42 = _44;
+  _49 = *_24;
+  _52 = _49 + _41;
+  _53 = *_52;
+  _53->f = 0B;
+  j_55 = j_5 + 1;
+
+  <bb 7>:
+  # j_5 = PHI <j_67(5), j_55(6)>
+  if (j_5 < ncolumns_25(D))
+    goto <bb 6>;
+  else
+    goto <bb 9>;
+
+  <bb 8>:
+  stderr.34_56 = stderr;
+  __fprintf_chk (stderr.34_56, 1, "Error in table of target functions allocation (columns).\n");
+
+  <bb 9>:
+  # result_1 = PHI <result_2(7), 0(8)>
+  i_59 = i_4 + 1;
+
+  <bb 10>:
+  # result_2 = PHI <1(3), result_1(9)>
+  # i_4 = PHI <0(3), i_59(9)>
+  if (i_4 < nrows_14(D))
+    goto <bb 4>;
+  else
+    goto <bb 12>;
+
+  <bb 11>:
+  stderr.34_60 = stderr;
+  __fprintf_chk (stderr.34_60, 1, "Error in table of target functions allocation (rows).\n");
+
+  <bb 12>:
+  # result_3 = PHI <result_2(10), 0(11)>
+  stderr.34_63 = stderr;
+  __fprintf_chk (stderr.34_63, 1, "Allocating the columns is OK.\n");
+  *table__65(D) = table_18;
+  return result_3;
+
+}
+
+
+
+;; Function void call_function_ffi_call(Func*) (_Z22call_function_ffi_callP4Func, funcdef_no=3257, decl_uid=66679, cgraph_uid=3079)
+
+
+
+ local analysis of void call_function_ffi_call(Func*)
+   scanning: stderr.35_3 = stderr;
+    global memory read is not const
+  scanning: __fprintf_chk (stderr.35_3, 1, " In call_function_ffi_call.\n");
+    can throw externally to lp 0
+     callee:__fprintf_chk
+Function is locally looping.
+Function is locally throwing.
+void call_function_ffi_call(Func*) (struct Func * ff)
+{
+  int D.68123;
+  int D.68120;
+  struct ffi_cif cif;
+  bool retval.36;
+  struct _IO_FILE * stderr.35;
+  struct ffi_type * * _6;
+  struct ffi_type * _7;
+  int _8;
+  unsigned int _9;
+  ffi_status _11;
+  void * * _17;
+  void * _18;
+  void * _19;
+  void (*<T19f3>) (void) _20;
+
+  <bb 2>:
+  stderr.35_3 = stderr;
+  __fprintf_chk (stderr.35_3, 1, " In call_function_ffi_call.\n");
+  _6 = ff_5(D)->arg_types;
+  _7 = ff_5(D)->ret_type;
+  _8 = ff_5(D)->nargs;
+  _9 = (unsigned int) _8;
+  _11 = ffi_prep_cif (&cif, 2, _9, _7, _6);
+  if (_11 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  stderr.35_14 = stderr;
+  __fprintf_chk (stderr.35_14, 1, "Error ffi_prep_cif.\n");
+  exit (1);
+
+  <bb 4>:
+  _17 = ff_5(D)->arg_values;
+  _18 = ff_5(D)->ret_value;
+  _19 = ff_5(D)->f;
+  _20 = (void (*<T19f3>) (void)) _19;
+  ffi_call (&cif, _20, _18, _17);
+  cif ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z10init_arrayiiiPdS_PA4096_dS1_S1_, funcdef_no=3258, decl_uid=66690, cgraph_uid=3080)
+
+
+
+ local analysis of void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096])
+   scanning: *alpha_14(D) = 3.2412e+4;
+    Indirect ref write is not const/pure
+  scanning: *beta_16(D) = 2.123e+3;
+    Indirect ref write is not const/pure
+  scanning: _22 = (long unsigned int) i_1;
+  scanning: _23 = _22 * 32768;
+  scanning: _25 = A_24(D) + _23;
+  scanning: _26 = (double) i_1;
+  scanning: _27 = (double) j_4;
+  scanning: _28 = _26 * _27;
+  scanning: _29 = _28 * 2.44140625e-4;
+  scanning: *_25[j_4] = _29;
+    Indirect ref write is not const/pure
+  scanning: j_31 = j_4 + 1;
+  scanning: if (j_4 < nk_21(D))
+  scanning: i_32 = i_1 + 1;
+  scanning: if (i_1 < ni_19(D))
+  scanning: _36 = (long unsigned int) i_2;
+  scanning: _37 = _36 * 32768;
+  scanning: _39 = B_38(D) + _37;
+  scanning: _40 = (double) i_2;
+  scanning: _41 = (double) j_5;
+  scanning: _42 = _40 * _41;
+  scanning: _43 = _42 * 2.44140625e-4;
+  scanning: *_39[j_5] = _43;
+    Indirect ref write is not const/pure
+  scanning: j_45 = j_5 + 1;
+  scanning: if (j_5 < nj_35(D))
+  scanning: i_46 = i_2 + 1;
+  scanning: if (i_2 < nk_21(D))
+  scanning: _49 = (long unsigned int) i_3;
+  scanning: _50 = _49 * 32768;
+  scanning: _52 = C_51(D) + _50;
+  scanning: _53 = (double) i_3;
+  scanning: _54 = (double) j_6;
+  scanning: _55 = _53 * _54;
+  scanning: _56 = _55 * 2.44140625e-4;
+  scanning: *_52[j_6] = _56;
+    Indirect ref write is not const/pure
+  scanning: j_58 = j_6 + 1;
+  scanning: if (j_6 < nj_35(D))
+  scanning: i_59 = i_3 + 1;
+  scanning: if (i_3 < ni_19(D))
+  scanning: return;
+void init_array(int, int, int, double*, double*, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double * alpha, double * beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  int j;
+  int i;
+  long unsigned int _22;
+  long unsigned int _23;
+  double[4096] * _25;
+  double _26;
+  double _27;
+  double _28;
+  double _29;
+  long unsigned int _36;
+  long unsigned int _37;
+  double[4096] * _39;
+  double _40;
+  double _41;
+  double _42;
+  double _43;
+  long unsigned int _49;
+  long unsigned int _50;
+  double[4096] * _52;
+  double _53;
+  double _54;
+  double _55;
+  double _56;
+
+  <bb 2>:
+  *alpha_14(D) = 3.2412e+4;
+  *beta_16(D) = 2.123e+3;
+  goto <bb 6>;
+
+  <bb 3>:
+  _22 = (long unsigned int) i_1;
+  _23 = _22 * 32768;
+  _25 = A_24(D) + _23;
+  _26 = (double) i_1;
+  _27 = (double) j_4;
+  _28 = _26 * _27;
+  _29 = _28 * 2.44140625e-4;
+  *_25[j_4] = _29;
+  j_31 = j_4 + 1;
+
+  <bb 4>:
+  # j_4 = PHI <j_62(7), j_31(3)>
+  if (j_4 < nk_21(D))
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  i_32 = i_1 + 1;
+
+  <bb 6>:
+  # i_1 = PHI <0(2), i_32(5)>
+  if (i_1 < ni_19(D))
+    goto <bb 7>;
+  else
+    goto <bb 8>;
+
+  <bb 7>:
+  # j_62 = PHI <0(6)>
+  goto <bb 4>;
+
+  <bb 8>:
+  # i_20 = PHI <0(6)>
+  goto <bb 12>;
+
+  <bb 9>:
+  _36 = (long unsigned int) i_2;
+  _37 = _36 * 32768;
+  _39 = B_38(D) + _37;
+  _40 = (double) i_2;
+  _41 = (double) j_5;
+  _42 = _40 * _41;
+  _43 = _42 * 2.44140625e-4;
+  *_39[j_5] = _43;
+  j_45 = j_5 + 1;
+
+  <bb 10>:
+  # j_5 = PHI <j_60(13), j_45(9)>
+  if (j_5 < nj_35(D))
+    goto <bb 9>;
+  else
+    goto <bb 11>;
+
+  <bb 11>:
+  i_46 = i_2 + 1;
+
+  <bb 12>:
+  # i_2 = PHI <i_20(8), i_46(11)>
+  if (i_2 < nk_21(D))
+    goto <bb 13>;
+  else
+    goto <bb 14>;
+
+  <bb 13>:
+  # j_60 = PHI <0(12)>
+  goto <bb 10>;
+
+  <bb 14>:
+  # i_48 = PHI <0(12)>
+  goto <bb 18>;
+
+  <bb 15>:
+  _49 = (long unsigned int) i_3;
+  _50 = _49 * 32768;
+  _52 = C_51(D) + _50;
+  _53 = (double) i_3;
+  _54 = (double) j_6;
+  _55 = _53 * _54;
+  _56 = _55 * 2.44140625e-4;
+  *_52[j_6] = _56;
+  j_58 = j_6 + 1;
+
+  <bb 16>:
+  # j_6 = PHI <j_34(19), j_58(15)>
+  if (j_6 < nj_35(D))
+    goto <bb 15>;
+  else
+    goto <bb 17>;
+
+  <bb 17>:
+  i_59 = i_3 + 1;
+
+  <bb 18>:
+  # i_3 = PHI <i_48(14), i_59(17)>
+  if (i_3 < ni_19(D))
+    goto <bb 19>;
+  else
+    goto <bb 20>;
+
+  <bb 19>:
+  # j_34 = PHI <0(18)>
+  goto <bb 16>;
+
+  <bb 20>:
+  return;
+
+}
+
+
+
+;; Function void copy_array(int, int, double (*)[4096], double (*)[4096]) (_Z10copy_arrayiiPA4096_dS0_, funcdef_no=3259, decl_uid=66722, cgraph_uid=3081)
+
+
+
+ local analysis of void copy_array(int, int, double (*)[4096], double (*)[4096])
+   scanning: _10 = (long unsigned int) i_1;
+  scanning: _11 = _10 * 32768;
+  scanning: _13 = C_dest_12(D) + _11;
+  scanning: _17 = C_source_16(D) + _11;
+  scanning: _18 = *_17[j_2];
+    Indirect ref read is not const
+  scanning: *_13[j_2] = _18;
+    Indirect ref write is not const/pure
+  scanning: j_20 = j_2 + 1;
+  scanning: if (j_2 < nj_9(D))
+  scanning: i_21 = i_1 + 1;
+  scanning: if (i_1 < ni_7(D))
+  scanning: return;
+void copy_array(int, int, double (*)[4096], double (*)[4096]) (int ni, int nj, double[4096] * C_source, double[4096] * C_dest)
+{
+  int j;
+  int i;
+  long unsigned int _10;
+  long unsigned int _11;
+  double[4096] * _13;
+  double[4096] * _17;
+  double _18;
+
+  <bb 2>:
+  goto <bb 6>;
+
+  <bb 3>:
+  _10 = (long unsigned int) i_1;
+  _11 = _10 * 32768;
+  _13 = C_dest_12(D) + _11;
+  _17 = C_source_16(D) + _11;
+  _18 = *_17[j_2];
+  *_13[j_2] = _18;
+  j_20 = j_2 + 1;
+
+  <bb 4>:
+  # j_2 = PHI <j_14(7), j_20(3)>
+  if (j_2 < nj_9(D))
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  i_21 = i_1 + 1;
+
+  <bb 6>:
+  # i_1 = PHI <0(2), i_21(5)>
+  if (i_1 < ni_7(D))
+    goto <bb 7>;
+  else
+    goto <bb 8>;
+
+  <bb 7>:
+  # j_14 = PHI <0(6)>
+  goto <bb 4>;
+
+  <bb 8>:
+  return;
+
+}
+
+
+
+;; Function void compareResults(int, int, double (*)[4096], double (*)[4096]) (_Z14compareResultsiiPA4096_dS0_, funcdef_no=3260, decl_uid=66738, cgraph_uid=3082)
+
+
+
+ local analysis of void compareResults(int, int, double (*)[4096], double (*)[4096])
+   scanning: _11 = (long unsigned int) i_1;
+  scanning: _12 = _11 * 32768;
+  scanning: _14 = C_output_13(D) + _12;
+  scanning: _16 = *_14[j_2];
+    Indirect ref read is not const
+  scanning: _20 = C_19(D) + _12;
+  scanning: _21 = *_20[j_2];
+    Indirect ref read is not const
+  scanning: _22 = percentDiff (_21, _16);
+  scanning: _23 = (double) _22;
+  scanning: if (_23 > 5.000000000000000277555756156289135105907917022705078125e-2)
+  scanning: fail_25 = fail_4 + 1;
+  scanning: j_26 = j_2 + 1;
+  scanning: if (j_2 < nj_10(D))
+  scanning: i_27 = i_1 + 1;
+  scanning: if (i_1 < ni_8(D))
+  scanning: stderr.38_28 = stderr;
+    global memory read is not const
+  scanning: __fprintf_chk (stderr.38_28, 1, "Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f Percent: %d\n", 5.000000000000000277555756156289135105907917022705078125e-2, fail_5);
+    can throw externally to lp 0
+     callee:__fprintf_chk
+Function is locally looping.
+Function is locally throwing.
+void compareResults(int, int, double (*)[4096], double (*)[4096]) (int ni, int nj, double[4096] * C, double[4096] * C_output)
+{
+  int D.68132;
+  int fail;
+  int j;
+  int i;
+  struct _IO_FILE * stderr.38;
+  bool retval.37;
+  long unsigned int _11;
+  long unsigned int _12;
+  double[4096] * _14;
+  double _16;
+  double[4096] * _20;
+  double _21;
+  float _22;
+  double _23;
+
+  <bb 2>:
+  goto <bb 8>;
+
+  <bb 3>:
+  _11 = (long unsigned int) i_1;
+  _12 = _11 * 32768;
+  _14 = C_output_13(D) + _12;
+  _16 = *_14[j_2];
+  _20 = C_19(D) + _12;
+  _21 = *_20[j_2];
+  _22 = percentDiff (_21, _16);
+  _23 = (double) _22;
+  if (_23 > 5.000000000000000277555756156289135105907917022705078125e-2)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  fail_25 = fail_4 + 1;
+
+  <bb 5>:
+  # fail_3 = PHI <fail_4(3), fail_25(4)>
+  j_26 = j_2 + 1;
+
+  <bb 6>:
+  # j_2 = PHI <j_17(9), j_26(5)>
+  # fail_4 = PHI <fail_18(9), fail_3(5)>
+  if (j_2 < nj_10(D))
+    goto <bb 3>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  i_27 = i_1 + 1;
+
+  <bb 8>:
+  # i_1 = PHI <0(2), i_27(7)>
+  # fail_5 = PHI <0(2), fail_4(7)>
+  if (i_1 < ni_8(D))
+    goto <bb 9>;
+  else
+    goto <bb 10>;
+
+  <bb 9>:
+  # j_17 = PHI <0(8)>
+  # fail_18 = PHI <fail_5(8)>
+  goto <bb 6>;
+
+  <bb 10>:
+  stderr.38_28 = stderr;
+  __fprintf_chk (stderr.38_28, 1, "Non-Matching CPU-GPU Outputs Beyond Error Threshold of %4.2f Percent: %d\n", 5.000000000000000277555756156289135105907917022705078125e-2, fail_5);
+  return;
+
+}
+
+
+
+;; Function void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z4gemmiiiddPA4096_dS0_S0_, funcdef_no=3262, decl_uid=66774, cgraph_uid=3084)
+
+
+
+ local analysis of void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])
+   scanning: _16 = (long unsigned int) i_1;
+  scanning: _17 = _16 * 32768;
+  scanning: _18 = C_14(D) + _17;
+  scanning: _19 = *_18[j_2];
+    Indirect ref read is not const
+  scanning: _21 = _19 * beta_20(D);
+  scanning: *_18[j_2] = _21;
+    Indirect ref write is not const/pure
+  scanning: _31 = *_18[j_2];
+    Indirect ref read is not const
+  scanning: _35 = A_34(D) + _17;
+  scanning: _36 = *_35[k_3];
+    Indirect ref read is not const
+  scanning: _38 = _36 * alpha_37(D);
+  scanning: _39 = (long unsigned int) k_3;
+  scanning: _40 = _39 * 32768;
+  scanning: _42 = B_41(D) + _40;
+  scanning: _43 = *_42[j_2];
+    Indirect ref read is not const
+  scanning: _44 = _38 * _43;
+  scanning: _45 = _31 + _44;
+  scanning: *_18[j_2] = _45;
+    Indirect ref write is not const/pure
+  scanning: k_47 = k_3 + 1;
+  scanning: if (k_3 < nk_24(D))
+  scanning: j_48 = j_2 + 1;
+  scanning: if (j_2 < nj_11(D))
+  scanning: i_49 = i_1 + 1;
+  scanning: if (i_1 < ni_9(D))
+  scanning: return;
+void gemm(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  int k;
+  int j;
+  int i;
+  long unsigned int _16;
+  long unsigned int _17;
+  double[4096] * _18;
+  double _19;
+  double _21;
+  double _31;
+  double[4096] * _35;
+  double _36;
+  double _38;
+  long unsigned int _39;
+  long unsigned int _40;
+  double[4096] * _42;
+  double _43;
+  double _44;
+  double _45;
+
+  <bb 2>:
+  goto <bb 9>;
+
+  <bb 3>:
+  _16 = (long unsigned int) i_1;
+  _17 = _16 * 32768;
+  _18 = C_14(D) + _17;
+  _19 = *_18[j_2];
+  _21 = _19 * beta_20(D);
+  *_18[j_2] = _21;
+  goto <bb 5>;
+
+  <bb 4>:
+  _31 = *_18[j_2];
+  _35 = A_34(D) + _17;
+  _36 = *_35[k_3];
+  _38 = _36 * alpha_37(D);
+  _39 = (long unsigned int) k_3;
+  _40 = _39 * 32768;
+  _42 = B_41(D) + _40;
+  _43 = *_42[j_2];
+  _44 = _38 * _43;
+  _45 = _31 + _44;
+  *_18[j_2] = _45;
+  k_47 = k_3 + 1;
+
+  <bb 5>:
+  # k_3 = PHI <0(3), k_47(4)>
+  if (k_3 < nk_24(D))
+    goto <bb 4>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  j_48 = j_2 + 1;
+
+  <bb 7>:
+  # j_2 = PHI <j_28(10), j_48(6)>
+  if (j_2 < nj_11(D))
+    goto <bb 3>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  i_49 = i_1 + 1;
+
+  <bb 9>:
+  # i_1 = PHI <0(2), i_49(8)>
+  if (i_1 < ni_9(D))
+    goto <bb 10>;
+  else
+    goto <bb 11>;
+
+  <bb 10>:
+  # j_28 = PHI <0(9)>
+  goto <bb 7>;
+
+  <bb 11>:
+  return;
+
+}
+
+
+
+;; Function void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z13gemm_originaliiiddPA4096_dS0_S0_, funcdef_no=3263, decl_uid=66799, cgraph_uid=3085)
+
+
+
+ local analysis of void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])
+   scanning: hookomp_timing_start (&seq_start);
+  scanning: gemm (ni_3(D), nj_4(D), nk_5(D), alpha_6(D), beta_7(D), A_8(D), B_9(D), C_10(D));
+  scanning: hookomp_timing_stop (&seq_stop);
+  scanning: return;
+Function is locally looping.
+void gemm_original(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  <bb 2>:
+  hookomp_timing_start (&seq_start);
+  gemm (ni_3(D), nj_4(D), nk_5(D), alpha_6(D), beta_7(D), A_8(D), B_9(D), C_10(D));
+  hookomp_timing_stop (&seq_stop);
+  return;
+
+}
+
+
+
+;; Function void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_, funcdef_no=3264, decl_uid=66809, cgraph_uid=3086)
+
+
+
+ local analysis of void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])
+   scanning: .omp_data_o.42.alpha = alpha_2(D);
+  scanning: .omp_data_o.42.beta = beta_4(D);
+  scanning: .omp_data_o.42.A = A_6(D);
+  scanning: .omp_data_o.42.B = B_8(D);
+  scanning: .omp_data_o.42.C = C_10(D);
+  scanning: .omp_data_o.42.ni = ni_12(D);
+  scanning: .omp_data_o.42.nj = nj_14(D);
+  scanning: .omp_data_o.42.nk = nk_16(D);
+  scanning: __builtin_GOMP_parallel_start (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0, &.omp_data_o.42, 8);
+  scanning: _Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0 (&.omp_data_o.42);
+    can throw externally to lp 0
+     callee:_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0
+Function is locally looping.
+void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C)
+{
+  struct .omp_data_s.41 .omp_data_o.42;
+
+  <bb 2>:
+  .omp_data_o.42.alpha = alpha_2(D);
+  .omp_data_o.42.beta = beta_4(D);
+  .omp_data_o.42.A = A_6(D);
+  .omp_data_o.42.B = B_8(D);
+  .omp_data_o.42.C = C_10(D);
+  .omp_data_o.42.ni = ni_12(D);
+  .omp_data_o.42.nj = nj_14(D);
+  .omp_data_o.42.nk = nk_16(D);
+  __builtin_GOMP_parallel_start (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0, &.omp_data_o.42, 8);
+  _Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0 (&.omp_data_o.42);
+  __builtin_GOMP_parallel_end ();
+  return;
+
+}
+
+
+
+;; Function void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (_Z8gemm_ompiiiddPA4096_dS0_S0_, funcdef_no=3265, decl_uid=66831, cgraph_uid=3087)
+
+
+
+ local analysis of void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])
+   scanning: hookomp_timing_start (&omp_start);
+  scanning: gemm_omp_kernel (ni_3(D), nj_4(D), nk_5(D), alpha_6(D), beta_7(D), A_8(D), B_9(D), C_outputFromOMP_10(D));
+  scanning: hookomp_timing_stop (&omp_stop);
+  scanning: return;
+Function is locally looping.
+void gemm_omp(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C_outputFromOMP)
+{
+  <bb 2>:
+  hookomp_timing_start (&omp_start);
+  gemm_omp_kernel (ni_3(D), nj_4(D), nk_5(D), alpha_6(D), beta_7(D), A_8(D), B_9(D), C_outputFromOMP_10(D));
+  hookomp_timing_stop (&omp_stop);
+  return;
+
+}
+
+
+
+;; Function void GPU_argv_init() (_Z13GPU_argv_initv, funcdef_no=3266, decl_uid=66833, cgraph_uid=3088)
+
+
+
+ local analysis of void GPU_argv_init()
+   scanning: stderr.43_3 = stderr;
+    global memory read is not const
+  scanning: __fprintf_chk (stderr.43_3, 1, "GPU init.\n");
+    can throw externally to lp 0
+     callee:__fprintf_chk
+Function is locally looping.
+Function is locally throwing.
+void GPU_argv_init() ()
+{
+  int D.68206;
+  int D.68203;
+  struct cudaDeviceProp deviceProp;
+  struct _IO_FILE * stderr.43;
+
+  <bb 2>:
+  stderr.43_3 = stderr;
+  __fprintf_chk (stderr.43_3, 1, "GPU init.\n");
+  cudaGetDeviceProperties (&deviceProp, 0);
+  stderr.43_6 = stderr;
+  __fprintf_chk (stderr.43_6, 1, "setting device %d with name %s\n", 0, &deviceProp.name);
+  cudaSetDevice (0);
+  deviceProp ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function void polybench_flush_cache() (_Z21polybench_flush_cachev, funcdef_no=3270, decl_uid=67114, cgraph_uid=3092)
+
+
+
+ local analysis of void polybench_flush_cache()
+   scanning: flush_8 = calloc (4194560, 8);
+  scanning: _11 = (long unsigned int) i_1;
+  scanning: _12 = _11 * 8;
+  scanning: _13 = flush_8 + _12;
+  scanning: _14 = *_13;
+    Indirect ref to local memory is OK
+  scanning: tmp_15 = _14 + tmp_2;
+  scanning: i_16 = i_1 + 1;
+  scanning: if (i_1 <= 4194559)
+  scanning: if (tmp_2 <= 1.0e+1)
+  scanning: __assert_fail ("tmp <= 10.0", "../../../utilities/polybench.c", 96, &__PRETTY_FUNCTION__);
+  scanning: free (flush_8);
+  scanning: return;
+Function is locally looping.
+void polybench_flush_cache() ()
+{
+  static const char __PRETTY_FUNCTION__[29] = "void polybench_flush_cache()";
+  double tmp;
+  int i;
+  double * flush;
+  int cs;
+  long unsigned int _11;
+  long unsigned int _12;
+  double * _13;
+  double _14;
+
+  <bb 2>:
+  flush_8 = calloc (4194560, 8);
+  goto <bb 4>;
+
+  <bb 3>:
+  _11 = (long unsigned int) i_1;
+  _12 = _11 * 8;
+  _13 = flush_8 + _12;
+  _14 = *_13;
+  tmp_15 = _14 + tmp_2;
+  i_16 = i_1 + 1;
+
+  <bb 4>:
+  # i_1 = PHI <0(2), i_16(3)>
+  # tmp_2 = PHI <0.0(2), tmp_15(3)>
+  if (i_1 <= 4194559)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  if (tmp_2 <= 1.0e+1)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  __assert_fail ("tmp <= 10.0", "../../../utilities/polybench.c", 96, &__PRETTY_FUNCTION__);
+
+  <bb 7>:
+  free (flush_8);
+  return;
+
+}
+
+
+
+;; Function void polybench_prepare_instruments() (_Z29polybench_prepare_instrumentsv, funcdef_no=3271, decl_uid=67125, cgraph_uid=3093)
+
+
+
+ local analysis of void polybench_prepare_instruments()
+   scanning: polybench_flush_cache ();
+  scanning: return;
+Function is locally looping.
+void polybench_prepare_instruments() ()
+{
+  <bb 2>:
+  polybench_flush_cache ();
+  return;
+
+}
+
+
+
+;; Function void polybench_timer_start() (_Z21polybench_timer_startv, funcdef_no=3272, decl_uid=65913, cgraph_uid=3094)
+
+
+
+ local analysis of void polybench_timer_start()
+   scanning: polybench_flush_cache ();
+  scanning: _4 = rtclock ();
+    can throw externally to lp 0
+     callee:_ZL7rtclockv
+Function is locally looping.
+Function is locally throwing.
+void polybench_timer_start() ()
+{
+  double polybench_t_start.68;
+  double _4;
+
+  <bb 2>:
+  polybench_flush_cache ();
+  _4 = rtclock ();
+  polybench_t_start = _4;
+  return;
+
+}
+
+
+
+;; Function void polybench_timer_stop() (_Z20polybench_timer_stopv, funcdef_no=3273, decl_uid=65914, cgraph_uid=3095)
+
+
+
+ local analysis of void polybench_timer_stop()
+   scanning: _3 = rtclock ();
+    can throw externally to lp 0
+     callee:_ZL7rtclockv
+Function is locally looping.
+Function is locally throwing.
+void polybench_timer_stop() ()
+{
+  double polybench_t_end.69;
+  double _3;
+
+  <bb 2>:
+  _3 = rtclock ();
+  polybench_t_end = _3;
+  return;
+
+}
+
+
+
+;; Function void polybench_timer_print() (_Z21polybench_timer_printv, funcdef_no=3274, decl_uid=65915, cgraph_uid=3096)
+
+
+
+ local analysis of void polybench_timer_print()
+   scanning: polybench_t_end.70_2 = polybench_t_end;
+    global memory read is not const
+  scanning: polybench_t_start.71_3 = polybench_t_start;
+    global memory read is not const
+  scanning: _4 = polybench_t_end.70_2 - polybench_t_start.71_3;
+  scanning: __printf_chk (1, "%0.6f\n", _4);
+    can throw externally to lp 0
+     callee:__printf_chk
+Function is locally looping.
+Function is locally throwing.
+void polybench_timer_print() ()
+{
+  int D.68219;
+  double polybench_t_start.71;
+  double polybench_t_end.70;
+  double _4;
+
+  <bb 2>:
+  polybench_t_end.70_2 = polybench_t_end;
+  polybench_t_start.71_3 = polybench_t_start;
+  _4 = polybench_t_end.70_2 - polybench_t_start.71_3;
+  __printf_chk (1, "%0.6f\n", _4);
+  return;
+
+}
+
+
+
+;; Function void* polybench_alloc_data(long long unsigned int, int) (_Z20polybench_alloc_datayi, funcdef_no=3276, decl_uid=65921, cgraph_uid=3098)
+
+
+
+ local analysis of void* polybench_alloc_data(long long unsigned int, int)
+   scanning: _4 = (long unsigned int) elt_size_3(D);
+  scanning: val_5 = n_1(D) * _4;
+  scanning: ret_8 = xmalloc (val_5);
+    can throw externally to lp 0
+     callee:_ZL7xmallocm
+Function is locally looping.
+Function is locally throwing.
+void* polybench_alloc_data(long long unsigned int, int) (long long unsigned int n, int elt_size)
+{
+  void * ret;
+  size_t val;
+  long unsigned int _4;
+
+  <bb 2>:
+  _4 = (long unsigned int) elt_size_3(D);
+  val_5 = n_1(D) * _4;
+  ret_8 = xmalloc (val_5);
+  return ret_8;
+
+}
+
+
+
+;; Function int main(int, char**) (main, funcdef_no=3268, decl_uid=66878, cgraph_uid=3090) (executed once)
+
+
+
+ local analysis of int main(int, char**)
+   scanning: ni = 4096;
+  scanning: nj = 4096;
+  scanning: nk = 4096;
+  scanning: ret_221 = xmalloc (134217728);
+    can throw externally to lp 0
+     callee:_ZL7xmallocm
+Function is locally looping.
+Function is locally throwing.
+int main(int, char**) (int argc, char * * argv)
+{
+  int D.68289;
+  int D.68286;
+  int D.68283;
+  int D.68280;
+  int i;
+  int j;
+  int i;
+  int j;
+  int D.68265;
+  int D.68262;
+  int D.68259;
+  int D.68256;
+  size_t val;
+  void * ret;
+  void * D.68253;
+  size_t val;
+  void * ret;
+  void * D.68248;
+  size_t val;
+  void * ret;
+  void * D.68243;
+  size_t val;
+  void * ret;
+  void * D.68238;
+  size_t val;
+  void * ret;
+  void * D.68233;
+  size_t val;
+  void * ret;
+  void * D.68228;
+  static const char __PRETTY_FUNCTION__[22] = "int main(int, char**)";
+  int ndevices;
+  int nloops;
+  struct Func * ff_0;
+  int n_params;
+  double[4096][4096] * C_outputFromGpu;
+  double[4096][4096] * C_inputToGpu;
+  double[4096][4096] * C_outputFromOMP;
+  double[4096][4096] * C;
+  double[4096][4096] * B;
+  double[4096][4096] * A;
+  double beta;
+  double alpha;
+  int nk;
+  int nj;
+  int ni;
+  struct _IO_FILE * stdout.66;
+  double alpha.65;
+  double beta.64;
+  double[4096][4096] * C_outputFromGpu.63;
+  int ni.62;
+  int nj.61;
+  int nk.60;
+  double[4096][4096] * A.59;
+  double[4096][4096] * B.58;
+  double[4096][4096] * C.57;
+  struct Func * * * TablePointerFunctions.56;
+  struct Func * * * table.55;
+  bool retval.54;
+  struct _IO_FILE * stderr.53;
+  void * C_outputFromGpu.52;
+  void * C_inputToGpu.51;
+  void * C.50;
+  void * B.49;
+  void * A.48;
+  void * _40;
+  void * _46;
+  void * * _49;
+  void * * _53;
+  struct ffi_type * * _85;
+  bool _122;
+  struct Func * * _129;
+  struct Func * _131;
+  char * _183;
+  unsigned char _184;
+  long unsigned int _242;
+  long unsigned int _243;
+  double[4096] * _244;
+  double[4096] * _245;
+  double _247;
+  long unsigned int _252;
+  long unsigned int _253;
+  double[4096] * _254;
+  double[4096] * _255;
+  double _257;
+
+  <bb 2>:
+  ni = 4096;
+  nj = 4096;
+  nk = 4096;
+  ret_221 = xmalloc (134217728);
+  A = ret_221;
+  ret_224 = xmalloc (134217728);
+  B = ret_224;
+  ret_227 = xmalloc (134217728);
+  C = ret_227;
+  C_outputFromOMP_230 = xmalloc (134217728);
+  ret_233 = xmalloc (134217728);
+  C_inputToGpu = ret_233;
+  ret_236 = xmalloc (134217728);
+  C_outputFromGpu = ret_236;
+  stderr.53_31 = stderr;
+  __fprintf_chk (stderr.53_31, 1, "Preparing alternatives functions.\n");
+  ff_0_35 = malloc (48);
+  _40 = malloc (88);
+  ff_0_35->arg_types = _40;
+  _46 = malloc (88);
+  ff_0_35->arg_values = _46;
+  ff_0_35->f = gemm_cuda;
+  _49 = &ff_0_35->ret_value;
+  memset (_49, 0, 8);
+  ff_0_35->ret_type = &ffi_type_void;
+  ff_0_35->nargs = 10;
+  _53 = ff_0_35->arg_values;
+  *_53 = &ni;
+  MEM[(void * *)_53 + 8B] = &nj;
+  MEM[(void * *)_53 + 16B] = &nk;
+  MEM[(void * *)_53 + 24B] = &alpha;
+  MEM[(void * *)_53 + 32B] = &beta;
+  MEM[(void * *)_53 + 40B] = &A;
+  MEM[(void * *)_53 + 48B] = &B;
+  MEM[(void * *)_53 + 56B] = &C;
+  MEM[(void * *)_53 + 64B] = &C_inputToGpu;
+  MEM[(void * *)_53 + 72B] = &C_outputFromGpu;
+  MEM[(void * *)_53 + 80B] = 0B;
+  _85 = ff_0_35->arg_types;
+  *_85 = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_85 + 8B] = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_85 + 16B] = &ffi_type_sint32;
+  MEM[(struct ffi_type * *)_85 + 24B] = &ffi_type_double;
+  MEM[(struct ffi_type * *)_85 + 32B] = &ffi_type_double;
+  MEM[(struct ffi_type * *)_85 + 40B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_85 + 48B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_85 + 56B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_85 + 64B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_85 + 72B] = &ffi_type_pointer;
+  MEM[(struct ffi_type * *)_85 + 80B] = 0B;
+  stderr.53_117 = stderr;
+  __fprintf_chk (stderr.53_117, 1, "Creating table of target functions.\n");
+  _122 = create_target_functions_table (&table, 1, 2);
+  if (_122 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 7>;
+
+  <bb 3>:
+  table.55_124 = table;
+  if (table.55_124 == 0B)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 4>:
+  __assert_fail ("table != NULL", "gemm.cu", 402, &__PRETTY_FUNCTION__);
+
+  <bb 5>:
+  stderr.53_126 = stderr;
+  __fprintf_chk (stderr.53_126, 1, "Declaring function in 0,1.\n");
+  table.55_128 = table;
+  _129 = *table.55_128;
+  _131 = MEM[(struct Func * *)_129 + 8B];
+  *_131 = MEM[(const struct Func &)ff_0_35];
+  TablePointerFunctions = table.55_128;
+  if (table.55_128 == 0B)
+    goto <bb 6>;
+  else
+    goto <bb 7>;
+
+  <bb 6>:
+  __assert_fail ("TablePointerFunctions != NULL", "gemm.cu", 408, &__PRETTY_FUNCTION__);
+
+  <bb 7>:
+  stderr.53_137 = stderr;
+  __fprintf_chk (stderr.53_137, 1, "Calling init_array.\n");
+  C.57_139 = C;
+  B.58_140 = B;
+  A.59_141 = A;
+  nk.60_142 = nk;
+  nj.61_143 = nj;
+  ni.62_144 = ni;
+  init_array (ni.62_144, nj.61_143, nk.60_142, &alpha, &beta, A.59_141, B.58_140, C.57_139);
+  C.57_146 = C;
+  nj.61_147 = nj;
+  ni.62_148 = ni;
+  goto <bb 11>;
+
+  <bb 8>:
+  _242 = (long unsigned int) i_241;
+  _243 = _242 * 32768;
+  _244 = C_outputFromOMP_230 + _243;
+  _245 = C.57_146 + _243;
+  _247 = *_245[j_246];
+  *_244[j_246] = _247;
+  j_248 = j_246 + 1;
+
+  <bb 9>:
+  # j_246 = PHI <j_123(12), j_248(8)>
+  if (nj.61_147 > j_246)
+    goto <bb 8>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  i_249 = i_241 + 1;
+
+  <bb 11>:
+  # i_241 = PHI <0(7), i_249(10)>
+  if (ni.62_148 > i_241)
+    goto <bb 12>;
+  else
+    goto <bb 13>;
+
+  <bb 12>:
+  # j_123 = PHI <0(11)>
+  goto <bb 9>;
+
+  <bb 13>:
+  C_outputFromGpu.63_150 = C_outputFromGpu;
+  goto <bb 17>;
+
+  <bb 14>:
+  _252 = (long unsigned int) i_251;
+  _253 = _252 * 32768;
+  _254 = C_outputFromGpu.63_150 + _253;
+  _255 = C.57_146 + _253;
+  _257 = *_255[j_256];
+  *_254[j_256] = _257;
+  j_258 = j_256 + 1;
+
+  <bb 15>:
+  # j_256 = PHI <j_133(18), j_258(14)>
+  if (nj.61_147 > j_256)
+    goto <bb 14>;
+  else
+    goto <bb 16>;
+
+  <bb 16>:
+  i_259 = i_251 + 1;
+
+  <bb 17>:
+  # i_251 = PHI <0(13), i_259(16)>
+  if (ni.62_148 > i_251)
+    goto <bb 18>;
+  else
+    goto <bb 19>;
+
+  <bb 18>:
+  # j_133 = PHI <0(17)>
+  goto <bb 15>;
+
+  <bb 19>:
+  stderr.53_155 = stderr;
+  __fprintf_chk (stderr.53_155, 1, "Calling gemm_omp:\n");
+  B.58_157 = B;
+  A.59_158 = A;
+  beta.64_159 = beta;
+  alpha.65_160 = alpha;
+  nk.60_161 = nk;
+  nj.61_162 = nj;
+  ni.62_163 = ni;
+  gemm_omp (ni.62_163, nj.61_162, nk.60_161, alpha.65_160, beta.64_159, A.59_158, B.58_157, C_outputFromOMP_230);
+  stdout.66_165 = stdout;
+  __fprintf_chk (stdout.66_165, 1, "version = OMP+OFF, num_threads = %d, NI = %d, NJ = %d, NK = %d, ", 8, 4096, 4096, 4096);
+  hookomp_print_time_results ();
+  stderr.53_168 = stderr;
+  __fprintf_chk (stderr.53_168, 1, "Calling compareResults(original, omp).\n");
+  C.57_170 = C;
+  nj.61_171 = nj;
+  ni.62_172 = ni;
+  compareResults (ni.62_172, nj.61_171, C.57_170, C_outputFromOMP_230);
+  stderr.53_174 = stderr;
+  __fprintf_chk (stderr.53_174, 1, "Calling compareResults(original, cuda).\n");
+  C_outputFromGpu.63_176 = C_outputFromGpu;
+  C.57_177 = C;
+  nj.61_178 = nj;
+  ni.62_179 = ni;
+  compareResults (ni.62_179, nj.61_178, C.57_177, C_outputFromGpu.63_176);
+  if (argc_181(D) > 42)
+    goto <bb 20>;
+  else
+    goto <bb 22>;
+
+  <bb 20>:
+  _183 = *argv_182(D);
+  _184 = MEM[(const unsigned char * {ref-all})_183];
+  if (_184 == 0)
+    goto <bb 21>;
+  else
+    goto <bb 22>;
+
+  <bb 21>:
+  C_outputFromGpu.63_185 = C_outputFromGpu;
+  nj.61_186 = nj;
+  ni.62_187 = ni;
+  print_array (ni.62_187, nj.61_186, C_outputFromGpu.63_185);
+
+  <bb 22>:
+  A.59_189 = A;
+  free (A.59_189);
+  B.58_191 = B;
+  free (B.58_191);
+  C.57_193 = C;
+  free (C.57_193);
+  free (C_outputFromOMP_230);
+  C_outputFromGpu.63_196 = C_outputFromGpu;
+  free (C_outputFromGpu.63_196);
+  ni ={v} {CLOBBER};
+  nj ={v} {CLOBBER};
+  nk ={v} {CLOBBER};
+  alpha ={v} {CLOBBER};
+  beta ={v} {CLOBBER};
+  A ={v} {CLOBBER};
+  B ={v} {CLOBBER};
+  C ={v} {CLOBBER};
+  C_inputToGpu ={v} {CLOBBER};
+  C_outputFromGpu ={v} {CLOBBER};
+  return 0;
+
+}
+
+
+
+;; Function void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*) (_Z45__device_stub__Z16gemm_cuda_kerneliiiddPdS_S_iiiddPdS_S_, funcdef_no=3301, decl_uid=67447, cgraph_uid=3122)
+
+
+
+ local analysis of void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*)
+   scanning: _4 = cudaSetupArgument (&__par0, 4, 0);
+    can throw externally to lp 0
+     callee:cudaSetupArgument
+Function is locally looping.
+Function is locally throwing.
+void __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_(int, int, int, double, double, double*, double*, double*) (int __par0, int __par1, int __par2, double __par3, double __par4, double * __par5, double * __par6, double * __par7)
+{
+  cudaError_t D.68296;
+  static volatile char * __f;
+  bool retval.81;
+  bool retval.80;
+  bool retval.79;
+  bool retval.78;
+  bool retval.77;
+  bool retval.76;
+  bool retval.75;
+  bool retval.74;
+  cudaError _4;
+  cudaError _8;
+  cudaError _12;
+  cudaError _16;
+  cudaError _20;
+  cudaError _24;
+  cudaError _28;
+  cudaError _32;
+
+  <bb 2>:
+  _4 = cudaSetupArgument (&__par0, 4, 0);
+  if (_4 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _8 = cudaSetupArgument (&__par1, 4, 4);
+  if (_8 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 4>;
+
+  <bb 4>:
+  _12 = cudaSetupArgument (&__par2, 4, 8);
+  if (_12 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  _16 = cudaSetupArgument (&__par3, 8, 16);
+  if (_16 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  _20 = cudaSetupArgument (&__par4, 8, 24);
+  if (_20 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  _24 = cudaSetupArgument (&__par5, 8, 32);
+  if (_24 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  _28 = cudaSetupArgument (&__par6, 8, 40);
+  if (_28 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  _32 = cudaSetupArgument (&__par7, 8, 48);
+  if (_32 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  __f = gemm_cuda_kernel;
+  cudaLaunch (gemm_cuda_kernel);
+
+  <bb 11>:
+  return;
+
+}
+
+
+
+;; Function void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*) (_Z16gemm_cuda_kerneliiiddPdS_S_, funcdef_no=3302, decl_uid=66844, cgraph_uid=3123)
+
+
+
+ local analysis of void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*)
+   scanning: __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_ (__cuda_0_2(D), __cuda_1_3(D), __cuda_2_4(D), __cuda_3_5(D), __cuda_4_6(D), __cuda_5_7(D), __cuda_6_8(D), __cuda_7_9(D));
+    can throw externally to lp 0
+     callee:_Z45__device_stub__Z16gemm_cuda_kerneliiiddPdS_S_iiiddPdS_S_
+Function is locally looping.
+Function is locally throwing.
+void gemm_cuda_kernel(int, int, int, double, double, double*, double*, double*) (int __cuda_0, int __cuda_1, int __cuda_2, double __cuda_3, double __cuda_4, double * __cuda_5, double * __cuda_6, double * __cuda_7)
+{
+  <bb 2>:
+  __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_ (__cuda_0_2(D), __cuda_1_3(D), __cuda_2_4(D), __cuda_3_5(D), __cuda_4_6(D), __cuda_5_7(D), __cuda_6_8(D), __cuda_7_9(D));
+  return;
+
+}
+
+
+
+;; Function void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096]) (_Z9gemm_cudaiiiddPA4096_dS0_S0_S0_S0_, funcdef_no=3267, decl_uid=66855, cgraph_uid=3089)
+
+
+
+ local analysis of void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096])
+   scanning: stderr.44_4 = stderr;
+    global memory read is not const
+  scanning: __fprintf_chk (stderr.44_4, 1, "Calling function gemm_cuda.\n");
+    can throw externally to lp 0
+     callee:__fprintf_chk
+Function is locally looping.
+Function is locally throwing.
+void gemm_cuda(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096], double (*)[4096]) (int ni, int nj, int nk, double alpha, double beta, double[4096] * A, double[4096] * B, double[4096] * C, double[4096] * C_inputToGpu, double[4096] * C_outputFromGpu)
+{
+  unsigned int block$y;
+  unsigned int block$x;
+  float D.68311;
+  float D.68309;
+  int D.68303;
+  struct dim3 grid;
+  struct dim3 block;
+  double * C_gpu;
+  double * B_gpu;
+  double * A_gpu;
+  double * C_gpu.47;
+  double * B_gpu.46;
+  double * A_gpu.45;
+  struct _IO_FILE * stderr.44;
+  long unsigned int _32;
+  unsigned int _33;
+  long unsigned int _38;
+  unsigned int _39;
+  cudaError _43;
+  float _79;
+  float _80;
+
+  <bb 2>:
+  stderr.44_4 = stderr;
+  __fprintf_chk (stderr.44_4, 1, "Calling function gemm_cuda.\n");
+  GPU_argv_init ();
+  cudaMalloc (&A_gpu, 134217728);
+  cudaMalloc (&B_gpu, 134217728);
+  cudaMalloc (&C_gpu, 134217728);
+  hookomp_timing_start (&data_transfer_h2d_start);
+  A_gpu.45_15 = A_gpu;
+  cudaMemcpy (A_gpu.45_15, A_16(D), 134217728, 1);
+  B_gpu.46_19 = B_gpu;
+  cudaMemcpy (B_gpu.46_19, B_20(D), 134217728, 1);
+  C_gpu.47_23 = C_gpu;
+  cudaMemcpy (C_gpu.47_23, C_inputToGpu_24(D), 134217728, 1);
+  hookomp_timing_stop (&data_transfer_h2d_stop);
+  block.z = 1;
+  _79 = 5.12e+2;
+  _32 = (long unsigned int) _79;
+  _33 = (unsigned int) _32;
+  _80 = 1.28e+2;
+  _38 = (long unsigned int) _80;
+  _39 = (unsigned int) _38;
+  grid.x = _39;
+  grid.y = _33;
+  grid.z = 1;
+  hookomp_timing_start (&dev_kernel1_start);
+  MEM[(struct dim3 *)&block] = 32;
+  MEM[(struct dim3 *)&block + 4B] = 8;
+  _43 = cudaConfigureCall (grid, block, 0, 0B);
+  if (_43 == 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  C_gpu.47_45 = C_gpu;
+  B_gpu.46_46 = B_gpu;
+  A_gpu.45_47 = A_gpu;
+  __device_stub__Z16gemm_cuda_kerneliiiddPdS_S_ (ni_48(D), nj_49(D), nk_50(D), alpha_51(D), beta_52(D), A_gpu.45_47, B_gpu.46_46, C_gpu.47_45);
+
+  <bb 4>:
+  cudaThreadSynchronize ();
+  hookomp_timing_stop (&dev_kernel1_stop);
+  hookomp_timing_start (&data_transfer_d2h_start);
+  C_gpu.47_58 = C_gpu;
+  cudaMemcpy (C_outputFromGpu_59(D), C_gpu.47_58, 134217728, 2);
+  hookomp_timing_stop (&data_transfer_d2h_stop);
+  A_gpu.45_62 = A_gpu;
+  cudaFree (A_gpu.45_62);
+  B_gpu.46_64 = B_gpu;
+  cudaFree (B_gpu.46_64);
+  C_gpu.47_66 = C_gpu;
+  cudaFree (C_gpu.47_66);
+  A_gpu ={v} {CLOBBER};
+  B_gpu ={v} {CLOBBER};
+  C_gpu ={v} {CLOBBER};
+  block ={v} {CLOBBER};
+  grid ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611() (_ZL76__sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611v, funcdef_no=3304, decl_uid=67450, cgraph_uid=3125) (executed once)
+
+
+
+ local analysis of void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611()
+   scanning: _3 = __cudaRegisterFatBinary (&__fatDeviceText);
+    can throw externally to lp 0
+     callee:__cudaRegisterFatBinary
+Function is locally looping.
+Function is locally throwing.
+void __sti____cudaRegisterAll_39_tmpxft_0000336e_00000000_7_gemm_cpp1_ii_132e4611() ()
+{
+  void (*<T7867>) (void * *) callback_fp;
+  void * * __cudaFatCubinHandle.83;
+  void * * __cudaFatCubinHandle.82;
+  void * * _3;
+
+  <bb 2>:
+  _3 = __cudaRegisterFatBinary (&__fatDeviceText);
+  __cudaFatCubinHandle = _3;
+  __nv_cudaEntityRegisterCallback (_3);
+  atexit (__cudaUnregisterBinaryUtil);
+  return;
+
+}
+
+
+
+;; Function <built-in> (_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0, funcdef_no=3306, decl_uid=67704, cgraph_uid=3135)
+
+Already processed call to:
+_Z15gemm_omp_kerneliiiddPA4096_dS0_S0_/3112 (void gemm_omp_kernel(int, int, int, double, double, double (*)[4096], double (*)[4096], double (*)[4096])) @0x7f0d351aa000
+  Type: function
+  Visibility: public
+  References: _Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0/3172 (addr)
+  Referring: 
+  Availability: available
+  Function flags: analyzed body finalized
+  Called by: _Z8gemm_ompiiiddPA4096_dS0_S0_/3113 (1.00 per call) 
+  Calls: GOMP_parallel_end/3257 (1.00 per call) _Z15gemm_omp_kerneliiiddPA4096_dS0_S0_._omp_fn.0/3172 (1.00 per call) (can throw external) GOMP_parallel_start/3256 (1.00 per call) 
+Function called in recursive cycle; ignoring
+<built-in> (struct .omp_data_s.41 & restrict .omp_data_i)
+{
+  int k;
+  int j;
+  long int .iend0.115;
+  int i;
+  long int .istart0.114;
+  long int .iend0.113;
+  long int .istart0.112;
+  long long int q_data_transfer_read.40;
+  long long int q_data_transfer_write.39;
+  int _22;
+  long int _23;
+  bool _25;
+  int _29;
+  int _31;
+  bool _34;
+  long unsigned int _39;
+  long unsigned int _40;
+  double[4096] * _41;
+  double[4096] * _42;
+  double _43;
+  double _44;
+  double _45;
+  int _48;
+  double _58;
+  double[4096] * _61;
+  double[4096] * _62;
+  double _63;
+  double _64;
+  double _65;
+  long unsigned int _66;
+  long unsigned int _67;
+  double[4096] * _68;
+  double[4096] * _69;
+  double _70;
+  double _71;
+  double _72;
+
+  <bb 2>:
+  current_loop_index = 0;
+  num_threads_defined = 8;
+  q_data_transfer_write = 402653184;
+  q_data_transfer_read = 134217728;
+  type_of_data_allocation = 1;
+  _22 = .omp_data_i_21(D)->ni;
+  _23 = (long int) _22;
+  _25 = __builtin_GOMP_loop_dynamic_start (0, _23, 1, 64, &.istart0.112, &.iend0.113);
+  if (_25 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 12>;
+
+  <bb 3>:
+
+  <bb 13>:
+  .istart0.114_26 = .istart0.112;
+  i_27 = (int) .istart0.114_26;
+  .iend0.115_28 = .iend0.113;
+  _29 = (int) .iend0.115_28;
+
+  <bb 4>:
+  # i_1 = PHI <i_27(13), i_32(15)>
+
+  <bb 5>:
+  # j_2 = PHI <0(4), j_49(10)>
+  _31 = .omp_data_i_21(D)->nj;
+  if (j_2 < _31)
+    goto <bb 8>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  i_32 = i_1 + 1;
+  if (i_32 < _29)
+    goto <bb 15>;
+  else
+    goto <bb 7>;
+
+  <bb 15>:
+  goto <bb 4>;
+
+  <bb 7>:
+  _34 = __builtin_GOMP_loop_dynamic_next (&.istart0.112, &.iend0.113);
+  if (_34 != 0)
+    goto <bb 14>;
+  else
+    goto <bb 12>;
+
+  <bb 14>:
+  goto <bb 13>;
+
+  <bb 8>:
+  _39 = (long unsigned int) i_1;
+  _40 = _39 * 32768;
+  _41 = .omp_data_i_21(D)->C;
+  _42 = _41 + _40;
+  _43 = *_42[j_2];
+  _44 = .omp_data_i_21(D)->beta;
+  _45 = _43 * _44;
+  *_42[j_2] = _45;
+
+  <bb 9>:
+  # k_3 = PHI <0(8), k_74(11)>
+  _48 = .omp_data_i_21(D)->nk;
+  if (k_3 < _48)
+    goto <bb 11>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  j_49 = j_2 + 1;
+  goto <bb 5>;
+
+  <bb 11>:
+  _58 = *_42[j_2];
+  _61 = .omp_data_i_21(D)->A;
+  _62 = _61 + _40;
+  _63 = *_62[k_3];
+  _64 = .omp_data_i_21(D)->alpha;
+  _65 = _63 * _64;
+  _66 = (long unsigned int) k_3;
+  _67 = _66 * 32768;
+  _68 = .omp_data_i_21(D)->B;
+  _69 = _68 + _67;
+  _70 = *_69[j_2];
+  _71 = _65 * _70;
+  _72 = _58 + _71;
+  *_42[j_2] = _72;
+  k_74 = k_3 + 1;
+  goto <bb 9>;
+
+  <bb 12>:
+  __builtin_GOMP_loop_end_nowait ();
+  return;
+
+}
+
+
