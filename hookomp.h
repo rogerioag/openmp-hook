@@ -32,7 +32,7 @@
 /* Percentual of code to execute and get performance counters to decision about offloading. */
 #define PERC_OF_CODE_TO_EXECUTE 10
 
-#define  PRINT_ERROR()					\
+#define PRINT_ERROR()					\
   do {									\
     char * error;						\
     if ((error = dlerror()) != NULL)  {	\
