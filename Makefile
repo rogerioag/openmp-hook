@@ -48,11 +48,13 @@ clean:
 	rm -rf *.o *.so
 
 info:
+	@echo "make OPTIONS=\"-D[IVY_BRIDGE | SANDY_BRIDGE | NEHALEM]\""
 	@echo "For compiling with DEBUG messages, use:"
-	@echo "make OPTIONS=\"-DVERBOSE -DDEBUG\""
+	@echo "make OPTIONS=\"-DVERBOSE -DDEBUG -D[IVY_BRIDGE | SANDY_BRIDGE | NEHALEM]\""
 	@echo "For compiling with FORCENOOFFLOAD, use:"
-	@echo "make OPTIONS=\"-DFORCENOOFFLOAD\""
+	@echo "make OPTIONS=\"-DFORCENOOFFLOAD -D[IVY_BRIDGE | SANDY_BRIDGE | NEHALEM]\""
 	@echo "For compiling with DEBUG messages and force no offloading, use:"
+	@echo "make OPTIONS=\"-DVERBOSE -DDEBUG -DFORCENOOFFLOAD -D[IVY_BRIDGE | SANDY_BRIDGE | NEHALEM] \""
 	@echo "make OPTIONS=\"-DVERBOSE -DDEBUG -DFORCENOOFFLOAD\""
 
 document:

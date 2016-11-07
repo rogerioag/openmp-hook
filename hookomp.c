@@ -1665,7 +1665,7 @@ void GOMP_parallel_start (void (*fn) (void *), void *data, unsigned num_threads)
 
 	// TRACE("[LIBGOMP] GOMP_parallel_start@GOMP_X.X.[%p]\n", (void* )fn);
 	
-	// TRACE("[LIBGOMP] lib_GOMP_parallel_start[%p]\n", (void* ) lib_GOMP_parallel_start);
+	TRACE("[LIBGOMP] lib_GOMP_parallel_start[%p]\n", (void* ) lib_GOMP_parallel_start);
 
 	HOOKOMP_parallel_start();
 

@@ -1,0 +1,43 @@
+snbep_unc_ha::UNC_H_REQUESTS:READS snbep_unc_ha::UNC_H_IMC_WRITES:ALL
+
+hppca-server
+/* MEM_event_names */ { "snbep_unc_ha::UNC_H_REQUESTS:READS", "snbep_unc_ha::UNC_H_IMC_WRITES:ALL", NULL, NULL, NULL },
+
+
+
+ragserver
+------------------------------------------------------------------------------------------------------------------------
+Memory reads:
+rogerio@ragserver:~/papi-5.4.3/src$ papi_native_avail -e UNC_QMC_NORMAL_READS:ANY:cpu=0 -e UNC_QMC_WRITES:FULL_ANY:cpu=0
+Available native events and hardware information.
+--------------------------------------------------------------------------------
+PAPI Version             : 5.4.3.0
+Vendor string and code   : GenuineIntel (1)
+Model string and code    : Intel(R) Core(TM) i7 CPU         870  @ 2.93GHz (30)
+CPU Revision             : 5.000000
+CPUID Info               : Family: 6  Model: 30  Stepping: 5
+CPU Max Megahertz        : 2934
+CPU Min Megahertz        : 1199
+Hdw Threads per core     : 2
+Cores per Socket         : 4
+Sockets                  : 1
+NUMA Nodes               : 1
+CPUs per Node            : 8
+Total CPUs               : 8
+Running in a VM          : no
+Number Hardware Counters : 7
+Max Multiplex Counters   : 192
+--------------------------------------------------------------------------------
+
+Event name:     UNC_QMC_WRITES:FULL_ANY:cpu=0
+Description:    QMC cache line writes, masks:QMC full cache line writes:CPU to program
+native_avail.c                       PASSED
+rogerio@ragserver:~/papi-5.4.3/src$ papi_command_line -e UNC_QMC_NORMAL_READS:ANY:cpu=0 -e UNC_QMC_WRITES:FULL_ANY:cpu=0Failed adding: -e
+because: Event does not exist
+Successfully added: UNC_QMC_NORMAL_READS:ANY:cpu=0
+Failed adding: -e
+because: Event does not exist
+Successfully added: UNC_QMC_WRITES:FULL_ANY:cpu=0
+
+UNC_QMC_NORMAL_READS:ANY:cpu=0 : 	92550 
+UNC_QMC_WRITES:FULL_ANY:cpu=0 : 	6270 

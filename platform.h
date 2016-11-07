@@ -2,7 +2,59 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
+/* Define the default processor architecture: ivy bridge is pilipili2. */
+#if !defined(NEHALEM) && !defined(IVY_BRIDGE) && !defined(SANDY_BRIDGE)
+#define IVY_BRIDGE
+#endif
+
+/* Include events for specific processor architecture. */
+#ifdef NEHALEM
+  #pragma message("Setting NEHALEM architecture.")
+  #include "nehalem.h"
+#endif
+
+#ifdef IVY_BRIDGE
+  #pragma message("Setting Ivy Bridge architecture.")
+  #include "ivy_bridge.h"
+#endif
+
+#ifdef SANDY_BRIDGE
+  #pragma message("Setting Sandy Bridge architecture.")
+  #include "sandy_bridge.h"
+#endif
+
 #define NUM_DEVICES 2
+
+/* Cache line size: 64 bytes. http://www.cpu-world.com/CPUs/Xeon/Intel-Xeon%20E5-2630.html */
+#define CACHE_LINE_SIZE 64
+
+/* Time of transfer 1 byte over PCI. */
+/* Host to Device. */
+#define T_WRITE_BYTE 1
+
+/* Device to Host. */
+#define T_READ_BYTE 1
+
+#define BYTES_TO_KB 9.76563e-4
+#define BYTES_TO_MB 9.5367e-7
+#define BYTES_TO_GB 9.3132e-10
+
+/* One to preset, cpu and other to native and uncore. */
+#define NUM_PAPI_EVENT_SETS 2
+
+#define NUM_MAX_EVENTS 5
+
+/* Events more PAPI_get_real_cyc() that work with time stamp counter (tsc), getting the value of rdtsc. */
+
+/* Indexes to define the position of values. */
+#define IDX_MEM 0
+#define IDX_LLC 1
+#define IDX_L2 2
+#define IDX_L1 3
+#define IDX_FPO 4
+
+#define COMP_CORE 0
+#define COMP_UNCORE 1
 
 /* Memory Operation.*/
 #define MEMORY_READ 0

@@ -800,29 +800,32 @@ bool RM_start_counters (void){
 		result = RM_create_event_sets();
 	}
 
-	int EventCode = 0x0;
+	int EventCode = 0x00000000;
 
 	TRACE("EventSet: %d\n", ptr_measure->current_eventset);
 	for ( j = 0; j < NUM_MAX_EVENTS; j++ ) {
 		if(event_names[ptr_measure->current_eventset][j] != NULL){
-			TRACE("Adding[%s].\n", event_names[ptr_measure->current_eventset][j] );
+			TRACE("[INI]: Adding[%s].\n", event_names[ptr_measure->current_eventset][j] );
   			/*if ((retval = PAPI_add_named_event( ptr_measure->EventSet, event_names[ptr_measure->current_eventset][j] )) != PAPI_OK){
 				// fprintf(stderr,"PAPI_add_named_event[%s] error: %s\n", event_names[ptr_measure->current_eventset][j], PAPI_strerror(retval));
 				// TRACE("PAPI_add_named_event[%s] error.\n");// , event_names[ptr_measure->current_eventset][j]);
 				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 			}*/
-			EventCode = 0x0;
+			EventCode = 0x00000000;
+			TRACE("EventCode Reseted:[%X].\n", EventCode);
 			if ((retval = PAPI_event_name_to_code(event_names[ptr_measure->current_eventset][j], &EventCode )) != PAPI_OK){
 				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 			}
+
+			TRACE("Event Code[%X]:[%s].\n", EventCode, event_names[ptr_measure->current_eventset][j]);
 
 			TRACE("DEBUG: ptr_measure->current_eventset: %d\n", ptr_measure->current_eventset);
 			TRACE("DEBUG: kind_of_event_set[ptr_measure->current_eventset]: %d\n", kind_of_event_set[ptr_measure->current_eventset]);
 
 			TRACE("DEBUG: ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]]: %d\n", ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]]);
 			
-
 			TRACE("Adding[%X].\n", EventCode);
+			TRACE("Kind of Event Set[%d].\n", kind_of_event_set[ptr_measure->current_eventset]);
 			if ((retval = PAPI_add_event(ptr_measure->EventSets[kind_of_event_set[ptr_measure->current_eventset]], EventCode )) != PAPI_OK){
 				RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 			}	
@@ -1124,7 +1127,7 @@ double estimated(int i, int j){
 /* ------------------------------------------------------------ */
 double work(){
 	PRINT_FUNC_NAME;
-	double w = estimated(IDX_FPO, 2);
+	double w = estimated(IDX_FPO, event_position[IDX_FPO]);
 	TRACE("work: %10.6f\n", w);
 	return w;
 }
@@ -1150,7 +1153,7 @@ double Qw(int i, int j){
 /* ------------------------------------------------------------ */
 double Q_level(int i){
 	PRINT_FUNC_NAME;
-	double qlevel = (Qr(i, event_position[i]) + Qw(i, event_position[i]));
+	double qlevel = (Qr(i, event_position[i]) + Qw(i, event_position[i] + 1));
 	TRACE("Q_level(%d): %10.6f\n", i, qlevel);
 	return qlevel;
 }
