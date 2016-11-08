@@ -1316,7 +1316,7 @@ double RM_attainable_performance(int id_device, double op_intensity){
 	PRINT_FUNC_NAME;
 	double ap = 0.0;
 
-	TRACE("Calculating Attainable Performance to device %d with Operational intensity %10.6f, Theoretical FLOPS: %d, Theoretical Memory Bandwidth: %d\n", id_device, op_intensity, devices[id_device].theor_flops, devices[id_device].theor_bandwidth);
+	TRACE("Calculating Attainable Performance to device %d with Operational intensity %10.6f, Theoretical FLOPS: %10.6f, Theoretical Memory Bandwidth: %10.6f\n", id_device, op_intensity, devices[id_device].theor_flops, devices[id_device].theor_bandwidth);
 	// Attainable performance = Min( F_flops, B_mem * I).
 	ap = MIN(devices[id_device].theor_flops, (devices[id_device].theor_bandwidth * op_intensity));
 	
