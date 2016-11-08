@@ -72,7 +72,7 @@ static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = {
   /* L1_event_names */// { "ix86arch::UNHALTED_CORE_CYCLES:cpu=0", "UNHALTED_REFERENCE_CYCLES", "perf::PERF_COUNT_HW_CACHE_L1D:READ", "perf::PERF_COUNT_HW_CACHE_L1D:WRITE", NULL },
   /* L1_event_names */// { "perf::PERF_COUNT_HW_CACHE_L1D:READ", "perf::PERF_COUNT_HW_CACHE_L1D:WRITE", NULL, NULL, NULL },
   /* L1_event_names */ { "PAPI_L1_DCR", "PAPI_L1_DCW", NULL, NULL, NULL },
-/* FPO_event_names */{ "PAPI_DP_OPS", NULL, NULL, NULL, NULL }
+/* FPO_event_names */{ "PAPI_FP_OPS", NULL, NULL, NULL, NULL }
 };
 
 /* Position, column in te values table according with events names. */
