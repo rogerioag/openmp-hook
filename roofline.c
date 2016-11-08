@@ -1177,6 +1177,7 @@ double RM_get_operational_intensity(void){
 	double W = 0.0;
 	// Memory traffic.
 	double Q, Q_MEM, Q_LLC, Q_L2, Q_L1 = 0.0;
+	double Q_MEM_ac, Q_LLC_ac, Q_L2_ac, Q_L1_ac = 0.0;
 
 	// W.
 	W = work();
@@ -1191,14 +1192,26 @@ double RM_get_operational_intensity(void){
 	TRACE("I: %10.6f\n", I);
 
 	Q_L1 = Q_level(IDX_L1);
-	Q_L2 = Q_level(IDX_L1) + Q_level(IDX_L2);
-	Q_LLC = Q_level(IDX_L1) + Q_level(IDX_L2) + Q_level(IDX_LLC);
-	Q_MEM = Q;
-	
+	Q_L2 = Q_level(IDX_L2);
+	Q_LLC = Q_level(IDX_LLC);
+	Q_MEM = Q_level(IDX_MEM);
+
+	TRACE("Operational Intensity: Individual by Level.\n");
 	TRACE("I_L1: %10.6f\n", (double) W / Q_L1);	
 	TRACE("I_L2: %10.6f\n", (double) W / Q_L2);	
 	TRACE("I_LLC: %10.6f\n", (double) W / Q_LLC);	
 	TRACE("I_MEM: %10.6f\n", (double) W / Q_MEM);
+
+	Q_L1_ac = Q_L1;
+	Q_L2_ac = Q_L1 + Q_L2;
+	Q_LLC_ac = Q_L1 + Q_L2 + Q_LLC;
+	Q_MEM_ac = Q_L1 + Q_L2 + Q_LLC + Q_MEM;
+
+	TRACE("Operational Intensity: Accumulated in Level.\n");
+	TRACE("I_L1_acc: %10.6f\n", (double) W / Q_L1_ac);	
+	TRACE("I_L2_acc: %10.6f\n", (double) W / Q_L2_ac);	
+	TRACE("I_LLC_acc: %10.6f\n", (double) W / Q_LLC_ac);	
+	TRACE("I_MEM_acc: %10.6f\n", (double) W / Q_MEM_ac);
 
 	return I;
 }
