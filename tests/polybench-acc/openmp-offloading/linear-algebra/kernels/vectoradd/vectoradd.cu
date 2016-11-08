@@ -180,7 +180,6 @@ __global__ void vectoradd_cuda_kernel(int ni, DATA_TYPE *a, DATA_TYPE *b, DATA_T
 
   if (i < _PB_NI) {
     c[i] = a[i] + b[i];
-    }
   }
 }
 
