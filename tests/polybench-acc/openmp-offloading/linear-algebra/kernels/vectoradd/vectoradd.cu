@@ -212,7 +212,7 @@ void vectoradd_cuda(int ni, DATA_TYPE POLYBENCH_1D(A, NI, ni),
   HOOKOMP_TIMING_DT_H2D_STOP;
 
   dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
-  dim3 grid((unsigned int)ceil( ((float)N) / ((float)block.x) ), 1);
+  dim3 grid((unsigned int)ceil( ((float)NI) / ((float)block.x) ), 1);
 
   /* Start timer. */
   HOOKOMP_TIMING_DEV_KERNEL1_START;
