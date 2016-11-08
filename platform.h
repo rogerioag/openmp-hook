@@ -9,18 +9,17 @@
 
 /* Include events for specific processor architecture. */
 #ifdef NEHALEM
-  #pragma message("Setting NEHALEM architecture.")
-  #warning "Compiling with NEHALEM features."
+  #pragma message( "Setting NEHALEM architecture." )
   #include "nehalem.h"
 #endif
 
 #ifdef IVY_BRIDGE
-  #pragma message("Setting Ivy Bridge architecture.")
+  #pragma message( "Setting Ivy Bridge architecture." )
   #include "ivy_bridge.h"
 #endif
 
 #ifdef SANDY_BRIDGE
-  #pragma message("Setting Sandy Bridge architecture.")
+  #pragma message( "Setting Sandy Bridge architecture." )
   #include "sandy_bridge.h"
 #endif
 
