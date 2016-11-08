@@ -19,6 +19,8 @@
 	Running in a VM          : no
 	Number Hardware Counters : 7
 	Max Multiplex Counters   : 192
+
+	http://www.cpu-world.com/CPUs/Core_i7/Intel-Core%20i7-870%20BV80605001905AI%20(BX80605I7870%20-%20BXC80605I7870).html
 */
 
 #define NUM_DEVICES 2
@@ -121,7 +123,7 @@ typedef struct Device_Descriptor {
 } Device_Descriptor_Type;
 
 /* Theoretical values.
-   Xeon: 110.4 GFlops, Memory Bandwidth: 51.2 GB/s
+   i7-870: 46.3 GFlops, Memory Bandwidth: 21 GB/s
    k40c: 4291.2 GFlops, Memory Bandwidth: 288 GB/s */
 
 /* Sumary of parameters values used in roofline library.
@@ -145,13 +147,13 @@ typedef struct Device_Descriptor {
 	---------------------------------------------------------------------------------------------------------------------
 */
 static Device_Descriptor_Type devices[NUM_DEVICES] = {
-/* Xeon */	{ 
-				.dev_type = T_CPU, .id = 0, .theor_flops = 110.4, .theor_bandwidth = 51.2, .efect_flops = 110.4, 
+/* i7-870 */	{ 
+				.dev_type = T_CPU, .id = 0, .theor_flops = 46.3, .theor_bandwidth = 21.0, .efect_flops = 46.3, 
 				/*.efect_bandwidth*/
 				{ /* READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
-					{ 51.2, 51.2, 51.2 }, 
+					{ 21.0, 21.0, 21.0 }, 
 				  /* WRITE -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
-					{ 51.2, 51.2, 51.2 } 
+					{ 21.0, 21.0, 21.0 } 
 				},
 				/*.latency*/ 
 				{ /* READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
