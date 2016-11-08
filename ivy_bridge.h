@@ -25,6 +25,7 @@
 	Number Hardware Counters : 11
 	Max Multiplex Counters   : 128
 
+	http://www.cpu-world.com/CPUs/Xeon/Intel-Xeon%20E5-2630%20v2.html
 */
 
 #define NUM_DEVICES 2
