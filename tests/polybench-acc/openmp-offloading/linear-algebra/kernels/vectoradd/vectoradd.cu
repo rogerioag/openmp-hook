@@ -141,7 +141,7 @@ void vectoradd_omp_kernel(int ni, DATA_TYPE POLYBENCH_1D(A, NI, ni),
 
     // 0: MEMORY_ALLOC_DEFAULT, 1: MEMORY_ALLOC_PAGEABLE, 2: MEMORY_ALLOC_PINNED
     type_of_data_allocation = MEMORY_ALLOC_PAGEABLE;
-    #pragma omp for private(i) schedule(OPENMP_SCHEDULE_WITH_CHUNK)
+    #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++) {
       C[i] = A[i] + B[i];
     }
@@ -211,7 +211,7 @@ void vectoradd_cuda(int ni, DATA_TYPE POLYBENCH_1D(A, NI, ni),
 
   HOOKOMP_TIMING_DT_H2D_STOP;
 
-  dim3 block(DIM_THREAD_BLOCK_X, DIM_THREAD_BLOCK_Y);
+  dim3 block(DIM_THREAD_BLOCK_X);
   dim3 grid((unsigned int)ceil( ((float)NI) / ((float)block.x) ), 1);
 
   /* Start timer. */
