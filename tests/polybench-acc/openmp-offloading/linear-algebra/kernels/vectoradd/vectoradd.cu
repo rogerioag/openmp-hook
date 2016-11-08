@@ -9,7 +9,7 @@
 
 #define POLYBENCH_TIME 1
 
-#include "gemm.h"
+#include "vectoradd.h"
 #include <polybench.h>
 #include <polybenchUtilFuncts.h>
 
