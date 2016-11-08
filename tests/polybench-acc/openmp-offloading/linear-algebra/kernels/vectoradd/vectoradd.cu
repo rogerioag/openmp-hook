@@ -143,7 +143,7 @@ void vectoradd_omp_kernel(int ni, DATA_TYPE POLYBENCH_1D(A, NI, ni),
     type_of_data_allocation = MEMORY_ALLOC_PAGEABLE;
     #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++) {
-      C[i] = A[i] + B[i];
+      C[i] = (A[i] + B[i]) * 10.0 + (3.0 * 4.0) + 5.0;
     }
   }
   #pragma endscop
