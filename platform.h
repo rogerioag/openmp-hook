@@ -10,6 +10,7 @@
 /* Include events for specific processor architecture. */
 #ifdef NEHALEM
   #pragma message("Setting NEHALEM architecture.")
+  #warning "Compiling with NEHALEM features."
   #include "nehalem.h"
 #endif
 
