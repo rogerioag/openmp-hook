@@ -144,6 +144,8 @@ void vectoradd_omp_kernel(int ni, DATA_TYPE POLYBENCH_1D(A, NI, ni),
     #pragma omp for schedule(OPENMP_SCHEDULE_WITH_CHUNK)
     for (i = 0; i < _PB_NI; i++) {
       C[i] = (A[i] + B[i]) * 10.0 + (3.0 * 4.0) + 5.0;
+      C[i] = 10.0 * 10.0 * 10.0;
+      C[i] = 10.0 + 10.0 - 1.0;
     }
   }
   #pragma endscop
