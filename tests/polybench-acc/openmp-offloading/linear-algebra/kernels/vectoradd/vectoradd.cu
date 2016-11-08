@@ -86,9 +86,9 @@ static void print_array(int ni,
                         DATA_TYPE POLYBENCH_1D(C, NI, ni)) {
   int i;
 
-  for (i = 0; i < ni; i++)
-      fprintf(stderr, DATA_PRINTF_MODIFIER, C[i]);
-    }
+  for (i = 0; i < ni; i++){
+    fprintf(stderr, DATA_PRINTF_MODIFIER, C[i]);
+  }
   fprintf(stderr, "\n");
 }
 
