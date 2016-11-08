@@ -48,8 +48,8 @@
 #define IDX_MEM 0
 #define IDX_LLC 1
 #define IDX_L2 2
-#define IDX_L1 3
-#define IDX_FPO 4
+#define IDX_L1 4
+#define IDX_FPO 3
 
 #define COMP_CORE 0
 #define COMP_UNCORE 1
