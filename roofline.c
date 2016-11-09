@@ -1104,7 +1104,7 @@ double measured(int i, int j){
 	TRACE("# intervals: %ld.\n", ptr_measure->quant_intervals[i]);
 
 	double measure = (double) (((double) ptr_measure->values[i * NUM_MAX_EVENTS + j]) / ((double) ptr_measure->quant_intervals[i]));
-	TRACE("measured: %10.6f.\n", measure);
+	TRACE("Measured: %10.6f, (avg) measured/intervals(%ld): %10.6f.\n", ((double) ptr_measure->values[i * NUM_MAX_EVENTS + j]), ptr_measure->quant_intervals[i], measure);
 	return measure;
 }
 
@@ -1128,7 +1128,7 @@ double estimated(int i, int j){
 double work(){
 	PRINT_FUNC_NAME;
 	double w = estimated(IDX_FPO, event_position[IDX_FPO]);
-	TRACE("work: %10.6f\n", w);
+	TRACE("Estimated Work: %10.6f\n", w);
 	return w;
 }
 
