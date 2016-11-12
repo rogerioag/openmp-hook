@@ -67,15 +67,13 @@
 /* Names of Events. */
 /* Attention: Position is important to read the table values after. */
 static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = { 
-/* MEM_event_names */ //{ "ivbep_unc_ha0::UNC_H_IMC_READS:cpu=0", "ivbep_unc_ha0::UNC_H_IMC_WRITES:cpu=0", NULL, NULL, NULL },
-/* MEM_event_names */{ "UNC_H_IMC_READS", "UNC_H_IMC_WRITES", NULL, NULL, NULL },
-// /* L3_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L3_TCR", "PAPI_L3_TCW", NULL },
+/* MEM_event_names */{ "ivbep_unc_ha0::UNC_H_IMC_READS:cpu=0", "ivbep_unc_ha0::UNC_H_IMC_WRITES:cpu=0", NULL, NULL, NULL },
 /* L3_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L3_DCR", "PAPI_L3_DCW", NULL },  
 /* L2_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L2_DCR", "PAPI_L2_DCW", NULL },
-///* L1_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L1_TCR", "PAPI_L1_TCW", NULL },
 /* L1_event_names */ { "UNHALTED_CORE_CYCLES", "UNHALTED_REFERENCE_CYCLES", "perf::PERF_COUNT_HW_CACHE_L1D:READ", "perf::PERF_COUNT_HW_CACHE_L1D:WRITE", NULL },
 /* FPO_event_names */{ "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_DP_OPS", NULL, NULL }
 };
+
 
 /* Position, column in te values table according with events names. */
 static int event_position[NUM_EVENT_SETS] = { 
@@ -93,7 +91,7 @@ static int kind_of_event_set[NUM_EVENT_SETS] = {
 /* MEM_event_names */ COMP_UNCORE ,
 /* L3_event_names */  COMP_CORE ,
 /* L2_event_names */  COMP_CORE ,
-/* L1_event_names */  COMP_CORE ,
+/* L1_event_names */  COMP_UNCORE ,
 /* FPO_event_names */ COMP_CORE 
 };
 
