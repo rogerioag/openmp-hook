@@ -58,6 +58,12 @@
 
 /* Events more PAPI_get_real_cyc() that work with time stamp counter (tsc), getting the value of rdtsc. */
 
+/* Source: http://icl.cs.utk.edu/PAPI/forum/viewtopic.php?f=3&t=1202
+Memory Read BW [MBytes/s] = 1.0E-06*(snbep_unc_imc0::UNC_M_CAS_COUNT:RD + snbep_unc_imc1::UNC_M_CAS_COUNT:RD + snbep_unc_imc2::UNC_M_CAS_COUNT:RD + snbep_unc_imc3::UNC_M_CAS_COUNT:RD)*64.0/time
+Memory Write BW [MBytes/s] = 1.0E-06*(snbep_unc_imc0::UNC_M_CAS_COUNT:WR + snbep_unc_imc1::UNC_M_CAS_COUNT:WR + snbep_unc_imc2::UNC_M_CAS_COUNT:WR + snbep_unc_imc3::UNC_M_CAS_COUNT:WR)*64.0/time
+Memory BW [MBytes/s] = Memory Read BW [MBytes/s] + Memory Write BW [MBytes/s]
+*/
+
 /* Names of Events. */
 /* Attention: Position is important to read the table values after. */
 static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = { 

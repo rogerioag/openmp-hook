@@ -1,6 +1,8 @@
 #!/bin/bash -xe
 
-ARCH_CODE_NAME=NEHALEM
+ARCH_CODE_NAME=`cat ../../../../../../arch-codename.in`
+
+echo "Executing test on ${ARCH_CODE_NAME} architecture."
 
 # retrieve the dir name, that is the benchmark name.
 benchmark=`basename $PWD`
