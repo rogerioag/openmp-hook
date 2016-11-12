@@ -5,12 +5,14 @@ ARCH_CODE_NAME=NEHALEM
 # retrieve the dir name, that is the benchmark name.
 benchmark=`basename $PWD`
 
+EXPERIMENT=all-data-sizes-and-chunk-sizes-evaluation
+
 experiment_date=`date +'%d-%m-%Y-%H-%M-%S'`
 
 # For resume an experiment.
 if [ "$#" -ne 1 ]; then
 	echo "Executing a new experiment: "${experiment_date}
-	OUTPUT=output/${experiment_date}
+	OUTPUT=output/${HOSTNAME}-${EXPERIMENT}-${experiment_date}
 else
 	echo "Resuming the experiment: "$1
 	OUTPUT=output/$1
@@ -23,8 +25,6 @@ BENCHMARK_TYPE=`pwd | cut -d'/' -f${NUM_FIELD} | tr '[:upper:]' '[:lower:]'`
 
 PREFIX_BENCHMARK=${BENCHMARK_TYPE}
 
-EXPERIMENT=all-data-sizes-and-chunk-sizes-evaluation
-
 echo "Executing test for $benchmark, start at `date +'%d/%m/%Y-%T'`"
 
 mkdir -p ${OUTPUT}
@@ -32,9 +32,9 @@ mkdir -p ${OUTPUT}
 # TOY_DATASET: 32, MINI_DATASET: 64, TINY_DATASET: 128, SMALL_DATASET: 256, MEDIUM_DATASET: 512, STANDARD_DATASET: 1024, LARGE_DATASET: 2048, EXTRALARGE_DATASET: 4096, HUGE_DATASET: 8192
 for size_of_data in TOY_DATASET MINI_DATASET TINY_DATASET SMALL_DATASET MEDIUM_DATASET STANDARD_DATASET LARGE_DATASET EXTRALARGE_DATASET HUGE_DATASET; do
 	for num_threads in 24 22 20 18 16 14 12 10 8 6 4 2 1; do
-		echo "Compiling ${benchmark} with dataset: ${size_of_data}, schedule: ${omp_schedule}, chunk: ${chunk_size}, threads: ${num_threads}."
 		for omp_schedule in DYNAMIC; do
 			for chunk_size in 16 32 64 128 256; do
+				echo "Compiling ${benchmark} with dataset: ${size_of_data}, schedule: ${omp_schedule}, chunk: ${chunk_size}, threads: ${num_threads}."
 				for ((  i = 1 ;  i <= 10;  i++  ))
 				do
 					# First exection with sequential code execution.
