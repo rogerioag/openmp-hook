@@ -1,0 +1,150 @@
+Experiment 'overhead-no-offloading', execution 1 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 10 start at 13/07/2016-02:57:45
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original:
+Calling gemm_omp:
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'overhead-no-offloading', execution 2 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 10 start at 13/07/2016-03:15:05
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original:
+Calling gemm_omp:
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'overhead-no-offloading', execution 3 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 10 start at 13/07/2016-03:34:11
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original:
+Calling gemm_omp:
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'overhead-no-offloading', execution 4 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 10 start at 13/07/2016-03:51:47
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original:
+Calling gemm_omp:
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'overhead-no-offloading', execution 5 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 10 start at 13/07/2016-04:10:44
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original:
+Calling gemm_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,786285166,628987427,0,0,0,2,134228345616,116813725236,2772314338,6475036,0,1,67178853747,60229562588,2316335152,32905984,0,1,67341650869,60375510572,2353825129,33582435,0,1,67286447369,60326026384,16070816120,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0194672500, 0.0194670522, 0.9967232009, 5.6065680049, 5.6065110345, 1
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'overhead-no-offloading', execution 6 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 10 start at 13/07/2016-04:28:21
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original:
+Calling gemm_omp:
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'overhead-no-offloading', execution 7 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 10 start at 13/07/2016-04:47:20
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original:
+Calling gemm_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,635459690,395046928,0,0,0,2,123825162363,109536598158,2802313851,7895806,0,1,60554567066,54290578576,2305879813,24651244,0,1,61907107004,55503183502,2360133965,33115864,0,1,60763954532,54478289866,15855517373,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0194006514, 0.0194004522, 0.9933133494, 5.5873875902, 5.5873302406, 1
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'overhead-no-offloading', execution 8 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 10 start at 13/07/2016-05:04:47
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original:
+Calling gemm_omp:
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'overhead-no-offloading', execution 9 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 10 start at 13/07/2016-05:23:47
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original:
+Calling gemm_omp:
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'overhead-no-offloading', execution 10 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 10 start at 13/07/2016-05:42:33
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_original:
+Calling gemm_omp:
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
