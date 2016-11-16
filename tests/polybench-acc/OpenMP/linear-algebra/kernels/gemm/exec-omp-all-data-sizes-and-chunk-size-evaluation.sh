@@ -9,21 +9,21 @@ EXPERIMENT=all-data-sizes-and-chunk-sizes-evaluation
 
 experiment_date=`date +'%d-%m-%Y-%H-%M-%S'`
 
-# For resume an experiment.
-if [ "$#" -ne 1 ]; then
-	echo "Executing a new experiment: "${experiment_date}
-	OUTPUT=output/${HOSTNAME}-${EXPERIMENT}-${experiment_date}
-else
-	echo "Resuming the experiment: "$1
-	OUTPUT=output/$1
-fi
-
 # position of directory (openmp, openmp-offloading, cuda...)
 NUM_FIELD=9
 # retrieve openmp, openmp-offloading, cuda...
 BENCHMARK_TYPE=`pwd | cut -d'/' -f${NUM_FIELD} | tr '[:upper:]' '[:lower:]'`
 
 PREFIX_BENCHMARK=${BENCHMARK_TYPE}
+
+# For resume an experiment.
+if [ "$#" -ne 1 ]; then
+	echo "Executing a new experiment: "${experiment_date}
+	OUTPUT=output/${HOSTNAME}-${BENCHMARK_TYPE}-${EXPERIMENT}-${experiment_date}
+else
+	echo "Resuming the experiment: "$1
+	OUTPUT=output/$1
+fi
 
 echo "Executing test for $benchmark, start at `date +'%d/%m/%Y-%T'`"
 

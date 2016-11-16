@@ -37,6 +37,7 @@ bool decided_by_offloading = false;
 
 bool made_the_offloading = false;
 
+// Resultado em nano segundos (ns)
 uint64_t get_time(){
  struct timespec spec;
  clock_gettime(CLOCK_MONOTONIC, &spec);
