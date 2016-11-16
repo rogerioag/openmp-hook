@@ -2,3 +2,13 @@ Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 1 of gemm with
 Calling init_array.
 Calling gemm_original.
 Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 2 of gemm with dataset: HUGE_DATASET, schedule: DYNAMIC, chunk_size: 32, threads: 1 start at 15/11/2016-23:28:08
+Calling init_array.
+Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 67092481
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 3 of gemm with dataset: HUGE_DATASET, schedule: DYNAMIC, chunk_size: 32, threads: 1 start at 16/11/2016-01:52:12
+Calling init_array.
+Calling gemm_omp.

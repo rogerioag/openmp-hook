@@ -46,7 +46,7 @@ do
 						mv ${benchmark}-${PREFIX_BENCHMARK}.exe ${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-${PREFIX_BENCHMARK}.exe
 					fi
 					# Second execution, compile without sequential execution option.
-					if [ $i -eq 2 ]
+					if [ $i -ge 2 ]
 					then
 						# Without -DRUN_ORIG_VERSION.
 						echo "Execution ${i}, compiling without sequential code execution option."
