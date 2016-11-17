@@ -53,8 +53,8 @@
 #define IDX_MEM 0
 #define IDX_LLC 1
 #define IDX_L2 2
-#define IDX_L1 3
-#define IDX_FPO 4
+#define IDX_L1 4
+#define IDX_FPO 3
 
 #define COMP_CORE 0
 #define COMP_UNCORE 1
@@ -71,8 +71,8 @@ static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = {
 /* MEM_event_names */{ "UNC_H_IMC_READS", "UNC_H_IMC_WRITES", NULL, NULL, NULL },
 /* L3_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L3_DCR", "PAPI_L3_DCW", NULL },
 /* L2_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L2_DCR", "PAPI_L2_DCW", NULL },
-/* L1_event_names */ { "UNHALTED_CORE_CYCLES", "UNHALTED_REFERENCE_CYCLES", "perf::PERF_COUNT_HW_CACHE_L1D:READ", "perf::PERF_COUNT_HW_CACHE_L1D:WRITE", NULL },
-/* FPO_event_names */{ "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_DP_OPS", NULL, NULL }
+/* FPO_event_names */{ "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_DP_OPS", NULL, NULL },
+/* L1_event_names */ { "UNHALTED_CORE_CYCLES", "UNHALTED_REFERENCE_CYCLES", "perf::PERF_COUNT_HW_CACHE_L1D:READ", "perf::PERF_COUNT_HW_CACHE_L1D:WRITE", NULL }
 };
 
 
@@ -92,8 +92,8 @@ static int kind_of_event_set[NUM_EVENT_SETS] = {
 /* MEM_event_names */ COMP_UNCORE ,
 /* L3_event_names */  COMP_CORE ,
 /* L2_event_names */  COMP_CORE ,
-/* L1_event_names */  COMP_UNCORE ,
-/* FPO_event_names */ COMP_CORE
+/* L1_event_names */  COMP_CORE ,
+/* FPO_event_names */ COMP_UNCORE
 };
 
 /* Memory Operation.*/
