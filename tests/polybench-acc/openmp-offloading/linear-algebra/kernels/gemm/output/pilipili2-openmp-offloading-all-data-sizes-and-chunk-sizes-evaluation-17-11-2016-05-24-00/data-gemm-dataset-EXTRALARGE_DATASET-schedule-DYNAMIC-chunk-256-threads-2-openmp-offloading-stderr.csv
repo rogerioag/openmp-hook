@@ -1,0 +1,56 @@
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 1 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 2 start at 17/11/2016-07:06:06
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+1,1369597,1841394,0,0,0,1,253311779243,212706109434,5392729220,34629775,0,1,271078285689,227624587684,9163291063,75570939,0,0,0,0,0,0,0,0,0,0,0,0,0,
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
