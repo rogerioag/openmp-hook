@@ -72,17 +72,18 @@ static char *event_names[NUM_EVENT_SETS][NUM_MAX_EVENTS] = {
 /* L3_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L3_DCR", "PAPI_L3_DCW", NULL },
 /* L2_event_names */ { "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_L2_DCR", "PAPI_L2_DCW", NULL },
 /* FPO_event_names */{ "PAPI_TOT_CYC", "PAPI_REF_CYC", "PAPI_DP_OPS", NULL, NULL },
-/* L1_event_names */ { "UNHALTED_CORE_CYCLES", "UNHALTED_REFERENCE_CYCLES", "perf::PERF_COUNT_HW_CACHE_L1D:READ", "perf::PERF_COUNT_HW_CACHE_L1D:WRITE", NULL }
+/* L1_event_names */ // { "UNHALTED_CORE_CYCLES", "UNHALTED_REFERENCE_CYCLES", "perf::PERF_COUNT_HW_CACHE_L1D:READ", "perf::PERF_COUNT_HW_CACHE_L1D:WRITE", NULL }
+	/* L1_event_names */ { "perf::PERF_COUNT_HW_CACHE_L1D:READ", "perf::PERF_COUNT_HW_CACHE_L1D:WRITE", NULL, NULL, NULL }
 };
 
 
 /* Position, column in te values table according with events names. */
 static int event_position[NUM_EVENT_SETS] = { 
 /* MEM_events */  0 ,
-/* L3_events  */  2,
+/* L3_events  */  2 ,
 /* L2_events  */  2 ,
-/* L1_events  */  2 ,
-/* FPO_events */  2 
+/* FPO_events */  2 ,
+/* L1_events  */  0 ,
 };
 
 /* The kind of component the eventset was associated. Is need different event sets to measures preset events and native events. 
