@@ -95,7 +95,7 @@ static int kind_of_event_set[NUM_EVENT_SETS] = {
 /* L3_event_names */  COMP_CORE ,
 /* L2_event_names */  COMP_CORE ,
 /* L1_event_names */  COMP_CORE ,
-/* FPO_event_names */ COMP_UNCORE
+/* FPO_event_names */ COMP_CORE
 };
 
 /* Memory Operation.*/
