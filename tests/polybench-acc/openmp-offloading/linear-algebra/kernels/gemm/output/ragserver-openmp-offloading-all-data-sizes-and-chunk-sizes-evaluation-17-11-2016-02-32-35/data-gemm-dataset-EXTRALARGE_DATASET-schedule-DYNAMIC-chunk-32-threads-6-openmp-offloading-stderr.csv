@@ -1,0 +1,42 @@
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 1 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 32, threads: 6 start at 17/11/2016-05:06:07
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_omp:
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 830]: PAPI error -1: Invalid argument
+[RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
+Printing Values CSV:
+measures,UNC_QMC_NORMAL_READS:ANY:cpu=0,UNC_QMC_WRITES:FULL_ANY:cpu=0,,,,measures,PAPI_L3_DCR,PAPI_L3_DCW,,,,measures,PAPI_L2_DCR,PAPI_L2_DCW,,,,measures,PAPI_DP_OPS,,,,,measures,PAPI_L1_DCR,PAPI_L1_DCW,,,,
+2,6333052737,3220001,0,0,0,2,1368723113,829799,0,0,0,2,1987580562,837939,0,0,0,1,1617183225,0,0,0,0,1,8337565217,582445573,0,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0018354212, 0.0018354125, 0.0385438458, 0.5286013133, 0.5285987970, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
