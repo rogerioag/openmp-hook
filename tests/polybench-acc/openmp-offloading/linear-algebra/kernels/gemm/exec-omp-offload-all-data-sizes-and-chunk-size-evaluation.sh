@@ -38,11 +38,12 @@ do
 				for chunk_size in 256 128 64 32; do
 					echo "Compiling ${benchmark} with dataset: ${size_of_data}, schedule: ${omp_schedule}, chunk: ${chunk_size}, threads: ${num_threads}."
 					# First exection with sequential code execution.
-					if [ $i -eq 1 ]
+					# Retirei o -DRUN_ORIG_VERSION.****
+					if [ $i -eq 1 ] 
 					then
 						# With sequential code execution.
 						echo "Execution ${i}, compiling with sequential code execution option."
-						make POLYBENCH_OPTIONS="-DPOLYBENCH_TIME -D${size_of_data}" OMP_CONFIG="-DOPENMP_SCHEDULE_${omp_schedule} -DOPENMP_CHUNK_SIZE=${chunk_size} -DOPENMP_NUM_THREADS=${num_threads} -D${ARCH_CODE_NAME} -DRUN_ORIG_VERSION"
+						make POLYBENCH_OPTIONS="-DPOLYBENCH_TIME -D${size_of_data}" OMP_CONFIG="-DOPENMP_SCHEDULE_${omp_schedule} -DOPENMP_CHUNK_SIZE=${chunk_size} -DOPENMP_NUM_THREADS=${num_threads} -D${ARCH_CODE_NAME}"
 						mv ${benchmark}-${PREFIX_BENCHMARK}.exe ${benchmark}-dataset-${size_of_data}-schedule-${omp_schedule}-chunk-${chunk_size}-threads-${num_threads}-${PREFIX_BENCHMARK}.exe
 					fi
 					# Second execution, compile without sequential execution option.
