@@ -1,4 +1,4 @@
-Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 1 of gemm with dataset: HUGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 2 start at 17/11/2016-11:05:09
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 1 of gemm with dataset: HUGE_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 6 start at 17/11/2016-21:45:20
 Preparing alternatives functions.
 Creating table of target functions.
 Allocating the rows.
@@ -30,13 +30,13 @@ Calling gemm_omp:
 [RM_papi_handle_error] roofline.c -> RM_start_counters [line 852]: PAPI error -1: Invalid argument
 Printing Values CSV:
 measures,UNC_QMC_NORMAL_READS:ANY:cpu=0,UNC_QMC_WRITES:FULL_ANY:cpu=0,,,,measures,PAPI_L3_DCR,PAPI_L3_DCW,,,,measures,PAPI_L2_DCR,PAPI_L2_DCW,,,,measures,PAPI_DP_OPS,,,,,measures,PAPI_L1_DCR,PAPI_L1_DCW,,,,
-2,17712999322,9098475,0,0,0,2,13685011019,9756807,0,0,0,2,15852576878,8226719,0,0,0,1,12904547347,0,0,0,0,1,82560826099,4492640280,0,0,0,
+2,56800446684,37748482,0,0,0,2,13009131248,7815112,0,0,0,2,14913477366,6643503,0,0,0,1,12929282869,0,0,0,0,1,73630963769,4614790599,0,0,0,
 oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
-0.0018215680, 0.0018215637, 0.0382529278, 0.5246115813, 0.5246103389, 1
+0.0016746612, 0.0016746575, 0.0351678843, 0.4823024127, 0.4823013646, 1
 Calling function gemm_cuda.
 GPU init.
 setting device 0 with name Tesla K40c
 Calling compareResults(original, omp).
-Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 13621633
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 67092481
 Calling compareResults(original, cuda).
 Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 67092481
