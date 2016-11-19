@@ -210,9 +210,9 @@ myFilterAndPlot<-function(p_experiment_name, p_benchmark_name, p_machine_name, p
     #scale_x_discrete(limits = c(32,64,128,256,512,1024,2048,4096,8192), limit=c(32,64,128,256,512,1024,2048,4096,8192), expand=c(.02,0)) +
     # scale_x_discrete(limits=c(32,64,128,256,512,1024,2048,4096,8192)) +
     scale_x_discrete(limits = c(1,2,4,6,8,10,12,14,16,18,20,22,24), expand=c(.03,0)) +
-    theme_bw() +
+    theme_bw(base_size = 20) +
     #theme(legend.position=c(0.89,0.70), legend.title=element_blank())
-    theme(legend.position=c(0.9,0.9), legend.title=element_blank(), plot.title = element_text(size=20))
+    theme(legend.position=c(0.9,0.9), legend.title=element_blank(), plot.title = element_text(size=20), axis.text = element_text(size = 16, face="bold"))
   
   (p1 = p1 + scale_fill_grey(start = 0.9, end = 0.2))
     
