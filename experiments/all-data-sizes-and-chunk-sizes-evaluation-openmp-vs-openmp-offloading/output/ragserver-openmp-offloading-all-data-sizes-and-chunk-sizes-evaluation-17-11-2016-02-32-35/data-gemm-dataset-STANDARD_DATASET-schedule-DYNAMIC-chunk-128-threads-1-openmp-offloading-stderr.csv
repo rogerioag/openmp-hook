@@ -1,0 +1,21 @@
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 1 of gemm with dataset: STANDARD_DATASET, schedule: DYNAMIC, chunk_size: 128, threads: 1 start at 17/11/2016-02:45:54
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_omp:
+Printing Values CSV:
+measures,UNC_QMC_NORMAL_READS:ANY:cpu=0,UNC_QMC_WRITES:FULL_ANY:cpu=0,,,,measures,PAPI_L3_DCR,PAPI_L3_DCW,,,,measures,PAPI_L2_DCR,PAPI_L2_DCW,,,,measures,PAPI_DP_OPS,,,,,measures,PAPI_L1_DCR,PAPI_L1_DCW,,,,
+2,109349148,133115,0,0,0,1,134639485,1571231,0,0,0,1,139177673,3487317,0,0,0,1,403713001,0,0,0,0,1,2228528845,177174855,0,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0023027665, 0.0023027114, 0.0483580971, 0.6631967598, 0.6631808937, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 784641
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 1046529

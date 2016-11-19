@@ -1,0 +1,42 @@
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 1 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 32, threads: 8 start at 17/11/2016-15:59:58
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+3,38130666,82321581,0,0,0,3,131101705797,117540038044,2071879270,18217446,0,3,130683936996,117165418344,3460653885,44170523,0,2,85892584874,77007470878,2339394517,26672623,0,2,88229170815,79102364848,16814968759,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0425389317, 0.0425380290, 2.1779933037, 12.2512123334, 12.2509523472, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 2 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 32, threads: 8 start at 19/11/2016-04:05:34
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+3,488498478,445799536,0,0,0,3,88293357678,79159936882,2074699089,6038472,0,3,88304641237,79170046176,3493224700,60960785,0,2,58870353411,52780552604,2373409074,40705903,0,2,58781319047,52700727534,15623326746,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0359330304, 0.0359323372, 1.8397711578, 10.3487127628, 10.3485131041, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
