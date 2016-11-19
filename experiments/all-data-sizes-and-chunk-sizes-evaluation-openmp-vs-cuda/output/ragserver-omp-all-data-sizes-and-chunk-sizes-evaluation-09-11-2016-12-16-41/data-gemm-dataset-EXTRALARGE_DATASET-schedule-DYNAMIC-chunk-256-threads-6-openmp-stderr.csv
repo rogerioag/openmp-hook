@@ -1,20 +1,51 @@
-Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 1 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 12/11/2016-15:59:35
-./exec-omp-all-data-sizes-and-chunk-size-evaluation.sh: line 78: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-256-threads-6-openmp.exe: Arquivo ou diretório não encontrado
-Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 2 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 12/11/2016-16:00:08
-./exec-omp-all-data-sizes-and-chunk-size-evaluation.sh: line 78: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-256-threads-6-openmp.exe: Arquivo ou diretório não encontrado
-Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 3 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 12/11/2016-16:00:09
-./exec-omp-all-data-sizes-and-chunk-size-evaluation.sh: line 78: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-256-threads-6-openmp.exe: Arquivo ou diretório não encontrado
-Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 4 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 12/11/2016-16:00:09
-./exec-omp-all-data-sizes-and-chunk-size-evaluation.sh: line 78: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-256-threads-6-openmp.exe: Arquivo ou diretório não encontrado
-Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 5 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 12/11/2016-16:00:10
-./exec-omp-all-data-sizes-and-chunk-size-evaluation.sh: line 78: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-256-threads-6-openmp.exe: Arquivo ou diretório não encontrado
-Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 6 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 12/11/2016-16:00:12
-./exec-omp-all-data-sizes-and-chunk-size-evaluation.sh: line 78: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-256-threads-6-openmp.exe: Arquivo ou diretório não encontrado
-Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 7 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 12/11/2016-16:00:17
-./exec-omp-all-data-sizes-and-chunk-size-evaluation.sh: line 78: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-256-threads-6-openmp.exe: Arquivo ou diretório não encontrado
-Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 8 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 12/11/2016-16:00:17
-./exec-omp-all-data-sizes-and-chunk-size-evaluation.sh: line 78: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-256-threads-6-openmp.exe: Arquivo ou diretório não encontrado
-Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 9 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 12/11/2016-16:00:17
-./exec-omp-all-data-sizes-and-chunk-size-evaluation.sh: line 78: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-256-threads-6-openmp.exe: Arquivo ou diretório não encontrado
-Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 10 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 12/11/2016-16:00:18
-./exec-omp-all-data-sizes-and-chunk-size-evaluation.sh: line 78: ./gemm-dataset-EXTRALARGE_DATASET-schedule-DYNAMIC-chunk-256-threads-6-openmp.exe: Arquivo ou diretório não encontrado
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 1 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 16/11/2016-12:37:39
+Calling init_array.
+Calling gemm_original.
+Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 0
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 2 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 16/11/2016-13:01:34
+Calling init_array.
+Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 3 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 16/11/2016-13:08:43
+Calling init_array.
+Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 4 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 16/11/2016-13:15:49
+Calling init_array.
+Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 5 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 16/11/2016-13:23:12
+Calling init_array.
+Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 6 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 16/11/2016-13:30:14
+Calling init_array.
+Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 7 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 16/11/2016-13:37:10
+Calling init_array.
+Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 8 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 16/11/2016-13:44:34
+Calling init_array.
+Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 9 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 16/11/2016-13:51:41
+Calling init_array.
+Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 10 of gemm with dataset: EXTRALARGE_DATASET, schedule: DYNAMIC, chunk_size: 256, threads: 6 start at 16/11/2016-13:58:47
+Calling init_array.
+Calling gemm_omp.
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 16769025
