@@ -7,14 +7,47 @@
 
 # Arquivos utilizados foram organizados nos diretórios.
 
-pilipili2-omp-all-data-sizes-and-chunk-sizes-evaluation-11-08-2016-18-44-48
+# Acesso ao diretório do experimento.
+cd /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading
 
-pilipili2-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-13-15-25
+# Cópia dos arquivos:
+# pilipili2-omp-all-data-sizes-and-chunk-sizes-evaluation-11-08-2016-18-44-48
+# pilipili2-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-13-15-25
+
+# ragserver-omp-all-data-sizes-and-chunk-sizes-evaluation-09-11-2016-12-16-41
+# ragserver-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-02-32-35
+
+# Dados do OpenMP:
+# Execuções parciais:
+cp -v /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/OpenMP/linear-algebra/kernels/gemm/output/pilipili2-all-data-sizes-and-chunk-sizes-evaluation-11-08-2016-18-44-48/*.csv /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading/output/pilipili2-omp-all-data-sizes-and-chunk-sizes-evaluation-11-08-2016-18-44-48/
+
+cp -v /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/OpenMP/linear-algebra/kernels/gemm/output/pilipili2-all-data-sizes-and-chunk-sizes-evaluation-13-11-2016-15-14-51/*.csv /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading/output/pilipili2-omp-all-data-sizes-and-chunk-sizes-evaluation-11-08-2016-18-44-48/
+
+cp -v /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/OpenMP/linear-algebra/kernels/gemm/output/pilipili2-all-data-sizes-and-chunk-sizes-evaluation-14-11-2016-10-36-09/*.csv /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading/output/pilipili2-omp-all-data-sizes-and-chunk-sizes-evaluation-11-08-2016-18-44-48/
 
 
-ragserver-omp-all-data-sizes-and-chunk-sizes-evaluation-09-11-2016-12-16-41
+# ragserver as execuções foram parciais, tem que agrupar.
+# Copia o principal diretorio do experimento:
+cp -v /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/OpenMP/linear-algebra/kernels/gemm/output/ragserver-all-data-sizes-and-chunk-sizes-evaluation-09-11-2016-12-16-41/*.csv /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading/output/ragserver-omp-all-data-sizes-and-chunk-sizes-evaluation-09-11-2016-12-16-41/
 
-ragserver-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-02-32-35
+# Os complementares vão para pasta do primeiro:
+cp -v /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/OpenMP/linear-algebra/kernels/gemm/output/ragserver-all-data-sizes-and-chunk-sizes-evaluation-13-11-2016-13-50-25/*.csv /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading/output/ragserver-omp-all-data-sizes-and-chunk-sizes-evaluation-09-11-2016-12-16-41/
+
+cp -v /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/OpenMP/linear-algebra/kernels/gemm/output/ragserver-all-data-sizes-and-chunk-sizes-evaluation-16-11-2016-23-36-24/*.csv /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading/output/ragserver-omp-all-data-sizes-and-chunk-sizes-evaluation-09-11-2016-12-16-41/
+
+# Dados do Offloading:
+# pilipili2-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-13-15-25
+# ragserver-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-02-32-35
+
+# Copia do pilipili2:
+cp -v /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/openmp-offloading/linear-algebra/kernels/gemm/output/pilipili2-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-13-15-25/* /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading/output/pilipili2-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-13-15-25/
+
+# ragserver:
+cp -v /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/tests/polybench-acc/openmp-offloading/linear-algebra/kernels/gemm/output/ragserver-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-02-32-35/* /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading/output/ragserver-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-02-32-35/
+
+
+
+
 
 # Acesso ao diretório.
 cd /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading
@@ -55,8 +88,11 @@ cd /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-h
 
 # Transforma em csv os resultados do ragserver: 
 
+# Eliminar linhas que não executaram.
+subl csv/gemm-ragserver-omp-all-data-sizes-and-chunk-sizes-evaluation-09-11-2016-12-16-41-joined.csv
+
 ./csvize-omp-off-experiments-results.py -i csv/gemm-ragserver-omp-all-data-sizes-and-chunk-sizes-evaluation-09-11-2016-12-16-41-joined.csv -o csv/gemm-ragserver-omp-all-data-sizes-and-chunk-sizes-evaluation-09-11-2016-12-16-41-joined-processed.csv
- 
+
 ./csvize-omp-off-experiments-results.py -i csv/gemm-ragserver-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-02-32-35-joined.csv -o csv/gemm-ragserver-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-02-32-35-joined-processed.csv
 
 mkdir -p csv/ragserver/
@@ -75,5 +111,4 @@ cd csv/ragserver
 # /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation/
 
 Script: graph-omp-ompoff-all-data-sizes-and-chunk-sizes-evaluation.R
-
 

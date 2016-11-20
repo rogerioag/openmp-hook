@@ -2582,17 +2582,26 @@ version = OMP+OFF, num_threads = 12, NI = 8192, NJ = 8192, NK = 8192, ORIG = 0, 
 exp = all-data-sizes-and-chunk-sizes-evaluation, execution = 1, benchmark = gemm, size_of_data = HUGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 10,
 0
 version = OMP+OFF, num_threads = 10, NI = 8192, NJ = 8192, NK = 8192, ORIG = 0, OMP_OFF = 3370661425924, OMP = 3348904082721, CUDA_KERNEL1 = 21084373403, CUDA_KERNEL2 = 0, CUDA_KERNEL3 = 0, DT_H2D = 513542901, DT_D2H = 159426899, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+exp = all-data-sizes-and-chunk-sizes-evaluation, execution = 2, benchmark = gemm, size_of_data = HUGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 10,
+0
 exp = all-data-sizes-and-chunk-sizes-evaluation, execution = 1, benchmark = gemm, size_of_data = HUGE_DATASET, schedule = DYNAMIC, chunk_size = 64, num_threads = 10,
 0
 version = OMP+OFF, num_threads = 10, NI = 8192, NJ = 8192, NK = 8192, ORIG = 0, OMP_OFF = 3434859887287, OMP = 3412856964755, CUDA_KERNEL1 = 21086058939, CUDA_KERNEL2 = 0, CUDA_KERNEL3 = 0, DT_H2D = 754594363, DT_D2H = 162269230, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+exp = all-data-sizes-and-chunk-sizes-evaluation, execution = 2, benchmark = gemm, size_of_data = HUGE_DATASET, schedule = DYNAMIC, chunk_size = 64, num_threads = 10,
+0
+version = OMP+OFF, num_threads = 10, NI = 8192, NJ = 8192, NK = 8192, ORIG = 0, OMP_OFF = 3545812748014, OMP = 3524070297236, CUDA_KERNEL1 = 21065452902, CUDA_KERNEL2 = 0, CUDA_KERNEL3 = 0, DT_H2D = 514588317, DT_D2H = 162409559, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
 exp = all-data-sizes-and-chunk-sizes-evaluation, execution = 1, benchmark = gemm, size_of_data = HUGE_DATASET, schedule = DYNAMIC, chunk_size = 128, num_threads = 10,
 0
 version = OMP+OFF, num_threads = 10, NI = 8192, NJ = 8192, NK = 8192, ORIG = 0, OMP_OFF = 3419758534034, OMP = 3397993844867, CUDA_KERNEL1 = 21089864392, CUDA_KERNEL2 = 0, CUDA_KERNEL3 = 0, DT_H2D = 514756916, DT_D2H = 160067859, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+exp = all-data-sizes-and-chunk-sizes-evaluation, execution = 2, benchmark = gemm, size_of_data = HUGE_DATASET, schedule = DYNAMIC, chunk_size = 128, num_threads = 10,
+0
+version = OMP+OFF, num_threads = 10, NI = 8192, NJ = 8192, NK = 8192, ORIG = 0, OMP_OFF = 3595754719650, OMP = 3573987915858, CUDA_KERNEL1 = 21088103775, CUDA_KERNEL2 = 0, CUDA_KERNEL3 = 0, DT_H2D = 516268107, DT_D2H = 162431910, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
 exp = all-data-sizes-and-chunk-sizes-evaluation, execution = 1, benchmark = gemm, size_of_data = HUGE_DATASET, schedule = DYNAMIC, chunk_size = 256, num_threads = 10,
 0
 version = OMP+OFF, num_threads = 10, NI = 8192, NJ = 8192, NK = 8192, ORIG = 0, OMP_OFF = 3520412257306, OMP = 3520412257306, CUDA_KERNEL1 = 0, CUDA_KERNEL2 = 0, CUDA_KERNEL3 = 0, DT_H2D = 0, DT_D2H = 0, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 1, REACH_OFFLOAD_DECISION_POINT = 0, DECIDED_BY_OFFLOADING = 0, MADE_THE_OFFLOADING = 0
 exp = all-data-sizes-and-chunk-sizes-evaluation, execution = 2, benchmark = gemm, size_of_data = HUGE_DATASET, schedule = DYNAMIC, chunk_size = 256, num_threads = 10,
 0
+version = OMP+OFF, num_threads = 10, NI = 8192, NJ = 8192, NK = 8192, ORIG = 0, OMP_OFF = 3618018313131, OMP = 3618018313131, CUDA_KERNEL1 = 0, CUDA_KERNEL2 = 0, CUDA_KERNEL3 = 0, DT_H2D = 0, DT_D2H = 0, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 1, REACH_OFFLOAD_DECISION_POINT = 0, DECIDED_BY_OFFLOADING = 0, MADE_THE_OFFLOADING = 0
 exp = all-data-sizes-and-chunk-sizes-evaluation, execution = 1, benchmark = gemm, size_of_data = HUGE_DATASET, schedule = DYNAMIC, chunk_size = 32, num_threads = 8,
 0
 version = OMP+OFF, num_threads = 8, NI = 8192, NJ = 8192, NK = 8192, ORIG = 0, OMP_OFF = 3624431691341, OMP = 3602428054833, CUDA_KERNEL1 = 21091206312, CUDA_KERNEL2 = 0, CUDA_KERNEL3 = 0, DT_H2D = 721636409, DT_D2H = 190793787, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
