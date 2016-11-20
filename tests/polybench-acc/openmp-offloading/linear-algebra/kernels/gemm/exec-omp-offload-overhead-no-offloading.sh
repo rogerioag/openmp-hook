@@ -2,6 +2,7 @@
 
 ARCH_CODE_NAME=`cat ../../../../../../arch-codename.in`
 
+
 # Compile the libraries with no offloading:
 # make OPTIONS="-DFORCENOOFFLOAD -D[IVY_BRIDGE | SANDY_BRIDGE | NEHALEM]"
 cd /home/$USER/prova-de-conceito/testes-prova-conceito/openmp-hook
