@@ -83,6 +83,9 @@ myLoadAndPrepareData<-function(p_experiment_name, p_benchmark_name, p_machine_na
   #data <- within(data, DT_H2D <- (DT_H2D/1e+09)*1e+03)
   #data <- within(data, DT_D2H <- (DT_D2H/1e+09)*1e+03)
   
+  # Filtering by number of executions.
+  # data <- subset(data, ((version == "OMP+OFF" & (execution == 2 | execution == 3)) | (version == "OMP")))
+  
   cdata <- ddply(data, c("exp", "version", "schedule", "chunk_size" , "num_threads" , "size_of_data" , "NI" , "NJ" , "NK"), summarise,
                      N    = length(chunk_size),
                      mean_orig = mean(ORIG),

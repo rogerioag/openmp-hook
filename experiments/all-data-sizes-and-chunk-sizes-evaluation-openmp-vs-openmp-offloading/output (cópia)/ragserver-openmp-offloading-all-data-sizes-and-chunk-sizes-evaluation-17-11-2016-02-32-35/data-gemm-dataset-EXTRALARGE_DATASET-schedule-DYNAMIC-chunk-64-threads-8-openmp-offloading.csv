@@ -1,0 +1,6 @@
+exp = all-data-sizes-and-chunk-sizes-evaluation, execution = 1, benchmark = gemm, size_of_data = EXTRALARGE_DATASET, schedule = DYNAMIC, chunk_size = 64, num_threads = 8,
+0
+version = OMP+OFF, num_threads = 8, NI = 4096, NJ = 4096, NK = 4096, ORIG = 0, OMP_OFF = 348880588040, OMP = 345957605187, CUDA_KERNEL1 = 2620323878, CUDA_KERNEL2 = 0, CUDA_KERNEL3 = 0, DT_H2D = 204258728, DT_D2H = 98400247, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
+exp = all-data-sizes-and-chunk-sizes-evaluation, execution = 2, benchmark = gemm, size_of_data = EXTRALARGE_DATASET, schedule = DYNAMIC, chunk_size = 64, num_threads = 8,
+0
+version = OMP+OFF, num_threads = 8, NI = 4096, NJ = 4096, NK = 4096, ORIG = 0, OMP_OFF = 336631703383, OMP = 333701704466, CUDA_KERNEL1 = 2622933358, CUDA_KERNEL2 = 0, CUDA_KERNEL3 = 0, DT_H2D = 206871983, DT_D2H = 100193576, WORK_FINISHED_BEFORE_OFFLOAD_DECISION = 0, REACH_OFFLOAD_DECISION_POINT = 1, DECIDED_BY_OFFLOADING = 1, MADE_THE_OFFLOADING = 1
