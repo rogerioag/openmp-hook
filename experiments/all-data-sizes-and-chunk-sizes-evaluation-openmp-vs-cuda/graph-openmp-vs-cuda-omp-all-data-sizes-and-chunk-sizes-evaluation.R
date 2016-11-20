@@ -2,7 +2,6 @@ library(plyr)
 library(ggplot2)
 library(scales) # to access break formatting functions
 library(pdf)
-#library(gridExtra)
 
 # Multiple plot function
 #
@@ -174,17 +173,20 @@ myFilterAndPlot<-function(p_experiment_name, p_benchmark_name, p_machine_name, p
   csv_file_name <- paste0("csv/", p_machine_name, "/generated-csv/", "data-cuda-vs-omp-", p_experiment_name,"-benchmark-",p_benchmark_name,"-machine-",p_machine_name,"-arch-",p_machine_arch,"-num_threads-",p_num_threads,"-chunk_size-",p_chunk_size,".csv")
   
   # where num_threads = 1 and chunk_size = 64
-  df_plot_num_threads_1_chunk_size_64 <- subset(df_data, ((cat == "CUDA") | (cat == "OMP" & x == p_num_threads & y == p_chunk_size)))
+  # df_plot_num_threads_1_chunk_size_64 <- subset(df_data, ((cat == "CUDA" & x == 1 & y == 0) | (cat == "OMP" & x == p_num_threads & y == p_chunk_size)))
+  df_plot_num_threads_1_chunk_size_64 <- subset(df_data, ((cat == "OMP" & x == p_num_threads & y == p_chunk_size) | (cat == "CUDA" & x == 1 & y == 0)))
+  
+  df_plot_num_threads_1_chunk_size_64$z <- as.factor(df_plot_num_threads_1_chunk_size_64$z)
   
   View(df_plot_num_threads_1_chunk_size_64)
 
   # pdf(file = "teste.pdf", width = 800, height = 600)
-  p1 <- ggplot(df_plot_num_threads_1_chunk_size_64, aes(x=z, y=t, width=500, fill=cat)) + 
-    geom_bar(stat="identity", position = position_dodge(width=0.5)) +
-    geom_errorbar(aes(x=z,ymin=t-t_sd, ymax=t+t_sd),
+  p1 <- ggplot(df_plot_num_threads_1_chunk_size_64, aes(x=z, y=t, fill=cat)) + 
+    geom_bar(stat="identity", position = "dodge") +
+    geom_errorbar(aes(x=z, ymin=t-t_sd, ymax=t+t_sd, group=cat),
                   size=.5,    # Thinner lines
                   width=0.4,
-                  position=position_dodge(2.0)) +
+                  position=position_dodge(.9)) +
     xlab("Size of Data") +
     ylab("Time(ns)") +
     #scale_fill_manual(name="Experiment", # Legend label, use darker colors
@@ -202,12 +204,12 @@ myFilterAndPlot<-function(p_experiment_name, p_benchmark_name, p_machine_name, p
     # scale_x_continuous(breaks = c(32,64,128,256,512,1024,2048,4096,8192)) +
     # scale_x_continuous(breaks = c(32,64,128,256,512,1024,2048,4096,8192)) +
     # scale_x_discrete(breaks = c(32,64,128,256,512,1024,2048,4096,8192), limit=c(32,64,128,256,512,1024,2048,4096,8192), expand=c(.02,0)) +
-    scale_x_discrete(breaks = c(32,64,128,256,512,1024,2048,4096,8192), limit=c(32,64,128,256,512,1024,2048,4096,8192), expand=c(.02,0)) +
+    # scale_x_discrete(limits=c(32,64,128,256,512,1024,2048,4096,8192), expand=c(.02,0)) +
     # scale_x_discrete(breaks=c(32,64,128,256,512,1024,2048,4096,8192), limit = c("32","64","128","256","512","1024","2048","4096","8192"), expand = waiver()) +
     # scale_x_discrete(breaks = round(seq(min(df_plot_num_threads_1_chunk_size_64$z), max(df_plot_num_threads_1_chunk_size_64$z), by = 256),1)) +
-    theme_bw() +
+    theme_bw(base_size = 20) +
     #theme(legend.position=c(0.89,0.70), legend.title=element_blank())
-    theme(legend.position=c(0.05,0.9), legend.title=element_blank(), plot.title = element_text(size=20))
+    theme(legend.position=c(0.05,0.9), legend.title=element_blank(), plot.title = element_text(size=20), axis.text = element_text(size = 16, face="bold"))
   
   (p1 = p1 + scale_fill_grey(start = 0.9, end = 0.2))
   
@@ -255,7 +257,7 @@ csv_data_file = "gemm-ragserver-cuda-all-data-sizes-and-chunk-sizes-evaluation-1
 myLoadAndPrepareData(experiment_name, benchmark_name, machine_name, csv_data_file)
 
 # myFilterAndPlot(1, 32)
-myFilterAndPlot(experiment_name, benchmark_name, machine_name, machine_arch[machine_name], p_num_threads = 1, p_chunk_size = 32)
+myFilterAndPlot(experiment_name, benchmark_name, machine_name, machine_arch[machine_name], p_num_threads = 2, p_chunk_size = 64)
 
 # Filtra e Plota os gráficos.
 for (nt in num_threads_configs) {
@@ -275,7 +277,7 @@ csv_data_file = "gemm-pilipili2-cuda-all-data-sizes-and-chunk-sizes-evaluation-1
 myLoadAndPrepareData(experiment_name, benchmark_name, machine_name, csv_data_file)
 
 # myFilterAndPlot(1, 32)
-myFilterAndPlot(experiment_name, benchmark_name, machine_name, machine_arch[machine_name], p_num_threads = 8, p_chunk_size = 256)
+myFilterAndPlot(experiment_name, benchmark_name, machine_name, machine_arch[machine_name], p_num_threads = 4, p_chunk_size = 128)
 
 # Filtra e Plota os gráficos.
 for (nt in num_threads_configs) {
