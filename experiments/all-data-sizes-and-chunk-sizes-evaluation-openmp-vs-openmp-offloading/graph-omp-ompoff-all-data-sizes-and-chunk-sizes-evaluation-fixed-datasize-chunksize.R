@@ -83,6 +83,9 @@ myLoadAndPrepareData<-function(p_experiment_name, p_benchmark_name, p_machine_na
   #data <- within(data, DT_H2D <- (DT_H2D/1e+09)*1e+03)
   #data <- within(data, DT_D2H <- (DT_D2H/1e+09)*1e+03)
   
+  # Filtering by number of executions.
+  # data <- subset(data, ((version == "OMP+OFF" & (execution == 2 | execution == 3)) | (version == "OMP")))
+  
   cdata <- ddply(data, c("exp", "version", "schedule", "chunk_size" , "num_threads" , "size_of_data" , "NI" , "NJ" , "NK"), summarise,
                      N    = length(chunk_size),
                      mean_orig = mean(ORIG),
@@ -210,9 +213,9 @@ myFilterAndPlot<-function(p_experiment_name, p_benchmark_name, p_machine_name, p
     #scale_x_discrete(limits = c(32,64,128,256,512,1024,2048,4096,8192), limit=c(32,64,128,256,512,1024,2048,4096,8192), expand=c(.02,0)) +
     # scale_x_discrete(limits=c(32,64,128,256,512,1024,2048,4096,8192)) +
     scale_x_discrete(limits = c(1,2,4,6,8,10,12,14,16,18,20,22,24), expand=c(.03,0)) +
-    theme_bw() +
+    theme_bw(base_size = 20) +
     #theme(legend.position=c(0.89,0.70), legend.title=element_blank())
-    theme(legend.position=c(0.9,0.9), legend.title=element_blank(), plot.title = element_text(size=20))
+    theme(legend.position=c(0.9,0.9), legend.title=element_blank(), plot.title = element_text(size=20), axis.text = element_text(size = 16, face="bold"))
   
   (p1 = p1 + scale_fill_grey(start = 0.9, end = 0.2))
     
