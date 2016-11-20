@@ -50,7 +50,7 @@ gemm-pilipili2-omp-all-data-sizes-and-chunk-sizes-evaluation-11-08-2016-18-44-48
 
 
 # Volta no diretorio do experimento.
-cd dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading
+cd /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-hook/experiments/all-data-sizes-and-chunk-sizes-evaluation-openmp-vs-openmp-offloading
 
 
 # Transforma em csv os resultados do ragserver: 
