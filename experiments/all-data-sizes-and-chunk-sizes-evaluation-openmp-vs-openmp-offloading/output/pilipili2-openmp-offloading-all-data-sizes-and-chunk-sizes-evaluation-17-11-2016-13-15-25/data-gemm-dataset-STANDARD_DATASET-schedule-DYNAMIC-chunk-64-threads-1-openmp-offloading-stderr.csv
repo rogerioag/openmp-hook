@@ -40,3 +40,24 @@ Calling compareResults(original, omp).
 Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 391809
 Calling compareResults(original, cuda).
 Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 1046529
+Experiment 'all-data-sizes-and-chunk-sizes-evaluation', execution 3 of gemm with dataset: STANDARD_DATASET, schedule: DYNAMIC, chunk_size: 64, threads: 1 start at 20/11/2016-12:04:02
+Preparing alternatives functions.
+Creating table of target functions.
+Allocating the rows.
+Allocating the columns.
+Allocating the columns is OK.
+Declaring function in 0,1.
+Calling init_array.
+Calling gemm_omp:
+Printing Values CSV:
+measures,UNC_H_IMC_READS,UNC_H_IMC_WRITES,,,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L3_DCR,PAPI_L3_DCW,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_L2_DCR,PAPI_L2_DCW,,measures,UNHALTED_CORE_CYCLES,UNHALTED_REFERENCE_CYCLES,perf::PERF_COUNT_HW_CACHE_L1D:READ,perf::PERF_COUNT_HW_CACHE_L1D:WRITE,,measures,PAPI_TOT_CYC,PAPI_REF_CYC,PAPI_DP_OPS,,,
+2,33958,131624,0,0,0,1,1576691663,1413605518,67572863,85928,0,1,1576664338,1413581338,68345036,190539,0,1,1576706602,1413619766,68540573,204683,0,1,1576705693,1413618102,950781889,0,0,
+oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev 
+0.0724602096, 0.0724486304, 3.7099627308, 20.8685403605, 20.8652055492, 1
+Calling function gemm_cuda.
+GPU init.
+setting device 0 with name Tesla K40c
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 391809
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 1046529

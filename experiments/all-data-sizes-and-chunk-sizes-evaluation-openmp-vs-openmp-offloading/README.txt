@@ -36,7 +36,7 @@ gemm-ragserver-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11
 ./csvize-omp-off-experiments-results.py -i csv/gemm-pilipili2-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-13-15-25-joined.csv -o csv/gemm-pilipili2-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-13-15-25-joined-processed.csv
 
 mkdir -p csv/pilipili2/
-cp csv/gemm-pilipili2-*-joined*.csv csv/pilipili2/
+cp -v csv/gemm-pilipili2-*-joined*.csv csv/pilipili2/
 
 # Merge dos dois arquivos:
 # Arquivo CUDA: gemm-pilipili2-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-13-15-25-joined-processed.csv
@@ -60,7 +60,7 @@ cd /dados/rogerio/USP/doutorado/prova-de-conceito/testes-prova-conceito/openmp-h
 ./csvize-omp-off-experiments-results.py -i csv/gemm-ragserver-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-02-32-35-joined.csv -o csv/gemm-ragserver-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-02-32-35-joined-processed.csv
 
 mkdir -p csv/ragserver/
-cp csv/gemm-ragserver-*-joined*.csv csv/ragserver/
+cp -v csv/gemm-ragserver-*-joined*.csv csv/ragserver/
 
 # Merge dos dois arquivos:
 # Arquivo CUDA: gemm-ragserver-openmp-offloading-all-data-sizes-and-chunk-sizes-evaluation-17-11-2016-02-32-35-joined-processed.csv
