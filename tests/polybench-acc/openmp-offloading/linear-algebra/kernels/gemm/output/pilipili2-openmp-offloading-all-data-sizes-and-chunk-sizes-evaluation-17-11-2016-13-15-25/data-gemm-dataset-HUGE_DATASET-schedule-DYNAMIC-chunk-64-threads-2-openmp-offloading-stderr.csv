@@ -57,3 +57,7 @@ oi_cpu, oi_gpu, ap_cpu, ap_gpu, best_ap, best_dev
 Calling function gemm_cuda.
 GPU init.
 setting device 0 with name Tesla K40c
+Calling compareResults(original, omp).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 67092481
+Calling compareResults(original, cuda).
+Non-Matching CPU-GPU Outputs Beyond Error Threshold of 0.05 Percent: 67092481
