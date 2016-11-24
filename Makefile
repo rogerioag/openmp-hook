@@ -37,11 +37,6 @@ libhookomp: hookomp.o
 
 deploy-lib:
 	@echo "Deploying shared libraries..."
-	cp libhookomp.so ../function-pointers/
-	cp libroofline.so ../function-pointers/
-
-	cp libhookomp.so ../polly-openmp/vectoradd/
-	cp libroofline.so ../polly-openmp/vectoradd/
 
 clean:
 	@echo "Cleaning..."
