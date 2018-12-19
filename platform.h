@@ -3,7 +3,7 @@
 #define PLATFORM_H
 
 /* Define the default processor architecture: ivy bridge is pilipili2. */
-#if !defined(NEHALEM) && !defined(IVY_BRIDGE) && !defined(SANDY_BRIDGE)
+#if !defined(NEHALEM) && !defined(IVY_BRIDGE) && !defined(SANDY_BRIDGE) && !defined(HASWELL)
 #define IVY_BRIDGE
 #endif
 
@@ -21,6 +21,11 @@
 #ifdef SANDY_BRIDGE
   #pragma message( "Setting Sandy Bridge architecture." )
   #include "sandy_bridge.h"
+#endif
+
+#ifdef HASWELL
+  #pragma message( "Setting Haswell architecture." )
+  #include "haswell.h"
 #endif
 
 #endif /* PLATFORM_H */
