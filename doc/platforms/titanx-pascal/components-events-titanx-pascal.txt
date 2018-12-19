@@ -1,0 +1,44 @@
+Available components and hardware information.
+--------------------------------------------------------------------------------
+PAPI version             : 5.6.0.0
+Operating system         : Linux 4.9.0-4-amd64
+Vendor string and code   : GenuineIntel (1, 0x1)
+Model string and code    : Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz (60, 0x3c)
+CPU revision             : 3.000000
+CPUID                    : Family/Model/Stepping 6/60/3, 0x06/0x3c/0x03
+CPU Max MHz              : 4000
+CPU Min MHz              : 800
+Total cores              : 8
+SMT threads per core     : 2
+Cores per socket         : 4
+Sockets                  : 1
+Cores per NUMA region    : 8
+NUMA regions             : 1
+Running in a VM          : no
+Number Hardware Counters : 10
+Max Multiplex Counters   : 384
+Fast counter read (rdpmc): no
+--------------------------------------------------------------------------------
+
+Compiled-in components:
+Name:   perf_event              Linux perf_event CPU counters
+Name:   perf_event_uncore       Linux perf_event CPU uncore and northbridge
+Name:   rapl                    Linux RAPL energy measurements
+   \-> Disabled: Can't open fd for cpu0: No such file or directory
+Name:   cuda                    CUDA events and metrics via NVIDIA CuPTI interfaces
+
+Active components:
+Name:   perf_event              Linux perf_event CPU counters
+                                Native: 162, Preset: 56, Counters: 10
+                                PMUs supported: ix86arch, perf, hsw, perf_raw
+
+Name:   perf_event_uncore       Linux perf_event CPU uncore and northbridge
+                                Native: 3, Preset: 0, Counters: 3
+                                PMUs supported: rapl
+
+Name:   cuda                    CUDA events and metrics via NVIDIA CuPTI interfaces
+                                Native: 394, Preset: 0, Counters: 394
+                                PMUs supported: 
+
+
+--------------------------------------------------------------------------------

@@ -1,0 +1,1904 @@
+Available native events and hardware information.
+--------------------------------------------------------------------------------
+PAPI version             : 5.6.0.0
+Operating system         : Linux 4.9.0-4-amd64
+Vendor string and code   : GenuineIntel (1, 0x1)
+Model string and code    : Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz (60, 0x3c)
+CPU revision             : 3.000000
+CPUID                    : Family/Model/Stepping 6/60/3, 0x06/0x3c/0x03
+CPU Max MHz              : 4000
+CPU Min MHz              : 800
+Total cores              : 8
+SMT threads per core     : 2
+Cores per socket         : 4
+Sockets                  : 1
+Cores per NUMA region    : 8
+NUMA regions             : 1
+Running in a VM          : no
+Number Hardware Counters : 10
+Max Multiplex Counters   : 384
+Fast counter read (rdpmc): no
+--------------------------------------------------------------------------------
+
+===============================================================================
+ Native Events in Component: perf_event
+===============================================================================
+| ix86arch::UNHALTED_CORE_CYCLES                                               |
+|            count core clock cycles whenever the clock signal on the specific |
+|            core is running (not halted)                                      |
+--------------------------------------------------------------------------------
+| ix86arch::INSTRUCTION_RETIRED                                                |
+|            count the number of instructions at retirement. For instructions t|
+|            hat consists of multiple micro-ops, this event counts the retireme|
+|            nt of the last micro-op of the instruction                        |
+--------------------------------------------------------------------------------
+| ix86arch::UNHALTED_REFERENCE_CYCLES                                          |
+|            count reference clock cycles while the clock signal on the specifi|
+|            c core is running. The reference clock operates at a fixed frequen|
+|            cy, irrespective of core frequency changes due to performance stat|
+|            e transitions                                                     |
+--------------------------------------------------------------------------------
+| ix86arch::LLC_REFERENCES                                                     |
+|            count each request originating from the core to reference a cache |
+|            line in the last level cache. The count may include speculation, b|
+|            ut excludes cache line fills due to hardware prefetch             |
+--------------------------------------------------------------------------------
+| ix86arch::LLC_MISSES                                                         |
+|            count each cache miss condition for references to the last level c|
+|            ache. The event count may include speculation, but excludes cache |
+|            line fills due to hardware prefetch                               |
+--------------------------------------------------------------------------------
+| ix86arch::BRANCH_INSTRUCTIONS_RETIRED                                        |
+|            count branch instructions at retirement. Specifically, this event |
+|            counts the retirement of the last micro-op of a branch instruction|
+|                                                                              |
+--------------------------------------------------------------------------------
+| ix86arch::MISPREDICTED_BRANCH_RETIRED                                        |
+|            count mispredicted branch instructions at retirement. Specifically|
+|            , this event counts at retirement of the last micro-op of a branch|
+|             instruction in the architectural path of the execution and experi|
+|            enced misprediction in the branch prediction hardware             |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CPU_CYCLES                                               |
+|            PERF_COUNT_HW_CPU_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::CYCLES                                                                 |
+|            PERF_COUNT_HW_CPU_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::CPU-CYCLES                                                             |
+|            PERF_COUNT_HW_CPU_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_INSTRUCTIONS                                             |
+|            PERF_COUNT_HW_INSTRUCTIONS                                        |
+--------------------------------------------------------------------------------
+| perf::INSTRUCTIONS                                                           |
+|            PERF_COUNT_HW_INSTRUCTIONS                                        |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_REFERENCES                                         |
+|            PERF_COUNT_HW_CACHE_REFERENCES                                    |
+--------------------------------------------------------------------------------
+| perf::CACHE-REFERENCES                                                       |
+|            PERF_COUNT_HW_CACHE_REFERENCES                                    |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_MISSES                                             |
+|            PERF_COUNT_HW_CACHE_MISSES                                        |
+--------------------------------------------------------------------------------
+| perf::CACHE-MISSES                                                           |
+|            PERF_COUNT_HW_CACHE_MISSES                                        |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                      |
+|            PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                 |
+--------------------------------------------------------------------------------
+| perf::BRANCH-INSTRUCTIONS                                                    |
+|            PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                 |
+--------------------------------------------------------------------------------
+| perf::BRANCHES                                                               |
+|            PERF_COUNT_HW_BRANCH_INSTRUCTIONS                                 |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_BRANCH_MISSES                                            |
+|            PERF_COUNT_HW_BRANCH_MISSES                                       |
+--------------------------------------------------------------------------------
+| perf::BRANCH-MISSES                                                          |
+|            PERF_COUNT_HW_BRANCH_MISSES                                       |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_BUS_CYCLES                                               |
+|            PERF_COUNT_HW_BUS_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::BUS-CYCLES                                                             |
+|            PERF_COUNT_HW_BUS_CYCLES                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                              <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                             |
+--------------------------------------------------------------------------------
+| perf::STALLED-CYCLES-FRONTEND                                            <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                             |
+--------------------------------------------------------------------------------
+| perf::IDLE-CYCLES-FRONTEND                                               <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_FRONTEND                             |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_STALLED_CYCLES_BACKEND                               <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_BACKEND                              |
+--------------------------------------------------------------------------------
+| perf::STALLED-CYCLES-BACKEND                                             <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_BACKEND                              |
+--------------------------------------------------------------------------------
+| perf::IDLE-CYCLES-BACKEND                                                <NA>|
+|            PERF_COUNT_HW_STALLED_CYCLES_BACKEND                              |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_REF_CPU_CYCLES                                           |
+|            PERF_COUNT_HW_REF_CPU_CYCLES                                      |
+--------------------------------------------------------------------------------
+| perf::REF-CYCLES                                                             |
+|            PERF_COUNT_HW_REF_CPU_CYCLES                                      |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_CPU_CLOCK                                                |
+|            PERF_COUNT_SW_CPU_CLOCK                                           |
+--------------------------------------------------------------------------------
+| perf::CPU-CLOCK                                                              |
+|            PERF_COUNT_SW_CPU_CLOCK                                           |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_TASK_CLOCK                                               |
+|            PERF_COUNT_SW_TASK_CLOCK                                          |
+--------------------------------------------------------------------------------
+| perf::TASK-CLOCK                                                             |
+|            PERF_COUNT_SW_TASK_CLOCK                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_PAGE_FAULTS                                              |
+|            PERF_COUNT_SW_PAGE_FAULTS                                         |
+--------------------------------------------------------------------------------
+| perf::PAGE-FAULTS                                                            |
+|            PERF_COUNT_SW_PAGE_FAULTS                                         |
+--------------------------------------------------------------------------------
+| perf::FAULTS                                                                 |
+|            PERF_COUNT_SW_PAGE_FAULTS                                         |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_CONTEXT_SWITCHES                                         |
+|            PERF_COUNT_SW_CONTEXT_SWITCHES                                    |
+--------------------------------------------------------------------------------
+| perf::CONTEXT-SWITCHES                                                       |
+|            PERF_COUNT_SW_CONTEXT_SWITCHES                                    |
+--------------------------------------------------------------------------------
+| perf::CS                                                                     |
+|            PERF_COUNT_SW_CONTEXT_SWITCHES                                    |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_CPU_MIGRATIONS                                           |
+|            PERF_COUNT_SW_CPU_MIGRATIONS                                      |
+--------------------------------------------------------------------------------
+| perf::CPU-MIGRATIONS                                                         |
+|            PERF_COUNT_SW_CPU_MIGRATIONS                                      |
+--------------------------------------------------------------------------------
+| perf::MIGRATIONS                                                             |
+|            PERF_COUNT_SW_CPU_MIGRATIONS                                      |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_PAGE_FAULTS_MIN                                          |
+|            PERF_COUNT_SW_PAGE_FAULTS_MIN                                     |
+--------------------------------------------------------------------------------
+| perf::MINOR-FAULTS                                                           |
+|            PERF_COUNT_SW_PAGE_FAULTS_MIN                                     |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_SW_PAGE_FAULTS_MAJ                                          |
+|            PERF_COUNT_SW_PAGE_FAULTS_MAJ                                     |
+--------------------------------------------------------------------------------
+| perf::MAJOR-FAULTS                                                           |
+|            PERF_COUNT_SW_PAGE_FAULTS_MAJ                                     |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_L1D                                                |
+|            L1 data cache                                                     |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-LOADS                                                        |
+|            L1 cache load accesses                                            |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-LOAD-MISSES                                                  |
+|            L1 cache load misses                                              |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-STORES                                                       |
+|            L1 cache store accesses                                           |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-STORE-MISSES                                             <NA>|
+|            L1 cache store misses                                             |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-PREFETCHES                                               <NA>|
+|            L1 cache prefetch accesses                                        |
+--------------------------------------------------------------------------------
+| perf::L1-DCACHE-PREFETCH-MISSES                                          <NA>|
+|            L1 cache prefetch misses                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_L1I                                                |
+|            L1 instruction cache                                              |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-LOADS                                                    <NA>|
+|            L1I cache load accesses                                           |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-LOAD-MISSES                                                  |
+|            L1I cache load misses                                             |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-PREFETCHES                                               <NA>|
+|            L1I cache prefetch accesses                                       |
+--------------------------------------------------------------------------------
+| perf::L1-ICACHE-PREFETCH-MISSES                                          <NA>|
+|            L1I cache prefetch misses                                         |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_LL                                                 |
+|            Last level cache                                                  |
+--------------------------------------------------------------------------------
+| perf::LLC-LOADS                                                              |
+|            Last level cache load accesses                                    |
+--------------------------------------------------------------------------------
+| perf::LLC-LOAD-MISSES                                                        |
+|            Last level cache load misses                                      |
+--------------------------------------------------------------------------------
+| perf::LLC-STORES                                                             |
+|            Last level cache store accesses                                   |
+--------------------------------------------------------------------------------
+| perf::LLC-STORE-MISSES                                                       |
+|            Last level cache store misses                                     |
+--------------------------------------------------------------------------------
+| perf::LLC-PREFETCHES                                                     <NA>|
+|            Last level cache prefetch accesses                                |
+--------------------------------------------------------------------------------
+| perf::LLC-PREFETCH-MISSES                                                <NA>|
+|            Last level cache prefetch misses                                  |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_DTLB                                               |
+|            Data Translation Lookaside Buffer                                 |
+--------------------------------------------------------------------------------
+| perf::DTLB-LOADS                                                             |
+|            Data TLB load accesses                                            |
+--------------------------------------------------------------------------------
+| perf::DTLB-LOAD-MISSES                                                       |
+|            Data TLB load misses                                              |
+--------------------------------------------------------------------------------
+| perf::DTLB-STORES                                                            |
+|            Data TLB store accesses                                           |
+--------------------------------------------------------------------------------
+| perf::DTLB-STORE-MISSES                                                      |
+|            Data TLB store misses                                             |
+--------------------------------------------------------------------------------
+| perf::DTLB-PREFETCHES                                                    <NA>|
+|            Data TLB prefetch accesses                                        |
+--------------------------------------------------------------------------------
+| perf::DTLB-PREFETCH-MISSES                                               <NA>|
+|            Data TLB prefetch misses                                          |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_ITLB                                               |
+|            Instruction Translation Lookaside Buffer                          |
+--------------------------------------------------------------------------------
+| perf::ITLB-LOADS                                                             |
+|            Instruction TLB load accesses                                     |
+--------------------------------------------------------------------------------
+| perf::ITLB-LOAD-MISSES                                                       |
+|            Instruction TLB load misses                                       |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_BPU                                                |
+|            Branch Prediction Unit                                            |
+--------------------------------------------------------------------------------
+| perf::BRANCH-LOADS                                                           |
+|            Branch  load accesses                                             |
+--------------------------------------------------------------------------------
+| perf::BRANCH-LOAD-MISSES                                                     |
+|            Branch  load misses                                               |
+--------------------------------------------------------------------------------
+| perf::PERF_COUNT_HW_CACHE_NODE                                               |
+|            Node memory access                                                |
+--------------------------------------------------------------------------------
+| perf::NODE-LOADS                                                             |
+|            Node  load accesses                                               |
+--------------------------------------------------------------------------------
+| perf::NODE-LOAD-MISSES                                                       |
+|            Node  load misses                                                 |
+--------------------------------------------------------------------------------
+| perf::NODE-STORES                                                            |
+|            Node  store accesses                                              |
+--------------------------------------------------------------------------------
+| perf::NODE-STORE-MISSES                                                      |
+|            Node  store misses                                                |
+--------------------------------------------------------------------------------
+| perf::NODE-PREFETCHES                                                    <NA>|
+|            Node  prefetch accesses                                           |
+--------------------------------------------------------------------------------
+| perf::NODE-PREFETCH-MISSES                                               <NA>|
+|            Node  prefetch misses                                             |
+--------------------------------------------------------------------------------
+| UNHALTED_CORE_CYCLES                                                         |
+|            Count core clock cycles whenever the clock signal on the specific |
+|            core is running (not halted)                                      |
+--------------------------------------------------------------------------------
+| UNHALTED_REFERENCE_CYCLES                                                    |
+|            Unhalted reference cycles                                         |
+--------------------------------------------------------------------------------
+| INSTRUCTION_RETIRED                                                          |
+|            Number of instructions at retirement                              |
+--------------------------------------------------------------------------------
+| INSTRUCTIONS_RETIRED                                                         |
+|            This is an alias for INSTRUCTION_RETIRED                          |
+--------------------------------------------------------------------------------
+| BRANCH_INSTRUCTIONS_RETIRED                                                  |
+|            Count branch instructions at retirement. Specifically, this event |
+|            counts the retirement of the last micro-op of a branch instruction|
+|                                                                              |
+--------------------------------------------------------------------------------
+| MISPREDICTED_BRANCH_RETIRED                                                  |
+|            Count mispredicted branch instructions at retirement. Specifically|
+|            , this event counts at retirement of the last micro-op of a branch|
+|             instruction in the architectural path of the execution and experi|
+|            enced misprediction in the branch prediction hardware             |
+--------------------------------------------------------------------------------
+| BACLEARS                                                                     |
+|            Branch re-steered                                                 |
+--------------------------------------------------------------------------------
+| BR_INST_EXEC                                                                 |
+|            Branch instructions executed                                      |
+--------------------------------------------------------------------------------
+| BR_INST_RETIRED                                                              |
+|            Branch instructions retired (Precise Event)                       |
+--------------------------------------------------------------------------------
+| BR_MISP_EXEC                                                                 |
+|            Mispredicted branches executed                                    |
+--------------------------------------------------------------------------------
+| BR_MISP_RETIRED                                                              |
+|            Mispredicted retired branches (Precise Event)                     |
+--------------------------------------------------------------------------------
+| CPL_CYCLES                                                                   |
+|            Unhalted core cycles at a specific ring level                     |
+--------------------------------------------------------------------------------
+| CPU_CLK_THREAD_UNHALTED                                                      |
+|            Count core clock cycles whenever the clock signal on the specific |
+|            core is running (not halted)                                      |
+--------------------------------------------------------------------------------
+| CPU_CLK_UNHALTED                                                             |
+|            Count core clock cycles whenever the clock signal on the specific |
+|            core is running (not halted)                                      |
+--------------------------------------------------------------------------------
+| CYCLE_ACTIVITY                                                               |
+|            Stalled cycles                                                    |
+--------------------------------------------------------------------------------
+| DTLB_LOAD_MISSES                                                             |
+|            Data TLB load misses                                              |
+--------------------------------------------------------------------------------
+| DTLB_STORE_MISSES                                                            |
+|            Data TLB store misses                                             |
+--------------------------------------------------------------------------------
+| FP_ASSIST                                                                    |
+|            X87 floating-point assists                                        |
+--------------------------------------------------------------------------------
+| HLE_RETIRED                                                                  |
+|            HLE execution (Precise Event)                                     |
+--------------------------------------------------------------------------------
+| ICACHE                                                                       |
+|            Instruction Cache                                                 |
+--------------------------------------------------------------------------------
+| IDQ                                                                          |
+|            IDQ operations                                                    |
+--------------------------------------------------------------------------------
+| IDQ_UOPS_NOT_DELIVERED                                                       |
+|            Uops not delivered                                                |
+--------------------------------------------------------------------------------
+| INST_RETIRED                                                                 |
+|            Number of instructions retired (Precise Event)                    |
+--------------------------------------------------------------------------------
+| INT_MISC                                                                     |
+|            Miscellaneous interruptions                                       |
+--------------------------------------------------------------------------------
+| ITLB                                                                         |
+|            Instruction TLB                                                   |
+--------------------------------------------------------------------------------
+| ITLB_MISSES                                                                  |
+|            Instruction TLB misses                                            |
+--------------------------------------------------------------------------------
+| L1D                                                                          |
+|            L1D cache                                                         |
+--------------------------------------------------------------------------------
+| L1D_PEND_MISS                                                                |
+|            L1D pending misses                                                |
+--------------------------------------------------------------------------------
+| L2_DEMAND_RQSTS                                                              |
+|            Demand Data Read requests to L2                                   |
+--------------------------------------------------------------------------------
+| L2_LINES_IN                                                                  |
+|            L2 lines allocated                                                |
+--------------------------------------------------------------------------------
+| L2_LINES_OUT                                                                 |
+|            L2 lines evicted                                                  |
+--------------------------------------------------------------------------------
+| L2_RQSTS                                                                     |
+|            L2 requests                                                       |
+--------------------------------------------------------------------------------
+| L2_TRANS                                                                     |
+|            L2 transactions                                                   |
+--------------------------------------------------------------------------------
+| LD_BLOCKS                                                                    |
+|            Blocking loads                                                    |
+--------------------------------------------------------------------------------
+| LD_BLOCKS_PARTIAL                                                            |
+|            Partial load blocks                                               |
+--------------------------------------------------------------------------------
+| LOAD_HIT_PRE                                                                 |
+|            Load dispatches                                                   |
+--------------------------------------------------------------------------------
+| LOCK_CYCLES                                                                  |
+|            Locked cycles in L1D and L2                                       |
+--------------------------------------------------------------------------------
+| LONGEST_LAT_CACHE                                                            |
+|            L3 cache                                                          |
+--------------------------------------------------------------------------------
+| MACHINE_CLEARS                                                               |
+|            Machine clear asserted                                            |
+--------------------------------------------------------------------------------
+| MEM_LOAD_UOPS_L3_HIT_RETIRED                                                 |
+|            L3 hit load uops retired (Precise Event)                          |
+--------------------------------------------------------------------------------
+| MEM_LOAD_UOPS_LLC_HIT_RETIRED                                                |
+|            L3 hit load uops retired (Precise Event)                          |
+--------------------------------------------------------------------------------
+| MEM_LOAD_UOPS_L3_MISS_RETIRED                                                |
+|            Load uops retired that missed the L3 (Precise Event)              |
+--------------------------------------------------------------------------------
+| MEM_LOAD_UOPS_LLC_MISS_RETIRED                                               |
+|            Load uops retired that missed the L3 (Precise Event)              |
+--------------------------------------------------------------------------------
+| MEM_LOAD_UOPS_RETIRED                                                        |
+|            Retired load uops (Precise Event)                                 |
+--------------------------------------------------------------------------------
+| MEM_TRANS_RETIRED                                                            |
+|            Memory transactions retired (Precise Event)                       |
+--------------------------------------------------------------------------------
+| MEM_UOPS_RETIRED                                                             |
+|            Memory uops retired (Precise Event)                               |
+--------------------------------------------------------------------------------
+| MISALIGN_MEM_REF                                                             |
+|            Misaligned memory references                                      |
+--------------------------------------------------------------------------------
+| MOVE_ELIMINATION                                                             |
+|            Move Elimination                                                  |
+--------------------------------------------------------------------------------
+| OFFCORE_REQUESTS                                                             |
+|            Demand Data Read requests sent to uncore                          |
+--------------------------------------------------------------------------------
+| OTHER_ASSISTS                                                                |
+|            Software assist                                                   |
+--------------------------------------------------------------------------------
+| RESOURCE_STALLS                                                              |
+|            Cycles Allocation is stalled due to Resource Related reason       |
+--------------------------------------------------------------------------------
+| ROB_MISC_EVENTS                                                              |
+|            ROB miscellaneous events                                          |
+--------------------------------------------------------------------------------
+| RS_EVENTS                                                                    |
+|            Reservation Station                                               |
+--------------------------------------------------------------------------------
+| RTM_RETIRED                                                                  |
+|            Restricted Transaction Memory execution (Precise Event)           |
+--------------------------------------------------------------------------------
+| TLB_FLUSH                                                                    |
+|            TLB flushes                                                       |
+--------------------------------------------------------------------------------
+| UOPS_EXECUTED                                                                |
+|            Uops executed                                                     |
+--------------------------------------------------------------------------------
+| LSD                                                                          |
+|            Loop stream detector                                              |
+--------------------------------------------------------------------------------
+| UOPS_EXECUTED_PORT                                                           |
+|            Uops dispatched to specific ports                                 |
+--------------------------------------------------------------------------------
+| UOPS_DISPATCHED_PORT                                                         |
+|            Uops dispatched to specific ports                                 |
+--------------------------------------------------------------------------------
+| UOPS_ISSUED                                                                  |
+|            Uops issued                                                       |
+--------------------------------------------------------------------------------
+| UOPS_RETIRED                                                                 |
+|            Uops retired (Precise Event)                                      |
+--------------------------------------------------------------------------------
+| TX_MEM                                                                       |
+|            Transactional memory aborts                                       |
+--------------------------------------------------------------------------------
+| TX_EXEC                                                                      |
+|            Transactional execution                                           |
+--------------------------------------------------------------------------------
+| OFFCORE_REQUESTS_OUTSTANDING                                                 |
+|            Outstanding offcore requests                                      |
+--------------------------------------------------------------------------------
+| ILD_STALL                                                                    |
+|            Instruction Length Decoder stalls                                 |
+--------------------------------------------------------------------------------
+| PAGE_WALKER_LOADS                                                            |
+|            Page walker loads                                                 |
+--------------------------------------------------------------------------------
+| DSB2MITE_SWITCHES                                                            |
+|            Number of DSB to MITE switches                                    |
+--------------------------------------------------------------------------------
+| EPT                                                                          |
+|            Extended page table                                               |
+--------------------------------------------------------------------------------
+| ARITH                                                                        |
+|            Counts arithmetic multiply operations                             |
+--------------------------------------------------------------------------------
+| AVX                                                                          |
+|            Counts AVX instructions                                           |
+--------------------------------------------------------------------------------
+| SQ_MISC                                                                      |
+|            SuperQueue miscellaneous                                          |
+--------------------------------------------------------------------------------
+| OFFCORE_REQUESTS_BUFFER                                                      |
+|            Offcore reqest buffer                                             |
+--------------------------------------------------------------------------------
+| OFFCORE_RESPONSE_0                                                           |
+|            Offcore response event (must provide at least one request type and|
+|             either any_response or any combination of supplier + snoop)      |
+--------------------------------------------------------------------------------
+| OFFCORE_RESPONSE_1                                                           |
+|            Offcore response event (must provide at least one request type and|
+|             either any_response or any combination of supplier + snoop)      |
+--------------------------------------------------------------------------------
+| perf_raw::r0000                                                              |
+|            perf_events raw event syntax: r[0-9a-fA-F]+                       |
+===============================================================================
+ Native Events in Component: perf_event_uncore
+===============================================================================
+| rapl::RAPL_ENERGY_CORES                                                      |
+|            Number of Joules consumed by all cores on the package. Unit is 2^-|
+|            32 Joules                                                         |
+--------------------------------------------------------------------------------
+| rapl::RAPL_ENERGY_PKG                                                        |
+|            Number of Joules consumed by all cores and Last level cache on the|
+|             package. Unit is 2^-32 Joules                                    |
+--------------------------------------------------------------------------------
+| rapl::RAPL_ENERGY_GPU                                                        |
+|            Number of Joules consumed by the builtin GPU. Unit is 2^-32 Joules|
+|                                                                              |
+===============================================================================
+ Native Events in Component: cuda
+===============================================================================
+| cuda:::event:tex0_cache_sector_queries:device=0                              |
+|            tex0 cache sector queries                                         |
+--------------------------------------------------------------------------------
+| cuda:::event:tex1_cache_sector_queries:device=0                              |
+|            tex1 cache sector queries                                         |
+--------------------------------------------------------------------------------
+| cuda:::event:tex0_cache_sector_misses:device=0                           <NA>|
+|            tex0 cache sector misses                                          |
+--------------------------------------------------------------------------------
+| cuda:::event:tex1_cache_sector_misses:device=0                               |
+|            tex1 cache sector misses                                          |
+--------------------------------------------------------------------------------
+| cuda:::event:elapsed_cycles_sm:device=0                                      |
+|            elapsed_cycles_sm                                                 |
+--------------------------------------------------------------------------------
+| cuda:::event:fb_subp0_read_sectors:device=0                                  |
+|            fb subp0 read sectors                                             |
+--------------------------------------------------------------------------------
+| cuda:::event:fb_subp1_read_sectors:device=0                                  |
+|            fb subp1 read sectors                                             |
+--------------------------------------------------------------------------------
+| cuda:::event:fb_subp0_write_sectors:device=0                                 |
+|            fb subp0 write sectors                                            |
+--------------------------------------------------------------------------------
+| cuda:::event:fb_subp1_write_sectors:device=0                                 |
+|            fb subp1 write sectors                                            |
+--------------------------------------------------------------------------------
+| cuda:::event:gld_inst_8bit:device=0                                      <NA>|
+|            gld_inst_8bit                                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:gld_inst_16bit:device=0                                         |
+|            gld_inst_16bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gld_inst_32bit:device=0                                         |
+|            gld_inst_32bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gld_inst_64bit:device=0                                         |
+|            gld_inst_64bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gld_inst_128bit:device=0                                        |
+|            gld_inst_128bit                                                   |
+--------------------------------------------------------------------------------
+| cuda:::event:gst_inst_8bit:device=0                                      <NA>|
+|            gst_inst_8bit                                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:gst_inst_16bit:device=0                                         |
+|            gst_inst_16bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gst_inst_32bit:device=0                                         |
+|            gst_inst_32bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gst_inst_64bit:device=0                                         |
+|            gst_inst_64bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gst_inst_128bit:device=0                                        |
+|            gst_inst_128bit                                                   |
+--------------------------------------------------------------------------------
+| cuda:::event:active_cycles_in_trap:device=0                              <NA>|
+|            active_cycles_in_trap                                             |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_00:device=0                                        |
+|            pmtrig0                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_01:device=0                                        |
+|            pmtrig1                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_02:device=0                                        |
+|            pmtrig2                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_03:device=0                                        |
+|            pmtrig3                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_04:device=0                                    <NA>|
+|            pmtrig4                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_05:device=0                                        |
+|            pmtrig5                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_06:device=0                                        |
+|            pmtrig6                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_07:device=0                                        |
+|            pmtrig7                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:warps_launched:device=0                                         |
+|            warps_launched                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_issued0:device=0                                       <NA>|
+|            inst_issued0                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_issued1:device=0                                           |
+|            inst_issued1                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_issued2:device=0                                           |
+|            inst_issued2                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_executed:device=0                                          |
+|            inst_executed                                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_executed_in_trap:device=0                              <NA>|
+|            inst_executed_in_trap                                             |
+--------------------------------------------------------------------------------
+| cuda:::event:thread_inst_executed:device=0                                   |
+|            thread_inst_executed                                              |
+--------------------------------------------------------------------------------
+| cuda:::event:not_predicated_off_thread_inst_executed:device=0                |
+|            not_predicated_off_thread_inst_executed                           |
+--------------------------------------------------------------------------------
+| cuda:::event:local_store:device=0                                            |
+|            local store                                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:local_load:device=0                                             |
+|            local load                                                        |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_load:device=0                                        <NA>|
+|            Shared load                                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_store:device=0                                           |
+|            Shared store                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_executed_shared_atom_cas:device=0                          |
+|            inst_executed_shared_atom_cas                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_atom:device=0                                            |
+|            shared atom                                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:global_atom_cas:device=0                                        |
+|            global atom cas                                                   |
+--------------------------------------------------------------------------------
+| cuda:::event:atom_count:device=0                                         <NA>|
+|            atom count                                                        |
+--------------------------------------------------------------------------------
+| cuda:::event:global_load:device=0                                            |
+|            global load                                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:global_store:device=0                                           |
+|            global store                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:generic_load:device=0                                           |
+|            generic load                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:generic_store:device=0                                          |
+|            generic store                                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:gred_count:device=0                                         <NA>|
+|            gred count                                                        |
+--------------------------------------------------------------------------------
+| cuda:::event:divergent_branch:device=0                                       |
+|            divergent branch                                                  |
+--------------------------------------------------------------------------------
+| cuda:::event:branch:device=0                                                 |
+|            branch                                                            |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_ld_bank_conflict:device=0                                |
+|            shared_ld_bank_conflict                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_st_bank_conflict:device=0                                |
+|            shared_st_bank_conflict                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_ld_transactions:device=0                             <NA>|
+|            shared_ld_transactions                                            |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_st_transactions:device=0                                 |
+|            shared_st_transactions                                            |
+--------------------------------------------------------------------------------
+| cuda:::event:active_cycles:device=0                                          |
+|            active_cycles                                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:active_warps:device=0                                       <NA>|
+|            active_warps                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_write_sector_misses:device=0                           |
+|            l2 subp0 write sector misses                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_write_sector_misses:device=0                           |
+|            l2 subp1 write sector misses                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_read_sector_misses:device=0                            |
+|            l2 subp0 read sector misses                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_read_sector_misses:device=0                            |
+|            l2 subp1 read sector misses                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_read_tex_sector_queries:device=0                   <NA>|
+|            l2 subp0 read tex sector queries                                  |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_write_tex_sector_queries:device=0                      |
+|            l2 subp0 write tex sector queries                                 |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_read_tex_hit_sectors:device=0                      <NA>|
+|            l2 subp0 read tex hit sectors                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_write_tex_hit_sectors:device=0                         |
+|            l2 subp0 write tex hit sectors                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_read_sysmem_sector_queries:device=0                <NA>|
+|            l2_subp0_read_sysmem_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_write_sysmem_sector_queries:device=0                   |
+|            l2_subp0_write_sysmem_sector_queries                              |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_total_read_sector_queries:device=0                     |
+|            l2_subp0_total_read_sector_queries                                |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_total_write_sector_queries:device=0                <NA>|
+|            l2_subp0_total_write_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_read_tex_sector_queries:device=0                       |
+|            l2 subp1 read tex sector queries                                  |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_write_tex_sector_queries:device=0                      |
+|            l2 subp1 write tex sector queries                                 |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_read_tex_hit_sectors:device=0                      <NA>|
+|            l2 subp1 read tex hit sectors                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_write_tex_hit_sectors:device=0                         |
+|            l2 subp1 write tex hit sectors                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_read_sysmem_sector_queries:device=0                <NA>|
+|            l2_subp1_read_sysmem_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_write_sysmem_sector_queries:device=0                   |
+|            l2_subp1_write_sysmem_sector_queries                              |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_total_read_sector_queries:device=0                     |
+|            l2_subp1_total_read_sector_queries                                |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_total_write_sector_queries:device=0                <NA>|
+|            l2_subp1_total_write_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::event:tex0_cache_sector_queries:device=1                              |
+|            tex0 cache sector queries                                         |
+--------------------------------------------------------------------------------
+| cuda:::event:tex1_cache_sector_queries:device=1                              |
+|            tex1 cache sector queries                                         |
+--------------------------------------------------------------------------------
+| cuda:::event:tex0_cache_sector_misses:device=1                           <NA>|
+|            tex0 cache sector misses                                          |
+--------------------------------------------------------------------------------
+| cuda:::event:tex1_cache_sector_misses:device=1                               |
+|            tex1 cache sector misses                                          |
+--------------------------------------------------------------------------------
+| cuda:::event:elapsed_cycles_sm:device=1                                      |
+|            elapsed_cycles_sm                                                 |
+--------------------------------------------------------------------------------
+| cuda:::event:fb_subp0_read_sectors:device=1                                  |
+|            fb subp0 read sectors                                             |
+--------------------------------------------------------------------------------
+| cuda:::event:fb_subp1_read_sectors:device=1                                  |
+|            fb subp1 read sectors                                             |
+--------------------------------------------------------------------------------
+| cuda:::event:fb_subp0_write_sectors:device=1                                 |
+|            fb subp0 write sectors                                            |
+--------------------------------------------------------------------------------
+| cuda:::event:fb_subp1_write_sectors:device=1                                 |
+|            fb subp1 write sectors                                            |
+--------------------------------------------------------------------------------
+| cuda:::event:gld_inst_8bit:device=1                                      <NA>|
+|            gld_inst_8bit                                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:gld_inst_16bit:device=1                                         |
+|            gld_inst_16bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gld_inst_32bit:device=1                                         |
+|            gld_inst_32bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gld_inst_64bit:device=1                                         |
+|            gld_inst_64bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gld_inst_128bit:device=1                                        |
+|            gld_inst_128bit                                                   |
+--------------------------------------------------------------------------------
+| cuda:::event:gst_inst_8bit:device=1                                      <NA>|
+|            gst_inst_8bit                                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:gst_inst_16bit:device=1                                         |
+|            gst_inst_16bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gst_inst_32bit:device=1                                         |
+|            gst_inst_32bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gst_inst_64bit:device=1                                         |
+|            gst_inst_64bit                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:gst_inst_128bit:device=1                                        |
+|            gst_inst_128bit                                                   |
+--------------------------------------------------------------------------------
+| cuda:::event:active_cycles_in_trap:device=1                              <NA>|
+|            active_cycles_in_trap                                             |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_00:device=1                                        |
+|            pmtrig0                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_01:device=1                                        |
+|            pmtrig1                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_02:device=1                                        |
+|            pmtrig2                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_03:device=1                                        |
+|            pmtrig3                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_04:device=1                                    <NA>|
+|            pmtrig4                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_05:device=1                                        |
+|            pmtrig5                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_06:device=1                                        |
+|            pmtrig6                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:prof_trigger_07:device=1                                        |
+|            pmtrig7                                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:warps_launched:device=1                                         |
+|            warps_launched                                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_issued0:device=1                                       <NA>|
+|            inst_issued0                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_issued1:device=1                                           |
+|            inst_issued1                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_issued2:device=1                                           |
+|            inst_issued2                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_executed:device=1                                          |
+|            inst_executed                                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_executed_in_trap:device=1                              <NA>|
+|            inst_executed_in_trap                                             |
+--------------------------------------------------------------------------------
+| cuda:::event:thread_inst_executed:device=1                                   |
+|            thread_inst_executed                                              |
+--------------------------------------------------------------------------------
+| cuda:::event:not_predicated_off_thread_inst_executed:device=1                |
+|            not_predicated_off_thread_inst_executed                           |
+--------------------------------------------------------------------------------
+| cuda:::event:local_store:device=1                                            |
+|            local store                                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:local_load:device=1                                             |
+|            local load                                                        |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_load:device=1                                        <NA>|
+|            Shared load                                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_store:device=1                                           |
+|            Shared store                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:inst_executed_shared_atom_cas:device=1                          |
+|            inst_executed_shared_atom_cas                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_atom:device=1                                            |
+|            shared atom                                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:global_atom_cas:device=1                                        |
+|            global atom cas                                                   |
+--------------------------------------------------------------------------------
+| cuda:::event:atom_count:device=1                                         <NA>|
+|            atom count                                                        |
+--------------------------------------------------------------------------------
+| cuda:::event:global_load:device=1                                            |
+|            global load                                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:global_store:device=1                                           |
+|            global store                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:generic_load:device=1                                           |
+|            generic load                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:generic_store:device=1                                          |
+|            generic store                                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:gred_count:device=1                                         <NA>|
+|            gred count                                                        |
+--------------------------------------------------------------------------------
+| cuda:::event:divergent_branch:device=1                                       |
+|            divergent branch                                                  |
+--------------------------------------------------------------------------------
+| cuda:::event:branch:device=1                                                 |
+|            branch                                                            |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_ld_bank_conflict:device=1                                |
+|            shared_ld_bank_conflict                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_st_bank_conflict:device=1                                |
+|            shared_st_bank_conflict                                           |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_ld_transactions:device=1                             <NA>|
+|            shared_ld_transactions                                            |
+--------------------------------------------------------------------------------
+| cuda:::event:shared_st_transactions:device=1                                 |
+|            shared_st_transactions                                            |
+--------------------------------------------------------------------------------
+| cuda:::event:active_cycles:device=1                                          |
+|            active_cycles                                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:active_warps:device=1                                       <NA>|
+|            active_warps                                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_write_sector_misses:device=1                           |
+|            l2 subp0 write sector misses                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_write_sector_misses:device=1                           |
+|            l2 subp1 write sector misses                                      |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_read_sector_misses:device=1                            |
+|            l2 subp0 read sector misses                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_read_sector_misses:device=1                            |
+|            l2 subp1 read sector misses                                       |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_read_tex_sector_queries:device=1                   <NA>|
+|            l2 subp0 read tex sector queries                                  |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_write_tex_sector_queries:device=1                      |
+|            l2 subp0 write tex sector queries                                 |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_read_tex_hit_sectors:device=1                      <NA>|
+|            l2 subp0 read tex hit sectors                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_write_tex_hit_sectors:device=1                         |
+|            l2 subp0 write tex hit sectors                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_read_sysmem_sector_queries:device=1                <NA>|
+|            l2_subp0_read_sysmem_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_write_sysmem_sector_queries:device=1                   |
+|            l2_subp0_write_sysmem_sector_queries                              |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_total_read_sector_queries:device=1                     |
+|            l2_subp0_total_read_sector_queries                                |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp0_total_write_sector_queries:device=1                <NA>|
+|            l2_subp0_total_write_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_read_tex_sector_queries:device=1                       |
+|            l2 subp1 read tex sector queries                                  |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_write_tex_sector_queries:device=1                      |
+|            l2 subp1 write tex sector queries                                 |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_read_tex_hit_sectors:device=1                      <NA>|
+|            l2 subp1 read tex hit sectors                                     |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_write_tex_hit_sectors:device=1                         |
+|            l2 subp1 write tex hit sectors                                    |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_read_sysmem_sector_queries:device=1                <NA>|
+|            l2_subp1_read_sysmem_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_write_sysmem_sector_queries:device=1                   |
+|            l2_subp1_write_sysmem_sector_queries                              |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_total_read_sector_queries:device=1                     |
+|            l2_subp1_total_read_sector_queries                                |
+--------------------------------------------------------------------------------
+| cuda:::event:l2_subp1_total_write_sector_queries:device=1                <NA>|
+|            l2_subp1_total_write_sector_queries                               |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_per_warp:device=0                                         |
+|            Average number of instructions executed by each warp              |
+--------------------------------------------------------------------------------
+| cuda:::metric:branch_efficiency:device=0                                     |
+|            Ratio of non-divergent branches to total branches                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:warp_execution_efficiency:device=0                         <NA>|
+|            Ratio of the average active threads per warp to the maximum number|
+|             of threads per warp supported on a multiprocessor                |
+--------------------------------------------------------------------------------
+| cuda:::metric:warp_nonpred_execution_efficiency:device=0                     |
+|            Ratio of the average active threads per warp executing non-predica|
+|            ted instructions to the maximum number of threads per warp support|
+|            ed on a multiprocessor                                            |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_replay_overhead:device=0                              <NA>|
+|            Average number of replays for each instruction executed           |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_load_transactions_per_request:device=0              <NA>|
+|            Average number of shared memory load transactions performed for ea|
+|            ch shared memory load                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_store_transactions_per_request:device=0             <NA>|
+|            Average number of shared memory store transactions performed for e|
+|            ach shared memory store                                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_load_transactions_per_request:device=0               <NA>|
+|            Average number of local memory load transactions performed for eac|
+|            h local memory load                                               |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_store_transactions_per_request:device=0              <NA>|
+|            Average number of local memory store transactions performed for ea|
+|            ch local memory store                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:gld_transactions_per_request:device=0                      <NA>|
+|            Average number of global memory load transactions performed for ea|
+|            ch global memory load.                                            |
+--------------------------------------------------------------------------------
+| cuda:::metric:gst_transactions_per_request:device=0                      <NA>|
+|            Average number of global memory store transactions performed for e|
+|            ach global memory store                                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_store_transactions:device=0                             |
+|            Number of shared memory store transactions                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_load_transactions:device=0                              |
+|            Number of shared memory load transactions                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_load_transactions:device=0                               |
+|            Number of local memory load transactions                          |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_store_transactions:device=0                          <NA>|
+|            Number of local memory store transactions                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:gld_transactions:device=0                                      |
+|            Number of global memory load transactions                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:gst_transactions:device=0                                  <NA>|
+|            Number of global memory store transactions                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_read_transactions:device=0                              |
+|            Number of system memory read transactions                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_write_transactions:device=0                         <NA>|
+|            Number of system memory write transactions                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_read_transactions:device=0                                  |
+|            Memory read transactions seen at L2 cache for all read requests   |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_write_transactions:device=0                             <NA>|
+|            Memory write transactions seen at L2 cache for all write requests |
+--------------------------------------------------------------------------------
+| cuda:::metric:global_hit_rate:device=0                                       |
+|            Hit rate for global loads in unified l1/tex cache                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_hit_rate:device=0                                    <NA>|
+|            Hit rate for local loads and stores                               |
+--------------------------------------------------------------------------------
+| cuda:::metric:gld_requested_throughput:device=0                              |
+|            Requested global memory load throughput                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:gst_requested_throughput:device=0                          <NA>|
+|            Requested global memory store throughput                          |
+--------------------------------------------------------------------------------
+| cuda:::metric:gld_throughput:device=0                                    <NA>|
+|            Global memory load throughput                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:gst_throughput:device=0                                        |
+|            Global memory store throughput                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_memory_overhead:device=0                             <NA>|
+|            Ratio of local memory traffic to total memory traffic between the |
+|            L1 and L2 caches                                                  |
+--------------------------------------------------------------------------------
+| cuda:::metric:tex_cache_hit_rate:device=0                                <NA>|
+|            Unified cache hit rate                                            |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_read_hit_rate:device=0                              <NA>|
+|            Hit rate at L2 cache for all read requests from texture cache     |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_write_hit_rate:device=0                             <NA>|
+|            Hit Rate at L2 cache for all write requests from texture cache    |
+--------------------------------------------------------------------------------
+| cuda:::metric:tex_cache_throughput:device=0                                  |
+|            Unified cache throughput                                          |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_read_throughput:device=0                                |
+|            Memory read throughput seen at L2 cache for read requests from the|
+|             texture cache                                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_write_throughput:device=0                           <NA>|
+|            Memory write throughput seen at L2 cache for write requests from t|
+|            he texture cache                                                  |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_read_throughput:device=0                                    |
+|            Memory read throughput seen at L2 cache for all read requests     |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_write_throughput:device=0                               <NA>|
+|            Memory write throughput seen at L2 cache for all write requests   |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_read_throughput:device=0                                |
+|            System memory read throughput                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_write_throughput:device=0                           <NA>|
+|            System memory write throughput                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_load_throughput:device=0                                 |
+|            Local memory load throughput                                      |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_store_throughput:device=0                            <NA>|
+|            Local memory store throughput                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_load_throughput:device=0                                |
+|            Shared memory load throughput                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_store_throughput:device=0                               |
+|            Shared memory store throughput                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:gld_efficiency:device=0                                    <NA>|
+|            Ratio of requested global memory load throughput to required globa|
+|            l memory load throughput.                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:gst_efficiency:device=0                                    <NA>|
+|            Ratio of requested global memory store throughput to required glob|
+|            al memory store throughput.                                       |
+--------------------------------------------------------------------------------
+| cuda:::metric:tex_cache_transactions:device=0                                |
+|            Unified cache read transactions                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_dp:device=0                                     <NA>|
+|            Number of double-precision floating-point operations executed by n|
+|            on-predicated threads (add, multiply, and multiply-accumulate). Ea|
+|            ch multiply-accumulate operation contributes 2 to the count.      |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_dp_add:device=0                                     |
+|            Number of double-precision floating-point add operations executed |
+|            by non-predicated threads.                                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_dp_fma:device=0                                     |
+|            Number of double-precision floating-point multiply-accumulate oper|
+|            ations executed by non-predicated threads. Each multiply-accumulat|
+|            e operation contributes 1 to the count.                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_dp_mul:device=0                                     |
+|            Number of double-precision floating-point multiply operations exec|
+|            uted by non-predicated threads.                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_sp:device=0                                     <NA>|
+|            Number of single-precision floating-point operations executed by n|
+|            on-predicated threads (add, multiply, and multiply-accumulate). Ea|
+|            ch multiply-accumulate operation contributes 2 to the count. The c|
+|            ount does not include special operations.                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_sp_add:device=0                                     |
+|            Number of single-precision floating-point add operations executed |
+|            by non-predicated threads.                                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_sp_fma:device=0                                     |
+|            Number of single-precision floating-point multiply-accumulate oper|
+|            ations executed by non-predicated threads. Each multiply-accumulat|
+|            e operation contributes 1 to the count.                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_sp_mul:device=0                                     |
+|            Number of single-precision floating-point multiply operations exec|
+|            uted by non-predicated threads.                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_sp_special:device=0                             <NA>|
+|            Number of single-precision floating-point special operations execu|
+|            ted by non-predicated threads.                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_executed:device=0                                         |
+|            The number of instructions executed                               |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_issued:device=0                                           |
+|            The number of instructions issued                                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_utilization:device=0                                <NA>|
+|            The utilization level of the system memory relative to the peak ut|
+|            ilization                                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_inst_fetch:device=0                                  <NA>|
+|            Percentage of stalls occurring because the next assembly instructi|
+|            on has not yet been fetched                                       |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_exec_dependency:device=0                             <NA>|
+|            Percentage of stalls occurring because an input required by the in|
+|            struction is not yet available                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_memory_dependency:device=0                           <NA>|
+|            Percentage of stalls occurring because a memory operation cannot b|
+|            e performed due to the required resources not being available or f|
+|            ully utilized, or because too many requests of a given type are ou|
+|            tstanding                                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_texture:device=0                                     <NA>|
+|            Percentage of stalls occurring because the texture sub-system is f|
+|            ully utilized or has too many outstanding requests                |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_sync:device=0                                        <NA>|
+|            Percentage of stalls occurring because the warp is blocked at a __|
+|            syncthreads() call                                                |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_other:device=0                                       <NA>|
+|            Percentage of stalls occurring due to miscellaneous reasons       |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_constant_memory_dependency:device=0                  <NA>|
+|            Percentage of stalls occurring because of immediate constant cache|
+|             miss                                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_pipe_busy:device=0                                   <NA>|
+|            Percentage of stalls occurring because a compute operation cannot |
+|            be performed because the compute pipeline is busy                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_efficiency:device=0                                 <NA>|
+|            Ratio of requested shared memory throughput to required shared mem|
+|            ory throughput                                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_fp_32:device=0                                            |
+|            Number of single-precision floating-point instructions executed by|
+|             non-predicated threads (arithmetic, compare, etc.)               |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_fp_64:device=0                                            |
+|            Number of double-precision floating-point instructions executed by|
+|             non-predicated threads (arithmetic, compare, etc.)               |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_integer:device=0                                          |
+|            Number of integer instructions executed by non-predicated threads |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_bit_convert:device=0                                      |
+|            Number of bit-conversion instructions executed by non-predicated t|
+|            hreads                                                            |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_control:device=0                                      <NA>|
+|            Number of control-flow instructions executed by non-predicated thr|
+|            eads (jump, branch, etc.)                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_compute_ld_st:device=0                                    |
+|            Number of compute load/store instructions executed by non-predicat|
+|            ed threads                                                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_misc:device=0                                             |
+|            Number of miscellaneous instructions executed by non-predicated th|
+|            reads                                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_inter_thread_communication:device=0                       |
+|            Number of inter-thread communication instructions executed by non-|
+|            predicated threads                                                |
+--------------------------------------------------------------------------------
+| cuda:::metric:issue_slots:device=0                                       <NA>|
+|            The number of issue slots used                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:cf_issued:device=0                                             |
+|            Number of issued control-flow instructions                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:cf_executed:device=0                                           |
+|            Number of executed control-flow instructions                      |
+--------------------------------------------------------------------------------
+| cuda:::metric:ldst_issued:device=0                                       <NA>|
+|            Number of issued local, global, shared and texture memory load and|
+|             store instructions                                               |
+--------------------------------------------------------------------------------
+| cuda:::metric:ldst_executed:device=0                                         |
+|            Number of executed local, global, shared and texture memory load a|
+|            nd store instructions                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:atomic_transactions:device=0                               <NA>|
+|            Global memory atomic and reduction transactions                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:atomic_transactions_per_request:device=0                   <NA>|
+|            Average number of global memory atomic and reduction transactions |
+|            performed for each atomic and reduction instruction               |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_atomic_throughput:device=0                                  |
+|            Memory read throughput seen at L2 cache for atomic and reduction r|
+|            equests                                                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_atomic_transactions:device=0                            <NA>|
+|            Memory read transactions seen at L2 cache for atomic and reduction|
+|             requests                                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_read_transactions:device=0                              |
+|            Memory read transactions seen at L2 cache for read requests from t|
+|            he texture cache                                                  |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_memory_throttle:device=0                             <NA>|
+|            Percentage of stalls occurring because of memory throttle         |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_not_selected:device=0                                <NA>|
+|            Percentage of stalls occurring because warp was not selected      |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_write_transactions:device=0                             |
+|            Memory write transactions seen at L2 cache for write requests from|
+|             the texture cache                                                |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_hp:device=0                                     <NA>|
+|            Number of half-precision floating-point operations executed by non|
+|            -predicated threads (add, multiply, and multiply-accumulate). Each|
+|             multiply-accumulate operation contributes 2 to the count.        |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_hp_add:device=0                                     |
+|            Number of half-precision floating-point add operations executed by|
+|             non-predicated threads.                                          |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_hp_mul:device=0                                     |
+|            Number of half-precision floating-point multiply operations execut|
+|            ed by non-predicated threads.                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_hp_fma:device=0                                     |
+|            Number of half-precision floating-point multiply-accumulate operat|
+|            ions executed by non-predicated threads. Each multiply-accumulate |
+|            operation contributes 1 to the count.                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_fp_16:device=0                                        <NA>|
+|            Number of half-precision floating-point instructions executed by n|
+|            on-predicated threads (arithmetic, compare, etc.)                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_read_utilization:device=0                               |
+|            The read utilization level of the system memory relative to the pe|
+|            ak utilization on a scale of 0 to 10                              |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_write_utilization:device=0                          <NA>|
+|            The write utilization level of the system memory relative to the p|
+|            eak utilization on a scale of 0 to 10                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:sm_efficiency:device=0                                         |
+|            The percentage of time at least one warp is active on a specific m|
+|            ultiprocessor                                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:achieved_occupancy:device=0                                <NA>|
+|            Ratio of the average active warps per active cycle to the maximum |
+|            number of warps supported on a multiprocessor                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:ipc:device=0                                                   |
+|            Instructions executed per cycle                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:issued_ipc:device=0                                            |
+|            Instructions issued per cycle                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:issue_slot_utilization:device=0                            <NA>|
+|            Percentage of issue slots that issued at least one instruction, av|
+|            eraged across all cycles                                          |
+--------------------------------------------------------------------------------
+| cuda:::metric:eligible_warps_per_cycle:device=0                              |
+|            Average number of warps that are eligible to issue per active cycl|
+|            e                                                                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:tex_utilization:device=0                                       |
+|            The utilization level of the unified cache relative to the peak ut|
+|            ilization                                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_utilization:device=0                                    <NA>|
+|            The utilization level of the L2 cache relative to the peak utiliza|
+|            tion on a scale of 0 to 10                                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_utilization:device=0                                    |
+|            The utilization level of the shared memory relative to peak utiliz|
+|            ation                                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:ldst_fu_utilization:device=0                               <NA>|
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute shared load, shared store and constant load instructions    |
+--------------------------------------------------------------------------------
+| cuda:::metric:cf_fu_utilization:device=0                                     |
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute control-flow instructions on a scale of 0 to 10             |
+--------------------------------------------------------------------------------
+| cuda:::metric:special_fu_utilization:device=0                                |
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute sin, cos, ex2, popc, flo, and similar instructions on a scal|
+|            e of 0 to 10                                                      |
+--------------------------------------------------------------------------------
+| cuda:::metric:tex_fu_utilization:device=0                                    |
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute global, local and texture memory instructions on a scale of |
+|            0 to 10                                                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:single_precision_fu_utilization:device=0                   <NA>|
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute single-precision floating-point instructions and integer ins|
+|            tructions                                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:double_precision_fu_utilization:device=0                       |
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute double-precision floating-point instructions                |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_hp_efficiency:device=0                                <NA>|
+|            Ratio of achieved to peak half-precision floating-point operations|
+|                                                                              |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_sp_efficiency:device=0                                <NA>|
+|            Ratio of achieved to peak single-precision floating-point operatio|
+|            ns                                                                |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_dp_efficiency:device=0                                <NA>|
+|            Ratio of achieved to peak double-precision floating-point operatio|
+|            ns                                                                |
+--------------------------------------------------------------------------------
+| cuda:::metric:dram_read_transactions:device=0                                |
+|            Device memory read transactions                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:dram_write_transactions:device=0                               |
+|            Device memory write transactions                                  |
+--------------------------------------------------------------------------------
+| cuda:::metric:dram_read_throughput:device=0                              <NA>|
+|            Device memory read throughput                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:dram_write_throughput:device=0                                 |
+|            Device memory write throughput                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:dram_utilization:device=0                                  <NA>|
+|            The utilization level of the device memory relative to the peak ut|
+|            ilization on a scale of 0 to 10                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:half_precision_fu_utilization:device=0                     <NA>|
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute 16 bit floating-point instructions and integer instructions |
+|            on a scale of 0 to 10                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:ecc_transactions:device=0                                      |
+|            Number of ECC transactions between L2 and DRAM                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:ecc_throughput:device=0                                    <NA>|
+|            ECC throughput from L2 to DRAM                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_per_warp:device=1                                         |
+|            Average number of instructions executed by each warp              |
+--------------------------------------------------------------------------------
+| cuda:::metric:branch_efficiency:device=1                                     |
+|            Ratio of non-divergent branches to total branches                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:warp_execution_efficiency:device=1                         <NA>|
+|            Ratio of the average active threads per warp to the maximum number|
+|             of threads per warp supported on a multiprocessor                |
+--------------------------------------------------------------------------------
+| cuda:::metric:warp_nonpred_execution_efficiency:device=1                     |
+|            Ratio of the average active threads per warp executing non-predica|
+|            ted instructions to the maximum number of threads per warp support|
+|            ed on a multiprocessor                                            |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_replay_overhead:device=1                              <NA>|
+|            Average number of replays for each instruction executed           |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_load_transactions_per_request:device=1              <NA>|
+|            Average number of shared memory load transactions performed for ea|
+|            ch shared memory load                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_store_transactions_per_request:device=1             <NA>|
+|            Average number of shared memory store transactions performed for e|
+|            ach shared memory store                                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_load_transactions_per_request:device=1               <NA>|
+|            Average number of local memory load transactions performed for eac|
+|            h local memory load                                               |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_store_transactions_per_request:device=1              <NA>|
+|            Average number of local memory store transactions performed for ea|
+|            ch local memory store                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:gld_transactions_per_request:device=1                      <NA>|
+|            Average number of global memory load transactions performed for ea|
+|            ch global memory load.                                            |
+--------------------------------------------------------------------------------
+| cuda:::metric:gst_transactions_per_request:device=1                      <NA>|
+|            Average number of global memory store transactions performed for e|
+|            ach global memory store                                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_store_transactions:device=1                             |
+|            Number of shared memory store transactions                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_load_transactions:device=1                              |
+|            Number of shared memory load transactions                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_load_transactions:device=1                               |
+|            Number of local memory load transactions                          |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_store_transactions:device=1                          <NA>|
+|            Number of local memory store transactions                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:gld_transactions:device=1                                      |
+|            Number of global memory load transactions                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:gst_transactions:device=1                                  <NA>|
+|            Number of global memory store transactions                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_read_transactions:device=1                              |
+|            Number of system memory read transactions                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_write_transactions:device=1                         <NA>|
+|            Number of system memory write transactions                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_read_transactions:device=1                                  |
+|            Memory read transactions seen at L2 cache for all read requests   |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_write_transactions:device=1                             <NA>|
+|            Memory write transactions seen at L2 cache for all write requests |
+--------------------------------------------------------------------------------
+| cuda:::metric:global_hit_rate:device=1                                       |
+|            Hit rate for global loads in unified l1/tex cache                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_hit_rate:device=1                                    <NA>|
+|            Hit rate for local loads and stores                               |
+--------------------------------------------------------------------------------
+| cuda:::metric:gld_requested_throughput:device=1                              |
+|            Requested global memory load throughput                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:gst_requested_throughput:device=1                          <NA>|
+|            Requested global memory store throughput                          |
+--------------------------------------------------------------------------------
+| cuda:::metric:gld_throughput:device=1                                    <NA>|
+|            Global memory load throughput                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:gst_throughput:device=1                                        |
+|            Global memory store throughput                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_memory_overhead:device=1                             <NA>|
+|            Ratio of local memory traffic to total memory traffic between the |
+|            L1 and L2 caches                                                  |
+--------------------------------------------------------------------------------
+| cuda:::metric:tex_cache_hit_rate:device=1                                <NA>|
+|            Unified cache hit rate                                            |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_read_hit_rate:device=1                              <NA>|
+|            Hit rate at L2 cache for all read requests from texture cache     |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_write_hit_rate:device=1                             <NA>|
+|            Hit Rate at L2 cache for all write requests from texture cache    |
+--------------------------------------------------------------------------------
+| cuda:::metric:tex_cache_throughput:device=1                                  |
+|            Unified cache throughput                                          |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_read_throughput:device=1                                |
+|            Memory read throughput seen at L2 cache for read requests from the|
+|             texture cache                                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_write_throughput:device=1                           <NA>|
+|            Memory write throughput seen at L2 cache for write requests from t|
+|            he texture cache                                                  |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_read_throughput:device=1                                    |
+|            Memory read throughput seen at L2 cache for all read requests     |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_write_throughput:device=1                               <NA>|
+|            Memory write throughput seen at L2 cache for all write requests   |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_read_throughput:device=1                                |
+|            System memory read throughput                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_write_throughput:device=1                           <NA>|
+|            System memory write throughput                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_load_throughput:device=1                                 |
+|            Local memory load throughput                                      |
+--------------------------------------------------------------------------------
+| cuda:::metric:local_store_throughput:device=1                            <NA>|
+|            Local memory store throughput                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_load_throughput:device=1                                |
+|            Shared memory load throughput                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_store_throughput:device=1                               |
+|            Shared memory store throughput                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:gld_efficiency:device=1                                    <NA>|
+|            Ratio of requested global memory load throughput to required globa|
+|            l memory load throughput.                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:gst_efficiency:device=1                                    <NA>|
+|            Ratio of requested global memory store throughput to required glob|
+|            al memory store throughput.                                       |
+--------------------------------------------------------------------------------
+| cuda:::metric:tex_cache_transactions:device=1                                |
+|            Unified cache read transactions                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_dp:device=1                                     <NA>|
+|            Number of double-precision floating-point operations executed by n|
+|            on-predicated threads (add, multiply, and multiply-accumulate). Ea|
+|            ch multiply-accumulate operation contributes 2 to the count.      |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_dp_add:device=1                                     |
+|            Number of double-precision floating-point add operations executed |
+|            by non-predicated threads.                                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_dp_fma:device=1                                     |
+|            Number of double-precision floating-point multiply-accumulate oper|
+|            ations executed by non-predicated threads. Each multiply-accumulat|
+|            e operation contributes 1 to the count.                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_dp_mul:device=1                                     |
+|            Number of double-precision floating-point multiply operations exec|
+|            uted by non-predicated threads.                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_sp:device=1                                     <NA>|
+|            Number of single-precision floating-point operations executed by n|
+|            on-predicated threads (add, multiply, and multiply-accumulate). Ea|
+|            ch multiply-accumulate operation contributes 2 to the count. The c|
+|            ount does not include special operations.                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_sp_add:device=1                                     |
+|            Number of single-precision floating-point add operations executed |
+|            by non-predicated threads.                                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_sp_fma:device=1                                     |
+|            Number of single-precision floating-point multiply-accumulate oper|
+|            ations executed by non-predicated threads. Each multiply-accumulat|
+|            e operation contributes 1 to the count.                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_sp_mul:device=1                                     |
+|            Number of single-precision floating-point multiply operations exec|
+|            uted by non-predicated threads.                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_sp_special:device=1                             <NA>|
+|            Number of single-precision floating-point special operations execu|
+|            ted by non-predicated threads.                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_executed:device=1                                         |
+|            The number of instructions executed                               |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_issued:device=1                                           |
+|            The number of instructions issued                                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_utilization:device=1                                <NA>|
+|            The utilization level of the system memory relative to the peak ut|
+|            ilization                                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_inst_fetch:device=1                                  <NA>|
+|            Percentage of stalls occurring because the next assembly instructi|
+|            on has not yet been fetched                                       |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_exec_dependency:device=1                             <NA>|
+|            Percentage of stalls occurring because an input required by the in|
+|            struction is not yet available                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_memory_dependency:device=1                           <NA>|
+|            Percentage of stalls occurring because a memory operation cannot b|
+|            e performed due to the required resources not being available or f|
+|            ully utilized, or because too many requests of a given type are ou|
+|            tstanding                                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_texture:device=1                                     <NA>|
+|            Percentage of stalls occurring because the texture sub-system is f|
+|            ully utilized or has too many outstanding requests                |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_sync:device=1                                        <NA>|
+|            Percentage of stalls occurring because the warp is blocked at a __|
+|            syncthreads() call                                                |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_other:device=1                                       <NA>|
+|            Percentage of stalls occurring due to miscellaneous reasons       |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_constant_memory_dependency:device=1                  <NA>|
+|            Percentage of stalls occurring because of immediate constant cache|
+|             miss                                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_pipe_busy:device=1                                   <NA>|
+|            Percentage of stalls occurring because a compute operation cannot |
+|            be performed because the compute pipeline is busy                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_efficiency:device=1                                 <NA>|
+|            Ratio of requested shared memory throughput to required shared mem|
+|            ory throughput                                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_fp_32:device=1                                            |
+|            Number of single-precision floating-point instructions executed by|
+|             non-predicated threads (arithmetic, compare, etc.)               |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_fp_64:device=1                                            |
+|            Number of double-precision floating-point instructions executed by|
+|             non-predicated threads (arithmetic, compare, etc.)               |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_integer:device=1                                          |
+|            Number of integer instructions executed by non-predicated threads |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_bit_convert:device=1                                      |
+|            Number of bit-conversion instructions executed by non-predicated t|
+|            hreads                                                            |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_control:device=1                                      <NA>|
+|            Number of control-flow instructions executed by non-predicated thr|
+|            eads (jump, branch, etc.)                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_compute_ld_st:device=1                                    |
+|            Number of compute load/store instructions executed by non-predicat|
+|            ed threads                                                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_misc:device=1                                             |
+|            Number of miscellaneous instructions executed by non-predicated th|
+|            reads                                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_inter_thread_communication:device=1                       |
+|            Number of inter-thread communication instructions executed by non-|
+|            predicated threads                                                |
+--------------------------------------------------------------------------------
+| cuda:::metric:issue_slots:device=1                                       <NA>|
+|            The number of issue slots used                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:cf_issued:device=1                                             |
+|            Number of issued control-flow instructions                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:cf_executed:device=1                                           |
+|            Number of executed control-flow instructions                      |
+--------------------------------------------------------------------------------
+| cuda:::metric:ldst_issued:device=1                                       <NA>|
+|            Number of issued local, global, shared and texture memory load and|
+|             store instructions                                               |
+--------------------------------------------------------------------------------
+| cuda:::metric:ldst_executed:device=1                                         |
+|            Number of executed local, global, shared and texture memory load a|
+|            nd store instructions                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:atomic_transactions:device=1                               <NA>|
+|            Global memory atomic and reduction transactions                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:atomic_transactions_per_request:device=1                   <NA>|
+|            Average number of global memory atomic and reduction transactions |
+|            performed for each atomic and reduction instruction               |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_atomic_throughput:device=1                                  |
+|            Memory read throughput seen at L2 cache for atomic and reduction r|
+|            equests                                                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_atomic_transactions:device=1                            <NA>|
+|            Memory read transactions seen at L2 cache for atomic and reduction|
+|             requests                                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_read_transactions:device=1                              |
+|            Memory read transactions seen at L2 cache for read requests from t|
+|            he texture cache                                                  |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_memory_throttle:device=1                             <NA>|
+|            Percentage of stalls occurring because of memory throttle         |
+--------------------------------------------------------------------------------
+| cuda:::metric:stall_not_selected:device=1                                <NA>|
+|            Percentage of stalls occurring because warp was not selected      |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_tex_write_transactions:device=1                             |
+|            Memory write transactions seen at L2 cache for write requests from|
+|             the texture cache                                                |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_hp:device=1                                     <NA>|
+|            Number of half-precision floating-point operations executed by non|
+|            -predicated threads (add, multiply, and multiply-accumulate). Each|
+|             multiply-accumulate operation contributes 2 to the count.        |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_hp_add:device=1                                     |
+|            Number of half-precision floating-point add operations executed by|
+|             non-predicated threads.                                          |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_hp_mul:device=1                                     |
+|            Number of half-precision floating-point multiply operations execut|
+|            ed by non-predicated threads.                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_count_hp_fma:device=1                                     |
+|            Number of half-precision floating-point multiply-accumulate operat|
+|            ions executed by non-predicated threads. Each multiply-accumulate |
+|            operation contributes 1 to the count.                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:inst_fp_16:device=1                                        <NA>|
+|            Number of half-precision floating-point instructions executed by n|
+|            on-predicated threads (arithmetic, compare, etc.)                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_read_utilization:device=1                               |
+|            The read utilization level of the system memory relative to the pe|
+|            ak utilization on a scale of 0 to 10                              |
+--------------------------------------------------------------------------------
+| cuda:::metric:sysmem_write_utilization:device=1                          <NA>|
+|            The write utilization level of the system memory relative to the p|
+|            eak utilization on a scale of 0 to 10                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:sm_efficiency:device=1                                         |
+|            The percentage of time at least one warp is active on a specific m|
+|            ultiprocessor                                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:achieved_occupancy:device=1                                <NA>|
+|            Ratio of the average active warps per active cycle to the maximum |
+|            number of warps supported on a multiprocessor                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:ipc:device=1                                                   |
+|            Instructions executed per cycle                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:issued_ipc:device=1                                            |
+|            Instructions issued per cycle                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:issue_slot_utilization:device=1                            <NA>|
+|            Percentage of issue slots that issued at least one instruction, av|
+|            eraged across all cycles                                          |
+--------------------------------------------------------------------------------
+| cuda:::metric:eligible_warps_per_cycle:device=1                              |
+|            Average number of warps that are eligible to issue per active cycl|
+|            e                                                                 |
+--------------------------------------------------------------------------------
+| cuda:::metric:tex_utilization:device=1                                       |
+|            The utilization level of the unified cache relative to the peak ut|
+|            ilization                                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:l2_utilization:device=1                                    <NA>|
+|            The utilization level of the L2 cache relative to the peak utiliza|
+|            tion on a scale of 0 to 10                                        |
+--------------------------------------------------------------------------------
+| cuda:::metric:shared_utilization:device=1                                    |
+|            The utilization level of the shared memory relative to peak utiliz|
+|            ation                                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:ldst_fu_utilization:device=1                               <NA>|
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute shared load, shared store and constant load instructions    |
+--------------------------------------------------------------------------------
+| cuda:::metric:cf_fu_utilization:device=1                                     |
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute control-flow instructions on a scale of 0 to 10             |
+--------------------------------------------------------------------------------
+| cuda:::metric:special_fu_utilization:device=1                                |
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute sin, cos, ex2, popc, flo, and similar instructions on a scal|
+|            e of 0 to 10                                                      |
+--------------------------------------------------------------------------------
+| cuda:::metric:tex_fu_utilization:device=1                                    |
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute global, local and texture memory instructions on a scale of |
+|            0 to 10                                                           |
+--------------------------------------------------------------------------------
+| cuda:::metric:single_precision_fu_utilization:device=1                   <NA>|
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute single-precision floating-point instructions and integer ins|
+|            tructions                                                         |
+--------------------------------------------------------------------------------
+| cuda:::metric:double_precision_fu_utilization:device=1                       |
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute double-precision floating-point instructions                |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_hp_efficiency:device=1                                <NA>|
+|            Ratio of achieved to peak half-precision floating-point operations|
+|                                                                              |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_sp_efficiency:device=1                                <NA>|
+|            Ratio of achieved to peak single-precision floating-point operatio|
+|            ns                                                                |
+--------------------------------------------------------------------------------
+| cuda:::metric:flop_dp_efficiency:device=1                                <NA>|
+|            Ratio of achieved to peak double-precision floating-point operatio|
+|            ns                                                                |
+--------------------------------------------------------------------------------
+| cuda:::metric:dram_read_transactions:device=1                                |
+|            Device memory read transactions                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:dram_write_transactions:device=1                               |
+|            Device memory write transactions                                  |
+--------------------------------------------------------------------------------
+| cuda:::metric:dram_read_throughput:device=1                              <NA>|
+|            Device memory read throughput                                     |
+--------------------------------------------------------------------------------
+| cuda:::metric:dram_write_throughput:device=1                                 |
+|            Device memory write throughput                                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:dram_utilization:device=1                                  <NA>|
+|            The utilization level of the device memory relative to the peak ut|
+|            ilization on a scale of 0 to 10                                   |
+--------------------------------------------------------------------------------
+| cuda:::metric:half_precision_fu_utilization:device=1                     <NA>|
+|            The utilization level of the multiprocessor function units that ex|
+|            ecute 16 bit floating-point instructions and integer instructions |
+|            on a scale of 0 to 10                                             |
+--------------------------------------------------------------------------------
+| cuda:::metric:ecc_transactions:device=1                                      |
+|            Number of ECC transactions between L2 and DRAM                    |
+--------------------------------------------------------------------------------
+| cuda:::metric:ecc_throughput:device=1                                    <NA>|
+|            ECC throughput from L2 to DRAM                                    |
+--------------------------------------------------------------------------------
+
+Total events reported: 559
