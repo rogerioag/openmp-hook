@@ -1,0 +1,36 @@
+Available components and hardware information.
+--------------------------------------------------------------------------------
+PAPI version             : 5.6.0.0
+Operating system         : Linux 4.4.5-040405-generic
+Vendor string and code   : GenuineIntel (1, 0x1)
+Model string and code    : Intel(R) Core(TM) i3-8100 CPU @ 3.60GHz (158, 0x9e)
+CPU revision             : 11.000000
+CPUID                    : Family/Model/Stepping 6/158/11, 0x06/0x9e/0x0b
+CPU Max MHz              : 3600
+CPU Min MHz              : 800
+Total cores              : 4
+SMT threads per core     : 1
+Cores per socket         : 4
+Sockets                  : 1
+Cores per NUMA region    : 4
+NUMA regions             : 1
+Running in a VM          : no
+Number Hardware Counters : 10
+Max Multiplex Counters   : 384
+Fast counter read (rdpmc): no
+--------------------------------------------------------------------------------
+
+Compiled-in components:
+Name:   perf_event              Linux perf_event CPU counters
+Name:   perf_event_uncore       Linux perf_event CPU uncore and northbridge
+   \-> Disabled: No uncore PMUs or events found
+Name:   rapl                    Linux RAPL energy measurements
+   \-> Disabled: Can't open fd for cpu0: No such file or directory
+
+Active components:
+Name:   perf_event              Linux perf_event CPU counters
+                                Native: 168, Preset: 59, Counters: 10
+                                PMUs supported: ix86arch, perf, perf_raw, skl
+
+
+--------------------------------------------------------------------------------
