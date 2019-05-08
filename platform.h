@@ -3,7 +3,7 @@
 #define PLATFORM_H
 
 /* Define the default processor architecture: ivy bridge is pilipili2. */
-#if !defined(NEHALEM) && !defined(IVY_BRIDGE) && !defined(SANDY_BRIDGE) && !defined(HASWELL)
+#if !defined(NEHALEM) && !defined(IVY_BRIDGE) && !defined(SANDY_BRIDGE) && !defined(HASWELL) && !defined(COFFEE_LAKE)
 #define IVY_BRIDGE
 #endif
 
@@ -26,6 +26,11 @@
 #ifdef HASWELL
   #pragma message( "Setting Haswell architecture." )
   #include "haswell.h"
+#endif
+
+#ifdef COFFEE_LAKE
+  #pragma message( "Setting Coffee Lake architecture." )
+  #include "coffee_lake.h"
 #endif
 
 #endif /* PLATFORM_H */

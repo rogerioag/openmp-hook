@@ -1,36 +1,39 @@
 
-#ifndef IVY_BRIDGE_H
-#define IVY_BRIDGE_H
+#ifndef HASWELL_H
+#define HASWELL_H
 
-/*	pilipili2 (grenoble): 
-    	Model: 62 - 3EH : Ivy Bridge - IvyBridge-EP
-    	http://ark.intel.com/products/75790/Intel-Xeon-Processor-E5-2630-v2-15M-Cache-2_60-GHz
-    	Launch Date: 	Q3'13
-    	['Ivy Bridge E', '2013.3', '06_3EH', 'ivy bridge-e, i7-4930K'],
-	['Ivy Bridge EN', '2014.1', '06_3EH', 'ivy bridge en'],
-	['Ivy Bridge EP', '2013.3', '06_3EH', 'ivy bridge ep'],
-   	Vendor string and code   : GenuineIntel (1)
-	Model string and code    : Intel(R) Xeon(R) CPU E5-2630 v2 @ 2.60GHz (62)
-	CPU Revision             : 4.000000
-	CPUID Info               : Family: 6  Model: 62  Stepping: 4
-	CPU Max Megahertz        : 3100
-	CPU Min Megahertz        : 1200
-	Hdw Threads per core     : 2
-	Cores per Socket         : 6
-	Sockets                  : 2
-	NUMA Nodes               : 2
-	CPUs per Node            : 12
-	Total CPUs               : 24
-	Running in a VM          : no
-	Number Hardware Counters : 11
-	Max Multiplex Counters   : 128
+/*	titanx-pascal (utfpr-cm): 
+    	Model: 60 - 3C : Haswell
+    	https://ark.intel.com/pt-br/products/80806/Intel-Core-i7-4790-Processor-8M-Cache-up-to-4-00-GHz-
+    	Launch Date: 	Q2'14
+    	
+	   	PAPI version             : 5.6.0.0
+		Operating system         : Linux 4.9.0-4-amd64
+		Vendor string and code   : GenuineIntel (1, 0x1)
+		Model string and code    : Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz (60, 0x3c)
+		CPU revision             : 3.000000
+		CPUID                    : Family/Model/Stepping 6/60/3, 0x06/0x3c/0x03
+		CPU Max MHz              : 4000
+		CPU Min MHz              : 800
+		Total cores              : 8
+		SMT threads per core     : 2
+		Cores per socket         : 4
+		Sockets                  : 1
+		Cores per NUMA region    : 8
+		NUMA regions             : 1
+		Running in a VM          : no
+		Number Hardware Counters : 0
+		Max Multiplex Counters   : 384
+		Fast counter read (rdpmc): no
 
-	http://www.cpu-world.com/CPUs/Xeon/Intel-Xeon%20E5-2630%20v2.html
+
+	http://www.cpu-world.com/cgi-bin/IdentifyPart.pl?PART=i7-4790
+	http://www.cpu-world.com/CPUs/Core_i7/Intel-Core%20i7-4790.html
 */
 
 #define NUM_DEVICES 2
 
-/* Cache line size: 64 bytes. http://www.cpu-world.com/CPUs/Xeon/Intel-Xeon%20E5-2630.html */
+/* Cache line size: 64 bytes. http://www.cpu-world.com/CPUs/Core_i7/Intel-Core%20i7-4790.html */
 #define CACHE_LINE_SIZE 64
 
 /* Time of transfer 1 byte over PCI. */
@@ -181,4 +184,4 @@ static Device_Descriptor_Type devices[NUM_DEVICES] = {
 			}
 };
 
-#endif /* IVY_BRIDGE_H */
+#endif /* HASWELL_H */
