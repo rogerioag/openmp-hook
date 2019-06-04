@@ -120,8 +120,10 @@ typedef struct Device_Descriptor {
 } Device_Descriptor_Type;
 
 /* Theoretical values.
-   i7-870: 46.3 GFlops, Memory Bandwidth: 21 GB/s
-   k40c: 4291.2 GFlops, Memory Bandwidth: 288 GB/s */
+   Intel-Core-i3-8100-Processor-6M-Cache-3-60-GHz: 17.29 GFlops, Memory Bandwidth: 37.5 GB/s (https://asteroidsathome.net/boinc/cpu_list.php, https://ark.intel.com/content/www/br/pt/ark/products/126688/intel-core-i3-8100-processor-6m-cache-3-60-ghz.html)
+   gtx780: 173.2 GFlops, Memory Bandwidth: 288.4 GB/s 
+   https://www.techpowerup.com/gpu-specs/geforce-gtx-780.c1701
+*/
 
 /* Sumary of parameters values used in roofline library.
    	** Bandwidth **
@@ -144,8 +146,8 @@ typedef struct Device_Descriptor {
 	---------------------------------------------------------------------------------------------------------------------
 */
 static Device_Descriptor_Type devices[NUM_DEVICES] = {
-/* i7-870 */	{ 
-				.dev_type = T_CPU, .id = 0, .theor_flops = 46.3, .theor_bandwidth = 21.0, .efect_flops = 46.3, 
+/* i3 */	{ 
+				.dev_type = T_CPU, .id = 0, .theor_flops = 17.29 , .theor_bandwidth = 37.5, .efect_flops = 17.29, 
 				/*.efect_bandwidth*/
 				{ /* READ -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
 					{ 21.0, 21.0, 21.0 }, 
@@ -161,7 +163,7 @@ static Device_Descriptor_Type devices[NUM_DEVICES] = {
 			},
 
 /* GPU0 */	{ 
-				.dev_type = T_GPU, .id = 1, .theor_flops = 4291.2, .theor_bandwidth = 288.0, .efect_flops = 4291.2, 
+				.dev_type = T_GPU, .id = 1, .theor_flops = 173.2, .theor_bandwidth = 288.4, .efect_flops = 173.2, 
 				/*.efect_bandwidth*/
 				{ /* READ (d2h) -> MEMORY_ALLOC_DEFAULT, MEMORY_ALLOC_PAGEABLE, MEMORY_ALLOC_PINNED */
 					{ 3.208838, 3.208838, 10.26707 }, 
@@ -178,4 +180,3 @@ static Device_Descriptor_Type devices[NUM_DEVICES] = {
 };
 
 #endif /* COFFEE_LAKE_H */
-

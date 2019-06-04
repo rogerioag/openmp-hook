@@ -241,6 +241,9 @@ bool RM_initialization_of_papi_libray_mode(){
 		TRACE("PAPI_library_init error: %d %s\n", retval, PAPI_strerror(retval));
 		TRACE("PAPI library version mismatch.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	}
+
+	if(retval < 0){
 		switch (retval){
 		case PAPI_EINVAL :
 			TRACE("Error: papi.h is different from the version used to compile the PAPI library.\n");
@@ -257,12 +260,22 @@ bool RM_initialization_of_papi_libray_mode(){
 		default :
 			TRACE("Error: Unknown Error.\n");
 		}
+
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
 	}
 
-	while ((retval = PAPI_is_initialized()) != PAPI_LOW_LEVEL_INITED){
+	if ((retval = PAPI_is_initialized()) != PAPI_LOW_LEVEL_INITED){
 		TRACE("Waiting PAPI initialization.\n");
 		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
-	} 
+	}
+
+
+
+	/* PAPI 5.5.0 > estava com problema */
+	/*while ((retval = PAPI_is_initialized()) != PAPI_LOW_LEVEL_INITED){
+		TRACE("Waiting PAPI initialization.\n");
+		RM_papi_handle_error(__FUNCTION__, retval, __LINE__);
+	} */
 
 	/*switch (retval){
 		case PAPI_NOT_INITED :
