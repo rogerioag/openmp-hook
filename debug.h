@@ -23,7 +23,7 @@ void timestamp()
 // #define VERBOSE 1
 // Use make OPTIONS=-DVERBOSE
 #if defined(VERBOSE) && VERBOSE > 0
-#define PRINT_FUNC_NAME fprintf(stderr, "TRACE-FUNC-NAME: [%10s:%010d] Thread [%lu] is calling [%s()]\n",__FILE__, __LINE__, (unsigned long int) pthread_self(), __FUNCTION__)
+#define PRINT_FUNC_NAME fprintf(stderr, "[TRACE]: [%10s:%010d]: TRACE-FUNC-NAME: Thread [%lu] is calling [%s()]\n",__FILE__, __LINE__, (unsigned long int) pthread_self(), __FUNCTION__)
 #else
 #define PRINT_FUNC_NAME (void) 0
 #endif
